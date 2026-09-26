@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue
+    url: https://isaacadjei.me/security-policy
+    about: Report security issues privately and never in a public issue
+  - name: Visit the site
+    url: https://isaacadjei.me
+    about: The live site this code belongs to

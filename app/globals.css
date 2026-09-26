@@ -1,0 +1,288 @@
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-in: slide-in 0.3s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 225 65% 40%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 225 65% 40%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 225 65% 60%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 225 65% 60%;
+  }
+}
+
+@layer base {
+  /* v4 stopped giving buttons a pointer cursor, so this keeps the v3 behaviour */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/*
+  I apply theme transitions only while the toggle is firing, not permanently.
+  This prevents the transition from interfering with hover effects, Framer Motion
+  animations and anything else that sets its own transition.
+*/
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 100ms ease,
+    color 100ms ease,
+    border-color 100ms ease,
+    fill 100ms ease,
+    stroke 100ms ease !important;
+  transition-delay: 0s !important;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+.animate-float        { animation: float 10s ease-in-out infinite; }
+.animate-float-slow   { animation: float 14s ease-in-out infinite; }
+.animate-float-slower { animation: float 18s ease-in-out infinite; }
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee-scroll 14s linear infinite;
+}
+
+/* skills icon grid - fixed columns, centered */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 88px);
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 auto;
+}
+/* desktop: lock to exact column count (N×88px + (N-1)×12px gap) */
+@media (min-width: 640px) {
+  .skills-cols-2 { grid-template-columns: repeat(2, 88px); }
+  .skills-cols-3 { grid-template-columns: repeat(3, 88px); }
+  .skills-cols-4 { grid-template-columns: repeat(4, 88px); }
+  .skills-cols-5 { grid-template-columns: repeat(5, 88px); }
+  .skills-cols-6 { grid-template-columns: repeat(6, 88px); }
+}
+
+/* staggered entrance for skill categories */
+.animate-fade-up.stagger-0  { animation-delay: 0.00s; animation-fill-mode: both; }
+.animate-fade-up.stagger-1  { animation-delay: 0.07s; animation-fill-mode: both; }
+.animate-fade-up.stagger-2  { animation-delay: 0.14s; animation-fill-mode: both; }
+.animate-fade-up.stagger-3  { animation-delay: 0.21s; animation-fill-mode: both; }
+.animate-fade-up.stagger-4  { animation-delay: 0.28s; animation-fill-mode: both; }
+.animate-fade-up.stagger-5  { animation-delay: 0.35s; animation-fill-mode: both; }
+.animate-fade-up.stagger-6  { animation-delay: 0.42s; animation-fill-mode: both; }
+.animate-fade-up.stagger-7  { animation-delay: 0.49s; animation-fill-mode: both; }
+.animate-fade-up.stagger-8  { animation-delay: 0.56s; animation-fill-mode: both; }
+.animate-fade-up.stagger-9  { animation-delay: 0.63s; animation-fill-mode: both; }
+
+/* TipTap rich text editor (notes + diary). The prose classes handle headings, lists and code block
+   layout; I add only what prose does not cover - the empty-state placeholder, task-list checkboxes and
+   the lowlight syntax-highlight token colours. Scoped to .ProseMirror so nothing else is affected. */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: hsl(var(--muted-foreground));
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0.25rem;
+}
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+.ProseMirror ul[data-type="taskList"] li > label {
+  margin-top: 0.2rem;
+}
+.ProseMirror ul[data-type="taskList"] li > div {
+  flex: 1 1 0%;
+}
+.ProseMirror .hljs-comment, .ProseMirror .hljs-quote { color: #6b7280; font-style: italic; }
+.ProseMirror .hljs-keyword, .ProseMirror .hljs-selector-tag, .ProseMirror .hljs-built_in { color: #8b5cf6; }
+.ProseMirror .hljs-string, .ProseMirror .hljs-attr { color: #10b981; }
+.ProseMirror .hljs-number, .ProseMirror .hljs-literal { color: #f59e0b; }
+.ProseMirror .hljs-title, .ProseMirror .hljs-section { color: #3b82f6; }
+.ProseMirror .hljs-attribute, .ProseMirror .hljs-name, .ProseMirror .hljs-tag { color: #ef4444; }

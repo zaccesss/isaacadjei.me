@@ -1,0 +1,135 @@
+"use client"
+
+import { useState } from "react"
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+import { type Project } from "@/data/projects"
+import ProjectCard from "./ProjectCard"
+import { relevanceScore } from "@/lib/search"
+import ProjectFilter from "./ProjectFilter"
+import { CONTENT_YEAR_MONTH_FILTERS } from "@/lib/feature-flags"
+
+type Category = Project["category"] | "all"
+
+const PER_PAGE = 9
+
+function projectYear(dateStr: string): number {
+  return parseInt(dateStr.split(" - ")[0].trim(), 10)
+}
+
+interface Props {
+  projects: Project[]
+}
+
+export default function ProjectGrid({ projects }: Props) {
+  const [filter, setFilter] = useState<Category>("all")
+  const [year, setYear] = useState<string>("all")
+  const [search, setSearch] = useState("")
+  const [page, setPage] = useState(1)
+
+  const years = [...new Set(projects.map((p) => projectYear(p.date)))].sort((a, b) => b - a)
+  const q = search.toLowerCase().trim()
+  const filtered = projects
+    .filter((p) => filter === "all" || p.category === filter)
+    .filter((p) => year === "all" || String(projectYear(p.date)) === year)
+    .filter((p) => !q || p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))
+    .sort((a, b) => q ? relevanceScore(b.title, b.description, q) - relevanceScore(a.title, a.description, q) : 0)
+  const totalPages = Math.ceil(filtered.length / PER_PAGE)
+  const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+
+  function handleFilter(next: Category) {
+    setFilter(next)
+    setPage(1)
+  }
+
+  function handleYear(next: string) {
+    setYear(next)
+    setPage(1)
+  }
+
+  function handleSearch(value: string) {
+    setSearch(value)
+    setPage(1)
+  }
+
+  return (
+    <div className="space-y-8">
+      <input
+        type="search"
+        placeholder="Search projects…"
+        value={search}
+        onChange={e => handleSearch(e.target.value)}
+        className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/30"
+      />
+      <ProjectFilter active={filter} onChange={handleFilter} />
+
+      {CONTENT_YEAR_MONTH_FILTERS && years.length > 1 && (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Year</span>
+          <button
+            type="button"
+            onClick={() => handleYear("all")}
+            className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+              year === "all"
+                ? "border-primary bg-primary/10 text-primary"
+                : "border-border/60 text-muted-foreground hover:border-border hover:text-foreground"
+            }`}
+          >
+            All
+          </button>
+          {years.map((y) => (
+            <button
+              type="button"
+              key={y}
+              onClick={() => handleYear(String(y))}
+              className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                year === String(y)
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border/60 text-muted-foreground hover:border-border hover:text-foreground"
+              }`}
+            >
+              {y}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {filtered.length === 0 ? (
+        <p className="text-muted-foreground text-center py-16">No projects in this category yet.</p>
+      ) : (
+        <>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {paginated.map((project, i) => (
+              <ProjectCard key={project.id} project={project} priority={page === 1 && i === 0} />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-1 pt-4">
+              <button type="button" onClick={() => setPage(1)} disabled={page === 1} aria-label="First page" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted/40 disabled:opacity-40 disabled:pointer-events-none transition-colors">
+                <ChevronsLeft className="h-4 w-4" />
+              </button>
+              <button type="button" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} aria-label="Previous page" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted/40 disabled:opacity-40 disabled:pointer-events-none transition-colors">
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                <button key={n} type="button" onClick={() => setPage(n)} aria-label={`Page ${n}`} aria-current={n === page ? "page" : undefined} className={`min-w-8 h-8 px-2 rounded-lg border text-sm font-medium transition-colors ${n === page ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground hover:bg-muted/40"}`}>
+                  {n}
+                </button>
+              ))}
+              <button type="button" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} aria-label="Next page" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted/40 disabled:opacity-40 disabled:pointer-events-none transition-colors">
+                <ChevronRight className="h-4 w-4" />
+              </button>
+              <button type="button" onClick={() => setPage(totalPages)} disabled={page === totalPages} aria-label="Last page" className="p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted/40 disabled:opacity-40 disabled:pointer-events-none transition-colors">
+                <ChevronsRight className="h-4 w-4" />
+              </button>
+            </div>
+          )}
+
+          <p className="text-center text-xs text-muted-foreground">
+            Showing {(page - 1) * PER_PAGE + 1}-{Math.min(page * PER_PAGE, filtered.length)} of {filtered.length} projects
+          </p>
+        </>
+      )}
+    </div>
+  )
+}
