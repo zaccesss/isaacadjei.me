@@ -17,6 +17,10 @@ jobs:
   build:
     name: Lint, type check, test and build
     runs-on: ubuntu-latest
+    # retry package downloads so one dropped connection does not fail the run
+    env:
+      NPM_CONFIG_FETCH_RETRIES: "5"
+      NPM_CONFIG_FETCH_RETRY_MINTIMEOUT: "20000"
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
