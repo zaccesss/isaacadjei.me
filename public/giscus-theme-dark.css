@@ -1,0 +1,23 @@
+@import url("https://giscus.app/themes/dark.css");
+
+/* hide powered-by attribution - parent is <em>, not <span> */
+em:has(> a[href="https://giscus.app"]) { display: none !important; }
+
+/* blue primary buttons (sign in + comment submit) */
+.btn-primary {
+  background-color: hsl(225, 70%, 55%) !important;
+  background: hsl(225, 70%, 55%) !important;
+  border-color: hsl(225, 70%, 50%) !important;
+  color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: hsl(225, 70%, 50%) !important;
+  background: hsl(225, 70%, 50%) !important;
+}
+
+/* center sign-in placeholder */
+textarea[placeholder="Sign in to comment"] {
+  text-align: center !important;
+  padding-top: 1.5rem !important;
+}
