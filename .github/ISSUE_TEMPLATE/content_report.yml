@@ -1,0 +1,22 @@
+name: Content correction
+description: A typo, broken link or factual mistake in the site's content
+title: "content: "
+labels: ["content"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page address
+      placeholder: "https://isaacadjei.me/blog/example"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
