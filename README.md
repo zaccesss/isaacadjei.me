@@ -48,6 +48,7 @@ Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the 
 | `styles/` | Global animation styles |
 | `types/` | Shared type declarations |
 | `tests/` | Unit tests |
+| `CHANGELOG.md` | Release notes for the public site, generated from its changelog page |
 
 ## Running it locally
 
