@@ -368,8 +368,8 @@ async function fetchGithubAndCache(): Promise<GithubActivity> {
     })
     if (!res.ok) return { repo: null, pushedAt: null, relativeTime: null }
 
-    const events = (await res.json()) as { type: string; repo: { name: string }; created_at: string }[]
-    const push = events.find((e) => e.type === "PushEvent" && e.repo.name !== "zaccesss/zaccesss")
+    const events = (await res.json()) as { type: string; public?: boolean; repo: { name: string }; created_at: string }[]
+    const push = events.find((e) => e.type === "PushEvent" && e.public === true && e.repo.name !== "zaccesss/zaccesss")
     if (!push) return { repo: null, pushedAt: null, relativeTime: null }
 
     const repoShort = push.repo.name.replace("zaccesss/", "")
