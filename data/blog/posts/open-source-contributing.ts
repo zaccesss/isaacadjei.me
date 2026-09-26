@@ -214,7 +214,7 @@ Clicked the updated link in a browser preview. Verified the target page exists.
       },
       {
         type: "p",
-        text: "The portfolio itself is [open source on GitHub](https://github.com/zaccesss/isaac-adjei-portfolio). Every post on this blog, every page of this site, every API route: all of it is publicly readable code. If you find a bug, there is a CONTRIBUTING.md. You know what to do.",
+        text: "The public side of the portfolio is [open source on GitHub](https://github.com/zaccesss/isaacadjei.me). Every post on this blog and every public page of this site is readable code. If you find a bug, there is a CONTRIBUTING.md. You know what to do.",
       },
       {
         type: "quote",

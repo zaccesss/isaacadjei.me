@@ -245,7 +245,7 @@ export default function ColophonPage() {
           <span>
             Source:{" "}
             <a
-              href="https://github.com/zaccesss/isaac-adjei-portfolio"
+              href="https://github.com/zaccesss/isaacadjei.me"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4 inline-flex items-center gap-0.5"
