@@ -1,5 +1,7 @@
 # Code of Conduct
 
+> Public version of this code: https://isaacadjei.me/code-of-conduct
+
 ## Our standards
 
 Anyone taking part in issues or discussions here is expected to be:
@@ -10,7 +12,10 @@ Anyone taking part in issues or discussions here is expected to be:
 
 ## Enforcement
 
-Comments that break these standards are removed and repeat offenders are blocked. To report a problem, contact contact@isaacadjei.me.
+> [!NOTE]
+> Comments that break these standards are removed and repeat offenders are blocked.
+
+To report a problem, contact contact@isaacadjei.me.
 
 ## Attribution
 
