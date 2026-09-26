@@ -25,6 +25,34 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.68.0",
+    date: "2026-09-26",
+    label: "Public stats and source",
+    added: [
+      "/stats: the hub opens on category tabs for Overview, Coding, Music, Gaming, Applications and Writing and projects, with every area's charts on the same page",
+      "/stats: an At a glance section with headline numbers plus a How it all compares block that sets coding, gaming, listening and GitHub side by side week by week. Each area has a designed card with its own small live picture such as a coding trend, a listening equaliser or a contribution grid",
+      "/stats/writing: a new page covering posts, TILs, tags, reading time, projects, technologies and what I read and watch",
+      "/stats/coding, /stats/music, /stats/gaming and /stats/applications: more charts including radars, treemaps, heatmaps, monthly trends and a country map for applications, drawn from one hourly cached read that holds counts only",
+      "/stats/gaming: a play history block with hours, most played and weekly hours under the live status",
+      "Now playing: the card updates almost at once when the track changes",
+      "The public source code is now on GitHub as isaacadjei.me, published from the site's own source with its own changelog and releases",
+    ],
+    changed: [
+      "Every stats page opens on the last 30 days",
+      "Posts and TIL entries dated today now go live at midnight UTC, so a scheduled entry no longer shows in a list while its page says not found",
+      "Chart labels no longer overlap: pie and donut legends sit under the chart with the percentages inside the ring and bar chart names are shortened and slanted when there are many",
+      "The site does less work on each visit: the GitHub stats and top tracks data are cached at the edge. The blog feed and share images are cached too. The research page is built ahead and the newsletter issue list is cached for 10 minutes",
+      "/about and /experience refresh daily so a role that starts on a set date appears on its own",
+      "/colophon, /changelog and one blog post link to the new public source repository",
+      "Under the hood: React 19, Tailwind 4, TypeScript 6 and newer chart and icon libraries",
+    ],
+    fixed: [
+      "/stats/applications: the maps open in the mode you are viewing the site in. The country map has a dark version with a brighter shading scale",
+      "/stats/applications: the map renders again in every style. Its supporting file had gone out of step with the map library after an upgrade so only the satellite view worked",
+      "The latest push card only shows public repositories",
+    ],
+  },
+  {
     version: "v2.67.0",
     date: "2026-09-24",
     added: [
@@ -647,14 +675,14 @@ export default function ChangelogPage() {
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed">
           What has changed on this site from the first commit to the latest update.
-          Full history is also in{" "}
+          The public source is on{" "}
           <a
-            href="https://github.com/zaccesss/isaac-adjei-portfolio/blob/main/CHANGELOG.md"
+            href="https://github.com/zaccesss/isaacadjei.me"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
           >
-            CHANGELOG.md
+            GitHub
           </a>
           .
         </p>
