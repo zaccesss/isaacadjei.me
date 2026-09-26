@@ -1,0 +1,263 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { Separator } from "@/components/ui/separator"
+import LiveStatusCards from "@/components/shared/LiveStatusCards"
+import {
+  BookOpen,
+  Code2,
+  GraduationCap,
+  Headphones,
+  MapPin,
+  Wrench,
+  Dumbbell,
+  ArrowUpRight,
+} from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Now",
+  description: "What Isaac Adjei is doing right now - studying, building and thinking about.",
+  alternates: {
+    canonical: "https://www.isaacadjei.me/now",
+  },
+  openGraph: {
+    images: ["/api/og?title=Now&description=What%20Isaac%20Adjei%20is%20doing%20right%20now%20-%20studying%2C%20building%20and%20thinking%20about%2E"],
+  },
+}
+
+export default function NowPage() {
+  return (
+    <div className="container max-w-2xl py-24 space-y-14">
+      <section className="space-y-4">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" />
+          </span>
+          Updated live
+        </div>
+        <div className="flex items-center gap-2">
+          <h1 className="text-4xl font-bold tracking-tight">Now</h1>
+        </div>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          A snapshot of what I am doing in my life at this moment. Inspired by{" "}
+          <a
+            href="https://nownownow.com/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            Derek Sivers
+          </a>
+          . Also listed on{" "}
+          <a
+            href="https://nownownow.com/p/n4lZ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            nownownow.com
+          </a>
+          .
+        </p>
+        <LiveStatusCards alwaysShowDiscord />
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <MapPin className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Where I am</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Based in London for the summer. I study Electronic Engineering and Computer Science at Aston
+          University in Birmingham, working towards a First Class BEng. The academic year has just
+          wrapped up so I am back in London, where most of my family is based. Come September it is
+          back to Birmingham for the next year.
+        </p>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <GraduationCap className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Studying</h2>
+        </div>
+        <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            The academic year has wrapped up. I am using the summer to go deeper into the things
+            I care about: embedded systems, signals, machine learning and digital hardware design.
+            Starting FPGA development from scratch, learning VHDL and working up to real hardware designs.
+          </p>
+          <p>
+            Getting serious about competitive programming too - working through Neetcode and Leetcode
+            consistently, practising on Codeforces and entering hackathons where I can.
+          </p>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-4">
+        <div className="flex items-center gap-2.5">
+          <Wrench className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Building</h2>
+        </div>
+        <div className="space-y-4 text-sm text-muted-foreground">
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/phaemos" className="hover:text-primary transition-colors">
+                Phaemos
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              A full-stack predictive maintenance platform. Four hardware nodes: ESP32 primary
+              (11 sensors), STM32 Black Pill (100 Hz FFT vibration), Arduino Nano (secondary sensors)
+              and Raspberry Pi Pico 2W (ambient node). FastAPI backend, Isolation Forest anomaly
+              detection, Next.js live dashboard. Actively building the hardware layer and refining
+              the ML pipeline.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/avr-zac" className="hover:text-primary transition-colors">
+                avr-zac
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              Bare metal AVR C on an ATmega644P. Working through a structured curriculum
+              from basic GPIO up to a nine-mode state machine with interrupts, PWM, ADC and a Tetris
+              melody. Each session is documented as I go.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/notes/multi-sport-ai-predictor" className="hover:text-primary transition-colors">
+                Multi-Sport AI Predictor
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              The World Cup predictor didn&apos;t ship in time for the 2026 tournament, so I&apos;m
+              generalising the same model architecture into an ongoing platform covering football,
+              NBA, tennis, cricket and F1 instead of one single-tournament deadline.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">This site</p>
+            <p className="leading-relaxed">
+              Every publication on{" "}
+              <Link href="/respub" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                /respub
+              </Link>{" "}
+              now gets its own page with a proper APA citation and a copyable BibTeX block. Just
+              finished rebuilding{" "}
+              <Link href="/consumed" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                /consumed
+              </Link>{" "}
+              too: everything is dated by real year instead of a hardcoded one, sorted newest first,
+              searchable in one place, with prev/next navigation between items and every genre or tag
+              properly linked into{" "}
+              <Link href="/tags" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                /tags
+              </Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <BookOpen className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Reading</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Dipping in and out of technical papers on retinoblastoma and ocular prosthetics. It is a
+          personal research interest that has shaped a lot of how I think about accessible and
+          bio-integrated technology.
+          I keep a running log of books and content on the{" "}
+          <Link href="/consumed" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+            /consumed
+          </Link>{" "}
+          page.
+        </p>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <Code2 className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Thinking about</h2>
+        </div>
+        <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            How embedded AI at the edge differs in practice from what is taught in courses. Most
+            ML curricula assume cloud inference. I am interested in what it takes to run useful
+            models on microcontrollers with tight memory and power constraints.
+          </p>
+          <p>
+            Actively looking and applying for internships, placements and professional work
+            experience. Focused on roles with real engineering depth. I have been attending industry
+            events and networking with people doing work I genuinely find interesting.
+          </p>
+          <p>
+            Visited Sky&apos;s campus recently for being shortlisted for the Black Heritage
+            Undergraduate of the Year award, the day before my birthday. It meant a lot and it was a
+            good reminder that the work is being noticed outside of just shipping code.
+          </p>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <Dumbbell className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Outside of work</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Back at the gym consistently. Running more regularly too - short routes, building the
+          habit. Hiking when I get the chance to get out of the city. Playing piano when I need to
+          step away from screens. Getting better at cooking - less eating out, more experimenting
+          in the kitchen. Cycling when the weather allows, which in London is actually more often
+          than Birmingham.
+        </p>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-3">
+        <div className="flex items-center gap-2.5">
+          <Headphones className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Listening</h2>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Whatever Spotify decides I need that day. Heavy rotation of Afrobeats and Afropop at the moment. You can see what I am playing right now in the live status section above.
+        </p>
+      </section>
+
+      <Separator />
+
+      <p className="text-xs text-muted-foreground font-mono">
+        Want to reach me?{" "}
+        <Link href="/contact" className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4">
+          Contact page
+        </Link>{" "}
+        or{" "}
+        <a
+          href="https://www.linkedin.com/in/isaacadjei"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-0.5 text-primary hover:text-primary/80 transition-colors underline underline-offset-4"
+        >
+          LinkedIn
+          <ArrowUpRight className="h-3 w-3" />
+        </a>
+        .
+      </p>
+    </div>
+  )
+}
