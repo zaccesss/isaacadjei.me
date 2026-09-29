@@ -2,6 +2,8 @@
 /.next/
 /out/
 /coverage
+# generated on install by scripts/sync-maplibre-worker.mjs, third party code
+/public/maplibre/
 .env
 .env.*
 !.env.example

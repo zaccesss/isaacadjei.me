@@ -76,6 +76,7 @@ import _29 from "./posts/eleven-things-learning-to-code"
 import _30 from "./posts/on-being-uncomfortable"
 import _31 from "./posts/writing-for-engineers"
 import _32 from "./posts/python-type-annotations"
+import _33 from "./posts/competitive-programming-start"
 import _34 from "./posts/open-source-contributing"
 import _35 from "./posts/sky-black-heritage-celebration-day"
 import _36 from "./posts/another-year-another-lesson"
@@ -113,6 +114,7 @@ export const posts: BlogPost[] = [
   _30,
   _31,
   _32,
+  _33,
   _34,
   _35,
   _36,
