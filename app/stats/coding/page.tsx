@@ -3,6 +3,7 @@ import WakatimeStats from "@/components/lab/WakatimeStats"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { CodingMore } from "@/components/stats/StatsCharts"
 import { getPublicStats } from "@/lib/public-stats"
+import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 
 export const metadata: Metadata = {
   title: "Coding Stats",
@@ -20,13 +21,18 @@ export const revalidate = 3600
 export default async function StatsCodingPage() {
   const stats = await getPublicStats()
   return (
-    <div className="container max-w-3xl py-24 space-y-8">
-      <StatsPageHeader
-        title="Coding"
-        description="Live WakaTime data - how much I code, in what, in which editor and when."
-      />
-      <CodingMore s={stats} />
-      <WakatimeStats />
-    </div>
+    <AnalyticsPeriodProvider defaultPeriod="30d">
+      <div className="container max-w-3xl py-24 space-y-8">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <StatsPageHeader
+            title="Coding"
+            description="Live WakaTime data - how much I code, in what, in which editor and when."
+          />
+          <PeriodSelector />
+        </div>
+        <CodingMore s={stats} />
+        <WakatimeStats />
+      </div>
+    </AnalyticsPeriodProvider>
   )
 }
