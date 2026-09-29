@@ -4,6 +4,7 @@ import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { GamingHistory } from "@/components/stats/GamingHistory"
 import { GamingMore } from "@/components/stats/StatsCharts"
 import { getPublicStats } from "@/lib/public-stats"
+import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 
 export const revalidate = 3600
 
@@ -21,14 +22,19 @@ export const metadata: Metadata = {
 export default async function StatsGamingPage() {
   const stats = await getPublicStats()
   return (
-    <div className="container max-w-3xl py-24 space-y-8">
-      <StatsPageHeader
-        title="Gaming"
-        description="Live status for my PS5 and gaming PC, plus how I have been playing lately."
-      />
-      <GamingPanel />
-      <GamingHistory summary={stats.gaming} />
-      <GamingMore s={stats} />
-    </div>
+    <AnalyticsPeriodProvider defaultPeriod="30d">
+      <div className="container max-w-3xl py-24 space-y-8">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <StatsPageHeader
+            title="Gaming"
+            description="Live status for my PS5 and gaming PC, plus how I have been playing lately."
+          />
+          <PeriodSelector />
+        </div>
+        <GamingPanel />
+        <GamingHistory />
+        <GamingMore s={stats} />
+      </div>
+    </AnalyticsPeriodProvider>
   )
 }

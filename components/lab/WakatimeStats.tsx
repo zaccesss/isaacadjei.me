@@ -7,7 +7,7 @@ import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from "recharts"
-import { GridHeatmap } from "@/components/analytics"
+import { GridHeatmap, useAnalyticsPeriod } from "@/components/analytics"
 import { Code2, Clock, Flame, TrendingUp, Zap } from "lucide-react"
 
 type WakatimeStats = {
@@ -25,17 +25,6 @@ type WakatimeStats = {
   hourlyTotals: { hour: number; seconds: number }[]
   heatmap: { dow: number; hour: number; seconds: number }[]
 }
-
-type Period = "24h" | "7d" | "30d" | "90d" | "1y" | "all"
-
-const PERIODS: { key: Period; label: string }[] = [
-  { key: "24h", label: "24h" },
-  { key: "7d",  label: "7d" },
-  { key: "30d", label: "30d" },
-  { key: "90d", label: "90d" },
-  { key: "1y",  label: "1y" },
-  { key: "all", label: "All" },
-]
 
 const COLOURS = ["#6366f1", "#f59e0b", "#22c55e", "#ef4444", "#3b82f6", "#ec4899", "#14b8a6", "#f97316"]
 
@@ -145,8 +134,8 @@ function StatCard({ icon: Icon, label, value, sub }: {
 }
 
 export default function WakatimeStats() {
-  const [period, setPeriod] = useState<Period>("30d")
-  const [result, setResult] = useState<{ period: Period; stats: WakatimeStats | null } | null>(null)
+  const { period } = useAnalyticsPeriod()
+  const [result, setResult] = useState<{ period: typeof period; stats: WakatimeStats | null } | null>(null)
   const loading = result === null || result.period !== period
   const stats = result?.period === period ? result.stats : null
 
@@ -222,27 +211,9 @@ export default function WakatimeStats() {
 
   return (
     <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 space-y-6">
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div className="flex items-center gap-2">
-          <Code2 className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium">In the code</span>
-        </div>
-        <div className="flex items-center gap-1 rounded-lg border border-border/60 bg-muted/20 p-0.5">
-          {PERIODS.map(({ key, label }) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setPeriod(key)}
-              className={`px-2.5 py-1 rounded-md text-xs font-mono transition-all ${
-                period === key
-                  ? "bg-primary text-primary-foreground shadow-xs"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+      <div className="flex items-center gap-2">
+        <Code2 className="h-4 w-4 text-muted-foreground" />
+        <span className="text-sm font-medium">In the code</span>
       </div>
 
       {loading && (
