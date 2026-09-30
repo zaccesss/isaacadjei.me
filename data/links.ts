@@ -68,7 +68,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Substack",
     description: "Long-form writing on tech and ideas",
-    url: "https://substack.com/@zaccess",
+    url: "https://substack.com/@zaccesss",
     icon: "substack",
     category: "writing",
   },
@@ -138,7 +138,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Bitbucket",
     description: "Repositories and team projects",
-    url: "https://bitbucket.org/zaccessss/",
+    url: "https://bitbucket.org/zaccesss/",
     icon: "bitbucket",
     category: "code",
   },
@@ -160,14 +160,14 @@ export const profileLinks: LinkItem[] = [
   {
     title: "LeetCode",
     description: "Problem solving and algorithmic practice",
-    url: "https://leetcode.com/u/zacadjei",
+    url: "https://leetcode.com/u/zaccessss",
     icon: "leetcode",
     category: "competitive",
   },
   {
     title: "NeetCode",
     description: "Structured roadmap and solved problems",
-    url: "https://neetcode.io/profile/zaccess",
+    url: "https://neetcode.io/user/SleekGenin452",
     icon: "neetcode",
     iconImage: "/images/brands/neetcode.webp",
     category: "competitive",
@@ -240,7 +240,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "X (Twitter)",
     description: "Thoughts, takes and live updates",
-    url: "https://x.com/zaccessss",
+    url: "https://x.com/zaccesss",
     icon: "twitter",
     category: "social",
   },
