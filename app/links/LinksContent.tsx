@@ -198,8 +198,8 @@ export default function LinksPage() {
             { Icon: SiOrcid,         href: "https://orcid.org/0009-0001-8298-5098" },
             { Icon: FaGithub,        href: "https://www.github.com/zaccesss" },
             { Icon: SiStackoverflow, href: "https://stackoverflow.com/users/32850859/zaccesss" },
-            { Icon: SiSubstack,      href: "https://substack.com/@zaccess" },
-            { Icon: FaXTwitter,      href: "https://x.com/zaccessss" },
+            { Icon: SiSubstack,      href: "https://substack.com/@zaccesss" },
+            { Icon: FaXTwitter,      href: "https://x.com/zaccesss" },
           ] as const).map(({ Icon, href }) => (
             <Link
               key={href}
