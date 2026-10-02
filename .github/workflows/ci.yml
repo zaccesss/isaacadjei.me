@@ -30,8 +30,30 @@ jobs:
         with:
           node-version: "22"
 
+      # the copy ships without a lockfile, so the download cache is keyed on package.json
+      - name: Restore the npm download cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-
+
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+        env:
+          # the CV tooling's browser is never used by lint, tests or build
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+
+      # keeps Next.js's build cache between runs, so a build only redoes what changed. Next checks
+      # the cache itself, so a stale entry cannot pass a broken build
+      - name: Restore the Next.js build cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: .next/cache
+          key: nextjs-${{ hashFiles('package.json') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js', '**/*.mjs', '!node_modules/**', '!.next/**') }}
+          restore-keys: |
+            nextjs-${{ hashFiles('package.json') }}-
 
       - name: Lint
         run: npm run lint
