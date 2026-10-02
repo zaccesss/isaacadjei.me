@@ -64,6 +64,7 @@ const PAGE_GROUPS = [
       { href: "/security-policy", label: "Security Policy", description: "Vulnerability disclosure and responsible reporting" },
       { href: "/contribute",      label: "Contributing",    description: "How to report a bug, suggest an idea or open a pull request" },
       { href: "/code-of-conduct", label: "Code of Conduct", description: "The standard I hold for taking part on my projects" },
+      { href: "/accessibility",   label: "Accessibility",   description: "What I do so this site and my projects can be read and used by everyone" },
       { href: "/support",         label: "Support",         description: "Where to get help across my projects and this site" },
     ],
   },
