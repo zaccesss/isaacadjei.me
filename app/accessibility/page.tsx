@@ -231,13 +231,13 @@ export default function AccessibilityPage() {
           . Say what you were trying to do, what happened and what would have worked better. If the
           assistive technology or the settings you use are relevant, mention them too.
         </p>
-        <div className="flex gap-3">
-          <Mail className="h-5 w-5 text-primary shrink-0 mt-1" />
-          <p className="text-muted-foreground leading-relaxed">
+        <Alert className="border-primary/30 [&>svg]:text-primary">
+          <Mail className="h-4 w-4" />
+          <AlertDescription className="text-muted-foreground">
             I treat an accessibility problem as a bug, not a feature request. These are personal
             projects, so I am not always quick, but a barrier goes to the front of the queue.
-          </p>
-        </div>
+          </AlertDescription>
+        </Alert>
       </section>
 
       <Separator />
