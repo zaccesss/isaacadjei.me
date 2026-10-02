@@ -12,6 +12,7 @@ import {
   CommandShortcut,
 } from "@/components/ui/command"
 import {
+  Accessibility,
   Home, User, Briefcase, Code, Mail, Cpu, BookOpen, Link2, NotebookPen,
   FlaskConical, Clock, Wrench, Info, ScrollText, Trophy, LayoutList, Shield, Rss,
   GraduationCap, Lightbulb, Tag, SearchIcon, Activity, BarChart3,
@@ -57,6 +58,7 @@ export default function CommandMenu() {
             x: "/security-policy",
             c: "/contribute",
             k: "/code-of-conduct",
+            y: "/accessibility",
             h: "/support",
             p: "/respub",
             t: "/til",
@@ -258,6 +260,11 @@ export default function CommandMenu() {
             <Users className="mr-2 h-4 w-4" />
             Code of Conduct
             <CommandShortcut>{shiftShortcut("K")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="accessibility statement screen reader keyboard contrast motion barrier" onSelect={() => go("/accessibility")}>
+            <Accessibility className="mr-2 h-4 w-4" />
+            Accessibility
+            <CommandShortcut>{shiftShortcut("Y")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="support help get in touch questions email" onSelect={() => go("/support")}>
             <LifeBuoy className="mr-2 h-4 w-4" />
