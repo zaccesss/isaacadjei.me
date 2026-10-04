@@ -2,10 +2,10 @@
 
 import { useEffect } from "react"
 
-const TILE_LIGHT = "#05070D"
-const TILE_DARK = "#FAFAFA"
-const DOT_LIGHT = "#5778DB"
-const DOT_DARK = "#2445A8"
+const TILE = "#05070D"
+const EDGE = "rgba(250, 250, 250, 0.22)"
+const LETTERS = "#FAFAFA"
+const DOT = "#5778DB"
 
 export default function FaviconAnimator() {
   useEffect(() => {
@@ -26,8 +26,6 @@ export default function FaviconAnimator() {
     link.type = "image/png"
     document.head.appendChild(link)
 
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)")
-
     function roundRect(c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
       c.beginPath()
       c.moveTo(x + r, y)
@@ -45,34 +43,46 @@ export default function FaviconAnimator() {
     function draw(t: number) {
       if (!ctx) return
       ctx.clearRect(0, 0, 64, 64)
+      ctx.save()
+      ctx.scale(0.64, 0.64)
 
-      ctx.globalCompositeOperation = "source-over"
-      ctx.fillStyle = darkMode.matches ? TILE_DARK : TILE_LIGHT
-      roundRect(ctx, 5, 5, 54, 54, 13)
+      roundRect(ctx, 6, 6, 88, 88, 22)
+      ctx.fillStyle = TILE
       ctx.fill()
+      roundRect(ctx, 6.75, 6.75, 86.5, 86.5, 21.25)
+      ctx.strokeStyle = EDGE
+      ctx.lineWidth = 1.5
+      ctx.stroke()
 
-      ctx.globalCompositeOperation = "destination-out"
-      ctx.fillStyle = "#000000"
-      ctx.font = "800 31px ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-      ctx.textAlign = "center"
-      ctx.textBaseline = "alphabetic"
-      ctx.fillText("ia", 26, 43)
+      ctx.translate(50, 50)
+      ctx.scale(0.92, 0.92)
+      ctx.translate(-54, -50)
+
+      ctx.strokeStyle = LETTERS
+      ctx.lineWidth = 10
+      ctx.lineCap = "round"
       ctx.beginPath()
-      ctx.arc(18, 21, 4.4, 0, Math.PI * 2)
-      ctx.fill()
+      ctx.moveTo(31, 46)
+      ctx.lineTo(31, 76)
+      ctx.moveTo(72.5, 46)
+      ctx.lineTo(72.5, 76)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.arc(57.5, 61, 15, 0, Math.PI * 2)
+      ctx.stroke()
 
-      ctx.globalCompositeOperation = "source-over"
-      ctx.fillStyle = darkMode.matches ? DOT_DARK : DOT_LIGHT
+      ctx.fillStyle = DOT
       const swing = 0.5 + 0.5 * Math.sin(t * Math.PI)
-      ctx.globalAlpha = 0.3 + 0.7 * swing
+      ctx.globalAlpha = 0.35 + 0.65 * swing
       ctx.beginPath()
-      ctx.arc(18, 21, 4.4, 0, Math.PI * 2)
+      ctx.arc(31, 29, 6, 0, Math.PI * 2)
       ctx.fill()
-      ctx.globalAlpha = 0.3 + 0.7 * (1 - swing)
+      ctx.globalAlpha = 0.35 + 0.65 * (1 - swing)
       ctx.beginPath()
-      ctx.arc(45, 40, 3.6, 0, Math.PI * 2)
+      ctx.arc(86, 73, 5.5, 0, Math.PI * 2)
       ctx.fill()
       ctx.globalAlpha = 1
+      ctx.restore()
 
       link.href = canvas.toDataURL("image/png")
     }

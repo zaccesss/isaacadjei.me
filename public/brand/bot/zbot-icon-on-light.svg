@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><mask id="zbot-knock"><rect x="8" y="8" width="84" height="84" rx="20" fill="#FFFFFF"/><circle cx="41" cy="49" r="5.5" fill="#000000"/><circle cx="59" cy="49" r="5.5" fill="#000000"/><rect x="40" y="60" width="20" height="5" rx="2.5" fill="#000000"/></mask></defs><g mask="url(#zbot-knock)"><rect x="8" y="8" width="84" height="84" rx="20" fill="#05070D"/><line x1="50" y1="20" x2="50" y2="28" stroke="#5778DB" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="17" r="4.5" fill="#5778DB"/><rect x="28" y="30" width="44" height="38" rx="12" fill="#5778DB"/><rect x="21" y="42" width="7" height="14" rx="3.5" fill="#5778DB"/><rect x="72" y="42" width="7" height="14" rx="3.5" fill="#5778DB"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- solid features on a dark tile with a faint light edge, so one design reads on light and dark backgrounds -->
+  <rect x="6" y="6" width="88" height="88" rx="22" fill="#05070D"/>
+  <rect x="6.75" y="6.75" width="86.5" height="86.5" rx="21.25" fill="none" stroke="#FAFAFA" stroke-opacity="0.22" stroke-width="1.5"/>
+  <line x1="50" y1="20" x2="50" y2="28" stroke="#5778DB" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="50" cy="17" r="4.5" fill="#5778DB"/>
+  <rect x="28" y="30" width="44" height="38" rx="12" fill="#5778DB"/>
+  <rect x="21" y="42" width="7" height="14" rx="3.5" fill="#5778DB"/>
+  <rect x="72" y="42" width="7" height="14" rx="3.5" fill="#5778DB"/>
+  <circle cx="41" cy="49" r="5.5" fill="#FAFAFA"/>
+  <circle cx="59" cy="49" r="5.5" fill="#FAFAFA"/>
+  <rect x="40" y="60" width="20" height="5" rx="2.5" fill="#FAFAFA"/>
+</svg>
