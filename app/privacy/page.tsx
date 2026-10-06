@@ -19,7 +19,7 @@ export default function PrivacyPage() {
     <div className="container max-w-3xl py-24 space-y-12">
       <section className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: September 2026</p>
+        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This page covers how Isaac Adjei handles your data, who owns the content on this site
           and the terms under which you access it. By using this site you agree to the terms
@@ -181,6 +181,23 @@ export default function PrivacyPage() {
             ). Their privacy policy governs how that data is handled. Every issue includes a
             one-click unsubscribe link at the bottom so you can leave at any time with no
             questions asked.
+          </p>
+        </div>
+
+        <div>
+          <h2>Guestbook</h2>
+          <p>
+            If you sign the guestbook, I store the name, message and optional website you enter, the time you signed
+            and a one-way code made from your network address. The code is only used to spot repeated abuse and cannot
+            be turned back into the address. Nothing is shown publicly until I approve it. Your name, message, website
+            and the date appear on the guestbook page once approved. To have an entry removed, ask through the{" "}
+            <Link
+              href="/contact"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              contact page
+            </Link>
+            .
           </p>
         </div>
 

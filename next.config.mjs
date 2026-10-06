@@ -89,7 +89,7 @@ const nextConfig = {
               "worker-src 'self' blob:",
               // include 'self' so the /cv page can embed /resume/cv.html in an iframe
               // giscus.app is required for the blog comments iframe
-              "frame-src 'self' https://challenges.cloudflare.com https://www.youtube.com https://open.spotify.com https://giscus.app https://vercel.live",
+              "frame-src 'self' https://challenges.cloudflare.com https://www.youtube.com https://open.spotify.com https://giscus.app https://vercel.live https://cal.com https://app.cal.com",
               // use SAMEORIGIN instead of 'none' so the CV iframe can load same-origin content
               "frame-ancestors 'self'",
               "base-uri 'self'",
