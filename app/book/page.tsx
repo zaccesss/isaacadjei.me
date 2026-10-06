@@ -26,7 +26,7 @@ export default function BookPage() {
       <Separator />
 
       <div className="space-y-3">
-        <BookingFrame url={BOOKING_URL} />
+        <BookingFrame calLink={BOOKING_URL.replace("https://cal.com/", "")} />
         <p className="text-sm text-muted-foreground">
           Calendar not loading? <a href={BOOKING_URL} className={link}>Book on Cal.com</a> or use the{" "}
           <Link href="/contact" className={link}>contact page</Link>.
