@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/command"
 import {
   Accessibility,
+  Copyright,
+  Scale,
   Home, User, Briefcase, Code, Mail, Cpu, BookOpen, Link2, NotebookPen,
   FlaskConical, Clock, Wrench, Info, ScrollText, Trophy, LayoutList, Shield, Rss,
   GraduationCap, Lightbulb, Tag, SearchIcon, Activity, BarChart3,
@@ -265,6 +267,14 @@ export default function CommandMenu() {
             <Accessibility className="mr-2 h-4 w-4" />
             Accessibility
             <CommandShortcut>{shiftShortcut("Y")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="copyright licence trade marks third party credits" onSelect={() => go("/copyright")}>
+            <Copyright className="mr-2 h-4 w-4" />
+            Copyright
+          </CommandItem>
+          <CommandItem value="disclaimer views advice accuracy liability" onSelect={() => go("/disclaimer")}>
+            <Scale className="mr-2 h-4 w-4" />
+            Disclaimer
           </CommandItem>
           <CommandItem value="support help get in touch questions email" onSelect={() => go("/support")}>
             <LifeBuoy className="mr-2 h-4 w-4" />

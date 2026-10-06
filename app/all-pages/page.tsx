@@ -23,10 +23,12 @@ const PAGE_GROUPS = [
       { href: "/experience", label: "Experience", description: "Where I have worked" },
       { href: "/projects",   label: "Projects",   description: "Things I have built" },
       { href: "/skills",     label: "Skills",     description: "What I can do" },
+      { href: "/cv",         label: "CV",         description: "My CV and cover letters to read, print or download" },
       { href: "/blog",       label: "Blog",       description: "Writing" },
       { href: "/til",        label: "TIL",        description: "Short notes on things I discover while coding and building" },
       { href: "/newsletter", label: "Newsletter", description: "Subscribe for updates" },
       { href: "/contact",    label: "Contact",    description: "Get in touch" },
+      { href: "/book",       label: "Book a call", description: "Pick a time for a 30 minute video call" },
       { href: "/links",      label: "Links",      description: "Profiles and external links" },
     ],
   },
@@ -39,6 +41,15 @@ const PAGE_GROUPS = [
       { href: "/notes",    label: "Notes",                  description: "What I am thinking" },
       { href: "/consumed", label: "Consumed",               description: "Books, videos and podcasts I am working through" },
       { href: "/respub",   label: "Research & Publications", description: "Academic publications and research contributions" },
+      { href: "/uses",     label: "Uses",                   description: "Hardware, software and tools I use" },
+    ],
+  },
+  {
+    heading: "Community",
+    pages: [
+      { href: "/guestbook",    label: "Guestbook",    description: "Leave a message and read what other visitors have written" },
+      { href: "/friends",      label: "Friends",      description: "Personal websites of people I know online, part of the /friends project" },
+      { href: "/hall-of-fame", label: "Hall of Fame", description: "Acknowledgements and security researchers" },
     ],
   },
   {
@@ -51,27 +62,22 @@ const PAGE_GROUPS = [
   {
     heading: "About the site",
     pages: [
-      { href: "/uses",         label: "Uses",         description: "Hardware, software and tools I use" },
-      { href: "/colophon",     label: "Colophon",     description: "How this site is built" },
-      { href: "/changelog",    label: "Changelog",    description: "Full history of changes to this site" },
-      { href: "/hall-of-fame", label: "Hall of Fame", description: "Acknowledgements and security researchers" },
+      { href: "/colophon",               label: "Colophon",      description: "How this site is built" },
+      { href: "/changelog",              label: "Changelog",     description: "Full history of changes to this site" },
+      { href: "/accessibility",          label: "Accessibility", description: "What I do so this site and my projects can be read and used by everyone" },
+      { href: "https://status.isaacadjei.me", label: "Status",   description: "Live uptime and incident history" },
     ],
   },
   {
-    heading: "Policies and community",
+    heading: "Policies and help",
     pages: [
       { href: "/privacy",         label: "Privacy Policy",  description: "How I handle your data" },
       { href: "/security-policy", label: "Security Policy", description: "Vulnerability disclosure and responsible reporting" },
-      { href: "/contribute",      label: "Contributing",    description: "How to report a bug, suggest an idea or open a pull request" },
+      { href: "/disclaimer",      label: "Disclaimer",      description: "Personal views, information rather than advice and live data that can lag" },
+      { href: "/copyright",       label: "Copyright",       description: "Who owns the content here and the licences for the code and third-party material" },
       { href: "/code-of-conduct", label: "Code of Conduct", description: "The standard I hold for taking part on my projects" },
-      { href: "/accessibility",   label: "Accessibility",   description: "What I do so this site and my projects can be read and used by everyone" },
+      { href: "/contribute",      label: "Contributing",    description: "How to report a bug, suggest an idea or open a pull request" },
       { href: "/support",         label: "Support",         description: "Where to get help across my projects and this site" },
-    ],
-  },
-  {
-    heading: "Status",
-    pages: [
-      { href: "https://status.isaacadjei.me", label: "Status", description: "Live uptime and incident history" },
     ],
   },
 ]
