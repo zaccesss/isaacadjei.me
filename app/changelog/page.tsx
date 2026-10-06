@@ -25,6 +25,30 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.69.0",
+    date: "2026-10-07",
+    label: "Community and a new look",
+    added: [
+      "A system theme option alongside light and dark, so the site can follow the device setting",
+      "/guestbook: sign the guestbook. Messages appear once they have been approved",
+      "/friends: the personal sites of people I know online, part of the slashfriends project",
+      "/book: book a 30 minute video call in a time that suits you, with a Google Meet link sent straight away",
+      "/copyright and /disclaimer: what is mine, the code licence, trade marks and every third-party font, icon set, map and chart library",
+      "/accessibility: an accessibility statement covering what the site does, its known limits and how to report a problem, plus a skip link to the main content on every page",
+    ],
+    changed: [
+      "A tidier header: the main pages stay in the bar and More opens a dropdown of everything else, with the same list in the mobile menu",
+      "A redesigned footer with social links, the newsletter sign-up, grouped links and a back to top link. On phones it stacks in reading order",
+      "All Pages is reorganised so every public page sits in a sensible group, with Guestbook, Friends and Hall of Fame under Community",
+      "/privacy covers the guestbook: what is stored, approval before anything is public and how to have an entry removed",
+      "The ia mark and favicon stay readable on any background",
+      "Under the hood: newer React, error reporting and editor libraries",
+    ],
+    fixed: [
+      "/book: the booking calendar follows the site theme instead of always showing dark",
+    ],
+  },
+  {
     version: "v2.68.0",
     date: "2026-09-26",
     label: "Public stats and source",
