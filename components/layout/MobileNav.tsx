@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { NAV_LINKS } from "@/lib/constants"
+import { NAV_LINKS, NAV_MORE_LINKS } from "@/lib/constants"
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false)
@@ -36,6 +36,22 @@ export default function MobileNav() {
                   {link.label}
                 </Link>
               ))}
+              <p className="mt-3 px-4 pb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">More</p>
+              <div className="grid grid-cols-2 gap-1">
+                {NAV_MORE_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "px-4 py-2.5 text-sm font-medium rounded-md transition-colors hover:bg-accent",
+                      pathname === link.href ? "bg-accent text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </nav>
           </div>
         </>
