@@ -1,25 +1,31 @@
 "use client"
 
-import { useSyncExternalStore } from "react"
+import { useEffect, useSyncExternalStore } from "react"
+import Cal, { getCalApi } from "@calcom/embed-react"
 import { useTheme } from "next-themes"
 
-export function BookingFrame({ url }: { url: string }) {
+const NAMESPACE = "book"
+
+export function BookingFrame({ calLink }: { calLink: string }) {
   const { resolvedTheme } = useTheme()
   const mounted = useSyncExternalStore(() => () => {}, () => true, () => false)
-
-  if (!mounted || !resolvedTheme) {
-    return <div className="h-[760px] w-full rounded-xl border bg-background" aria-hidden="true" />
-  }
-
   const theme = resolvedTheme === "dark" ? "dark" : "light"
 
+  useEffect(() => {
+    if (!mounted || !resolvedTheme) return
+    void getCalApi({ namespace: NAMESPACE }).then((cal) => cal("ui", { theme, hideEventTypeDetails: false }))
+  }, [mounted, resolvedTheme, theme])
+
+  if (!mounted || !resolvedTheme) return <div className="min-h-[640px] w-full" aria-hidden="true" />
+
   return (
-    <iframe
+    <Cal
       key={theme}
-      src={`${url}?embed=true&layout=month_view&theme=${theme}`}
-      title="Booking calendar for a call with Isaac Adjei"
-      className="h-[760px] w-full rounded-xl border bg-background"
-      loading="lazy"
+      namespace={NAMESPACE}
+      calLink={calLink}
+      config={{ layout: "month_view", theme }}
+      className="w-full"
+      style={{ width: "100%", overflow: "auto" }}
     />
   )
 }

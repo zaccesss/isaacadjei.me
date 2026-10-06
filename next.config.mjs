@@ -5,7 +5,8 @@ const isDev = process.env.NODE_ENV === "development"
 // friends), so connect-src needs the wildcard, not just www. vercel.live (script, connect,
 // frame and the pusher websocket) is the Vercel Toolbar, which Vercel injects for me as a
 // logged-in team member - visitors never load it, but blocking it spams my own console.
-const scriptSrc = ["'self'", "'unsafe-inline'", "https://challenges.cloudflare.com", "https://www.googletagmanager.com", "https://static.cloudflareinsights.com", "https://vercel.live"]
+const scriptSrc = ["'self'", "'unsafe-inline'", "https://challenges.cloudflare.com", "https://www.googletagmanager.com", "https://static.cloudflareinsights.com", "https://vercel.live", "https://app.cal.com"]
+// app.cal.com serves the /book embed script, which sizes the booking calendar to its content and themes it to match the site
 // api.maptiler.com serves the private dashboard Applications map's vector tiles, glyphs and style
 // JSON - all fetched by MapLibre GL JS via connect-src, not img-src (they are not plain <img>
 // requests). tiles.openfreemap.org backs the same map's manual OpenFreeMap fallback provider and
