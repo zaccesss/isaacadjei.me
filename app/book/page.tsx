@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { BOOKING_URL } from "@/lib/constants"
+import { BookingFrame } from "@/components/BookingFrame"
 
 export const metadata: Metadata = {
   title: "Book a call",
@@ -25,12 +26,7 @@ export default function BookPage() {
       <Separator />
 
       <div className="space-y-3">
-        <iframe
-          src={`${BOOKING_URL}?embed=true&layout=month_view`}
-          title="Booking calendar for a call with Isaac Adjei"
-          className="h-[760px] w-full rounded-xl border bg-background"
-          loading="lazy"
-        />
+        <BookingFrame url={BOOKING_URL} />
         <p className="text-sm text-muted-foreground">
           Calendar not loading? <a href={BOOKING_URL} className={link}>Book on Cal.com</a> or use the{" "}
           <Link href="/contact" className={link}>contact page</Link>.
