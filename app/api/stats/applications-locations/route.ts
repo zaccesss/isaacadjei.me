@@ -10,12 +10,12 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 })
   }
 
-  const { count } = await supabase.from("applications").select("id", { count: "exact", head: true })
+  const { count } = await supabase.from("applications").select("id", { count: "exact", head: true }).eq("archived", false)
   const total = count ?? 0
   const totalPages = Math.max(1, Math.ceil(total / 1000))
   const pages = await Promise.all(
     Array.from({ length: totalPages }, (_, i) =>
-      supabase.from("applications").select("location").not("location", "is", null).range(i * 1000, i * 1000 + 999),
+      supabase.from("applications").select("location").eq("archived", false).not("location", "is", null).range(i * 1000, i * 1000 + 999),
     ),
   )
   const locations = pages.flatMap((p) => (p.data as { location: string | null }[] | null) ?? [])
