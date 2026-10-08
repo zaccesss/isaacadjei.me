@@ -51,8 +51,8 @@ const _phaemos: Project = {
       "Operations built in: alert rules, maintenance windows, webhooks to Slack, Discord and Teams, email and SMS, an audit log and role-based access with two-factor sign-in plus Google, GitHub and Microsoft accounts",
       "Monorepo split into seven published component repositories, with a Python SDK and fault-injecting simulator plus a Go CLI for load testing",
     ],
-    cover: "/images/projects/phaemos/cover-brand-light.webp",
-    coverDark: "/images/projects/phaemos/cover-brand.webp",
+    cover: "/images/projects/phaemos/cover-dashboard-light.webp",
+    coverDark: "/images/projects/phaemos/cover-dashboard.webp",
     order: 4,
     status: "in-progress",
     links: [
