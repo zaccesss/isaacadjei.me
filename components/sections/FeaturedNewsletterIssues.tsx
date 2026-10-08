@@ -75,7 +75,7 @@ export default function FeaturedNewsletterIssues() {
       try {
         const r = await fetch("/api/newsletter-issues")
         const data = await r.json()
-        setIssues(Array.isArray(data) ? data.slice(0, 2) : [])
+        setIssues(Array.isArray(data) ? data.slice(0, 6) : [])
       } catch {
         setIssues([])
       } finally {
@@ -113,12 +113,12 @@ export default function FeaturedNewsletterIssues() {
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2">
+          <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {loading
-              ? [0, 1].map((i) => <SkeletonCard key={i} />)
+              ? [0, 1, 2, 3, 4, 5].map((i) => <SkeletonCard key={i} />)
               : issues.length > 0
                 ? issues.map((issue) => <IssueCard key={issue.id} issue={issue} />)
-                : [0, 1].map((i) => <SkeletonCard key={i} />)}
+                : [0, 1, 2, 3, 4, 5].map((i) => <SkeletonCard key={i} />)}
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex sm:hidden">

@@ -47,8 +47,7 @@ const _melophos: Project = {
       "Hub firmware scaffold for the ESP32-S3 with a 31250 baud MIDI input, a lock-free note bus and FastLED rendering, tested on the host",
       "Monorepo of eight components, each published to its own read-only repository, with software under AGPL-3.0 and hardware under CERN-OHL-S-2.0",
     ],
-    cover: "/images/projects/melophos/cover-brand-light.webp",
-    coverDark: "/images/projects/melophos/cover-brand.webp",
+    cover: "/images/projects/melophos/cover-studio.webp",
     order: 5,
     status: "in-progress",
     links: [
