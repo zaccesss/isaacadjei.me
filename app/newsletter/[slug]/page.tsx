@@ -91,6 +91,17 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
         </p>
       </header>
 
+      {issue.thumbnailUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={issue.thumbnailUrl}
+          alt=""
+          className="w-full rounded-xl border border-border/60 object-cover aspect-video"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+
       <Separator />
 
       {html ? (

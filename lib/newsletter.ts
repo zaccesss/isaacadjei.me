@@ -1,6 +1,6 @@
 import { redis } from "@/lib/redis"
 
-export const NEWSLETTER_CACHE_KEY = "beehiiv:issues:v2"
+export const NEWSLETTER_CACHE_KEY = "beehiiv:issues:v3"
 const CACHE_TTL = 600
 
 export interface NewsletterIssue {
@@ -37,16 +37,11 @@ export async function fetchNewsletterIssues(): Promise<NewsletterIssue[]> {
       }
     )
 
-  const [confirmedRes, archivedRes] = await Promise.all([
-    fetchStatus("confirmed"),
-    fetchStatus("archived"),
-  ])
-
+  const confirmedRes = await fetchStatus("confirmed")
   const confirmedData = confirmedRes.ok ? (await confirmedRes.json()).data ?? [] : []
-  const archivedData = archivedRes.ok ? (await archivedRes.json()).data ?? [] : []
 
   const nowUnix = Math.floor(Date.now() / 1000)
-  const combined = [...confirmedData, ...archivedData]
+  const combined = [...confirmedData]
     .filter((post: { publish_date?: number }) => !!post.publish_date && post.publish_date <= nowUnix)
     .sort(
       (a: { publish_date?: number }, b: { publish_date?: number }) =>
