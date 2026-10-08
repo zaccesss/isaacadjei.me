@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { type Experience } from "@/data/experience"
 import { staggerContainer, fadeUp } from "@/lib/animations"
 import { cn } from "@/lib/utils"
-import { LABEL_CLASS } from "@/components/shared/Tag"
+import { Badge } from "@/components/ui/badge"
 
 const typeLabel: Record<Experience["type"], string> = {
   work: "Work",
@@ -72,9 +72,12 @@ export default function ExperienceTimeline({ experiences }: Props) {
             <div className="flex-1 min-w-0 space-y-2 pb-2">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={cn(LABEL_CLASS, item.exp.type === "internship" && "text-amber-700 dark:text-amber-400", item.exp.type === "virtual" && "text-muted-foreground")}>
+                  <Badge
+                    variant={item.exp.type === "work" || item.exp.type === "internship" ? "default" : "outline"}
+                    className={cn("text-xs", item.exp.type === "internship" && "bg-amber-500 hover:bg-amber-500 text-white border-amber-500")}
+                  >
                     {typeLabel[item.exp.type]}
-                  </span>
+                  </Badge>
                   <span className="text-xs text-muted-foreground whitespace-nowrap">
                     {item.exp.startDate} - {item.exp.endDate}
                   </span>
@@ -90,9 +93,9 @@ export default function ExperienceTimeline({ experiences }: Props) {
             <div className="flex-1 min-w-0 space-y-4 pb-2">
               <div className="flex flex-col gap-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={LABEL_CLASS}>
+                  <Badge variant="default" className="text-xs">
                     {typeLabel[item.entries[0].type]}
-                  </span>
+                  </Badge>
                   <span className="text-xs text-muted-foreground whitespace-nowrap">{item.start} - {item.end}</span>
                 </div>
                 <h3 className="font-semibold leading-snug">{item.title}</h3>
