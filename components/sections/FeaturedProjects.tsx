@@ -12,10 +12,10 @@ import { staggerContainer, fadeUp } from "@/lib/animations"
 const FEATURED_ORDER = [
   "audio-amplifier",
   "led-cube",
-  "astoncv",
-  "cad-portfolio",
   "phaemos",
-  "git-unlocked",
+  "melophos",
+  "vitafolio",
+  "lidarsat",
 ]
 
 export default function FeaturedProjects() {

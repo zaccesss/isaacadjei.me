@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { FileText } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { MONTH_CHIP, type PodcastEntry } from "@/data/consumed"
+import { type PodcastEntry } from "@/data/consumed/types"
 import { consumedSlug } from "@/lib/tags"
+import { LedTo } from "./LedTo"
 
 export function PodcastCard({ podcast, compact = false }: { podcast: PodcastEntry; compact?: boolean }) {
   const subpageHref = `/consumed/podcasts/${consumedSlug(podcast.title)}`
@@ -20,6 +20,7 @@ export function PodcastCard({ podcast, compact = false }: { podcast: PodcastEntr
           {!compact && podcast.description && (
             <p className="text-[10px] text-muted-foreground leading-relaxed pt-0.5">{podcast.description}</p>
           )}
+          <LedTo links={podcast.ledTo} className="pt-0.5" />
           <Link
             href={subpageHref}
             className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2 pt-0.5"
@@ -28,7 +29,7 @@ export function PodcastCard({ podcast, compact = false }: { podcast: PodcastEntr
             Notes
           </Link>
         </div>
-        <span className={cn("shrink-0 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium", MONTH_CHIP[podcast.month])}>
+        <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
           {podcast.month.slice(0, 3)}
         </span>
       </div>

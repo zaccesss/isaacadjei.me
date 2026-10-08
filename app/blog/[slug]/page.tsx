@@ -3,73 +3,22 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight, Clock, Calendar, ExternalLink } from "lucide-react"
-import { getPostBySlug, getPublishedPosts, getAdjacentPosts, getSeriesPosts, SERIES_LABELS, posts, type ContentBlock, type PostType } from "@/data/blog"
+import { getPostBySlug, getPublishedPosts, getAdjacentPosts, getSeriesPosts, SERIES_LABELS, type PostType } from "@/data/blog"
 import { projects } from "@/data/projects"
-import { Badge } from "@/components/ui/badge"
+import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
+import { highlightBlocks } from "@/lib/highlight"
 import ReadingProgress from "@/components/shared/ReadingProgress"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
-import CodeBlock from "@/components/shared/CodeBlock"
+import { renderBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
 import TableOfContents, { type TocHeading } from "@/components/shared/TableOfContents"
 import BlogReactions from "@/components/shared/BlogReactions"
 import SeriesBanner from "@/components/shared/SeriesBanner"
 import ShareButton from "@/components/shared/ShareButton"
 import GiscusComments from "@/components/blog/GiscusComments"
 import AuthorCard from "@/components/blog/AuthorCard"
+import ThemedCover from "@/components/shared/ThemedCover"
 
 export const revalidate = 21600
-
-function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)
-  if (parts.length === 1) return text
-  return parts.map((part, i) => {
-    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (match) {
-      const isExternal = match[2].startsWith("http")
-      return (
-        <a
-          key={i}
-          href={match[2]}
-          {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
-        >
-          {match[1]}
-        </a>
-      )
-    }
-    return part
-  })
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-}
-
-function buildHeadingIds(content: ContentBlock[]): Map<number, string> {
-  const counts = new Map<string, number>()
-  const ids = new Map<number, string>()
-  content.forEach((block, i) => {
-    if (block.type !== "h2" && block.type !== "h3") return
-    const base = slugify(block.text)
-    const count = counts.get(base) ?? 0
-    ids.set(i, count === 0 ? base : `${base}-${count}`)
-    counts.set(base, count + 1)
-  })
-  return ids
-}
-
-const TYPE_STYLES: Record<PostType, string> = {
-  blog: "bg-primary/10 text-primary border-primary/20",
-  journal: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-  research: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  notes: "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
-  report: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
-  article: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",
-  resources: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
-}
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog",
@@ -89,157 +38,8 @@ function formatDate(dateStr: string): string {
   })
 }
 
-function renderBlock(block: ContentBlock, i: number, headingIds?: Map<number, string>, prevBlock?: ContentBlock): React.ReactNode {
-  const afterAcknowledgements = prevBlock?.type === "h2" && prevBlock?.text === "Acknowledgements"
-  switch (block.type) {
-    case "p":
-      return (
-        <p key={i} className={`text-base leading-relaxed ${afterAcknowledgements ? "text-primary/90" : "text-foreground/90"}`}>
-          {renderInline(block.text)}
-        </p>
-      )
-    case "h2":
-      return (
-        <h2
-          key={i}
-          id={headingIds?.get(i)}
-          className={`text-xl font-semibold tracking-tight mt-8 mb-2 scroll-mt-24 ${
-            block.text === "Acknowledgements" ? "text-primary" : ""
-          }`}
-        >
-          {block.text}
-        </h2>
-      )
-    case "h3":
-      return (
-        <h3 key={i} id={headingIds?.get(i)} className="text-base font-semibold tracking-tight mt-6 mb-1 scroll-mt-24">
-          {block.text}
-        </h3>
-      )
-    case "ul":
-      return (
-        <ul key={i} className="space-y-1.5 list-none pl-0">
-          {block.items.map((item, j) => (
-            <li key={j} className="flex gap-2 text-base text-foreground/90">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-              <span>{renderInline(item)}</span>
-            </li>
-          ))}
-        </ul>
-      )
-    case "ol":
-      return (
-        <ol key={i} className="space-y-1.5 list-none pl-0 counter-reset-[item]">
-          {block.items.map((item, j) => (
-            <li key={j} className="flex gap-3 text-base text-foreground/90">
-              <span className="shrink-0 font-mono text-sm text-primary">
-                {String(j + 1).padStart(2, "0")}.
-              </span>
-              <span>{renderInline(item)}</span>
-            </li>
-          ))}
-        </ol>
-      )
-    case "code":
-      return <CodeBlock key={i} lang={block.lang} text={block.text} />
-    case "quote":
-      return (
-        <blockquote key={i} className="border-l-2 border-primary pl-5 py-1 space-y-1">
-          <p className="text-base italic text-foreground/80">{block.text}</p>
-          {block.source && (
-            <p className="text-xs font-mono text-muted-foreground">- {block.source}</p>
-          )}
-        </blockquote>
-      )
-    case "ol-links":
-      return (
-        <ol key={i} className="space-y-2 list-none pl-0">
-          {block.items.map((item, j) => (
-            <li key={j} className="flex gap-3 text-sm text-foreground/90">
-              <span className="shrink-0 font-mono text-sm text-primary">
-                {String(j + 1).padStart(2, "0")}.
-              </span>
-              <span>
-                {item.url ? (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
-                  >
-                    {item.text}
-                  </a>
-                ) : (
-                  item.text
-                )}
-              </span>
-            </li>
-          ))}
-        </ol>
-      )
-    case "image":
-      return (
-        <figure key={i} className="space-y-2 my-2">
-          <Image
-            src={block.src}
-            alt={block.alt}
-            width={900}
-            height={500}
-            sizes="(max-width: 768px) 100vw, 900px"
-            className="rounded-lg border border-border/60 w-full h-auto"
-          />
-          {block.caption && (
-            <figcaption className="text-xs text-center text-muted-foreground italic">
-              {block.caption}
-            </figcaption>
-          )}
-        </figure>
-      )
-    case "video":
-      return (
-        <figure key={i} className="space-y-2 my-4">
-          <div className="relative aspect-video rounded-lg overflow-hidden border border-border/60">
-            <iframe
-              src={`https://www.youtube.com/embed/${block.youtubeId}`}
-              title={block.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-            />
-          </div>
-          {block.description && (
-            <figcaption className="text-xs text-center text-muted-foreground italic">
-              {block.description}
-            </figcaption>
-          )}
-        </figure>
-      )
-    case "spotify":
-      return (
-        <figure key={i} className="space-y-2 my-4">
-          <iframe
-            src={`https://open.spotify.com/embed/episode/${block.episodeId}`}
-            title={block.title}
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            className="w-full h-[152px] rounded-lg border border-border/60"
-          />
-          {block.description && (
-            <figcaption className="text-xs text-center text-muted-foreground italic">
-              {block.description}
-            </figcaption>
-          )}
-        </figure>
-      )
-    case "divider":
-      return <hr key={i} className="border-border/40" />
-    default:
-      return null
-  }
-}
-
 export async function generateStaticParams() {
-  return posts.filter((p) => p.published).map((p) => ({ slug: p.slug }))
+  return getPublishedPosts().map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({
@@ -296,6 +96,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const seriesPosts = post.series ? getSeriesPosts(post.series) : []
   const seriesLabel = post.series ? (SERIES_LABELS[post.series] ?? post.series) : null
   const headingIds = buildHeadingIds(post.content)
+  const highlighted = await highlightBlocks(post.content, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
   const tocHeadings: TocHeading[] = post.content
     .map((block, i) => {
       if (block.type !== "h2" && block.type !== "h3") return null
@@ -344,12 +145,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <div className="space-y-4 mb-10">
         <div className="flex items-center gap-2 flex-wrap">
           <span
-            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${TYPE_STYLES[post.type]}`}
+            className={postTypeLabelClass(post.type)}
           >
             {TYPE_LABELS[post.type]}
           </span>
           {!post.published && (
-            <span className="inline-flex items-center rounded-full border border-dashed border-border px-2.5 py-0.5 font-mono text-xs text-muted-foreground">
+            <span className="inline-flex items-center font-mono text-xs uppercase tracking-wider text-muted-foreground">
               draft
             </span>
           )}
@@ -376,17 +177,16 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs font-normal">
-                {tag}
-              </Badge>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
         )}
 
         {post.cover_image && (
           <div className="relative w-full aspect-4/3 sm:aspect-video md:aspect-21/9 overflow-hidden rounded-xl mt-4">
-            <Image
+            <ThemedCover
               src={post.cover_image}
+              darkSrc={post.cover_image_dark}
               alt={post.title}
               fill
               className="object-cover"
@@ -396,7 +196,28 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
         )}
 
-        {linkedProject && (
+        {post.headerLinks && post.headerLinks.length > 0 && (
+          <div className="flex items-center gap-4 flex-wrap">
+            {post.headerLinks.map((l, j) => {
+              const cls = j === 0
+                ? "inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                : "inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+              return l.url.startsWith("/") ? (
+                <Link key={l.url} href={l.url} className={cls}>
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  {l.label}
+                </Link>
+              ) : (
+                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className={cls}>
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  {l.label}
+                </a>
+              )
+            })}
+          </div>
+        )}
+
+        {linkedProject && !post.headerLinks && (
           <div className="flex items-center gap-4 flex-wrap">
             <Link
               href={`/projects/${post.projectSlug}`}
@@ -432,7 +253,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           )}
           {(post.published || process.env.NODE_ENV === "development") && post.content.length > 0 ? (
             <div className="space-y-5">
-              {post.content.map((block, i) => renderBlock(block, i, headingIds, post.content[i - 1]))}
+              {post.content.map((block, i) => renderBlock(block, i, headingIds, post.content[i - 1], highlighted))}
             </div>
           ) : (
             <div className="rounded-lg border border-dashed border-border/60 p-12 text-center space-y-2">
@@ -476,7 +297,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
                 >
                   <span className="flex items-center gap-1 text-xs text-muted-foreground font-mono">
-                    <ArrowLeft className="h-3 w-3" />
+                    <ArrowLeft className="h-3 w-3" aria-hidden="true" />
                     Previous
                   </span>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
@@ -493,7 +314,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 >
                   <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground font-mono">
                     Next
-                    <ArrowRight className="h-3 w-3" />
+                    <ArrowRight className="h-3 w-3" aria-hidden="true" />
                   </span>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                     {next.title}

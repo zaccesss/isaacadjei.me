@@ -56,7 +56,8 @@ export default function GamingPanel() {
           <div className="p-3 space-y-1.5">
             <div className="flex items-center justify-between gap-2">
               <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wide">PS5</span>
-              <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded-full ${ps5?.online ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
+              <span className={`inline-flex items-center gap-1 text-[10px] font-mono ${ps5?.online ? "text-primary" : "text-muted-foreground"}`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${ps5?.online ? "bg-green-500" : "bg-zinc-400"}`} aria-hidden="true" />
                 {ps5?.online ? "online" : ps5 ? `${timeSince(ps5.lastSeen)}` : "-"}
               </span>
             </div>
@@ -81,7 +82,8 @@ export default function GamingPanel() {
           <div className="p-3 space-y-1.5">
             <div className="flex items-center justify-between gap-2">
               <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wide">PC</span>
-              <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded-full ${gpc?.online ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
+              <span className={`inline-flex items-center gap-1 text-[10px] font-mono ${gpc?.online ? "text-primary" : "text-muted-foreground"}`}>
+                <span className={`h-1.5 w-1.5 rounded-full ${gpc?.online ? "bg-green-500" : "bg-zinc-400"}`} aria-hidden="true" />
                 {gpc?.online ? "online" : gpc ? `offline` : "-"}
               </span>
             </div>

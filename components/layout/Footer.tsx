@@ -15,9 +15,10 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
       { href: "/notes", label: "Notes" },
       { href: "/consumed", label: "Consumed" },
       { href: "/respub", label: "Research" },
+      { href: "/skills", label: "Skills" },
       { href: "/uses", label: "Uses" },
-      { href: "/guestbook", label: "Guestbook" },
       { href: "/friends", label: "Friends" },
+      { href: "/guestbook", label: "Guestbook" },
     ],
   },
   {
@@ -108,12 +109,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col-reverse items-center justify-between gap-3 border-t pt-6 text-xs text-muted-foreground sm:flex-row">
-          <Link href="/copyright" className="hover:text-foreground transition-colors">
-            &copy; {year} Isaac Adjei
-          </Link>
-          <a href="#top" className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
+          <p>
+            <Link href="/copyright" className="hover:text-foreground transition-colors">
+              &copy; {year} Isaac Adjei
+            </Link>
+            <span>. All rights reserved.</span>
+          </p>
+          <a
+            href="#top"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-full"
+          >
             Back to top
-            <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <ArrowUp className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
+            </span>
           </a>
         </div>
       </div>

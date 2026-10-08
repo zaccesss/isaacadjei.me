@@ -3,17 +3,20 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import {
-  tilEntries,
   getTILBySlug,
   getPublishedTILEntries,
   type TILBlock,
 } from "@/data/til"
 import CodeBlock from "@/components/shared/CodeBlock"
+import Callout from "@/components/shared/Callout"
+import Tag, { tilCategoryLabelClass } from "@/components/shared/Tag"
+import { highlightBlocks } from "@/lib/highlight"
 import ShareButton from "@/components/shared/ShareButton"
 import TableOfContents, { type TocHeading } from "@/components/shared/TableOfContents"
-import { CATEGORY_STYLES } from "@/components/til/TILList"
 import { cn } from "@/lib/utils"
+import { isLive } from "@/lib/schedule"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
+import TILFooter from "@/components/til/TILFooter"
 
 export const revalidate = 21600
 
@@ -48,7 +51,7 @@ function formatDate(iso: string) {
 }
 
 export async function generateStaticParams() {
-  return tilEntries.map((e) => ({ slug: e.id }))
+  return getPublishedTILEntries().map((e) => ({ slug: e.id }))
 }
 
 export async function generateMetadata({
@@ -60,7 +63,7 @@ export async function generateMetadata({
   const entry = getTILBySlug(slug)
   if (!entry) return {}
 
-  const isFuture = new Date(entry.date) > new Date()
+  const isFuture = !isLive(entry.date)
 
   return {
     title: `TIL | ${entry.title}`,
@@ -75,7 +78,7 @@ export async function generateMetadata({
   }
 }
 
-function renderBlock(block: TILBlock, i: number): React.ReactNode {
+function renderBlock(block: TILBlock, i: number, highlighted: Record<number, string>): React.ReactNode {
   switch (block.type) {
     case "h2":
       return (
@@ -92,7 +95,7 @@ function renderBlock(block: TILBlock, i: number): React.ReactNode {
     case "code":
       return (
         <div key={i} className="space-y-1">
-          <CodeBlock lang={block.lang} text={block.code} />
+          <CodeBlock lang={block.lang} text={block.code} html={highlighted[i]} />
           {block.caption && (
             <p className="text-xs text-muted-foreground text-center font-mono">{block.caption}</p>
           )}
@@ -100,16 +103,16 @@ function renderBlock(block: TILBlock, i: number): React.ReactNode {
       )
     case "note":
       return (
-        <div key={i} className="border-l-4 border-primary/30 pl-4 py-1 bg-primary/5 rounded-r-md">
-          <p className="text-sm text-muted-foreground leading-relaxed">{renderInline(block.text)}</p>
-        </div>
+        <Callout key={i} kind="note">
+          {renderInline(block.text)}
+        </Callout>
       )
     case "embed":
       return (
         <div key={i} className="space-y-1">
           <div className={cn(
-            "w-full rounded-lg overflow-hidden border border-border",
-            block.variant === "spotify" ? "h-[232px]" : "aspect-video"
+            "w-full overflow-hidden",
+            block.variant === "spotify" ? "h-[152px] rounded-xl" : "aspect-video rounded-lg border border-border"
           )}>
             <iframe
               src={block.url}
@@ -161,8 +164,8 @@ export default async function TILSlugPage({
 
   if (!entry.published && process.env.NODE_ENV !== "development") notFound()
 
-  const isFuture = new Date(entry.date) > new Date()
-  const catClass = CATEGORY_STYLES[entry.category] ?? "bg-primary/10 text-primary"
+  const isFuture = !isLive(entry.date)
+  const highlighted = await highlightBlocks(entry.detail, (b) => (b.type === "code" ? { code: b.code, lang: b.lang } : null))
 
   const sorted = getPublishedTILEntries().sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
@@ -183,13 +186,6 @@ export default async function TILSlugPage({
   return (
     <div className={cn("container py-24", showToC ? "max-w-2xl xl:max-w-5xl" : "max-w-2xl")}>
       {entry.published && !isFuture && <ScrollDepthTracker slug={entry.id} postType="til" />}
-      {isFuture && (
-        <div className="rounded-md border border-amber-400/40 bg-amber-50 dark:bg-amber-950/20 px-4 py-3 mb-8">
-          <p className="text-xs text-amber-700 dark:text-amber-400 font-mono">
-            Scheduled: publishes {formatDate(entry.date)}. Not yet indexed.
-          </p>
-        </div>
-      )}
 
       <Link
         href="/til"
@@ -203,9 +199,7 @@ export default async function TILSlugPage({
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", catClass)}>
-                {entry.category}
-              </span>
+              <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
               <time dateTime={entry.date} className="text-xs text-muted-foreground font-mono">
                 {formatDate(entry.date)}
               </time>
@@ -223,16 +217,14 @@ export default async function TILSlugPage({
 
           {entry.detail && entry.detail.length > 0 && (
             <div className="space-y-4">
-              {entry.detail.map((block, i) => renderBlock(block, i))}
+              {entry.detail.map((block, i) => renderBlock(block, i, highlighted))}
             </div>
           )}
 
           {((entry.tags && entry.tags.length > 0) || entry.source) && (
             <div className="flex flex-wrap items-center gap-2 pt-2">
               {entry.tags?.map((tag) => (
-                <span key={tag} className="text-xs text-muted-foreground border border-border rounded-full px-2.5 py-0.5">
-                  {tag}
-                </span>
+                <Tag key={tag}>{tag}</Tag>
               ))}
               {entry.source && (
                 <a
@@ -259,9 +251,10 @@ export default async function TILSlugPage({
             </div>
           )}
 
+          <TILFooter entry={entry} visibleEntries={sorted} />
+
           {(prev || next) && (
             <>
-              <hr className="border-border" />
               <nav className="flex items-start justify-between gap-4 text-sm">
                 {prev ? (
                   <Link href={`/til/${prev.id}`} className="flex flex-col gap-1 group max-w-[45%]">

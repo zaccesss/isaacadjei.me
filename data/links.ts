@@ -101,6 +101,13 @@ export const profileLinks: LinkItem[] = [
     category: "academic",
   },
   {
+    title: "Zotero",
+    description: "My research library: the papers and sources I read and cite",
+    url: "https://www.zotero.org/zaccesss",
+    icon: "zotero",
+    category: "academic",
+  },
+  {
     title: "GitHub",
     description: "Code, projects and open source",
     url: `https://www.github.com/${GITHUB_USER}`,

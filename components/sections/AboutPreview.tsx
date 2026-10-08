@@ -29,7 +29,7 @@ export default function AboutPreview() {
               I am Zac, an Electronic Engineering and Computer Science student at Aston University.
               I grew up in Ghana, relocated to the UK in 2022 and earned a triple Distinction in
               engineering, being recognised as Best and Most Hardworking Student at Stanmore College,
-              before beginning my BEng at Aston. I work at the intersection of hardware and software,
+              before starting Electronic Engineering and Computer Science at Aston. I work at the intersection of hardware and software,
               spanning embedded systems, machine learning and production web development.
             </p>
             <p className="text-muted-foreground leading-relaxed">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { TAG_LINK_CLASS, CHIP_CLASS } from "@/components/shared/Tag"
 import { skillCategories } from "@/data/skills"
 import { staggerContainer, fadeUp } from "@/lib/animations"
 
@@ -51,9 +51,14 @@ export default function SkillsOverview() {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {cat.skills.map((skill) => (
-                    <Badge key={skill.name} variant="outline">
-                      {skill.name}
-                    </Badge>
+                    skill.url ? (
+                      <a key={skill.name} href={skill.url} target="_blank" rel="noopener noreferrer" className={TAG_LINK_CLASS}>
+                        {skill.name}
+                        <span className="sr-only"> (official site, opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      <span key={skill.name} className={CHIP_CLASS}>{skill.name}</span>
+                    )
                   ))}
                 </div>
               </div>

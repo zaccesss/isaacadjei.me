@@ -23,9 +23,15 @@ export default function ContactPage() {
           <h1 className="text-4xl font-bold tracking-tight">Get in Touch</h1>
         </div>
         <p className="text-lg text-muted-foreground">
-          Whether it&apos;s an internship, a collaboration, a project idea, a suggestion or just
-          a conversation, I am always open to hearing from you. Feedback, ideas and honest opinions
-          are just as welcome as opportunities.
+          A placement or internship, a project to build together, an idea or simply a question: I am
+          happy to hear about any of it. Honest feedback is as welcome as an opportunity.
+        </p>
+        <p className="text-muted-foreground">
+          Easier to talk it through?{" "}
+          <a href="/book" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+            Book a short call
+          </a>{" "}
+          at a time that suits you.
         </p>
       </div>
       <ContactForm />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import { feedAlternates } from "@/lib/feeds"
 import { Rss } from "lucide-react"
 import { getPublishedTILEntries } from "@/data/til"
 import TILList from "@/components/til/TILList"
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "Short notes from across everything I work on as an Electronic Engineering and Computer Science student: embedded firmware and real-time systems, algorithms and data structures, full-stack web, AI and machine learning, cybersecurity and CTFs, computer architecture, hardware design, git and Linux and whatever else catches my attention that week. From piano practice to Ghanaian cooking, faith and fitness. If it surprised me or would have saved me time, it ends up here.",
   alternates: {
     canonical: "https://www.isaacadjei.me/til",
+    types: feedAlternates("til", "all"),
   },
   openGraph: {
     images: [
@@ -33,14 +34,15 @@ export default function TILPage() {
             <h1 className="text-4xl font-bold tracking-tight">TIL</h1>
             <p className="text-sm text-muted-foreground font-mono mt-1">Today I Learned</p>
           </div>
-          <Link
+          <a
             href="/til/feed.xml"
             title="RSS feed"
+            aria-label="TIL RSS feed"
             className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
           >
             <Rss className="h-5 w-5 shrink-0" />
             Feed
-          </Link>
+          </a>
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           Things that surprised me, things I had to look up twice, things I wish I had known sooner.

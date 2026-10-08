@@ -8,11 +8,13 @@ export interface Education {
   description?: string
   grade?: string
   modules?: string[]
+  url?: string
 }
 
 export const education: Education[] = [
   {
     id: "aston",
+    url: "https://www.aston.ac.uk",
     institution: "Aston University, Birmingham, United Kingdom",
     degree: "BEng (Hons)",
     field: "Electronic Engineering and Computer Science",
@@ -22,17 +24,19 @@ export const education: Education[] = [
     description:
       "Working towards a First Class with a strong focus on software engineering, electronics, AI and applied computing.",
     modules: [
-      "Internet Applications and Databases",
-      "Foundations of AI and Data Science",
-      "Introductory Programming for Digital Science (Python)",
-      "Electronics 1",
-      "Electronics 2",
-      "Introductory Mathematics for Engineering",
-      "Power Skills (Professional Skills)",
+      "Embedded Systems and C",
+      "Digital Design",
+      "Data Structures, Algorithms and Object-Oriented Programming",
+      "Analogue and Power Electronics",
+      "Communications Systems",
+      "Control Systems and Robotics",
+      "AI and Robotics",
+      "Electronic Engineering Team Project",
     ],
   },
   {
     id: "stanmore",
+    url: "https://www.stanmore.ac.uk",
     institution: "Stanmore College, London, United Kingdom",
     degree: "Pearson BTEC Level 3 National Extended Diploma in Engineering",
     field: "",
@@ -40,20 +44,18 @@ export const education: Education[] = [
     endDate: "Jul 2024",
     grade: "D*DD (Distinction*, Distinction, Distinction)",
     description:
-      "Completed BTEC Engineering with strong practical training across design, microcontrollers, electronics and engineering maths.",
+      "Completed BTEC Engineering with strong practical training across design, microcontrollers, electronics and engineering maths. Named Best and Most Hardworking Student.",
     modules: [
-      "Engineering Product Design and Manufacture",
-      "Microcontroller Systems for Engineers",
-      "Engineering Principles",
-      "Specialist Engineering Project",
-      "Computer Aided Design in Engineering",
+      "Microcontroller Systems",
       "Electronic Devices and Circuits",
-      "Calculus to Solve Engineering Problems",
-      "Electronic Measurement and Testing of Circuits",
+      "Computer Aided Design",
+      "Product Design and Manufacture",
+      "Specialist Engineering Project",
     ],
   },
   {
     id: "adisadel",
+    url: "https://adisadelcollege.net",
     institution: "Adisadel College, Cape Coast, Ghana",
     degree: "West African Senior School Certificate (WASSCE)",
     field: "General Arts",
@@ -62,13 +64,10 @@ export const education: Education[] = [
     description:
       "Core subjects: English Language, Mathematics, Social Studies and Integrated Science. Active in Robotics Club, APOSA (Secretary), Scripture Union and Debate Society.",
     modules: [
-      "Economics",
-      "Government",
-      "Christian Religious Studies",
-      "Geography",
       "Mathematics",
-      "English",
-      "Integrated Science",
+      "Economics",
+      "Geography",
+      "Government",
       "ICT",
     ],
   },

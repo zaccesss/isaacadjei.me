@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { FileText, Mail } from "lucide-react"
+import { ArrowUpRight, FileText, Mail } from "lucide-react"
 import { FaLinkedin } from "react-icons/fa6"
-import { SiOrcid, SiGooglescholar, SiResearchgate } from "react-icons/si"
+import { SiOrcid, SiGooglescholar, SiResearchgate, SiZotero } from "react-icons/si"
 import { publications } from "@/data/respub"
+import { apaCitation, bibtexCitation } from "@/data/respub/cite"
+import { keyPapers, researchInterests, researchLines, type ResearchLink } from "@/data/respub/research"
+import ResearchStatusBadge from "@/components/respub/ResearchStatusBadge"
+import CopyCitationButtons from "@/components/respub/CopyCitationButtons"
 
 export const metadata: Metadata = {
   title: "Research & Publications",
@@ -27,51 +31,29 @@ const typeLabel: Record<string, string> = {
 }
 
 import PublicationsPager from "./PublicationsPager"
+import { LABEL_CLASS } from "@/components/shared/Tag"
 
 const ITEMS_PER_PAGE = 6
 
-const researchInterests = [
-  {
-    area: "Embedded Systems & Real-Time Computing",
-    detail:
-      "Bare-metal firmware development on STM32 and AVR microcontrollers. Real-time operating systems: FreeRTOS task scheduling, preemptive multitasking, inter-task communication via queues and semaphores, priority inversion and deadline analysis. Peripheral interfacing: UART, SPI, I2C, GPIO, ADC, PWM and DMA. Building deterministic control loops for motor drivers, sensor fusion pipelines and IoT edge nodes.",
-  },
-  {
-    area: "Computer Architecture & Hardware Design",
-    detail:
-      "Digital logic design and FPGA development using VHDL. Instruction set architecture internals: pipelining, hazard detection, branch prediction and memory hierarchy. Hardware-software co-design, choosing what belongs in silicon versus firmware. Low-level systems programming in C where every byte and clock cycle matters. Processor bring-up, bootloaders and linker scripts.",
-  },
-  {
-    area: "Artificial Intelligence, Machine Learning & Data Science",
-    detail:
-      "Supervised and unsupervised learning, neural network architectures and model evaluation. Competing on Kaggle and applying data science methods to real engineering problems. Interest in TinyML: deploying lightweight inference models on microcontrollers where compute and memory are scarce. Exploratory data analysis, feature engineering and visualisation pipelines.",
-  },
-  {
-    area: "Cybersecurity & Ethical Hacking",
-    detail:
-      "CTF competitions covering web exploitation, binary exploitation, reverse engineering, cryptography and forensics. Vulnerability research, responsible disclosure and threat modelling. Security in embedded systems: memory-safe C patterns, stack canaries, secure boot, firmware authentication and side-channel awareness. Learning paths on TryHackMe and hands-on lab environments.",
-  },
-  {
-    area: "Software Engineering Education & Open-Source Curricula",
-    detail:
-      "Designing open-source learning materials that lower the barrier to entry for version control, collaborative development and software engineering practice. The git-unlocked curriculum (published on Zenodo, 2026) is the first output of this line of work. Interest in evidence-based pedagogical approaches, peer learning structures and self-directed technical education.",
-  },
-  {
-    area: "Algorithms, Competitive Programming & Problem Solving",
-    detail:
-      "Active on LeetCode, Codeforces, AtCoder, CodeChef and HackerRank. Algorithmic topics: dynamic programming, graph theory, segment trees, binary search, greedy methods and number theory. Competitive programming as a discipline for building intuition about time and space complexity under pressure.",
-  },
-  {
-    area: "Full-Stack & Systems Web Development",
-    detail:
-      "Building performant, accessible web applications with Next.js, React and TypeScript. Interest in the systems layer: edge runtimes (Cloudflare Workers), serverless function latency, CDN cache invalidation, real-time data pipelines and WebSocket-based presence systems. Bridging the gap between hardware projects and the web interfaces that surface them.",
-  },
-  {
-    area: "Hardware Maker Projects & Electronics",
-    detail:
-      "PCB design, soldering, component selection and debugging physical circuits. Published hardware projects on Hackster. Interest in the intersection of maker culture and rigorous engineering: building things that work reliably in the real world, not just in simulation.",
-  },
-]
+const SECTION_HEADING = "text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+
+function ResearchAnchor({ link, className }: { link: ResearchLink; className?: string }) {
+  const cls = className ?? "inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+  if (link.href.startsWith("/")) {
+    return (
+      <Link href={link.href} className={cls}>
+        {link.label}
+      </Link>
+    )
+  }
+  return (
+    <a href={link.href} target="_blank" rel="noopener noreferrer" className={cls}>
+      {link.label}
+      <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  )
+}
 
 export default function ResearchPublicationsPage() {
 
@@ -97,6 +79,7 @@ export default function ResearchPublicationsPage() {
             { Icon: SiOrcid,        label: "ORCID",         href: "https://orcid.org/0009-0001-8298-5098" },
             { Icon: SiGooglescholar,label: "Google Scholar", href: "https://scholar.google.com/citations?user=YZq0XuMAAAAJ" },
             { Icon: SiResearchgate, label: "ResearchGate",  href: "https://www.researchgate.net/profile/Isaac-Adjei-15" },
+            { Icon: SiZotero,       label: "Zotero",        href: "https://www.zotero.org/zaccesss" },
             { Icon: FaLinkedin,     label: "LinkedIn",      href: "https://www.linkedin.com/in/isaacadjei" },
           ] as const).map(({ Icon, label, href }) => (
             <Link
@@ -113,8 +96,8 @@ export default function ResearchPublicationsPage() {
         </div>
       </div>
 
-      <section className="space-y-6">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+      <section aria-labelledby="publications" className="space-y-6">
+        <h2 id="publications" className={SECTION_HEADING}>
           Publications
         </h2>
 
@@ -126,7 +109,7 @@ export default function ResearchPublicationsPage() {
               {publications.map((pub) => (
                 <div key={pub.id} className="rounded-xl border bg-card p-6 space-y-4">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                    <span className={LABEL_CLASS}>
                       {typeLabel[pub.type] ?? pub.type}
                     </span>
                     <span className="text-xs text-muted-foreground">
@@ -143,13 +126,16 @@ export default function ResearchPublicationsPage() {
                     <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{pub.abstract}</p>
                   )}
 
-                  <Link
-                    href={`/respub/${pub.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline pt-1"
-                  >
-                    <FileText className="h-3.5 w-3.5" />
-                    Read details and citation
-                  </Link>
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                    <Link
+                      href={`/respub/${pub.id}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                    >
+                      <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                      Read details and citation
+                    </Link>
+                    <CopyCitationButtons bibtex={bibtexCitation(pub)} apa={apaCitation(pub)} title={pub.title} />
+                  </div>
                 </div>
               ))}
             </PublicationsPager>
@@ -157,15 +143,115 @@ export default function ResearchPublicationsPage() {
         )}
       </section>
 
-      <section className="space-y-6">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-          Research Interests
+      <section aria-labelledby="current-research" className="space-y-6">
+        <h2 id="current-research" className={SECTION_HEADING}>
+          Current research
+        </h2>
+        <div className="space-y-6">
+          {researchLines.map((line) => (
+            <article key={line.id} className="rounded-xl border bg-card p-6 space-y-4">
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <h3 className="text-base font-semibold leading-snug">
+                  <Link href={`/projects/${line.projectSlug}`} className="hover:text-primary transition-colors">
+                    {line.name}
+                  </Link>
+                </h3>
+                <ResearchStatusBadge status={line.status} />
+              </div>
+
+              <dl className="space-y-3 text-sm">
+                <div className="space-y-1">
+                  <dt className="font-medium">Question</dt>
+                  <dd className="text-muted-foreground leading-relaxed">{line.question}</dd>
+                </div>
+                <div className="space-y-1">
+                  <dt className="font-medium">Method</dt>
+                  <dd className="text-muted-foreground leading-relaxed">{line.method}</dd>
+                </div>
+                <div className="space-y-1">
+                  <dt className="font-medium">Found so far</dt>
+                  <dd className="text-muted-foreground leading-relaxed">{line.found}</dd>
+                </div>
+              </dl>
+
+              <ul className="flex flex-wrap items-center gap-x-4 gap-y-2" aria-label={`${line.name} links`}>
+                {line.links.map((link) => (
+                  <li key={link.href}>
+                    <ResearchAnchor link={link} />
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="key-papers" className="space-y-6">
+        <h2 id="key-papers" className={SECTION_HEADING}>
+          Papers that shaped my work
+        </h2>
+        <div className="space-y-6">
+          {keyPapers.map((group) => (
+            <div key={group.line} className="space-y-3">
+              <h3 className="text-sm font-semibold">{group.line}</h3>
+              <ul className="space-y-3">
+                {group.papers.map((paper) => (
+                  <li key={paper.href} className="space-y-1 border-l-2 border-border pl-4">
+                    <p className="text-sm leading-relaxed">{paper.citation}</p>
+                    <p className="text-xs text-muted-foreground">{paper.why}</p>
+                    <ResearchAnchor
+                      link={{ label: paper.identifier, href: paper.href }}
+                      className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:underline"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="open-materials" className="space-y-6">
+        <h2 id="open-materials" className={SECTION_HEADING}>
+          Open materials
+        </h2>
+        <ul className="space-y-5">
+          {researchLines.map((line) => (
+            <li key={line.id} className="space-y-2">
+              <p className="text-sm font-semibold">{line.name}</p>
+              {line.materialsNote && (
+                <p className="text-sm text-muted-foreground leading-relaxed">{line.materialsNote}</p>
+              )}
+              {line.materials.length > 0 && (
+                <ul className="flex flex-wrap items-center gap-x-4 gap-y-2" aria-label={`${line.name} open materials`}>
+                  {line.materials.map((m) => (
+                    <li key={m.href}>
+                      <ResearchAnchor link={m} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="research-interests" className="space-y-6">
+        <h2 id="research-interests" className={SECTION_HEADING}>
+          Research interests
         </h2>
         <ul className="space-y-6">
-          {researchInterests.map(({ area, detail }) => (
+          {researchInterests.map(({ area, detail, links }) => (
             <li key={area} className="space-y-1">
               <p className="text-sm font-semibold">{area}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">{detail}</p>
+              {links && links.length > 0 && (
+                <p className="flex flex-wrap gap-x-4 gap-y-1 pt-0.5">
+                  {links.map((link) => (
+                    <ResearchAnchor key={link.href} link={link} />
+                  ))}
+                </p>
+              )}
             </li>
           ))}
         </ul>

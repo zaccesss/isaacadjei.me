@@ -2,7 +2,7 @@
 
 import { useMemo } from "react"
 import { useAnalyticsPeriod, filterByPeriod } from "@/components/analytics"
-import { computeContentStats, type Named, type RawPost, type RawTIL, type RawProject } from "@/lib/content-stats"
+import { computeContentStats, type Named, type RawPost, type RawTIL, type RawProject } from "@/lib/content-stats-compute"
 import { WritingStats } from "@/components/stats/StatsCharts"
 
 export function WritingHistory({

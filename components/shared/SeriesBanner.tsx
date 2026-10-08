@@ -17,8 +17,8 @@ export default function SeriesBanner({ seriesLabel, posts, currentSlug }: Series
   if (posts.length < 2) return null
 
   return (
-    <div className="rounded-lg border border-primary/20 bg-primary/5 px-5 py-4 space-y-3 mb-10">
-      <div className="flex items-center gap-2 text-xs font-mono text-primary">
+    <div className="space-y-3 mb-10 border-l-2 border-border pl-4">
+      <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
         <BookMarked className="h-3.5 w-3.5 shrink-0" />
         <span>Part of the &ldquo;{seriesLabel}&rdquo; series</span>
       </div>
@@ -27,7 +27,7 @@ export default function SeriesBanner({ seriesLabel, posts, currentSlug }: Series
           const isCurrent = slug === currentSlug
           return (
             <li key={slug} className="flex items-start gap-2.5 text-sm">
-              <span className="font-mono text-xs text-primary/60 shrink-0 mt-0.5 w-5 text-right">
+              <span className="font-mono text-xs text-muted-foreground shrink-0 mt-0.5 w-5 text-right">
                 {seriesPart ?? "·"}
               </span>
               {isCurrent ? (

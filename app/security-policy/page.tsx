@@ -23,7 +23,7 @@ export default function SecurityPolicyPage() {
           <ShieldCheck className="h-8 w-8 text-primary" />
           <h1 className="text-4xl font-bold tracking-tight">Security Policy</h1>
         </div>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: September 2026</p>
+        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           I take the security of this site seriously. If you have discovered a vulnerability, I
           appreciate you letting me know responsibly.
@@ -100,7 +100,20 @@ export default function SecurityPolicyPage() {
           <h2 className="text-2xl font-bold">How to report</h2>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          Send vulnerability reports by email to{" "}
+          The preferred route is a{" "}
+          <a
+            href="https://github.com/zaccesss/isaacadjei.me/security/advisories/new"
+            target="_blank"
+            rel="noreferrer"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            private security advisory
+          </a>{" "}
+          on the site&apos;s public repository. Only you and I can see it, it supports attachments and
+          the fix can be tracked against the report.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          You can also send vulnerability reports by email to{" "}
           <a
             href="mailto:contact@isaacadjei.me"
             className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"

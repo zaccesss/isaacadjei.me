@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { cn } from "@/lib/utils"
 import ShareButton from "@/components/shared/ShareButton"
 import {
   books,
@@ -11,17 +10,27 @@ import {
   articles,
   resources,
   others,
-  MONTH_CHIP,
-  RESOURCE_CHIP,
   sortByRecency,
   type BookEntry,
   type VideoEntry,
   type PodcastEntry,
   type LinkEntry,
   type ResourceEntry,
+  isConsumedAvailable,
+  liveLedTo,
+  bookCoverUrl,
+  siteHost,
+  type LedToLink,
 } from "@/data/consumed"
 import { consumedSlug, normTag } from "@/lib/tags"
 import { ConsumedPrevNext } from "@/components/consumed/ConsumedPrevNext"
+import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { ConsumedImage, SiteIcon } from "@/components/consumed/ConsumedImage"
+import { LedTo } from "@/components/consumed/LedTo"
+
+function liveLinks(links: LedToLink[] | undefined): LedToLink[] {
+  return process.env.NODE_ENV === "development" ? links ?? [] : liveLedTo(links)
+}
 
 const CATEGORY_META = {
   books:     { label: "Books",     back: "/consumed/books"     },
@@ -95,14 +104,16 @@ function findPrevNext(category: ValidCategory, currentTitle: string) {
   }
 }
 
+export const revalidate = 21600
+
 export async function generateStaticParams() {
   return [
-    ...books.map((b) => ({ category: "books",     slug: consumedSlug(b.title) })),
-    ...videos.map((v) => ({ category: "videos",    slug: consumedSlug(v.title) })),
-    ...podcasts.map((p) => ({ category: "podcasts",  slug: consumedSlug(p.title) })),
-    ...articles.map((a) => ({ category: "articles",  slug: consumedSlug(a.title) })),
-    ...resources.map((r) => ({ category: "resources", slug: consumedSlug(r.title) })),
-    ...others.map((o) => ({ category: "others",    slug: consumedSlug(o.title) })),
+    ...books.filter(isConsumedAvailable).map((b) => ({ category: "books",     slug: consumedSlug(b.title) })),
+    ...videos.filter(isConsumedAvailable).map((v) => ({ category: "videos",    slug: consumedSlug(v.title) })),
+    ...podcasts.filter(isConsumedAvailable).map((p) => ({ category: "podcasts",  slug: consumedSlug(p.title) })),
+    ...articles.filter(isConsumedAvailable).map((a) => ({ category: "articles",  slug: consumedSlug(a.title) })),
+    ...resources.filter(isConsumedAvailable).map((r) => ({ category: "resources", slug: consumedSlug(r.title) })),
+    ...others.filter(isConsumedAvailable).map((o) => ({ category: "others",    slug: consumedSlug(o.title) })),
   ]
 }
 
@@ -135,7 +146,6 @@ export async function generateMetadata({
 }
 
 const PROSE_LINK = "text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-const TAG_PILL   = "rounded-full border border-border/40 bg-muted/40 px-2.5 py-0.5 text-xs text-muted-foreground"
 
 export default async function ConsumedItemPage({
   params,
@@ -147,7 +157,7 @@ export default async function ConsumedItemPage({
   if (!isValidCategory(category)) notFound()
 
   const found = findItem(category, slug)
-  if (!found) notFound()
+  if (!found || ("month" in found.item && !isConsumedAvailable(found.item))) notFound()
 
   const meta = CATEGORY_META[category]
   const { prev, next } = findPrevNext(category, found.item.title)
@@ -182,12 +192,16 @@ export default async function ConsumedItemPage({
 function BookView({ book }: { book: BookEntry }) {
   return (
     <div className="space-y-8">
-      <div className="space-y-3">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <div className="w-32 shrink-0 sm:w-40">
+        <ConsumedImage src={bookCoverUrl(book.isbn)} alt={book.title} kind="cover" className="rounded-lg border border-border/60" />
+      </div>
+      <div className="min-w-0 flex-1 space-y-3">
         <div className="flex flex-wrap gap-2">
-          <Link href={`/tags/${normTag(book.genre)}`} className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium hover:opacity-80 transition-opacity", book.genreColor)}>
+          <Link href={`/tags/${normTag(book.genre)}`} className={TAG_LINK_CLASS}>
             {book.genre}
           </Link>
-          <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", MONTH_CHIP[book.month])}>
+          <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
             {book.month} {book.year}
           </span>
         </div>
@@ -197,6 +211,14 @@ function BookView({ book }: { book: BookEntry }) {
         </div>
         <p className="text-xl text-muted-foreground">{book.author}</p>
       </div>
+      </div>
+
+      {book.takeaway && (
+        <section className="space-y-4">
+          <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Takeaway</h2>
+          <p className="text-base leading-relaxed">{book.takeaway}</p>
+        </section>
+      )}
 
       <section className="space-y-4">
         <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
@@ -210,6 +232,7 @@ function BookView({ book }: { book: BookEntry }) {
             )}
           </p>
         )}
+        <LedTo links={liveLinks(book.ledTo)} size="base" />
       </section>
     </div>
   )
@@ -224,11 +247,11 @@ function VideoView({ video }: { video: VideoEntry }) {
     <div className="space-y-8">
       <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
-          <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", MONTH_CHIP[video.month])}>
+          <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
             {video.month} {video.year}
           </span>
           {video.tags.map((tag) => (
-            <Link key={tag} href={`/tags/${normTag(tag)}`} className={cn(TAG_PILL, "hover:text-foreground hover:border-border transition-colors")}>{tag}</Link>
+            <Link key={tag} href={`/tags/${normTag(tag)}`} className={TAG_LINK_CLASS}>{tag}</Link>
           ))}
         </div>
         <div className="flex items-start justify-between gap-4">
@@ -263,6 +286,7 @@ function VideoView({ video }: { video: VideoEntry }) {
           </p>
         </section>
       )}
+      <LedTo links={liveLinks(video.ledTo)} size="base" />
     </div>
   )
 }
@@ -273,7 +297,7 @@ function PodcastView({ podcast }: { podcast: PodcastEntry }) {
   return (
     <div className="space-y-8">
       <div className="space-y-3">
-        <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", MONTH_CHIP[podcast.month])}>
+        <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
           {podcast.month} {podcast.year}
         </span>
         <div className="flex items-start justify-between gap-4">
@@ -286,10 +310,10 @@ function PodcastView({ podcast }: { podcast: PodcastEntry }) {
       <iframe
         src={`https://open.spotify.com/embed/${podcast.embedType}/${podcast.spotifyId}?utm_source=generator`}
         width="100%"
-        height={podcast.embedType === "show" ? "232" : "152"}
+        height="152"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-        className="rounded-xl border border-border/40"
+        className="block rounded-xl"
         title={podcast.title}
       />
 
@@ -302,6 +326,7 @@ function PodcastView({ podcast }: { podcast: PodcastEntry }) {
           </p>
         </section>
       )}
+      <LedTo links={liveLinks(podcast.ledTo)} size="base" />
     </div>
   )
 }
@@ -314,19 +339,23 @@ function LinkView({ item, category }: { item: LinkEntry; category: string }) {
     <div className="space-y-8">
       <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
-          <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", MONTH_CHIP[item.month])}>
+          <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
             {item.month} {item.year}
           </span>
           {item.tags.map((tag) => (
-            <Link key={tag} href={`/tags/${normTag(tag)}`} className={cn(TAG_PILL, "hover:text-foreground hover:border-border transition-colors")}>{tag}</Link>
+            <Link key={tag} href={`/tags/${normTag(tag)}`} className={TAG_LINK_CLASS}>{tag}</Link>
           ))}
         </div>
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-4xl font-bold tracking-tight leading-tight">{item.title}</h1>
           <ShareButton title={`Consumed | ${item.title}`} />
         </div>
-        <p className="text-xl text-muted-foreground">{item.source}</p>
+        <p className="flex items-center gap-2 text-xl text-muted-foreground"><SiteIcon url={item.url} size={20} />{item.source}</p>
       </div>
+
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className="block max-w-xl" aria-label={`Open ${item.title} at ${siteHost(item.url)}`}>
+        <ConsumedImage src={item.image} alt={item.title} kind="preview" sourceUrl={item.url} className="rounded-xl border border-border/60" />
+      </a>
 
       <section className="space-y-4">
         <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
@@ -335,23 +364,23 @@ function LinkView({ item, category }: { item: LinkEntry; category: string }) {
           Read the original {label} at{" "}
           <a href={item.url} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>{sourceDisplay}</a>.
         </p>
+        <LedTo links={liveLinks(item.ledTo)} size="base" />
       </section>
     </div>
   )
 }
 
 function ResourceView({ resource }: { resource: ResourceEntry }) {
-  const chip = RESOURCE_CHIP[resource.category]
   const domain = resource.url.replace(/^https?:\/\//, "").split("/")[0]
 
   return (
     <div className="space-y-8">
       <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
-          <Link href={`/tags/${normTag(resource.category)}`} className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium hover:opacity-80 transition-opacity", chip)}>
+          <Link href={`/tags/${normTag(resource.category)}`} className={TAG_LINK_CLASS}>
             {resource.category}
           </Link>
-          <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", MONTH_CHIP[resource.month])}>
+          <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
             {resource.month} {resource.year}
           </span>
         </div>
@@ -359,8 +388,12 @@ function ResourceView({ resource }: { resource: ResourceEntry }) {
           <h1 className="text-4xl font-bold tracking-tight leading-tight">{resource.title}</h1>
           <ShareButton title={`Consumed | ${resource.title}`} />
         </div>
-        <p className="text-sm font-mono text-muted-foreground">{domain}</p>
+        <p className="flex items-center gap-2 text-sm font-mono text-muted-foreground"><SiteIcon url={resource.url} size={16} />{domain}</p>
       </div>
+
+      <a href={resource.url} target="_blank" rel="noopener noreferrer" className="block max-w-xl" aria-label={`Open ${resource.title} at ${domain}`}>
+        <ConsumedImage src={resource.image} alt={resource.title} kind="preview" sourceUrl={resource.url} className="rounded-xl border border-border/60" />
+      </a>
 
       <section className="space-y-4">
         <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
@@ -368,6 +401,7 @@ function ResourceView({ resource }: { resource: ResourceEntry }) {
         <p className="text-sm text-muted-foreground">
           Visit at <a href={resource.url} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>{domain}</a>.
         </p>
+        <LedTo links={liveLinks(resource.ledTo)} size="base" />
       </section>
     </div>
   )

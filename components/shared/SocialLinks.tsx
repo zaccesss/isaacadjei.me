@@ -39,7 +39,7 @@ export default function SocialLinks({
             href={social.url}
             target={social.url.startsWith("http") ? "_blank" : undefined}
             rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            className="relative flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-2 after:content-['']"
             aria-label={social.name}
           >
             <Icon className={iconSize} />

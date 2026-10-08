@@ -503,7 +503,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
-                className="text-foreground/60 hover:text-foreground transition-colors shrink-0"
+                className="relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -583,7 +583,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
-                className="text-foreground/60 hover:text-foreground transition-colors shrink-0"
+                className="relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -625,7 +625,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Spotify profile"
-                  className="ml-auto text-foreground/60 hover:text-foreground transition-colors shrink-0"
+                  className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
                 >
                   <ExternalLink className="h-3 w-3" />
                 </a>
@@ -868,7 +868,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile"
-              className="ml-auto text-foreground/60 hover:text-foreground transition-colors shrink-0"
+              className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
             >
               <ExternalLink className="h-3 w-3" />
             </a>
@@ -898,7 +898,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord profile"
-                className="ml-auto text-foreground/60 hover:text-foreground transition-colors shrink-0"
+                className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>

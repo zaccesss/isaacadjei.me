@@ -1,4 +1,6 @@
 import { computeReadingTime } from "@/lib/utils"
+import { isLive } from "@/lib/schedule"
+import type { BlogCard } from "./meta"
 
 export type PostType = "blog" | "journal" | "research" | "notes" | "report" | "article" | "resources"
 
@@ -15,6 +17,12 @@ export type ContentBlock =
   | { type: "video"; youtubeId: string; title: string; description?: string }
   | { type: "spotify"; episodeId: string; title: string; description?: string }
   | { type: "divider" }
+  // a Mermaid flowchart, sequence, ER or state diagram drawn from text
+  | { type: "diagram"; code: string; caption?: string }
+  | { type: "table"; headers: string[]; rows: string[][]; caption?: string }
+  | { type: "callout"; tone: "note" | "tip" | "important" | "warning" | "caution"; text: string }
+  // a local screen recording with a still frame for reduced motion
+  | { type: "clip"; src: string; poster: string; alt: string; caption?: string }
 
 export interface BlogPost {
   slug: string
@@ -27,22 +35,15 @@ export interface BlogPost {
   published: boolean
   content: ContentBlock[]
   projectSlug?: string
+  headerLinks?: { label: string; url: string }[]
   cover_image?: string
+  cover_image_dark?: string
   series?: string
   seriesPart?: number
   featured?: boolean
 }
 
-export const POST_TYPES: { label: string; value: PostType | "all" }[] = [
-  { label: "All", value: "all" },
-  { label: "Blog", value: "blog" },
-  { label: "Journal", value: "journal" },
-  { label: "Research", value: "research" },
-  { label: "Report", value: "report" },
-  { label: "Article", value: "article" },
-  { label: "Notes", value: "notes" },
-  { label: "Resources", value: "resources" },
-]
+export { POST_TYPES, SERIES_LABELS, type BlogCard } from "./meta"
 
 import _0 from "./posts/my-journey-so-far"
 import _1 from "./posts/two-stage-audio-amplifier"
@@ -80,6 +81,10 @@ import _33 from "./posts/competitive-programming-start"
 import _34 from "./posts/open-source-contributing"
 import _35 from "./posts/sky-black-heritage-celebration-day"
 import _36 from "./posts/another-year-another-lesson"
+import _37 from "./posts/bootstrap-any-machine-one-command"
+import _38 from "./posts/accessibility-as-a-default-wcag-2-2"
+import _39 from "./posts/one-palette-eight-terminals"
+import _40 from "./posts/moving-a-production-database-to-tidb"
 
 export const posts: BlogPost[] = [
   _0,
@@ -118,6 +123,10 @@ export const posts: BlogPost[] = [
   _34,
   _35,
   _36,
+  _37,
+  _38,
+  _39,
+  _40,
 ]
 
 function withReadingTime(p: BlogPost): BlogPost & { readingTime: number } {
@@ -126,8 +135,12 @@ function withReadingTime(p: BlogPost): BlogPost & { readingTime: number } {
 
 export function getPublishedPosts(): (BlogPost & { readingTime: number })[] {
   if (process.env.NODE_ENV === "development") return posts.map(withReadingTime)
-  const today = new Date().toISOString().split("T")[0]
-  return posts.filter((p) => p.published && p.date <= today).map(withReadingTime)
+  return posts.filter((p) => p.published && isLive(p.date)).map(withReadingTime)
+}
+
+export function toCard(p: BlogPost & { readingTime: number }): BlogCard {
+  const { content, ...card } = p
+  return card
 }
 
 export function getFeaturedPosts(): BlogPost[] {
@@ -137,10 +150,6 @@ export function getFeaturedPosts(): BlogPost[] {
 export function getPostBySlug(slug: string): (BlogPost & { readingTime: number }) | undefined {
   const pool = process.env.NODE_ENV === "development" ? posts.map(withReadingTime) : getPublishedPosts()
   return pool.find((p) => p.slug === slug)
-}
-
-export const SERIES_LABELS: Record<string, string> = {
-  "life-at-aston": "Life at Aston",
 }
 
 export function getSeriesPosts(series: string): Pick<BlogPost, "slug" | "title" | "seriesPart">[] {

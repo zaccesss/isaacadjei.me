@@ -1,29 +1,23 @@
 "use client"
-import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, BookOpen } from "lucide-react"
-import { books, MONTHS, isMonthAvailable, sortByRecency, yearsFrom } from "@/data/consumed"
-import { ConsumedFilterBar } from "@/components/consumed/ConsumedFilterBar"
+import { type BookEntry, type ConsumedTotals } from "@/data/consumed/types"
+import ListControls from "@/components/shared/ListControls"
+import { Pagination } from "@/components/shared/Pagination"
+import { CONSUMED_PAGE_SIZES, useConsumedList } from "@/components/consumed/useConsumedList"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { BookCard } from "@/components/consumed/BookCard"
 
-export default function BooksContent() {
+export default function BooksContent({ books, totals }: { books: BookEntry[]; totals: ConsumedTotals }) {
   const searchParams = useSearchParams()
   const preview = searchParams.get("preview") === "1"
-  const [activeYear, setActiveYear] = useState<string>("all")
-  const [activeMonth, setActiveMonth] = useState<string>("all")
-  const [search, setSearch] = useState("")
-
-  const years = yearsFrom(books)
-  const availableMonths = MONTHS.filter((m) => isMonthAvailable(m, new Date().getFullYear(), preview))
-  const filtered = sortByRecency(
-    books
-      .filter((b) => isMonthAvailable(b.month, b.year, preview))
-      .filter((b) => activeYear === "all" || String(b.year) === activeYear)
-      .filter((b) => activeMonth === "all" || b.month === activeMonth)
-      .filter((b) => !search || b.title.toLowerCase().includes(search.toLowerCase()) || b.author.toLowerCase().includes(search.toLowerCase()) || b.genre.toLowerCase().includes(search.toLowerCase()))
-  )
+  const { query, groups, filtered, paginated, page, totalPages, perPage, setPerPage } = useConsumedList(books, {
+    storageKey: "books",
+    preview,
+    text: (b) => [b.title, b.author, b.genre],
+    facet: { key: "genre", label: "Genre", kind: "multi", values: (b) => [b.genre] },
+  })
 
   return (
     <div className="container py-24 space-y-10">
@@ -38,7 +32,7 @@ export default function BooksContent() {
         <div className="flex items-center gap-3">
           <BookOpen className="h-5 w-5 text-muted-foreground" />
           <h1 className="text-4xl font-bold tracking-tight">Books</h1>
-          <span className="rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-mono text-muted-foreground">
+          <span className="text-xs font-mono text-muted-foreground">
             {filtered.length}
           </span>
         </div>
@@ -47,27 +41,40 @@ export default function BooksContent() {
         </p>
       </div>
 
-      <ConsumedFilterBar
-        years={years}
-        activeYear={activeYear}
-        onYearChange={setActiveYear}
-        months={availableMonths}
-        activeMonth={activeMonth}
-        onMonthChange={setActiveMonth}
-        search={search}
-        onSearchChange={setSearch}
+      <ListControls
+        query={query}
+        groups={groups}
+        searchLabel="Search books"
         searchPlaceholder="Search books by title, author or genre..."
+        resultCount={filtered.length}
+        itemLabel={{ one: "book", many: "books" }}
       />
 
-      <ConsumedCategoryTabs active="books" counts={{ books: filtered.length }} />
+      <ConsumedCategoryTabs active="books" counts={{ ...totals, books: filtered.length }} />
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground py-8 text-center">No books for this month yet.</p>
+        <p className="text-sm text-muted-foreground py-8 text-center">No books match these filters.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((b) => <BookCard key={b.title} book={b} />)}
+        <div id="consumed-list" className="scroll-mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {paginated.map((b) => <BookCard key={b.title} book={b} />)}
         </div>
       )}
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onChange={query.setPage}
+        totalItems={filtered.length}
+        pageSize={perPage}
+        pageSizeOptions={CONSUMED_PAGE_SIZES}
+        onPageSizeChange={(n) => {
+          setPerPage(n)
+          query.setPage(1)
+        }}
+        scrollTargetId="consumed-list"
+        itemLabel="books"
+        label="Book pages"
+      />
     </div>
   )
 }

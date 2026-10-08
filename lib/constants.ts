@@ -27,21 +27,10 @@ export const NAV_LINKS = [
   { label: "Projects", href: ROUTES.projects },
   { label: "Blog", href: ROUTES.blog },
   { label: "TIL", href: ROUTES.til },
+  { label: "Notes", href: ROUTES.notes },
+  { label: "Newsletter", href: ROUTES.newsletter },
   { label: "Contact", href: ROUTES.contact },
   { label: "Links", href: ROUTES.links },
-] as const
-
-export const NAV_MORE_LINKS = [
-  { label: "Skills", href: ROUTES.skills },
-  { label: "Newsletter", href: ROUTES.newsletter },
-  { label: "Now", href: ROUTES.now },
-  { label: "Lab", href: ROUTES.lab },
-  { label: "Notes", href: ROUTES.notes },
-  { label: "Uses", href: ROUTES.uses },
-  { label: "Colophon", href: "/colophon" },
-  { label: "Friends", href: "/friends" },
-  { label: "Guestbook", href: "/guestbook" },
-  { label: "All pages", href: ROUTES.allPages },
 ] as const
 
 export const BOOKING_URL = "https://cal.com/isaacadjei.me/chat"

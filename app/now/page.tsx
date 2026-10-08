@@ -70,10 +70,9 @@ export default function NowPage() {
           <h2 className="text-base font-semibold">Where I am</h2>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          Based in London for the summer. I study Electronic Engineering and Computer Science at Aston
-          University in Birmingham, working towards a First Class BEng. The academic year has just
-          wrapped up so I am back in London, where most of my family is based. Come September it is
-          back to Birmingham for the next year.
+          Back in Birmingham for the autumn term at Aston University, where I study Electronic
+          Engineering and Computer Science and aim for a First. Weeks are split between lectures,
+          labs, running PAL sessions and society work, with London visits to family when I can.
         </p>
       </section>
 
@@ -86,13 +85,17 @@ export default function NowPage() {
         </div>
         <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
           <p>
-            The academic year has wrapped up. I am using the summer to go deeper into the things
-            I care about: embedded systems, signals, machine learning and digital hardware design.
-            Starting FPGA development from scratch, learning VHDL and working up to real hardware designs.
+            This term is digital design in VHDL on FPGAs, object-oriented C++, embedded software and a
+            group project on robot motor control. The FPGA work builds straight on the VHDL I started
+            over the summer.
           </p>
           <p>
-            Getting serious about competitive programming too - working through Neetcode and Leetcode
-            consistently, practising on Codeforces and entering hackathons where I can.
+            I lead weekly Peer Assisted Learning sessions in Python and electronics, serve as Treasurer
+            of the Computing and Electronics Society and represent my course as a Student Rep.
+          </p>
+          <p>
+            Competitive programming carries on alongside: NeetCode and LeetCode most weeks, Codeforces
+            rounds when the timing works.
           </p>
         </div>
       </section>
@@ -107,40 +110,42 @@ export default function NowPage() {
         <div className="space-y-4 text-sm text-muted-foreground">
           <div className="space-y-1">
             <p className="font-medium text-foreground">
+              <Link href="/projects/lidarsat" className="hover:text-primary transition-colors">
+                LidarSAT
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              GPS-denied drone navigation with a team of four: matching LiDAR height profiles from a drone against national terrain maps. This month is simulated flights in ArduPilot SITL and the first error measurements; I own the tooling, flight paths and the drone build.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/melophos" className="hover:text-primary transition-colors">
+                MELOPHOS
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              Lights above the keys of any keyboard that show the next note, then score how it was played. The browser Studio already runs light-guided practice with a demo player; the first hub board and LED bars are next.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/vitafolio" className="hover:text-primary transition-colors">
+                Vitafolio
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              My CV platform, now live with a CV checker, a student jobs board fed every night and a private application tracker. Polishing it with feedback from the first users.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
               <Link href="/projects/phaemos" className="hover:text-primary transition-colors">
-                Phaemos
+                PHAEMOS
               </Link>
             </p>
             <p className="leading-relaxed">
-              A full-stack predictive maintenance platform. Four hardware nodes: ESP32 primary
-              (11 sensors), STM32 Black Pill (100 Hz FFT vibration), Arduino Nano (secondary sensors)
-              and Raspberry Pi Pico 2W (ambient node). FastAPI backend, Isolation Forest anomaly
-              detection, Next.js live dashboard. Actively building the hardware layer and refining
-              the ML pipeline.
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-foreground">
-              <Link href="/projects/avr-zac" className="hover:text-primary transition-colors">
-                avr-zac
-              </Link>
-            </p>
-            <p className="leading-relaxed">
-              Bare metal AVR C on an ATmega644P. Working through a structured curriculum
-              from basic GPIO up to a nine-mode state machine with interrupts, PWM, ADC and a Tetris
-              melody. Each session is documented as I go.
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-foreground">
-              <Link href="/notes/multi-sport-ai-predictor" className="hover:text-primary transition-colors">
-                Multi-Sport AI Predictor
-              </Link>
-            </p>
-            <p className="leading-relaxed">
-              The World Cup predictor didn&apos;t ship in time for the 2026 tournament, so I&apos;m
-              generalising the same model architecture into an ongoing platform covering football,
-              NBA, tennis, cricket and F1 instead of one single-tournament deadline.
+              Predictive maintenance for machines. The anomaly models now raise alerts and maintenance tickets on their own and the dashboard has been redesigned; wiring the four physical sensor nodes is the current phase.
             </p>
           </div>
           <div className="space-y-1">
@@ -199,14 +204,13 @@ export default function NowPage() {
             models on microcontrollers with tight memory and power constraints.
           </p>
           <p>
-            Actively looking and applying for internships, placements and professional work
-            experience. Focused on roles with real engineering depth. I have been attending industry
-            events and networking with people doing work I genuinely find interesting.
+            Applying for a year-long placement starting in 2027, with embedded, hardware and
+            software teams alike. Roles with real engineering depth matter more to me than the name
+            on the door. I go to industry events to meet the people doing that work.
           </p>
           <p>
-            Visited Sky&apos;s campus recently for being shortlisted for the Black Heritage
-            Undergraduate of the Year award, the day before my birthday. It meant a lot and it was a
-            good reminder that the work is being noticed outside of just shipping code.
+            Being named a top 40 finalist for the Black Heritage Undergraduate of the Year award this
+            year was a good reminder that the work is noticed beyond the code itself.
           </p>
         </div>
       </section>

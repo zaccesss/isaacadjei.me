@@ -173,7 +173,7 @@ export default function GitHubStats() {
               <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">top languages</p>
               <div className="flex flex-wrap gap-1.5">
                 {stats.topLanguages.map((lang) => (
-                  <span key={lang} className="rounded-full border border-border/60 px-2.5 py-0.5 text-xs text-muted-foreground">
+                  <span key={lang} className="rounded-md bg-muted px-2 py-0.5 text-xs font-medium leading-5 text-foreground/80">
                     {lang}
                   </span>
                 ))}

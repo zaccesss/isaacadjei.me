@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { education } from "@/data/education"
 import { societies, isSocietyRoleVisible } from "@/data/societies"
-import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import ApproachAnimation from "@/components/shared/ApproachAnimation"
 import {
@@ -15,6 +15,7 @@ import {
   Quote,
   HeartHandshake,
 } from "lucide-react"
+import { CHIP_CLASS } from "@/components/shared/Tag"
 
 export const revalidate = 86400
 
@@ -29,32 +30,37 @@ export const metadata: Metadata = {
   },
 }
 
-const interests = [
-  "Embedded Systems",
-  "IoT",
-  "Hardware-Software Integration",
-  "Cloud Computing",
-  "Artificial Intelligence & ML",
-  "Cyber Security",
-  "Robotics & Automation",
-  "Circuit Design & PCB",
-  "Open Source",
-  "Accessible Technology",
-  "Computer Systems",
-  "Game Development",
+const interestGroups = [
+  { title: "Engineering", items: ["Embedded systems and firmware", "PCB and circuit design", "IoT and predictive maintenance", "Drones and robotics", "Digital design and FPGAs"] },
+  { title: "Software", items: ["Full-stack web apps", "Developer tooling and automation", "Open source", "Cyber security", "Cloud and DevOps"] },
+  { title: "Data and AI", items: ["Machine learning", "Anomaly detection", "Data visualisation", "Computer vision"] },
+  { title: "People and impact", items: ["Accessible technology", "Health tech and bionic vision", "Peer teaching", "Music technology"] },
 ]
 
 const hobbies = [
   "Piano",
   "Music",
-  "Gym & Fitness",
+  "Gaming on PS5 and PC",
+  "Gym and fitness",
   "Cycling",
-  "Cooking",
+  "Ghanaian cooking",
   "Reading",
   "Journaling",
   "Travel",
-  "Online Courses",
-  "Personal Projects",
+  "Competitive programming",
+  "Online courses",
+]
+
+const causes = [
+  { name: "Education", how: "Running peer learning sessions and writing free course material such as git-unlocked." },
+  { name: "Accessible technology", how: "Building interfaces with strong contrast, keyboard use and reduced motion from the start." },
+  { name: "Health", how: "Following health tech and bionic vision research and volunteering with Cancer Research UK." },
+  { name: "Science and technology", how: "Sharing what I build and learn openly through projects, notes and TIL posts." },
+  { name: "Open source", how: "Publishing my projects, tools and configs under open licences." },
+  { name: "Diversity and inclusion", how: "Taking part in Black heritage and African-Caribbean communities in tech and at university." },
+  { name: "Economic empowerment", how: "Helping students find placements and jobs, including a free CV tool and student jobs board." },
+  { name: "Environment", how: "Predictive maintenance that keeps machines running longer and wastes less." },
+  { name: "Faith", how: "The foundation for how I work and treat people." },
 ]
 
 const languages = [
@@ -74,7 +80,7 @@ export default function AboutPage() {
           <p>
             I am Isaac Adjei. Most people know me as Zac. I am an Electronic Engineering and
             Computer Science student at Aston University, Birmingham, working towards a First Class
-            BEng. My goal is to build at the intersection of intelligent software and efficient
+            degree. My goal is to build at the intersection of intelligent software and efficient
             hardware, creating systems that solve real problems for real people.
           </p>
           <p>
@@ -100,9 +106,17 @@ export default function AboutPage() {
             Student in my cohort.
           </p>
           <p>
-            At Aston I serve as Student Representative at the Students&apos; Union and am a
-            Student Member of the IET and a member of ESOC and the Aston African-Caribbean
-            Society. In 2026 I was shortlisted as a Top 40 Finalist for the Black
+            At Aston I lead weekly Peer Assisted Learning sessions in Python and electronics, serve
+            as Treasurer of the{" "}
+            <a href="https://www.astonsu.com/society/electronicssociety/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Computing and Electronics Society</a>{" "}
+            and represent my course as a Student Representative. I am a Student Member of the{" "}
+            <a href="https://www.theiet.org" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">IET</a> and a member of the{" "}
+            <a href="https://www.astonsu.com/society/afrocaribbean/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Aston African-Caribbean Society</a>.
+            Outside lectures I founded{" "}
+            <a href="https://phaemos.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">PHAEMOS</a> and{" "}
+            <a href="https://melophos.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">MELOPHOS</a>, run{" "}
+            <a href="https://vitafolio.isaacadjei.me" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Vitafolio</a> and work on{" "}
+            <Link href="/projects/lidarsat" className="text-primary hover:underline">LidarSAT</Link> with a research team. In 2026 I was shortlisted as a Top 40 Finalist for the Black
             Heritage Undergraduate of the Year Award, run by TargetJobs and Sky to recognise
             high-achieving undergraduates across the UK. Beyond university I have gained experience
             in different sectors: internships at the Ghana High Commission London as a Consular
@@ -112,14 +126,23 @@ export default function AboutPage() {
           </p>
           <p>
             Technically I work across the full stack: bare-metal C and C++ on microcontrollers, PCB
-            design in KiCad and Proteus, full-stack web with Next.js and TypeScript, and
-            Python-based machine learning with TensorFlow and PyTorch. I am also expanding into
-            Java, cloud computing, cyber security and game development. My projects include a
-            two-stage audio amplifier PCB built from scratch, a 4x4x4 NeoPixel LED Cube with four
-            animation modes, Phaemos (a predictive maintenance platform with a FastAPI backend and
-            Isolation Forest anomaly detection), an open-source Git course with over 200 structured
-            topic files and Zaccess, an accessibility tool that converts lecture slides and textbook
-            pages into high-contrast readable notes using OCR and text-to-speech.
+            design in KiCad and Proteus, Rust at the edge, full-stack web with Next.js, TypeScript
+            and Laravel and Python-based machine learning with scikit-learn, TensorFlow and PyTorch.
+            I am also expanding into Java, cloud computing, cyber security and game development. My
+            projects include{" "}
+            <Link href="/projects/vitafolio" className="text-primary hover:underline">Vitafolio</Link>{" "}
+            (a live app for building and sharing every version of a CV),{" "}
+            <Link href="/projects/phaemos" className="text-primary hover:underline">PHAEMOS</Link>{" "}
+            (an open predictive maintenance platform with sensor nodes, a Rust gateway and per-machine
+            anomaly models),{" "}
+            <Link href="/projects/melophos" className="text-primary hover:underline">MELOPHOS</Link>{" "}
+            (light-guided instrument learning on any keyboard),{" "}
+            <Link href="/projects/lidarsat" className="text-primary hover:underline">LidarSAT</Link>{" "}
+            (team research on GPS-denied drone navigation), a two-stage audio amplifier PCB built from
+            scratch, a 4x4x4 NeoPixel LED Cube, avr-zac (bare-metal C on an ATmega644P), this site
+            itself, an open-source Git course with over 200 structured topic files and Zaccess, an
+            accessibility tool that converts lecture slides and textbook pages into high-contrast
+            readable notes using OCR and text-to-speech.
           </p>
         </div>
         <ApproachAnimation />
@@ -137,7 +160,15 @@ export default function AboutPage() {
             <div key={edu.id} className="space-y-3">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                 <div>
-                  <h3 className="text-xl font-semibold">{edu.institution}</h3>
+                  <h3 className="text-xl font-semibold">
+                    {edu.url ? (
+                      <a href={edu.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline-offset-4 hover:underline">
+                        {edu.institution}
+                      </a>
+                    ) : (
+                      edu.institution
+                    )}
+                  </h3>
                   <p className="text-muted-foreground">
                     {edu.degree}
                     {edu.field ? `, ${edu.field}` : ""}
@@ -149,26 +180,12 @@ export default function AboutPage() {
                 </span>
               </div>
               {edu.description && <p className="text-muted-foreground">{edu.description}</p>}
-              {edu.id === "aston" && (
-                <p className="text-sm text-muted-foreground">
-                  Highlights include Internet Applications and Databases, Foundations of AI and Data
-                  Science, Python Programming, Electronics 1 and 2, Engineering Mathematics and
-                  Professional Skills.
-                </p>
-              )}
-              {edu.id === "stanmore" && (
-                <p className="text-sm text-muted-foreground">
-                  Key modules included Engineering Product Design and Manufacture, Microcontroller
-                  Systems, CAD, Electronic Devices and Circuits and Electronic Measurement and
-                  Testing.
-                </p>
-              )}
               {edu.modules && edu.modules.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {edu.modules.map((mod) => (
-                    <Badge key={mod} variant="secondary">
+                    <span key={mod} className={CHIP_CLASS}>
                       {mod}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
               )}
@@ -185,23 +202,56 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold">Societies & Memberships</h2>
         </div>
         <div className="space-y-6">
-          {societies.map((soc) => (
-            <div key={soc.name} className="space-y-1">
-              <h3 className="font-semibold">{soc.name}</h3>
-              {soc.roles.filter(isSocietyRoleVisible).map((r) => (
-                <div
-                  key={r.role}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
-                >
-                  <p className="text-sm text-primary font-medium">{r.role}</p>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {r.period}
-                  </span>
+          {societies.map((soc) => {
+            const roles = soc.roles.filter(isSocietyRoleVisible)
+            if (roles.length > 1) {
+              const since = roles[0].period.split(" - ")[0]
+              return (
+                <div key={soc.name} className="space-y-3">
+                  <div>
+                    <h3 className="font-semibold">{soc.url ? (
+                      <a href={soc.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline-offset-4 hover:underline">
+                        {soc.name}
+                      </a>
+                    ) : (
+                      soc.name
+                    )}</h3>
+                    <p className="text-sm text-muted-foreground">{roles.length} roles · {since} - Present</p>
+                  </div>
+                  <ol className="relative space-y-3 border-l border-border pl-5">
+                    {[...roles].reverse().map((r) => (
+                      <li key={r.role} className="relative">
+                        <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background bg-primary" aria-hidden="true" />
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                          <p className="text-sm text-primary font-medium">{r.role}</p>
+                          <span className="text-sm text-muted-foreground whitespace-nowrap">{r.period}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="text-sm text-muted-foreground">{soc.description}</p>
                 </div>
-              ))}
-              <p className="text-sm text-muted-foreground">{soc.description}</p>
-            </div>
-          ))}
+              )
+            }
+            return (
+              <div key={soc.name} className="space-y-1">
+                <h3 className="font-semibold">{soc.url ? (
+                      <a href={soc.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline-offset-4 hover:underline">
+                        {soc.name}
+                      </a>
+                    ) : (
+                      soc.name
+                    )}</h3>
+                {roles.map((r) => (
+                  <div key={r.role} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <p className="text-sm text-primary font-medium">{r.role}</p>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap">{r.period}</span>
+                  </div>
+                ))}
+                <p className="text-sm text-muted-foreground">{soc.description}</p>
+              </div>
+            )
+          })}
         </div>
       </section>
 
@@ -218,7 +268,9 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold">Student Judge</h3>
                 <p className="text-sm text-primary font-medium">
-                  targetjobs UK - National Emerging Talent Awards 2026
+                  <a href="https://www.targetjobsawards.co.uk/" target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                    targetjobs UK: National Emerging Talent Awards 2026
+                  </a>
                 </p>
               </div>
               <span className="text-sm text-muted-foreground whitespace-nowrap">Feb 2026</span>
@@ -235,7 +287,9 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold">Fundraising Volunteer</h3>
                 <p className="text-sm text-primary font-medium">
-                  Cancer Research UK - 10 Days of 5K Challenge
+                  <a href="https://www.cancerresearchuk.org/get-involved/find-an-event/10days-5k-challenge" target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                    Cancer Research UK: 10 Days of 5K Challenge
+                  </a>
                 </p>
               </div>
               <span className="text-sm text-muted-foreground whitespace-nowrap">
@@ -266,9 +320,15 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
               <div>
                 <h3 className="font-semibold">
-                  Top 40 Finalist - Black Heritage Undergraduate of the Year Award 2026
+                  <a href="https://www.undergraduateoftheyear.com/awards/black-heritage" target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                    Top 40 Finalist: Black Heritage Undergraduate of the Year Award 2026
+                  </a>
                 </h3>
-                <p className="text-sm text-primary font-medium">TargetJobs &amp; Sky · Mar 2026</p>
+                <p className="text-sm text-primary font-medium">
+                  <Link href="/blog/sky-black-heritage-celebration-day" className="hover:underline underline-offset-4">
+                    TargetJobs &amp; Sky · read about the day
+                  </Link>
+                </p>
               </div>
               <span className="text-sm text-muted-foreground whitespace-nowrap">Mar 2026</span>
             </div>
@@ -284,55 +344,24 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
               <div>
                 <h3 className="font-semibold">Best and Most Hardworking Student</h3>
-                <p className="text-sm text-primary font-medium">Stanmore College, London</p>
+                <p className="text-sm text-primary font-medium">
+                  <a href="https://www.stanmore.ac.uk" target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                    Stanmore College, London
+                  </a>
+                </p>
               </div>
               <span className="text-sm text-muted-foreground whitespace-nowrap">Jun 2024</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Recognised as the best and most hardworking student at Stanmore College during the
-              Pearson BTEC Level 3 National Extended Diploma in Engineering, graduating with D*DD
+              Pearson{" "}
+              <a href="https://qualifications.pearson.com/en/qualifications/btec-nationals/engineering-2016.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline underline-offset-4">
+                BTEC Level 3 National Extended Diploma in Engineering
+              </a>
+              , graduating with D*DD
               (Distinction*, Distinction, Distinction).
             </p>
           </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className="space-y-6">
-        <div className="flex items-center gap-3">
-          <Heart className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">Interests</h2>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {interests.map((interest) => (
-            <Badge key={interest} variant="outline" className="text-sm">
-              {interest}
-            </Badge>
-          ))}
-        </div>
-      </section>
-
-      <Separator />
-
-      <section className="space-y-6">
-        <div className="flex items-center gap-3">
-          <Sparkles className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">Outside Engineering</h2>
-        </div>
-        <p className="text-muted-foreground">
-          Outside engineering I play piano, stay active at the gym, cycle, cook, journal and travel
-          whenever I get the chance. I am a big believer in continuous learning - I regularly work
-          through online courses on platforms like Coursera, build personal projects and read widely
-          across tech, business and history. For me, growth is not occasional - it&apos;s an active
-          lifestyle.
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {hobbies.map((hobby) => (
-            <Badge key={hobby} variant="outline" className="text-sm">
-              {hobby}
-            </Badge>
-          ))}
         </div>
       </section>
 
@@ -393,26 +422,51 @@ export default function AboutPage() {
 
       <section className="space-y-6">
         <div className="flex items-center gap-3">
+          <Heart className="h-6 w-6 text-primary" />
+          <h2 className="text-2xl font-bold">Interests</h2>
+        </div>
+        <dl className="grid gap-4 sm:grid-cols-2">
+          {interestGroups.map((g) => (
+            <div key={g.title} className="rounded-lg border border-border/60 p-4">
+              <dt className="text-sm font-semibold">{g.title}</dt>
+              <dd className="mt-1 text-sm text-muted-foreground">{g.items.join(" · ")}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-6">
+        <div className="flex items-center gap-3">
+          <Sparkles className="h-6 w-6 text-primary" />
+          <h2 className="text-2xl font-bold">Outside Engineering</h2>
+        </div>
+        <p className="text-muted-foreground">
+          Outside engineering I play piano, game on PS5 and PC, stay active at the gym, cycle, cook
+          Ghanaian food, journal and travel whenever I get the chance. I am a big believer in continuous learning - I regularly work
+          through online courses on platforms like Coursera, build personal projects and read widely
+          across tech, business and history. For me, growth is not occasional - it&apos;s an active
+          lifestyle.
+        </p>
+        <p className="text-sm text-muted-foreground">{hobbies.join(" · ")}</p>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-6">
+        <div className="flex items-center gap-3">
           <HeartHandshake className="h-6 w-6 text-primary" />
           <h2 className="text-2xl font-bold">Causes</h2>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {[
-            "Education",
-            "Health",
-            "Science and Technology",
-            "Accessible Technology",
-            "Environment",
-            "Diversity and Inclusion",
-            "Economic Empowerment",
-            "Open Source",
-            "Faith",
-          ].map((cause) => (
-            <Badge key={cause} variant="outline" className="text-sm">
-              {cause}
-            </Badge>
+        <dl className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+          {causes.map((c) => (
+            <div key={c.name}>
+              <dt className="text-sm font-semibold">{c.name}</dt>
+              <dd className="text-sm text-muted-foreground">{c.how}</dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </section>
     </div>
   )

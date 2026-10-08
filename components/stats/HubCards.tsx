@@ -48,7 +48,7 @@ function ContributionGrid({ values }: { values: number[] }) {
 function Chips({ items }: { items: string[] }) {
   return (
     <div className="flex flex-wrap gap-1.5">
-      {items.map((t) => <span key={t} className="text-[11px] rounded-full border border-border/60 bg-background/60 px-2 py-0.5 text-muted-foreground">{t}</span>)}
+      {items.map((t) => <span key={t} className="text-[11px] rounded-md bg-muted px-2 py-0.5 font-medium text-foreground/80">{t}</span>)}
     </div>
   )
 }

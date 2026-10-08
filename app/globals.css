@@ -12,6 +12,9 @@
   @media (width >= 1400px) {
     max-width: 1400px;
   }
+  @media (width >= 1920px) {
+    max-width: 1600px;
+  }
 }
 
 @theme {
@@ -286,3 +289,74 @@ html.theme-transitioning *::after {
 .ProseMirror .hljs-number, .ProseMirror .hljs-literal { color: #f59e0b; }
 .ProseMirror .hljs-title, .ProseMirror .hljs-section { color: #3b82f6; }
 .ProseMirror .hljs-attribute, .ProseMirror .hljs-name, .ProseMirror .hljs-tag { color: #ef4444; }
+
+/*
+  code blocks: VS Code Light Modern and Dark Modern. Shiki emits both palettes as --shiki-light and --shiki-dark
+  on every span (lib/highlight.ts), so the site theme class alone picks the colours and a theme switch never
+  flashes or re-renders. Header colours are the Modern tab bar shades, both above 7:1 for the label text.
+*/
+.code-frame {
+  --code-bg: #ffffff;
+  --code-fg: #3b3b3b;
+  --code-header-bg: #f8f8f8;
+  background-color: var(--code-bg);
+  color: var(--code-fg);
+}
+.dark .code-frame {
+  --code-bg: #1f1f1f;
+  --code-fg: #cccccc;
+  --code-header-bg: #181818;
+}
+.code-frame-header {
+  background-color: var(--code-header-bg);
+  color: var(--code-fg);
+}
+.code-frame-body pre.shiki {
+  margin: 0;
+  padding: 1rem;
+  background-color: transparent !important;
+  font-family: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.code-frame .shiki,
+.code-frame .shiki span {
+  color: var(--shiki-light, var(--code-fg));
+  font-style: var(--shiki-light-font-style, inherit);
+  font-weight: var(--shiki-light-font-weight, inherit);
+  text-decoration: var(--shiki-light-text-decoration, inherit);
+}
+.dark .code-frame .shiki,
+.dark .code-frame .shiki span {
+  color: var(--shiki-dark, var(--code-fg));
+  font-style: var(--shiki-dark-font-style, inherit);
+  font-weight: var(--shiki-dark-font-weight, inherit);
+  text-decoration: var(--shiki-dark-text-decoration, inherit);
+}
+
+/* the About page code card reuses the same token colours so it reads like the code blocks */
+.code-tokens {
+  --tok-keyword: #0000ff;
+  --tok-control: #af00db;
+  --tok-function: #795e26;
+  --tok-string: #a31515;
+  --tok-escape: #ee0000;
+  --tok-comment: #008000;
+  --tok-plain: #3b3b3b;
+}
+.dark .code-tokens {
+  --tok-keyword: #569cd6;
+  --tok-control: #c586c0;
+  --tok-function: #dcdcaa;
+  --tok-string: #ce9178;
+  --tok-escape: #d7ba7d;
+  --tok-comment: #6a9955;
+  --tok-plain: #cccccc;
+}
+
+/* large monitors: scale the whole site up a little instead of stretching it, so text, cards and spacing grow
+   together and reading columns keep a comfortable line length. Laptops and phones are unaffected */
+@media (min-width: 1920px) {
+  html { font-size: 17px; }
+}
+@media (min-width: 2400px) {
+  html { font-size: 18px; }
+}

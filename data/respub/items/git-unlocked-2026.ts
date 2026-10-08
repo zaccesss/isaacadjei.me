@@ -7,6 +7,7 @@ const _git_unlocked_2026: Publication = {
     venue: "Zenodo",
     year: 2026,
     month: 6,
+    day: 15,
     doi: "10.5281/zenodo.20694984",
     zenodoUrl: "https://zenodo.org/records/20694984",
     scholarUrl: "https://scholar.google.com/citations?user=YZq0XuMAAAAJ",

@@ -4,39 +4,29 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { TAG_CLASS, postTypeLabelClass } from "@/components/shared/Tag"
 import { Button } from "@/components/ui/button"
-import { getFeaturedPosts } from "@/data/blog"
 import { staggerContainer, fadeUp } from "@/lib/animations"
-import type { BlogPost, PostType } from "@/data/blog"
-
-const TYPE_STYLES: Record<PostType, string> = {
-  blog: "bg-primary/10 text-primary border-primary/20",
-  journal: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-  research: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  notes: "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20",
-  report: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
-  article: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",
-  resources: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
-}
+import type { PostType } from "@/data/blog"
+import type { BlogCard } from "@/data/blog/meta"
+import ThemedCover from "@/components/shared/ThemedCover"
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog", journal: "Journal", research: "Research", notes: "Notes",
   report: "Report", article: "Article", resources: "Resources",
 }
 
-const FEATURED_ORDER = [
-  "resources-engineering-and-technology",
+const PINNED = [
   "why-software-engineers-should-understand-hardware",
-  "open-source-contributing",
   "ocular-prosthetics-bionic-vision",
 ]
+const TOTAL = 6
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
 }
 
-function FeaturedPostCard({ post }: { post: BlogPost }) {
+function FeaturedPostCard({ post }: { post: BlogCard }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -44,8 +34,9 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
     >
       {post.cover_image && (
         <div className="relative w-full h-40 overflow-hidden">
-          <Image
+          <ThemedCover
             src={post.cover_image}
+            darkSrc={post.cover_image_dark}
             alt={post.title}
             fill
             className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
@@ -54,7 +45,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
         </div>
       )}
       <div className="px-5 py-4 space-y-3">
-        <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${TYPE_STYLES[post.type]}`}>
+        <span className={postTypeLabelClass(post.type)}>
           {TYPE_LABELS[post.type]}
         </span>
         <div className="space-y-1">
@@ -78,9 +69,7 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {post.tags.slice(0, 3).map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs font-normal">
-                {tag}
-              </Badge>
+              <span key={tag} className={TAG_CLASS}>{tag}</span>
             ))}
           </div>
         )}
@@ -89,11 +78,15 @@ function FeaturedPostCard({ post }: { post: BlogPost }) {
   )
 }
 
-export default function FeaturedBlogPosts() {
-  const all = getFeaturedPosts()
-  const featured = FEATURED_ORDER
+export default function FeaturedBlogPosts({ posts: all }: { posts: BlogCard[] }) {
+  const pinned = PINNED
     .map((slug) => all.find((p) => p.slug === slug))
-    .filter((p): p is BlogPost => p !== undefined)
+    .filter((p): p is BlogCard => p !== undefined)
+  const latest = [...all]
+    .filter((p) => !PINNED.includes(p.slug))
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, TOTAL - pinned.length)
+  const featured = [...pinned, ...latest]
 
   if (featured.length === 0) return null
 
@@ -120,7 +113,7 @@ export default function FeaturedBlogPosts() {
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2">
+          <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((post) => (
               <FeaturedPostCard key={post.slug} post={post} />
             ))}

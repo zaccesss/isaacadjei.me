@@ -1,10 +1,12 @@
 import { MetadataRoute } from "next"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes } from "@/data/notes"
+import { notes as allNotes } from "@/data/notes"
+import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
-import { books, videos, podcasts, articles, resources, others, artists } from "@/data/consumed"
+import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, artists, liveConsumed } from "@/data/consumed"
+import { liveOnly } from "@/lib/schedule"
 import { normTag, consumedSlug } from "@/lib/tags"
 import { SITE_URL } from "@/lib/constants"
 
@@ -14,7 +16,16 @@ function projectDate(dateStr: string): Date {
   return new Date(`${year}-01-01`)
 }
 
+import { CONSUMED_COLLECTIONS } from "@/data/consumed/collections"
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const notes = liveOnly(allNotes)
+  const books = liveConsumed(allBooks)
+  const videos = liveConsumed(allVideos)
+  const podcasts = liveConsumed(allPodcasts)
+  const articles = liveConsumed(allArticles)
+  const resources = liveConsumed(allResources)
+  const others = liveConsumed(allOthers)
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL,                                    lastModified: new Date("2026-05-15"), changeFrequency: "monthly", priority: 1    },
     { url: `${SITE_URL}/about`,                         lastModified: new Date("2026-04-01"), changeFrequency: "monthly", priority: 0.9  },
@@ -34,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/stats/gaming`,                  lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },
     { url: `${SITE_URL}/stats/writing`,                 lastModified: new Date("2026-09-25"), changeFrequency: "weekly",  priority: 0.4  },
     { url: `${SITE_URL}/newsletter`,                    lastModified: new Date("2026-05-29"), changeFrequency: "yearly",  priority: 0.5  },
+    { url: `${SITE_URL}/feeds`,                         lastModified: new Date("2026-10-08"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/now`,                           lastModified: new Date("2026-05-29"), changeFrequency: "weekly",  priority: 0.7  },
     { url: `${SITE_URL}/consumed`,                      lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.6  },
     { url: `${SITE_URL}/consumed/videos`,               lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.5  },
@@ -101,9 +113,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  const notePostRoutes: MetadataRoute.Sitemap = getPublishedNotes().map((post) => ({
+    url: `${SITE_URL}/notes/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "never" as const,
+    priority: 0.5,
+  }))
+
   const tagSlugs = new Set<string>()
   for (const post of getPublishedPosts()) post.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const til of getPublishedTILEntries()) til.tags?.forEach((t) => tagSlugs.add(normTag(t)))
+  for (const post of getPublishedNotes()) post.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const note of notes) note.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const project of projects) project.technologies.forEach((t) => tagSlugs.add(normTag(t)))
   for (const pub of publications) pub.keywords?.forEach((t) => tagSlugs.add(normTag(t)))
@@ -131,5 +151,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...artists.map((a) => ({ url: `${SITE_URL}/consumed/music/${consumedSlug(a.name)}`,      lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
   ]
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...noteRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
+  const collectionRoutes: MetadataRoute.Sitemap = CONSUMED_COLLECTIONS.map((c) => ({
+    url: `${SITE_URL}/consumed/collections/${c.slug}`,
+    changeFrequency: "weekly",
+    priority: 0.5,
+  }))
+
+  return [...staticRoutes, ...collectionRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...noteRoutes, ...notePostRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
 }

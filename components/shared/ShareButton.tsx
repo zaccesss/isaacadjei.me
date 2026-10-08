@@ -38,7 +38,7 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon" onClick={handleShare} aria-label="Share this page">
+          <Button variant="ghost" size="icon" className="shrink-0" onClick={handleShare} aria-label="Share this page">
             {copied ? (
               <span className="text-xs font-medium">Copied!</span>
             ) : failed ? (

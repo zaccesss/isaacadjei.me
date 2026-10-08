@@ -23,7 +23,7 @@ function tokenise(line: string): { text: string; cls: string }[] {
     return [{ text: line, cls: "text-primary font-semibold" }]
   }
   if (line.startsWith("//")) {
-    return [{ text: line, cls: "text-muted-foreground" }]
+    return [{ text: line, cls: "text-[var(--tok-comment)]" }]
   }
 
   const tokens: { text: string; cls: string }[] = []
@@ -35,7 +35,7 @@ function tokenise(line: string): { text: string; cls: string }[] {
 
     if (commentIdx !== -1 && (strIdx === -1 || commentIdx < strIdx)) {
       if (commentIdx > 0) tokens.push(...tokenisePart(remaining.slice(0, commentIdx)))
-      tokens.push({ text: remaining.slice(commentIdx), cls: "text-muted-foreground" })
+      tokens.push({ text: remaining.slice(commentIdx), cls: "text-[var(--tok-comment)]" })
       break
     }
 
@@ -43,10 +43,10 @@ function tokenise(line: string): { text: string; cls: string }[] {
       if (strIdx > 0) tokens.push(...tokenisePart(remaining.slice(0, strIdx)))
       const endStr = remaining.indexOf('"', strIdx + 1)
       if (endStr !== -1) {
-        tokens.push({ text: remaining.slice(strIdx, endStr + 1), cls: "text-sky-600 dark:text-sky-300" })
+        tokens.push(...tokeniseString(remaining.slice(strIdx, endStr + 1)))
         remaining = remaining.slice(endStr + 1)
       } else {
-        tokens.push({ text: remaining, cls: "text-sky-600 dark:text-sky-300" })
+        tokens.push(...tokeniseString(remaining))
         break
       }
       continue
@@ -59,8 +59,16 @@ function tokenise(line: string): { text: string; cls: string }[] {
   return tokens
 }
 
+function tokeniseString(text: string): { text: string; cls: string }[] {
+  return text
+    .split(/(\\.)/)
+    .filter(Boolean)
+    .map((part) => ({ text: part, cls: part.startsWith("\\") ? "text-[var(--tok-escape)]" : "text-[var(--tok-string)]" }))
+}
+
 function tokenisePart(text: string): { text: string; cls: string }[] {
-  const KEYWORDS = /\b(while|true|false|bool)\b/g
+  const CONTROL = /\b(while)\b/g
+  const KEYWORDS = /\b(true|false|bool)\b/g
   const FUNCTIONS = /\b(learn|retry|thrive|succeed|printf)\b/g
 
   const parts: { text: string; cls: string }[] = []
@@ -68,27 +76,31 @@ function tokenisePart(text: string): { text: string; cls: string }[] {
   const matches: { index: number; length: number; cls: string }[] = []
 
   let m: RegExpExecArray | null
+  CONTROL.lastIndex = 0
+  while ((m = CONTROL.exec(text)) !== null)
+    matches.push({ index: m.index, length: m[0].length, cls: "text-[var(--tok-control)]" })
   KEYWORDS.lastIndex = 0
   while ((m = KEYWORDS.exec(text)) !== null)
-    matches.push({ index: m.index, length: m[0].length, cls: "text-primary" })
+    matches.push({ index: m.index, length: m[0].length, cls: "text-[var(--tok-keyword)]" })
   FUNCTIONS.lastIndex = 0
   while ((m = FUNCTIONS.exec(text)) !== null)
     if (!matches.some((x) => x.index === m!.index))
-      matches.push({ index: m.index, length: m[0].length, cls: "text-violet-500 dark:text-violet-400" })
+      matches.push({ index: m.index, length: m[0].length, cls: "text-[var(--tok-function)]" })
 
   matches.sort((a, b) => a.index - b.index)
   for (const match of matches) {
-    if (match.index > last) parts.push({ text: text.slice(last, match.index), cls: "text-foreground" })
+    if (match.index > last) parts.push({ text: text.slice(last, match.index), cls: "text-[var(--tok-plain)]" })
     parts.push({ text: text.slice(match.index, match.index + match.length), cls: match.cls })
     last = match.index + match.length
   }
-  if (last < text.length) parts.push({ text: text.slice(last), cls: "text-foreground" })
+  if (last < text.length) parts.push({ text: text.slice(last), cls: "text-[var(--tok-plain)]" })
   return parts
 }
 
 export default function ApproachAnimation() {
   const [displayedLines, setDisplayedLines] = useState<string[]>([])
   const [phase, setPhase] = useState<Phase>("pausing")
+  const [reduced, setReduced] = useState(false)
 
   const lineIdxRef = useRef(0)
   const charIdxRef = useRef(0)
@@ -139,17 +151,28 @@ export default function ApproachAnimation() {
       }, 60)
     }
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      timerRef.current = setTimeout(() => {
+        setReduced(true)
+        setDisplayedLines(LINES)
+        setPhase("holding")
+      }, 0)
+      return clearTimers
+    }
+
     timerRef.current = setTimeout(startTyping, 500)
     return clearTimers
   }, [])
 
-  const isCursorVisible = phase === "typing" || phase === "holding"
+  const isCursorVisible = !reduced && (phase === "typing" || phase === "holding")
 
   return (
-    <div
-      className="rounded-xl border border-border/60 bg-muted/50 dark:bg-zinc-900/60 p-5 overflow-x-auto h-[200px] sm:h-[260px] overflow-y-hidden"
-      aria-label="My approach - a code philosophy"
-    >
+    <figure className="code-frame code-tokens overflow-hidden rounded-xl border border-border" aria-label="My approach - a code philosophy, written in C">
+      <figcaption className="code-frame-header border-b border-border px-4 py-1.5 font-mono text-xs font-semibold tracking-wide">
+        C
+      </figcaption>
+      <pre className="sr-only">{LINES.join("\n")}</pre>
+      <div className="p-5 overflow-x-auto h-[200px] sm:h-[260px] overflow-y-hidden" aria-hidden="true">
       <div className="font-mono text-xs leading-relaxed">
         {displayedLines.map((line, i) => {
           const isLast = i === displayedLines.length - 1
@@ -172,6 +195,7 @@ export default function ApproachAnimation() {
           <span className="text-transparent select-none">{" "}</span>
         )}
       </div>
-    </div>
+      </div>
+    </figure>
   )
 }

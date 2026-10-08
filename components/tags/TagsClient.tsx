@@ -50,7 +50,7 @@ export default function TagsClient({ tags }: { tags: TagItem[] }) {
             <Link
               key={slug}
               href={`/tags/${slug}`}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/30 px-3 py-1 text-sm hover:bg-muted hover:border-border/80 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 text-sm text-foreground/80 hover:bg-primary/10 hover:text-primary hover:underline underline-offset-2 transition-colors"
             >
               <Tag className="h-3 w-3 text-muted-foreground" />
               <span>{display}</span>

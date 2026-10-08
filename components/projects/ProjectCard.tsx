@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import {
   Card,
@@ -10,9 +10,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { type Project } from "@/data/projects"
+import { CATEGORY_LABELS, type Project } from "@/data/projects"
+import StatusBadge from "./StatusBadge"
+import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/Tag"
+import ThemedCover from "@/components/shared/ThemedCover"
 
 interface Props {
   project: Project
@@ -22,11 +24,12 @@ interface Props {
 export default function ProjectCard({ project, priority = false }: Props) {
   return (
     <Card className="flex flex-col h-full hover:shadow-md transition-shadow">
-      {project.images[0] && (
+      {(project.cover ?? project.images[0]) && (
         <Link href={`/projects/${project.id}`} className="block overflow-hidden rounded-t-lg">
           <div className="relative h-48 w-full bg-muted">
-            <Image
-              src={project.images[0]}
+            <ThemedCover
+              src={project.cover ?? project.images[0]}
+              darkSrc={project.coverDark}
               alt={project.title}
               fill
               priority={priority}
@@ -39,13 +42,14 @@ export default function ProjectCard({ project, priority = false }: Props) {
       <CardHeader className="space-y-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2 flex-wrap">
-            <Badge variant="outline" className="capitalize text-xs">
-              {project.category}
-            </Badge>
-            {project.ongoing && (
-              <Badge className="text-xs bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30 border">
+            <span className={projectCategoryLabelClass(project.category)}>{CATEGORY_LABELS[project.category] ?? project.category}</span>
+            {project.status ? (
+              <StatusBadge status={project.status} className="text-xs" />
+            ) : project.ongoing && (
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-500" aria-hidden="true" />
                 Ongoing
-              </Badge>
+              </span>
             )}
           </div>
           <span className="text-xs text-muted-foreground shrink-0">{project.date}</span>
@@ -63,14 +67,14 @@ export default function ProjectCard({ project, priority = false }: Props) {
       <CardContent className="flex-1">
         <div className="flex flex-wrap gap-1.5">
           {project.technologies.slice(0, 5).map((tech) => (
-            <Badge key={tech} variant="secondary" className="text-xs">
+            <span key={tech} className={CHIP_CLASS}>
               {tech}
-            </Badge>
+            </span>
           ))}
           {project.technologies.length > 5 && (
-            <Badge variant="secondary" className="text-xs">
+            <span className={CHIP_CLASS}>
               +{project.technologies.length - 5}
-            </Badge>
+            </span>
           )}
         </div>
       </CardContent>
@@ -83,6 +87,13 @@ export default function ProjectCard({ project, priority = false }: Props) {
           <Button asChild variant="ghost" size="icon">
             <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="h-4 w-4" />
+            </a>
+          </Button>
+        )}
+        {project.website && (
+          <Button asChild variant="ghost" size="icon">
+            <a href={project.website} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} website`}>
+              <Globe className="h-4 w-4" />
             </a>
           </Button>
         )}
