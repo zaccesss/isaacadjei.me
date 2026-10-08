@@ -65,7 +65,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
   const issue = await fetchNewsletterIssue(slug).catch(() => null)
   if (!issue) notFound()
 
-  const html = issue.html ? sanitizeIssueHtml(issue.html) : null
+  const html = issue.html ? sanitizeIssueHtml(issue.html, issue.title, issue.subtitle ?? undefined) : null
 
   return (
     <div className="container max-w-2xl py-24 space-y-10">
