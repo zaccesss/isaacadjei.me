@@ -2,10 +2,27 @@ import type { Metadata } from "next"
 import { projects } from "@/data/projects"
 import ProjectGrid from "@/components/projects/ProjectGrid"
 
+const CATEGORY_NAMES: Record<string, string> = {
+  embedded: "embedded systems",
+  hardware: "hardware",
+  iot: "IoT",
+  web: "web",
+  software: "software",
+  cybersecurity: "cybersecurity",
+  academic: "academic",
+  other: "other",
+}
+
+function categoryList(): string {
+  const present = new Set(projects.map((p) => p.category))
+  const names = Object.keys(CATEGORY_NAMES).filter((c) => present.has(c as (typeof projects)[number]["category"])).map((c) => CATEGORY_NAMES[c])
+  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : (names[0] ?? "")
+}
+
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A collection of my engineering projects - from embedded systems to web applications.",
+    "A collection of my engineering projects, from embedded systems and hardware to web applications.",
   alternates: {
     canonical: "https://www.isaacadjei.me/projects",
   },
@@ -22,7 +39,7 @@ export default function ProjectsPage() {
           <h1 className="text-4xl font-bold tracking-tight">Projects</h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          Things I&apos;ve built - embedded systems, electronics, software and more.
+          Things I&apos;ve built across {categoryList()} projects.
         </p>
       </div>
       <ProjectGrid projects={projects} />

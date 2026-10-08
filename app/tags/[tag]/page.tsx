@@ -4,10 +4,14 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, Tag } from "lucide-react"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes } from "@/data/notes"
+import { notes as allNotes, getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
-import { videos, articles, others, books, resources, artists } from "@/data/consumed"
+import {
+  videos as allVideos, articles as allArticles, others as allOthers, books as allBooks,
+  resources as allResources, artists, liveConsumed,
+} from "@/data/consumed"
+import { liveOnly } from "@/lib/schedule"
 import { normTag, consumedSlug } from "@/lib/tags"
 
 function fmtDate(dateStr: string) {
@@ -18,7 +22,21 @@ function fmtDate(dateStr: string) {
   })
 }
 
+export const revalidate = 21600
+
+function liveSources() {
+  return {
+    notes: [...liveOnly(allNotes), ...getPublishedNotes()].map(({ slug, title, description, tags }) => ({ slug, title, description, tags })),
+    videos: liveConsumed(allVideos),
+    articles: liveConsumed(allArticles),
+    others: liveConsumed(allOthers),
+    books: liveConsumed(allBooks),
+    resources: liveConsumed(allResources),
+  }
+}
+
 export async function generateStaticParams() {
+  const { notes, videos, articles, others, books, resources } = liveSources()
   const slugs = new Set<string>()
   for (const post of getPublishedPosts()) post.tags.forEach((t) => slugs.add(normTag(t)))
   for (const til of getPublishedTILEntries()) til.tags?.forEach((t) => slugs.add(normTag(t)))
@@ -57,6 +75,7 @@ export default async function TagPage({
   params: Promise<{ tag: string }>
 }) {
   const { tag } = await params
+  const { notes, videos, articles, others, books, resources } = liveSources()
 
   const posts = getPublishedPosts()
     .filter((p) => p.tags.some((t) => normTag(t) === tag))

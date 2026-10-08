@@ -3,10 +3,11 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import { artists, genres } from "@/data/consumed/music"
+import { artists } from "@/data/consumed/music"
 import { consumedSlug, normTag } from "@/lib/tags"
 import ShareButton from "@/components/shared/ShareButton"
 import { ConsumedPrevNext } from "@/components/consumed/ConsumedPrevNext"
+import { TAG_LINK_CLASS } from "@/components/shared/Tag"
 
 type Artist = (typeof artists)[number]
 
@@ -48,8 +49,6 @@ export async function generateMetadata({
   }
 }
 
-const GENRE_COLOUR = Object.fromEntries(genres.map((g) => [g.label, g.color]))
-
 export default async function MusicArtistPage({
   params,
 }: {
@@ -63,7 +62,6 @@ export default async function MusicArtistPage({
     ? `https://www.youtube.com/watch?v=${artist.youtubeId}`
     : null
 
-  const genreColor = GENRE_COLOUR[artist.genre] ?? "bg-muted/40 text-muted-foreground border-border/40"
   const { prev, next } = findPrevNext(artist.name)
 
   return (
@@ -75,7 +73,7 @@ export default async function MusicArtistPage({
       </nav>
 
       <div className="space-y-4">
-        <Link href={`/tags/${normTag(artist.genre)}`} className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium hover:opacity-80 transition-opacity ${genreColor}`}>
+        <Link href={`/tags/${normTag(artist.genre)}`} className={TAG_LINK_CLASS}>
           {artist.genre}
         </Link>
         <div className="flex items-start justify-between gap-4">

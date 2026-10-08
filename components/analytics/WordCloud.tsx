@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { Wordcloud } from "@visx/wordcloud"
 import { DEFAULT_CHART_COLOURS } from "./charts"
 
@@ -28,8 +28,17 @@ export function WordCloud({
   valueLabel?: string
 }) {
   const [width, setWidth] = useState(600)
+  const [family, setFamily] = useState("sans-serif")
   const fontSize = useMemo(() => fontScale(words), [words])
   const valueByText = useMemo(() => new Map(words.map((w) => [w.text, w.value])), [words])
+  const measure = useCallback((el: HTMLDivElement | null) => {
+    if (!el) return
+    setWidth(el.clientWidth)
+    setFamily(getComputedStyle(el).fontFamily || "sans-serif")
+    const ro = new ResizeObserver(() => setWidth(el.clientWidth))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   if (!words.length) {
     return <p className="text-xs text-muted-foreground">No data for this period.</p>
@@ -37,10 +46,8 @@ export function WordCloud({
 
   return (
     <div
-      ref={(el) => {
-        if (el) setWidth(el.clientWidth)
-      }}
-      className="w-full flex items-center justify-center"
+      ref={measure}
+      className="w-full min-w-0 overflow-hidden flex items-center justify-center"
       style={{ height }}
     >
       <Wordcloud
@@ -48,7 +55,7 @@ export function WordCloud({
         width={width}
         height={height}
         fontSize={fontSize}
-        font="inherit"
+        font={family}
         padding={2}
         spiral="archimedean"
         rotate={0}

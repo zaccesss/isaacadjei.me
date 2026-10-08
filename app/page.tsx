@@ -8,6 +8,10 @@ import FeaturedTIL from "@/components/sections/FeaturedTIL"
 import SkillsOverview from "@/components/sections/SkillsOverview"
 import ContactCTA from "@/components/sections/ContactCTA"
 import SectionErrorBoundary from "@/components/shared/SectionErrorBoundary"
+import { getPublishedPosts, toCard } from "@/data/blog"
+import { getPublishedTILEntries } from "@/data/til"
+
+export const revalidate = 21600
 
 export const metadata: Metadata = {
   alternates: {
@@ -19,13 +23,17 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  const featuredPosts = getPublishedPosts().map((p) => toCard({ ...p, readingTime: p.readingTime ?? 0 }))
+  const latestTils = getPublishedTILEntries()
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 6)
   return (
     <>
       <Hero />
       <AboutPreview />
       <FeaturedProjects />
-      <FeaturedBlogPosts />
-      <FeaturedTIL />
+      <FeaturedBlogPosts posts={featuredPosts} />
+      <FeaturedTIL entries={latestTils} />
       <SectionErrorBoundary><FeaturedNewsletterIssues /></SectionErrorBoundary>
       <SkillsOverview />
       <ContactCTA />

@@ -2,6 +2,33 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.70.0] - 2026-10-08
+
+_Projects, writing and feeds_
+
+### Added
+
+- /projects: full write-ups for every project with covers, demo clips, diagrams, the team and references, plus new pages for Vitafolio, PHAEMOS, MELOPHOS, LidarSAT, this site and my development environment
+- /feeds: Atom feeds for the blog, TIL, notes and newsletter, plus /feed.xml for everything, each opening as a designed page in a browser
+- Notes has its own posts with pages and a feed. The newsletter page shows issues on the site itself
+- /respub: current research, the papers behind it, open materials and one-click BibTeX and APA citations
+- /consumed: Start here picks, collections, a yearly summary, book covers, page previews and what each item led to
+- A search button in the header opens the command menu on every page and device
+- The /lab terminal asks your name and mirrors a real setup with a tmux status bar, a Neovim view and Git aliases
+
+### Changed
+
+- One filter panel and pager on every list, with filters kept in the address so a view can be shared
+- Code blocks in VS Code colours, callouts with icons and one quiet style for tags and labels
+- The header shows Notes and Newsletter, More opens All pages and narrower screens use the menu
+- /about, /experience, /uses, /colophon, /now and /friends brought up to date
+- The site scales up slightly on large monitors and every animation follows reduced motion
+
+### Fixed
+
+- No sideways scrolling on phones, a phone menu that closes with Escape and larger tap targets everywhere
+- Code blocks and the lab terminal use the monospace font again
+
 ## [2.69.0] - 2026-10-07
 
 _Community and a new look_
@@ -45,7 +72,7 @@ _Public stats and source_
 ### Changed
 
 - Every stats page opens on the last 30 days
-- Posts and TIL entries dated today now go live at midnight UTC, so a scheduled entry no longer shows in a list while its page says not found
+- Posts and TIL entries dated today now go live at midnight UTC, so an entry no longer shows in a list while its page says not found
 - Chart labels no longer overlap: pie and donut legends sit under the chart with the percentages inside the ring and bar chart names are shortened and slanted when there are many
 - The site does less work on each visit: the GitHub stats and top tracks data are cached at the edge. The blog feed and share images are cached too. The research page is built ahead and the newsletter issue list is cached for 10 minutes
 - /about and /experience refresh daily so a role that starts on a set date appears on its own

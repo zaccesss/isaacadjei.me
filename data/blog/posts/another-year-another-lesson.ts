@@ -52,7 +52,7 @@ const _another_year_another_lesson: BlogPost = {
       },
       {
         type: "p",
-        text: "[Phaemos](https://phaemos.com) is further along than it has ever been. It is a predictive maintenance platform using IoT sensor data and machine learning and it is a real thing now, not a side project in the abstract. avr-zac is bare-metal C running on an ATmega644P: no HAL, no abstraction layer, just registers and timing and understanding exactly what the hardware is doing. The audio amplifier is a TL071 active filter and OPA551 unity-gain output buffer, designed, simulated, fabricated and tested by hand. I built a World Cup 2026 AI predictor. I have been doing competitive programming consistently for the first time since I started. I ran over 50 kilometres for [Cancer Research UK](https://www.cancerresearchuk.org) during the 10 Days of 5K Challenge.",
+        text: "[PHAEMOS](https://github.com/phaemos) is further along than it has ever been. It is a predictive maintenance platform using IoT sensor data and machine learning and it is a real thing now, not a side project in the abstract. avr-zac is bare-metal C running on an ATmega644P: no HAL, no abstraction layer, just registers and timing and understanding exactly what the hardware is doing. The audio amplifier is a TL071 active filter and OPA551 unity-gain output buffer, designed, simulated, fabricated and tested by hand. I built a World Cup 2026 AI predictor. I have been doing competitive programming consistently for the first time since I started. I ran over 50 kilometres for [Cancer Research UK](https://www.cancerresearchuk.org) during the 10 Days of 5K Challenge.",
       },
       {
         type: "p",

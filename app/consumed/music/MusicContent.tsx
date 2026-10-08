@@ -1,11 +1,12 @@
 import Link from "next/link"
 import { ArrowLeft, Music2, ExternalLink } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { artists, genres } from "@/data/consumed"
+import { artists, genres } from "@/data/consumed/music"
+import { consumedTotals } from "@/data/consumed"
 import { consumedSlug, normTag } from "@/lib/tags"
 import { SpotifyNowPlaying } from "@/components/consumed/SpotifyNowPlaying"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { Separator } from "@/components/ui/separator"
+import { TAG_CLASS } from "@/components/shared/Tag"
 
 export default function MusicContent() {
   return (
@@ -27,7 +28,7 @@ export default function MusicContent() {
         </p>
       </div>
 
-      <ConsumedCategoryTabs active="music" />
+      <ConsumedCategoryTabs active="music" counts={consumedTotals()} />
 
       <div className="flex justify-center">
         <SpotifyNowPlaying />
@@ -70,7 +71,7 @@ export default function MusicContent() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {genres.map((g) => (
             <div key={g.label} className="rounded-xl border border-border/60 bg-card p-4 space-y-1.5">
-              <span className={cn("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium", g.color)}>
+              <span className={TAG_CLASS}>
                 {g.label}
               </span>
               <p className="text-xs text-muted-foreground leading-relaxed">{g.description}</p>

@@ -13,11 +13,11 @@ function formatDate(iso: string) {
 }
 
 function IssueCard({ issue }: { issue: NewsletterIssue }) {
+  const external = !issue.href.startsWith("/")
   return (
     <a
-      href={issue.webUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={issue.href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all overflow-hidden"
     >
       {issue.thumbnailUrl && (
@@ -41,7 +41,11 @@ function IssueCard({ issue }: { issue: NewsletterIssue }) {
         )}
         <div className="flex items-center justify-between pt-1">
           <span className="font-mono text-xs text-muted-foreground">{formatDate(issue.publishDate)}</span>
-          <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" />
+          {external ? (
+            <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+          ) : (
+            <ArrowRight className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+          )}
         </div>
       </div>
     </a>

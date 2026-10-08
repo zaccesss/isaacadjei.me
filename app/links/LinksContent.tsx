@@ -41,6 +41,7 @@ import {
   SiTryhackme,
   SiKaggle,
   SiResearchgate,
+  SiZotero,
   SiWellfound,
 } from "react-icons/si"
 import { Globe, Mail, ExternalLink, Newspaper } from "lucide-react"
@@ -82,6 +83,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   tryhackme: SiTryhackme,
   kaggle: SiKaggle,
   researchgate: SiResearchgate,
+  zotero: SiZotero,
   wellfound: SiWellfound,
   hashnode: SiHashnode,
   medium: SiMedium,
@@ -193,22 +195,24 @@ export default function LinksPage() {
         </p>
         <div className="flex items-center justify-center gap-4 pt-1">
           {([
-            { Icon: Mail,            href: "mailto:hello@isaacadjei.me" },
-            { Icon: FaLinkedin,      href: "https://www.linkedin.com/in/isaacadjei" },
-            { Icon: SiOrcid,         href: "https://orcid.org/0009-0001-8298-5098" },
-            { Icon: FaGithub,        href: "https://www.github.com/zaccesss" },
-            { Icon: SiStackoverflow, href: "https://stackoverflow.com/users/32850859/zaccesss" },
-            { Icon: SiSubstack,      href: "https://substack.com/@zaccesss" },
-            { Icon: FaXTwitter,      href: "https://x.com/zaccesss" },
-          ] as const).map(({ Icon, href }) => (
+            { Icon: Mail,            label: "Email",          href: "mailto:hello@isaacadjei.me" },
+            { Icon: FaLinkedin,      label: "LinkedIn",       href: "https://www.linkedin.com/in/isaacadjei" },
+            { Icon: SiOrcid,         label: "ORCID",          href: "https://orcid.org/0009-0001-8298-5098" },
+            { Icon: FaGithub,        label: "GitHub",         href: "https://www.github.com/zaccesss" },
+            { Icon: SiStackoverflow, label: "Stack Overflow", href: "https://stackoverflow.com/users/32850859/zaccesss" },
+            { Icon: SiSubstack,      label: "Substack",       href: "https://substack.com/@zaccesss" },
+            { Icon: FaXTwitter,      label: "X",              href: "https://x.com/zaccesss" },
+          ] as const).map(({ Icon, label, href }) => (
             <Link
               key={href}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground sm:hover:scale-125 sm:active:scale-90 transition-[color] sm:transition-all duration-150"
+              aria-label={label}
+              title={label}
+              className="relative text-muted-foreground hover:text-foreground sm:hover:scale-125 sm:active:scale-90 transition-[color] sm:transition-all duration-150 after:absolute after:-inset-2 after:content-['']"
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-5 w-5" aria-hidden="true" />
             </Link>
           ))}
         </div>
@@ -225,7 +229,7 @@ export default function LinksPage() {
             >
               <div className="flex items-center gap-3 px-1">
                 <div className="flex-1 h-px bg-border" />
-                <p className="font-mono text-primary tracking-widest whitespace-nowrap">
+                <p className="min-w-0 text-center font-mono text-primary tracking-widest sm:whitespace-nowrap">
                   <span className="text-base font-black">{label[0]}</span>
                   <span className="text-sm font-bold">{label.slice(1)}</span>
                 </p>

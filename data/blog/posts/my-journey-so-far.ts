@@ -128,7 +128,7 @@ const _my_journey_so_far: BlogPost = {
       },
       {
         type: "p",
-        text: "I am now studying BEng Electronic Engineering and Computer Science at Aston University, Birmingham, working towards a First Class degree. The programme covers embedded systems, digital electronics, software development, engineering mathematics and more. It is demanding and I am exactly where I want to be.",
+        text: "I am now studying Electronic Engineering and Computer Science at Aston University, Birmingham, working towards a First Class degree. The programme covers embedded systems, digital electronics, software development, engineering mathematics and more. It is demanding and I am exactly where I want to be.",
       },
       {
         type: "p",

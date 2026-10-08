@@ -5,6 +5,7 @@ export interface Publication {
   venue: string
   year: number
   month?: number
+  day?: number
   doi: string
   zenodoUrl?: string
   scholarUrl?: string

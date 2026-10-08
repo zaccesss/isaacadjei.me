@@ -3,44 +3,23 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Download, FileText } from "lucide-react"
 import { SiZenodo, SiGooglescholar } from "react-icons/si"
-import { publications, type Publication } from "@/data/respub"
+import { publications } from "@/data/respub"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
 import CodeBlock from "@/components/shared/CodeBlock"
+import { highlightCode } from "@/lib/highlight"
+import { CHIP_CLASS, LABEL_CLASS } from "@/components/shared/Tag"
+import { apaCitation, bibtexCitation, highwireDate, zenodoRecordId } from "@/data/respub/cite"
+import CopyCitationButtons from "@/components/respub/CopyCitationButtons"
+import ZenodoStats from "@/components/respub/ZenodoStats"
+
+const SITE = "https://www.isaacadjei.me"
 
 const typeLabel: Record<string, string> = {
   "technical-note": "Technical Note",
   conference: "Conference Paper",
   journal: "Journal Article",
   preprint: "Preprint",
-}
-
-function apaAuthors(authors: string[]): string {
-  const initials = (name: string) => {
-    const parts = name.trim().split(/\s+/)
-    const last = parts.pop()
-    return `${last}, ${parts.map((p) => `${p[0]}.`).join(" ")}`
-  }
-  const formatted = authors.map(initials)
-  if (formatted.length === 1) return formatted[0]
-  if (formatted.length === 2) return `${formatted[0]}, & ${formatted[1]}`
-  return `${formatted.slice(0, -1).join(", ")}, & ${formatted[formatted.length - 1]}`
-}
-
-function apaCitation(pub: Publication): string {
-  return `${apaAuthors(pub.authors)} (${pub.year}). ${pub.title}. ${pub.venue}. https://doi.org/${pub.doi}`
-}
-
-function bibtexCitation(pub: Publication): string {
-  const key = `${pub.authors[0].split(/\s+/).pop()?.toLowerCase()}${pub.year}${pub.id.replace(/-/g, "")}`
-  return `@misc{${key},
-  author    = {${pub.authors.join(" and ")}},
-  title     = {${pub.title}},
-  year      = {${pub.year}},
-  publisher = {${pub.venue}},
-  doi       = {${pub.doi}},
-  url       = {https://doi.org/${pub.doi}}
-}`
 }
 
 export async function generateStaticParams() {
@@ -68,6 +47,14 @@ export async function generateMetadata({
       title: `Research | ${pub.title}`,
       images: [`/api/og?title=${encodeURIComponent(pub.title)}&description=${encodeURIComponent(description)}`],
     },
+    other: {
+      citation_title: pub.title,
+      citation_author: pub.authors,
+      citation_publication_date: highwireDate(pub),
+      citation_doi: pub.doi,
+      citation_publisher: pub.venue,
+      ...(pub.pdfUrl ? { citation_pdf_url: pub.pdfUrl.startsWith("http") ? pub.pdfUrl : `${SITE}${pub.pdfUrl}` } : {}),
+    },
   }
 }
 
@@ -79,6 +66,9 @@ export default async function PublicationSlugPage({
   const { slug } = await params
   const pub = publications.find((p) => p.id === slug)
   if (!pub) notFound()
+  const apa = apaCitation(pub)
+  const bibtex = bibtexCitation(pub)
+  const recordId = zenodoRecordId(pub)
 
   return (
     <div className="container max-w-3xl py-24 space-y-10">
@@ -92,7 +82,7 @@ export default async function PublicationSlugPage({
 
       <div className="space-y-4">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+          <span className={LABEL_CLASS}>
             {typeLabel[pub.type] ?? pub.type}
           </span>
           <span className="text-xs text-muted-foreground">
@@ -106,6 +96,7 @@ export default async function PublicationSlugPage({
         </div>
 
         <p className="text-base text-muted-foreground">{pub.authors.join(", ")}</p>
+        {recordId && <ZenodoStats recordId={recordId} />}
       </div>
 
       {pub.abstract && (
@@ -121,10 +112,7 @@ export default async function PublicationSlugPage({
       {pub.keywords && pub.keywords.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {pub.keywords.map((kw) => (
-            <span
-              key={kw}
-              className="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs text-muted-foreground"
-            >
+            <span key={kw} className={CHIP_CLASS}>
               {kw}
             </span>
           ))}
@@ -134,9 +122,12 @@ export default async function PublicationSlugPage({
       <Separator />
 
       <section className="space-y-4">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Cite this work</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed font-mono">{apaCitation(pub)}</p>
-        <CodeBlock lang="bibtex" text={bibtexCitation(pub)} />
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Cite this work</h2>
+          <CopyCitationButtons bibtex={bibtex} apa={apa} title={pub.title} />
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed font-mono">{apa}</p>
+        <CodeBlock lang="bibtex" text={bibtex} html={await highlightCode(bibtex, "bibtex")} />
       </section>
 
       <Separator />

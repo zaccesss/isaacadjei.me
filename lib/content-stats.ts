@@ -1,7 +1,7 @@
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { projects } from "@/data/projects"
-import { books, videos, podcasts, articles, resources, others } from "@/data/consumed"
+import { books, videos, podcasts, articles, resources, others, liveConsumed } from "@/data/consumed"
 import { computeContentStats, type RawPost, type RawTIL, type RawProject } from "@/lib/content-stats-compute"
 
 export type { Named, RawPost, RawTIL, RawProject } from "@/lib/content-stats-compute"
@@ -9,12 +9,12 @@ export { computeContentStats } from "@/lib/content-stats-compute"
 
 export function getConsumedStats() {
   return [
-    { name: "Books", value: books.length },
-    { name: "Videos", value: videos.length },
-    { name: "Podcasts", value: podcasts.length },
-    { name: "Articles", value: articles.length },
-    { name: "Resources", value: resources.length },
-    { name: "Other", value: others.length },
+    { name: "Books", value: liveConsumed(books).length },
+    { name: "Videos", value: liveConsumed(videos).length },
+    { name: "Podcasts", value: liveConsumed(podcasts).length },
+    { name: "Articles", value: liveConsumed(articles).length },
+    { name: "Resources", value: liveConsumed(resources).length },
+    { name: "Other", value: liveConsumed(others).length },
   ].filter((c) => c.value > 0)
 }
 

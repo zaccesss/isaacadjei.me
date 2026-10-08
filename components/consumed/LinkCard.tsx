@@ -1,14 +1,20 @@
 import Link from "next/link"
 import { ExternalLink, FileText } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { MONTH_CHIP, type LinkEntry } from "@/data/consumed"
+import { type LinkEntry } from "@/data/consumed/types"
 import { consumedSlug, normTag } from "@/lib/tags"
+import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { ConsumedImage, SiteIcon } from "./ConsumedImage"
+import { LedTo } from "./LedTo"
 
 export function LinkCard({ item, category }: { item: LinkEntry; category: "articles" | "others" }) {
   const slug = consumedSlug(item.title)
   const subpageHref = `/consumed/${category}/${slug}`
   return (
-    <div className="group flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 hover:border-border transition-colors">
+    <div className="group flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card hover:border-border transition-colors">
+      <Link href={subpageHref} tabIndex={-1} aria-hidden="true">
+        <ConsumedImage src={item.image} alt={item.title} kind="preview" sourceUrl={item.url} />
+      </Link>
+      <div className="flex flex-1 flex-col gap-3 p-4">
       <div className="flex items-start justify-between gap-2">
         <div className="space-y-0.5 flex-1 min-w-0">
           <Link
@@ -17,7 +23,7 @@ export function LinkCard({ item, category }: { item: LinkEntry; category: "artic
           >
             {item.title}
           </Link>
-          <p className="text-[10px] text-muted-foreground">{item.source}</p>
+          <p className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><SiteIcon url={item.url} size={14} /><span className="truncate">{item.source}</span></p>
         </div>
         <a
           href={item.url}
@@ -30,15 +36,16 @@ export function LinkCard({ item, category }: { item: LinkEntry; category: "artic
         </a>
       </div>
       <p className="text-xs text-muted-foreground leading-relaxed flex-1">{item.description}</p>
+      <LedTo links={item.ledTo} />
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium", MONTH_CHIP[item.month])}>
+        <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
           {item.month.slice(0, 3)}
         </span>
         {item.tags.map((tag) => (
           <Link
             key={tag}
             href={`/tags/${normTag(tag)}`}
-            className="rounded-full border border-border/40 bg-muted/40 px-2 py-0.5 text-[10px] text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+            className={TAG_LINK_CLASS}
           >
             {tag}
           </Link>
@@ -50,6 +57,7 @@ export function LinkCard({ item, category }: { item: LinkEntry; category: "artic
           <FileText className="h-3 w-3" />
           Notes
         </Link>
+      </div>
       </div>
     </div>
   )

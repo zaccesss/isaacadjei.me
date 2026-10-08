@@ -1,6 +1,10 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import OthersContent from "./OthersContent"
+import { others, consumedTotals } from "@/data/consumed"
+import { consumedItemsForPage } from "@/data/consumed/summary"
+
+export const revalidate = 21600
 
 export const metadata: Metadata = {
   title: "Others",
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
 export default function OthersPage() {
   return (
     <Suspense>
-      <OthersContent />
+      <OthersContent others={consumedItemsForPage(others)} totals={consumedTotals()} />
     </Suspense>
   )
 }

@@ -337,7 +337,7 @@ export default function SearchClient({ posts, tils, projects, publications, note
                   {matchedIssues.map((issue) => (
                     <li key={issue.id}>
                       <a
-                        href={issue.webUrl}
+                        href={issue.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"

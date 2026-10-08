@@ -1,29 +1,23 @@
 "use client"
-import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Newspaper } from "lucide-react"
-import { articles, MONTHS, isMonthAvailable, sortByRecency, yearsFrom } from "@/data/consumed"
-import { ConsumedFilterBar } from "@/components/consumed/ConsumedFilterBar"
+import { type LinkEntry, type ConsumedTotals } from "@/data/consumed/types"
+import ListControls from "@/components/shared/ListControls"
+import { Pagination } from "@/components/shared/Pagination"
+import { CONSUMED_PAGE_SIZES, useConsumedList } from "@/components/consumed/useConsumedList"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { LinkCard } from "@/components/consumed/LinkCard"
 
-export default function ArticlesContent() {
+export default function ArticlesContent({ articles, totals }: { articles: LinkEntry[]; totals: ConsumedTotals }) {
   const searchParams = useSearchParams()
   const preview = searchParams.get("preview") === "1"
-  const [activeYear, setActiveYear] = useState<string>("all")
-  const [activeMonth, setActiveMonth] = useState<string>("all")
-  const [search, setSearch] = useState("")
-
-  const years = yearsFrom(articles)
-  const availableMonths = MONTHS.filter((m) => isMonthAvailable(m, new Date().getFullYear(), preview))
-  const filtered = sortByRecency(
-    articles
-      .filter((a) => isMonthAvailable(a.month, a.year, preview))
-      .filter((a) => activeYear === "all" || String(a.year) === activeYear)
-      .filter((a) => activeMonth === "all" || a.month === activeMonth)
-      .filter((a) => !search || a.title.toLowerCase().includes(search.toLowerCase()) || a.source.toLowerCase().includes(search.toLowerCase()) || a.tags.some((t) => t.toLowerCase().includes(search.toLowerCase())))
-  )
+  const { query, groups, filtered, paginated, page, totalPages, perPage, setPerPage } = useConsumedList(articles, {
+    storageKey: "articles",
+    preview,
+    text: (a) => [a.title, a.source, ...a.tags],
+    facet: { key: "tag", label: "Tags", kind: "multi", values: (a) => a.tags },
+  })
 
   return (
     <div className="container py-24 space-y-10">
@@ -35,7 +29,7 @@ export default function ArticlesContent() {
         <div className="flex items-center gap-3">
           <Newspaper className="h-5 w-5 text-muted-foreground" />
           <h1 className="text-4xl font-bold tracking-tight">Articles</h1>
-          <span className="rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-mono text-muted-foreground">
+          <span className="text-xs font-mono text-muted-foreground">
             {filtered.length}
           </span>
         </div>
@@ -44,29 +38,42 @@ export default function ArticlesContent() {
         </p>
       </div>
 
-      <ConsumedFilterBar
-        years={years}
-        activeYear={activeYear}
-        onYearChange={setActiveYear}
-        months={availableMonths}
-        activeMonth={activeMonth}
-        onMonthChange={setActiveMonth}
-        search={search}
-        onSearchChange={setSearch}
+      <ListControls
+        query={query}
+        groups={groups}
+        searchLabel="Search articles"
         searchPlaceholder="Search articles by title, source or tag..."
+        resultCount={filtered.length}
+        itemLabel={{ one: "article", many: "articles" }}
       />
 
-      <ConsumedCategoryTabs active="articles" counts={{ articles: filtered.length }} />
+      <ConsumedCategoryTabs active="articles" counts={{ ...totals, articles: filtered.length }} />
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground py-8 text-center">No articles for this month yet.</p>
+        <p className="text-sm text-muted-foreground py-8 text-center">No articles match these filters.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((a) => (
+        <div id="consumed-list" className="scroll-mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {paginated.map((a) => (
             <LinkCard key={a.title} item={a} category="articles" />
           ))}
         </div>
       )}
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onChange={query.setPage}
+        totalItems={filtered.length}
+        pageSize={perPage}
+        pageSizeOptions={CONSUMED_PAGE_SIZES}
+        onPageSizeChange={(n) => {
+          setPerPage(n)
+          query.setPage(1)
+        }}
+        scrollTargetId="consumed-list"
+        itemLabel="articles"
+        label="Article pages"
+      />
     </div>
   )
 }

@@ -4,19 +4,15 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Lightbulb } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { getPublishedTILEntries } from "@/data/til"
-import { CATEGORY_STYLES } from "@/components/til/TILList"
+import type { TILEntry } from "@/data/til"
+import { tilCategoryLabelClass } from "@/components/shared/Tag"
 import { staggerContainer, fadeUp } from "@/lib/animations"
-import { cn } from "@/lib/utils"
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
 }
 
-export default function FeaturedTIL() {
-  const entries = getPublishedTILEntries()
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
+export default function FeaturedTIL({ entries }: { entries: TILEntry[] }) {
 
   if (entries.length === 0) return null
 
@@ -45,17 +41,14 @@ export default function FeaturedTIL() {
 
           <motion.div variants={fadeUp} className="grid gap-3 sm:grid-cols-3">
             {entries.map((entry) => {
-              const catClass = CATEGORY_STYLES[entry.category] ?? "bg-primary/10 text-primary"
               return (
                 <Link
                   key={entry.id}
                   href={`/til/${entry.id}`}
-                  className="group flex flex-col gap-3 rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all p-4"
+                  className="group flex min-w-0 flex-col gap-3 rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all p-4"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium border border-transparent", catClass)}>
-                      {entry.category}
-                    </span>
+                    <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
                     <Lightbulb className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
                   </div>
                   <p className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2">

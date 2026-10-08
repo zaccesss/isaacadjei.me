@@ -1,3 +1,5 @@
+import { isLive } from "@/lib/schedule"
+
 export type TILBlock =
   | { type: "p"; text: string }
   | { type: "code"; lang: string; code: string; caption?: string }
@@ -17,18 +19,21 @@ export interface TILEntry {
   tags?: string[]
   source?: { label: string; url: string }
   relatedPost?: string
+  project?: { name: string; url: string; slug?: string }
+  series?: string
+  seriesPart?: number
 }
 
 export function getPublishedTILEntries(): TILEntry[] {
-  const now = new Date()
   return tilEntries.filter(e => {
     if (!e.published) return false
-    return process.env.NODE_ENV === "development" || new Date(e.date) <= now
+    return process.env.NODE_ENV === "development" || isLive(e.date)
   })
 }
 
 export function getTILBySlug(slug: string): TILEntry | undefined {
-  return tilEntries.find(e => e.id === slug)
+  const pool = process.env.NODE_ENV === "development" ? tilEntries : getPublishedTILEntries()
+  return pool.find(e => e.id === slug)
 }
 
 import _0 from "./entries/next-parallel-routes"
@@ -90,6 +95,10 @@ import _56 from "./entries/binary-search-on-answer"
 import _57 from "./entries/freertos-stack-overflow-detection"
 import _58 from "./entries/git-log-follow"
 import _59 from "./entries/ga-proverb-systems-thinking"
+import _60 from "./entries/apt-acquire-retries"
+import _61 from "./entries/wcag-aaa-contrast-7-to-1"
+import _62 from "./entries/git-colour-off-in-pipes"
+import _63 from "./entries/github-actions-timeout-minutes"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -151,4 +160,8 @@ export const tilEntries: TILEntry[] = [
   _57,
   _58,
   _59,
+  _60,
+  _61,
+  _62,
+  _63,
 ]

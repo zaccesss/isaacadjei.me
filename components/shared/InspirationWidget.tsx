@@ -48,7 +48,7 @@ export default function InspirationWidget() {
               const data = await res.json()
               setQuote(data)
             }}
-            className="text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >
             refresh ↻
           </button>
@@ -74,7 +74,7 @@ export default function InspirationWidget() {
               const data = await res.json()
               setBible(data)
             }}
-            className="text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >
             refresh ↻
           </button>

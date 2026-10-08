@@ -1,16 +1,22 @@
 import type { Metadata } from "next"
+import { feedAlternates } from "@/lib/feeds"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { Terminal, Lightbulb, Wrench, CalendarDays, ExternalLink, ArrowRight } from "lucide-react"
+import { Lightbulb, Wrench, CalendarDays, ExternalLink, ArrowRight, Rss } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import InspirationWidget from "@/components/shared/InspirationWidget"
 import { notes } from "@/data/notes"
+import NotePostsList from "@/components/notes/NotePostsList"
+import { TAG_CLASS } from "@/components/shared/Tag"
+
+export const revalidate = 21600
 
 export const metadata: Metadata = {
   title: "Notes",
   description: "A public notebook. What I am building, thinking about and planning.",
   alternates: {
     canonical: "https://www.isaacadjei.me/notes",
+    types: feedAlternates("notes", "all"),
   },
   openGraph: {
     images: ["/api/og?title=Notes&description=A%20public%20notebook%2E%20What%20I%20am%20building%2C%20thinking%20about%20and%20planning%2E"],
@@ -19,13 +25,39 @@ export const metadata: Metadata = {
 
 const currentProjects = [
   {
-    name: "Phaemos",
+    name: "LidarSAT",
+    badge: "Team research",
+    description:
+      "GPS-denied drone navigation with a four-person team: matching a drone's LiDAR height profiles against the Environment Agency's national terrain maps, comparing a classic matcher with a learned one in simulation and on a real flight. I look after the tooling, the flight path generator, error measurement and the drone build.",
+    projectHref: "/projects/lidarsat",
+    githubHref: "https://github.com/ENGNERDS",
+  },
+  {
+    name: "MELOPHOS",
+    badge: "Early build",
+    description:
+      "An open instrument-learning platform: an ESP32-S3 hub lights the next notes above the keys of any keyboard, then scores every note for pitch and timing. The browser Studio already runs light-guided practice; the first hub board and LED bars are in design.",
+    projectHref: "/projects/melophos",
+    websiteHref: "https://melophos.com",
+    githubHref: "https://github.com/melophos/melophos",
+  },
+  {
+    name: "Vitafolio",
+    badge: "Live",
+    description:
+      "A web app for building, storing and sharing every version of a CV, with a CV checker, a student jobs board and an application tracker. Live and growing.",
+    projectHref: "/projects/vitafolio",
+    websiteHref: "https://vitafolio.isaacadjei.me",
+    githubHref: "https://github.com/zaccesss/vitafolio",
+  },
+  {
+    name: "PHAEMOS",
     badge: "Ongoing",
     description:
-      "Full-stack predictive maintenance platform. Four hardware nodes: ESP32 primary (11 sensors), STM32 Black Pill (100Hz FFT vibration in HAL C), Arduino Nano (secondary sensors) and Raspberry Pi Pico 2W (MicroPython ambient node). FastAPI backend, Isolation Forest anomaly detection, Next.js live dashboard. Actively building the hardware layer and firmware.",
+      "An open predictive maintenance platform: four sensor nodes, a FastAPI backend with per-node anomaly models that raise alerts and tickets on their own plus a live Next.js dashboard. The software runs end to end against a simulator; wiring the physical nodes is the current phase.",
     projectHref: "/projects/phaemos",
     websiteHref: "https://phaemos.com",
-    githubHref: "https://github.com/zaccesss/phaemos",
+    githubHref: "https://github.com/phaemos/phaemos",
   },
   {
     name: "avr-zac",
@@ -50,36 +82,62 @@ export default function NotesPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
       <section className="space-y-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-4">
           <h1 className="text-4xl font-bold tracking-tight">Notes</h1>
+          <a
+            href="/notes/feed.xml"
+            title="RSS feed"
+            aria-label="Notes RSS feed"
+            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
+          >
+            <Rss className="h-5 w-5 shrink-0" />
+            Feed
+          </a>
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed">
           A public notebook. Not polished posts, just honest notes on what I am building, thinking
           about and planning. Updated as things change.
         </p>
-        <Link
-          href="/til"
-          className="group flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 hover:border-primary/40 transition-colors w-fit"
-        >
-          <Lightbulb className="h-4 w-4 text-primary shrink-0" />
-          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-            Shorter, faster notes live on the <span className="text-primary font-medium">TIL page</span>: snippets from things I discover day to day.
-          </span>
-          <ArrowRight className="h-3.5 w-3.5 text-primary/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
-        </Link>
-        <Link
-          href="/now"
-          className="group flex items-center gap-3 rounded-xl border border-border/60 bg-card px-4 py-3 hover:border-primary/30 transition-colors w-fit"
-        >
-          <span className="relative flex h-2.5 w-2.5 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500" />
-          </span>
-          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-            See what I&apos;m doing right now
-          </span>
-          <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
-        </Link>
+        <p className="text-sm text-muted-foreground">
+          <span aria-hidden="true">💡 </span>Shorter, faster notes live on the{" "}
+          <Link href="/til" className="text-primary underline underline-offset-4 hover:opacity-80">TIL page</Link>: snippets from things I discover day to day.
+        </p>
+      </section>
+
+      <Separator />
+
+      <NotePostsList />
+
+      <section className="space-y-6">
+        <div className="flex items-center gap-3">
+          <Lightbulb className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-bold">Upcoming Projects</h2>
+        </div>
+
+        <div className="space-y-4">
+          {notes.map((note) => (
+            <Link
+              key={note.slug}
+              href={`/notes/${note.slug}`}
+              className="group block rounded-lg border border-border/60 bg-muted/20 px-6 py-5 hover:border-primary/40 hover:bg-muted/30 transition-all"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-2 flex-1">
+                  <h3 className="font-semibold group-hover:text-primary transition-colors">
+                    {note.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{note.lead}</p>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {note.tags.map((tag) => (
+                      <span key={tag} className={TAG_CLASS}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <Separator />
@@ -95,9 +153,7 @@ export default function NotesPage() {
               <div className="flex items-center gap-2 flex-wrap">
                 <p className="font-medium text-foreground">{p.name}</p>
                 {p.badge && (
-                  <span className="rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-xs text-green-600 dark:text-green-400">
-                    {p.badge}
-                  </span>
+                  <span className="text-xs text-muted-foreground">{p.badge}</span>
                 )}
                 {p.projectHref && (
                   <Link
@@ -139,40 +195,42 @@ export default function NotesPage() {
 
       <Separator />
 
-      <section className="space-y-6">
+      <section className="space-y-5">
         <div className="flex items-center gap-3">
-          <Lightbulb className="h-5 w-5 text-primary" />
-          <h2 className="text-xl font-bold">Upcoming Projects</h2>
+          <CalendarDays className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-bold">Autumn 2026 Plans</h2>
         </div>
-
-        <div className="space-y-4">
-          {notes.map((note) => (
-            <Link
-              key={note.slug}
-              href={`/notes/${note.slug}`}
-              className="group block rounded-lg border border-border/60 bg-muted/20 px-6 py-5 hover:border-primary/40 hover:bg-muted/30 transition-all"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="space-y-2 flex-1">
-                  <h3 className="font-semibold group-hover:text-primary transition-colors">
-                    {note.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{note.lead}</p>
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    {note.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
-              </div>
-            </Link>
-          ))}
+        <div className="space-y-3 text-muted-foreground text-sm">
+          <p>
+            Autumn 2026 is about balance: a heavy term of modules, three roles on campus and the
+            projects I care about, while I line up a placement for next year. The plan:
+          </p>
+          <ul className="space-y-2 list-none">
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Apply for year-long placements and work experience for 2027, with a weekly routine for finding roles, tailoring each application and preparing for assessment centres</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Keep working towards a First by staying on top of every module from week one rather than catching up before exams</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Keep building: ship the next PHAEMOS and MELOPHOS milestones, grow Vitafolio and fly the LidarSAT drone</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Run PAL sessions every week, keep the society&apos;s books in order and turn course feedback into real changes as a rep</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Publish writing three days a week until the end of December: blog posts, TILs and notes</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-primary shrink-0 mt-0.5">→</span>
+              <span>Start working out life after university: the kind of engineer I want to be, where I want to work and what I want to build</span>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -231,31 +289,6 @@ export default function NotesPage() {
       </section>
 
       <InspirationWidget />
-
-      <Link
-        href="/lab"
-        className="group block rounded-lg border border-primary/30 bg-primary/5 hover:border-primary/60 hover:bg-primary/10 transition-all px-5 py-4"
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="inline-block w-2 h-4 bg-primary shrink-0 animate-[blink_1s_step-end_infinite]"
-            aria-hidden="true"
-          />
-          <div className="space-y-0.5">
-            <p className="font-mono text-sm text-primary font-medium">
-              explore the lab terminal
-            </p>
-            <p className="font-mono text-xs text-muted-foreground">
-              type commands to explore the site and find out more - click to open
-            </p>
-          </div>
-          <Terminal className="h-4 w-4 text-primary/40 group-hover:text-primary transition-colors ml-auto shrink-0" />
-        </div>
-      </Link>
-
-      <p className="text-xs text-muted-foreground font-mono text-center">
-        Last updated July 2026
-      </p>
 
     </div>
   )

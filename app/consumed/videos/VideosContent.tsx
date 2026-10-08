@@ -3,28 +3,23 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Tv2 } from "lucide-react"
-import { videos, MONTHS, isMonthAvailable, sortByRecency, yearsFrom } from "@/data/consumed"
+import { type VideoEntry, type ConsumedTotals } from "@/data/consumed/types"
 import { VideoCard } from "@/components/consumed/VideoCard"
-import { ConsumedFilterBar } from "@/components/consumed/ConsumedFilterBar"
+import ListControls from "@/components/shared/ListControls"
+import { Pagination } from "@/components/shared/Pagination"
+import { CONSUMED_PAGE_SIZES, useConsumedList } from "@/components/consumed/useConsumedList"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 
-export default function VideosContent() {
+export default function VideosContent({ videos, totals }: { videos: VideoEntry[]; totals: ConsumedTotals }) {
   const searchParams = useSearchParams()
   const preview = searchParams.get("preview") === "1"
-  const [activeYear, setActiveYear] = useState<string>("all")
-  const [activeMonth, setActiveMonth] = useState<string>("all")
-  const [search, setSearch] = useState("")
   const [activeVideos, setActiveVideos] = useState<Set<string>>(new Set())
-
-  const years = yearsFrom(videos)
-  const availableMonths = MONTHS.filter((m) => isMonthAvailable(m, new Date().getFullYear(), preview))
-  const filtered = sortByRecency(
-    videos
-      .filter((v) => isMonthAvailable(v.month, v.year, preview))
-      .filter((v) => activeYear === "all" || String(v.year) === activeYear)
-      .filter((v) => activeMonth === "all" || v.month === activeMonth)
-      .filter((v) => !search || v.title.toLowerCase().includes(search.toLowerCase()) || v.channel.toLowerCase().includes(search.toLowerCase()) || v.tags.some((t) => t.toLowerCase().includes(search.toLowerCase())))
-  )
+  const { query, groups, filtered, paginated, page, totalPages, perPage, setPerPage } = useConsumedList(videos, {
+    storageKey: "videos",
+    preview,
+    text: (v) => [v.title, v.channel, ...v.tags],
+    facet: { key: "tag", label: "Tags", kind: "multi", values: (v) => v.tags },
+  })
 
   return (
     <div className="container py-24 space-y-10">
@@ -39,7 +34,7 @@ export default function VideosContent() {
         <div className="flex items-center gap-3">
           <Tv2 className="h-5 w-5 text-muted-foreground" />
           <h1 className="text-4xl font-bold tracking-tight">Videos</h1>
-          <span className="rounded-full border border-border/60 bg-muted/40 px-2.5 py-0.5 text-xs font-mono text-muted-foreground">
+          <span className="text-xs font-mono text-muted-foreground">
             {filtered.length}
           </span>
         </div>
@@ -48,25 +43,22 @@ export default function VideosContent() {
         </p>
       </div>
 
-      <ConsumedFilterBar
-        years={years}
-        activeYear={activeYear}
-        onYearChange={setActiveYear}
-        months={availableMonths}
-        activeMonth={activeMonth}
-        onMonthChange={setActiveMonth}
-        search={search}
-        onSearchChange={setSearch}
+      <ListControls
+        query={query}
+        groups={groups}
+        searchLabel="Search videos"
         searchPlaceholder="Search videos by title, channel or tag..."
+        resultCount={filtered.length}
+        itemLabel={{ one: "video", many: "videos" }}
       />
 
-      <ConsumedCategoryTabs active="videos" counts={{ videos: filtered.length }} />
+      <ConsumedCategoryTabs active="videos" counts={{ ...totals, videos: filtered.length }} />
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-muted-foreground py-8 text-center">No videos for this month yet.</p>
+        <p className="text-sm text-muted-foreground py-8 text-center">No videos match these filters.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((v) => (
+        <div id="consumed-list" className="scroll-mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {paginated.map((v) => (
             <VideoCard
               key={v.id}
               video={v}
@@ -76,6 +68,22 @@ export default function VideosContent() {
           ))}
         </div>
       )}
+
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onChange={query.setPage}
+        totalItems={filtered.length}
+        pageSize={perPage}
+        pageSizeOptions={CONSUMED_PAGE_SIZES}
+        onPageSizeChange={(n) => {
+          setPerPage(n)
+          query.setPage(1)
+        }}
+        scrollTargetId="consumed-list"
+        itemLabel="videos"
+        label="Video pages"
+      />
     </div>
   )
 }

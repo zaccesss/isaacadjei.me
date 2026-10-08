@@ -32,7 +32,7 @@ export default function ProjectFilter({ active, onChange }: Props) {
           variant={active === cat.value ? "default" : "outline"}
           size="sm"
           onClick={() => onChange(cat.value)}
-          className={cn("rounded-full")}
+          className={cn("rounded-full max-sm:min-h-11 max-sm:px-4")}
         >
           {cat.label}
         </Button>

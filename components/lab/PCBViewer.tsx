@@ -92,13 +92,13 @@ function PCB3DCard() {
   const goTo = (pos: CamPos) => setCamView(v => ({ pos, trigger: v.trigger + 1 }))
 
   const toggleBtn = (active: boolean) =>
-    `text-[10px] font-mono px-2 py-0.5 rounded border transition-colors ${
+    `text-[10px] font-mono px-2 py-1 rounded border transition-colors ${
       active
         ? "bg-primary text-primary-foreground border-primary"
         : "border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50"
     }`
 
-  const presetBtn = "text-[10px] font-mono px-2 py-0.5 rounded border border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50 transition-colors"
+  const presetBtn = "text-[10px] font-mono px-2 py-1 rounded border border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50 transition-colors"
 
   return (
     <div className="rounded-xl border border-border/50 bg-card/30 p-3 space-y-2 select-none">
@@ -228,12 +228,12 @@ function PCBCard({ title, front, back, frontLabel, backLabel, presets, defaultRx
       <div className="flex gap-1 flex-wrap items-center">
         {presets.map((p) => (
           <button key={p.label} type="button" onClick={() => { tgt.current.rx = p.rx; tgt.current.ry = p.ry }}
-            className="text-[10px] font-mono px-2 py-0.5 rounded border border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50 transition-colors">
+            className="text-[10px] font-mono px-2 py-1 rounded border border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50 transition-colors">
             {p.label}
           </button>
         ))}
         <button type="button" onClick={() => { tgt.current.zoom = 1 }}
-          className="text-[10px] font-mono px-2 py-0.5 rounded border border-border/50 text-muted-foreground/50 hover:text-foreground hover:border-primary/50 transition-colors ml-auto">
+          className="text-[10px] font-mono px-2 py-1 rounded border border-border/50 text-muted-foreground/50 hover:text-foreground hover:border-primary/50 transition-colors ml-auto">
           1:1
         </button>
       </div>
@@ -257,7 +257,7 @@ function PCBFlipPhotoCard({ title, front, back, frontLabel, backLabel }: {
       <div className="flex gap-1">
         {[{ label: frontLabel, state: false }, { label: backLabel, state: true }].map(({ label, state }) => (
           <button key={label} type="button" onClick={() => setFlipped(state)}
-            className={`text-[10px] font-mono px-2 py-0.5 rounded border transition-colors ${
+            className={`text-[10px] font-mono px-2 py-1 rounded border transition-colors ${
               flipped === state
                 ? "bg-primary text-primary-foreground border-primary"
                 : "border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50"

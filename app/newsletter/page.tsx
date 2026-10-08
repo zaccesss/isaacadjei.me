@@ -1,6 +1,22 @@
 import type { Metadata } from "next"
+import { feedAlternates } from "@/lib/feeds"
 import { Separator } from "@/components/ui/separator"
-import { Mail, Zap, BookOpen, Cpu, Globe, Lightbulb, ExternalLink } from "lucide-react"
+import Link from "next/link"
+import {
+  Mail,
+  Cpu,
+  Globe,
+  Rocket,
+  Navigation,
+  History,
+  Terminal,
+  Accessibility,
+  Briefcase,
+  GraduationCap,
+  Heart,
+  Newspaper,
+  Rss,
+} from "lucide-react"
 import NewsletterForm from "@/components/shared/NewsletterForm"
 import RecentIssues from "@/components/shared/RecentIssues"
 import AuthorCard from "@/components/blog/AuthorCard"
@@ -11,6 +27,7 @@ export const metadata: Metadata = {
     "Subscribe to my newsletter: engineering write-ups, project breakdowns, tech reflections and things I am building and learning. Written by Isaac Adjei.",
   alternates: {
     canonical: "https://www.isaacadjei.me/newsletter",
+    types: feedAlternates("newsletter"),
   },
   openGraph: {
     images: ["/api/og?title=Newsletter&description=Engineering%20write-ups%2C%20project%20breakdowns%20and%20things%20I%20am%20building%2E"],
@@ -20,33 +37,53 @@ export const metadata: Metadata = {
 const topics = [
   {
     icon: Cpu,
-    title: "Engineering and embedded systems",
-    description:
-      "Bare metal C, microcontrollers, PCB design, circuit analysis and the messier side of hardware that tutorials skip over. Real field engineering, not just theory.",
+    title: "Embedded systems and electronics",
+    description: "Bare metal C, RTOS scheduling, UART, SPI and I2C, FPGAs, datasheets and circuits built by hand.",
+  },
+  {
+    icon: Rocket,
+    title: "Building PHAEMOS, MELOPHOS and Vitafolio",
+    description: "The decisions behind my own projects, from predictive maintenance firmware to keyboard LED bars and a CV platform.",
+  },
+  {
+    icon: Navigation,
+    title: "Drone navigation research",
+    description: "GPS-denied navigation, LiDAR terrain matching, ArduPilot simulation and reading flight logs.",
+  },
+  {
+    icon: History,
+    title: "Engineering history and failures",
+    description: "Ariane 5, the Apollo Guidance Computer, Therac-25 and the Mars Climate Orbiter: what each one teaches.",
   },
   {
     icon: Globe,
     title: "Full-stack software",
-    description:
-      "Next.js, FastAPI, databases, APIs and deployment. Project breakdowns from concept to shipped product, including what actually went wrong along the way.",
+    description: "Next.js, TypeScript, databases, real-time data and what it takes to keep a production site running.",
   },
   {
-    icon: BookOpen,
-    title: "University and learning",
-    description:
-      "What studying BEng Electronic Engineering and Computer Science at Aston actually looks like, the good and the hard parts. Honest notes from someone living it.",
+    icon: Terminal,
+    title: "Developer tools and terminals",
+    description: "Git, shells, machine bootstrapping and terminal themes that stay readable.",
   },
   {
-    icon: Zap,
-    title: "Projects and builds",
-    description:
-      "Detailed write-ups on everything I build: what worked, what broke and what I would do differently next time. From PCBs to platforms.",
+    icon: Accessibility,
+    title: "Accessibility",
+    description: "WCAG 2.2 in practice, contrast that holds up and working with low vision.",
   },
   {
-    icon: Lightbulb,
-    title: "General thoughts and ideas",
-    description:
-      "Not everything fits a category. Observations on technology, productivity, career, creativity and whatever else is worth thinking about. No filler, just honest takes.",
+    icon: Briefcase,
+    title: "Careers and placements",
+    description: "Industry virtual experiences, the placement search and UK engineering as an international student.",
+  },
+  {
+    icon: GraduationCap,
+    title: "University life and leadership",
+    description: "Life at Aston, representing my course, running a society's finances and how I revise.",
+  },
+  {
+    icon: Heart,
+    title: "Faith and life",
+    description: "Reflections on faith, gratitude, Ghanaian heritage and choosing hard things.",
   },
 ]
 
@@ -55,11 +92,22 @@ export default function NewsletterPage() {
     <div className="container max-w-2xl py-24 space-y-16">
 
       <section className="space-y-5">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10">
-            <Mail className="h-6 w-6 text-primary" />
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <Mail className="h-6 w-6 text-primary" />
+            </div>
+            <p className="text-xs font-mono text-primary uppercase tracking-widest">newsletter</p>
           </div>
-          <p className="text-xs font-mono text-primary uppercase tracking-widest">newsletter</p>
+          <a
+            href="/newsletter/feed.xml"
+            title="RSS feed"
+            aria-label="Newsletter RSS feed"
+            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
+          >
+            <Rss className="h-5 w-5 shrink-0" />
+            Feed
+          </a>
         </div>
         <div className="flex items-start gap-2">
           <h1 className="text-4xl font-bold tracking-tight leading-tight">
@@ -74,6 +122,8 @@ export default function NewsletterPage() {
         </p>
       </section>
 
+      <AuthorCard />
+
       <Separator />
 
       <section className="space-y-6">
@@ -82,7 +132,7 @@ export default function NewsletterPage() {
           {topics.map((topic) => (
             <div key={topic.title} className="flex gap-4 rounded-lg border border-border/60 bg-muted/20 p-4">
               <div className="shrink-0 mt-0.5">
-                <topic.icon className="h-5 w-5 text-primary" />
+                <topic.icon className="h-5 w-5 text-primary" aria-hidden="true" />
               </div>
               <div className="space-y-1">
                 <p className="font-medium text-sm">{topic.title}</p>
@@ -95,32 +145,26 @@ export default function NewsletterPage() {
 
       <Separator />
 
-      <AuthorCard />
-
-      <Separator />
-
-      <section className="space-y-6">
+      <section id="subscribe" className="space-y-6 scroll-mt-28">
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">Subscribe</h2>
           <p className="text-muted-foreground">
-            Join the list. Free, always. No spam, no tracking beyond what Beehiiv collects by
-            default. Unsubscribe with one click, any time.
+            Free, always. How your details are handled is in the{" "}
+            <Link href="/privacy" className="text-primary underline underline-offset-4 hover:text-primary/80">
+              privacy policy
+            </Link>
+            .
           </p>
         </div>
         <NewsletterForm />
-        <p className="text-xs text-muted-foreground">
-          Every issue includes a one-click unsubscribe link at the bottom. No questions asked.
-        </p>
         <div className="flex items-center gap-3 flex-wrap">
           <span className="text-xs text-muted-foreground">Already subscribed?</span>
           <a
-            href="https://newsletter.isaacadjei.me/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#recent-issues"
             className="inline-flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/5 px-4 py-2.5 text-sm font-medium text-primary hover:bg-primary/10 hover:border-primary/50 transition-all"
           >
-            <ExternalLink className="h-3.5 w-3.5" />
-            Browse all issues on Beehiiv
+            <Newspaper className="h-3.5 w-3.5" aria-hidden="true" />
+            Browse recent issues
           </a>
         </div>
       </section>

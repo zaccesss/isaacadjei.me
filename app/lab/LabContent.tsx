@@ -2,25 +2,36 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { posts } from "@/data/blog"
-import { getPublishedTILEntries } from "@/data/til"
 import { publications } from "@/data/respub"
 import Link from "next/link"
 import { useModKey } from "@/hooks/useModKey"
 import BrailleDivider from "@/components/shared/marks/BrailleDivider"
 import dynamic from "next/dynamic"
+import s from "./terminal.module.css"
 
 const PCBViewer = dynamic(() => import("@/components/lab/PCBViewer"), { ssr: false })
 
 type WindowState = "normal" | "minimized" | "maximized" | "closed"
-type LineType = "system" | "cmd-echo" | "output" | "error" | "info" | "blank" | "success" | "cmd-list" | "kv" | "link"
+type LineType =
+  | "system" | "cmd-echo" | "output" | "error" | "info" | "blank" | "success" | "cmd-list" | "kv" | "link"
+  | "rule" | "banner" | "title" | "heading" | "pair" | "legend" | "swatch"
+type Tone = "fg" | "bold" | "dim" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white"
 
 interface Line {
   type: LineType
   text: string
+  tone?: Tone
+  bold?: boolean
 }
 
-const HOST = "isaacadjei@portfolio:~/lab"
+const PROMPT_DIR = "isaacadjei.me/lab"
+const PROMPT_BRANCH = "main"
+
+export type LabData = {
+  posts: { slug: string; tags: string[] }[]
+  latestTils: { title: string; category: string; date: string }[]
+  tilCount: number
+}
 
 const TYPE_LABEL: Record<string, string> = {
   blog: "blog",
@@ -32,15 +43,371 @@ const TYPE_LABEL: Record<string, string> = {
   resources: "resources",
 }
 
-const BOOT: Line[] = [
-  { type: "system", text: "isaacadjei-lab v1.0.0" },
-  { type: "system", text: "kernel: loading lab module..." },
-  { type: "system", text: "mounting filesystem..." },
-  { type: "system", text: "checking dependencies..." },
-  { type: "system", text: "environment: ready" },
-  { type: "system", text: "$ while true; do learn && build && ship; done" },
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const pad2 = (n: number) => String(n).padStart(2, "0")
+
+function bannerLines(name: string): Line[] {
+  const d = new Date()
+  const stamp = `${DAYS[d.getDay()]} ${pad2(d.getDate())} ${MONTHS[d.getMonth()]} ${d.getFullYear()}  ${pad2(d.getHours())}:${pad2(d.getMinutes())}`
+  const rule = "-".repeat(45)
+  return [
+    { type: "blank", text: "" },
+    { type: "rule", text: rule },
+    { type: "banner", text: `  Welcome back, ${name}!`, tone: "cyan", bold: true },
+    { type: "banner", text: "  web profile loaded", tone: "green" },
+    { type: "banner", text: "  isaacadjei.me - zsh", tone: "magenta" },
+    { type: "banner", text: `  ${stamp}`, tone: "yellow" },
+    { type: "rule", text: rule },
+    { type: "blank", text: "" },
+  ]
+}
+
+const HINTS: Line[] = [
+  { type: "output", text: "type 'help' for every command or 'cmds' for the cheat-sheet." },
+  { type: "output", text: "type 'pages' to see every public page on this site." },
+  { type: "output", text: "try: 'palette', 'git commit', 'ls', 'man', 'stack', 'faith'" },
   { type: "blank", text: "" },
 ]
+
+const NAME_KEY = "lab-terminal-name"
+const DEFAULT_NAME = "visitor"
+const NAME_MAX = 24
+let memoryName: string | null = null
+
+function cleanName(raw: string): string {
+  const kept = raw
+    .replace(/[^\p{L}\p{N} '’-]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, NAME_MAX)
+    .trim()
+  return kept || DEFAULT_NAME
+}
+
+function nameHandle(name: string): string {
+  const handle = name
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+  return handle || DEFAULT_NAME
+}
+
+function loadName(): string | null {
+  try {
+    const stored = window.localStorage.getItem(NAME_KEY)
+    if (stored) return cleanName(stored)
+  } catch {
+    // storage unavailable, fall through to the in-memory copy
+  }
+  return memoryName
+}
+
+function saveName(name: string) {
+  memoryName = name
+  try {
+    window.localStorage.setItem(NAME_KEY, name)
+  } catch {
+    // the in-memory copy above still covers this visit
+  }
+}
+
+const LOGIN_LINES: Line[] = [
+  { type: "output", text: "login: what should I call you?" },
+  { type: "info", text: `  type a name and press Enter (an empty line keeps ${DEFAULT_NAME})` },
+]
+
+function startupSteps(name: string): [Line, number][] {
+  return [
+    [{ type: "info", text: `setting up a terminal for ${name}...` }, 280],
+    [{ type: "output", text: "loading palette... done" }, 200],
+    [{ type: "output", text: "brewing coffee... done" }, 200],
+    [{ type: "output", text: "loading profile... done" }, 200],
+  ]
+}
+
+function introSteps(name: string): [Line, number][] {
+  return [
+    ...startupSteps(name),
+    ...[...bannerLines(name), ...HINTS].map((line): [Line, number] => [line, 55]),
+  ]
+}
+
+function withVisitor(lines: Line[], name: string): Line[] {
+  return [...lines.slice(0, 2), { type: "kv", text: `  you       ${name}` }, ...lines.slice(2)]
+}
+
+const PALETTE: [string, string, string, Tone | "black"][] = [
+  ["black", "#35424c", "#1f1f1f", "black"],
+  ["red", "#ff0f00", "#b40b00", "red"],
+  ["green", "#00ff2f", "#006813", "green"],
+  ["yellow", "#fff500", "#735300", "yellow"],
+  ["blue", "#8ac9ff", "#0059a5", "blue"],
+  ["magenta", "#ff66ff", "#9f009f", "magenta"],
+  ["cyan", "#6ff7ff", "#006369", "cyan"],
+  ["white", "#f2f2f2", "#3c4650", "white"],
+]
+
+function paletteLines(): Line[] {
+  const dark = typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+  return [
+    { type: "title", text: "High Contrast palette" },
+    { type: "output", text: `  showing the ${dark ? "dark" : "light"} set. switch the site theme to see the other.` },
+    { type: "output", text: "  normal ANSI colours, bold for emphasis, never the bright set." },
+    { type: "blank", text: "" },
+    { type: "kv", text: "  background  #000000 / #ffffff" },
+    { type: "kv", text: "  foreground  #e0e0e0 / #1f1f1f" },
+    { type: "kv", text: "  bold        #ededed / #121212" },
+    { type: "kv", text: "  selection   #273d4c / #b3c9d8" },
+    { type: "blank", text: "" },
+    { type: "legend", text: "  colour      dark     light" },
+    ...PALETTE.map(([name, d, l, tone]) => ({ type: "swatch" as const, text: `${name}|${d}|${l}|${tone}` })),
+    { type: "blank", text: "" },
+    { type: "output", text: "  dark is a vivid near-black base. light mirrors it at 7:1 contrast." },
+  ]
+}
+
+const CMDS_LINES: Line[] = [
+  { type: "title", text: "=== Lab commands (type cmds to see this again) ===" },
+  { type: "legend", text: "" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "NAVIGATION" },
+  { type: "pair", text: "  about / projects / experience / skills  open a page" },
+  { type: "pair", text: "  blog / til / notes / respub  writing and research" },
+  { type: "pair", text: "  ls / pwd / pages  find your way round" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "GIT" },
+  { type: "pair", text: "  git status / git branch  repo state" },
+  { type: "pair", text: "  git commit -m \"subject\"  commit, checked by the commit-msg hook" },
+  { type: "pair", text: "  gs / gb / glog  the real aliases: status, branch and the log graph" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "TMUX AND NEOVIM" },
+  { type: "pair", text: "  tmux ls / tls  the running sessions" },
+  { type: "pair", text: "  nvim [file] / vim  open README.md, about.md or tmux.conf read-only" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "SHELL" },
+  { type: "pair", text: "  ll / la  the long listing aliases" },
+  { type: "pair", text: "  cls  clear and reprint the welcome banner" },
+  { type: "pair", text: "  clear  clear the screen" },
+  { type: "pair", text: "  palette  the terminal colours" },
+  { type: "pair", text: "  echo [text]  echo it back" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "LIVE" },
+  { type: "pair", text: "  stats / streak / today  coding time" },
+  { type: "pair", text: "  playing / lastgame / pushed  music, gaming and GitHub" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "ABOUT" },
+  { type: "pair", text: "  whoami / man / stack  who and what" },
+  { type: "pair", text: "  name [new name]  change what the terminal calls you" },
+  { type: "pair", text: "  help  every command" },
+]
+
+const DEMO_SUBJECT = "feat: rebuild the lab terminal with a phone layout, the real palette and a shell banner"
+const SUBJECT_LIMIT = 72
+
+function shortHash(text: string): string {
+  let h = 2166136261
+  for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619)
+  return (h >>> 0).toString(16).padStart(8, "0").slice(0, 7)
+}
+
+function commitLines(args: string): Line[] {
+  const m = args.match(/-m\s+(?:"([^"]*)"|'([^']*)'|(.+))/)
+  const out: Line[] = []
+  let msg = m ? (m[1] ?? m[2] ?? m[3] ?? "") : DEMO_SUBJECT
+  if (!m) {
+    out.push({ type: "info", text: "no -m given, so here is a subject that breaks the rules:" })
+    out.push({ type: "output", text: `  git commit -m "${DEMO_SUBJECT}"` })
+    out.push({ type: "blank", text: "" })
+  }
+  if (!msg.trim()) {
+    return [...out, { type: "error", text: "Aborting commit due to empty commit message." }]
+  }
+  if (/[\u2011-\u2015\u2212]/.test(msg)) {
+    msg = msg.replace(/[\u2011-\u2015\u2212]/g, "-")
+    out.push({ type: "success", text: "Fixed: dash-like character(s) replaced with a plain hyphen." })
+  }
+  if (/[\u201C\u201D]/.test(msg)) {
+    msg = msg.replace(/[\u201C\u201D]/g, '"')
+    out.push({ type: "success", text: "Fixed: smart/curly double quote(s) replaced with a straight quote." })
+  }
+  if (/[\u2018\u2019]/.test(msg)) {
+    msg = msg.replace(/[\u2018\u2019]/g, "'")
+    out.push({ type: "success", text: "Fixed: smart/curly single quote(s) replaced with a straight quote." })
+  }
+  if (msg.includes("\u2026")) {
+    msg = msg.replace(/\u2026/g, "...")
+    out.push({ type: "success", text: "Fixed: ellipsis character replaced with three periods." })
+  }
+  const blocked: Line[] = []
+  if (/,\s+and\s/.test(msg)) {
+    blocked.push({ type: "error", text: "Error: Oxford comma found. Write 'x, y and z' with no comma before the last item." })
+  }
+  const subject = msg.split("\n")[0]
+  if (!blocked.length && subject.length > SUBJECT_LIMIT) {
+    blocked.push({ type: "error", text: `Error: commit subject line is ${subject.length} characters, over the ${SUBJECT_LIMIT}-character limit.` })
+    blocked.push({ type: "error", text: "Keep the subject short and move detail to the commit body instead." })
+  }
+  if (blocked.length) {
+    return [
+      ...out,
+      ...blocked,
+      { type: "blank", text: "" },
+      { type: "output", text: "  the commit-msg hook stopped this one. nothing was committed." },
+      { type: "output", text: `  try: git commit -m "feat: add a phone layout to the lab"` },
+    ]
+  }
+  return [
+    ...out,
+    { type: "success", text: `[${PROMPT_BRANCH} ${shortHash(msg)}] ${subject}` },
+    { type: "output", text: " 1 file changed, 1 insertion(+)" },
+    { type: "output", text: "  (nothing really changed. this terminal is a toy.)" },
+  ]
+}
+
+function gitLines(raw: string): Line[] {
+  const args = raw.trim().replace(/^git\s*/i, "")
+  const sub = (args.split(/\s+/)[0] ?? "").toLowerCase()
+  if (!sub) {
+    return [
+      { type: "output", text: "usage: git <command>" },
+      { type: "output", text: "  this lab knows 'git status', 'git branch', 'git log' and 'git commit'." },
+    ]
+  }
+  if (sub === "status") {
+    return [
+      { type: "output", text: `On branch ${PROMPT_BRANCH}` },
+      { type: "output", text: `Your branch is up to date with 'origin/${PROMPT_BRANCH}'.` },
+      { type: "blank", text: "" },
+      { type: "output", text: "nothing to commit, working tree clean" },
+    ]
+  }
+  if (sub === "branch") return [{ type: "success", text: `* ${PROMPT_BRANCH}` }]
+  if (sub === "log") return LOG_LINES
+  if (sub === "commit") return commitLines(args.slice(sub.length))
+  return [{ type: "error", text: `git: '${sub}' is not a git command here. try 'git status' or 'git commit'.` }]
+}
+
+const LOG_LINES: Line[] = [
+  { type: "success", text: `* 557ccb1 (HEAD -> ${PROMPT_BRANCH}, origin/${PROMPT_BRANCH}) feat: website links, light brand covers and final page polish` },
+  { type: "output", text: "* d207705 docs: changelog for the second overhaul batch" },
+  { type: "output", text: "* 4b3c6bb feat: consumed picks, covers, collections and embedded media" },
+  { type: "output", text: "* 2f4e445 feat: filters, design pass, research page and richer writing" },
+  { type: "info", text: "  (that is enough history for one screen)" },
+]
+
+const ALIASES: Record<string, string> = {
+  gs: "git status",
+  gb: "git branch",
+  glog: "git log",
+  ll: "ls",
+  la: "ls",
+  tls: "tmux ls",
+  vi: "nvim",
+  vim: "nvim",
+}
+
+const TMUX_SESSION = "lab"
+
+function tmuxStamp(d: Date): string {
+  return `${DAYS[d.getDay()]} ${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2, " ")} ${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())} ${d.getFullYear()}`
+}
+
+function tmuxLines(raw: string, openedAt: Date): Line[] {
+  const sub = raw.trim().split(/\s+/)[1]?.toLowerCase()
+  if (sub === "ls" || sub === "list-sessions") {
+    const earlier = (mins: number) => tmuxStamp(new Date(openedAt.getTime() - mins * 60_000))
+    return [
+      { type: "output", text: `${TMUX_SESSION}: 2 windows (created ${tmuxStamp(openedAt)}) (attached)` },
+      { type: "output", text: `uni: 3 windows (created ${earlier(95)})` },
+      { type: "output", text: `web: 2 windows (created ${earlier(240)})` },
+    ]
+  }
+  return [
+    { type: "error", text: "sessions should be nested with care, unset $TMUX to force" },
+    { type: "output", text: "  try 'tmux ls' to see the running sessions" },
+  ]
+}
+
+const NVIM_FILES: Record<string, { filetype: string; lines: string[] }> = {
+  "README.md": {
+    filetype: "markdown",
+    lines: [
+      "# isaacadjei.me",
+      "",
+      "My personal site: projects, writing, research and this lab.",
+      "",
+      "## Pages",
+      "",
+      "- /projects  things I built",
+      "- /blog      things I write",
+      "- /lab       this terminal and the PCB viewer",
+      "- /contact   get in touch",
+      "",
+      "## Built with",
+      "",
+      "Next.js, React, TypeScript and Tailwind CSS on Vercel.",
+      "",
+      "## In here",
+      "",
+      "Type :q and press Enter to go back to the shell.",
+    ],
+  },
+  "about.md": {
+    filetype: "markdown",
+    lines: [
+      "# About",
+      "",
+      "Isaac Adjei (Zac), Electronic Engineering and CS student",
+      "at Aston University.",
+      "",
+      "- based in Birmingham and London, UK",
+      "- originally from Ghana",
+      "- building at the intersection of hardware and software",
+      "",
+      "Say hello: contact@isaacadjei.me",
+    ],
+  },
+  "tmux.conf": {
+    filetype: "tmux",
+    lines: [
+      "set -g mouse on",
+      "set -g base-index 1 # windows start at 1, not 0",
+      "setw -g pane-base-index 1",
+      "set -g renumber-windows on",
+      "set -g escape-time 10 # near-zero delay after Esc, so it never lags in Neovim",
+      "setw -g mode-keys vi",
+      "",
+      "# status bar: the terminal's own colours, high contrast in light and dark",
+      "set -g status-style \"bg=default,fg=default\"",
+      "set -g status-left \"#[bold]#S \"",
+      "set -g status-right \"%Y-%m-%d %H:%M\"",
+      "set -g window-status-current-style \"bold,reverse\"",
+    ],
+  },
+}
+
+interface EditorState {
+  file: string
+  filetype: string
+  lines: string[]
+  message: string
+}
+
+function openFile(arg: string): EditorState | null {
+  const file = arg.trim() || "README.md"
+  const hit = Object.keys(NVIM_FILES).find((k) => k.toLowerCase() === file.toLowerCase())
+  if (!hit) return null
+  const { filetype, lines } = NVIM_FILES[hit]
+  return { file: hit, filetype, lines, message: `"${hit}" [readonly] ${lines.length}L` }
+}
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+const isCoarsePointer = () =>
+  typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches
 
 const JOKES = [
   "Why do programmers prefer dark mode? Because light attracts bugs.",
@@ -84,7 +451,7 @@ const MAIL_COMMANDS: Record<string, string> = {
     "mailto:contact@isaacadjei.me?subject=Blog%20Suggestion&body=Hi%20Isaac%2C%0A%0AI%20have%20an%20idea%20for%20your%20blog%3A%0A%0A-%20Topic%3A%0A-%20Why%20it%20would%20be%20useful%3A%0A%0AThanks%2C",
 }
 
-const COMMANDS: Record<string, () => Line[]> = {
+const COMMANDS: Record<string, (data: LabData) => Line[]> = {
   help: () => [
     { type: "info", text: "isaacadjei-lab - available commands" },
     { type: "blank", text: "" },
@@ -113,7 +480,6 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "info", text: "  writing" },
     { type: "cmd-list", text: "  posts        -  most read blog and TIL entries" },
     { type: "cmd-list", text: "  live         -  published posts" },
-    { type: "cmd-list", text: "  drafts       -  works in progress" },
     { type: "cmd-list", text: "  topics       -  active tags" },
     { type: "blank", text: "" },
     { type: "info", text: "  explore" },
@@ -155,6 +521,7 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "blank", text: "" },
     { type: "info", text: "  discover" },
     { type: "cmd-list", text: "  whoami       -  identity check" },
+    { type: "cmd-list", text: "  name         -  change what I call you (also login)" },
     { type: "cmd-list", text: "  ghana        -  origin story" },
     { type: "cmd-list", text: "  faith        -  what drives it all" },
     { type: "cmd-list", text: "  dad          -  in memory" },
@@ -171,6 +538,13 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "cmd-list", text: "  approach     -  my code philosophy" },
     { type: "cmd-list", text: "  zac          -  easter egg" },
     { type: "cmd-list", text: "  clear        -  clear terminal" },
+    { type: "blank", text: "" },
+    { type: "info", text: "shell (mirrors my real setup)" },
+    { type: "cmd-list", text: "  cmds         -  the cheat-sheet" },
+    { type: "cmd-list", text: "  cls          -  clear and reprint the banner" },
+    { type: "cmd-list", text: "  palette      -  terminal colours" },
+    { type: "cmd-list", text: "  git commit   -  try the commit-msg hook" },
+    { type: "cmd-list", text: "  git status   -  repo state" },
   ],
 
   ls: () => [
@@ -192,6 +566,9 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "output", text: "  drwxr-xr-x  /search       search across everything" },
     { type: "output", text: "  drwxr-xr-x  /all-pages    every public page" },
   ],
+
+  cmds: () => CMDS_LINES,
+  palette: () => paletteLines(),
 
   pwd: () => [
     { type: "output", text: "/lab" },
@@ -240,13 +617,20 @@ const COMMANDS: Record<string, () => Line[]> = {
   build: () => [
     { type: "info", text: "currently building" },
     { type: "blank", text: "" },
+    { type: "output", text: "  → LidarSAT" },
+    { type: "output", text: "    GPS-denied drone navigation, team research" },
+    { type: "blank", text: "" },
+    { type: "output", text: "  → MELOPHOS" },
+    { type: "output", text: "    lights above the keys that show the next note" },
+    { type: "blank", text: "" },
+    { type: "output", text: "  → Vitafolio" },
+    { type: "output", text: "    every version of your CV, live" },
+    { type: "blank", text: "" },
+    { type: "output", text: "  → PHAEMOS" },
+    { type: "output", text: "    predictive maintenance for machines" },
+    { type: "blank", text: "" },
     { type: "output", text: "  → avr-zac" },
     { type: "output", text: "    bare metal AVR C on ATmega644P" },
-    { type: "output", text: "    nine-mode state machine, interrupts, PWM, ADC" },
-    { type: "blank", text: "" },
-    { type: "output", text: "  → ba-from-data-to-decisions" },
-    { type: "output", text: "    business analytics learning site" },
-    { type: "output", text: "    probability → ML → prescriptive optimisation" },
     { type: "blank", text: "" },
     { type: "output", text: "  → this portfolio" },
     { type: "output", text: "    always improving, always shipping" },
@@ -385,8 +769,7 @@ const COMMANDS: Record<string, () => Line[]> = {
     ]
   },
 
-  live: () => {
-    const published = posts.filter((p) => p.published)
+  live: ({ posts: published }) => {
     return [
       { type: "info", text: `published now  (${published.length})` },
       { type: "blank", text: "" },
@@ -397,21 +780,7 @@ const COMMANDS: Record<string, () => Line[]> = {
     ]
   },
 
-  drafts: () => {
-    const draft = posts.filter((p) => !p.published)
-    return [
-      { type: "info", text: `draft pipeline  (${draft.length})` },
-      { type: "blank", text: "" },
-      ...draft.map((p) => ({
-        type: "output" as LineType,
-        text: `  [${TYPE_LABEL[p.type] ?? p.type}]  ${p.title}`,
-      })),
-      { type: "blank", text: "" },
-      { type: "output", text: "  more in progress - watch this space" },
-    ]
-  },
-
-  topics: () => {
+  topics: ({ posts }) => {
     const tags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort((a, b) =>
       a.localeCompare(b)
     )
@@ -425,10 +794,9 @@ const COMMANDS: Record<string, () => Line[]> = {
   now: () => [
     { type: "info", text: "currently building" },
     { type: "blank", text: "" },
-    { type: "output", text: "  → Phaemos" },
-    { type: "output", text: "    predictive maintenance platform" },
-    { type: "output", text: "    FastAPI backend + Isolation Forest anomaly detection" },
-    { type: "link", text: "    github.com/zaccesss/phaemos" },
+    { type: "output", text: "  → LidarSAT, MELOPHOS, Vitafolio and PHAEMOS" },
+    { type: "output", text: "    PHAEMOS models now raise their own alerts and tickets" },
+    { type: "link", text: "    github.com/phaemos/phaemos" },
     { type: "blank", text: "" },
     { type: "output", text: "  also run 'build' for all active projects" },
   ],
@@ -437,8 +805,8 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "info", text: "degree classification" },
     { type: "blank", text: "" },
     { type: "kv", text: "  institution   Aston University" },
-    { type: "kv", text: "  programme     BEng Electronic Engineering and Computer Science" },
-    { type: "link", text: "  www.aston.ac.uk/study/courses/electronic-engineering-and-computer-science-beng/" },
+    { type: "kv", text: "  programme     Electronic Engineering and Computer Science" },
+    { type: "link", text: "  www.aston.ac.uk" },
     { type: "kv", text: "  predicted     First Class (>=70%)" },
     { type: "kv", text: "  trajectory    on track" },
     { type: "blank", text: "" },
@@ -475,7 +843,7 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "kv", text: "  coding      $ rm -rf impostor_syndrome && touch grass" },
     { type: "output", text: "               delete the inner critic, touch reality" },
     { type: "blank", text: "" },
-    { type: "kv", text: "  internship  $ ssh internship@2026 -i private_key.pem" },
+    { type: "kv", text: "  internship  $ ssh placement@2027 -i private_key.pem" },
     { type: "output", text: "               connecting to the next chapter" },
     { type: "blank", text: "" },
     { type: "kv", text: "  approach    // $ nohup hustle && disown impostor_syndrome" },
@@ -485,15 +853,15 @@ const COMMANDS: Record<string, () => Line[]> = {
   hire: () => [
     { type: "info", text: "why hire Isaac" },
     { type: "blank", text: "" },
-    { type: "output", text: "  → BEng Electronic Engineering and Computer Science, Aston University" },
+    { type: "output", text: "  → Electronic Engineering and Computer Science, Aston University" },
     { type: "output", text: "    predicted First Class" },
     { type: "blank", text: "" },
     { type: "output", text: "  → full stack: C, TypeScript, Python, Next.js, embedded systems" },
     { type: "output", text: "  → hardware: KiCad PCB design, AVR, ARM Cortex-M, ESP32" },
     { type: "output", text: "  → ML: TensorFlow, PyTorch, scikit-learn, anomaly detection" },
     { type: "blank", text: "" },
-    { type: "output", text: "  → builds: Phaemos, avr-zac, Zaccess, open-source Git course" },
-    { type: "output", text: "  → seeking 2026/2027 placement or internship" },
+    { type: "output", text: "  → builds: PHAEMOS, MELOPHOS, Vitafolio, LidarSAT, git-unlocked" },
+    { type: "output", text: "  → seeking a year-long placement from 2027" },
     { type: "blank", text: "" },
     { type: "kv", text: "  email    contact@isaacadjei.me" },
     { type: "kv", text: "  cv       run 'cv' to download" },
@@ -515,12 +883,12 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "kv", text: "  portfolio                     live at isaacadjei.me" },
     { type: "kv", text: "  blog                          active" },
     { type: "kv", text: "  newsletter                    live via Beehiiv" },
-    { type: "kv", text: "  avr-zac project               in progress" },
-    { type: "kv", text: "  ba-from-data-to-decisions     in progress" },
+    { type: "kv", text: "  vitafolio                     live" },
+    { type: "kv", text: "  phaemos and melophos          in progress" },
     { type: "blank", text: "" },
     { type: "success", text: "  all systems operational" },
     { type: "blank", text: "" },
-    { type: "output", text: "  $ ssh internship@2026 -i private_key.pem" },
+    { type: "output", text: "  $ ssh placement@2027 -i private_key.pem" },
   ],
 
   approach: () => [
@@ -573,12 +941,9 @@ const COMMANDS: Record<string, () => Line[]> = {
     { type: "info", text: "opening: isaacadjei.me/til/feed.xml" },
     { type: "output", text: "launching in new tab..." },
   ],
-  til: () => {
-    const entries = getPublishedTILEntries()
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 5)
+  til: ({ latestTils: entries, tilCount }) => {
     return [
-      { type: "info", text: `til - things I learned  (${getPublishedTILEntries().length} total)` },
+      { type: "info", text: `til - things I learned  (${tilCount} total)` },
       { type: "blank", text: "" },
       ...entries.map((e) => ({
         type: "output" as LineType,
@@ -964,8 +1329,91 @@ const ASYNC_COMMANDS: Record<string, () => Promise<Line[]>> = {
   },
 }
 
+const TONE: Record<Tone | "black", string> = {
+  fg: s.fg,
+  bold: s.bold,
+  dim: s.dim,
+  red: s.red,
+  green: s.green,
+  yellow: s.yellow,
+  blue: s.blue,
+  magenta: s.magenta,
+  cyan: s.cyan,
+  white: s.white,
+  black: s.black,
+}
+
+const LINE = `${s.line} leading-relaxed`
+
+function splitPair(text: string): { indent: string; key: string; val: string } | null {
+  const indent = text.slice(0, Math.max(0, text.search(/\S/)))
+  const rest = text.trimStart()
+  const idx = rest.search(/\s{2,}/)
+  if (idx < 0) return null
+  return { indent, key: rest.slice(0, idx), val: rest.slice(idx).trimStart() }
+}
+
+function PromptMeta() {
+  return (
+    <span aria-hidden="true">
+      <span className={s.blue + " font-bold"}>{PROMPT_DIR}</span>
+      <span className={s.fg}> on </span>
+      <span className={s.cyan + " font-bold"}>{PROMPT_BRANCH}</span>
+    </span>
+  )
+}
+
 function renderLine(line: Line, i: number) {
   if (line.type === "blank") return <div key={i} className="h-2" />
+
+  if (line.type === "rule") {
+    return <div key={i} className={`${s.rule} ${s.fg} leading-relaxed`} aria-hidden="true">{line.text}</div>
+  }
+
+  if (line.type === "banner") {
+    return (
+      <div key={i} className={`${LINE} ${TONE[line.tone ?? "fg"]} ${line.bold ? "font-bold" : ""}`}>
+        {line.text}
+      </div>
+    )
+  }
+
+  if (line.type === "title") {
+    return <div key={i} className={`${LINE} ${s.cyan} font-bold`}>{line.text}</div>
+  }
+
+  if (line.type === "heading") {
+    return <div key={i} className={`${LINE} ${s.magenta} font-bold`}>{line.text}</div>
+  }
+
+  if (line.type === "legend") {
+    if (line.text) return <div key={i} className={`${LINE} ${s.white} font-bold`}>{line.text}</div>
+    return (
+      <div key={i} className={LINE}>
+        {"  "}
+        <span className={s.magenta}>magenta = category</span>
+        {"   "}
+        <span className={s.cyan}>cyan = commands</span>
+        {"   "}
+        <span className={s.white}>white = descriptions</span>
+      </div>
+    )
+  }
+
+  if (line.type === "swatch") {
+    const [name, dark, light, tone] = line.text.split("|")
+    return (
+      <div key={i} className={LINE}>
+        {"  "}
+        <span className={s.swatch} style={{ background: `var(--t-${tone})` }} aria-hidden="true" />
+        {" "}
+        <span className={`${TONE[tone as Tone | "black"] ?? s.fg} font-bold`}>{name.padEnd(9)}</span>
+        <span className={s.fg}>{dark}</span>
+        {"  "}
+        <span className={s.fg}>{light}</span>
+      </div>
+    )
+  }
 
   if (line.type === "link") {
     const url = line.text.trim()
@@ -976,7 +1424,7 @@ function renderLine(line: Line, i: number) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="block font-mono text-xs text-primary underline underline-offset-2 hover:text-primary/70 transition-colors pl-4 leading-relaxed"
+        className={`block pl-4 py-0.5 ${LINE} ${s.link}`}
       >
         {url}
       </a>
@@ -985,45 +1433,40 @@ function renderLine(line: Line, i: number) {
 
   if (line.type === "cmd-echo") {
     return (
-      <div key={i} className="flex items-baseline gap-1.5 font-mono text-xs mt-1">
-        <span className="text-cyan-400 shrink-0">{HOST}</span>
-        <span className="text-green-400 shrink-0">$</span>
-        <span className="text-amber-300">{line.text}</span>
+      <div key={i} className={`${LINE} mt-1`}>
+        <PromptMeta />
+        <br aria-hidden="true" />
+        <span className={`${s.green} font-bold`} aria-hidden="true">{"> "}</span>
+        <span className="sr-only">command: </span>
+        <span className={s.bold}>{line.text}</span>
       </div>
     )
   }
 
-  if (line.type === "kv") {
-    const idx = line.text.search(/\s{2,}/)
-    if (idx > -1) {
-      const indent = line.text.slice(0, line.text.search(/\S/))
-      const rest = line.text.trimStart()
-      const spaceIdx = rest.search(/\s{2,}/)
-      if (spaceIdx > -1) {
-        const key = rest.slice(0, spaceIdx)
-        const val = rest.slice(spaceIdx).trimStart()
-        return (
-          <div key={i} className="font-mono text-xs leading-relaxed">
-            <span className="text-zinc-600">{indent}</span>
-            <span className="text-cyan-400">{key}</span>
-            <span className="text-zinc-700">{"  "}</span>
-            <span className="text-amber-300">{val}</span>
-          </div>
-        )
-      }
+  if (line.type === "kv" || line.type === "pair") {
+    const parts = splitPair(line.text)
+    if (parts) {
+      return (
+        <div key={i} className={LINE}>
+          {parts.indent}
+          <span className={s.cyan}>{parts.key}</span>
+          {"  "}
+          <span className={line.type === "kv" ? s.yellow : s.white}>{parts.val}</span>
+        </div>
+      )
     }
-    return <div key={i} className="font-mono text-xs leading-relaxed text-amber-300">{line.text}</div>
+    return <div key={i} className={`${LINE} ${s.yellow}`}>{line.text}</div>
   }
 
   if (line.type === "cmd-list") {
-    const match = line.text.match(/^(\s*)(\S+)(\s+-\s+)(.*)$/)
+    const match = line.text.match(/^(\s*)(\S+(?: \S+)?)(\s+-\s+)(.*)$/)
     if (match) {
       return (
-        <div key={i} className="font-mono text-xs leading-relaxed">
-          <span className="text-zinc-600">{match[1]}</span>
-          <span className="text-green-400 font-semibold">{match[2]}</span>
-          <span className="text-zinc-600">{match[3]}</span>
-          <span className="text-zinc-400">{match[4]}</span>
+        <div key={i} className={LINE}>
+          {match[1]}
+          <span className={`${s.green} font-bold`}>{match[2]}</span>
+          <span className={s.dim}>{match[3]}</span>
+          <span className={s.white}>{match[4]}</span>
         </div>
       )
     }
@@ -1031,26 +1474,25 @@ function renderLine(line: Line, i: number) {
 
   const cls =
     line.type === "system"
-      ? "text-zinc-600"
+      ? s.white
       : line.type === "info"
-        ? "text-cyan-400"
+        ? s.cyan
         : line.type === "error"
-          ? "text-red-400"
+          ? s.red
           : line.type === "success"
-            ? "text-green-400"
-            : "text-amber-300"
+            ? `${s.green} font-bold`
+            : s.fg
 
-  const parts = line.text.split(/(→|● live|'[a-z-]+')/
-  )
+  const parts = line.text.split(/(→|● live|'[a-z-]+(?: [a-z-]+)?')/)
   return (
-    <div key={i} className={`font-mono text-xs leading-relaxed ${cls}`}>
+    <div key={i} className={`${LINE} ${cls}`}>
       {parts.map((part, j) =>
         part === "→" ? (
-          <span key={j} className="text-cyan-400">{"→"}</span>
+          <span key={j} className={s.cyan}>{"→"}</span>
         ) : part === "● live" ? (
-          <span key={j} className="text-green-400">{"● live"}</span>
-        ) : part.startsWith("'") && part.endsWith("'") ? (
-          <span key={j} className="text-green-400 font-bold tracking-wide">{part.slice(1, -1)}</span>
+          <span key={j} className={s.green}>{"● live"}</span>
+        ) : part.length > 2 && part.startsWith("'") && part.endsWith("'") ? (
+          <span key={j} className={`${s.green} font-bold`}>{part.slice(1, -1)}</span>
         ) : (
           <span key={j}>{part}</span>
         )
@@ -1059,54 +1501,183 @@ function renderLine(line: Line, i: number) {
   )
 }
 
-export default function LabPage() {
+const EDITOR_HELP = "Type :q and press Enter to return to the shell. Escape also returns."
+
+function NvimView({ editor, heightClass }: { editor: EditorState; heightClass: string }) {
+  const filler = Math.max(0, 18 - editor.lines.length)
+  return (
+    <div
+      role="region"
+      aria-label={`nvim: ${editor.file}, read-only`}
+      className={`flex flex-col pt-2 ${heightClass}`}
+    >
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-1 sm:px-2">
+        {editor.lines.map((text, n) => (
+          <div key={n} className={`${LINE} flex`}>
+            <span className={`${s.white} shrink-0 w-[6ch] pr-[1ch] ${n === 0 ? `text-left ${s.yellow} font-bold` : "text-right"}`} aria-hidden="true">
+              {n === 0 ? 1 : n}
+            </span>
+            <span className={`${n === 0 ? s.cursorLine : ""} ${text.startsWith("#") ? `${s.magenta} font-bold` : s.fg} flex-1 min-w-0`}>
+              {text || " "}
+            </span>
+          </div>
+        ))}
+        {Array.from({ length: filler }, (_, n) => (
+          <div key={`f${n}`} className={`${LINE} ${s.blue}`} aria-hidden="true">
+            ~
+          </div>
+        ))}
+      </div>
+      <div className={`${s.nvimStatus} flex items-stretch text-xs leading-6 shrink-0`} aria-hidden="true">
+        <span className={`${s.nvimMode} px-2 font-bold`}>NORMAL</span>
+        <span className={`${s.nvimB} px-2`}>{PROMPT_BRANCH}</span>
+        <span className="px-2 flex-1 min-w-0 truncate">{editor.file} [-]</span>
+        <span className="px-2 hidden sm:inline">utf-8  unix  {editor.filetype}</span>
+        <span className={`${s.nvimB} px-2`}>Top</span>
+        <span className={`${s.nvimMode} px-2 font-bold`}>1:1</span>
+      </div>
+      <div className={`${LINE} ${editor.message.startsWith("E") ? s.red : s.fg} shrink-0 px-1 sm:px-2`}>{editor.message}</div>
+    </div>
+  )
+}
+
+function TmuxBar({ window, clock }: { window: string; clock: string | null }) {
+  return (
+    <div className={`${s.tmux} flex items-center justify-between gap-2 px-2 text-xs leading-6 shrink-0`} aria-hidden="true">
+      <span className="truncate min-w-0">
+        <span className="font-bold">{TMUX_SESSION}</span>{" "}
+        <span className={`${s.tmuxCurrent} font-bold`}>{`1:${window}*`}</span>{" "}
+        <span>2:zsh-</span>
+      </span>
+      <span className="shrink-0">{clock ?? ""}</span>
+    </div>
+  )
+}
+
+export default function LabPage({ data }: { data: LabData }) {
   const [lines, setLines] = useState<Line[]>([])
-  const [booted, setBooted] = useState(false)
+  const [phase, setPhase] = useState<"start" | "login" | "intro" | "ready">("start")
+  const [name, setName] = useState(DEFAULT_NAME)
+  const booted = phase === "login" || phase === "ready"
+  const asking = phase === "login"
   const [inputVal, setInputVal] = useState("")
+  const [editor, setEditor] = useState<EditorState | null>(null)
+  const [srStatus, setSrStatus] = useState("")
+  const [clock, setClock] = useState<string | null>(null)
   const [cmdHistory, setCmdHistory] = useState<string[]>([])
   const [histIdx, setHistIdx] = useState(-1)
   const [winState, setWinState] = useState<WindowState>("normal")
   const inputRef = useRef<HTMLInputElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
-  const liveRegionRef = useRef<HTMLDivElement>(null)
+  const promptRef = useRef<HTMLFormElement>(null)
   const { modLabel } = useModKey()
 
   useEffect(() => {
-    let i = 0
-    const timer = setInterval(() => {
-      if (i < BOOT.length) {
-        const line = BOOT[i]
-        i++
-        setLines((prev) => [...prev, line])
+    const t = setTimeout(() => {
+      const stored = loadName()
+      if (stored) {
+        setName(stored)
+        setPhase("intro")
       } else {
-        clearInterval(timer)
-        setTimeout(() => {
-          setBooted(true)
-          setLines((prev) => [
-            ...prev,
-            { type: "output", text: "session initialised. type 'help' to explore." },
-            { type: "output", text: "type 'pages' to see every public page on this site." },
-            { type: "output", text: "try: 'ls', 'man', 'stack', 'build', 'faith', 'dad'" },
-            { type: "blank", text: "" },
-          ])
-        }, 350)
+        setLines(LOGIN_LINES)
+        setPhase("login")
       }
-    }, 110)
-    return () => clearInterval(timer)
+    }, 0)
+    return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
-    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight
-  }, [lines, inputVal])
+    if (phase !== "intro") return
+    const steps = introSteps(name)
+    const timers: ReturnType<typeof setTimeout>[] = []
+    if (prefersReducedMotion()) {
+      timers.push(
+        setTimeout(() => {
+          setLines((prev) => [...prev, ...steps.map(([line]) => line)])
+          setPhase("ready")
+        }, 0)
+      )
+    } else {
+      let at = 0
+      for (const [line, pause] of steps) {
+        timers.push(setTimeout(() => setLines((prev) => [...prev, line]), at))
+        at += pause
+      }
+      timers.push(setTimeout(() => setPhase("ready"), at))
+    }
+    return () => timers.forEach(clearTimeout)
+  }, [phase, name])
 
   useEffect(() => {
-    if (booted && inputRef.current) {
+    const tick = () => {
+      const d = new Date()
+      setClock(`${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`)
+    }
+    const first = setTimeout(tick, 0)
+    const timer = setInterval(tick, 15_000)
+    return () => {
+      clearTimeout(first)
+      clearInterval(timer)
+    }
+  }, [])
+
+  const closeEditor = () => {
+    setEditor(null)
+    setInputVal("")
+    setSrStatus("Closed nvim. Back in the shell.")
+  }
+
+  const editorCommand = (raw: string) => {
+    const c = raw.trim()
+    setInputVal("")
+    if (/^:(q|q!|wq|wq!|x|x!|qa|qa!)$/.test(c)) {
+      closeEditor()
+      return
+    }
+    let message: string
+    if (/^:w/.test(c)) message = "E45: 'readonly' option is set (add ! to override)"
+    else if (/^[iaoIAOs]$/.test(c)) message = "E21: Cannot make changes, 'modifiable' is off"
+    else if (c.startsWith(":")) message = `E492: Not an editor command: ${c.slice(1)}`
+    else message = "type :q and press Enter to quit"
+    setEditor((prev) => (prev ? { ...prev, message } : prev))
+    setSrStatus(message)
+  }
+
+  const submitName = (raw: string) => {
+    const chosen = cleanName(raw)
+    saveName(chosen)
+    setName(chosen)
+    setInputVal("")
+    setLines((prev) => [...prev, { type: "output", text: `login: ${chosen}` }])
+    setPhase("intro")
+  }
+
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight
+  }, [lines])
+
+  useEffect(() => {
+    if (booted && inputRef.current && !isCoarsePointer()) {
       inputRef.current.focus({ preventScroll: true })
     }
   }, [booted])
 
+  useEffect(() => {
+    const vv = typeof window !== "undefined" ? window.visualViewport : null
+    if (!vv) return
+    const onResize = () => {
+      if (document.activeElement === inputRef.current) {
+        promptRef.current?.scrollIntoView({ block: "nearest" })
+      }
+    }
+    vv.addEventListener("resize", onResize)
+    return () => vv.removeEventListener("resize", onResize)
+  }, [])
+
   const execCommand = useCallback((raw: string) => {
-    const trimmed = raw.trim()
+    const typed = raw.trim()
+    const first = (typed.split(/\s+/)[0] ?? "").toLowerCase()
+    const trimmed = ALIASES[first] ? ALIASES[first] + typed.slice(first.length) : typed
     const cmd = trimmed.toLowerCase()
 
     if (!cmd) {
@@ -1114,32 +1685,95 @@ export default function LabPage() {
       return
     }
 
-    setCmdHistory((prev) => [trimmed, ...prev])
+    setCmdHistory((prev) => [typed, ...prev])
     setHistIdx(-1)
+    setInputVal("")
 
     if (cmd === "clear") {
       setLines([])
-      setInputVal("")
+      return
+    }
+
+    if (cmd === "cls") {
+      setLines(bannerLines(name))
+      return
+    }
+
+    const nameCmd = /^(name|login)(?:\s+(.*))?$/i.exec(trimmed)
+    if (nameCmd) {
+      if (nameCmd[2]?.trim()) {
+        const chosen = cleanName(nameCmd[2])
+        saveName(chosen)
+        setName(chosen)
+        setLines((prev) => [
+          ...prev,
+          { type: "cmd-echo", text: typed },
+          { type: "output", text: `  you are now ${chosen}` },
+          ...bannerLines(chosen),
+        ])
+      } else {
+        setLines((prev) => [...prev, { type: "cmd-echo", text: typed }, ...LOGIN_LINES])
+        setPhase("login")
+      }
+      return
+    }
+
+    if (cmd === "tmux" || cmd.startsWith("tmux ")) {
+      setLines((prev) => [
+        ...prev,
+        { type: "cmd-echo", text: typed },
+        ...tmuxLines(trimmed, new Date(performance.timeOrigin)),
+        { type: "blank", text: "" },
+      ])
+      return
+    }
+
+    if (cmd === "nvim" || cmd.startsWith("nvim ")) {
+      const opened = openFile(trimmed.slice(4))
+      if (!opened) {
+        setLines((prev) => [
+          ...prev,
+          { type: "cmd-echo", text: typed },
+          { type: "error", text: `nvim: no file called '${trimmed.slice(5).trim()}' in this lab` },
+          { type: "output", text: `  try: ${Object.keys(NVIM_FILES).join(", ")}` },
+          { type: "blank", text: "" },
+        ])
+        return
+      }
+      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }])
+      setEditor(opened)
+      setSrStatus(`Opened ${opened.file} in nvim, read-only. ${EDITOR_HELP}`)
+      return
+    }
+
+    if (cmd === "git" || cmd.startsWith("git ")) {
+      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }, ...gitLines(trimmed), { type: "blank", text: "" }])
       return
     }
 
     if (cmd.startsWith("echo ")) {
-      const text = trimmed.slice(5)
       setLines((prev) => [
         ...prev,
-        { type: "cmd-echo", text: trimmed },
-        { type: "output", text: `  ${text}` },
+        { type: "cmd-echo", text: typed },
+        { type: "output", text: `  ${trimmed.slice(5)}` },
         { type: "blank", text: "" },
       ])
-      setInputVal("")
       return
     }
 
     if (THEATRICAL_COMMANDS[cmd]) {
-      setLines((prev) => [...prev, { type: "cmd-echo", text: trimmed }])
-      setInputVal("")
       const steps = THEATRICAL_COMMANDS[cmd]
-      const maxDelay = Math.max(...steps.map((s) => s.delay))
+      if (prefersReducedMotion()) {
+        setLines((prev) => [
+          ...prev,
+          { type: "cmd-echo", text: typed },
+          ...steps.map((st) => st.line),
+          { type: "blank", text: "" },
+        ])
+        return
+      }
+      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }])
+      const maxDelay = Math.max(...steps.map((st) => st.delay))
       steps.forEach(({ line, delay }) => {
         setTimeout(() => setLines((prev) => [...prev, line]), delay)
       })
@@ -1150,11 +1784,10 @@ export default function LabPage() {
     if (ASYNC_COMMANDS[cmd]) {
       setLines((prev) => [
         ...prev,
-        { type: "cmd-echo", text: trimmed },
+        { type: "cmd-echo", text: typed },
         { type: "info", text: "  fetching..." },
         { type: "blank", text: "" },
       ])
-      setInputVal("")
       ASYNC_COMMANDS[cmd]()
         .then((output) => {
           setLines((prev) => [...prev.slice(0, -2), ...output, { type: "blank", text: "" }])
@@ -1170,9 +1803,11 @@ export default function LabPage() {
     }
 
     const output: Line[] = COMMANDS[cmd]
-      ? COMMANDS[cmd]()
+      ? cmd === "whoami"
+        ? withVisitor(COMMANDS[cmd](data), name)
+        : COMMANDS[cmd](data)
       : [
-          { type: "error", text: `bash: ${cmd}: command not found` },
+          { type: "error", text: `zsh: command not found: ${cmd}` },
           { type: "output", text: "  type 'help' to see available commands" },
         ]
 
@@ -1182,23 +1817,16 @@ export default function LabPage() {
     const mailUrl = MAIL_COMMANDS[cmd]
     if (mailUrl) window.open(mailUrl, "_blank", "noopener,noreferrer")
 
-    if (liveRegionRef.current) {
-      liveRegionRef.current.textContent = output.map((l) => l.text).filter(Boolean).join(" ")
-    }
-
     setLines((prev) => [
       ...prev,
-      { type: "cmd-echo", text: trimmed },
+      { type: "cmd-echo", text: typed },
       ...output,
       { type: "blank", text: "" },
     ])
-    setInputVal("")
-  }, [])
+  }, [data, name])
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      execCommand(inputVal)
-    } else if (e.key === "ArrowUp") {
+    if (e.key === "ArrowUp") {
       e.preventDefault()
       const idx = Math.min(histIdx + 1, cmdHistory.length - 1)
       setHistIdx(idx)
@@ -1216,14 +1844,7 @@ export default function LabPage() {
   const isClosed = winState === "closed"
 
   return (
-    <div className="container max-w-3xl py-24 space-y-8">
-      <div
-        ref={liveRegionRef}
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      />
-
+    <div className="container max-w-3xl max-sm:px-4 py-24 space-y-8">
       {!isMaximized && !isClosed && (
         <>
           <div className="text-center space-y-1">
@@ -1254,86 +1875,130 @@ export default function LabPage() {
       {!isClosed ? (
         <section
           aria-label="Interactive terminal"
-          className={
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && editor) {
+              e.preventDefault()
+              closeEditor()
+            }
+          }}
+          className={`${s.term} font-mono text-[13px] min-w-0 ${
             isMaximized
-              ? "fixed top-16 inset-x-0 bottom-0 z-50 flex flex-col font-mono mt-0!"
-              : "rounded-lg border border-zinc-700 overflow-hidden shadow-xl font-mono"
-          }
+              ? "fixed top-16 inset-x-0 bottom-0 z-50 flex flex-col mt-0!"
+              : "rounded-lg border overflow-hidden shadow-xl"
+          }`}
         >
-          <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-800 border-b border-zinc-700 shrink-0">
-            <div className="flex items-center gap-1.5">
+          <div className={`${s.chrome} flex items-center justify-between gap-2 px-2 sm:px-3 py-1 border-b shrink-0`}>
+            <div className="flex items-center shrink-0">
               <button
                 type="button"
                 title="Close terminal"
                 aria-label="Close terminal"
                 onClick={() => setWinState("closed")}
-                className="h-3 w-3 rounded-full bg-red-500 hover:brightness-125 transition-all cursor-pointer"
-              />
+                className="grid place-items-center h-7 w-7 cursor-pointer"
+              >
+                <span className="h-3 w-3 rounded-full" style={{ background: "var(--t-red)" }} />
+              </button>
               <button
                 type="button"
                 title="Minimise terminal"
-                aria-label="Minimise terminal"
+                aria-label={isMinimized ? "Restore terminal" : "Minimise terminal"}
                 onClick={() => setWinState(isMinimized ? "normal" : "minimized")}
-                className="h-3 w-3 rounded-full bg-yellow-400 hover:brightness-125 transition-all cursor-pointer"
-              />
+                className="grid place-items-center h-7 w-7 cursor-pointer"
+              >
+                <span className="h-3 w-3 rounded-full" style={{ background: "var(--t-yellow)" }} />
+              </button>
               <button
                 type="button"
                 title="Maximise terminal"
-                aria-label="Maximise terminal"
+                aria-label={isMaximized ? "Restore terminal size" : "Maximise terminal"}
                 onClick={() => setWinState(isMaximized ? "normal" : "maximized")}
-                className="h-3 w-3 rounded-full bg-green-500 hover:brightness-125 transition-all cursor-pointer"
-              />
+                className="grid place-items-center h-7 w-7 cursor-pointer"
+              >
+                <span className="h-3 w-3 rounded-full" style={{ background: "var(--t-green)" }} />
+              </button>
             </div>
-            <span className="text-xs text-zinc-400" aria-hidden="true">
-              isaacadjei@portfolio - lab - 80x24
+            <span className="text-xs truncate min-w-0" aria-hidden="true">
+              {nameHandle(name)}@isaacadjei.me - zsh<span className="hidden sm:inline"> - 80x24</span>
             </span>
-            <span className="w-14" />
+            <span className="w-7 sm:w-21 shrink-0" />
           </div>
 
           {!isMinimized && (
-            <div
-              ref={bodyRef}
-              role="log"
-              aria-label="Terminal output"
-              aria-live="off"
-              onClick={() => inputRef.current?.focus({ preventScroll: true })}
-              className={`bg-zinc-950 px-5 py-4 overflow-y-auto overscroll-contain cursor-text select-text ${
-                isMaximized ? "flex-1" : "h-[400px] sm:h-[500px]"
-              }`}
-            >
-              {lines.map((line, i) => renderLine(line, i))}
+            <div className={`${s.body} flex flex-col min-h-0 ${isMaximized ? "flex-1" : ""}`}>
+              {editor ? (
+                <NvimView editor={editor} heightClass={isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-[420px] min-h-[260px] sm:h-[440px] sm:max-h-none"} />
+              ) : (
+                <div
+                  ref={bodyRef}
+                  role="log"
+                  aria-label="Terminal output"
+                  aria-live="polite"
+                  aria-relevant="additions"
+                  onClick={() => {
+                    if (!window.getSelection()?.toString()) inputRef.current?.focus({ preventScroll: true })
+                  }}
+                  className={`px-3 sm:px-5 pt-3 sm:pt-4 pb-1 overflow-y-auto overflow-x-hidden overscroll-contain cursor-text select-text ${
+                    isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-[420px] min-h-[260px] sm:h-[440px] sm:max-h-none"
+                  }`}
+                >
+                  {lines.map((line, i) => renderLine(line, i))}
+                </div>
+              )}
+              <p className="sr-only" aria-live="polite">
+                {srStatus}
+              </p>
 
               {booted && (
-                <div className="flex items-center gap-1.5 mt-1">
-                  <span className="text-cyan-400 font-mono text-xs shrink-0" aria-hidden="true">
-                    {HOST}
-                  </span>
-                  <span className="text-green-400 font-mono text-xs shrink-0" aria-hidden="true">
-                    $
-                  </span>
-                  <div className="relative flex items-center flex-1 min-w-0">
+                <form
+                  ref={promptRef}
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    if (asking) submitName(inputVal)
+                    else if (editor) editorCommand(inputVal)
+                    else execCommand(inputVal)
+                  }}
+                  className="px-3 sm:px-5 pt-1 pb-2 shrink-0"
+                >
+                  {!asking && !editor && (
+                    <div className="leading-relaxed">
+                      <PromptMeta />
+                    </div>
+                  )}
+                  <div className={`${s.promptRow} flex items-center min-h-11`}>
+                    <span className={`${asking ? s.cyan : s.green} font-bold shrink-0 whitespace-pre`} aria-hidden="true">
+                      {asking ? "login: " : editor ? "" : "> "}
+                    </span>
+                    <label htmlFor="lab-terminal-input" className="sr-only">
+                      {asking
+                        ? `Your name. Type what this terminal should call you and press Enter. Leave it empty to stay as ${DEFAULT_NAME}.`
+                        : editor
+                          ? `Neovim command line for ${editor.file}, read-only. ${EDITOR_HELP}`
+                          : "Terminal command. Type a command such as help and press Enter."}
+                    </label>
                     <input
+                      id="lab-terminal-input"
                       ref={inputRef}
                       type="text"
-                      aria-label="Terminal command input. Type a command and press Enter."
                       value={inputVal}
                       onChange={(e) => setInputVal(e.target.value)}
-                      onKeyDown={onKeyDown}
+                      onKeyDown={(e) => {
+                        if (!asking && !editor) onKeyDown(e)
+                      }}
+                      maxLength={asking ? 64 : undefined}
+                      onFocus={() => {
+                        setTimeout(() => promptRef.current?.scrollIntoView({ block: "nearest" }), 300)
+                      }}
+                      enterKeyHint={asking ? "done" : "go"}
+                      autoCapitalize={asking ? "words" : "none"}
                       autoComplete="off"
                       autoCorrect="off"
                       spellCheck={false}
-                      className="absolute inset-0 opacity-0 w-full bg-transparent outline-hidden"
-                    />
-                    <span className="text-amber-300 font-mono text-xs whitespace-pre" aria-hidden="true">
-                      {inputVal}
-                    </span>
-                    <span
-                      className="inline-block w-[7px] h-[13px] bg-amber-400 ml-px shrink-0 animate-[blink_1s_step-end_infinite]"
-                      aria-hidden="true"
+                      className={`${s.input} flex-1 min-w-0 h-11 p-0 border-0 text-base sm:text-[13px] outline-hidden`}
                     />
                   </div>
-                </div>
+                </form>
               )}
+              <TmuxBar window={editor ? "nvim" : "zsh"} clock={clock} />
             </div>
           )}
         </section>
@@ -1342,7 +2007,7 @@ export default function LabPage() {
           <button
             type="button"
             onClick={() => setWinState("normal")}
-            className="font-mono text-xs text-muted-foreground hover:text-foreground border border-border rounded px-4 py-2 transition-colors"
+            className="font-mono text-xs text-muted-foreground hover:text-foreground border border-border rounded px-4 py-2 min-h-11 transition-colors"
           >
             restore terminal ↩
           </button>

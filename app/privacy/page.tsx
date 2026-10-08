@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             >
               Vercel Web Analytics
             </a>
-            , which is cookieless and anonymous. None of these run on my private dashboard. You
+            , which is cookieless and anonymous. None of these run on the private parts of the site. You
             can block any of them with your browser settings or an extension without affecting the
             site.
           </p>
@@ -248,6 +248,14 @@ export default function PrivacyPage() {
             about individual applications. Some pages also embed Spotify and YouTube players, which
             contact those services when they load and may set their own cookies under their own
             policies.
+          </p>
+          <p className="mt-3">
+            The Consumed pages show book covers from Open Library, video thumbnails from YouTube,
+            preview images from the sites each entry links to and small site icons from Google&rsquo;s
+            favicon service. Your browser loads these images directly from those servers, which
+            receive your IP address and browser details in the normal way. The research page reads
+            view and download counts from Zenodo on my server, so that request never involves your
+            browser.
           </p>
           <p className="mt-3">
             To protect forms and public endpoints from abuse I rate limit requests by IP address.

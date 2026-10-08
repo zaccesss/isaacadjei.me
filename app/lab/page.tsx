@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import LabContent from "./LabContent"
+import LabContent, { type LabData } from "./LabContent"
+import { posts, getPublishedPosts } from "@/data/blog"
+import { getPublishedTILEntries } from "@/data/til"
 
 export const metadata: Metadata = {
   title: "Lab",
@@ -11,10 +13,22 @@ export const metadata: Metadata = {
   },
 }
 
+function labData(): LabData {
+  const live = getPublishedPosts()
+  const tils = getPublishedTILEntries().sort((a, b) => b.date.localeCompare(a.date))
+  return {
+    posts: live.map((p) => ({ slug: p.slug, tags: p.tags })),
+    latestTils: tils.slice(0, 5).map((e) => ({ title: e.title, category: e.category, date: e.date })),
+    tilCount: tils.length,
+  }
+}
+
+export const revalidate = 21600
+
 export default function LabPage() {
   return (
     <Suspense>
-      <LabContent />
+      <LabContent data={labData()} />
     </Suspense>
   )
 }

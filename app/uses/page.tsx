@@ -38,16 +38,45 @@ const sections: Array<{
       {
         name: "Gaming PC (ZACCESS-GPC)",
         icon: `${SI}/nvidia`,
-        detail: "Custom Windows desktop with an NVIDIA GeForce RTX 4060 and Intel CPU. My main machine for development, gaming and compute-heavy work. It runs a background Python daemon that detects the active game via five tiers: a known-games map, Steam Web API, Epic and EA App manifests, then psutil process scanning with IGDB fuzzy name matching. All streamed live to the now page.",
+        href: "https://uk.pcpartpicker.com",
+        detail: "Custom-built Windows 11 Pro desktop (PCPartPicker is the best place to plan one): an Intel Core i5-12400T on an ASUS PRIME B760M-A WIFI board, an NVIDIA GeForce RTX 4060 and 24 GB of RAM, driving a Lenovo R27fc-30 at 240Hz and a Samsung Odyssey G5 at 1440p. My main machine for development, gaming and compute-heavy work. It runs a background Python daemon that detects the active game via five tiers: a known-games map, Steam Web API, Epic and EA App manifests, then psutil process scanning with IGDB fuzzy name matching. All streamed live to the now page.",
       },
       {
-        name: "MacBook (ZACCESS-MBK)",
+        name: "MacBook Air M5 (ZACCESS-MBK)",
         icon: `${DEV}/apple/apple-original.svg`,
-        detail: "My portable development machine. Runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every 30 seconds, powering the live status widget on the now page.",
+        href: "https://www.apple.com/uk/macbook-air/",
+        detail: "My portable development machine: Apple M5, 24 GB of memory and 512 GB of storage. OrbStack runs Docker and a lightweight Ubuntu machine for anything Linux-only. I stop it when I am done so it never sits on memory or disk. Runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every 30 seconds, powering the live status widget on the now page.",
       },
       {
-        name: "Lenovo Laptop (ZACCESS-LNV)",
-        detail: "Windows laptop used as a secondary machine. Runs its own NSSM-managed Python daemon that feeds live battery and charging state data to the site alongside the GPC and MacBook.",
+        name: "Lenovo ThinkPad P14s Gen 5 AMD (ZACCESS-LNV)",
+        icon: `${SI}/lenovo`,
+        href: "https://www.lenovo.com/gb/en/p/laptops/thinkpad/thinkpadp/lenovo-thinkpad-p14s-gen-5-14-inch-amd-mobile-workstation/len101t0101",
+        detail: "A Ryzen 7 PRO 8840HS mobile workstation with 16 GB of DDR5 and a 512 GB SSD. My secondary machine, dual booting Windows and Ubuntu so I can test my setup on both natively. On the Windows side WSL2 gives me a real Linux kernel for tooling that expects one. An NSSM-managed Python daemon feeds live battery and charging state to the site alongside the GPC and MacBook.",
+      },
+      {
+        name: "PlayStation 5 (ZACCESS-PS5)",
+        icon: `${SI}/playstation`,
+        href: "https://www.playstation.com/en-gb/ps5/",
+        detail:
+          "My PS5. Online status, current game and last-seen time are polled every 2 minutes by a Cloudflare Worker using a custom OAuth v2 implementation against the PSN presence API, with no third-party libraries. The NPSSO session cookie is exchanged for an access and refresh token on first run; the refresh token is stored in Cloudflare Workers KV and rotated automatically. Cover art is fetched from IGDB on every cron run. Status is displayed live on /now.",
+      },
+      {
+        name: "iPad Pro 13-inch M5 (ZACCESS-IPD)",
+        icon: `${SI}/apple`,
+        href: "https://www.apple.com/uk/ipad-pro/",
+        detail: "Apple M5 with 256 GB. Where most of my university work happens: I record lectures and follow the slides in Genio Notes, take handwritten notes and work through problems on the big screen. It is also my drawing and design tablet for sketches and layouts. I use it for editing now and then too.",
+      },
+      {
+        name: "iPhone 14 Pro Max (ZACCESS-IPE)",
+        icon: `${SI}/apple`,
+        href: "https://www.apple.com/uk/iphone/",
+        detail: "My everyday phone: 512 GB of storage, the A16 Bionic chip, a 6.7-inch ProMotion display with Always-On and Dynamic Island and a 48MP main camera.",
+      },
+      {
+        name: "Apple Watch Series 11 (ZACCESS-AW11)",
+        icon: `${SI}/apple`,
+        href: "https://www.apple.com/uk/apple-watch-series-11/",
+        detail: "42mm black aluminium with a sport band. I use it for my runs, sleep tracking and keeping an eye on my general health, along with plenty of everyday things. It gives a daily sleep score out of 100, lasts about 24 hours on a charge and can flag signs of high blood pressure over time. My old Series 5 went missing, so I upgraded. It was well out of date anyway.",
       },
       {
         name: "ATmega644P development board",
@@ -57,12 +86,19 @@ const sections: Array<{
       },
       {
         name: "ESP32 and STM32",
+        icon: `${SI}/espressif`,
         detail: "Both used in Phaemos, my predictive maintenance platform. The ESP32 handles WiFi, MQTT and sensor polling using the Arduino framework. The STM32 runs lower-level firmware for data acquisition. Two very different programming models on one project.",
       },
       {
-        name: "PlayStation 5 (ZACCESS-PS5)",
-        detail:
-          "My PS5. Online status, current game and last-seen time are polled every 2 minutes by a Cloudflare Worker using a custom OAuth v2 implementation against the PSN presence API - no third-party libraries. The NPSSO session cookie is exchanged for an access and refresh token on first run; the refresh token is stored in Cloudflare Workers KV and rotated automatically. Cover art is fetched from IGDB on every cron run. Status is displayed live on /now.",
+        name: "Dev boards and sensors",
+        icon: `${SI}/arduino`,
+        href: "https://store.arduino.cc/products/arduino-mega-2560-rev3",
+        detail: "Arduino Mega and Nano, ESP32, STM32 Blue Pill, Black Pill and F407 boards, a Raspberry Pi Pico 2 W and a drawer of I2C sensors (MPU6050, BMP280, INA219, VL53L0X, AS5600, MLX90614) with SSD1306 OLEDs and WS2812B strips.",
+      },
+      {
+        name: "UNI-T UT139C multimeter",
+        href: "https://www.uni-trend.com/",
+        detail: "My everyday meter for voltage, current, resistance and continuity checks on the bench.",
       },
     ],
   },
@@ -74,7 +110,7 @@ const sections: Array<{
         name: "VS Code",
         icon: `${DEV}/vscode/vscode-original.svg`,
         href: "https://code.visualstudio.com",
-        detail: "My primary editor across nearly every project. Key extensions: Claude Code for AI-assisted development, GitLens for blame and history, Prettier for formatting and the C/C++ extension for embedded work. Most of this site was built inside VS Code.",
+        detail: "My primary editor across nearly every project. Key extensions: GitLens for blame and history, Prettier for formatting and the C/C++ extension for embedded work. Most of this site was built inside VS Code.",
       },
       {
         name: "JetBrains IDEs",
@@ -128,7 +164,37 @@ const sections: Array<{
         name: "dotfiles",
         icon: `${SKI}=bash`,
         href: "https://github.com/zaccesss/dotfiles",
-        detail: "My cross-platform shell environment for macOS (zsh), Linux (bash) and Windows (PowerShell 7). 59 numbered topic files loaded in order, one per area of concern, from git aliases and navigation shortcuts through to Docker, Kubernetes, cloud platforms and 30+ language toolchains. Every alias has the same name on all three platforms so muscle memory carries across machines. The colour scheme is deliberate: I lost sight in my right eye at age two and colour does the depth-cue job that binocular vision usually handles. Cyan, magenta, green and yellow were chosen for contrast and tested under deuteranopia and protanopia simulations. Every git push fans out to GitHub, GitLab and Codeberg simultaneously via push URLs, with a pre-push hook that auto-registers new repos on first push.",
+        detail: "My cross-platform shell environment for macOS (zsh), Linux (bash) and Windows (PowerShell 7). 59 numbered topic files loaded in order, one per area of concern, from git aliases and navigation shortcuts through to Docker, Kubernetes, cloud platforms and 30+ language toolchains. Every alias has the same name on all three platforms so muscle memory carries across machines. The colour scheme is deliberate: I lost sight in my right eye at age two and colour does the depth-cue job that binocular vision usually handles. Cyan, magenta, green and yellow were chosen for contrast and tested under deuteranopia and protanopia simulations. Every repository is mirrored to GitLab, Codeberg and Bitbucket on a schedule, so GitHub stays the single place I push to.",
+      },
+      {
+        name: "High contrast terminal palette",
+        icon: `${SI}/iterm2`,
+        href: "https://github.com/zaccesss/terminal-config",
+        detail: "One palette file generates matching themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty and Hyper. Dark is vivid on black and light reaches 7:1 contrast or better on white. Bold text stays bold rather than switching to bright colours.",
+      },
+      {
+        name: "tmux",
+        icon: `${SI}/tmux`,
+        href: "https://github.com/zaccesss/tmux-config",
+        detail: "Every long session runs in tmux: an editor, a shell and logs side by side, still there after a dropped SSH connection.",
+      },
+      {
+        name: "Neovim",
+        icon: `${SI}/neovim`,
+        href: "https://github.com/zaccesss/neovim-config",
+        detail: "A small Lua config with lazy.nvim for quick edits over SSH and in the terminal. VS Code stays my main editor.",
+      },
+      {
+        name: "Git hooks",
+        icon: `${SI}/git`,
+        href: "https://github.com/zaccesss/git-hooks",
+        detail: "Global hooks that scan staged changes for secrets, refuse files of 50 MB or more outside Git LFS, guard force pushes to main and keep commit subjects short. They have stopped real mistakes more than once.",
+      },
+      {
+        name: "Bootstrap scripts",
+        icon: `${SI}/gnubash`,
+        href: "https://github.com/zaccesss/mac-bootstrap",
+        detail: "One idempotent command sets up a machine: packages, dotfiles, configs, toolchains and system defaults. There are matching repos for Linux (WSL2 included) and Windows, so a new laptop is ready in an afternoon.",
       },
       {
         name: "Starship",
@@ -149,6 +215,7 @@ const sections: Array<{
       },
       {
         name: "NSSM",
+        icon: `${DEV}/windows11/windows11-original.svg`,
         href: "https://nssm.cc",
         detail: "Non-Sucking Service Manager. I use it to register Python daemon scripts as proper Windows services on the GPC and Lenovo so they start on boot, restart on crash and run in the background without a terminal window.",
       },
@@ -158,6 +225,42 @@ const sections: Array<{
     icon: Globe,
     heading: "Services and infrastructure",
     items: [
+      {
+        name: "Render",
+        icon: `${SI}/render`,
+        href: "https://render.com",
+        detail: "Hosts Vitafolio as a Docker service running FrankenPHP.",
+      },
+      {
+        name: "TiDB Cloud",
+        icon: `${SI}/tidb`,
+        href: "https://www.pingcap.com/tidb-cloud-starter/",
+        detail: "MySQL-compatible database for Vitafolio. I moved to it when the previous free plan powered the database off for inactivity.",
+      },
+      {
+        name: "Supabase",
+        icon: `${SI}/supabase`,
+        href: "https://supabase.com",
+        detail: "PostgreSQL behind this site's live data, analytics and newsletter tooling.",
+      },
+      {
+        name: "Sentry",
+        icon: `${SI}/sentry`,
+        href: "https://sentry.io",
+        detail: "Error tracking, tuned so an alert means something needs fixing rather than noise.",
+      },
+      {
+        name: "Resend",
+        icon: `${SI}/resend`,
+        href: "https://resend.com",
+        detail: "Transactional email for sign-in links, support replies and notifications.",
+      },
+      {
+        name: "Cloudinary",
+        icon: `${SI}/cloudinary`,
+        href: "https://cloudinary.com",
+        detail: "Private file storage for uploaded CVs and support screenshots.",
+      },
       {
         name: "Vercel",
         icon: `${SKI}=vercel`,
@@ -197,6 +300,7 @@ const sections: Array<{
       },
       {
         name: "Beehiiv",
+        icon: "https://www.google.com/s2/favicons?domain=beehiiv.com&sz=64",
         href: "https://beehiiv.com",
         detail: "Newsletter platform for the isaacadjei.me newsletter. Subscription is handled via the Beehiiv API from a server action. Past issues are fetched and cached in Redis so the newsletter page loads instantly.",
       },
@@ -290,8 +394,9 @@ const sections: Array<{
       },
       {
         name: "Puppeteer",
+        icon: `${SI}/puppeteer`,
         href: "https://pptr.dev",
-        detail: "Used on this site to generate the downloadable CV PDF server-side. A headless browser renders the CV page and exports it to PDF via a Next.js API route. No manual PDF export needed.",
+        detail: "Headless Chrome from Node. I use it to render pages and export them to PDF on the server, so documents always match the page they came from without a manual export step.",
       },
       {
         name: "MATLAB",
@@ -325,8 +430,39 @@ const sections: Array<{
       },
       {
         name: "Call of Duty",
+        icon: `${SI}/activision`,
         href: "https://www.callofduty.com",
         detail: "Warzone and multiplayer depending on the mood. High frame rate, low latency. The GPC is built for it.",
+      },
+      {
+        name: "Grand Theft Auto VI",
+        icon: `${SI}/rockstargames`,
+        href: "https://www.rockstargames.com/VI",
+        detail: "Preordered. The one I am counting down to.",
+      },
+      {
+        name: "Far Cry 6",
+        icon: `${SI}/ubisoft`,
+        href: "https://www.ubisoft.com/en-gb/game/far-cry/far-cry-6",
+        detail: "Open world chaos on Yara. Exactly what I want after a long day of debugging.",
+      },
+      {
+        name: "Battlefield 6",
+        icon: `${SI}/ea`,
+        href: "https://www.ea.com/games/battlefield/battlefield-6",
+        detail: "Large-scale multiplayer with destructible maps, for when Call of Duty feels too small.",
+      },
+      {
+        name: "Ghost of Yotei",
+        icon: `${SI}/playstation`,
+        href: "https://www.playstation.com/en-gb/games/ghost-of-yotei/",
+        detail: "A PS5 exclusive and one of the best-looking games on the console.",
+      },
+      {
+        name: "Marvel's Spider-Man 2",
+        icon: `${SI}/playstation`,
+        href: "https://www.playstation.com/en-gb/games/marvels-spider-man-2/",
+        detail: "Swinging through New York never gets old.",
       },
     ],
   },

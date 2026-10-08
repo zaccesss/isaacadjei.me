@@ -10,6 +10,10 @@ export interface Experience {
   achievements: string[]
   technologies?: string[]
   visibleFrom?: string
+  group?: string
+  groupTitle?: string
+  groupStart?: string
+  link?: { label: string; url: string }
 }
 
 export function isExperienceVisible(exp: Experience): boolean {
@@ -51,21 +55,94 @@ export const experiences: Experience[] = [
   },
   {
     id: "aston-student-rep",
+    group: "student-rep",
+    groupTitle: "Student Representative",
+    groupStart: "Sep 2025",
+    role: "Student Representative",
+    company: "Aston Students' Union",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Sep 2026",
+    endDate: "Present",
+    description:
+      "Re-elected course representative for Electronic Engineering and Computer Science at Aston University.",
+    achievements: [
+      "Gather feedback from the cohort and bring it to academic staff through the Staff-Student Liaison Committee",
+      "Work towards the Students' Union rep awards by logging issues raised, meetings attended and actions agreed",
+    ],
+  },
+  {
+    id: "aston-student-rep-2025",
+    group: "student-rep",
     role: "Student Representative",
     company: "Aston Students' Union",
     location: "Birmingham, UK",
     type: "work",
     startDate: "Sep 2025",
-    endDate: "Present",
+    endDate: "Jul 2026",
     description:
       "Elected course representative for Electronic Engineering and Computer Science at Aston University.",
     achievements: [
-      "Represent student voice by gathering and communicating feedback to academic staff",
-      "Attend Staff-Student Liaison Committee (SSLC), Senate and Council meetings",
-      "Present student feedback and contribute to discussions on course improvements",
-      "Collaborate with staff to agree and implement actions based on feedback",
+      "Represented student voice by gathering and communicating feedback to academic staff",
+      "Attended Staff-Student Liaison Committee (SSLC), Senate and Council meetings",
+      "Presented student feedback and contributed to discussions on course improvements",
+      "Collaborated with staff to agree and implement actions based on feedback",
       "Completed official Student Representative training at Aston Students' Union",
     ],
+  },
+  {
+    id: "founder-phaemos",
+    group: "founder",
+    groupTitle: "Founder",
+    groupStart: "Dec 2025",
+    role: "Founder, PHAEMOS",
+    company: "PHAEMOS",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Apr 2026",
+    endDate: "Present",
+    link: { label: "phaemos.com", url: "https://phaemos.com" },
+    description: "An open industrial IoT platform for predictive maintenance: sensor nodes stream machine data, a live dashboard shows it and an Isolation Forest flags readings that drift before a breakdown.",
+    achievements: [
+      "Designed four hardware nodes (ESP32, STM32, Arduino Nano and Raspberry Pi Pico 2 W) and the firmware, Rust edge gateway, FastAPI backend and Next.js dashboard behind them",
+      "Built per-node anomaly models calibrated against their own training data, with alerts and maintenance tickets raised automatically from runs of anomalous readings",
+      "Run the project in the open as an organisation with a monorepo, read-only component repositories, milestones and documentation",
+    ],
+    technologies: ["Python", "FastAPI", "Next.js", "Rust", "C", "PostgreSQL", "scikit-learn", "Docker"],
+  },
+  {
+    id: "founder-melophos",
+    group: "founder",
+    role: "Founder, MELOPHOS",
+    company: "MELOPHOS",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Sep 2026",
+    endDate: "Present",
+    link: { label: "melophos.com", url: "https://melophos.com" },
+    description: "An open instrument-learning platform: an ESP32-S3 hub lights the next notes above the keys of any keyboard or along a guitar fretboard, then scores every note for pitch and timing.",
+    achievements: [
+      "Designed the platform across firmware, a Rust scoring engine, a self-hosted server and a browser Studio with light-guided practice",
+      "Planned the first hardware revision: a hub board and snap-together LED bars for 61, 76 and 88-key instruments",
+    ],
+    technologies: ["TypeScript", "Rust", "Python", "ESP32-S3", "FastAPI", "WebMIDI"],
+  },
+  {
+    id: "founder-vitafolio",
+    group: "founder",
+    role: "Founder and developer, Vitafolio",
+    company: "Vitafolio",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Oct 2026",
+    endDate: "Present",
+    link: { label: "vitafolio.isaacadjei.me", url: "https://vitafolio.isaacadjei.me" },
+    description: "A live web app for building, storing and sharing every version of a CV, with a CV checker, a student jobs board and an application tracker.",
+    achievements: [
+      "Built and run the whole product: Laravel, in-browser LaTeX, tagged PDFs, seven interface languages and WCAG 2.2 AA accessibility",
+      "Added a jobs board fed nightly from job APIs and employers' own hiring systems, plus a private tracker for every application",
+    ],
+    technologies: ["Laravel", "PHP", "Vue", "Tailwind CSS", "Docker", "Render"],
   },
   {
     id: "targetjobs-judge",

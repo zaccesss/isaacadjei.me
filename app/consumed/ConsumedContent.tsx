@@ -1,26 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
+import { monthOptions, useListQuery, yearOptions } from "@/components/shared/useListQuery"
 import { useSearchParams } from "next/navigation"
-import Link from "next/link"
 import {
-  BookOpen, Music2, Headphones, Tv2,
+  BookOpen, Headphones, Tv2,
   Newspaper, BookMarked, Globe,
 } from "lucide-react"
-import { cn } from "@/lib/utils"
 import {
-  videos, podcasts, books, resources, articles, others,
-  MONTHS, MONTH_CHIP, MONTH_NUMBER,
-  isMonthAvailable, sortByRecency, yearsFrom,
-  type Month,
-} from "@/data/consumed"
-import { ConsumedFilterBar } from "@/components/consumed/ConsumedFilterBar"
+  MONTH_NUMBER,
+  isMonthAvailable, sortByRecency,
+  type Month, type VideoEntry, type PodcastEntry, type BookEntry, type ResourceEntry, type LinkEntry,
+} from "@/data/consumed/types"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { VideoCard } from "@/components/consumed/VideoCard"
 import { ResourceCard } from "@/components/consumed/ResourceCard"
 import { LinkCard } from "@/components/consumed/LinkCard"
 import { BookCard } from "@/components/consumed/BookCard"
 import { PodcastCard } from "@/components/consumed/PodcastCard"
+import { HubOverview, type HubOverviewProps } from "@/components/consumed/HubOverview"
 
 function matchesSearch(item: Record<string, unknown>, query: string): boolean {
   if (!query) return true
@@ -31,27 +30,44 @@ function matchesSearch(item: Record<string, unknown>, query: string): boolean {
   return Array.isArray(tags) && tags.some((t) => typeof t === "string" && t.toLowerCase().includes(q))
 }
 
-export default function ConsumedContent() {
+export type ConsumedHubData = {
+  videos: VideoEntry[]
+  podcasts: PodcastEntry[]
+  books: BookEntry[]
+  resources: ResourceEntry[]
+  articles: LinkEntry[]
+  others: LinkEntry[]
+  overview: HubOverviewProps
+}
+
+export default function ConsumedContent({ videos, podcasts, books, resources, articles, others, overview }: ConsumedHubData) {
   const searchParams = useSearchParams()
   const preview = searchParams.get("preview") === "1"
 
-  const [activeYear, setActiveYear] = useState<string>("all")
-  const [activeMonth, setActiveMonth] = useState<string>("all")
-  const [search, setSearch] = useState("")
+  const query = useListQuery("newest")
+  const activeYear = query.get("year")
+  const activeMonth = query.get("month")
+  const search = query.search
+  const oldestFirst = query.sort === "oldest"
   const [activeVideos, setActiveVideos] = useState<Set<string>>(new Set())
 
-  const years = yearsFrom(videos, podcasts, books, resources, articles, others)
-  const availableMonths = MONTHS.filter((m) => isMonthAvailable(m, new Date().getFullYear(), preview))
+  const liveAll = [...videos, ...podcasts, ...books, ...resources, ...articles, ...others].filter((i) =>
+    isMonthAvailable(i.month, i.year, preview, i.day),
+  )
+  const groups: FilterGroup[] = [
+    { key: "year", label: "Year", kind: "single", options: yearOptions(liveAll.map((i) => i.year)) },
+    { key: "month", label: "Month", kind: "single", options: monthOptions(liveAll.map((i) => MONTH_NUMBER[i.month])) },
+  ]
 
-  const filterItems = <T extends { month: Month; year: number }>(items: T[]) => {
+  const filterItems = <T extends { month: Month; year: number; day?: number }>(items: T[]) => {
     const visible = sortByRecency(
       items
-        .filter((i) => isMonthAvailable(i.month, i.year, preview))
-        .filter((i) => activeYear === "all" || String(i.year) === activeYear)
-        .filter((i) => activeMonth === "all" || i.month === activeMonth)
+        .filter((i) => isMonthAvailable(i.month, i.year, preview, i.day))
+        .filter((i) => !activeYear || String(i.year) === activeYear)
+        .filter((i) => !activeMonth || String(MONTH_NUMBER[i.month] + 1) === activeMonth)
         .filter((i) => matchesSearch(i as unknown as Record<string, unknown>, search))
     )
-    return visible
+    return oldestFirst ? [...visible].reverse() : visible
   }
 
   const filteredVideos    = filterItems(videos)
@@ -71,7 +87,7 @@ export default function ConsumedContent() {
     for (const item of list) periodsMap.set(periodKey(item.year, item.month), { year: item.year, month: item.month })
   }
   const periodsToShow = [...periodsMap.values()].sort(
-    (a, b) => b.year - a.year || MONTH_NUMBER[b.month] - MONTH_NUMBER[a.month]
+    (a, b) => (oldestFirst ? -1 : 1) * (b.year - a.year || MONTH_NUMBER[b.month] - MONTH_NUMBER[a.month])
   )
 
   return (
@@ -79,24 +95,22 @@ export default function ConsumedContent() {
       <div className="space-y-4 max-w-2xl">
         <h1 className="text-4xl font-bold tracking-tight">Consumed</h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Everything I have watched, listened to and read, newest first. Videos, podcasts, books, music, resources and more. More content gets added as time goes on. See what I am up to right now on my{" "}
-          <Link href="/now" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-            Now page
-          </Link>
-          .
+          Everything I have watched, listened to and read, newest first. Videos, podcasts, books, music, resources and more. More content gets added as time goes on.
         </p>
       </div>
 
-      <ConsumedFilterBar
-        years={years}
-        activeYear={activeYear}
-        onYearChange={setActiveYear}
-        months={availableMonths}
-        activeMonth={activeMonth}
-        onMonthChange={setActiveMonth}
-        search={search}
-        onSearchChange={setSearch}
+      <HubOverview {...overview} />
+
+      <h2 className="text-2xl font-semibold tracking-tight">Everything, by month</h2>
+
+      <ListControls
+        query={query}
+        groups={groups}
+        sortOptions={["newest", "oldest"]}
+        searchLabel="Search everything consumed"
         searchPlaceholder="Search everything by title, author, genre or tag..."
+        resultCount={totalFiltered}
+        itemLabel={{ one: "item", many: "items" }}
       />
 
       <ConsumedCategoryTabs
@@ -131,7 +145,7 @@ export default function ConsumedContent() {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Month</span>
-                        <span className={cn("rounded-full border px-3 py-1 text-xs font-mono font-medium", MONTH_CHIP[month])}>
+                        <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
                           {month} {year}
                         </span>
                         <span className="text-xs text-muted-foreground font-mono">{total} {total === 1 ? "item" : "items"}</span>

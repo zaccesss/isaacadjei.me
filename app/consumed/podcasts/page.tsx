@@ -1,6 +1,10 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import PodcastsContent from "./PodcastsContent"
+import { podcasts, consumedTotals } from "@/data/consumed"
+import { consumedItemsForPage } from "@/data/consumed/summary"
+
+export const revalidate = 21600
 
 export const metadata: Metadata = {
   title: "Audio",
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
 export default function PodcastsPage() {
   return (
     <Suspense>
-      <PodcastsContent />
+      <PodcastsContent podcasts={consumedItemsForPage(podcasts)} totals={consumedTotals()} />
     </Suspense>
   )
 }

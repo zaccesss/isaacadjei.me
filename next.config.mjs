@@ -55,6 +55,8 @@ const nextConfig = {
       { source: "/dashboard/blog-analytics", destination: "/dashboard/post-analytics", permanent: true },
       // the World Cup predictor note generalised into a multi-sport platform; keep the old link working.
       { source: "/notes/world-cup-ai-predictor", destination: "/notes/multi-sport-ai-predictor", permanent: true },
+      // the dotfiles project grew into the wider developer environment write-up
+      { source: "/projects/dotfiles", destination: "/projects/dev-environment", permanent: true },
     ]
   },
   async headers() {
@@ -81,7 +83,7 @@ const nextConfig = {
               "default-src 'self'",
               `script-src ${scriptSrc.join(" ")}`,
               "style-src 'self' 'unsafe-inline'",
-              "font-src 'self' data:",
+              "font-src 'self' data: https://cal.com",
               "img-src 'self' data: blob: https:",
               `connect-src ${connectSrc.join(" ")}`,
               // MapLibre GL JS (the Applications map) parses vector tiles in a Web Worker created

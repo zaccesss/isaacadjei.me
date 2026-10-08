@@ -68,10 +68,10 @@ export default function Hero() {
                 new KeyboardEvent("keydown", { key: "i", ctrlKey: true, bubbles: true })
               )
             }
-            className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/50 px-4 py-1.5 text-xs text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors cursor-pointer group"
+            className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-muted/50 px-4 py-1.5 text-xs text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors cursor-pointer group"
           >
             <span>Quick navigate</span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 pointer-coarse:hidden">
               <kbd className="rounded border border-border bg-background px-2 py-0.5 font-mono text-xs font-medium shadow-xs">
                 {modLabel}
               </kbd>

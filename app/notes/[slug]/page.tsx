@@ -2,12 +2,31 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
-import { notes, getNoteBySlug, type NoteBlock } from "@/data/notes"
+import { notes, notePosts, getNoteBySlug, getNotePostBySlug, type NoteBlock, type NotePost } from "@/data/notes"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
+import { renderBlock as renderContentBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
+import { TAG_CLASS } from "@/components/shared/Tag"
+import CodeBlock from "@/components/shared/CodeBlock"
+import { highlightBlocks } from "@/lib/highlight"
+
+export const revalidate = 21600
+export const dynamicParams = true
 
 export async function generateStaticParams() {
-  return notes.map((n) => ({ slug: n.slug }))
+  return [
+    ...notes.map((n) => ({ slug: n.slug })),
+    ...notePosts.filter((p) => p.published).map((p) => ({ slug: p.slug })),
+  ]
+}
+
+function formatNoteDate(date: string): string {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  })
 }
 
 export async function generateMetadata({
@@ -16,6 +35,24 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
+  const post = getNotePostBySlug(slug)
+  if (post) {
+    const og = `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`
+    return {
+      title: `Notes | ${post.title}`,
+      description: post.description,
+      alternates: {
+        canonical: `https://www.isaacadjei.me/notes/${slug}`,
+      },
+      openGraph: {
+        title: `Notes | ${post.title}`,
+        description: post.description,
+        type: "article",
+        publishedTime: post.date,
+        images: [og],
+      },
+    }
+  }
   const note = getNoteBySlug(slug)
   if (!note) return {}
 
@@ -85,9 +122,7 @@ function renderBlock(block: NoteBlock, i: number): React.ReactNode {
       )
     case "pre":
       return (
-        <pre key={i} className="rounded-lg bg-muted/40 p-4 text-xs font-mono leading-relaxed overflow-x-auto">
-          {block.text}
-        </pre>
+        <CodeBlock key={i} lang="text" text={block.text} />
       )
     default:
       return null
@@ -100,6 +135,8 @@ export default async function NoteSlugPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  const post = getNotePostBySlug(slug)
+  if (post) return <NotePostView post={post} />
   const note = getNoteBySlug(slug)
   if (!note) notFound()
 
@@ -115,12 +152,7 @@ export default async function NoteSlugPage({
         </Link>
         <div className="flex flex-wrap gap-2 mb-4">
           {note.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
-            >
-              {tag}
-            </span>
+            <span key={tag} className={TAG_CLASS}>{tag}</span>
           ))}
         </div>
         <div className="flex items-start justify-between gap-4">
@@ -156,6 +188,53 @@ export default async function NoteSlugPage({
           ))}
         </ul>
       </section>
+
+      <Separator />
+
+      <Link
+        href="/notes"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        Back to notes
+      </Link>
+    </div>
+  )
+}
+
+async function NotePostView({ post }: { post: NotePost }) {
+  const headingIds = buildHeadingIds(post.content)
+  const highlighted = await highlightBlocks(post.content, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
+  return (
+    <div className="container max-w-3xl py-24 space-y-12">
+      <div>
+        <Link
+          href="/notes"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to notes
+        </Link>
+        <time dateTime={post.date} className="block text-sm text-muted-foreground font-mono mb-4">
+          {formatNoteDate(post.date)}
+        </time>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+          <ShareButton title={`Notes | ${post.title}`} />
+        </div>
+        <p className="mt-4 text-muted-foreground text-lg leading-relaxed">{post.description}</p>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {post.tags.map((tag) => (
+            <span key={tag} className={TAG_CLASS}>{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      <Separator />
+
+      <article className="space-y-4">
+        {post.content.map((block, i) => renderContentBlock(block, i, headingIds, post.content[i - 1], highlighted))}
+      </article>
 
       <Separator />
 

@@ -1,3 +1,6 @@
+import type { ContentBlock } from "@/data/blog"
+import { isLive } from "@/lib/schedule"
+
 export type NoteBlock =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
@@ -37,3 +40,25 @@ export const notes: NoteEntry[] = [
   codeforcesAutoPush,
   oneEyeVisionResearch,
 ]
+
+export interface NotePost {
+  slug: string
+  title: string
+  date: string
+  description: string
+  tags: string[]
+  published: boolean
+  content: ContentBlock[]
+}
+
+export const notePosts: NotePost[] = []
+
+export function getPublishedNotes(): NotePost[] {
+  const pool =
+    process.env.NODE_ENV === "development" ? notePosts : notePosts.filter((p) => p.published && isLive(p.date))
+  return [...pool].sort((a, b) => b.date.localeCompare(a.date))
+}
+
+export function getNotePostBySlug(slug: string): NotePost | undefined {
+  return getPublishedNotes().find((p) => p.slug === slug)
+}

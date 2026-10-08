@@ -86,9 +86,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link
           rel="alternate"
-          type="application/rss+xml"
+          type="application/atom+xml"
           title="Isaac Adjei"
           href="/blog/feed.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title="Isaac Adjei: everything"
+          href="/feed.xml"
         />
         <script
           type="application/ld+json"

@@ -8,6 +8,9 @@ import { cn } from "@/lib/utils"
 import Navigation from "./Navigation"
 import MobileNav from "./MobileNav"
 import ThemeToggle from "@/components/shared/ThemeToggle"
+import { Button } from "@/components/ui/button"
+import { Rss, Search } from "lucide-react"
+import { useModKey } from "@/hooks/useModKey"
 import ScriptMark from "@/components/shared/ScriptMark"
 
 const WORDMARK = "isaac adjei"
@@ -75,6 +78,7 @@ export default function Header() {
   const isScrolled = scrollY > 10
   const isHome = pathname === "/"
   const { shown, typing, signKey } = useHeaderIdentity(pathname)
+  const { modLabel } = useModKey()
 
   return (
     <header
@@ -85,7 +89,7 @@ export default function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="container flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+      <div className="container flex h-16 items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <Link
           href="/"
           title="Home"
@@ -108,7 +112,21 @@ export default function Header() {
           </span>
         </Link>
         <Navigation />
-        <div className="flex items-center gap-4 justify-end">
+        <div className="flex items-center gap-2 sm:gap-4 justify-end">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Search and jump to any page"
+            title={`Search (${modLabel} + I)`}
+            onClick={() => window.dispatchEvent(new Event("open-command-menu"))}
+          >
+            <Search className="h-4 w-4" aria-hidden="true" />
+          </Button>
+          <Button asChild variant="ghost" size="icon">
+            <Link href="/feeds" aria-label="RSS feeds" title="RSS feeds">
+              <Rss className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </Button>
           <ThemeToggle />
           <MobileNav />
         </div>

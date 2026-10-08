@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes } from "@/data/notes"
+import { notes, getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
-import { videos, articles, others, books, resources, artists } from "@/data/consumed"
+import { videos, articles, others, books, resources, artists, liveConsumed } from "@/data/consumed"
+import { liveOnly } from "@/lib/schedule"
 import { normTag } from "@/lib/tags"
 import TagsClient from "@/components/tags/TagsClient"
 
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
     images: ["/api/og?title=Tags&description=Browse%20all%20topics%20across%20blog%20posts%2C%20TIL%20entries%2C%20notes%2C%20projects%2C%20publications%20and%20consumed%20items."],
   },
 }
+
+export const revalidate = 21600
 
 export default function TagsPage() {
   const counts = new Map<string, { display: string; count: number }>()
@@ -32,14 +35,15 @@ export default function TagsPage() {
 
   for (const post of getPublishedPosts()) post.tags.forEach(addTag)
   for (const til of getPublishedTILEntries()) til.tags?.forEach(addTag)
-  for (const note of notes) note.tags.forEach(addTag)
+  for (const note of liveOnly(notes)) note.tags.forEach(addTag)
+  for (const post of getPublishedNotes()) post.tags.forEach(addTag)
   for (const project of projects) project.technologies.forEach(addTag)
   for (const pub of publications) pub.keywords?.forEach(addTag)
-  for (const video of videos) video.tags.forEach(addTag)
-  for (const article of articles) article.tags.forEach(addTag)
-  for (const other of others) other.tags.forEach(addTag)
-  for (const book of books) addTag(book.genre)
-  for (const resource of resources) addTag(resource.category)
+  for (const video of liveConsumed(videos)) video.tags.forEach(addTag)
+  for (const article of liveConsumed(articles)) article.tags.forEach(addTag)
+  for (const other of liveConsumed(others)) other.tags.forEach(addTag)
+  for (const book of liveConsumed(books)) addTag(book.genre)
+  for (const resource of liveConsumed(resources)) addTag(resource.category)
   for (const artist of artists) addTag(artist.genre)
 
   const tags = [...counts.entries()]

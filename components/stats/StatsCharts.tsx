@@ -12,7 +12,7 @@ const h = (v: number) => `${v} h`
 
 function Card({ title, note, children, wide = false }: { title: string; note?: string; children: ReactNode; wide?: boolean }) {
   return (
-    <div className={`rounded-2xl border border-border/60 bg-card p-5 shadow-xs ${wide ? "sm:col-span-2" : ""}`}>
+    <div className={`min-w-0 rounded-2xl border border-border/60 bg-card p-5 shadow-xs ${wide ? "sm:col-span-2" : ""}`}>
       <div className="flex items-baseline justify-between gap-2 mb-3">
         <h3 className="text-sm font-semibold">{title}</h3>
         {note && <span className="text-[11px] text-muted-foreground">{note}</span>}

@@ -28,7 +28,7 @@ export default function CommandMenu() {
   const router = useRouter()
   const pathname = usePathname()
   const { shortcut } = useModKey()
-  const shiftShortcut = (key: string) => `⇧${key}`
+  const shiftShortcut = (key: string) => `⇧ + ${key}`
 
   useEffect(() => {
     if (pathname === "/maintenance") return
@@ -100,7 +100,12 @@ export default function CommandMenu() {
       }
     }
     document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
+    const openFromButton = () => setOpen(true)
+    window.addEventListener("open-command-menu", openFromButton)
+    return () => {
+      document.removeEventListener("keydown", down)
+      window.removeEventListener("open-command-menu", openFromButton)
+    }
   }, [open, router, pathname])
 
   const go = (path: string) => {
@@ -160,7 +165,7 @@ export default function CommandMenu() {
             Blog
             <CommandShortcut>{shortcut("B")}</CommandShortcut>
           </CommandItem>
-          <CommandItem value="newsletter subscribe issues" onSelect={() => go("/newsletter")}>
+          <CommandItem value="newsletter subscribe issues" onSelect={() => go("/newsletter#subscribe")}>
             <Rss className="mr-2 h-4 w-4" />
             Newsletter
             <CommandShortcut>{shortcut("N")}</CommandShortcut>
@@ -187,6 +192,10 @@ export default function CommandMenu() {
             <Lightbulb className="mr-2 h-4 w-4" />
             TIL
             <CommandShortcut>{shiftShortcut("T")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="rss feeds subscribe reader blog til notes newsletter" onSelect={() => go("/feeds")}>
+            <Rss className="mr-2 h-4 w-4" />
+            RSS Feeds
           </CommandItem>
           <CommandItem value="research publications academic papers zenodo orcid" onSelect={() => go("/respub")}>
             <GraduationCap className="mr-2 h-4 w-4" />

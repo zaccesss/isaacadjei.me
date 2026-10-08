@@ -1,12 +1,15 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useMemo } from "react"
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
-import { cn, computeReadingTime, monthsFromDates } from "@/lib/utils"
-import { CONTENT_YEAR_MONTH_FILTERS } from "@/lib/feature-flags"
+import { cn, computeReadingTime } from "@/lib/utils"
 import type { TILEntry } from "@/data/til"
 import { relevanceScore } from "@/lib/search"
+import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
+import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import Tag, { tilCategoryLabelClass } from "@/components/shared/Tag"
 
 function tilReadingTime(entry: TILEntry): number {
   const blocks: { type: string; text?: string; code?: string }[] = [
@@ -20,7 +23,8 @@ function tilReadingTime(entry: TILEntry): number {
   return computeReadingTime(blocks)
 }
 
-const ITEMS_PER_PAGE = 10
+const PAGE_SIZES = [10, 20, 50]
+const LIST_ID = "til-entry-list"
 
 export const CATEGORY_STYLES: Record<string, string> = {
   "C":                          "bg-[#00599C]/10 text-[#00599C] dark:text-[#60a5fa]",
@@ -32,6 +36,7 @@ export const CATEGORY_STYLES: Record<string, string> = {
   "Algorithms & Data Structures": "bg-violet-600/10 text-violet-600 dark:text-violet-400",
   "Security":                   "bg-red-600/10 text-red-600 dark:text-red-400",
   "Hardware":                   "bg-amber-600/10 text-amber-600 dark:text-amber-400",
+  "Electronics":                "bg-cyan-700/10 text-cyan-700 dark:text-cyan-300",
   "AI/ML":                      "bg-purple-600/10 text-purple-600 dark:text-purple-400",
   "Python":                     "bg-[#f59e0b]/10 text-[#f59e0b] dark:text-[#fcd34d]",
   "Linux":                      "bg-yellow-400/10 text-[#b45309] dark:text-[#fde68a]",
@@ -82,11 +87,14 @@ function highlight(text: string, q: string): React.ReactNode {
 }
 
 export default function TILList({ entries }: Props) {
-  const [search, setSearch] = useState("")
-  const [category, setCategory] = useState<string>("all")
-  const [year, setYear] = useState<string>("all")
-  const [month, setMonth] = useState<string>("all")
-  const [page, setPage] = useState(1)
+  const query = useListQuery("newest")
+  const [perPage, setPerPage] = usePageSize("til", PAGE_SIZES)
+  const search = query.search
+  const category = query.get("category") || "all"
+  const tags = query.getAll("tag")
+  const year = query.get("year")
+  const month = query.get("month")
+  const sortParam = query.get("sort")
 
   const categories = useMemo(() => {
     const seen = new Set<string>()
@@ -94,58 +102,55 @@ export default function TILList({ entries }: Props) {
     return Array.from(seen).sort()
   }, [entries])
 
-  const years = useMemo(() => {
-    const seen = new Set<number>()
-    entries.forEach(e => seen.add(new Date(e.date).getFullYear()))
-    return Array.from(seen).sort((a, b) => b - a)
-  }, [entries])
-
-  const months = useMemo(() => monthsFromDates(entries.map(e => e.date)), [entries])
-
-  const filtered = useMemo(() => {
+  const filtered = (() => {
     const q = search.toLowerCase().trim()
     const matches = entries.filter(e => {
       if (category !== "all" && e.category !== category) return false
-      if (year !== "all" && String(new Date(e.date).getFullYear()) !== year) return false
-      if (month !== "all" && String(new Date(e.date).getMonth()) !== month) return false
+      if (tags.length > 0 && !tags.every(t => (e.tags ?? []).includes(t))) return false
+      if (year && String(new Date(e.date).getFullYear()) !== year) return false
+      if (month && String(new Date(e.date).getMonth() + 1) !== month) return false
       if (q) {
         const plain = stripLinks(e.body)
-        return e.title.toLowerCase().includes(q) || plain.toLowerCase().includes(q)
+        return e.title.toLowerCase().includes(q) || plain.toLowerCase().includes(q) || (e.tags ?? []).some(t => t.toLowerCase().includes(q))
       }
       return true
     })
-    if (!q) return matches
-    return matches.slice().sort(
-      (a, b) => relevanceScore(b.title, stripLinks(b.body), q) - relevanceScore(a.title, stripLinks(a.body), q)
-    )
-  }, [entries, search, category, year, month])
+    if (q && !sortParam) {
+      return matches.slice().sort(
+        (a, b) => relevanceScore(b.title, stripLinks(b.body), q) - relevanceScore(a.title, stripLinks(a.body), q)
+      )
+    }
+    return sortItems(matches, query.sort, e => new Date(e.date).getTime(), e => e.title)
+  })()
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE)
-  const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE)
+  const totalPages = Math.max(1, Math.ceil(filtered.length / perPage))
+  const page = Math.min(query.page, totalPages)
+  const paginated = filtered.slice((page - 1) * perPage, page * perPage)
 
-  function setFilter(next: { search?: string; category?: string; year?: string; month?: string }) {
-    if (next.search !== undefined) setSearch(next.search)
-    if (next.category !== undefined) setCategory(next.category)
-    if (next.year !== undefined) setYear(next.year)
-    if (next.month !== undefined) setMonth(next.month)
-    setPage(1)
-  }
+  const groups: FilterGroup[] = [
+    { key: "category", label: "Category", kind: "single", options: categories.map(c => ({ value: c, label: c })) },
+    { key: "tag", label: "Tags", kind: "multi", options: countedOptions(entries.flatMap(e => e.tags ?? [])) },
+    { key: "year", label: "Year", kind: "single", options: yearOptions(entries.map(e => new Date(e.date).getFullYear())) },
+    { key: "month", label: "Month", kind: "single", options: monthOptions(entries.map(e => new Date(e.date).getMonth())) },
+  ]
+  const setCategory = (cat: string) => query.update({ category: cat === "all" ? null : cat })
 
   return (
     <div className="space-y-8">
-      <div>
-        <input
-          type="search"
-          placeholder="Search entries…"
-          value={search}
-          onChange={e => setFilter({ search: e.target.value })}
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/30"
-        />
-      </div>
+      <ListControls
+        query={query}
+        groups={groups}
+        searchLabel="Search entries"
+        searchPlaceholder="Search entries…"
+        resultCount={filtered.length}
+        itemLabel={{ one: "entry", many: "entries" }}
+      />
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
         <button
-          onClick={() => setFilter({ category: "all" })}
+          type="button"
+          aria-pressed={category === "all"}
+          onClick={() => setCategory("all")}
           className={cn(
             "rounded-full px-3 py-1 text-xs font-medium transition-colors",
             category === "all"
@@ -158,7 +163,9 @@ export default function TILList({ entries }: Props) {
         {categories.map(cat => (
           <button
             key={cat}
-            onClick={() => setFilter({ category: cat })}
+            type="button"
+            aria-pressed={category === cat}
+            onClick={() => setCategory(cat)}
             className={cn(
               "rounded-full px-3 py-1 text-xs font-medium transition-colors",
               category === cat
@@ -171,86 +178,17 @@ export default function TILList({ entries }: Props) {
         ))}
       </div>
 
-      {CONTENT_YEAR_MONTH_FILTERS && years.length > 1 && (
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Year</span>
-          <button
-            onClick={() => setFilter({ year: "all" })}
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-              year === "all"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
-            )}
-          >
-            All
-          </button>
-          {years.map(y => (
-            <button
-              key={y}
-              onClick={() => setFilter({ year: String(y) })}
-              className={cn(
-                "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                year === String(y)
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {y}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {CONTENT_YEAR_MONTH_FILTERS && months.length > 1 && (
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Month</span>
-          <button
-            onClick={() => setFilter({ month: "all" })}
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-              month === "all"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
-            )}
-          >
-            All
-          </button>
-          {months.map(m => (
-            <button
-              key={m.index}
-              onClick={() => setFilter({ month: String(m.index) })}
-              className={cn(
-                "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                month === String(m.index)
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {m.name}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <p className="text-xs text-muted-foreground font-mono">
-        {filtered.length} of {entries.length} {entries.length === 1 ? "entry" : "entries"}
-      </p>
-
-      <div className="space-y-0 divide-y divide-border">
+      <div id={LIST_ID} className="space-y-0 divide-y divide-border scroll-mt-24">
         {paginated.length === 0 ? (
           <p className="py-12 text-center text-sm text-muted-foreground">No entries match.</p>
         ) : (
           paginated.map(entry => {
-            const catClass = CATEGORY_STYLES[entry.category] ?? "bg-primary/10 text-primary"
             const q = search.toLowerCase().trim()
             const plainBody = stripLinks(entry.body)
             return (
               <div key={entry.id} className="py-5 space-y-2">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className={cn("inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium", catClass)}>
-                    {entry.category}
-                  </span>
+                  <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
                   <time dateTime={entry.date} className="text-xs text-muted-foreground font-mono">
                     {formatDate(entry.date)}
                   </time>
@@ -270,9 +208,7 @@ export default function TILList({ entries }: Props) {
 
                 <div className="flex flex-wrap items-center gap-2 pt-0.5">
                   {entry.tags?.map(tag => (
-                    <span key={tag} className="text-xs text-muted-foreground border border-border rounded-full px-2 py-0.5">
-                      {tag}
-                    </span>
+                    <Tag key={tag}>{tag}</Tag>
                   ))}
                   {entry.source && (
                     <a
@@ -292,61 +228,22 @@ export default function TILList({ entries }: Props) {
         )}
       </div>
 
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-1 pt-2">
-          <button
-            type="button"
-            onClick={() => setPage(1)}
-            disabled={page === 1}
-            className="inline-flex items-center justify-center h-8 w-8 rounded-md border text-sm hover:bg-muted transition-colors disabled:opacity-40 disabled:pointer-events-none"
-            aria-label="First page"
-          >
-            «
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage(p => p - 1)}
-            disabled={page === 1}
-            className="inline-flex items-center justify-center h-8 w-8 rounded-md border text-sm hover:bg-muted transition-colors disabled:opacity-40 disabled:pointer-events-none"
-            aria-label="Previous page"
-          >
-            ‹
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-            <button
-              type="button"
-              key={p}
-              onClick={() => setPage(p)}
-              className={cn(
-                "inline-flex items-center justify-center h-8 w-8 rounded-md border text-sm transition-colors",
-                p === page
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "hover:bg-muted"
-              )}
-            >
-              {p}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => setPage(p => p + 1)}
-            disabled={page === totalPages}
-            className="inline-flex items-center justify-center h-8 w-8 rounded-md border text-sm hover:bg-muted transition-colors disabled:opacity-40 disabled:pointer-events-none"
-            aria-label="Next page"
-          >
-            ›
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage(totalPages)}
-            disabled={page === totalPages}
-            className="inline-flex items-center justify-center h-8 w-8 rounded-md border text-sm hover:bg-muted transition-colors disabled:opacity-40 disabled:pointer-events-none"
-            aria-label="Last page"
-          >
-            »
-          </button>
-        </div>
-      )}
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onChange={query.setPage}
+        totalItems={filtered.length}
+        pageSize={perPage}
+        pageSizeOptions={PAGE_SIZES}
+        onPageSizeChange={(n) => {
+          setPerPage(n)
+          query.setPage(1)
+        }}
+        scrollTargetId={LIST_ID}
+        itemLabel="entries"
+        label="TIL entry pages"
+        className="pt-2"
+      />
     </div>
   )
 }

@@ -1,15 +1,20 @@
 import Link from "next/link"
 import { ExternalLink, FileText } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { RESOURCE_CHIP, MONTH_CHIP, type ResourceEntry } from "@/data/consumed"
+import { type ResourceEntry } from "@/data/consumed/types"
 import { consumedSlug, normTag } from "@/lib/tags"
+import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { ConsumedImage, SiteIcon } from "./ConsumedImage"
+import { LedTo } from "./LedTo"
 
 export function ResourceCard({ resource }: { resource: ResourceEntry }) {
-  const chip = RESOURCE_CHIP[resource.category]
   const slug = consumedSlug(resource.title)
   const subpageHref = `/consumed/resources/${slug}`
   return (
-    <div className="group flex flex-col gap-3 rounded-xl border border-border/60 bg-card p-4 hover:border-border transition-colors">
+    <div className="group flex flex-col overflow-hidden rounded-xl border border-border/60 bg-card hover:border-border transition-colors">
+      <Link href={subpageHref} tabIndex={-1} aria-hidden="true">
+        <ConsumedImage src={resource.image} alt={resource.title} kind="preview" sourceUrl={resource.url} />
+      </Link>
+      <div className="flex flex-1 flex-col gap-3 p-4">
       <div className="flex items-start justify-between gap-2">
         <div className="space-y-0.5 flex-1 min-w-0">
           <Link
@@ -18,7 +23,7 @@ export function ResourceCard({ resource }: { resource: ResourceEntry }) {
           >
             {resource.title}
           </Link>
-          <p className="text-[10px] text-muted-foreground truncate">{resource.url.replace(/^https?:\/\//, "")}</p>
+          <p className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><SiteIcon url={resource.url} size={14} /><span className="truncate">{resource.url.replace(/^https?:\/\//, "")}</span></p>
         </div>
         <a
           href={resource.url}
@@ -31,14 +36,15 @@ export function ResourceCard({ resource }: { resource: ResourceEntry }) {
         </a>
       </div>
       <p className="text-xs text-muted-foreground leading-relaxed flex-1">{resource.description}</p>
+      <LedTo links={resource.ledTo} />
       <div className="flex items-center gap-2">
         <Link
           href={`/tags/${normTag(resource.category)}`}
-          className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium hover:opacity-80 transition-opacity", chip)}
+          className={TAG_LINK_CLASS}
         >
           {resource.category}
         </Link>
-        <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium", MONTH_CHIP[resource.month])}>
+        <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
           {resource.month.slice(0, 3)}
         </span>
         <Link
@@ -48,6 +54,7 @@ export function ResourceCard({ resource }: { resource: ResourceEntry }) {
           <FileText className="h-3 w-3" />
           Notes
         </Link>
+      </div>
       </div>
     </div>
   )

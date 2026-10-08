@@ -1,0 +1,176 @@
+/* the lab terminal palette, mirrored from Isaac's own high-contrast terminal theme.
+   light is the default so the page never flashes dark text on a dark box before the theme
+   class lands; .dark swaps in the vivid near-black set. normal ANSI colours are used with
+   bold weight for emphasis, never the bright variants, matching how the real terminal is set. */
+.term {
+  --t-bg: #ffffff;
+  --t-fg: #1f1f1f;
+  --t-bold: #121212;
+  --t-cursor: #000000;
+  --t-sel-bg: #b3c9d8;
+  --t-sel-fg: #000000;
+  --t-black: #1f1f1f;
+  --t-red: #b40b00;
+  --t-green: #006813;
+  --t-yellow: #735300;
+  --t-blue: #0059a5;
+  --t-magenta: #9f009f;
+  --t-cyan: #006369;
+  --t-white: #3c4650;
+  /* bright black, only for decorative marks such as separators */
+  --t-dim: #4a5761;
+  --t-chrome: #eef2f5;
+  --t-border: #b3c9d8;
+
+  background: var(--t-bg);
+  color: var(--t-fg);
+  border-color: var(--t-border);
+  /* a terminal is monospaced: help lists and tables line up by character, like the real shell */
+  font-family: var(--font-geist-mono, ui-monospace), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* children inherit the monospace face even where a utility class sets the site's sans font */
+.term * {
+  font-family: inherit;
+}
+
+:global(.dark) .term {
+  --t-bg: #000000;
+  --t-fg: #e0e0e0;
+  --t-bold: #ededed;
+  --t-cursor: #ffffff;
+  --t-sel-bg: #273d4c;
+  --t-sel-fg: #ffffff;
+  --t-black: #35424c;
+  --t-red: #ff0f00;
+  --t-green: #00ff2f;
+  --t-yellow: #fff500;
+  --t-blue: #8ac9ff;
+  --t-magenta: #ff66ff;
+  --t-cyan: #6ff7ff;
+  --t-white: #f2f2f2;
+  --t-dim: #465c6d;
+  --t-chrome: #0b1014;
+  --t-border: #273d4c;
+}
+
+.term ::selection {
+  background: var(--t-sel-bg);
+  color: var(--t-sel-fg);
+}
+
+.chrome {
+  background: var(--t-chrome);
+  border-color: var(--t-border);
+  color: var(--t-white);
+}
+
+.body {
+  background: var(--t-bg);
+}
+
+/* pre-wrap keeps the column padding the commands rely on while still letting long lines
+   wrap, so a phone never gets a horizontal scrollbar from the output */
+.line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* a dashed rule clips rather than wraps, the way a too-narrow terminal truncates it */
+.rule {
+  white-space: pre;
+  overflow: hidden;
+}
+
+/* the prompt reads like the shell: no box, no fill, the typed text straight after "> " */
+.input {
+  caret-color: var(--t-cursor);
+  color: var(--t-fg);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  appearance: none;
+}
+
+/* focus shows as an underline along the prompt line rather than a box round the field */
+.promptRow {
+  box-shadow: inset 0 -2px 0 transparent;
+}
+
+.promptRow:focus-within {
+  box-shadow: inset 0 -2px 0 var(--t-blue);
+}
+
+/* tmux status line: status-style bg=default,fg=default, so it uses the terminal's own colours */
+.tmux {
+  background: var(--t-bg);
+  color: var(--t-fg);
+  border-top: 1px solid var(--t-border);
+}
+
+/* window-status-current-style "bold,reverse" */
+.tmuxCurrent {
+  background: var(--t-fg);
+  color: var(--t-bg);
+  padding: 0 0.25ch;
+}
+
+/* the Neovim status line in the same palette: the mode and position blocks reversed in blue */
+.nvimStatus {
+  background: var(--t-chrome);
+  color: var(--t-fg);
+}
+
+.nvimMode {
+  background: var(--t-blue);
+  color: var(--t-bg);
+}
+
+.nvimB {
+  background: var(--t-border);
+  color: var(--t-bold);
+}
+
+.cursorLine {
+  background: var(--t-chrome);
+}
+
+.chip {
+  border: 1px solid var(--t-border);
+  color: var(--t-fg);
+  background: var(--t-bg);
+}
+
+.chip:hover {
+  border-color: var(--t-cyan);
+  color: var(--t-cyan);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--t-blue);
+  outline-offset: 2px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.2em;
+  border: 1px solid var(--t-border);
+  border-radius: 2px;
+}
+
+.fg { color: var(--t-fg); }
+.bold { color: var(--t-bold); font-weight: 700; }
+.dim { color: var(--t-dim); }
+.red { color: var(--t-red); }
+.green { color: var(--t-green); }
+.yellow { color: var(--t-yellow); }
+.blue { color: var(--t-blue); }
+.magenta { color: var(--t-magenta); }
+.cyan { color: var(--t-cyan); }
+.white { color: var(--t-white); }
+.black { color: var(--t-black); }
+.link { color: var(--t-blue); text-decoration: underline; text-underline-offset: 2px; }
+.link:hover { color: var(--t-cyan); }
