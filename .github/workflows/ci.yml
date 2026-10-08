@@ -17,6 +17,7 @@ jobs:
   build:
     name: Lint, type check, test and build
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # retry package downloads so one dropped connection does not fail the run
     env:
       NPM_CONFIG_FETCH_RETRIES: "5"
