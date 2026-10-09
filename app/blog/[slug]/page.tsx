@@ -7,6 +7,7 @@ import { projects } from "@/data/projects"
 import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
 import { highlightBlocks } from "@/lib/highlight"
 import ReadingProgress from "@/components/shared/ReadingProgress"
+import HashScroll from "@/components/shared/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import { renderBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
 import TableOfContents, { type TocHeading } from "@/components/shared/TableOfContents"
@@ -126,6 +127,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <ReadingProgress />
+      <HashScroll />
       {post.published && <ScrollDepthTracker slug={slug} />}
     <div className="container max-w-2xl py-24 xl:max-w-5xl">
       <Link
@@ -313,7 +315,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </Link>
           </div>
 
-          {post.published && process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "true" && (
+          {post.published && (
             <div className="mt-8 pt-6 border-t border-border/40 space-y-8">
               <AuthorCard />
               <div id="reactions" className="space-y-4 scroll-mt-20">
@@ -323,13 +325,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </div>
                 <BlogReactions slug={slug} />
               </div>
-              <div id="comments" className="space-y-4 scroll-mt-20">
-                <div>
-                  <h3 className="text-base font-semibold">Comments</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can.</p>
+              {process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "true" && (
+                <div id="comments" className="space-y-4 scroll-mt-20">
+                  <div>
+                    <h3 className="text-base font-semibold">Comments</h3>
+                    <p className="text-sm text-muted-foreground mt-0.5">Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can.</p>
+                  </div>
+                  <GiscusComments />
                 </div>
-                <GiscusComments />
-              </div>
+              )}
             </div>
           )}
         </div>
