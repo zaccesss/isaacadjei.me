@@ -4,6 +4,7 @@ import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 import { stripHtmlTags } from "@/lib/strip-html-tags"
 import { supabase } from "@/lib/supabase"
+import { recordActivity } from "@/lib/activity"
 
 let ratelimit: Ratelimit | null = null
 if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
@@ -62,6 +63,7 @@ export async function POST(request: Request) {
       console.error("Guestbook insert failed:", error.message)
       return json({ error: "Something went wrong. Please try again." }, { status: 500 })
     }
+    await recordActivity("guestbook.entry", name)
     return json({ success: true })
   } catch (e) {
     console.error("Guestbook request failed:", e)

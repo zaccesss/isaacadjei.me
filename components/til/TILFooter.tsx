@@ -41,7 +41,14 @@ export default function TILFooter({ entry, visibleEntries }: Props) {
 
   const project = entry.project
   const projectHref = project ? (project.slug ? `/projects/${project.slug}` : project.url) : null
-  const showProjectSite = project && project.slug && !project.url.startsWith("https://isaacadjei.me")
+  const onThisSite = (url: string) => {
+    try {
+      return ["isaacadjei.me", "www.isaacadjei.me"].includes(new URL(url).hostname)
+    } catch {
+      return false
+    }
+  }
+  const showProjectSite = project && project.slug && !onThisSite(project.url)
 
   return (
     <footer className="space-y-4 border-t border-border pt-6 text-sm text-muted-foreground leading-relaxed">

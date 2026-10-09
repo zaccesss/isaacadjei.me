@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { verifyConfirm, addSubscriber } from "@/lib/newsletter-subscribe"
+import { recordActivity } from "@/lib/activity"
 
 export async function POST(req: Request) {
   const form = await req.formData().catch(() => null)
@@ -10,6 +11,8 @@ export async function POST(req: Request) {
   }
   const email = verifyConfirm(params)
   const target = new URL("/newsletter/confirmed", req.url)
-  target.searchParams.set("status", !email ? "invalid" : (await addSubscriber(email)) ? "ok" : "error")
+  const added = email ? await addSubscriber(email) : false
+  target.searchParams.set("status", !email ? "invalid" : added ? "ok" : "error")
+  if (added) await recordActivity("newsletter.subscribe")
   return NextResponse.redirect(target, { status: 303, headers: { "Cache-Control": "no-store" } })
 }
