@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.72.1] - 2026-10-09
+
+_Behind the scenes_
+
+### Changed
+
+- Tidier task tracking behind the scenes, so finished work is never shown as overdue
+
 ## [2.72.0] - 2026-10-09
 
 _Behind the scenes_
