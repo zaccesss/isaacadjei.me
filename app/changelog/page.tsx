@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.72.1",
+    date: "2026-10-09",
+    label: "Behind the scenes",
+    changed: [
+      "Tidier task tracking behind the scenes, so finished work is never shown as overdue",
+    ],
+  },
+  {
     version: "v2.72.0",
     date: "2026-10-09",
     label: "Behind the scenes",
