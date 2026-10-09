@@ -2,6 +2,20 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.71.1] - 2026-10-09
+
+_Lighter and better watched_
+
+### Changed
+
+- Pages refresh only when something on them changes, so the site does far less work behind the scenes
+
+### Fixed
+
+- The command menu works by tap and click again, not only from the keyboard
+- Reactions and Comments links from the feeds open at that section on iPhones too
+- Errors from the site are reported again, including ones that happen in your browser
+
 ## [2.71.0] - 2026-10-09
 
 _The newsletter moves onto the site_

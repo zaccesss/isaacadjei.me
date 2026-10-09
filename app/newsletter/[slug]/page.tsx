@@ -7,6 +7,7 @@ import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
 import { computeReadingTime } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import ReadingProgress from "@/components/shared/ReadingProgress"
+import HashScroll from "@/components/shared/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import BlogReactions from "@/components/shared/BlogReactions"
 import GiscusComments from "@/components/blog/GiscusComments"
@@ -100,6 +101,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
   return (
     <>
       <ReadingProgress />
+      <HashScroll />
       <ScrollDepthTracker slug={slug} postType="newsletter" />
       <div className="container max-w-2xl py-24 space-y-10">
         <Link
@@ -257,15 +259,15 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
           )}
         </nav>
 
-        {commentsOn && (
-          <div className="pt-6 border-t border-border/40 space-y-8">
-            <div id="reactions" className="space-y-4 scroll-mt-20">
-              <div>
-                <h3 className="text-base font-semibold">Reactions</h3>
-                <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
-              </div>
-              <BlogReactions slug={`newsletter-${slug}`} />
+        <div className="pt-6 border-t border-border/40 space-y-8">
+          <div id="reactions" className="space-y-4 scroll-mt-20">
+            <div>
+              <h3 className="text-base font-semibold">Reactions</h3>
+              <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
             </div>
+            <BlogReactions slug={`newsletter-${slug}`} />
+          </div>
+          {commentsOn && (
             <div id="comments" className="space-y-4 scroll-mt-20">
               <div>
                 <h3 className="text-base font-semibold">Comments</h3>
@@ -273,8 +275,8 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
               </div>
               <GiscusComments />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   )

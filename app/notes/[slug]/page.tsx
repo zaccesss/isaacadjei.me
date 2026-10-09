@@ -10,6 +10,7 @@ import { TAG_CLASS } from "@/components/shared/Tag"
 import CodeBlock from "@/components/shared/CodeBlock"
 import { highlightBlocks } from "@/lib/highlight"
 import ReadingProgress from "@/components/shared/ReadingProgress"
+import HashScroll from "@/components/shared/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 
 export const revalidate = 604800
@@ -210,6 +211,7 @@ async function NotePostView({ post }: { post: NotePost }) {
   return (
     <>
     <ReadingProgress />
+    <HashScroll />
     <ScrollDepthTracker slug={post.slug} postType="note" />
     <div className="container max-w-3xl py-24 space-y-12">
       <div>

@@ -25,6 +25,19 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.71.1",
+    date: "2026-10-09",
+    label: "Lighter and better watched",
+    changed: [
+      "Pages refresh only when something on them changes, so the site does far less work behind the scenes",
+    ],
+    fixed: [
+      "The command menu works by tap and click again, not only from the keyboard",
+      "Reactions and Comments links from the feeds open at that section on iPhones too",
+      "Errors from the site are reported again, including ones that happen in your browser",
+    ],
+  },
+  {
     version: "v2.71.0",
     date: "2026-10-09",
     label: "The newsletter moves onto the site",
