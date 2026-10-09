@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import BlogContent from "./BlogContent"
 import { getPublishedPosts, toCard } from "@/data/blog"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Blog",

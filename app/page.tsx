@@ -11,7 +11,7 @@ import SectionErrorBoundary from "@/components/shared/SectionErrorBoundary"
 import { getPublishedPosts, toCard } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   alternates: {
