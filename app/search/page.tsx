@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 function buildNotesIndex() {
   return [...liveOnly(notes), ...getPublishedNotes()].map((n) => ({

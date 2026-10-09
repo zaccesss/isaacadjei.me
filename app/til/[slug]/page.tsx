@@ -18,7 +18,7 @@ import { isLive } from "@/lib/schedule"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import TILFooter from "@/components/til/TILFooter"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 function renderInline(text: string): React.ReactNode {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)

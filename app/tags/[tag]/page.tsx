@@ -23,7 +23,7 @@ function fmtDate(dateStr: string) {
   })
 }
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 function liveSources() {
   return {

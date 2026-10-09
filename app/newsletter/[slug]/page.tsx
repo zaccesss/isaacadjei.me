@@ -14,7 +14,7 @@ import ShareButton from "@/components/shared/ShareButton"
 import { renderBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
 import { allIssues, getIssueBySlug, getPublishedIssues, SIGN_OFF_NAME, SIGNATURE, issueLabel, type GatheredItem, type GatheredKind } from "@/data/newsletter"
 
-export const revalidate = 21600
+export const revalidate = 604800
 export const dynamicParams = true
 
 export async function generateStaticParams() {

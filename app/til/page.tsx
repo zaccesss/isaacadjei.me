@@ -4,7 +4,7 @@ import { Rss } from "lucide-react"
 import { getPublishedTILEntries } from "@/data/til"
 import TILList from "@/components/til/TILList"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "TIL | Today I Learned",

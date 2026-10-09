@@ -5,7 +5,7 @@ import SubscribeBox from "@/components/shared/SubscribeBox"
 import RecentIssues from "@/components/shared/RecentIssues"
 import { fetchNewsletterIssues } from "@/lib/newsletter"
 
-export const revalidate = 3600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Newsletter",

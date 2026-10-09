@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 import { Rss } from "lucide-react"
 import NotePostsList from "@/components/notes/NotePostsList"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Notes",

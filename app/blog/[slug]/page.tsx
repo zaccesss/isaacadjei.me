@@ -16,7 +16,7 @@ import ShareButton from "@/components/shared/ShareButton"
 import GiscusComments from "@/components/blog/GiscusComments"
 import AuthorCard from "@/components/blog/AuthorCard"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog",

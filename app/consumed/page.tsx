@@ -4,7 +4,7 @@ import ConsumedContent from "./ConsumedContent"
 import { videos, podcasts, books, resources, articles, others } from "@/data/consumed"
 import { consumedItemsForPage, consumedPicks, consumedCollectionCounts, consumedYearSummary } from "@/data/consumed/summary"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Consumed",

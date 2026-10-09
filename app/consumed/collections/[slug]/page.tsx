@@ -6,7 +6,7 @@ import { CONSUMED_COLLECTIONS, findCollection } from "@/data/consumed/collection
 import { consumedCollectionItems } from "@/data/consumed/summary"
 import { SummaryCard } from "@/components/consumed/SummaryCard"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export function generateStaticParams() {
   return CONSUMED_COLLECTIONS.map((c) => ({ slug: c.slug }))

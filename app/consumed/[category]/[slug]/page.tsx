@@ -104,7 +104,7 @@ function findPrevNext(category: ValidCategory, currentTitle: string) {
   }
 }
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export async function generateStaticParams() {
   return [

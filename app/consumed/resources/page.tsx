@@ -4,7 +4,7 @@ import ResourcesContent from "./ResourcesContent"
 import { resources, consumedTotals } from "@/data/consumed"
 import { consumedItemsForPage } from "@/data/consumed/summary"
 
-export const revalidate = 21600
+export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Resources",

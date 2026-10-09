@@ -12,7 +12,7 @@ import { highlightBlocks } from "@/lib/highlight"
 import ReadingProgress from "@/components/shared/ReadingProgress"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 
-export const revalidate = 21600
+export const revalidate = 604800
 export const dynamicParams = true
 
 export async function generateStaticParams() {
