@@ -126,8 +126,8 @@ const _dev_environment: Project = {
         type: "clip",
         src: "/videos/projects/dev-environment/shell.mp4",
         poster: "/videos/projects/dev-environment/shell.webp",
-        alt: "A new zsh session prints the welcome banner, cmds shows the colour-coded command reference grouped into navigation, Git, repos and system, then gs and glog show the repository status and recent history",
-        caption: "The welcome banner, the cmds reference and the short Git aliases",
+        alt: "A zsh session prints the welcome banner, then cmds shows the colour-coded command reference grouped into navigation, Git, repos and system",
+        caption: "The welcome banner and the cmds reference of aliases and functions",
       },
       { type: "h2", text: "One palette for every terminal" },
       {
@@ -149,8 +149,44 @@ const _dev_environment: Project = {
         type: "clip",
         src: "/videos/projects/dev-environment/tmux.mp4",
         poster: "/videos/projects/dev-environment/tmux.webp",
-        alt: "A tmux session opens with three panes: the Git log of terminal-config, its README in Neovim and a new shell with the welcome banner, all in the high contrast palette",
-        caption: "tmux with Neovim and the shell side by side in the same palette",
+        alt: "tmux with four tabs coloured by name (editor cyan, git green, search yellow, shell magenta) and the editor window split into Neovim, a Git log, a ripgrep search and a diff summary, all in the high contrast palette",
+        caption: "tmux with tabs coloured by window name and four panes in the same palette",
+      },
+      {
+        type: "image",
+        src: "/images/projects/dev-environment/tmux-light.webp",
+        alt: "The same tmux layout in light mode: dark text on white, with the tab colours and the current tab's solid block darkened to stay readable",
+        caption: "The same layout in light mode, with every colour held at 7:1 on white",
+      },
+      {
+        type: "p",
+        text: "Neovim uses a colour scheme written for this set that draws only with the terminal's own 16 colours, so it shows exactly the palette the terminal shows and switches with it. Meaning never rests on colour alone: selection, search matches and the mode block are reversed, keywords and errors are bold and diagnostics are underlined.",
+      },
+      {
+        type: "clip",
+        src: "/videos/projects/dev-environment/neovim.mp4",
+        poster: "/videos/projects/dev-environment/neovim.webp",
+        alt: "A Git log, ripgrep search and diff summary in the shell, then a Python file opened in Neovim with keywords in magenta, strings in green and functions in cyan, the status line at the bottom",
+        caption: "The shell, then Neovim with its terminal palette colour scheme",
+      },
+      { type: "h2", text: "Command-line tools" },
+      {
+        type: "p",
+        text: "lazygit, fzf and ripgrep are set up to use the terminal's own colour names rather than fixed themes, so they follow light and dark mode with nothing to keep in step. lazygit's selected line is reversed and its diffs use plain red and green with bold reversed highlights for the changed words.",
+      },
+      {
+        type: "clip",
+        src: "/videos/projects/dev-environment/lazygit.mp4",
+        poster: "/videos/projects/dev-environment/lazygit.webp",
+        alt: "lazygit with a modified README selected in the files panel, its diff on the right with the added line in green and the commit list below",
+        caption: "lazygit following the terminal palette",
+      },
+      {
+        type: "clip",
+        src: "/videos/projects/dev-environment/fzf.mp4",
+        poster: "/videos/projects/dev-environment/fzf.webp",
+        alt: "fzf filtering the repository's files for the word theme, the matching letters highlighted and the top result reversed",
+        caption: "fzf narrowing a file list as you type",
       },
       { type: "h2", text: "Hooks that guard every repository" },
       {
@@ -161,7 +197,7 @@ const _dev_environment: Project = {
         type: "clip",
         src: "/videos/projects/dev-environment/hooks.mp4",
         poster: "/videos/projects/dev-environment/hooks.webp",
-        alt: "A file containing an example AWS access key ID is staged and committed. The pre-commit hook refuses the commit with an explanation",
+        alt: "A file containing an example AWS access key ID is staged, then the commit is refused by the pre-commit hook with an explanation and the escape hatch for a false positive",
         caption: "The pre-commit hook stopping an example access key",
       },
       {
@@ -173,6 +209,13 @@ const _dev_environment: Project = {
       {
         type: "p",
         text: "linux-bootstrap detects where it runs and adjusts: WSL gets systemd switched on, a desktop VM gets guest integration and desktop-only apps are skipped on a server. It supports Ubuntu 24.04 and 26.04 on both ARM64 and x86_64, which covers the OrbStack VM on the Mac, the Ubuntu install on the Lenovo and WSL2. windows-bootstrap installs WSL2 Ubuntu and hands over to it. system-defaults defines preferences once, then applies them through macOS defaults, the Windows registry and GNOME gsettings where a real equivalent exists.",
+      },
+      {
+        type: "clip",
+        src: "/videos/projects/dev-environment/linux.mp4",
+        poster: "/videos/projects/dev-environment/linux.webp",
+        alt: "Ubuntu 26.04 in OrbStack on the Mac running the Linux profile in bash: the same welcome banner, the OS version, the numbered topic files and a Git log in the same palette",
+        caption: "The same dotfiles on Ubuntu in OrbStack, running bash",
       },
       { type: "h2", text: "Keeping it consistent" },
       {
