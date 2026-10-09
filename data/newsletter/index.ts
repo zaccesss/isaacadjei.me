@@ -30,15 +30,19 @@ export const SIGN_OFF_NAME = "Zac"
 
 export const SIGNATURE = {
   name: "Isaac Adjei",
-  lines: ["Electronic Engineering and Computer Science, Aston University", "Founder, PHAEMOS and MELOPHOS", "London, UK"],
-  logo: "/brand/png/standby-email-256.png",
-  emailLogo: "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public/brand/png/standby-email-256.png",
+  lines: ["Electronic Engineering and Computer Science, Aston University", "Founder and developer: PHAEMOS, MELOPHOS and Vitafolio"],
+  logo: "/brand/png/ia-email-256.png",
+  emailLogo: "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public/brand/png/ia-email-256.png",
   links: [
     { label: "isaacadjei.me", href: "https://isaacadjei.me" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/isaacadjei" },
     { label: "GitHub", href: "https://github.com/zaccesss" },
-    { label: "All links", href: "https://isaacadjei.me/links" },
   ],
+  booking: {
+    label: "Book a call with me",
+    href: "https://isaacadjei.me/book",
+    emailIcon: "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public/brand/png/booking-icon-40.png",
+  },
 }
 
 const FIRST_WINDOW_START = "2026-05-01"

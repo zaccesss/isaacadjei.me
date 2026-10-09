@@ -2,6 +2,18 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.72.3] - 2026-10-09
+
+_Newsletter touches_
+
+### Added
+
+- Newsletter issues show their tags in the list, like blog posts and TILs
+
+### Changed
+
+- Every newsletter issue ends with an updated signature and a link to book a call
+
 ## [2.72.2] - 2026-10-09
 
 _Behind the scenes_

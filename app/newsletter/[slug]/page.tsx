@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Calendar, Clock, Lightbulb, NotebookPen } from "lucide-react"
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Calendar, CalendarDays, Clock, Lightbulb, NotebookPen } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
 import { computeReadingTime } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
@@ -210,7 +210,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
             {SIGN_OFF_NAME}
           </p>
           <div className="flex items-center gap-4 pt-2">
-            <Image src={SIGNATURE.logo} alt="" width={56} height={56} className="h-14 w-14 rounded-md" />
+            <Image src={SIGNATURE.logo} alt="" width={64} height={64} className="h-16 w-16" />
             <div className="border-l-[3px] border-primary pl-4 space-y-0.5">
               <p className="font-semibold text-foreground">{SIGNATURE.name}</p>
               {SIGNATURE.lines.map((line) => (
@@ -223,6 +223,12 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                     <a href={l.href} className="text-primary underline underline-offset-2 hover:text-primary/80">{l.label}</a>
                   </span>
                 ))}
+              </p>
+              <p className="pt-1 text-sm">
+                <a href={SIGNATURE.booking.href} className="inline-flex items-center gap-1.5 font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                  <CalendarDays className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {SIGNATURE.booking.label}
+                </a>
               </p>
             </div>
           </div>

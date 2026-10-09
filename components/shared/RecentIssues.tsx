@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
+import Tag from "@/components/shared/Tag"
 import { fieldScore } from "@/lib/search"
 import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
@@ -116,6 +117,13 @@ export default function RecentIssues({ issues }: { issues: NewsletterIssue[] }) 
                     {issue.itemCount > 0 && ` · ${issue.itemCount} ${issue.itemCount === 1 ? "item" : "items"}`}
                   </span>
                 </div>
+                {issue.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {issue.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </div>
+                )}
               </div>
               <ArrowRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-0.5" aria-hidden="true" />
             </a>
