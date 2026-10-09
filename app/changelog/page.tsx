@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.72.3",
+    date: "2026-10-09",
+    label: "Newsletter touches",
+    added: [
+      "Newsletter issues show their tags in the list, like blog posts and TILs",
+    ],
+    changed: [
+      "Every newsletter issue ends with an updated signature and a link to book a call",
+    ],
+  },
+  {
     version: "v2.72.2",
     date: "2026-10-09",
     label: "Behind the scenes",
