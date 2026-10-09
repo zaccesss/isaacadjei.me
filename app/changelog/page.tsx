@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.72.2",
+    date: "2026-10-09",
+    label: "Behind the scenes",
+    fixed: [
+      "A page that failed to open behind the scenes now loads again",
+    ],
+  },
+  {
     version: "v2.72.1",
     date: "2026-10-09",
     label: "Behind the scenes",
