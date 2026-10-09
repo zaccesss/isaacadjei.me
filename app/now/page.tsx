@@ -2,6 +2,10 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import LiveStatusCards from "@/components/shared/LiveStatusCards"
+import InspirationWidget from "@/components/shared/InspirationWidget"
+import { notes } from "@/data/notes"
+import { liveOnly } from "@/lib/schedule"
+import { TAG_CLASS } from "@/components/shared/Tag"
 import {
   BookOpen,
   Code2,
@@ -11,6 +15,7 @@ import {
   Wrench,
   Dumbbell,
   ArrowUpRight,
+  Lightbulb,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -149,6 +154,30 @@ export default function NowPage() {
             </p>
           </div>
           <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/avr-zac" className="hover:text-primary transition-colors">
+                avr-zac
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              Bare metal AVR C on an ATmega644P, working through a structured curriculum from basic GPIO to a nine-mode state machine with interrupts, PWM, ADC and a Tetris melody. Each session is documented with notes and lab files.
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/zacess-pages" className="hover:text-primary transition-colors">
+                Business website
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              A terminal-style site at{" "}
+              <a href="https://zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                zacess.com
+              </a>{" "}
+              that will grow into a business presence for whatever venture comes next. A playground for ideas in the meantime.
+            </p>
+          </div>
+          <div className="space-y-1">
             <p className="font-medium text-foreground">This site</p>
             <p className="leading-relaxed">
               Every publication on{" "}
@@ -168,6 +197,32 @@ export default function NowPage() {
               </Link>.
             </p>
           </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      <section className="space-y-4">
+        <div className="flex items-center gap-2.5">
+          <Lightbulb className="h-4 w-4 text-primary shrink-0" />
+          <h2 className="text-base font-semibold">Building next</h2>
+        </div>
+        <div className="space-y-3">
+          {liveOnly(notes).map((note) => (
+            <Link
+              key={note.slug}
+              href={`/notes/${note.slug}`}
+              className="group block rounded-lg border border-border/60 bg-muted/20 px-5 py-4 hover:border-primary/40 hover:bg-muted/30 transition-all"
+            >
+              <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{note.title}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-1">{note.lead}</p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {note.tags.map((tag) => (
+                  <span key={tag} className={TAG_CLASS}>{tag}</span>
+                ))}
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -262,6 +317,7 @@ export default function NowPage() {
         </a>
         .
       </p>
+      <InspirationWidget />
     </div>
   )
 }

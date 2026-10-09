@@ -2,14 +2,12 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import { TAG_CLASS, postTypeLabelClass } from "@/components/shared/Tag"
 import { Button } from "@/components/ui/button"
 import { staggerContainer, fadeUp } from "@/lib/animations"
 import type { PostType } from "@/data/blog"
 import type { BlogCard } from "@/data/blog/meta"
-import ThemedCover from "@/components/shared/ThemedCover"
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog", journal: "Journal", research: "Research", notes: "Notes",
@@ -32,18 +30,6 @@ function FeaturedPostCard({ post }: { post: BlogCard }) {
       href={`/blog/${post.slug}`}
       className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all overflow-hidden"
     >
-      {post.cover_image && (
-        <div className="relative w-full h-40 overflow-hidden">
-          <ThemedCover
-            src={post.cover_image}
-            darkSrc={post.cover_image_dark}
-            alt={post.title}
-            fill
-            className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
-            sizes="(max-width: 640px) 250px, 50vw"
-          />
-        </div>
-      )}
       <div className="px-5 py-4 space-y-3">
         <span className={postTypeLabelClass(post.type)}>
           {TYPE_LABELS[post.type]}

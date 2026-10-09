@@ -3,7 +3,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Tag from "@/components/shared/Tag"
 import { relevanceScore } from "@/lib/search"
-import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
 import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
 
@@ -15,7 +15,6 @@ export interface NotePostCard {
   tags: string[]
 }
 
-const PAGE_SIZES = [10, 20, 50]
 const LIST_ID = "note-post-list"
 
 function formatNoteDate(date: string): string {
@@ -32,7 +31,7 @@ const monthOf = (date: string) => Number(date.slice(5, 7)) - 1
 
 export default function NotePostsBrowser({ notes }: { notes: NotePostCard[] }) {
   const query = useListQuery("newest")
-  const [perPage, setPerPage] = usePageSize("notes", PAGE_SIZES)
+  const [perPage, setPerPage] = usePageSize("notes", LIST_PAGE_SIZES)
 
   const tags = query.getAll("tag")
   const year = query.get("year")
@@ -110,7 +109,7 @@ export default function NotePostsBrowser({ notes }: { notes: NotePostCard[] }) {
         onChange={query.setPage}
         totalItems={filtered.length}
         pageSize={perPage}
-        pageSizeOptions={PAGE_SIZES}
+        pageSizeOptions={LIST_PAGE_SIZES}
         onPageSizeChange={(n) => {
           setPerPage(n)
           query.setPage(1)

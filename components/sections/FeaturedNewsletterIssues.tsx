@@ -55,7 +55,6 @@ function IssueCard({ issue }: { issue: NewsletterIssue }) {
 function SkeletonCard() {
   return (
     <div className="rounded-lg border border-border/60 bg-muted/40 overflow-hidden animate-pulse">
-      <div className="w-full h-40 bg-muted" />
       <div className="px-5 py-4 space-y-3">
         <div className="h-3.5 w-3/4 rounded bg-muted" />
         <div className="h-3 w-full rounded bg-muted" />

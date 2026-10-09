@@ -157,6 +157,9 @@ function subscribePageSize(onChange: () => void) {
   }
 }
 
+export const LIST_PAGE_SIZES = [20, 40, 60]
+export const GRID_PAGE_SIZES = [15, 30, 45]
+
 export function usePageSize(storageKey: string, options: number[], fallback = options[0]): [number, (size: number) => void] {
   const key = `page-size:${storageKey}`
   const stored = useSyncExternalStore(

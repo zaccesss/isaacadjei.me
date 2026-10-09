@@ -47,8 +47,7 @@ const _building_my_portfolio: BlogPost = {
           "[Vercel](https://vercel.com): deployment platform with automatic deploys on every push to main",
           "Cloudflare: DNS provider routing isaacadjei.me",
           "GitHub Actions: CI pipeline running lint and build checks on every pull request",
-          "Resend: API for the contact form email delivery",
-          "Beehiiv: newsletter subscription management",
+          "Resend: email for the contact form and the newsletter, which lives on the site itself",
           "Cloudflare Turnstile: CAPTCHA on the contact form, privacy-respecting alternative to reCAPTCHA",
           "[Upstash](https://upstash.com) Redis: serverless rate limiting on the contact form API route",
           "Google Analytics 4: traffic analytics via Next.js Script with afterInteractive strategy",
@@ -120,7 +119,7 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "p",
-        text: "The newsletter signup hits /api/newsletter, which validates the email format and calls the Beehiiv subscriptions API. Again, the API key lives in an environment variable and never touches the client.",
+        text: "The newsletter signup hits /api/newsletter, which validates the email format and sends a confirmation link through Resend. The address is only added once that link is confirmed. Again, the API key lives in an environment variable and never touches the client.",
       },
       {
         type: "h2",
@@ -132,7 +131,7 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "p",
-        text: "Environment variables (API keys for Resend, Beehiiv, Upstash, Turnstile and Google Analytics) are stored in Vercel project settings and injected at build time. A .env.example file in the repo documents every variable with placeholder values so the setup is reproducible.",
+        text: "Environment variables (API keys for Resend, Upstash, Turnstile and Google Analytics) are stored in Vercel project settings and injected at build time. A .env.example file in the repo documents every variable with placeholder values so the setup is reproducible.",
       },
       {
         type: "h2",

@@ -18,7 +18,7 @@ export const FEEDS: FeedInfo[] = [
   { id: "til", title: "TIL", description: "Short things I learned while building and studying.", href: "/til/feed.xml" },
   { id: "notes", title: "Notes", description: "Dated notes from my public notebook.", href: "/notes/feed.xml" },
   { id: "newsletter", title: "Newsletter", description: "Every newsletter issue, as it goes out.", href: "/newsletter/feed.xml" },
-  { id: "all", title: "Everything", description: "Blog posts, TILs and notes in one feed.", href: "/feed.xml" },
+  { id: "all", title: "Everything", description: "Blog posts, TILs, notes and newsletter issues in one feed.", href: "/feed.xml" },
 ]
 
 export function feedAlternates(...ids: FeedInfo["id"][]) {
@@ -73,9 +73,9 @@ export const allChannel: RssChannel = {
   title: "Isaac Adjei: everything",
   path: "/feeds",
   feedPath: "/feed.xml",
-  description: "Blog posts, TILs and notes from Isaac Adjei in one feed.",
+  description: "Blog posts, TILs, notes and newsletter issues from Isaac Adjei in one feed.",
   sectionLabel: "Every feed",
-  noun: "posts, TILs and notes",
+  noun: "posts, TILs, notes and issues",
 }
 
 export function postTypeName(type: string) {
@@ -96,7 +96,6 @@ export function blogItems(posts: BlogPost[], standalone = false): RssItem[] {
     section: "Blog",
     sublabel: postTypeName(p.type),
     label: standalone ? { text: postTypeName(p.type), hue: postTypeHue(p.type) } : undefined,
-    image: p.cover_image,
     discussion: true,
   }))
 }
@@ -138,7 +137,7 @@ export function newsletterItems(issues: NewsletterIssue[]): RssItem[] {
     url: i.href,
     date: i.publishDate,
     description: i.subtitle ?? "",
-    label: i.status === "archived" ? { text: "Archived", hue: "slate" } : { text: "Newsletter", hue: kindHue("Newsletter") },
+    label: { text: "Newsletter", hue: kindHue("Newsletter") },
     image: i.thumbnailUrl ?? undefined,
   }))
 }

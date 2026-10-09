@@ -25,6 +25,7 @@ import { useModKey } from "@/hooks/useModKey"
 
 export default function CommandMenu() {
   const [open, setOpen] = useState(false)
+  const [typed, setTyped] = useState("")
   const router = useRouter()
   const pathname = usePathname()
   const { shortcut } = useModKey()
@@ -110,6 +111,7 @@ export default function CommandMenu() {
 
   const go = (path: string) => {
     setOpen(false)
+    setTyped("")
     router.push(path)
   }
 
@@ -125,9 +127,18 @@ export default function CommandMenu() {
       <DialogTitle className="px-4 pt-4 pb-0 text-base font-semibold text-center">
         Quick Navigation
       </DialogTitle>
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder="Type a command or search..." value={typed} onValueChange={setTyped} />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandEmpty>No pages match. Press Enter to search the site.</CommandEmpty>
+
+        {typed.trim() && (
+          <CommandGroup heading="Search">
+            <CommandItem forceMount value={`search the site ${typed}`} onSelect={() => go(`/search?q=${encodeURIComponent(typed.trim())}`)}>
+              <SearchIcon className="mr-2 h-4 w-4" />
+              Search the site for &ldquo;{typed.trim()}&rdquo;
+            </CommandItem>
+          </CommandGroup>
+        )}
 
         <CommandGroup heading="Navigation">
           <CommandItem value="all pages directory site map" onSelect={() => go("/all-pages")}>

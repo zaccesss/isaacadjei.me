@@ -59,10 +59,9 @@ export const profileLinks: LinkItem[] = [
   },
   {
     title: "Newsletter",
-    description: "Weekly engineering, tech and ideas",
-    url: "https://newsletter.isaacadjei.me/",
+    description: "A letter every couple of weeks: what I built, learned and wrote",
+    url: "https://www.isaacadjei.me/newsletter",
     icon: "newspaper",
-    iconImage: "/images/brands/beehiiv.webp",
     category: "writing",
   },
   {

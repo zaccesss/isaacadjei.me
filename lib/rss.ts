@@ -54,8 +54,10 @@ function imageType(url: string) {
   return "image/jpeg"
 }
 
+const FEED_ENTRY_LIMIT = 50
+
 export function buildAtomXml(channel: RssChannel, items: RssItem[], baseUrl: string, stylesheet = false) {
-  const sorted = sortNewest(items)
+  const sorted = sortNewest(items).slice(0, FEED_ENTRY_LIMIT)
   const updated = sorted.length ? rfc3339(sorted[0].date) : new Date(0).toISOString()
   const entries = sorted
     .map((item) => {

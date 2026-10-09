@@ -882,7 +882,7 @@ const COMMANDS: Record<string, (data: LabData) => Line[]> = {
     { type: "kv", text: "  isaacadjei-lab v1.0.0         running" },
     { type: "kv", text: "  portfolio                     live at isaacadjei.me" },
     { type: "kv", text: "  blog                          active" },
-    { type: "kv", text: "  newsletter                    live via Beehiiv" },
+    { type: "kv", text: "  newsletter                    every couple of weeks" },
     { type: "kv", text: "  vitafolio                     live" },
     { type: "kv", text: "  phaemos and melophos          in progress" },
     { type: "blank", text: "" },

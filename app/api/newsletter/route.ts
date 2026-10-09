@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
+import { sendConfirmEmail } from "@/lib/newsletter-subscribe"
 
 function json(body: unknown, init?: ResponseInit): NextResponse {
   return NextResponse.json(body, {
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { email } = body
 
-    if (!email) {
+    if (!email || typeof email !== "string") {
       return json({ error: "Email is required." }, { status: 400 })
     }
     if (email.length > 254) {
@@ -52,35 +53,8 @@ export async function POST(request: Request) {
       return json({ error: "Invalid email address." }, { status: 400 })
     }
 
-    const apiKey = process.env.BEEHIIV_API_KEY
-    const publicationId = process.env.BEEHIIV_PUBLICATION_ID
-
-    if (!apiKey || !publicationId) {
-      console.error("Beehiiv env vars not set")
+    if (!(await sendConfirmEmail(email.trim().toLowerCase()))) {
       return json({ error: "Newsletter service unavailable." }, { status: 500 })
-    }
-
-    const res = await fetch(
-      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          email,
-          reactivate_existing: false,
-          send_welcome_email: true,
-        }),
-        signal: AbortSignal.timeout(8000),
-      }
-    )
-
-    if (!res.ok) {
-      const error = await res.text()
-      console.error("Beehiiv error:", res.status, error)
-      return json({ error: "Failed to subscribe. Please try again." }, { status: 500 })
     }
 
     return json({ success: true })
