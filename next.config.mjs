@@ -18,7 +18,8 @@ const scriptSrc = ["'self'", "'unsafe-inline'", "https://challenges.cloudflare.c
 // then a later PR reintroduced the OpenFreeMap toggle without restoring its own connect-src entry,
 // so every OpenFreeMap style was silently CSP-blocked until this was fixed (confirmed via real
 // console CSP-violation errors, not a guess).
-const connectSrc = ["'self'", "https://challenges.cloudflare.com", "https://zenquotes.io", "https://*.google-analytics.com", "https://analytics.google.com", "https://api.lanyard.rest", "wss://api.lanyard.rest", "https://cloudflareinsights.com", "https://vercel.live", "wss://ws-us3.pusher.com", "https://api.maptiler.com", "https://tiles.openfreemap.org", "https://services.arcgisonline.com"]
+// *.ingest.de.sentry.io receives browser error reports (instrumentation-client.ts); the org lives in Sentry's EU region
+const connectSrc = ["'self'", "https://*.ingest.de.sentry.io", "https://challenges.cloudflare.com", "https://zenquotes.io", "https://*.google-analytics.com", "https://analytics.google.com", "https://api.lanyard.rest", "wss://api.lanyard.rest", "https://cloudflareinsights.com", "https://vercel.live", "wss://ws-us3.pusher.com", "https://api.maptiler.com", "https://tiles.openfreemap.org", "https://services.arcgisonline.com"]
 
 if (isDev) {
   scriptSrc.push("'unsafe-eval'")
@@ -27,6 +28,10 @@ if (isDev) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // the commit is the Sentry release, so browser errors match the source maps uploaded for that build
+  env: { NEXT_PUBLIC_SENTRY_RELEASE: process.env.VERCEL_GIT_COMMIT_SHA ?? "" },
+  // maps are only generated when they can be uploaded; scripts/sentry-release.mjs deletes them after, so none are served
+  productionBrowserSourceMaps: Boolean(process.env.SENTRY_AUTH_TOKEN),
   images: {
     // domains[] is deprecated in Next.js 13+ - use remotePatterns instead.
     remotePatterns: [
@@ -45,6 +50,8 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    // server maps for readable server stack traces in Sentry, removed again after upload
+    serverSourceMaps: Boolean(process.env.SENTRY_AUTH_TOKEN),
     // saved assistant chats can carry a downscaled image as a data URL, so I lift the default 1MB
     // server-action body cap a little. Images are shrunk client-side first, so this stays modest.
     serverActions: { bodySizeLimit: "4mb" },
