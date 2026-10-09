@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.75.0",
+    date: "2026-10-09",
+    label: "Ventures",
+    added: [
+      "The Links page has a Ventures section for PHAEMOS, MELOPHOS, Vitafolio and Zaccess",
+    ],
+  },
+  {
     version: "v2.72.4",
     date: "2026-10-09",
     label: "On the fediverse",

@@ -147,6 +147,7 @@ const brandClasses: Record<string, { bg: string; icon: string }> = {
 
 const categoryLabel: Record<LinkItem["category"], string> = {
   professional: "Professional",
+  ventures: "Ventures",
   writing: "Writing",
   academic: "Academic",
   code: "Code",
@@ -160,6 +161,7 @@ const categoryLabel: Record<LinkItem["category"], string> = {
 
 const categories: LinkItem["category"][] = [
   "professional",
+  "ventures",
   "writing",
   "academic",
   "code",
@@ -198,7 +200,7 @@ export default function LinksPage() {
         </p>
         <div className="flex items-center justify-center gap-4 pt-1">
           {([
-            { Icon: Mail,            label: "Email",          href: "mailto:hello@isaacadjei.me" },
+            { Icon: Mail,            label: "Email",          href: "mailto:contact@isaacadjei.me" },
             { Icon: FaLinkedin,      label: "LinkedIn",       href: "https://www.linkedin.com/in/isaacadjei" },
             { Icon: SiOrcid,         label: "ORCID",          href: "https://orcid.org/0009-0001-8298-5098" },
             { Icon: FaGithub,        label: "GitHub",         href: "https://www.github.com/zaccesss" },
@@ -259,7 +261,7 @@ export default function LinksPage() {
                     <div
                       className={cn(
                         "shrink-0 w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden sm:transition-transform sm:duration-200 sm:group-hover:scale-110",
-                        link.iconImage ? "bg-white" : (brand?.bg ?? "bg-primary/10")
+                        link.iconImage ? (link.iconTransparent ? "bg-muted p-1" : "bg-white") : (brand?.bg ?? "bg-primary/10")
                       )}
                     >
                       {link.iconImage ? (
