@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.72.4] - 2026-10-09
+
+_On the fediverse_
+
+### Added
+
+- You can follow me on Mastodon at @isaac@isaacadjei.me. Links shared from here now show who wrote them
+
 ## [2.72.3] - 2026-10-09
 
 _Newsletter touches_
