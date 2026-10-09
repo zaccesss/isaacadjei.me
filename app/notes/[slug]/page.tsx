@@ -9,6 +9,8 @@ import { renderBlock as renderContentBlock, buildHeadingIds } from "@/components
 import { TAG_CLASS } from "@/components/shared/Tag"
 import CodeBlock from "@/components/shared/CodeBlock"
 import { highlightBlocks } from "@/lib/highlight"
+import ReadingProgress from "@/components/shared/ReadingProgress"
+import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 
 export const revalidate = 21600
 export const dynamicParams = true
@@ -206,6 +208,9 @@ async function NotePostView({ post }: { post: NotePost }) {
   const headingIds = buildHeadingIds(post.content)
   const highlighted = await highlightBlocks(post.content, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
   return (
+    <>
+    <ReadingProgress />
+    <ScrollDepthTracker slug={post.slug} postType="note" />
     <div className="container max-w-3xl py-24 space-y-12">
       <div>
         <Link
@@ -246,5 +251,6 @@ async function NotePostView({ post }: { post: NotePost }) {
         Back to notes
       </Link>
     </div>
+    </>
   )
 }

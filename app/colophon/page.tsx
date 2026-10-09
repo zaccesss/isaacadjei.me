@@ -109,8 +109,8 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: <>Email delivery for the contact form, handled by <A href="https://resend.com">Resend</A>. When you submit a message, the name, email and content are sent to a server-side route which calls the Resend API to forward it to my inbox. Nothing is stored in a database - the email is sent and that is it. Submissions are also rate-limited via Redis to prevent the form being used for spam.</>,
       },
       {
-        name: "Beehiiv",
-        detail: <><A href="https://www.beehiiv.com">Beehiiv</A> is the platform behind the isaacadjei.me newsletter. When you subscribe via the site, a server action calls the Beehiiv API to add your email to the publication. Beehiiv handles list management, sending, tracking and unsubscribes. Every issue has a one-click unsubscribe link at the bottom.</>,
+        name: "Newsletter",
+        detail: <>The newsletter is part of this site. Each issue is a file in the repository with a short letter. The site gathers the posts, TILs and notes from the weeks before underneath it. Signing up sends a confirmation link first, then <A href="https://resend.com">Resend</A> keeps the subscriber list, sends each issue as a broadcast on the morning of its date and handles one-click unsubscribes.</>,
       },
       {
         name: "GitHub Actions",

@@ -6,6 +6,7 @@ import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { notes as allNotes, getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
+import { getPublishedIssues } from "@/data/newsletter"
 import { publications } from "@/data/respub"
 import {
   videos as allVideos, articles as allArticles, others as allOthers, books as allBooks,
@@ -41,6 +42,7 @@ export async function generateStaticParams() {
   for (const post of getPublishedPosts()) post.tags.forEach((t) => slugs.add(normTag(t)))
   for (const til of getPublishedTILEntries()) til.tags?.forEach((t) => slugs.add(normTag(t)))
   for (const note of notes) note.tags.forEach((t) => slugs.add(normTag(t)))
+  for (const issue of getPublishedIssues()) issue.tags.forEach((t) => slugs.add(normTag(t)))
   for (const project of projects) project.technologies.forEach((t) => slugs.add(normTag(t)))
   for (const pub of publications) pub.keywords?.forEach((t) => slugs.add(normTag(t)))
   for (const v of videos) v.tags.forEach((t) => slugs.add(normTag(t)))
@@ -58,7 +60,7 @@ export async function generateMetadata({
   params: Promise<{ tag: string }>
 }): Promise<Metadata> {
   const { tag } = await params
-  const description = `Everything tagged with ${tag}: blog posts, TIL entries, notes, projects, publications and consumed items.`
+  const description = `Everything tagged with ${tag}: blog posts, TIL entries, notes, newsletter issues, projects, publications and consumed items.`
   return {
     title: `#${tag} - Tags`,
     description,
@@ -86,6 +88,7 @@ export default async function TagPage({
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   const matchedNotes = notes.filter((n) => n.tags.some((t) => normTag(t) === tag))
+  const matchedIssues = getPublishedIssues().filter((i) => i.tags.some((t) => normTag(t) === tag))
 
   const matchedProjects = projects.filter((p) =>
     p.technologies.some((t) => normTag(t) === tag)
@@ -108,7 +111,7 @@ export default async function TagPage({
     matchedArtists.length > 0
 
   if (
-    posts.length === 0 && tils.length === 0 && matchedNotes.length === 0 &&
+    posts.length === 0 && tils.length === 0 && matchedNotes.length === 0 && matchedIssues.length === 0 &&
     matchedProjects.length === 0 && matchedPubs.length === 0 && !hasConsumed
   ) notFound()
 
@@ -116,6 +119,7 @@ export default async function TagPage({
     posts[0]?.tags.find((t) => normTag(t) === tag) ??
     tils[0]?.tags?.find((t) => normTag(t) === tag) ??
     matchedNotes[0]?.tags.find((t) => normTag(t) === tag) ??
+    matchedIssues[0]?.tags.find((t) => normTag(t) === tag) ??
     matchedProjects[0]?.technologies.find((t) => normTag(t) === tag) ??
     matchedPubs[0]?.keywords?.find((k) => normTag(k) === tag) ??
     matchedVideos[0]?.tags.find((t) => normTag(t) === tag) ??
@@ -127,7 +131,7 @@ export default async function TagPage({
     tag
 
   const total =
-    posts.length + tils.length + matchedNotes.length + matchedProjects.length + matchedPubs.length +
+    posts.length + tils.length + matchedNotes.length + matchedIssues.length + matchedProjects.length + matchedPubs.length +
     matchedVideos.length + matchedArticles.length + matchedOthers.length + matchedBooks.length +
     matchedResources.length + matchedArtists.length
 
@@ -219,6 +223,32 @@ export default async function TagPage({
                     </p>
                     <p className="text-xs text-muted-foreground line-clamp-1">{note.description}</p>
                   </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {matchedIssues.length > 0 && (
+        <section className="space-y-4">
+          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Newsletter</h2>
+          <ul className="space-y-3">
+            {matchedIssues.map((issue) => (
+              <li key={issue.slug}>
+                <Link
+                  href={`/newsletter/${issue.slug}`}
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                >
+                  <div className="space-y-1 min-w-0">
+                    <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                      {issue.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground line-clamp-1">{issue.subtitle}</p>
+                  </div>
+                  <p className="text-[11px] font-mono text-muted-foreground/70 shrink-0">
+                    {fmtDate(issue.date)}
+                  </p>
                 </Link>
               </li>
             ))}

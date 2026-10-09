@@ -168,19 +168,20 @@ export default function PrivacyPage() {
         <div>
           <h2>Newsletter</h2>
           <p>
-            If you subscribe to the newsletter, your email address is stored and managed by a
-            third-party newsletter platform (see{" "}
+            If you subscribe to the newsletter, you first get an email asking you to confirm. Only
+            once you confirm is your email address stored, with the email provider that sends the
+            newsletter (see{" "}
             <a
-              href="https://www.beehiiv.com/privacy"
+              href="https://resend.com/legal/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              Beehiiv Privacy Policy
+              Resend&apos;s Privacy Policy
             </a>
-            ). Their privacy policy governs how that data is handled. Every issue includes a
-            one-click unsubscribe link at the bottom so you can leave at any time with no
-            questions asked.
+            ). Your address is used only to send the newsletter and is never shared or sold. Every
+            issue includes a one-click unsubscribe link at the bottom so you can leave at any time
+            with no questions asked.
           </p>
         </div>
 

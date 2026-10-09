@@ -10,7 +10,7 @@ export default function ScrollDepthTracker({
   postType = "blog",
 }: {
   slug: string
-  postType?: "blog" | "til"
+  postType?: "blog" | "til" | "note" | "newsletter"
 }) {
   const reported = useRef<Set<Depth>>(new Set())
 

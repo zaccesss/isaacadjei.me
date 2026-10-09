@@ -153,11 +153,14 @@ export function WritingStats({ c }: { c: Content }) {
       <Tiles>
         <StatCard label="Blog posts" value={c.postCount} />
         <StatCard label="TIL entries" value={c.tilCount} />
+        <StatCard label="Notes" value={c.noteCount} />
+        <StatCard label="Newsletter issues" value={c.issueCount} />
         <StatCard label="Projects" value={c.projectCount} />
       </Tiles>
       <Grid>
         <Card title="Posts by month"><BarChart data={c.postsByMonth} dataKey="value" xKey="name" height={200} /></Card>
         <Card title="TIL entries by month"><BarChart data={c.tilByMonth} dataKey="value" xKey="name" height={200} colour="#6366f1" /></Card>
+        <Card title="Notes and newsletter by month" note="notes as bars, issues as the line"><Composed data={c.shortByMonth} xKey="name" barKey="notes" lineKey="issues" barName="Notes" lineName="Issues" height={200} /></Card>
         <Card title="What I write about" note="post tags"><Treemap data={c.tags} height={220} /></Card>
         <Card title="How long the posts are" note="reading time"><PieChart data={c.reading.filter((r) => r.value > 0)} height={200} /></Card>
         <Card title="Kinds of post"><PieChart data={c.postTypes} height={200} /></Card>

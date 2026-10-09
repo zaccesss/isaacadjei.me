@@ -35,7 +35,7 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
     ],
   },
   {
-    title: "Legal",
+    title: "Legal & Privacy",
     links: [
       { href: "/privacy", label: "Privacy Policy" },
       { href: "/security-policy", label: "Security Policy" },
@@ -45,7 +45,7 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
   },
 ]
 
-const linkClass = "text-sm text-muted-foreground hover:text-foreground transition-colors"
+const linkClass = "text-[13px] text-muted-foreground hover:text-foreground transition-colors"
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -53,13 +53,12 @@ export default function Footer() {
   return (
     <footer className="border-t">
       <div className="container py-12">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_2fr_1.2fr]">
-          <div className="flex flex-col items-start gap-5">
-            <Link href="/" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
-              Isaac Adjei
-            </Link>
-            <SocialLinks footerOnly />
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr_1.2fr] lg:gap-x-20 xl:gap-x-28">
+          <div className="flex flex-col items-start gap-8">
             <FooterNewsletter />
+            <div className="lg:mt-auto">
+              <SocialLinks footerOnly />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
@@ -90,17 +89,17 @@ export default function Footer() {
 
           <div className="space-y-3">
             <h2 className="text-sm font-semibold text-foreground">Get in touch</h2>
-            <p className="text-sm text-muted-foreground">Have a question, a project or an opportunity?</p>
+            <p className="text-[13px] text-muted-foreground">Have a question, a project or an opportunity?</p>
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium hover:bg-accent transition-colors"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-[13px] font-medium hover:bg-accent transition-colors"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
               Send a message
             </Link>
             <Link
               href="/book"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-[13px] font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               <CalendarDays className="h-4 w-4" aria-hidden="true" />
               Book a call

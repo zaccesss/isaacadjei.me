@@ -144,7 +144,7 @@ export function toCard(p: BlogPost & { readingTime: number }): BlogCard {
 }
 
 export function getFeaturedPosts(): BlogPost[] {
-  return getPublishedPosts().filter((p) => p.featured && p.cover_image)
+  return getPublishedPosts().filter((p) => p.featured)
 }
 
 export function getPostBySlug(slug: string): (BlogPost & { readingTime: number }) | undefined {

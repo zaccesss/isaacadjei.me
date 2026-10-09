@@ -2,16 +2,13 @@
 
 import { relevanceScore } from "@/lib/search"
 import Link from "next/link"
-import Image from "next/image"
 import { Calendar, Clock, Rss } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
 import { POST_TYPES, type BlogCard } from "@/data/blog/meta"
 import type { PostType } from "@/data/blog"
-import NewsletterForm from "@/components/shared/NewsletterForm"
-import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
 import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
-import ThemedCover from "@/components/shared/ThemedCover"
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-GB", {
@@ -21,12 +18,11 @@ function formatDate(dateStr: string): string {
   })
 }
 
-const PAGE_SIZES = [10, 20, 50]
 const LIST_ID = "blog-post-list"
 
 export default function BlogPage({ posts }: { posts: BlogCard[] }) {
   const query = useListQuery("newest")
-  const [perPage, setPerPage] = usePageSize("blog", PAGE_SIZES)
+  const [perPage, setPerPage] = usePageSize("blog", LIST_PAGE_SIZES)
 
   const activeType = (query.get("type") || "all") as PostType | "all"
   const activeTags = query.getAll("tag")
@@ -120,19 +116,6 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
               href={`/blog/${post.slug}`}
               className="group block rounded-lg border transition-all overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border"
             >
-              {post.cover_image && (
-                <div className="relative w-full h-32 sm:h-40 overflow-hidden">
-                  <ThemedCover
-                    src={post.cover_image}
-                    darkSrc={post.cover_image_dark}
-                    alt={post.title}
-                    fill
-                    priority={page === 1 && i === 0}
-                    className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
-                    sizes="(max-width: 640px) 250px, 700px"
-                  />
-                </div>
-              )}
               <div className={`space-y-3 px-6 py-5`}>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className={postTypeLabelClass(post.type)}>
@@ -178,7 +161,7 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
             onChange={query.setPage}
             totalItems={filtered.length}
             pageSize={perPage}
-            pageSizeOptions={PAGE_SIZES}
+            pageSizeOptions={LIST_PAGE_SIZES}
             onPageSizeChange={(n) => {
               setPerPage(n)
               query.setPage(1)
@@ -195,15 +178,6 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
           <p className="text-xs text-muted-foreground">Try another type or tag. Clearing the search also helps.</p>
         </div>
       )}
-
-      <div className="rounded-lg border border-border/60 bg-muted/30 px-6 py-5 space-y-3">
-        <Link href="/newsletter" className="text-xs font-mono text-primary uppercase tracking-widest hover:underline">newsletter</Link>
-        <p className="text-sm font-medium">Get new posts in your inbox</p>
-        <p className="text-xs text-muted-foreground">
-          Notes on tech, projects and more. No spam. Unsubscribe anytime.
-        </p>
-        <NewsletterForm variant="compact" />
-      </div>
 
     </div>
   )

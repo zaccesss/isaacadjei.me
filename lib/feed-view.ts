@@ -147,7 +147,7 @@ function renderPagination(current: number, total: number, count: number, perPage
 }
 
 export function buildFeedHtml(view: FeedView) {
-  const perPage = view.perPage ?? 10
+  const perPage = view.perPage ?? 20
   const total = Math.ceil(view.items.length / perPage)
   const current = Math.max(1, Math.min(Number.isFinite(view.page) ? (view.page as number) : 1, total || 1))
   const pageItems = view.items.slice((current - 1) * perPage, current * perPage)

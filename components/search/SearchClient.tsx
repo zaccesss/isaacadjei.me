@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import { ExternalLink, Search } from "lucide-react"
 import type { BlogPost } from "@/data/blog"
 import type { TILEntry } from "@/data/til"
@@ -61,8 +62,9 @@ function Highlight({ text, query }: { text: string; query: string }) {
 }
 
 export default function SearchClient({ posts, tils, projects, publications, notes, consumed }: Props) {
-  const [query, setQuery] = useState("")
-  const [debounced, setDebounced] = useState("")
+  const initial = useSearchParams().get("q") ?? ""
+  const [query, setQuery] = useState(initial)
+  const [debounced, setDebounced] = useState(initial.trim())
   const [issues, setIssues] = useState<NewsletterIssue[]>([])
   const [issuesLoading, setIssuesLoading] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -174,7 +176,8 @@ export default function SearchClient({ posts, tils, projects, publications, note
         .filter(
           (i) =>
             i.title.toLowerCase().includes(q) ||
-            (i.subtitle ?? "").toLowerCase().includes(q)
+            (i.subtitle ?? "").toLowerCase().includes(q) ||
+            (i.tags ?? []).some((t) => t.toLowerCase().includes(q))
         )
         .sort(
           (a, b) =>

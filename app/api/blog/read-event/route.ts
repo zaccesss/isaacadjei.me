@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase"
 
 const VALID_DEPTHS = new Set([25, 50, 75, 100])
 const VALID_SLUG = /^[a-z0-9-]{1,120}$/
-const VALID_POST_TYPES = new Set(["blog", "til"])
+const VALID_POST_TYPES = new Set(["blog", "til", "note", "newsletter"])
 
 const RATE_LIMIT = 60
 const WINDOW_SECONDS = 600

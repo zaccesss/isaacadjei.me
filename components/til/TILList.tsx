@@ -6,7 +6,7 @@ import { ExternalLink } from "lucide-react"
 import { cn, computeReadingTime } from "@/lib/utils"
 import type { TILEntry } from "@/data/til"
 import { relevanceScore } from "@/lib/search"
-import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
 import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
 import Tag, { tilCategoryLabelClass } from "@/components/shared/Tag"
@@ -23,7 +23,6 @@ function tilReadingTime(entry: TILEntry): number {
   return computeReadingTime(blocks)
 }
 
-const PAGE_SIZES = [10, 20, 50]
 const LIST_ID = "til-entry-list"
 
 export const CATEGORY_STYLES: Record<string, string> = {
@@ -88,7 +87,7 @@ function highlight(text: string, q: string): React.ReactNode {
 
 export default function TILList({ entries }: Props) {
   const query = useListQuery("newest")
-  const [perPage, setPerPage] = usePageSize("til", PAGE_SIZES)
+  const [perPage, setPerPage] = usePageSize("til", LIST_PAGE_SIZES)
   const search = query.search
   const category = query.get("category") || "all"
   const tags = query.getAll("tag")
@@ -234,7 +233,7 @@ export default function TILList({ entries }: Props) {
         onChange={query.setPage}
         totalItems={filtered.length}
         pageSize={perPage}
-        pageSizeOptions={PAGE_SIZES}
+        pageSizeOptions={LIST_PAGE_SIZES}
         onPageSizeChange={(n) => {
           setPerPage(n)
           query.setPage(1)

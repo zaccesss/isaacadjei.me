@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { notes, getPublishedNotes } from "@/data/notes"
@@ -59,6 +60,7 @@ export default function SearchPage() {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
   return (
+    <Suspense>
     <SearchClient
       posts={posts}
       tils={tils}
@@ -67,5 +69,6 @@ export default function SearchPage() {
       notes={buildNotesIndex()}
       consumed={buildConsumedIndex()}
     />
+    </Suspense>
   )
 }

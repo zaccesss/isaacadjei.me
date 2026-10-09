@@ -29,9 +29,9 @@ export default function ContactPage() {
         <p className="text-muted-foreground">
           Easier to talk it through?{" "}
           <a href="/book" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-            Book a short call
+            Book
           </a>{" "}
-          at a time that suits you.
+          a short call at a time that suits you.
         </p>
       </div>
       <ContactForm />

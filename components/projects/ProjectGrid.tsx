@@ -4,13 +4,12 @@ import { type Project, CATEGORY_LABELS } from "@/data/projects"
 import ProjectCard from "./ProjectCard"
 import { relevanceScore } from "@/lib/search"
 import ProjectFilter from "./ProjectFilter"
-import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import { Pagination, usePageSize, GRID_PAGE_SIZES } from "@/components/shared/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
 import { countedOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
 
 type Category = Project["category"] | "all"
 
-const PAGE_SIZES = [12, 24, 48]
 const LIST_ID = "project-list"
 
 function projectYear(dateStr: string): number {
@@ -23,7 +22,7 @@ interface Props {
 
 export default function ProjectGrid({ projects }: Props) {
   const query = useListQuery("default")
-  const [perPage, setPerPage] = usePageSize("projects", PAGE_SIZES)
+  const [perPage, setPerPage] = usePageSize("projects", GRID_PAGE_SIZES)
 
   const category = (query.get("category") || "all") as Category
   const techs = query.getAll("tech")
@@ -87,7 +86,7 @@ export default function ProjectGrid({ projects }: Props) {
         onChange={query.setPage}
         totalItems={filtered.length}
         pageSize={perPage}
-        pageSizeOptions={PAGE_SIZES}
+        pageSizeOptions={GRID_PAGE_SIZES}
         onPageSizeChange={(n) => {
           setPerPage(n)
           query.setPage(1)

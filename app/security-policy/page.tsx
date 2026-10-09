@@ -83,7 +83,7 @@ export default function SecurityPolicyPage() {
           The following are explicitly out of scope and should not be reported:
         </p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-          <li>Vulnerabilities in third-party services I do not control (Vercel, Cloudflare, Beehiiv, GitHub, Resend, Upstash, Supabase, Sentry, Google and the map tile providers)</li>
+          <li>Vulnerabilities in third-party services I do not control (Vercel, Cloudflare, GitHub, Resend, Upstash, Supabase, Sentry, Google and the map tile providers)</li>
           <li>Denial of service attacks or volumetric testing of any kind</li>
           <li>Social engineering or phishing attempts targeting me or visitors</li>
           <li>Issues that require physical access to my devices</li>

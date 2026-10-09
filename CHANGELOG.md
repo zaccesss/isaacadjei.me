@@ -2,6 +2,28 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.71.0] - 2026-10-09
+
+_The newsletter moves onto the site_
+
+### Added
+
+- /newsletter: a letter every other week with everything I published since the last one, plus a short Outside issue in the weeks between on something beyond my own work
+- Every issue has its own page with reactions, comments and the same signature as my emails. The archive goes back to May
+- Sign up with a confirmation link and leave in one click. Issues arrive by email on the morning of their date
+- Issues have tags and appear in search, on tag pages and in the all-in-one feed
+- Each letter lists what I read, watched and listened to that fortnight
+- Notes from May to September, one a month, plus my summer and autumn plans as notes
+- The command menu can search the whole site
+
+### Changed
+
+- Blog posts lead with their words instead of a cover image. Projects keep their covers
+- Notes is a list like the blog and TIL. What I am building and what is next moved to /now
+- Every list pages the same way: 20 per page for writing and feed pages, 15 for project and Consumed cards
+- Notes and newsletter issues appear in the writing stats
+- One newsletter sign-up per page and a tidier footer
+
 ## [2.70.0] - 2026-10-08
 
 _Projects, writing and feeds_

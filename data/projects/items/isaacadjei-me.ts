@@ -59,7 +59,7 @@ const _isaacadjei_me: Project = {
       "Live status cards for Spotify, gaming and coding, fed by Upstash Redis, a Cloudflare Worker and small device scripts, with every Redis use failing open",
       "Public stats for GitHub, coding, music, gaming and writing, built from one cached aggregate so a visit runs no function",
       "An interactive Lab terminal, full-text search across every content type and a command menu on Ctrl+I or Cmd+I",
-      "Blog, TIL, notes, a consumed log, a newsletter with RSS feeds and a moderated guestbook",
+      "Blog, TIL, notes, a consumed log, a newsletter that lives on the site, Atom feeds and a moderated guestbook",
       "A skip link, one heading outline per page, labelled icon buttons and motion that respects reduced motion",
     ],
     cover: "/images/projects/isaacadjei-me/cover.webp",
@@ -178,7 +178,7 @@ const _isaacadjei_me: Project = {
       { type: "h2", text: "Finding things" },
       {
         type: "p",
-        text: "Search covers the blog, TIL, projects, publications, notes, the newsletter and the consumed log. The command menu opens with Ctrl+I or Cmd+I and reaches every page from the keyboard, with shortcuts for navigation and a theme toggle. An All Pages directory lists every public page in plain text for anyone who prefers it.",
+        text: "Search covers the blog, TIL, projects, publications, notes, the newsletter and the consumed log. The command menu opens with Ctrl+I or Cmd+I and reaches every page from the keyboard, with shortcuts for navigation and a theme toggle. Anything typed there can also search the whole site. An All Pages directory lists every public page in plain text for anyone who prefers it.",
       },
       {
         type: "clip",
@@ -190,7 +190,7 @@ const _isaacadjei_me: Project = {
       { type: "h2", text: "Community pages" },
       {
         type: "p",
-        text: "The guestbook takes messages behind the same spam protection as the contact form and shows each one only after I approve it. The now page follows the nownownow idea of saying what I am focused on at the moment. The newsletter has back issues and an RSS feed alongside the blog and TIL feeds.",
+        text: "The guestbook takes messages behind the same spam protection as the contact form and shows each one only after I approve it. The now page follows the nownownow idea of saying what I am focused on at the moment. The newsletter is part of the site rather than a separate platform. Every other week a letter gathers what I published since the last one with a short note from me. In the weeks between, a short Outside issue covers one thing beyond my own work. Each issue is a file in the repository: it goes live at midnight on its date and is emailed through Resend that morning, once, to subscribers who confirmed by email. Issues have their own pages with reactions and comments, plus a feed.",
       },
       { type: "h2", text: "Accessibility" },
       {

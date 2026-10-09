@@ -253,7 +253,7 @@ const sections: Array<{
         name: "Resend",
         icon: `${SI}/resend`,
         href: "https://resend.com",
-        detail: "Transactional email for sign-in links, support replies and notifications.",
+        detail: "Email for sign-in links, support replies, notifications and the newsletter, which goes out as a broadcast to confirmed subscribers.",
       },
       {
         name: "Cloudinary",
@@ -271,7 +271,7 @@ const sections: Array<{
         name: "Upstash Redis",
         icon: `${DEV}/redis/redis-original.svg`,
         href: "https://upstash.com",
-        detail: "Serverless Redis that powers several live features on this site: device status from the three daemons, Spotify now-playing with progress bar, blog post reactions, Beehiiv newsletter cache and contact form rate limiting. All in one Redis instance.",
+        detail: "Serverless Redis that powers several live features on this site: device status from the three daemons, Spotify now-playing with progress bar, blog post reactions, the newsletter's send-once guard and contact form rate limiting. All in one Redis instance.",
       },
       {
         name: "Cloudflare",
@@ -297,12 +297,6 @@ const sections: Array<{
         href: "https://workers.cloudflare.com",
         detail:
           "Serverless edge workers. One worker (workers/ps5-presence) polls the PSN API every 2 minutes and writes presence data to Upstash Redis, replacing the need for a daemon running on a local machine.",
-      },
-      {
-        name: "Beehiiv",
-        icon: "https://www.google.com/s2/favicons?domain=beehiiv.com&sz=64",
-        href: "https://beehiiv.com",
-        detail: "Newsletter platform for the isaacadjei.me newsletter. Subscription is handled via the Beehiiv API from a server action. Past issues are fetched and cached in Redis so the newsletter page loads instantly.",
       },
       {
         name: "Cloudflare Turnstile",

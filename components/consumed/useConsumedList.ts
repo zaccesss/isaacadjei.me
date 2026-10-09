@@ -1,12 +1,12 @@
 "use client"
-import { usePageSize } from "@/components/shared/Pagination"
+import { usePageSize, GRID_PAGE_SIZES } from "@/components/shared/Pagination"
 import type { FilterGroup } from "@/components/shared/ListControls"
 import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
 import { MONTH_NUMBER, isMonthAvailable, type Month } from "@/data/consumed/types"
 
 type Dated = { title: string; month: Month; year: number; day?: number }
 
-export const CONSUMED_PAGE_SIZES = [12, 24, 48]
+export const CONSUMED_PAGE_SIZES = GRID_PAGE_SIZES
 
 interface Options<T> {
   storageKey: string
