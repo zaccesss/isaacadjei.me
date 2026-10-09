@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.72.0] - 2026-10-09
+
+_Behind the scenes_
+
+### Added
+
+- New posts, notes and newsletter issues are announced the moment they go live
+- Newsletter issues now show how many readers opened and clicked them, without keeping anyone's address
+
 ## [2.71.2] - 2026-10-09
 
 _The tools in action_
