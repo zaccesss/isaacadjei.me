@@ -6,8 +6,10 @@ export interface LinkItem {
   url: string
   icon: string
   iconImage?: string
+  iconTransparent?: boolean
   category:
     | "professional"
+    | "ventures"
     | "writing"
     | "academic"
     | "code"
@@ -29,17 +31,9 @@ export const profileLinks: LinkItem[] = [
     category: "professional",
   },
   {
-    title: "Business Site",
-    description: "My business and digital home",
-    url: "https://zacess.com",
-    icon: "globe",
-    iconImage: "/images/zacess_logo.webp",
-    category: "professional",
-  },
-  {
     title: "Email",
-    description: "Get in touch - hello@isaacadjei.me",
-    url: "mailto:hello@isaacadjei.me",
+    description: "Get in touch at contact@isaacadjei.me",
+    url: "mailto:contact@isaacadjei.me",
     icon: "mail",
     category: "professional",
   },
@@ -56,6 +50,42 @@ export const profileLinks: LinkItem[] = [
     url: "https://wellfound.com/u/zaccesss",
     icon: "wellfound",
     category: "professional",
+  },
+  {
+    title: "PHAEMOS",
+    description: "Open industrial IoT platform for predictive maintenance",
+    url: "https://phaemos.com",
+    icon: "globe",
+    iconImage: "/images/ventures/phaemos.png",
+    iconTransparent: true,
+    category: "ventures",
+  },
+  {
+    title: "MELOPHOS",
+    description: "Song made visible: an open instrument learning platform",
+    url: "https://melophos.com",
+    icon: "globe",
+    iconImage: "/images/ventures/melophos.png",
+    iconTransparent: true,
+    category: "ventures",
+  },
+  {
+    title: "Vitafolio",
+    description: "Build, store and share every version of your CV",
+    url: "https://vitafolio.isaacadjei.me",
+    icon: "globe",
+    iconImage: "/images/ventures/vitafolio.png",
+    iconTransparent: true,
+    category: "ventures",
+  },
+  {
+    title: "Zaccess",
+    description: "My business and digital home",
+    url: "https://zacess.com",
+    icon: "globe",
+    iconImage: "/images/ventures/zaccess.png",
+    iconTransparent: true,
+    category: "ventures",
   },
   {
     title: "Newsletter",

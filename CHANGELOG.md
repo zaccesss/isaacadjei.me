@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.75.0] - 2026-10-09
+
+_Ventures_
+
+### Added
+
+- The Links page has a Ventures section for PHAEMOS, MELOPHOS, Vitafolio and Zaccess
+
 ## [2.72.4] - 2026-10-09
 
 _On the fediverse_
