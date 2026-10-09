@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.71.2] - 2026-10-09
+
+_The tools in action_
+
+### Changed
+
+- The development environment project shows every tool in action, from the shell and tmux to Neovim, lazygit, fzf, the Git hooks and Linux, in the same high contrast colours in dark and light mode
+
 ## [2.71.1] - 2026-10-09
 
 _Lighter and better watched_

@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.71.2",
+    date: "2026-10-09",
+    label: "The tools in action",
+    changed: [
+      "The development environment project shows every tool in action, from the shell and tmux to Neovim, lazygit, fzf, the Git hooks and Linux, in the same high contrast colours in dark and light mode",
+    ],
+  },
+  {
     version: "v2.71.1",
     date: "2026-10-09",
     label: "Lighter and better watched",
