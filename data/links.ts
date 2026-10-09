@@ -244,6 +244,13 @@ export const profileLinks: LinkItem[] = [
     category: "social",
   },
   {
+    title: "Mastodon",
+    description: "On the fediverse as @isaac@isaacadjei.me",
+    url: "https://mastodon.social/@isaacadjei",
+    icon: "mastodon",
+    category: "social",
+  },
+  {
     title: "X (Twitter)",
     description: "Thoughts, takes and live updates",
     url: "https://x.com/zaccesss",
