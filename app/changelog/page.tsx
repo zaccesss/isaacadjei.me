@@ -25,6 +25,22 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.78.0",
+    date: "2026-10-10",
+    label: "Midweek issues",
+    added: [
+      "Midweek issues every other Wednesday on topics beyond engineering, from Ghana and Africa to football, psychology and culture. They are on the site only, so your inbox still gets one email a week at most",
+      "Three more Outside issues and photos in earlier ones",
+      "Blog posts show their covers in the feeds again",
+    ],
+    changed: [
+      "Newsletter cards and feeds show whether an issue is a letter, an Outside issue or a Midweek issue",
+      "The CNC milling machine project describes the real build",
+      "Project pages no longer show the same link twice",
+    ],
+    fixed: ["Pages that do not exist now return a proper not found status"],
+  },
+  {
     version: "v2.77.0",
     date: "2026-10-10",
     label: "Covers, notes and images",

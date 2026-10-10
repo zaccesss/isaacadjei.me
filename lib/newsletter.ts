@@ -6,7 +6,7 @@ export interface NewsletterIssue {
   id: string
   number: number
   label: string
-  kind: "letter" | "outside"
+  kind: "letter" | "outside" | "midweek"
   title: string
   subtitle: string | null
   publishDate: string

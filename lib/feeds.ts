@@ -5,6 +5,7 @@ import type { TILEntry } from "@/data/til"
 import type { NewsletterIssue } from "@/lib/newsletter"
 import { escapeXml, type RssChannel, type RssItem } from "@/lib/rss"
 import { kindHue, postTypeHue, tilCategoryHue } from "@/lib/feed-view"
+import { mediaEmailSrc } from "@/lib/media"
 
 export interface FeedInfo {
   id: "blog" | "til" | "notes" | "newsletter" | "all"
@@ -96,6 +97,7 @@ export function blogItems(posts: BlogPost[], standalone = false): RssItem[] {
     section: "Blog",
     sublabel: postTypeName(p.type),
     label: standalone ? { text: postTypeName(p.type), hue: postTypeHue(p.type) } : undefined,
+    image: p.cover_image ? (mediaEmailSrc(p.cover_image) ?? p.cover_image) : undefined,
     discussion: true,
   }))
 }
@@ -137,6 +139,7 @@ export function newsletterItems(issues: NewsletterIssue[]): RssItem[] {
     url: i.href,
     date: i.publishDate,
     description: i.subtitle ?? "",
+    sublabel: i.label,
     label: { text: "Newsletter", hue: kindHue("Newsletter") },
     image: i.thumbnailUrl ?? undefined,
   }))

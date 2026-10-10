@@ -6,7 +6,7 @@ import { videos, podcasts, books, articles, resources, others, MONTH_NUMBER, typ
 import { isLive } from "@/lib/schedule"
 
 export interface NewsletterIssueFile {
-  kind?: "letter" | "outside"
+  kind?: "letter" | "outside" | "midweek"
   number: number
   slug: string
   title: string
@@ -100,8 +100,18 @@ import _o8 from "./issues/outside-08"
 import _o9 from "./issues/outside-09"
 import _o10 from "./issues/outside-10"
 import _o11 from "./issues/outside-11"
+import _m1 from "./issues/midweek-01"
+import _m2 from "./issues/midweek-02"
+import _m3 from "./issues/midweek-03"
+import _m4 from "./issues/midweek-04"
+import _m5 from "./issues/midweek-05"
+import _m6 from "./issues/midweek-06"
+import _m7 from "./issues/midweek-07"
+import _m8 from "./issues/midweek-08"
+import _m9 from "./issues/midweek-09"
+import _m10 from "./issues/midweek-10"
 
-const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, ]
+const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, ]
 
 function dayAfter(date: string): string {
   const [y, m, d] = date.split("-").map(Number)
@@ -172,17 +182,17 @@ export function worthBetween(start: string, end: string): WorthItem[] {
 }
 
 export function issueLabel(issue: Pick<NewsletterIssueFile, "kind" | "number">): string {
-  return `${issue.kind === "outside" ? "Outside" : "Issue"} ${issue.number}`
+  return `${issue.kind === "outside" ? "Outside" : issue.kind === "midweek" ? "Midweek" : "Issue"} ${issue.number}`
 }
 
 export function allIssues(): Issue[] {
   const sorted = [...files].sort((a, b) => a.date.localeCompare(b.date))
-  const letters = sorted.filter((f) => f.kind !== "outside")
+  const letters = sorted.filter((f) => f.kind !== "outside" && f.kind !== "midweek")
   return sorted.map((file) => {
-    if (file.kind === "outside") {
+    if (file.kind === "outside" || file.kind === "midweek") {
       return {
         ...file,
-        emailed: file.date >= EMAIL_FROM_DATE,
+        emailed: file.kind === "outside" && file.date >= EMAIL_FROM_DATE,
         items: [],
         worth: [],
         greeting: file.greeting ?? GREETINGS[file.number % GREETINGS.length],

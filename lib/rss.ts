@@ -138,7 +138,7 @@ export function rssResponse(request: Request, channel: RssChannel, items: RssIte
   const vary = { Vary: "Accept" }
 
   if (url.searchParams.has("raw")) {
-    return new Response(buildAtomXml(channel, items, baseUrl, true), {
+    return new Response(buildAtomXml(channel, items, baseUrl), {
       headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": xmlCache, ...vary },
     })
   }

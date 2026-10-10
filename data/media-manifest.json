@@ -181,6 +181,12 @@
   "w": 1400,
   "ht": 930
  },
+ "/images/blog/covers/ariane-5-flight-501-overflow.webp": {
+  "h": "1c2f9769b9",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
  "/images/blog/covers/avr-bare-metal-atmega644p.webp": {
   "h": "5bf14a10d8",
   "t": "img",
@@ -475,17 +481,131 @@
   "w": 1108,
   "ht": 688
  },
+ "/images/newsletter/akosombo-dam.jpg": {
+  "h": "0b24e5f38c",
+  "t": "img",
+  "w": 1600,
+  "ht": 1200
+ },
  "/images/newsletter/bell-x1-in-flight.jpg": {
   "h": "52e9847231",
   "t": "img",
   "w": 1600,
   "ht": 1200
  },
+ "/images/newsletter/burna-boy-lagos.jpg": {
+  "h": "c6fe7fb5bf",
+  "t": "img",
+  "w": 1600,
+  "ht": 1199
+ },
+ "/images/newsletter/chicago-pile-1.jpg": {
+  "h": "3943cc133a",
+  "t": "img",
+  "w": 1600,
+  "ht": 1254
+ },
  "/images/newsletter/diagrams/c1dbbafcd3.png": {
   "h": "15faaf23d0",
   "t": "img",
   "w": 1072,
   "ht": 1006
+ },
+ "/images/newsletter/estadio-azteca.jpg": {
+  "h": "67187a1d88",
+  "t": "img",
+  "w": 1600,
+  "ht": 900
+ },
+ "/images/newsletter/flex-sentinel-3.jpg": {
+  "h": "31db135801",
+  "t": "img",
+  "w": 1600,
+  "ht": 900
+ },
+ "/images/newsletter/galamsey-river.jpg": {
+  "h": "6f7f122301",
+  "t": "img",
+  "w": 1600,
+  "ht": 899
+ },
+ "/images/newsletter/intel-4004.jpg": {
+  "h": "d7e3a631e4",
+  "t": "img",
+  "w": 610,
+  "ht": 208
+ },
+ "/images/newsletter/kelvin-kiptum-chicago.jpg": {
+  "h": "acd869e728",
+  "t": "img",
+  "w": 1201,
+  "ht": 1600
+ },
+ "/images/newsletter/kente-weaving.jpg": {
+  "h": "863be65984",
+  "t": "img",
+  "w": 1600,
+  "ht": 1200
+ },
+ "/images/newsletter/kwame-nkrumah.jpg": {
+  "h": "88469fbd2f",
+  "t": "img",
+  "w": 941,
+  "ht": 1254
+ },
+ "/images/newsletter/marconi-signal-hill.jpg": {
+  "h": "ce6ed09b1b",
+  "t": "img",
+  "w": 1600,
+  "ht": 1166
+ },
+ "/images/newsletter/mission-robotic-vehicle.jpg": {
+  "h": "e3042e0fac",
+  "t": "img",
+  "w": 1067,
+  "ht": 1600
+ },
+ "/images/newsletter/moon-shackleton-crater.jpg": {
+  "h": "d98b3b1e9c",
+  "t": "img",
+  "w": 1024,
+  "ht": 1024
+ },
+ "/images/newsletter/mpesa-agent.jpg": {
+  "h": "b3c1123e3a",
+  "t": "img",
+  "w": 1600,
+  "ht": 1067
+ },
+ "/images/newsletter/penalty-kick.jpg": {
+  "h": "2c2d76a87e",
+  "t": "img",
+  "w": 1600,
+  "ht": 534
+ },
+ "/images/newsletter/roman-space-telescope.jpg": {
+  "h": "eb6dffcc7a",
+  "t": "img",
+  "w": 1600,
+  "ht": 1067
+ },
+ "/images/newsletter/rubin-telescope-mount.jpg": {
+  "h": "b2cbcf8346",
+  "t": "img",
+  "w": 1600,
+  "ht": 1200
+ },
+ "/images/newsletter/sahara-rock-art.jpg": {
+  "h": "c969d2179c",
+  "t": "img",
+  "w": 1600,
+  "ht": 900
+ },
+ "/images/newsletter/stamford-bridge.jpg": {
+  "h": "6a7f690df2",
+  "t": "img",
+  "w": 1600,
+  "ht": 1200
  },
  "/images/projects/astoncv/aston-skyline.webp": {
   "h": "384220e8ee",

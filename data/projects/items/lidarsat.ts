@@ -44,7 +44,6 @@ const _lidarsat: Project = {
     order: 6,
     status: "research",
     links: [
-      { label: "ENGINERDS on GitHub", url: "https://github.com/ENGNERDS" },
       { label: "SPRIN-D baseline paper", url: "https://arxiv.org/abs/2510.01348" },
     ],
     team: [

@@ -99,6 +99,7 @@ import _60 from "./entries/apt-acquire-retries"
 import _61 from "./entries/wcag-aaa-contrast-7-to-1"
 import _62 from "./entries/git-colour-off-in-pipes"
 import _63 from "./entries/github-actions-timeout-minutes"
+import _64 from "./entries/postgres-now-transaction-time"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -164,4 +165,5 @@ export const tilEntries: TILEntry[] = [
   _61,
   _62,
   _63,
+  _64,
 ]
