@@ -25,6 +25,23 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.77.0",
+    date: "2026-10-10",
+    label: "Covers, notes and images",
+    added: [
+      "A Notes section on the homepage and previous and next links on every note",
+      "Photos and flowcharts in newsletter issues, in the email as well as on the site",
+      "New demo clips of the site, including the light and dark switch",
+    ],
+    changed: [
+      "Blog posts show their covers again, on the list, the post itself and the homepage",
+      "Switching between light and dark is one smooth reveal from the toggle. With reduced motion it is instant",
+      "Images load from the site's own media domain in sizes made in advance, so they stay sharp on any screen",
+      "The homepage reads Projects, Blog, Newsletter, TIL then Notes and lines up evenly on wide screens",
+      "Four research notes are dated and appear with the rest of the notes",
+    ],
+  },
+  {
     version: "v2.76.0",
     date: "2026-10-10",
     label: "Newsletter signature",

@@ -1648,31 +1648,41 @@
   "ht": 800
  },
  "/videos/projects/isaacadjei-me/projects.mp4": {
-  "h": "408936b928",
+  "h": "d1c4f48e88",
   "t": "file"
  },
  "/videos/projects/isaacadjei-me/projects.webp": {
-  "h": "52cb0eacbe",
+  "h": "8dbe60c0ca",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/theme.mp4": {
+  "h": "017d679428",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/theme.webp": {
+  "h": "50e7d1b8d1",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/isaacadjei-me/tour.mp4": {
-  "h": "2c47def012",
+  "h": "5dd73f096c",
   "t": "file"
  },
  "/videos/projects/isaacadjei-me/tour.webp": {
-  "h": "c7bcf7147b",
+  "h": "a0a8e22c1b",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/isaacadjei-me/writing.mp4": {
-  "h": "90d78e231e",
+  "h": "869803fb4c",
   "t": "file"
  },
  "/videos/projects/isaacadjei-me/writing.webp": {
-  "h": "a3f78e109e",
+  "h": "5fef60d961",
   "t": "img",
   "w": 1280,
   "ht": 800

@@ -81,7 +81,7 @@ const _isaacadjei_me: Project = {
         type: "clip",
         src: "/videos/projects/isaacadjei-me/tour.mp4",
         poster: "/videos/projects/isaacadjei-me/tour.webp",
-        alt: "A tour from the home page through the About section, the projects grid and the experience timeline",
+        alt: "A tour of the home page: the hero, the About section, featured projects, featured posts with their covers, recent newsletter issues, Today I Learned and the latest notes",
         caption: "A short tour of the site",
       },
       { type: "h2", text: "Content as code" },
@@ -93,15 +93,15 @@ const _isaacadjei_me: Project = {
         type: "clip",
         src: "/videos/projects/isaacadjei-me/projects.mp4",
         poster: "/videos/projects/isaacadjei-me/projects.webp",
-        alt: "The projects grid with its category filters, then a project page with its overview, an interactive frequency response chart and the gallery",
+        alt: "The projects grid with its category filters and the audio amplifier first, then its project page with the overview, the signal chain diagram and the measured frequency response chart",
         caption: "The projects grid and a project page",
       },
       {
         type: "clip",
         src: "/videos/projects/isaacadjei-me/writing.mp4",
         poster: "/videos/projects/isaacadjei-me/writing.webp",
-        alt: "The Writing page with its type filters and posts, the TIL list with topic filters, then a search for embedded across the whole site",
-        caption: "Writing, Today I Learned and site search",
+        alt: "The Writing page with its filters and post covers, a post opened with its cover, then the Notes list and a note scrolled to its previous and next links",
+        caption: "Writing, a post and the notes",
       },
       { type: "h2", text: "How the data flows" },
       {
@@ -196,6 +196,13 @@ const _isaacadjei_me: Project = {
       {
         type: "p",
         text: "Accessibility matters to me personally, so contrast and predictable layouts are practical needs rather than polish. Every page declares its language and has one heading outline. A skip link is the first thing the keyboard reaches. The theme follows the system setting with a toggle in the header. Animation in the header, the favicon and the typing motto stops when the system asks for reduced motion. Link text says where a link goes, images carry alt text and colour never carries a meaning on its own.",
+      },
+      {
+        type: "clip",
+        src: "/videos/projects/isaacadjei-me/theme.mp4",
+        poster: "/videos/projects/isaacadjei-me/theme.webp",
+        alt: "The home page switching from light to dark as a circle spreads out from the theme toggle, then back to light further down the page",
+        caption: "The theme switch, which is instant when reduced motion is on",
       },
       { type: "h2", text: "Engineering notes" },
       {
