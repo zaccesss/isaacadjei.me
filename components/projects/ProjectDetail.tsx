@@ -42,6 +42,11 @@ function renderWithCode(text: string) {
   )
 }
 
+const sameUrl = (a: string, b: string) => a.replace(/\/+$/, "").replace("://www.", "://") === b.replace(/\/+$/, "").replace("://www.", "://")
+function linkedElsewhere(url: string, links: string[], ...buttons: (string | undefined)[]): boolean {
+  return [...links, ...buttons].some((other) => other !== undefined && sameUrl(url, other))
+}
+
 export default function ProjectDetail({ project, measurements, highlighted }: Props) {
   const sets = measurements?.length ? [...new Set(measurements.map((m) => m.measurement_set))] : []
   const frequencies = measurements?.length ? [...new Set(measurements.map((m) => m.frequency_hz))].sort((a, b) => a - b) : []
@@ -113,7 +118,7 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
                 </a>
               </Button>
             )}
-            {project.demo && (
+            {project.demo && !linkedElsewhere(project.demo, project.links?.map((l) => l.url) ?? [], project.website) && (
               <Button asChild size="sm">
                 <a href={project.demo} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />
@@ -121,7 +126,7 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
                 </a>
               </Button>
             )}
-            {project.links?.map((l) => (
+            {project.links?.filter((l) => !linkedElsewhere(l.url, [], project.github, project.website)).map((l) => (
               <Button key={l.url} asChild variant="outline" size="sm">
                 <a href={l.url} target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />

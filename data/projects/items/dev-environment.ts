@@ -55,7 +55,6 @@ const _dev_environment: Project = {
     order: 8,
     status: "live",
     links: [
-      { label: "dotfiles", url: "https://github.com/zaccesss/dotfiles" },
       { label: "mac-bootstrap", url: "https://github.com/zaccesss/mac-bootstrap" },
       { label: "windows-bootstrap", url: "https://github.com/zaccesss/windows-bootstrap" },
       { label: "linux-bootstrap", url: "https://github.com/zaccesss/linux-bootstrap" },

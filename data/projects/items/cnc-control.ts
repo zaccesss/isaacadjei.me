@@ -4,10 +4,10 @@ const _cnc_control: Project = {
     id: "cnc-control",
     title: "CNC Milling Machine Control System",
     description:
-      "A safety-critical Arduino control system for a CNC milling machine with door interlocks, a hardware emergency stop, state machine firmware and LCD feedback.",
+      "An Arduino Uno prototype of a CNC milling machine controller with a door interlock, an emergency stop, a timed cutting cycle, status LEDs, a buzzer and an LCD.",
     longDescription:
-      "I designed and programmed a safety-critical control system for a CNC milling machine built around an Arduino ATmega328P. The central design constraint was that the machine must be incapable of operating unsafely however it is used, not just that it handles the happy path correctly. Every transition in the finite state machine (INIT, DOOR_OPEN, READY, RUNNING, COOLDOWN and FAULT) is guarded by a full safety check: no state change is permitted unless every relevant condition holds at the same time. A door opening during RUNNING drives the state straight to FAULT rather than back to READY. FAULT can only be left through a deliberate manual reset.\n\nThe emergency stop is a mushroom-head button on a hardware interrupt (INT0), so the ATmega328P reacts in under a millisecond wherever the main loop is. On activation it kills the motor, latches a fault flag in EEPROM so a power cycle cannot silently clear it, sounds the buzzer and blocks all input until an operator holds the reset button for two seconds, confirming that a person has acknowledged the fault. The 10-second cutting cycle and the mandatory 5-second safety delay before the door can open both run on millis() timing, so the ISR and sensor polling keep running and cannot miss an E-Stop or door event mid-cycle.\n\nA TL071 op-amp wired as a Schmitt trigger buffers the reed switch output. Motor switching makes industrial environments electrically noisy and the Schmitt trigger's hysteresis stops slow or noisy edges from causing false triggers before they reach the digital input. A 16x2 HD44780 LCD on a 4-bit parallel interface shows a plain-English status and a countdown during the safety delay. Green, yellow and red LEDs plus a buzzer give the state at a glance and a hardware watchdog restarts the system into FAULT if the main loop ever stalls, so a firmware bug cannot leave the machine stuck in an active state.",
-    technologies: ["Arduino", "C++", "Embedded Systems", "TL071", "LCD", "Safety Systems"],
+      "I built this prototype in May 2024 as a control system for a CNC milling machine. The requirements were clear: the cutting cycle must not start with the door open, it must run for exactly ten seconds, an emergency stop must halt everything at once and the operator must always know what the machine is doing.\n\nThe prototype runs on an Arduino Uno on a breadboard. A toggle switch stands in for the door sensor, two push buttons are the Start and Emergency Stop controls and a small DC motor stands in for the cutter. Red, yellow and green LEDs show the state, a buzzer sounds on an emergency stop and a 16x2 LCD driven by the LiquidCrystal library prints messages such as \"Close Door to Start\", \"Ready\", \"Cutting...\" and \"Emergency Stop!\". I drew the circuit in Cirkit Designer first, then wired and tested it on the bench.\n\nThe sketch is one polled loop. The door has to be opened and closed once before anything can start. With the door closed the system shows Ready. Pressing Start then runs the cutting cycle. The emergency stop is checked on every pass of the loop and between every step of the cycle. Opening the door during a cycle triggers the same emergency stop routine. After each cycle there is a five-second wait before the door may be opened again.",
+    technologies: ["Arduino", "C++", "Embedded Systems", "LCD", "Safety Systems"],
     category: "embedded",
     featured: false,
     cover: "/images/projects/cnc-control/cover.webp",
@@ -20,80 +20,82 @@ const _cnc_control: Project = {
     ],
     date: "2024",
     highlights: [
-      "Finite state machine: INIT, DOOR_OPEN, READY, RUNNING, COOLDOWN and FAULT, with every transition safety-guarded",
-      "Hardware interrupt on the E-Stop for sub-millisecond motor shutdown, with the fault latched in EEPROM",
-      "Door interlock halts the motor immediately on opening during any active state",
-      "Mandatory 5-second post-cycle safety delay before door access is permitted",
-      "TL071 Schmitt trigger buffers the sensor signal to isolate the Arduino from industrial noise",
-      "Watchdog timer forces a safe shutdown on a firmware crash or a main loop stall",
+      "Door interlock: the cycle cannot start until the door has been opened and closed. Opening it mid-cycle stops the motor",
+      "Ten-second cutting cycle run as 40 steps of 250 ms, with the emergency stop checked between every step",
+      "Emergency stop routine that cuts the motor, lights the red LED, sounds the buzzer for two seconds and shows a message",
+      "Five-second wait after each cycle before the door may be opened",
+      "Red, yellow and green status LEDs plus a 16x2 LCD with plain-English messages",
+      "Requirements analysis, test plan, flow chart and build log written alongside the build",
     ],
     sections: [
-      { type: "h2", text: "The state machine" },
+      { type: "h2", text: "How the sketch works" },
       {
         type: "p",
-        text: "The firmware is built around one rule: the machine only ever moves to a less safe state when every condition for it is met. It can always fall to FAULT from anywhere. Writing the states out first made it obvious where each check belonged and which transitions should simply not exist, such as going straight from RUNNING back to READY.",
+        text: "I wrote a flow chart and pseudocode before any code, then turned them into a single Arduino sketch. Every pass of the loop checks the emergency stop first, then the door, then the Start button.",
       },
       {
         type: "diagram",
-        code: `stateDiagram-v2
-    [*] --> INIT
-    INIT --> DOOR_OPEN: startup, door open
-    INIT --> READY: startup, door closed
-    DOOR_OPEN --> READY: door closed
-    READY --> DOOR_OPEN: door opened
-    READY --> RUNNING: cycle started
-    RUNNING --> COOLDOWN: 10 s cycle complete
-    COOLDOWN --> READY: 5 s safety delay over
-    RUNNING --> FAULT: door opened or E-Stop
-    READY --> FAULT: E-Stop
-    COOLDOWN --> FAULT: E-Stop
-    DOOR_OPEN --> FAULT: E-Stop
-    FAULT --> INIT: reset held for 2 s`,
-        caption: "Simplified state machine: FAULT is reachable from every active state and only a deliberate reset leaves it",
+        code: `flowchart TD
+    A[Start of loop] --> B{Emergency stop pressed?}
+    B -->|Yes| S[Stop motor, red LED, buzzer, message]
+    B -->|No| C{Door open?}
+    C -->|Yes, no cycle running| D[Red LED, Close Door to Start]
+    C -->|Yes, cycle running| S
+    C -->|No| E{Door opened once already?}
+    E -->|No| A
+    E -->|Yes| F[Green LED, Ready]
+    F --> G{Start pressed?}
+    G -->|Yes| H[Yellow LED, motor on for 40 steps of 250 ms]
+    H --> I[Motor off, wait 5 s before the door may open]
+    G -->|No| A
+    D --> A
+    S --> A
+    I --> A`,
+        caption: "One pass of the control loop, as the sketch runs it",
       },
-      { type: "h2", text: "Layers of protection" },
+      { type: "h2", text: "The safety features" },
       {
         type: "table",
-        headers: ["Layer", "What it protects against"],
+        headers: ["Feature", "How the sketch does it"],
         rows: [
-          ["E-Stop on INT0", "An operator needing to stop the spindle now, whatever the loop is doing"],
-          ["EEPROM fault latch", "A power cycle quietly clearing a fault nobody has acknowledged"],
-          ["Two-second reset hold", "An accidental bump clearing a fault"],
-          ["Door interlock", "Access to the cutting area while the motor can turn"],
-          ["Five-second safety delay", "Opening the door while the spindle is still running down"],
-          ["Schmitt trigger input", "Electrical noise causing a false door reading"],
-          ["Watchdog timer", "A firmware hang leaving the motor running"],
+          ["Door interlock", "The cycle only starts with the door closed, after it has been opened once. Opening it during a cycle calls the emergency stop routine"],
+          ["Emergency stop", "Checked at the top of every loop and between each 250 ms step of the cycle. It cuts the motor, lights the red LED and sounds the buzzer for two seconds"],
+          ["Timed cycle", "The motor runs for 40 steps of 250 ms, which is the ten seconds the requirements asked for"],
+          ["Door delay", "Five seconds after a cycle ends before the door may be opened"],
+          ["Operator feedback", "Green for ready, yellow while cutting and red for a fault, with the same state written on the LCD"],
         ],
-        caption: "Each safety measure and the failure it covers",
-      },
-      {
-        type: "p",
-        text: "No single measure is trusted on its own. The interrupt handles speed, the latch handles memory, the watchdog handles the firmware itself and the hardware filter handles the signal before the firmware ever sees it.",
+        caption: "What each safety requirement became in the sketch",
       },
       {
         type: "image",
         src: "/images/projects/cnc-control/safety-test.webp",
-        alt: "The CNC control circuit on the bench during an emergency stop safety test",
-        caption: "Testing the emergency stop",
+        alt: "The control sketch open in the Arduino IDE, showing the pin definitions, the LCD setup and the start of the loop",
+        caption: "The sketch in the Arduino IDE",
       },
-      { type: "h2", text: "Non-blocking timing" },
+      { type: "h2", text: "Testing" },
       {
         type: "p",
-        text: "The cutting cycle and the safety delay could have been written with delay(), but that would freeze the loop for up to ten seconds and the door sensor would go unread. Using millis() comparisons instead lets the loop keep polling the door, refreshing the LCD countdown and running the LEDs while the cycle runs. The E-Stop never depends on the loop at all because it is an interrupt.",
+        text: "My test plan covered the emergency stop during a cycle, refusing to start with the door open, detecting the door closing again, the Start button and the length of the cutting cycle. Each test had a stated condition and an expected result. My build log records what I fixed between sessions.",
       },
       {
         type: "image",
         src: "/images/projects/cnc-control/lcd.webp",
-        alt: "16x2 LCD showing a plain-English machine status message",
-        caption: "The status display",
+        alt: "The prototype on a bench next to a laptop running the Arduino IDE, with the breadboard, LEDs, buzzer and motor wired to the Arduino Uno",
+        caption: "The prototype on the bench",
+      },
+      { type: "h2", text: "What I would do differently now" },
+      {
+        type: "p",
+        text: "Looking back after two years of embedded work, the weak spot is that the sketch blocks. The cycle and the five-second wait use delay(), so during a step the board is not looking at anything. The emergency stop is only seen between steps, up to a quarter of a second late. The door is not read at all while the cycle loop runs. Today I would put the emergency stop on a hardware interrupt, time the cycle with millis() so the loop never stops reading inputs and latch the fault until a person resets it. My own planning notes already suggested a watchdog timer and saving the state through a power cut. I did not get to either.",
       },
     ],
     references: [
-      { title: "ATmega328P datasheet (Microchip)", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf", note: "External interrupts, the watchdog timer and EEPROM" },
-      { title: "TL071 datasheet (Texas Instruments)", url: "https://www.ti.com/lit/ds/symlink/tl071.pdf", note: "The op-amp used as the Schmitt trigger" },
-      { title: "HD44780U LCD controller datasheet (Hitachi)", url: "https://www.sparkfun.com/datasheets/LCD/HD44780.pdf", note: "The 4-bit parallel interface for the status display" },
-      { title: "Arduino attachInterrupt() reference", url: "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/", note: "Wiring the E-Stop to INT0" },
-      { title: "AVR Libc watchdog timer handling", url: "https://avrdudes.github.io/avr-libc/avr-libc-user-manual/group__avr__watchdog.html", note: "Enabling and resetting the watchdog" },
+      { title: "Arduino Uno Rev3", url: "https://docs.arduino.cc/hardware/uno-rev3/", note: "The board the prototype runs on" },
+      { title: "LiquidCrystal library", url: "https://docs.arduino.cc/libraries/liquidcrystal/", note: "Driving the 16x2 LCD" },
+      { title: "pinMode() and INPUT_PULLUP", url: "https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/", note: "How the buttons and the door switch are read" },
+      { title: "Blink Without Delay", url: "https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/", note: "The millis() pattern I would use for the cycle now" },
+      { title: "attachInterrupt()", url: "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/", note: "How an interrupt-driven emergency stop would work" },
+      { title: "Cirkit Designer", url: "https://app.cirkitdesigner.com/", note: "Where I drew the circuit first" },
     ],
   }
 

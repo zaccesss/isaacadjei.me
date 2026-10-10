@@ -31,6 +31,7 @@ function IssueCard({ issue }: { issue: NewsletterIssue }) {
         </div>
       )}
       <div className="px-5 py-4 space-y-2">
+        <p className="text-[11px] font-mono uppercase tracking-wider text-primary">{issue.label}</p>
         <p className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2">
           {issue.title}
         </p>

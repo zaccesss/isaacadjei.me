@@ -2,6 +2,26 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.78.0] - 2026-10-10
+
+_Midweek issues_
+
+### Added
+
+- Midweek issues every other Wednesday on topics beyond engineering, from Ghana and Africa to football, psychology and culture. They are on the site only, so your inbox still gets one email a week at most
+- Three more Outside issues and photos in earlier ones
+- Blog posts show their covers in the feeds again
+
+### Changed
+
+- Newsletter cards and feeds show whether an issue is a letter, an Outside issue or a Midweek issue
+- The CNC milling machine project describes the real build
+- Project pages no longer show the same link twice
+
+### Fixed
+
+- Pages that do not exist now return a proper not found status
+
 ## [2.77.0] - 2026-10-10
 
 _Covers, notes and images_

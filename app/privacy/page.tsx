@@ -14,6 +14,19 @@ export const metadata: Metadata = {
   },
 }
 
+function Ext({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+    >
+      {children}
+    </a>
+  )
+}
+
 export default function PrivacyPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-12">
@@ -192,6 +205,18 @@ export default function PrivacyPage() {
         </div>
 
         <div>
+          <h2>Booking a call</h2>
+          <p>
+            The <Link href="/book" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">book a call</Link>{" "}
+            page embeds a calendar from <Ext href="https://cal.com/privacy">Cal.com</Ext>. Loading it contacts Cal.com, which
+            may set its own cookies. If you book a call, the name, email address and any notes you enter go to Cal.com, which
+            checks my calendar for clashes. Cal.com may ask you to confirm your email address with a code first. Once the
+            booking is confirmed it sends us both the invitation with a video call link. I use those details only
+            to hold the call and reply to you.
+          </p>
+        </div>
+
+        <div>
           <h2>Guestbook</h2>
           <p>
             If you sign the guestbook, I store the name, message and optional website you enter, the time you signed
@@ -249,27 +274,36 @@ export default function PrivacyPage() {
           <h2>Maps, embeds and rate limiting</h2>
           <p>
             The public stats pages include a map of where my job search has reached. Loading it
-            fetches map styles, tiles and satellite imagery from OpenFreeMap and Esri, so those
-            providers receive your IP address and browser details in the normal way any request to
-            them does. The map only ever shows the number of opportunities per city and nothing
-            about individual applications. Some pages also embed Spotify and YouTube players, which
-            contact those services when they load and may set their own cookies under their own
-            policies.
+            fetches map styles, tiles and satellite imagery from{" "}
+            <Ext href="https://openfreemap.org/">OpenFreeMap</Ext> and{" "}
+            <Ext href="https://www.esri.com/en-us/privacy/overview">Esri</Ext>, so those providers
+            receive your IP address and browser details in the normal way any request to them does.
+            The map only ever shows the number of opportunities per city and nothing about individual
+            applications. Some pages also embed{" "}
+            <Ext href="https://www.spotify.com/uk/legal/privacy-policy/">Spotify</Ext> and{" "}
+            <Ext href="https://policies.google.com/privacy">YouTube</Ext> players, which contact those
+            services when they load and may set their own cookies under their own policies.
           </p>
           <p className="mt-3">
             The photos, covers and demo clips on this site load from media.isaacadjei.me, which is
-            stored and served by Cloudflare R2. Cloudflare receives your IP address and browser details
-            for each request in the normal way any web server does. Its bot protection may set a
-            short-lived security cookie to tell people from automated traffic. I do not receive any
-            record of who loaded which image.
+            stored and served by <Ext href="https://developers.cloudflare.com/r2/">Cloudflare R2</Ext>.
+            Cloudflare receives your IP address and browser details for each request in the normal way
+            any web server does. Its bot protection may set a short-lived security cookie to tell
+            people from automated traffic (see{" "}
+            <Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare&apos;s Privacy Policy</Ext>).
+            I do not receive any record of who loaded which image.
           </p>
           <p className="mt-3">
-            The Consumed pages show book covers from Open Library, video thumbnails from YouTube,
-            preview images from the sites each entry links to and small site icons from Google&rsquo;s
-            favicon service. Your browser loads these images directly from those servers, which
-            receive your IP address and browser details in the normal way. The research page reads
-            view and download counts from Zenodo on my server, so that request never involves your
-            browser.
+            The Consumed pages show book covers from{" "}
+            <Ext href="https://openlibrary.org/">Open Library</Ext> (run by the{" "}
+            <Ext href="https://archive.org/about/terms">Internet Archive</Ext>), video thumbnails from
+            YouTube, preview images from the sites each entry links to and small site icons from
+            Google&rsquo;s favicon service (see{" "}
+            <Ext href="https://policies.google.com/privacy">Google&apos;s Privacy Policy</Ext>). Your
+            browser loads these images directly from those servers, which receive your IP address and
+            browser details in the normal way. The research page reads view and download counts from{" "}
+            <Ext href="https://about.zenodo.org/privacy-policy/">Zenodo</Ext> on my server, so that
+            request never involves your browser.
           </p>
           <p className="mt-3">
             To protect forms and public endpoints from abuse I rate limit requests by IP address.
@@ -312,8 +346,11 @@ export default function PrivacyPage() {
         <div>
           <h2>External links</h2>
           <p>
-            This site contains links to external platforms including GitHub, LinkedIn, YouTube and
-            others. I am not responsible for the content, availability or privacy practices of
+            This site contains links to external platforms including{" "}
+            <Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub</Ext>,{" "}
+            <Ext href="https://www.linkedin.com/legal/privacy-policy">LinkedIn</Ext>,{" "}
+            <Ext href="https://policies.google.com/privacy">YouTube</Ext> and others. Each name links to
+            that platform&apos;s privacy policy. I am not responsible for the content, availability or privacy practices of
             those sites. I recommend reading their respective privacy policies before sharing any
             personal information with them.
           </p>

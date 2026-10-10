@@ -55,9 +55,11 @@ export default function RecentIssues({ issues }: { issues: NewsletterIssue[] }) 
       key: "kind",
       label: "Type",
       kind: "single",
-      options: issues.some((i) => i.kind === "outside")
-        ? [{ value: "letter", label: "Letters" }, { value: "outside", label: "Outside" }]
-        : [],
+      options: [
+        { value: "letter", label: "Letters" },
+        { value: "outside", label: "Outside" },
+        { value: "midweek", label: "Midweek" },
+      ].filter((o) => issues.some((i) => (i.kind ?? "letter") === o.value)),
     },
     { key: "tag", label: "Tags", kind: "multi", options: countedOptions(issues.flatMap((i) => i.tags)) },
     { key: "year", label: "Year", kind: "single", options: yearOptions(issues.map((i) => new Date(i.publishDate).getFullYear())) },

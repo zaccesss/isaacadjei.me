@@ -39,8 +39,9 @@ export default async function NewsletterPage() {
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
           A letter every couple of weeks on what I have been building and learning, with everything I published in
-          between. In the weeks without one, a short issue on something outside my own work that is worth hearing about.
-          Every issue is also here to read, react to and comment on.
+          between. In the weeks without one, a short issue on an engineering story from outside my own work. Every other
+          Wednesday a Midweek issue looks further out: the world, sport, people and culture. Midweek issues are on this page
+          only for now, so your inbox gets one email a week at most. Every issue is here to read, react to and comment on.
         </p>
       </section>
 
