@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.76.0] - 2026-10-10
+
+_Newsletter signature_
+
+### Changed
+
+- Newsletter issues end with the updated signature, with my pronouns and the links on their own line so they read well on a phone
+
 ## [2.75.1] - 2026-10-10
 
 _Behind the scenes_
