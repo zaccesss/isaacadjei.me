@@ -29,7 +29,7 @@ export async function GET(req: Request) {
   const totalPages = Math.max(1, Math.ceil((count ?? 0) / 1000))
   const pages = await Promise.all(
     Array.from({ length: totalPages }, (_, i) =>
-      supabase.from("listening_history").select("played_at").gte("played_at", cutoff).range(i * 1000, i * 1000 + 999),
+      supabase.from("listening_history").select("played_at").gte("played_at", cutoff).order("played_at").range(i * 1000, i * 1000 + 999),
     ),
   )
   const rows = pages.flatMap((p) => (p.data as Row[] | null) ?? [])

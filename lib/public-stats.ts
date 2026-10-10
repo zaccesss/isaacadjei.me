@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/supabase"
+import { readAll } from "@/lib/supabase-read-all"
 import { publicEditorName } from "@/lib/wakatime-editors"
 import { summarise, type GameSessionRow, type PlaytimeRow, type GenreRow, type GamingSummary } from "@/lib/gaming"
 
@@ -31,15 +32,6 @@ const round = (n: number, d = 1) => Math.round(n * 10 ** d) / 10 ** d
 function weekKey(d: Date): string {
   const wd = (d.getUTCDay() + 6) % 7
   return new Date(d.getTime() - wd * DAY).toISOString().slice(5, 10)
-}
-
-async function readAll<T>(table: string, columns: string, since: { column: string; value: string }): Promise<T[]> {
-  const { count } = await supabase.from(table).select("id", { count: "exact", head: true }).gte(since.column, since.value)
-  const pages = Math.max(1, Math.ceil((count ?? 0) / 1000))
-  const parts = await Promise.all(
-    Array.from({ length: pages }, (_, i) => supabase.from(table).select(columns).gte(since.column, since.value).range(i * 1000, i * 1000 + 999)),
-  )
-  return parts.flatMap((p) => (p.data as T[] | null) ?? [])
 }
 
 async function compute(): Promise<PublicStats> {
