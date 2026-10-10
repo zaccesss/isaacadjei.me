@@ -1,6 +1,7 @@
 "use client"
 
 import { useSyncExternalStore } from "react"
+import { flushSync } from "react-dom"
 import { Monitor, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
@@ -18,12 +19,26 @@ export default function ThemeToggle({ onChange, className }: { onChange?: (choic
   const current: ThemeChoice = ORDER.includes(theme as ThemeChoice) ? (theme as ThemeChoice) : "system"
   const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length]
 
-  function handleToggle() {
-    const html = document.documentElement
-    html.classList.add("theme-transitioning")
-    setTheme(next)
-    window.setTimeout(() => html.classList.remove("theme-transitioning"), 100)
+  function handleToggle(event: React.MouseEvent<HTMLButtonElement>) {
     onChange?.(next)
+    const doc = document as Document & { startViewTransition?: (update: () => void) => { ready: Promise<void> } }
+    if (!doc.startViewTransition || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTheme(next)
+      return
+    }
+    const box = event.currentTarget.getBoundingClientRect()
+    const x = box.left + box.width / 2
+    const y = box.top + box.height / 2
+    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
+    const transition = doc.startViewTransition(() => flushSync(() => setTheme(next)))
+    transition.ready
+      .then(() =>
+        document.documentElement.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 450, easing: "cubic-bezier(0.4, 0, 0.2, 1)", pseudoElement: "::view-transition-new(root)" },
+        ),
+      )
+      .catch(() => {})
   }
 
   const icon = (choice: ThemeChoice) =>

@@ -183,6 +183,12 @@ export default function PrivacyPage() {
             issue includes a one-click unsubscribe link at the bottom so you can leave at any time
             with no questions asked.
           </p>
+          <p className="mt-3">
+            Images in the newsletter email, including the logo in the signature, load from GitHub&rsquo;s
+            servers when your mail app shows them, so GitHub receives your IP address and browser details
+            in the normal way. Many mail apps fetch images through their own proxy, in which case GitHub
+            only sees the proxy. Turning images off in your mail app stops these requests.
+          </p>
         </div>
 
         <div>
@@ -251,6 +257,13 @@ export default function PrivacyPage() {
             policies.
           </p>
           <p className="mt-3">
+            The photos, covers and demo clips on this site load from media.isaacadjei.me, which is
+            stored and served by Cloudflare R2. Cloudflare receives your IP address and browser details
+            for each request in the normal way any web server does. Its bot protection may set a
+            short-lived security cookie to tell people from automated traffic. I do not receive any
+            record of who loaded which image.
+          </p>
+          <p className="mt-3">
             The Consumed pages show book covers from Open Library, video thumbnails from YouTube,
             preview images from the sites each entry links to and small site icons from Google&rsquo;s
             favicon service. Your browser loads these images directly from those servers, which
@@ -271,7 +284,9 @@ export default function PrivacyPage() {
             This site uses a cookie to remember your theme preference (light or dark mode). It
             stores only your chosen display mode, contains no personal information and is not
             accessible to any third party. Google Analytics sets its own analytics cookies as
-            described above. No advertising cookies are used. If
+            described above. Cloudflare, which sits in front of this site and its images, may set a
+            short-lived security cookie (__cf_bm) to tell people from automated traffic; it holds no
+            personal details. No advertising cookies are used. If
             you sign in with GitHub to leave a comment via the embedded{" "}
             <a
               href="https://giscus.app"

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import Image from "next/image"
+import Image from "@/components/shared/MediaImage"
 import Link from "next/link"
 import SocialLinks from "@/components/shared/SocialLinks"
 import { fadeUp, staggerContainer } from "@/lib/animations"

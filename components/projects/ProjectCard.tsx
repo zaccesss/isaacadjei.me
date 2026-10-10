@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Image from "next/image"
+import Image from "@/components/shared/MediaImage"
 import { ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import {

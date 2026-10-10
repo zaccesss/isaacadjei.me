@@ -74,7 +74,7 @@ export default function FeaturedNewsletterIssues() {
       try {
         const r = await fetch("/api/newsletter-issues")
         const data = await r.json()
-        setIssues(Array.isArray(data) ? data.slice(0, 6) : [])
+        setIssues(Array.isArray(data) ? data.slice(0, 3) : [])
       } catch {
         setIssues([])
       } finally {
@@ -88,7 +88,7 @@ export default function FeaturedNewsletterIssues() {
 
   return (
     <section className="py-16 border-t">
-      <div className="container space-y-8">
+      <div className="mx-auto w-full max-w-6xl px-8 space-y-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

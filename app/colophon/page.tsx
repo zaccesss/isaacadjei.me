@@ -89,6 +89,10 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: <><A href="https://vercel.com">Vercel</A> is where the site is hosted and deployed. Every time a change is merged to the main branch on GitHub, Vercel automatically builds and deploys the new version within about a minute. Preview deployments are also created for every pull request so changes can be reviewed at a live URL before they go public. The domain and SSL certificate are managed here too.</>,
       },
       {
+        name: "Cloudflare R2",
+        detail: <>Every photo, cover and demo clip loads from media.isaacadjei.me, a bucket in <A href="https://developers.cloudflare.com/r2/">Cloudflare R2</A>. A script resizes each image ahead of time into seven widths from 96 to 2,400 pixels as WebP, plus one JPEG sized for email, so nothing is resized while you wait and there is no monthly resizing allowance to run out of. Each file name carries a fingerprint of the image, so it can be cached for a year without ever going stale. An image not uploaded yet falls back to Vercel&apos;s own image optimisation, so a missed upload makes a page heavier but never breaks it.</>,
+      },
+      {
         name: "Upstash Redis",
         detail: <>Redis is a data store that keeps everything in memory rather than on disk, which makes reads and writes extremely fast. I use <A href="https://upstash.com">Upstash</A>&apos;s serverless version for anything that changes frequently and needs to be retrieved quickly: live device status from the daemons, the last Spotify track I played (a fallback shown when nothing is on), blog post reaction counts and rate limiting on the contact form. Redis is not a traditional database - it is a short-term, high-speed cache.</>,
       },
@@ -110,7 +114,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Newsletter",
-        detail: <>The newsletter is part of this site. Each issue is a file in the repository with a short letter. The site gathers the posts, TILs and notes from the weeks before underneath it. Signing up sends a confirmation link first, then <A href="https://resend.com">Resend</A> keeps the subscriber list, sends each issue as a broadcast on the morning of its date and handles one-click unsubscribes.</>,
+        detail: <>The newsletter is part of this site. Each issue is a file in the repository with a short letter. The site gathers the posts, TILs and notes from the weeks before underneath it. Signing up sends a confirmation link first, then <A href="https://resend.com">Resend</A> keeps the subscriber list, sends each issue as a broadcast on the morning of its date and handles one-click unsubscribes. Email clients run no scripts, so a flowchart in an issue is drawn once to a PNG for the email, while the site draws the live version. Photos in an issue carry a caption with their credit.</>,
       },
       {
         name: "GitHub Actions",
@@ -128,11 +132,11 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Your device decides first",
-        detail: "On a first visit the site follows your device's light or dark setting, so it never fights the rest of your screen. The toggle cycles light, dark and system and remembers your choice from then on. Both themes use the same component code; only the CSS custom property values change between them. The toggle crossfades every colour over 100ms to avoid a jarring flash.",
+        detail: "On a first visit the site follows your device's light or dark setting, so it never fights the rest of your screen. The toggle cycles light, dark and system and remembers your choice from then on. Both themes use the same component code; only the CSS custom property values change between them. Switching uses the browser's View Transitions API: the new theme spreads out in a circle from the toggle in under half a second, with the whole page changing as one picture, so no colour, logo or chart lags behind the rest. With reduced motion turned on the theme switches instantly. It does the same in a browser without view transitions.",
       },
       {
-        name: "No animations on scroll",
-        detail: "Scroll-triggered animations - things that fade or slide in as you scroll down - are deliberately avoided on most pages. They add visual noise, can cause nausea for users sensitive to motion and make the page feel slower even when it is not. Entrance animations are limited to the homepage hero. Everything else just loads.",
+        name: "Very little motion",
+        detail: "Motion is kept to a minimum because it adds visual noise, can cause nausea for people sensitive to motion and makes a page feel slower even when it is not. The homepage sections fade up once as they first come into view; every other page just loads. Every animation on the site follows your device's reduce motion setting and stops entirely when it is on.",
       },
       {
         name: "No city, ever",
@@ -190,7 +194,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Images",
-        detail: "Images are stored as WebP and served through Next.js image optimisation, which sends AVIF or WebP depending on what your browser accepts and sizes each one for your screen. Where a project has a light and a dark screenshot, both are in the page and CSS shows the one that matches the site theme, so the cover follows the theme instantly and a screen reader hears its alt text only once. Every image has alt text.",
+        detail: "Images are made in advance at seven widths and served from Cloudflare R2 (see Backend and data). Your browser picks the width that matches your screen and its pixel density, so a photo stays sharp on a high density laptop or phone without downloading more than it needs. Where a project has a light and a dark screenshot, both are in the page and CSS shows the one that matches the site theme, so the cover follows the theme instantly and a screen reader hears its alt text only once. Every image has alt text.",
       },
     ],
   },

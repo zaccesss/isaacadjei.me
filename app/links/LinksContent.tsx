@@ -46,7 +46,7 @@ import {
   SiWellfound,
 } from "react-icons/si"
 import { Globe, Mail, ExternalLink, Newspaper } from "lucide-react"
-import Image from "next/image"
+import Image from "@/components/shared/MediaImage"
 import Link from "next/link"
 import { profileLinks, type LinkItem } from "@/data/links"
 import { cn } from "@/lib/utils"

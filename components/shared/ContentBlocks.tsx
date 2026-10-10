@@ -1,4 +1,5 @@
-import Image from "next/image"
+import Image from "@/components/shared/MediaImage"
+import { mediaSrc } from "@/lib/media"
 import type { ContentBlock } from "@/data/blog"
 import CodeBlock from "@/components/shared/CodeBlock"
 import Callout from "@/components/shared/Callout"
@@ -241,8 +242,8 @@ export function renderBlock(
     case "clip":
       return (
         <figure key={i} className="space-y-2 my-4">
-          <video controls playsInline preload="none" poster={block.poster} aria-label={block.alt} className="w-full rounded-lg border border-border/60">
-            <source src={block.src} type="video/mp4" />
+          <video controls playsInline preload="none" poster={mediaSrc(block.poster)} aria-label={block.alt} className="w-full rounded-lg border border-border/60">
+            <source src={mediaSrc(block.src)} type="video/mp4" />
           </video>
           {block.caption && (
             <figcaption className="text-xs text-center text-muted-foreground italic">{block.caption}</figcaption>

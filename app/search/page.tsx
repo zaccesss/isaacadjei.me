@@ -2,11 +2,10 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes, getPublishedNotes } from "@/data/notes"
+import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
 import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, liveConsumed } from "@/data/consumed"
-import { liveOnly } from "@/lib/schedule"
 import { consumedSlug } from "@/lib/tags"
 import SearchClient from "@/components/search/SearchClient"
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 export const revalidate = 604800
 
 function buildNotesIndex() {
-  return [...liveOnly(notes), ...getPublishedNotes()].map((n) => ({
+  return getPublishedNotes().map((n) => ({
     href: `/notes/${n.slug}`,
     title: n.title,
     description: n.description,

@@ -116,6 +116,10 @@ const _ocular_prosthetics_bionic_vision: BlogPost = {
         source: "Neuroscience of vision principle",
       },
       {
+        type: "p",
+        text: "I have followed this up in two notes: [how the devices themselves work](/notes/prosthetics-health-tech) and [whether sight can be restored in an eye that has been removed](/notes/one-eye-vision-research), which is the question that matters most to me.",
+      },
+      {
         type: "h2",
         text: "References",
       },
