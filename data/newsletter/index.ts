@@ -30,6 +30,7 @@ export const SIGN_OFF_NAME = "Zac"
 
 export const SIGNATURE = {
   name: "Isaac Adjei",
+  pronouns: "he/him",
   lines: ["Electronic Engineering and Computer Science, Aston University", "Founder and developer: PHAEMOS, MELOPHOS and Vitafolio"],
   logo: "/brand/png/ia-email-256.png",
   emailLogo: "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public/brand/png/ia-email-256.png",

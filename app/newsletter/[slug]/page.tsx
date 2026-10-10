@@ -209,14 +209,18 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
             <br />
             {SIGN_OFF_NAME}
           </p>
-          <div className="flex items-center gap-4 pt-2">
-            <Image src={SIGNATURE.logo} alt="" width={64} height={64} className="h-16 w-16" />
-            <div className="border-l-[3px] border-primary pl-4 space-y-0.5">
-              <p className="font-semibold text-foreground">{SIGNATURE.name}</p>
-              {SIGNATURE.lines.map((line) => (
-                <p key={line} className="text-xs text-muted-foreground">{line}</p>
-              ))}
-              <p className="text-xs pt-1">
+          <div className="space-y-2.5 pt-2">
+            <div className="flex items-center gap-4">
+              <Image src={SIGNATURE.logo} alt="" width={64} height={64} className="h-16 w-16 shrink-0" />
+              <div className="border-l-[3px] border-primary pl-4 space-y-0.5 min-w-0">
+                <p className="font-semibold text-primary">{SIGNATURE.name} <span className="text-xs font-normal">({SIGNATURE.pronouns})</span></p>
+                {SIGNATURE.lines.map((line) => (
+                  <p key={line} className="text-xs text-muted-foreground">{line}</p>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs">
                 {SIGNATURE.links.map((l, i) => (
                   <span key={l.href}>
                     {i > 0 && <span className="text-muted-foreground" aria-hidden="true"> | </span>}
@@ -224,7 +228,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                   </span>
                 ))}
               </p>
-              <p className="pt-1 text-sm">
+              <p className="text-sm">
                 <a href={SIGNATURE.booking.href} className="inline-flex items-center gap-1.5 font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
                   <CalendarDays className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {SIGNATURE.booking.label}
