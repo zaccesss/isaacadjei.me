@@ -2,6 +2,24 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.77.0] - 2026-10-10
+
+_Covers, notes and images_
+
+### Added
+
+- A Notes section on the homepage and previous and next links on every note
+- Photos and flowcharts in newsletter issues, in the email as well as on the site
+- New demo clips of the site, including the light and dark switch
+
+### Changed
+
+- Blog posts show their covers again, on the list, the post itself and the homepage
+- Switching between light and dark is one smooth reveal from the toggle. With reduced motion it is instant
+- Images load from the site's own media domain in sizes made in advance, so they stay sharp on any screen
+- The homepage reads Projects, Blog, Newsletter, TIL then Notes and lines up evenly on wide screens
+- Four research notes are dated and appear with the rest of the notes
+
 ## [2.76.0] - 2026-10-10
 
 _Newsletter signature_
