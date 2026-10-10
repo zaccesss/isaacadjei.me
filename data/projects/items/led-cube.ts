@@ -11,7 +11,7 @@ const _led_cube: Project = {
     category: "embedded",
     featured: false,
     cover: "/images/projects/led-cube/cover-enclosure.webp",
-    order: 1,
+    order: 2,
     status: "completed",
     images: [
       "/images/projects/led-cube/neopixel-main.webp",

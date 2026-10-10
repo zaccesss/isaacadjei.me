@@ -1,12 +1,11 @@
 import type { Metadata } from "next"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes, getPublishedNotes } from "@/data/notes"
+import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { getPublishedIssues } from "@/data/newsletter"
 import { publications } from "@/data/respub"
 import { videos, articles, others, books, resources, artists, liveConsumed } from "@/data/consumed"
-import { liveOnly } from "@/lib/schedule"
 import { normTag } from "@/lib/tags"
 import TagsClient from "@/components/tags/TagsClient"
 
@@ -36,7 +35,6 @@ export default function TagsPage() {
 
   for (const post of getPublishedPosts()) post.tags.forEach(addTag)
   for (const til of getPublishedTILEntries()) til.tags?.forEach(addTag)
-  for (const note of liveOnly(notes)) note.tags.forEach(addTag)
   for (const post of getPublishedNotes()) post.tags.forEach(addTag)
   for (const issue of getPublishedIssues()) issue.tags.forEach(addTag)
   for (const project of projects) project.technologies.forEach(addTag)

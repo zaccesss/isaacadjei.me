@@ -11,7 +11,7 @@ const _audio_amplifier: Project = {
     category: "hardware",
     featured: false,
     cover: "/images/projects/audio-amplifier/cover.webp",
-    order: 2,
+    order: 1,
     status: "completed",
     images: [
       "/images/projects/audio-amplifier/pcb-angled.webp",

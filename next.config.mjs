@@ -92,6 +92,9 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self' data: https://cal.com",
               "img-src 'self' data: blob: https:",
+              // demo clips and their posters load from the R2 media domain (lib/media.ts); without this, video falls
+              // back to default-src 'self' and every clip would be blocked
+              "media-src 'self' https://media.isaacadjei.me",
               `connect-src ${connectSrc.join(" ")}`,
               // MapLibre GL JS (the Applications map) parses vector tiles in a Web Worker created
               // from a blob: URL - worker-src falls back to script-src, not default-src, per the

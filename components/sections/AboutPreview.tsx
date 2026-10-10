@@ -9,7 +9,7 @@ import { fadeUp, staggerContainer } from "@/lib/animations"
 export default function AboutPreview() {
   return (
     <section className="py-24 border-t">
-      <div className="container max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl px-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

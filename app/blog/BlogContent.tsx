@@ -2,6 +2,7 @@
 
 import { relevanceScore } from "@/lib/search"
 import Link from "next/link"
+import ThemedCover from "@/components/shared/ThemedCover"
 import { Calendar, Clock, Rss } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
 import { POST_TYPES, type BlogCard } from "@/data/blog/meta"
@@ -116,6 +117,19 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
               href={`/blog/${post.slug}`}
               className="group block rounded-lg border transition-all overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border"
             >
+              {post.cover_image && (
+                <div className="relative w-full h-32 sm:h-40 overflow-hidden">
+                  <ThemedCover
+                    src={post.cover_image}
+                    darkSrc={post.cover_image_dark}
+                    alt=""
+                    fill
+                    priority={page === 1 && i === 0}
+                    className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
+                    sizes="(max-width: 640px) 100vw, 768px"
+                  />
+                </div>
+              )}
               <div className={`space-y-3 px-6 py-5`}>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className={postTypeLabelClass(post.type)}>

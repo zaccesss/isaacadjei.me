@@ -1,12 +1,10 @@
 import { MetadataRoute } from "next"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
-import { notes as allNotes } from "@/data/notes"
 import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
 import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, artists, liveConsumed } from "@/data/consumed"
-import { liveOnly } from "@/lib/schedule"
 import { normTag, consumedSlug } from "@/lib/tags"
 import { SITE_URL } from "@/lib/constants"
 
@@ -19,7 +17,6 @@ function projectDate(dateStr: string): Date {
 import { CONSUMED_COLLECTIONS } from "@/data/consumed/collections"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const notes = liveOnly(allNotes)
   const books = liveConsumed(allBooks)
   const videos = liveConsumed(allVideos)
   const podcasts = liveConsumed(allPodcasts)
@@ -106,13 +103,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
-  const noteRoutes: MetadataRoute.Sitemap = notes.map((note) => ({
-    url: `${SITE_URL}/notes/${note.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }))
-
   const notePostRoutes: MetadataRoute.Sitemap = getPublishedNotes().map((post) => ({
     url: `${SITE_URL}/notes/${post.slug}`,
     lastModified: new Date(post.date),
@@ -124,7 +114,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const post of getPublishedPosts()) post.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const til of getPublishedTILEntries()) til.tags?.forEach((t) => tagSlugs.add(normTag(t)))
   for (const post of getPublishedNotes()) post.tags.forEach((t) => tagSlugs.add(normTag(t)))
-  for (const note of notes) note.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const project of projects) project.technologies.forEach((t) => tagSlugs.add(normTag(t)))
   for (const pub of publications) pub.keywords?.forEach((t) => tagSlugs.add(normTag(t)))
   for (const v of videos) v.tags.forEach((t) => tagSlugs.add(normTag(t)))
@@ -157,5 +146,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
-  return [...staticRoutes, ...collectionRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...noteRoutes, ...notePostRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
+  return [...staticRoutes, ...collectionRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...notePostRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
 }

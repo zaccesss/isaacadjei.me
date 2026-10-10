@@ -38,6 +38,7 @@ export const SIGNATURE = {
     { label: "isaacadjei.me", href: "https://isaacadjei.me" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/isaacadjei" },
     { label: "GitHub", href: "https://github.com/zaccesss" },
+    { label: "Links", href: "https://isaacadjei.me/links" },
   ],
   booking: {
     label: "Book a call with me",

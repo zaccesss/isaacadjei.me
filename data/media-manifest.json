@@ -1,0 +1,1830 @@
+{
+ "/Media/giphy.gif": {
+  "h": "a466b65d95",
+  "t": "file"
+ },
+ "/Media/neopixel-description.mp4": {
+  "h": "3fc737f731",
+  "t": "file"
+ },
+ "/images/Nvidia_CUDA_Logo.webp": {
+  "h": "2b8ccbcd9b",
+  "t": "img",
+  "w": 406,
+  "ht": 246
+ },
+ "/images/atmelavr.webp": {
+  "h": "0e6cf5917c",
+  "t": "img",
+  "w": 246,
+  "ht": 148
+ },
+ "/images/avatar.png": {
+  "h": "c3cae039ec",
+  "t": "img",
+  "w": 1024,
+  "ht": 1024
+ },
+ "/images/avatar.webp": {
+  "h": "57f93cc677",
+  "t": "img",
+  "w": 1024,
+  "ht": 1024
+ },
+ "/images/blog/audio-amplifier/Figure10_PCB_Top.webp": {
+  "h": "81b7da5166",
+  "t": "img",
+  "w": 949,
+  "ht": 649
+ },
+ "/images/blog/audio-amplifier/Figure11_PCB_Bottom.webp": {
+  "h": "d9ff85efb5",
+  "t": "img",
+  "w": 948,
+  "ht": 640
+ },
+ "/images/blog/audio-amplifier/Figure12_3D_Model.webp": {
+  "h": "8aa703328d",
+  "t": "img",
+  "w": 1108,
+  "ht": 688
+ },
+ "/images/blog/audio-amplifier/Figure13_DualSupply_Breadboard.webp": {
+  "h": "24be14e1a5",
+  "t": "img",
+  "w": 2617,
+  "ht": 1638
+ },
+ "/images/blog/audio-amplifier/Figure14_SingleSupply_Breadboard.webp": {
+  "h": "781a1801a9",
+  "t": "img",
+  "w": 2573,
+  "ht": 1462
+ },
+ "/images/blog/audio-amplifier/Figure15_PCB_FreqResponse.webp": {
+  "h": "852db8411e",
+  "t": "img",
+  "w": 2214,
+  "ht": 1504
+ },
+ "/images/blog/audio-amplifier/Figure16c_PCB_Stage1_440Hz.webp": {
+  "h": "b112a6693c",
+  "t": "img",
+  "w": 537,
+  "ht": 461
+ },
+ "/images/blog/audio-amplifier/Figure16d_PCB_Stage2_440Hz.webp": {
+  "h": "1c5744cbac",
+  "t": "img",
+  "w": 626,
+  "ht": 478
+ },
+ "/images/blog/audio-amplifier/Figure17a_PCB_TopView.webp": {
+  "h": "87ec697888",
+  "t": "img",
+  "w": 1448,
+  "ht": 2573
+ },
+ "/images/blog/audio-amplifier/Figure17b_PCB_WithSpeaker.webp": {
+  "h": "8d9ec5cd63",
+  "t": "img",
+  "w": 1448,
+  "ht": 2573
+ },
+ "/images/blog/audio-amplifier/Figure17c_PCB_Angled.webp": {
+  "h": "0fa1610f75",
+  "t": "img",
+  "w": 2573,
+  "ht": 1448
+ },
+ "/images/blog/audio-amplifier/Figure17d_PCB_Underside.webp": {
+  "h": "9ba747b9de",
+  "t": "img",
+  "w": 2573,
+  "ht": 1448
+ },
+ "/images/blog/audio-amplifier/Figure1_BPF.webp": {
+  "h": "974aa13326",
+  "t": "img",
+  "w": 1857,
+  "ht": 1146
+ },
+ "/images/blog/audio-amplifier/Figure2_BPF_Circuit.webp": {
+  "h": "b854056355",
+  "t": "img",
+  "w": 821,
+  "ht": 588
+ },
+ "/images/blog/audio-amplifier/Figure3_PassiveVsActive.webp": {
+  "h": "11ca031247",
+  "t": "img",
+  "w": 1853,
+  "ht": 1091
+ },
+ "/images/blog/audio-amplifier/Main-AudioAmp-Block-Diagram.webp": {
+  "h": "9568b21ea1",
+  "t": "img",
+  "w": 1110,
+  "ht": 634
+ },
+ "/images/blog/audio-amplifier/OPA551_pinout_diagram.webp": {
+  "h": "cce4179c35",
+  "t": "img",
+  "w": 1024,
+  "ht": 1024
+ },
+ "/images/blog/audio-amplifier/TL071_pinout_diagram.webp": {
+  "h": "eaec6dbbe9",
+  "t": "img",
+  "w": 1173,
+  "ht": 586
+ },
+ "/images/blog/audio-amplifier/human_hearing_range.webp": {
+  "h": "c7a828d62a",
+  "t": "img",
+  "w": 1536,
+  "ht": 1024
+ },
+ "/images/blog/audio-amplifier/phone-characterisation-graph.webp": {
+  "h": "ce732b1320",
+  "t": "img",
+  "w": 1974,
+  "ht": 927
+ },
+ "/images/blog/audio-amplifier/schematic.webp": {
+  "h": "c7de987fd0",
+  "t": "img",
+  "w": 1336,
+  "ht": 751
+ },
+ "/images/blog/audio-amplifier/system_block_diagram_v2.webp": {
+  "h": "5ff9104f8d",
+  "t": "img",
+  "w": 1110,
+  "ht": 634
+ },
+ "/images/blog/covers/accessibility-as-a-default-wcag-2-2-shot-dark.webp": {
+  "h": "3e256c8660",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/accessibility-as-a-default-wcag-2-2-shot.webp": {
+  "h": "705619a417",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/another-year-another-lesson.webp": {
+  "h": "b235a80307",
+  "t": "img",
+  "w": 1400,
+  "ht": 930
+ },
+ "/images/blog/covers/avr-bare-metal-atmega644p.webp": {
+  "h": "5bf14a10d8",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/bootstrap-any-machine-one-command.webp": {
+  "h": "cbd7741225",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/british-airways-engineering-simulation.webp": {
+  "h": "648be32dfc",
+  "t": "img",
+  "w": 1200,
+  "ht": 797
+ },
+ "/images/blog/covers/business-analytics-data-to-decisions.webp": {
+  "h": "e350cae421",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/competitive-programming-start.webp": {
+  "h": "35cc769876",
+  "t": "img",
+  "w": 1200,
+  "ht": 900
+ },
+ "/images/blog/covers/dma-bare-metal.webp": {
+  "h": "87d056d6a4",
+  "t": "img",
+  "w": 1200,
+  "ht": 850
+ },
+ "/images/blog/covers/eleven-things-learning-to-code.webp": {
+  "h": "158024288d",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/fpga-vhdl-introduction.webp": {
+  "h": "cc66ac35e3",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/international-student-engineering-uk.webp": {
+  "h": "1e8f31f8b8",
+  "t": "img",
+  "w": 1200,
+  "ht": 1800
+ },
+ "/images/blog/covers/interrupt-driven-embedded-design.webp": {
+  "h": "8fc540b40d",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/iot-security-gaps.webp": {
+  "h": "23c5a29009",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/javascript-event-loop.webp": {
+  "h": "4fb86a200d",
+  "t": "img",
+  "w": 1200,
+  "ht": 900
+ },
+ "/images/blog/covers/moving-a-production-database-to-tidb-shot-dark.webp": {
+  "h": "c43cd10f80",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/moving-a-production-database-to-tidb-shot.webp": {
+  "h": "32a40ae12a",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/my-development-setup-2026.webp": {
+  "h": "1372def49b",
+  "t": "img",
+  "w": 1200,
+  "ht": 801
+ },
+ "/images/blog/covers/my-journey-so-far.webp": {
+  "h": "8595300e82",
+  "t": "img",
+  "w": 1200,
+  "ht": 857
+ },
+ "/images/blog/covers/ocular-prosthetics-bionic-vision.webp": {
+  "h": "f41935c983",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/on-being-uncomfortable.webp": {
+  "h": "406fc2c253",
+  "t": "img",
+  "w": 1200,
+  "ht": 776
+ },
+ "/images/blog/covers/one-palette-eight-terminals.webp": {
+  "h": "4b8cc42e02",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/open-source-contributing.webp": {
+  "h": "b26bd1630f",
+  "t": "img",
+  "w": 1200,
+  "ht": 795
+ },
+ "/images/blog/covers/phaemos-engineering-decisions.webp": {
+  "h": "8ea4bbfaa5",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/python-type-annotations.webp": {
+  "h": "f850ba10e7",
+  "t": "img",
+  "w": 1200,
+  "ht": 801
+ },
+ "/images/blog/covers/reading-datasheets.webp": {
+  "h": "27b8d5983d",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/real-time-web-data.webp": {
+  "h": "2f81a26573",
+  "t": "img",
+  "w": 1200,
+  "ht": 673
+ },
+ "/images/blog/covers/resources-engineering-and-technology.webp": {
+  "h": "4e4afee8be",
+  "t": "img",
+  "w": 1200,
+  "ht": 801
+ },
+ "/images/blog/covers/rtos-fundamentals.webp": {
+  "h": "e7939a5c1c",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/sky-black-heritage-celebration-day.webp": {
+  "h": "7572854127",
+  "t": "img",
+  "w": 1400,
+  "ht": 933
+ },
+ "/images/blog/covers/spi-vs-i2c.webp": {
+  "h": "853562ce1f",
+  "t": "img",
+  "w": 1200,
+  "ht": 821
+ },
+ "/images/blog/covers/typescript-patterns-that-actually-matter.webp": {
+  "h": "527b6f7af3",
+  "t": "img",
+  "w": 1200,
+  "ht": 675
+ },
+ "/images/blog/covers/uart-bare-metal.webp": {
+  "h": "6fb1d22b0f",
+  "t": "img",
+  "w": 1200,
+  "ht": 675
+ },
+ "/images/blog/covers/why-software-engineers-should-understand-hardware.webp": {
+  "h": "ca0cc3ed74",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/covers/writing-for-engineers.webp": {
+  "h": "fffbd994ac",
+  "t": "img",
+  "w": 1200,
+  "ht": 901
+ },
+ "/images/blog/covers/yunex-traffic-virtual-experience.webp": {
+  "h": "9d95dc5978",
+  "t": "img",
+  "w": 1200,
+  "ht": 800
+ },
+ "/images/blog/sky-animol/animol-poster.webp": {
+  "h": "48e57a0f0b",
+  "t": "img",
+  "w": 734,
+  "ht": 928
+ },
+ "/images/brands/atcoder.webp": {
+  "h": "ecc000a4c1",
+  "t": "img",
+  "w": 280,
+  "ht": 280
+ },
+ "/images/brands/devfolio.webp": {
+  "h": "24630a9d94",
+  "t": "img",
+  "w": 32,
+  "ht": 32
+ },
+ "/images/brands/ewskills.webp": {
+  "h": "314da80749",
+  "t": "img",
+  "w": 48,
+  "ht": 48
+ },
+ "/images/brands/microchip_studio.webp": {
+  "h": "a80bbda94f",
+  "t": "img",
+  "w": 225,
+  "ht": 225
+ },
+ "/images/brands/neetcode.webp": {
+  "h": "f630237951",
+  "t": "img",
+  "w": 48,
+  "ht": 48
+ },
+ "/images/lab/pcb-3d-bottom.png": {
+  "h": "9c59f654aa",
+  "t": "img",
+  "w": 1138,
+  "ht": 697
+ },
+ "/images/lab/pcb-3d-top.png": {
+  "h": "87e6fcc554",
+  "t": "img",
+  "w": 1108,
+  "ht": 688
+ },
+ "/images/lab/pcb-bottom.png": {
+  "h": "136e08e81d",
+  "t": "img",
+  "w": 948,
+  "ht": 640
+ },
+ "/images/lab/pcb-bottom.webp": {
+  "h": "c348a6cc0d",
+  "t": "img",
+  "w": 948,
+  "ht": 640
+ },
+ "/images/lab/pcb-real-1.webp": {
+  "h": "30f9e9ec73",
+  "t": "img",
+  "w": 1910,
+  "ht": 1448
+ },
+ "/images/lab/pcb-real-2.webp": {
+  "h": "19c2586f88",
+  "t": "img",
+  "w": 2573,
+  "ht": 1448
+ },
+ "/images/lab/pcb-real-3.webp": {
+  "h": "cda31d5db4",
+  "t": "img",
+  "w": 1926,
+  "ht": 1375
+ },
+ "/images/lab/pcb-top.png": {
+  "h": "933f94c1a0",
+  "t": "img",
+  "w": 949,
+  "ht": 649
+ },
+ "/images/lab/pcb-top.webp": {
+  "h": "25ba4e4e18",
+  "t": "img",
+  "w": 949,
+  "ht": 649
+ },
+ "/images/lab/pcb.png": {
+  "h": "87e6fcc554",
+  "t": "img",
+  "w": 1108,
+  "ht": 688
+ },
+ "/images/newsletter/bell-x1-in-flight.jpg": {
+  "h": "52e9847231",
+  "t": "img",
+  "w": 1600,
+  "ht": 1200
+ },
+ "/images/newsletter/diagrams/c1dbbafcd3.png": {
+  "h": "15faaf23d0",
+  "t": "img",
+  "w": 1072,
+  "ht": 1006
+ },
+ "/images/projects/astoncv/aston-skyline.webp": {
+  "h": "384220e8ee",
+  "t": "img",
+  "w": 1140,
+  "ht": 650
+ },
+ "/images/projects/astoncv/campus-aerial.webp": {
+  "h": "dabeb06305",
+  "t": "img",
+  "w": 297,
+  "ht": 169
+ },
+ "/images/projects/astoncv/campus-hero.webp": {
+  "h": "27316f4a81",
+  "t": "img",
+  "w": 1280,
+  "ht": 960
+ },
+ "/images/projects/astoncv/campus-lake.webp": {
+  "h": "b1bc0d0614",
+  "t": "img",
+  "w": 294,
+  "ht": 172
+ },
+ "/images/projects/astoncv/campus-library.webp": {
+  "h": "30877fbd9d",
+  "t": "img",
+  "w": 1280,
+  "ht": 720
+ },
+ "/images/projects/astoncv/campus-main.webp": {
+  "h": "6cd9466147",
+  "t": "img",
+  "w": 1280,
+  "ht": 753
+ },
+ "/images/projects/astoncv/contact.webp": {
+  "h": "6b7748659e",
+  "t": "img",
+  "w": 1895,
+  "ht": 992
+ },
+ "/images/projects/astoncv/cover-home.webp": {
+  "h": "f8aba1818a",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/astoncv/cv.webp": {
+  "h": "8865f8691d",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/astoncv/footer.webp": {
+  "h": "dfbc99aa91",
+  "t": "img",
+  "w": 1903,
+  "ht": 995
+ },
+ "/images/projects/astoncv/login.webp": {
+  "h": "e1316a655b",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/astoncv/main.webp": {
+  "h": "8010e00fe3",
+  "t": "img",
+  "w": 1896,
+  "ht": 997
+ },
+ "/images/projects/astoncv/register.webp": {
+  "h": "8590247cda",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/audio-amplifier/3d-model.webp": {
+  "h": "2a8a4b68b4",
+  "t": "img",
+  "w": 1108,
+  "ht": 688
+ },
+ "/images/projects/audio-amplifier/block-diagram.webp": {
+  "h": "574034183b",
+  "t": "img",
+  "w": 1110,
+  "ht": 634
+ },
+ "/images/projects/audio-amplifier/breadboard-dual.webp": {
+  "h": "a5edac1a86",
+  "t": "img",
+  "w": 1920,
+  "ht": 1202
+ },
+ "/images/projects/audio-amplifier/breadboard-single.webp": {
+  "h": "587d9c9344",
+  "t": "img",
+  "w": 1920,
+  "ht": 1091
+ },
+ "/images/projects/audio-amplifier/cover.webp": {
+  "h": "a71ec2dc63",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/audio-amplifier/freq-response.webp": {
+  "h": "db1a11c091",
+  "t": "img",
+  "w": 1920,
+  "ht": 1304
+ },
+ "/images/projects/audio-amplifier/main.webp": {
+  "h": "9dd8a6f106",
+  "t": "img",
+  "w": 1081,
+  "ht": 1920
+ },
+ "/images/projects/audio-amplifier/pcb-angled.webp": {
+  "h": "275553f5d4",
+  "t": "img",
+  "w": 1920,
+  "ht": 1081
+ },
+ "/images/projects/audio-amplifier/pcb-layout-top.webp": {
+  "h": "ec3f489786",
+  "t": "img",
+  "w": 949,
+  "ht": 649
+ },
+ "/images/projects/audio-amplifier/pcb-top.webp": {
+  "h": "5d31803050",
+  "t": "img",
+  "w": 1081,
+  "ht": 1920
+ },
+ "/images/projects/audio-amplifier/pcb-underside.webp": {
+  "h": "789ae95deb",
+  "t": "img",
+  "w": 1920,
+  "ht": 1081
+ },
+ "/images/projects/audio-amplifier/pcb-with-speaker.webp": {
+  "h": "9dd8a6f106",
+  "t": "img",
+  "w": 1081,
+  "ht": 1920
+ },
+ "/images/projects/audio-amplifier/schematic.webp": {
+  "h": "95eeb9f051",
+  "t": "img",
+  "w": 1336,
+  "ht": 751
+ },
+ "/images/projects/audio-amplifier/scope-stage1.webp": {
+  "h": "55d2fff756",
+  "t": "img",
+  "w": 537,
+  "ht": 461
+ },
+ "/images/projects/audio-amplifier/scope-stage2.webp": {
+  "h": "eaa8285451",
+  "t": "img",
+  "w": 626,
+  "ht": 478
+ },
+ "/images/projects/avr-zac/chip.svg": {
+  "h": "1aae83a20d",
+  "t": "file"
+ },
+ "/images/projects/avr-zac/cover.webp": {
+  "h": "ecf00409a0",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/avr-zac/main.svg": {
+  "h": "ffe7ae5307",
+  "t": "file"
+ },
+ "/images/projects/avr-zac/statemachine.svg": {
+  "h": "4223be3923",
+  "t": "file"
+ },
+ "/images/projects/cad-portfolio/3d-model.webp": {
+  "h": "36675aeebf",
+  "t": "img",
+  "w": 1170,
+  "ht": 756
+ },
+ "/images/projects/cad-portfolio/assembly.webp": {
+  "h": "49c62faf61",
+  "t": "img",
+  "w": 1152,
+  "ht": 609
+ },
+ "/images/projects/cad-portfolio/cover.webp": {
+  "h": "d29d51ec7d",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/cad-portfolio/main.webp": {
+  "h": "d8284e5952",
+  "t": "img",
+  "w": 1224,
+  "ht": 789
+ },
+ "/images/projects/cnc-control/cover.webp": {
+  "h": "83e9ab1946",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/cnc-control/lcd.webp": {
+  "h": "07a30b4ced",
+  "t": "img",
+  "w": 657,
+  "ht": 530
+ },
+ "/images/projects/cnc-control/main.webp": {
+  "h": "6acd7fbba8",
+  "t": "img",
+  "w": 1290,
+  "ht": 774
+ },
+ "/images/projects/cnc-control/safety-test.webp": {
+  "h": "2f2812a6f6",
+  "t": "img",
+  "w": 1920,
+  "ht": 1044
+ },
+ "/images/projects/dev-environment/cover.webp": {
+  "h": "fb10505794",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/dev-environment/hooks.webp": {
+  "h": "78cbf4ecf2",
+  "t": "img",
+  "w": 1440,
+  "ht": 900
+ },
+ "/images/projects/dev-environment/shell.webp": {
+  "h": "9a9f2ec12e",
+  "t": "img",
+  "w": 1440,
+  "ht": 900
+ },
+ "/images/projects/dev-environment/tmux-light.webp": {
+  "h": "62b0853b28",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/images/projects/dev-environment/tmux.webp": {
+  "h": "bca1c8a0a4",
+  "t": "img",
+  "w": 1440,
+  "ht": 900
+ },
+ "/images/projects/dotfiles/banner.webp": {
+  "h": "2d6c13bec6",
+  "t": "img",
+  "w": 764,
+  "ht": 406
+ },
+ "/images/projects/dotfiles/cmds.webp": {
+  "h": "92c07c46af",
+  "t": "img",
+  "w": 1400,
+  "ht": 823
+ },
+ "/images/projects/git-unlocked/cover.webp": {
+  "h": "06d496d9e8",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/git-unlocked/git_unlocked_banner.svg": {
+  "h": "a1b6bdfc9e",
+  "t": "file"
+ },
+ "/images/projects/git-unlocked/github-logo-3d.webp": {
+  "h": "d668dd62b4",
+  "t": "img",
+  "w": 1600,
+  "ht": 1077
+ },
+ "/images/projects/git-unlocked/octocat-closeup.webp": {
+  "h": "0becb83d6a",
+  "t": "img",
+  "w": 1920,
+  "ht": 1323
+ },
+ "/images/projects/git-unlocked/octocat-groot.webp": {
+  "h": "6374fe8d61",
+  "t": "img",
+  "w": 1920,
+  "ht": 1280
+ },
+ "/images/projects/git-unlocked/octocat-laptop.webp": {
+  "h": "6d1d2f788a",
+  "t": "img",
+  "w": 1920,
+  "ht": 1254
+ },
+ "/images/projects/goods-lift/breadboard.webp": {
+  "h": "c58b1f6243",
+  "t": "img",
+  "w": 676,
+  "ht": 1175
+ },
+ "/images/projects/goods-lift/cover.webp": {
+  "h": "79b1021c52",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/goods-lift/lcd.webp": {
+  "h": "4e570faa92",
+  "t": "img",
+  "w": 848,
+  "ht": 1246
+ },
+ "/images/projects/goods-lift/main.webp": {
+  "h": "d423e09dbb",
+  "t": "img",
+  "w": 557,
+  "ht": 627
+ },
+ "/images/projects/isaacadjei-me/about-dark.webp": {
+  "h": "c9336c35c3",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/about-light.webp": {
+  "h": "7ac6aa0129",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/blog-dark.webp": {
+  "h": "4cc0700ac3",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/blog-light.webp": {
+  "h": "1aaf4f7ca1",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/colophon-dark.webp": {
+  "h": "8e3db3e4aa",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/colophon-light.webp": {
+  "h": "b0cbcf50fa",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/consumed-dark.webp": {
+  "h": "284911df3a",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/consumed-light.webp": {
+  "h": "d0be2dcdff",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/cover.webp": {
+  "h": "9c33637014",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/isaacadjei-me/experience-dark.webp": {
+  "h": "35038059a5",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/experience-light.webp": {
+  "h": "9590699cfb",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/guestbook-dark.webp": {
+  "h": "a8c47ccc2c",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/guestbook-light.webp": {
+  "h": "fab072946d",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/home-dark.webp": {
+  "h": "a129bf625c",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/home-light.webp": {
+  "h": "9a38955c31",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/lab-dark.webp": {
+  "h": "ceb555a00f",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/lab-light.webp": {
+  "h": "15392a9657",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/links-dark.webp": {
+  "h": "0d08352266",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/links-light.webp": {
+  "h": "c39523c0ee",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/now-dark.webp": {
+  "h": "9c79ff2edc",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/now-light.webp": {
+  "h": "f78e2892a1",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/projects-audio-amplifier-dark.webp": {
+  "h": "8e8268f389",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/projects-audio-amplifier-light.webp": {
+  "h": "60f00a663c",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/projects-dark.webp": {
+  "h": "d8f77b3156",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/projects-light.webp": {
+  "h": "e024b834e2",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/search-dark.webp": {
+  "h": "6ae1def4dd",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/search-light.webp": {
+  "h": "7e870b292a",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/stats-dark.webp": {
+  "h": "8241d1a3d0",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/stats-light.webp": {
+  "h": "83881966b8",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/til-dark.webp": {
+  "h": "07acbd8463",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/til-light.webp": {
+  "h": "fc94efb852",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/uses-dark.webp": {
+  "h": "d2f0c9b4c3",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/isaacadjei-me/uses-light.webp": {
+  "h": "40abde7849",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/led-cube/build-layer.webp": {
+  "h": "eb42bee85d",
+  "t": "img",
+  "w": 708,
+  "ht": 1536
+ },
+ "/images/projects/led-cube/build-lit.webp": {
+  "h": "77f7d8d7df",
+  "t": "img",
+  "w": 708,
+  "ht": 1536
+ },
+ "/images/projects/led-cube/cover-enclosure.webp": {
+  "h": "3beb4ee4f2",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/led-cube/cube-enclosure-angle.webp": {
+  "h": "6c73e076fd",
+  "t": "img",
+  "w": 1702,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/cube-lit-2.webp": {
+  "h": "6882e93144",
+  "t": "img",
+  "w": 1440,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/final-setup.webp": {
+  "h": "53101f9108",
+  "t": "img",
+  "w": 1080,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/frame-angle.webp": {
+  "h": "b8ec55bfde",
+  "t": "img",
+  "w": 708,
+  "ht": 1536
+ },
+ "/images/projects/led-cube/internals-1.webp": {
+  "h": "ef9a3d322d",
+  "t": "img",
+  "w": 1440,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/internals-2.webp": {
+  "h": "cbdfcc003f",
+  "t": "img",
+  "w": 1440,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/main.webp": {
+  "h": "ac6e4f45df",
+  "t": "img",
+  "w": 1440,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/neopixel-main.webp": {
+  "h": "d89c655011",
+  "t": "img",
+  "w": 1702,
+  "ht": 1920
+ },
+ "/images/projects/led-cube/power-circuit.webp": {
+  "h": "16c9e49d9e",
+  "t": "img",
+  "w": 1440,
+  "ht": 1920
+ },
+ "/images/projects/lidarsat/cover-build-log.webp": {
+  "h": "df33e491e5",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/lidarsat/flight-dark.webp": {
+  "h": "055b44b243",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/lidarsat/flight-light.webp": {
+  "h": "54c92f0a36",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/lidarsat/sitl-build.webp": {
+  "h": "da5a20ef75",
+  "t": "img",
+  "w": 1920,
+  "ht": 1206
+ },
+ "/images/projects/lidarsat/sitl-configure.webp": {
+  "h": "5c7882076f",
+  "t": "img",
+  "w": 1920,
+  "ht": 1206
+ },
+ "/images/projects/melophos/cover-brand-light.webp": {
+  "h": "5876b78084",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/melophos/cover-brand.webp": {
+  "h": "b3fa480fcb",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/melophos/cover-studio.webp": {
+  "h": "3a391ee2ae",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/melophos/linkedin-cover.webp": {
+  "h": "734c8d19de",
+  "t": "img",
+  "w": 1920,
+  "ht": 325
+ },
+ "/images/projects/melophos/social-preview.webp": {
+  "h": "5db7258a7a",
+  "t": "img",
+  "w": 1280,
+  "ht": 640
+ },
+ "/images/projects/melophos/studio-playing.webp": {
+  "h": "7dcf801d91",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/melophos/studio-summary.webp": {
+  "h": "7b303cea92",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/melophos/studio.webp": {
+  "h": "3f680ead4b",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/alerts-light.webp": {
+  "h": "a640ee95bc",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/alerts.webp": {
+  "h": "9b13e9411f",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/brand-board.webp": {
+  "h": "b48a81e06e",
+  "t": "img",
+  "w": 1536,
+  "ht": 1024
+ },
+ "/images/projects/phaemos/compare-light.webp": {
+  "h": "2eb785e8d4",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/compare.webp": {
+  "h": "a0d1b6d134",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/cover-brand-light.webp": {
+  "h": "4b1a0c4db5",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/phaemos/cover-brand.webp": {
+  "h": "2158099795",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/phaemos/cover-dashboard-light.webp": {
+  "h": "39a03a5c14",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/phaemos/cover-dashboard.webp": {
+  "h": "9d6b11bf08",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/phaemos/dashboard-light.webp": {
+  "h": "3bef76f207",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/dashboard.svg": {
+  "h": "a218b8c0ec",
+  "t": "file"
+ },
+ "/images/projects/phaemos/dashboard.webp": {
+  "h": "d37398073b",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/device-light.webp": {
+  "h": "651e8d498c",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/device.webp": {
+  "h": "3495ecbcd6",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/devices.webp": {
+  "h": "1609af5495",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/phaemos/main.svg": {
+  "h": "eafe0d21ce",
+  "t": "file"
+ },
+ "/images/projects/phaemos/pipeline.svg": {
+  "h": "83d2274f19",
+  "t": "file"
+ },
+ "/images/projects/phaemos/social-preview.webp": {
+  "h": "a6cc26f7e8",
+  "t": "img",
+  "w": 1280,
+  "ht": 640
+ },
+ "/images/projects/phaemos/tickets.webp": {
+  "h": "d79737d1ff",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/applications-light.webp": {
+  "h": "2c76a6bbad",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/check-dark.webp": {
+  "h": "ffc79e6872",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/check-light.webp": {
+  "h": "30fb06b2da",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/connected-light.webp": {
+  "h": "8ed17c6b44",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/cover-home-dark.webp": {
+  "h": "ffc06a523a",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/vitafolio/cover-home.webp": {
+  "h": "93946653db",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/vitafolio/dashboard-dark.webp": {
+  "h": "1be2ab46ad",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/directory-light.webp": {
+  "h": "c072a59628",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/editor-dark.webp": {
+  "h": "68a96fcd15",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/editor-light.webp": {
+  "h": "81b79e55e0",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/jobs-dark.webp": {
+  "h": "3f5ae88b83",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/jobs-light.webp": {
+  "h": "bd24679d07",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/latex-compiled-light.webp": {
+  "h": "8f70fd9193",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/look-and-privacy-light.webp": {
+  "h": "6fab7e0a34",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/public-cv-dark.webp": {
+  "h": "aca36066f0",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/public-cv-light.webp": {
+  "h": "d92bb404a6",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/signup-light.webp": {
+  "h": "e44e3c4d78",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/vitafolio/support-light.webp": {
+  "h": "d895bca9c1",
+  "t": "img",
+  "w": 1920,
+  "ht": 1200
+ },
+ "/images/projects/zacess-pages/cover.webp": {
+  "h": "07afa26eb9",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/projects/zacess-pages/main.webp": {
+  "h": "c64c775d78",
+  "t": "img",
+  "w": 1919,
+  "ht": 996
+ },
+ "/images/projects/zacess-pages/terminal.webp": {
+  "h": "0827d37083",
+  "t": "img",
+  "w": 1919,
+  "ht": 994
+ },
+ "/images/proteus.webp": {
+  "h": "1b829d8f89",
+  "t": "img",
+  "w": 199,
+  "ht": 148
+ },
+ "/images/pybullet.webp": {
+  "h": "a7a6050852",
+  "t": "img",
+  "w": 1920,
+  "ht": 722
+ },
+ "/images/solidworks.webp": {
+  "h": "c39a7ddc63",
+  "t": "img",
+  "w": 248,
+  "ht": 148
+ },
+ "/images/ventures/melophos.png": {
+  "h": "9275411a6d",
+  "t": "img",
+  "w": 144,
+  "ht": 144
+ },
+ "/images/ventures/phaemos.png": {
+  "h": "3208447cb1",
+  "t": "img",
+  "w": 130,
+  "ht": 144
+ },
+ "/images/ventures/vitafolio.png": {
+  "h": "4c9d07ccac",
+  "t": "img",
+  "w": 144,
+  "ht": 144
+ },
+ "/images/ventures/zaccess.png": {
+  "h": "f6529d1ae0",
+  "t": "img",
+  "w": 144,
+  "ht": 144
+ },
+ "/images/zac_profile.webp": {
+  "h": "2b9f494d61",
+  "t": "img",
+  "w": 2400,
+  "ht": 3000
+ },
+ "/images/zacess_logo.webp": {
+  "h": "87847129ff",
+  "t": "img",
+  "w": 1024,
+  "ht": 1024
+ },
+ "/videos/projects/astoncv/browse.mp4": {
+  "h": "99e378696d",
+  "t": "file"
+ },
+ "/videos/projects/astoncv/browse.webp": {
+  "h": "a64647421e",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/astoncv/dashboard.mp4": {
+  "h": "0258dce074",
+  "t": "file"
+ },
+ "/videos/projects/astoncv/dashboard.webp": {
+  "h": "5c4cb33e40",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/astoncv/register.mp4": {
+  "h": "f20c782163",
+  "t": "file"
+ },
+ "/videos/projects/astoncv/register.webp": {
+  "h": "b0c87976ad",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/astoncv/tour.mp4": {
+  "h": "215daff8fd",
+  "t": "file"
+ },
+ "/videos/projects/astoncv/tour.webp": {
+  "h": "e994a31a3d",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/dev-environment/fzf.mp4": {
+  "h": "ee644a4018",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/fzf.webp": {
+  "h": "347f15e854",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/hooks-palette.mp4": {
+  "h": "e41c280e4f",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/hooks-palette.webp": {
+  "h": "f7bee05d12",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/hooks.mp4": {
+  "h": "cabb0fe6e6",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/hooks.webp": {
+  "h": "8fb1766b87",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/dev-environment/lazygit.mp4": {
+  "h": "95958e7fac",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/lazygit.webp": {
+  "h": "8326a0f87c",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/linux.mp4": {
+  "h": "90e3f90a43",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/linux.webp": {
+  "h": "6ad759498c",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/neovim.mp4": {
+  "h": "aa97ef8823",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/neovim.webp": {
+  "h": "04c6b2385c",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/shell-palette.mp4": {
+  "h": "32c45ed1d8",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/shell-palette.webp": {
+  "h": "e1955b78d8",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/shell.mp4": {
+  "h": "61d7f0ebd9",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/shell.webp": {
+  "h": "abe9ca9a1d",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/dev-environment/tmux-palette.mp4": {
+  "h": "1041885fbf",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/tmux-palette.webp": {
+  "h": "636f3daf6a",
+  "t": "img",
+  "w": 1400,
+  "ht": 820
+ },
+ "/videos/projects/dev-environment/tmux.mp4": {
+  "h": "914c23791a",
+  "t": "file"
+ },
+ "/videos/projects/dev-environment/tmux.webp": {
+  "h": "a0cf0dac40",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/command.mp4": {
+  "h": "d459be3e30",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/command.webp": {
+  "h": "9e62020081",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/lab-dark.mp4": {
+  "h": "e9126e5ef4",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/lab-dark.webp": {
+  "h": "11688d3d59",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/lab.mp4": {
+  "h": "fa45a62cf2",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/lab.webp": {
+  "h": "bb64bce879",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/live-dark.mp4": {
+  "h": "f55089713d",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/live-dark.webp": {
+  "h": "f7ba0bf211",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/live.mp4": {
+  "h": "4c2ce26f11",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/live.webp": {
+  "h": "66b67d76b3",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/projects.mp4": {
+  "h": "408936b928",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/projects.webp": {
+  "h": "52cb0eacbe",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/tour.mp4": {
+  "h": "2c47def012",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/tour.webp": {
+  "h": "c7bcf7147b",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/isaacadjei-me/writing.mp4": {
+  "h": "90d78e231e",
+  "t": "file"
+ },
+ "/videos/projects/isaacadjei-me/writing.webp": {
+  "h": "a3f78e109e",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/led-cube/demo.mp4": {
+  "h": "da1451d31c",
+  "t": "file"
+ },
+ "/videos/projects/led-cube/demo.webp": {
+  "h": "03d614911f",
+  "t": "img",
+  "w": 528,
+  "ht": 480
+ },
+ "/videos/projects/melophos/practice.mp4": {
+  "h": "d75a69786d",
+  "t": "file"
+ },
+ "/videos/projects/melophos/practice.webp": {
+  "h": "625a5a6196",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/phaemos/alerts-tickets.mp4": {
+  "h": "34bdeb0cf3",
+  "t": "file"
+ },
+ "/videos/projects/phaemos/alerts-tickets.webp": {
+  "h": "5fe55c5f3f",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/phaemos/compare.mp4": {
+  "h": "0cfe5b20d9",
+  "t": "file"
+ },
+ "/videos/projects/phaemos/compare.webp": {
+  "h": "fe7c8d6c87",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/phaemos/machine.mp4": {
+  "h": "6928c6c96b",
+  "t": "file"
+ },
+ "/videos/projects/phaemos/machine.webp": {
+  "h": "679faefc76",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/phaemos/overview.mp4": {
+  "h": "15be7ad5d1",
+  "t": "file"
+ },
+ "/videos/projects/phaemos/overview.webp": {
+  "h": "0cfd3c8e16",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/phaemos/tour.mp4": {
+  "h": "b10bd84074",
+  "t": "file"
+ },
+ "/videos/projects/phaemos/tour.webp": {
+  "h": "3d7de7098c",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/build.mp4": {
+  "h": "dd1ac559a6",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/build.webp": {
+  "h": "3fe4b44c3b",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/check.mp4": {
+  "h": "9fb0b3e23e",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/check.webp": {
+  "h": "20e794b8cd",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/compile.mp4": {
+  "h": "1ed5ff7396",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/compile.webp": {
+  "h": "091a276f71",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/jobs.mp4": {
+  "h": "fbbfbc637b",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/jobs.webp": {
+  "h": "9a8ea97a8f",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/profile.mp4": {
+  "h": "f4be8c7ca2",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/profile.webp": {
+  "h": "af9d6f338a",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/share.mp4": {
+  "h": "f1730ca523",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/share.webp": {
+  "h": "b592b77810",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/signup.mp4": {
+  "h": "a7096e96e5",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/signup.webp": {
+  "h": "808d68657f",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/vitafolio/support.mp4": {
+  "h": "af136f2d25",
+  "t": "file"
+ },
+ "/videos/projects/vitafolio/support.webp": {
+  "h": "fe56b1c09a",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ }
+}

@@ -16,6 +16,7 @@ import SeriesBanner from "@/components/shared/SeriesBanner"
 import ShareButton from "@/components/shared/ShareButton"
 import GiscusComments from "@/components/blog/GiscusComments"
 import AuthorCard from "@/components/blog/AuthorCard"
+import ThemedCover from "@/components/shared/ThemedCover"
 
 export const revalidate = 604800
 
@@ -65,7 +66,11 @@ export async function generateMetadata({
     },
     openGraph: {
       title: `Blog | ${post.title}`,
-      images: [`/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`],
+      images: [
+        post.cover_image
+          ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.isaacadjei.me"}${post.cover_image}`
+          : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`,
+      ],
     },
   }
 }
@@ -175,6 +180,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {post.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
+          </div>
+        )}
+
+        {post.cover_image && (
+          <div className="relative w-full aspect-4/3 sm:aspect-video md:aspect-21/9 overflow-hidden rounded-xl mt-4">
+            <ThemedCover
+              src={post.cover_image}
+              darkSrc={post.cover_image_dark}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
           </div>
         )}
 

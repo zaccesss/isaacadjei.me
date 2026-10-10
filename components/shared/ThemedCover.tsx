@@ -1,4 +1,5 @@
-import Image, { type ImageProps } from "next/image"
+import { type ImageProps } from "next/image"
+import Image from "@/components/shared/MediaImage"
 import { cn } from "@/lib/utils"
 
 type Props = Omit<ImageProps, "src"> & { src: string; darkSrc?: string }

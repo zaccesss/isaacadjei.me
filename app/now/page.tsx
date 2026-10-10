@@ -3,9 +3,7 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import LiveStatusCards from "@/components/shared/LiveStatusCards"
 import InspirationWidget from "@/components/shared/InspirationWidget"
-import { notes } from "@/data/notes"
-import { liveOnly } from "@/lib/schedule"
-import { TAG_CLASS } from "@/components/shared/Tag"
+import { getPublishedNotes } from "@/data/notes"
 import {
   BookOpen,
   Code2,
@@ -29,7 +27,11 @@ export const metadata: Metadata = {
   },
 }
 
+const BUILDING_NEXT = ["multi-sport-ai-predictor", "codeforces-auto-push", "prosthetics-health-tech"]
+
 export default function NowPage() {
+  const live = getPublishedNotes()
+  const buildingNext = BUILDING_NEXT.map((slug) => live.find((n) => n.slug === slug)).filter((n) => n !== undefined)
   return (
     <div className="container max-w-2xl py-24 space-y-14">
       <section className="space-y-4">
@@ -207,23 +209,16 @@ export default function NowPage() {
           <Lightbulb className="h-4 w-4 text-primary shrink-0" />
           <h2 className="text-base font-semibold">Building next</h2>
         </div>
-        <div className="space-y-3">
-          {liveOnly(notes).map((note) => (
-            <Link
-              key={note.slug}
-              href={`/notes/${note.slug}`}
-              className="group block rounded-lg border border-border/60 bg-muted/20 px-5 py-4 hover:border-primary/40 hover:bg-muted/30 transition-all"
-            >
-              <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{note.title}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed mt-1">{note.lead}</p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {note.tags.map((tag) => (
-                  <span key={tag} className={TAG_CLASS}>{tag}</span>
-                ))}
-              </div>
-            </Link>
+        <ul className="space-y-2 text-sm">
+          {buildingNext.map((note) => (
+            <li key={note.slug}>
+              <Link href={`/notes/${note.slug}`} className="group inline-flex items-center gap-1.5 font-medium text-foreground hover:text-primary transition-colors">
+                {note.title}
+                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <Separator />

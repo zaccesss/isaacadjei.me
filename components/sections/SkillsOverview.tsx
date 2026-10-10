@@ -22,7 +22,7 @@ export default function SkillsOverview() {
 
   return (
     <section className="py-24 border-t">
-      <div className="container space-y-10">
+      <div className="mx-auto w-full max-w-6xl px-8 space-y-10">
         <motion.div
           variants={staggerContainer}
           initial="hidden"

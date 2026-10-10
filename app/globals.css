@@ -174,21 +174,13 @@
 }
 
 /*
-  I apply theme transitions only while the toggle is firing, not permanently.
-  This prevents the transition from interfering with hover effects, Framer Motion
-  animations and anything else that sets its own transition.
+  the theme switch is a view transition (ThemeToggle): the browser's default crossfade is turned off so the circular
+  reveal is the only motion. The old snapshot stays fully visible underneath it
 */
-html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
-  transition:
-    background-color 100ms ease,
-    color 100ms ease,
-    border-color 100ms ease,
-    fill 100ms ease,
-    stroke 100ms ease !important;
-  transition-delay: 0s !important;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @keyframes blink {

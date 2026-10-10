@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import ImageGallery from "./ImageGallery"
+import { mediaSrc } from "@/lib/media"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -256,7 +257,7 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
                 </h3>
                 <div className="flex justify-center">
                   <video
-                    src={project.video}
+                    src={mediaSrc(project.video)}
                     controls
                     playsInline
                     preload="metadata"
