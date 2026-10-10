@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.75.1",
+    date: "2026-10-10",
+    label: "Behind the scenes",
+    fixed: [
+      "Music stats count every play, with none missed or counted twice",
+      "Two charts behind the scenes show their figures as soon as you hover or focus them",
+    ],
+  },
+  {
     version: "v2.75.0",
     date: "2026-10-09",
     label: "Ventures",
