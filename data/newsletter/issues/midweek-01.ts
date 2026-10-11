@@ -20,8 +20,8 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
-        "[Africa Day](https://en.wikipedia.org/wiki/Africa_Day) on Wikipedia",
         "[1963: African states unite against white rule](http://news.bbc.co.uk/onthisday/hi/dates/stories/may/25/newsid_2502000/2502771.stm) from BBC On This Day",
+        "[Africa Day](https://en.wikipedia.org/wiki/Africa_Day) on Wikipedia",
       ],
     },
   ],

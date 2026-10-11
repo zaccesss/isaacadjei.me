@@ -21,6 +21,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
+        "[Afrobeats](https://www.britannica.com/art/Afrobeats) from Encyclopaedia Britannica",
         "[Afrobeats](https://en.wikipedia.org/wiki/Afrobeats) on Wikipedia",
         "[Afrobeat](https://en.wikipedia.org/wiki/Afrobeat) on Wikipedia, for the older genre",
       ],

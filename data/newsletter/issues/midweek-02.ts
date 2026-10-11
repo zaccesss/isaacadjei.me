@@ -21,7 +21,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
-        "[2026 FIFA World Cup](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup) on Wikipedia",
+        "[FIFA World Cup 26](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026) from FIFA","[2026 FIFA World Cup](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup) on Wikipedia",
       ],
     },
   ],

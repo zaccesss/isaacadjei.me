@@ -21,6 +21,8 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
+        "[Lake Volta](https://www.britannica.com/place/Lake-Volta) from Encyclopaedia Britannica",
+        "[Volta River Authority](https://www.vra.com/), which runs the dam",
         "[Akosombo Dam](https://en.wikipedia.org/wiki/Akosombo_Dam) on Wikipedia",
         "[Lake Volta](https://en.wikipedia.org/wiki/Lake_Volta) on Wikipedia",
       ],

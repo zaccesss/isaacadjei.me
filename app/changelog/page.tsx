@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.79.0",
+    date: "2026-10-11",
+    label: "Midweek by email",
+    changed: [
+      "Midweek issues now arrive by email on their Wednesday. Each letter also links the Outside and Midweek issues from its fortnight in case you missed one",
+    ],
+  },
+  {
     version: "v2.78.0",
     date: "2026-10-10",
     label: "Midweek issues",

@@ -20,7 +20,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
-        "[Sleep and memory](https://en.wikipedia.org/wiki/Sleep_and_memory) on Wikipedia, which links the underlying studies",
+        "[Why is sleep important?](https://www.nhlbi.nih.gov/health/sleep/why-sleep-important) from the NHLBI, part of the US National Institutes of Health","[Sleep and memory](https://en.wikipedia.org/wiki/Sleep_and_memory) on Wikipedia, which links the underlying studies",
       ],
     },
   ],

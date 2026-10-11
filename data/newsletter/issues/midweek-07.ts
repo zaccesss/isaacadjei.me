@@ -21,6 +21,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
+        "[Men's marathon records](https://worldathletics.org/records/by-discipline/road-running/marathon/outdoor/men) from World Athletics",
         "[Kelvin Kiptum](https://en.wikipedia.org/wiki/Kelvin_Kiptum) on Wikipedia",
         "[Marathon world record progression](https://en.wikipedia.org/wiki/Marathon_world_record_progression) on Wikipedia",
       ],

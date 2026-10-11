@@ -73,6 +73,7 @@ export interface Issue extends NewsletterIssueFile {
   greeting: string
   signOff: string
   worth: WorthItem[]
+  midweek: { label: string; title: string; subtitle: string; slug: string }[]
   emailed: boolean
   items: GatheredItem[]
 }
@@ -192,7 +193,8 @@ export function allIssues(): Issue[] {
     if (file.kind === "outside" || file.kind === "midweek") {
       return {
         ...file,
-        emailed: file.kind === "outside" && file.date >= EMAIL_FROM_DATE,
+        emailed: file.date >= EMAIL_FROM_DATE,
+        midweek: [],
         items: [],
         worth: [],
         greeting: file.greeting ?? GREETINGS[file.number % GREETINGS.length],
@@ -206,6 +208,9 @@ export function allIssues(): Issue[] {
       emailed: file.date >= EMAIL_FROM_DATE,
       items: gatherBetween(start, file.date, file.skip),
       worth: worthBetween(start, file.date),
+      midweek: sorted
+        .filter((f) => (f.kind === "outside" || f.kind === "midweek") && f.published && f.date >= start && f.date <= file.date)
+        .map((f) => ({ label: issueLabel(f), title: f.title, subtitle: f.subtitle, slug: f.slug })),
       greeting: file.greeting ?? GREETINGS[file.number % GREETINGS.length],
       signOff: file.signOff ?? SIGN_OFFS[file.number % SIGN_OFFS.length],
     }
