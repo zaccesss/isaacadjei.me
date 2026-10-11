@@ -202,6 +202,29 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
           </section>
         )}
 
+        {issue.midweek.length > 0 && (
+          <section className="space-y-3" aria-labelledby="midweek">
+            <h2 id="midweek" className="text-2xl font-bold">In case you missed it</h2>
+            <p className="text-sm text-muted-foreground">The Outside and Midweek issues from the same two weeks.</p>
+            <ul className="space-y-2">
+              {issue.midweek.map((m) => (
+                <li key={m.slug}>
+                  <Link
+                    href={`/newsletter/${m.slug}`}
+                    className="group flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                  >
+                    <span className="w-20 shrink-0 text-[11px] font-mono uppercase tracking-wider text-muted-foreground pt-0.5">{m.label}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-medium leading-snug group-hover:text-primary transition-colors">{m.title}</span>
+                      <span className="block text-xs text-muted-foreground">{m.subtitle}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <article className="space-y-5">
           {(issue.outro ?? []).map((block, i) => renderBlock(block, i, outroIds, issue.outro?.[i - 1]))}
           <p className="text-[0.95rem] leading-relaxed">

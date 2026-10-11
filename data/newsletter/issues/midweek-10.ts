@@ -19,7 +19,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
-        "[Black History Month](https://en.wikipedia.org/wiki/Black_History_Month) on Wikipedia",
+        "[Black History Month UK](https://www.blackhistorymonth.org.uk/), the official UK site","[Black History Month](https://en.wikipedia.org/wiki/Black_History_Month) on Wikipedia, for the 1987 history",
       ],
     },
   ],
