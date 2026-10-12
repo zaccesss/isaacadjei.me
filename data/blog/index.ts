@@ -86,6 +86,7 @@ import _38 from "./posts/accessibility-as-a-default-wcag-2-2"
 import _39 from "./posts/one-palette-eight-terminals"
 import _40 from "./posts/moving-a-production-database-to-tidb"
 import _41 from "./posts/ariane-5-flight-501-overflow"
+import _77 from "./posts/sky-animol-screening-invite"
 
 export const posts: BlogPost[] = [
   _0,
@@ -129,6 +130,7 @@ export const posts: BlogPost[] = [
   _39,
   _40,
   _41,
+  _77,
 ]
 
 function withReadingTime(p: BlogPost): BlogPost & { readingTime: number } {
