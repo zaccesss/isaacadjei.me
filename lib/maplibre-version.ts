@@ -1,1 +1,1 @@
-export const MAPLIBRE_VERSION = "6.11.2"
+export const MAPLIBRE_VERSION = "6.13.0"
