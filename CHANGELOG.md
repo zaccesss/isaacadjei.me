@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.81.0] - 2026-10-13
+
+_New writing_
+
+### Changed
+
+- A new journal post is scheduled for later this week
+
 ## [2.80.1] - 2026-10-13
 
 _Behind the scenes_
