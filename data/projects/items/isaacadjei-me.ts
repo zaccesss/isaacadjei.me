@@ -63,7 +63,7 @@ const _isaacadjei_me: Project = {
       "A skip link, one heading outline per page, labelled icon buttons and motion that respects reduced motion",
     ],
     cover: "/images/projects/isaacadjei-me/cover.webp",
-    order: 7,
+    order: 8,
     status: "live",
     links: [
       { label: "Live site", url: "https://isaacadjei.me" },

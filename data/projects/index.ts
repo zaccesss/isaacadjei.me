@@ -12,6 +12,7 @@ export interface Project {
   video?: string
   website?: string
   videoCaption?: string
+  videoCaptions?: string
   github?: string
   demo?: string
   date: string
@@ -43,6 +44,7 @@ import _11 from "./items/vitafolio"
 import _12 from "./items/melophos"
 import _13 from "./items/lidarsat"
 import _14 from "./items/isaacadjei-me"
+import _15 from "./items/zacess"
 
 const all: Project[] = [
   _0,
@@ -60,6 +62,7 @@ const all: Project[] = [
   _12,
   _13,
   _14,
+  _15,
 ]
 
 export const projects: Project[] = [...all].sort((a, b) => (a.order ?? 999) - (b.order ?? 999))

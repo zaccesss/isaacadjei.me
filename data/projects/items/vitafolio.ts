@@ -62,7 +62,7 @@ const _vitafolio: Project = {
     ],
     cover: "/images/projects/vitafolio/cover-home.webp",
     coverDark: "/images/projects/vitafolio/cover-home-dark.webp",
-    order: 3,
+    order: 4,
     status: "live",
     links: [
       { label: "Documentation", url: "https://vitafolio.isaacadjei.me/docs" },

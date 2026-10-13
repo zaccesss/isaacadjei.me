@@ -40,7 +40,7 @@ const _astoncv: Project = {
       "Archived after the university server was retired, with the work continuing as Vitafolio",
     ],
     cover: "/images/projects/astoncv/cover-home.webp",
-    order: 9,
+    order: 10,
     status: "archived",
     links: [
       { label: "Vitafolio, where the work continues", url: "https://github.com/zaccesss/vitafolio" },

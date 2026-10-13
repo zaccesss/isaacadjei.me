@@ -2,6 +2,20 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.83.0] - 2026-10-13
+
+_Zacess_
+
+### Added
+
+- A project page for Zacess with demos, diagrams and links to the site and the browser version
+- A write-up about building Zacess, out on 14 October
+
+### Changed
+
+- The Links and Now pages point to the browser version
+- Zacess sits third on the projects page
+
 ## [2.82.1] - 2026-10-13
 
 _Behind the scenes_

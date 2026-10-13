@@ -244,6 +244,7 @@ export function renderBlock(
         <figure key={i} className="space-y-2 my-4">
           <video controls playsInline preload="none" poster={mediaSrc(block.poster)} aria-label={block.alt} className="w-full rounded-lg border border-border/60">
             <source src={mediaSrc(block.src)} type="video/mp4" />
+            {block.captions && <track kind="captions" src={block.captions} srcLang="en" label="English" default />}
           </video>
           {block.caption && (
             <figcaption className="text-xs text-center text-muted-foreground italic">{block.caption}</figcaption>

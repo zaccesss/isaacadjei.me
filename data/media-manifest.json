@@ -559,11 +559,29 @@
   "w": 1600,
   "ht": 1254
  },
+ "/images/newsletter/diagrams/767be0692a.png": {
+  "h": "3ae927b659",
+  "t": "img",
+  "w": 1072,
+  "ht": 2022
+ },
  "/images/newsletter/diagrams/c1dbbafcd3.png": {
   "h": "15faaf23d0",
   "t": "img",
   "w": 1072,
   "ht": 1006
+ },
+ "/images/newsletter/diagrams/cbfe6f856f.png": {
+  "h": "74db211eb3",
+  "t": "img",
+  "w": 1072,
+  "ht": 990
+ },
+ "/images/newsletter/diagrams/e793638ccc.png": {
+  "h": "6c7f0e3c79",
+  "t": "img",
+  "w": 1072,
+  "ht": 414
  },
  "/images/newsletter/estadio-azteca.jpg": {
   "h": "67187a1d88",
@@ -1577,6 +1595,72 @@
   "w": 1919,
   "ht": 994
  },
+ "/images/projects/zacess/app-dark.webp": {
+  "h": "c7ca1bbded",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/app-light.webp": {
+  "h": "398a56c7c9",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/cover-dark.webp": {
+  "h": "d44231c09f",
+  "t": "img",
+  "w": 1200,
+  "ht": 630
+ },
+ "/images/projects/zacess/cover.webp": {
+  "h": "e981bf06b0",
+  "t": "img",
+  "w": 1200,
+  "ht": 630
+ },
+ "/images/projects/zacess/links-list.webp": {
+  "h": "96ad1427bb",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/phone.webp": {
+  "h": "0b06add0f3",
+  "t": "img",
+  "w": 780,
+  "ht": 1688
+ },
+ "/images/projects/zacess/reading-profile.webp": {
+  "h": "bcce703c77",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/scan-doubtful.webp": {
+  "h": "bfc600aa3f",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/site-home-dark.webp": {
+  "h": "a1bf769a16",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/site-home.webp": {
+  "h": "808dd0439e",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/site-how-it-works.webp": {
+  "h": "1f5b69072b",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
  "/images/proteus.webp": {
   "h": "1b829d8f89",
   "t": "img",
@@ -2013,6 +2097,76 @@
  },
  "/videos/projects/vitafolio/support.webp": {
   "h": "fe56b1c09a",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/links-export.mp4": {
+  "h": "3c49f34fe0",
+  "t": "file"
+ },
+ "/videos/projects/zacess/links-export.webp": {
+  "h": "95ac7d20a4",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/open.mp4": {
+  "h": "442f74eebf",
+  "t": "file"
+ },
+ "/videos/projects/zacess/open.webp": {
+  "h": "97ede5fa2b",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/phone.mp4": {
+  "h": "6735f04696",
+  "t": "file"
+ },
+ "/videos/projects/zacess/phone.webp": {
+  "h": "000500c48a",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/profile.mp4": {
+  "h": "82cc26c38e",
+  "t": "file"
+ },
+ "/videos/projects/zacess/profile.webp": {
+  "h": "19a0e6cf1e",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/read-aloud.mp4": {
+  "h": "4c31402b1e",
+  "t": "file"
+ },
+ "/videos/projects/zacess/read-aloud.webp": {
+  "h": "5082653984",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/scan.mp4": {
+  "h": "e10c586d51",
+  "t": "file"
+ },
+ "/videos/projects/zacess/scan.webp": {
+  "h": "9908fe2ec5",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/site-tour.mp4": {
+  "h": "f96ac145cd",
+  "t": "file"
+ },
+ "/videos/projects/zacess/site-tour.webp": {
+  "h": "7b7c8c286f",
   "t": "img",
   "w": 1280,
   "ht": 800

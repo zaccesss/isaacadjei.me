@@ -11,7 +11,7 @@ const _goods_lift: Project = {
     category: "embedded",
     featured: false,
     cover: "/images/projects/goods-lift/cover.webp",
-    order: 15,
+    order: 16,
     status: "completed",
     images: [
       "/images/projects/goods-lift/main.webp",

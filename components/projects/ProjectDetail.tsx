@@ -268,7 +268,11 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
                     preload="metadata"
                     className="w-full max-w-2xl rounded-lg aspect-video bg-black"
                     aria-label={`${project.title} demo video`}
-                  />
+                  >
+                    {project.videoCaptions && (
+                      <track kind="captions" src={project.videoCaptions} srcLang="en" label="English" default />
+                    )}
+                  </video>
                 </div>
                 {project.videoCaption && (
                   <p className="text-sm text-center text-foreground/80">{project.videoCaption}</p>

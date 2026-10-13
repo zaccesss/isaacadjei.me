@@ -11,7 +11,7 @@ const _cad_portfolio: Project = {
     category: "academic",
     featured: false,
     cover: "/images/projects/cad-portfolio/cover.webp",
-    order: 13,
+    order: 14,
     status: "completed",
     images: [
       "/images/projects/cad-portfolio/main.webp",

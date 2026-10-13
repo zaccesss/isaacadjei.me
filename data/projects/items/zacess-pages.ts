@@ -11,7 +11,7 @@ const _zacess_pages: Project = {
     category: "web",
     featured: false,
     cover: "/images/projects/zacess-pages/cover.webp",
-    order: 11,
+    order: 12,
     status: "archived",
     images: [
       "/images/projects/zacess-pages/main.webp",
