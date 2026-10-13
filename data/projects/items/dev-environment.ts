@@ -52,7 +52,7 @@ const _dev_environment: Project = {
       "Used daily on a MacBook with OrbStack and a Lenovo laptop dual booting Windows and Ubuntu, with WSL2 on Windows",
     ],
     cover: "/images/projects/dev-environment/cover.webp",
-    order: 8,
+    order: 9,
     status: "live",
     links: [
       { label: "mac-bootstrap", url: "https://github.com/zaccesss/mac-bootstrap" },

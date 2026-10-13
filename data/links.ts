@@ -88,6 +88,15 @@ export const profileLinks: LinkItem[] = [
     category: "ventures",
   },
   {
+    title: "Zacess in the browser",
+    description: "Open a PDF, a photo or a Word file and read it in your own profile",
+    url: "https://app.zacess.com",
+    icon: "globe",
+    iconImage: "/images/ventures/zacess.png",
+    iconTransparent: true,
+    category: "ventures",
+  },
+  {
     title: "Newsletter",
     description: "A letter every couple of weeks: what I built, learned and wrote",
     url: "https://www.isaacadjei.me/newsletter",

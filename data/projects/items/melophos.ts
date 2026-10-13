@@ -48,7 +48,7 @@ const _melophos: Project = {
       "Monorepo of eight components, each published to its own read-only repository, with software under AGPL-3.0 and hardware under CERN-OHL-S-2.0",
     ],
     cover: "/images/projects/melophos/cover-studio.webp",
-    order: 5,
+    order: 6,
     status: "in-progress",
     links: [
       { label: "MELOPHOS on GitHub", url: "https://github.com/melophos" },

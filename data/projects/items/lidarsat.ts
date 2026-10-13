@@ -41,7 +41,7 @@ const _lidarsat: Project = {
       "Team workflow: Linear cycles mirrored to GitHub issues and milestones, shared labels, a project board and Discord feeds with slash commands",
     ],
     cover: "/images/projects/lidarsat/cover-build-log.webp",
-    order: 6,
+    order: 7,
     status: "research",
     links: [
       { label: "SPRIN-D baseline paper", url: "https://arxiv.org/abs/2510.01348" },

@@ -22,7 +22,8 @@ export type ContentBlock =
   | { type: "table"; headers: string[]; rows: string[][]; caption?: string }
   | { type: "callout"; tone: "note" | "tip" | "important" | "warning" | "caution"; text: string }
   // a local screen recording with a still frame for reduced motion
-  | { type: "clip"; src: string; poster: string; alt: string; caption?: string }
+  // captions is a WebVTT file served from the site itself, for a clip that has speech
+  | { type: "clip"; src: string; poster: string; alt: string; caption?: string; captions?: string }
 
 export interface BlogPost {
   slug: string

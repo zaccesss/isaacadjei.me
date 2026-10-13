@@ -11,7 +11,7 @@ const _cnc_control: Project = {
     category: "embedded",
     featured: false,
     cover: "/images/projects/cnc-control/cover.webp",
-    order: 14,
+    order: 15,
     status: "completed",
     images: [
       "/images/projects/cnc-control/main.webp",

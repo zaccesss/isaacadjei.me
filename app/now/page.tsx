@@ -170,11 +170,15 @@ export default function NowPage() {
               Zacess
             </p>
             <p className="leading-relaxed">
-              A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile. The site is live at{" "}
+              A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile. The browser version is open to try at{" "}
+              <a href="https://app.zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                app.zacess.com
+              </a>{" "}
+              and the project is on{" "}
               <a href="https://zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
                 zacess.com
-              </a>{" "}
-              and a browser version is next.
+              </a>
+              . Next are the apps, then lecture mode and study tools in the browser.
             </p>
           </div>
           <div className="space-y-1">
