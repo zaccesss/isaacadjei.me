@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/supabase"
 import { readAll } from "@/lib/supabase-read-all"
-import { publicEditorName } from "@/lib/wakatime-editors"
+import { languageName, publicEditorName } from "@/lib/wakatime-editors"
 import { summarise, type GameSessionRow, type PlaytimeRow, type GenreRow, type GamingSummary } from "@/lib/gaming"
 
 export type Named = { name: string; value: number }
@@ -71,7 +71,7 @@ async function compute(): Promise<PublicStats> {
     const d = new Date(`${r.date}T12:00:00Z`)
     weekday[(d.getUTCDay() + 6) % 7] += r.total_seconds
     month.set(r.date.slice(0, 7), (month.get(r.date.slice(0, 7)) ?? 0) + r.total_seconds)
-    for (const l of r.languages ?? []) lang.set(l.name, (lang.get(l.name) ?? 0) + l.total_seconds)
+    for (const l of r.languages ?? []) lang.set(languageName(l.name), (lang.get(languageName(l.name)) ?? 0) + l.total_seconds)
     for (const e of r.editors ?? []) { const k = publicEditorName(e.name); editor.set(k, (editor.get(k) ?? 0) + e.total_seconds) }
     if (Array.isArray(r.hours) && r.hours.length === 24) r.hours.forEach((v, h) => { hourOfDay[h] += v ?? 0 })
     const w = weekIndex.get(weekKey(d))
