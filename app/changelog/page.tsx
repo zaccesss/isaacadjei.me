@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.82.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "Live panels stop refreshing while their tab is in the background",
+    ],
+  },
+  {
     version: "v2.82.0",
     date: "2026-10-13",
     label: "Zacess",
