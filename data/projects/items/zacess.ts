@@ -70,7 +70,7 @@ const _zacess: Project = {
       { type: "h2", text: "Why I built it" },
       {
         type: "p",
-        text: "A lot of study material arrives in the formats that are hardest to read: slides on a projector, PDFs with no text layer and photos of whiteboards. A screen magnifier does one job, a video magnifier another and a service for disabled students costs money and holds your files on someone else's server. I wanted one tool that lets me set the page the way my eyes need it, reads it aloud and never asks me to hand over the file.",
+        text: "A lot of study material arrives in the formats that are hardest to read: slides on a projector, PDFs with no text layer and photos of whiteboards. A screen magnifier does one job, a video magnifier another and a service for disabled students costs money and holds your files on someone else's server. I wanted one tool that lets me set the page the way my eyes need it, reads it aloud and never asks me to hand over the file. There is a [blog post](/blog/building-zacess-a-reader-that-respects-the-file) with the story and short demos.",
       },
       { type: "h2", text: "What it opens today" },
       {
