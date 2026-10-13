@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.82.0",
+    date: "2026-10-13",
+    label: "Zacess",
+    changed: [
+      "zacess.com is now the home of Zacess, a free, open-source accessibility reader",
+      "The old terminal landing page is archived",
+    ],
+  },
+  {
     version: "v2.81.1",
     date: "2026-10-13",
     label: "Behind the scenes",

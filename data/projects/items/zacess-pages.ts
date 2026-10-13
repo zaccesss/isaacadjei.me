@@ -2,23 +2,22 @@ import type { Project } from "../index"
 
 const _zacess_pages: Project = {
     id: "zacess-pages",
-    title: "zacess.com: Terminal Landing Page",
+    title: "Terminal Landing Page (retired)",
     description:
-      "The landing page for zacess.com: a working terminal in the browser with a boot sequence, command history, tab autocomplete and a daily quote, built with Next.js, TypeScript and Tailwind CSS.",
+      "The earlier landing page for zacess.com, now retired: a working terminal in the browser with a boot sequence, command history, tab autocomplete and a daily quote, built with Next.js, TypeScript and Tailwind CSS.",
     longDescription:
-      "zacess-pages is the landing page for zacess.com while I rebuild the full site. Instead of a static under construction notice it is a real terminal in the browser, built as a Next.js App Router application with TypeScript and Tailwind CSS. A ZacessOS boot sequence plays on load, then the prompt activates with a blinking block cursor. It supports command history on the arrow keys, tab autocomplete, line-by-line output and a suggest mode that collects a message and opens a pre-filled email.\n\nThe core challenge was making the terminal feel real rather than decorative. Real terminals have history, autocomplete that lists every option when more than one matches, deliberate output pacing and a clear split between navigation and local commands. A div with a monospaced font is not a terminal, so each of these had to be built from scratch in React state. The boot lines are paced with awaited timeouts rather than CSS animation, so each one appears after the last has finished, which reads as sequential system output rather than a scripted effect.\n\nNavigation commands open pages on isaacadjei.me in a new tab. Local commands download my CV, open a mail client, show the build status or clear the screen while keeping the boot lines. Three hidden commands reward curious visitors. A ZenQuotes quote is fetched through a server-side API route and refreshes every 30 minutes. The site deploys to Vercel on every push to main, with Cloudflare DNS routing zacess.com and www.zacess.com.",
+      "zacess-pages was the landing page for zacess.com until 13 October 2026, when the domain became the home of Zacess, the free, open-source accessibility reader I am building. Instead of a static under construction notice it is a real terminal in the browser, built as a Next.js App Router application with TypeScript and Tailwind CSS. A ZacessOS boot sequence plays on load, then the prompt activates with a blinking block cursor. It supports command history on the arrow keys, tab autocomplete, line-by-line output and a suggest mode that collects a message and opens a pre-filled email.\n\nThe core challenge was making the terminal feel real rather than decorative. Real terminals have history, autocomplete that lists every option when more than one matches, deliberate output pacing and a clear split between navigation and local commands. A div with a monospaced font is not a terminal, so each of these had to be built from scratch in React state. The boot lines are paced with awaited timeouts rather than CSS animation, so each one appears after the last has finished, which reads as sequential system output rather than a scripted effect.\n\nNavigation commands open pages on isaacadjei.me in a new tab. Local commands download my CV, open a mail client, show the build status or clear the screen while keeping the boot lines. Three hidden commands reward curious visitors. A ZenQuotes quote is fetched through a server-side API route and refreshes every 30 minutes. The site deploys to Vercel on every push to main, with Cloudflare DNS routing zacess.com and www.zacess.com.",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "next-themes", "Vercel", "Cloudflare"],
     category: "web",
     featured: false,
     cover: "/images/projects/zacess-pages/cover.webp",
     order: 11,
-    status: "live",
+    status: "archived",
     images: [
       "/images/projects/zacess-pages/main.webp",
       "/images/projects/zacess-pages/terminal.webp",
     ],
     github: "https://github.com/zaccesss/zacess-pages",
-    demo: "https://zacess.com",
     date: "2026",
     highlights: [
       "Genuine terminal behaviour: ZacessOS boot sequence, blinking block cursor and output printed line by line at 20 ms per line",
@@ -29,7 +28,7 @@ const _zacess_pages: Project = {
       "Cyan prompts, green commands and amber output that stay the same in light and dark mode",
     ],
     links: [
-      { label: "Live site: zacess.com", url: "https://zacess.com" },
+      { label: "Zacess, which now lives at zacess.com", url: "https://zacess.com" },
     ],
     sections: [
       { type: "h2", text: "How it is put together" },
@@ -112,10 +111,10 @@ const _zacess_pages: Project = {
         type: "p",
         text: "ZenQuotes does not allow calls from the browser on another origin, so the quote bar asks a Next.js route handler instead. The route fetches a random quote server-side and returns it as JSON. If the API fails or returns something unexpected, it returns a fallback quote so the bar is never empty. The bar refetches every 30 minutes and needs no API key or environment variables.",
       },
-      { type: "h2", text: "Deployment and next steps" },
+      { type: "h2", text: "Deployment and retirement" },
       {
         type: "p",
-        text: "Vercel builds and deploys every push to main and Cloudflare points zacess.com and www.zacess.com at it. The terminal, history, autocomplete, window controls, mobile support, easter eggs and custom domain are done. The full zacess.com experience is in progress, with an interactive projects showcase and case studies planned after it.",
+        text: "Vercel built and deployed every push to main, with Cloudflare pointing zacess.com and www.zacess.com at it. The terminal, history, autocomplete, window controls, mobile support and easter eggs were all finished. In October 2026 the domain moved to the Zacess product site, so the repo is archived and the terminal now only runs locally with npm install and npm run dev.",
       },
     ],
     references: [
