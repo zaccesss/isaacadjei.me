@@ -6,6 +6,7 @@ const _open_source_contributing: BlogPost = {
     date: "2026-06-13",
     type: "article",
     cover_image: "/images/blog/covers/open-source-contributing.webp",
+    cover_credit: "Photo: Yancy Min, Unsplash Licence, via Unsplash",
     description:
       "A practical, honest guide to finding projects worth contributing to, reading a codebase before touching it, making your first pull request and handling review feedback. From someone who has done it and built a 217-topic Git course in the process.",
     tags: ["Open Source", "Git", "GitHub", "Career", "Community"],
@@ -210,7 +211,7 @@ Clicked the updated link in a browser preview. Verified the target page exists.
       },
       {
         type: "p",
-        text: "Beyond git-unlocked, I track merged pull requests to external repositories in my portfolio dashboard. The dashboard pulls from GitHub's API and surfaces the PRs I am most proud of. Seeing them listed there, each one a specific problem in a specific codebase that I found, understood and fixed, is a better record of growth than any course certificate. The habit of contributing builds on itself: each time you understand a new codebase from the outside, the next one takes less time.",
+        text: "Beyond git-unlocked, I keep a record of my merged pull requests to external repositories, pulled from GitHub's API, with the ones I am most proud of at the top. Seeing them listed together, each one a specific problem in a specific codebase that I found, understood and fixed, is a better record of growth than any course certificate. The habit of contributing builds on itself: each time you understand a new codebase from the outside, the next one takes less time.",
       },
       {
         type: "p",

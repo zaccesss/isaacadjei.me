@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import Callout from "@/components/shared/Callout"
 import {
   Accessibility,
-  BarChart3,
   BookOpen,
   Bug,
   Contrast,
@@ -13,8 +12,6 @@ import {
   Globe,
   Keyboard,
   Layers,
-  Lightbulb,
-  Mail,
   Type,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
@@ -148,15 +145,12 @@ export default function AccessibilityPage() {
           </li>
           <li>Images carry alt text. Code, commands and output are shown as text, never as screenshots.</li>
         </ul>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <BarChart3 className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            Known limitations: the charts, maps and 3D views on the lab and stats pages are visual by
-            nature. Where a chart has a text summary the figures are in it, but not every chart has one
-            yet. Where a page embeds content from another service, that content follows the
-            service&apos;s own accessibility.
-          </AlertDescription>
-        </Alert>
+        <Callout kind="warning" className="my-0">
+          Known limitations: the charts, maps and 3D views on the lab and stats pages are visual by
+          nature. Where a chart has a text summary the figures are in it, but not every chart has one
+          yet. Where a page embeds content from another service, that content follows the
+          service&apos;s own accessibility.
+        </Callout>
       </section>
 
       <Separator />
@@ -185,14 +179,11 @@ export default function AccessibilityPage() {
           the colours and contrast, the key bindings, the motion and what to change for a different
           need. That file takes precedence over this statement.
         </p>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <Lightbulb className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            Many of those settings are preferences rather than requirements. Change them freely in your
-            own copy. If a change would help other people too, open an issue or a pull request on that
-            repository so I can consider it for everyone.
-          </AlertDescription>
-        </Alert>
+        <Callout kind="note" className="my-0">
+          Many of those settings are preferences rather than requirements. Change them freely in your
+          own copy. If a change would help other people too, open an issue or a pull request on that
+          repository so I can consider it for everyone.
+        </Callout>
         <p className="text-muted-foreground leading-relaxed">
           Repositories with their own statement:{" "}
           {REPOS_WITH_STATEMENTS.map((repo, i) => (
@@ -231,13 +222,10 @@ export default function AccessibilityPage() {
           . Say what you were trying to do, what happened and what would have worked better. If the
           assistive technology or the settings you use are relevant, mention them too.
         </p>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <Mail className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            I treat an accessibility problem as a bug, not a feature request. These are personal
-            projects, so I am not always quick, but a barrier goes to the front of the queue.
-          </AlertDescription>
-        </Alert>
+        <Callout kind="important" className="my-0">
+          I treat an accessibility problem as a bug, not a feature request. These are personal
+          projects, so I am not always quick, but a barrier goes to the front of the queue.
+        </Callout>
       </section>
 
       <Separator />

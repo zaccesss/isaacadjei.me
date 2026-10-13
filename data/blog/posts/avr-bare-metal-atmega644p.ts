@@ -7,6 +7,8 @@ const _avr_bare_metal_atmega644p: BlogPost = {
     type: "blog",
     projectSlug: "avr-zac",
     cover_image: "/images/blog/covers/avr-bare-metal-atmega644p.webp",
+    cover_credit: "Photo: Zach Hoeken, CC BY-SA 2.0, cropped, via Wikimedia Commons",
+    cover_alt: "A red Sanguino board built around an ATmega644P microcontroller in a 40-pin DIP package, with a voltage regulator and programming header",
     description:
       "How I built a nine-mode state machine on an ATmega644P from scratch using bare metal C, writing directly to hardware registers with no framework, no HAL and no shortcuts. Still ongoing.",
     tags: ["Embedded", "AVR", "C", "Microcontroller", "Aston"],
@@ -26,9 +28,9 @@ const _avr_bare_metal_atmega644p: BlogPost = {
       },
       {
         type: "image",
-        src: "/images/atmelavr.webp",
-        alt: "ATmega AVR microcontroller",
-        caption: "The AVR architecture - the foundation of the ATmega644P used in this project",
+        src: "/images/blog/avr/atmega164p.webp",
+        alt: "An ATmega164P, a 40-pin DIP AVR microcontroller from the same family and pinout as the ATmega644P",
+        caption: "An ATmega164P in the same 40-pin DIP package and pinout as the ATmega644P used in this project. Photo: Windell Oskay, CC BY 2.0, via Wikimedia Commons",
       },
       {
         type: "p",

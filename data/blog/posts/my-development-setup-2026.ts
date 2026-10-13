@@ -6,6 +6,8 @@ const _my_development_setup_2026: BlogPost = {
     date: "2026-06-29",
     type: "article",
     cover_image: "/images/blog/covers/my-development-setup-2026.webp",
+    cover_credit: "Photo: Anas Alshanti, CC0, via Wikimedia Commons",
+    cover_alt: "Close-up of a dark mechanical keyboard with purple and pink backlighting",
     description:
       "A full tour of my hardware, editor configuration, terminal setup, dotfiles and the tools I reach for when building embedded systems and web applications. What I use, why I use it and what I changed my mind about.",
     tags: ["Tools", "Productivity", "Terminal", "Setup", "Dotfiles"],

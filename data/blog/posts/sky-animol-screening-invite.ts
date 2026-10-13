@@ -6,6 +6,7 @@ const _sky_animol_screening_invite: BlogPost = {
     date: "2026-10-12",
     type: "journal",
     cover_image: "/images/blog/covers/sky-animol-screening-invite.webp",
+    cover_credit: "Image: Sky, used courtesy of Sky",
     description:
       "Being shortlisted for the Sky Black Heritage Undergraduate of the Year award led to an invitation to a Black History Month screening of the Sky Original film Animol, with a live Q&A and networking.",
     tags: ["Sky", "Career", "Black Heritage", "Networking", "Personal"],
@@ -21,7 +22,7 @@ const _sky_animol_screening_invite: BlogPost = {
         type: "image",
         src: "/images/blog/sky-animol/animol-poster.webp",
         alt: "Poster for the Sky Original film Animol: a young man in profile behind the film's title in tall yellow letters, with four and five star reviews and festival laurels above.",
-        caption: "Animol, a Sky Original. Poster courtesy of Sky.",
+        caption: "Animol, a Sky Original. Image: Sky, poster used courtesy of Sky",
       },
       {
         type: "h2",

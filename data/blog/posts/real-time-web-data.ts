@@ -6,6 +6,7 @@ const _real_time_web_data: BlogPost = {
     date: "2026-07-20",
     type: "blog",
     cover_image: "/images/blog/covers/real-time-web-data.webp",
+    cover_credit: "Photo: Taylor Vick, Unsplash Licence, via Unsplash",
     description:
       "When to use WebSockets, Server-Sent Events or long polling for real-time data in a web application. A practical comparison covering latency, connection overhead, firewall behaviour and implementation complexity.",
     tags: ["WebSockets", "JavaScript", "Next.js", "Full-Stack", "API"],

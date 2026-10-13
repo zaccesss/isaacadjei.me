@@ -2,6 +2,24 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.80.1] - 2026-10-13
+
+_Behind the scenes_
+
+### Changed
+
+- A small fix behind the scenes
+
+## [2.80.0] - 2026-10-13
+
+_Journey update_
+
+### Changed
+
+- My Journey So Far now covers my current roles at Aston and the projects I run today, including how my first accessibility demo grew into Zacess, with photos from Cape Coast to Aston
+- Blog covers that showed the wrong thing now match their posts. Every borrowed image credits its author, licence and source
+- Tidier reminders behind the scenes, so important dates get a nudge before they arrive
+
 ## [2.79.1] - 2026-10-13
 
 _Security update_

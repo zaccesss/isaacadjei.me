@@ -5,7 +5,9 @@ const _phaemos_engineering_decisions: BlogPost = {
     title: "PHAEMOS: Engineering Decisions from Breadboard to Distributed IoT System",
     date: "2026-07-27",
     type: "journal",
-    cover_image: "/images/blog/covers/phaemos-engineering-decisions.webp",
+    cover_image: "/images/projects/phaemos/compare-light.webp",
+    cover_image_dark: "/images/projects/phaemos/compare.webp",
+    cover_alt: "PHAEMOS compare view in light mode: live anomaly score, vibration and temperature charts for two machines side by side",
     description:
       "A case study in the decisions behind PHAEMOS - a multi-node environmental monitoring system. Why these hardware platforms, why this software stack and what I would do differently now.",
     tags: ["PHAEMOS", "IoT", "Embedded", "Python", "Full-Stack"],

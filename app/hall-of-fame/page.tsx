@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import Callout from "@/components/shared/Callout"
 import { Trophy, Heart, Shield, Users } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -153,15 +155,16 @@ export default function HallOfFamePage() {
         </p>
 
         {researchers.length === 0 ? (
-          <div className="rounded-lg border border-border/60 bg-muted/30 px-6 py-8 text-center">
-            <p className="text-sm text-muted-foreground">
-              No disclosures yet. If you find a vulnerability, please see the{" "}
-              <a href="/security-policy" className="text-primary underline underline-offset-4">
-                Security Policy
-              </a>{" "}
-              for how to report it.
-            </p>
-          </div>
+          <Callout kind="note" className="my-0">
+            No disclosures yet. If you find a vulnerability, please see the{" "}
+            <Link
+              href="/security-policy"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              Security Policy
+            </Link>{" "}
+            for how to report it.
+          </Callout>
         ) : (
           <div className="space-y-3">
             {researchers.map(({ name, contribution, date, link }) => (

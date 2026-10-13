@@ -197,10 +197,11 @@ export default function PrivacyPage() {
             with no questions asked.
           </p>
           <p className="mt-3">
-            Images in the newsletter email, including the logo in the signature, load from GitHub&rsquo;s
-            servers when your mail app shows them, so GitHub receives your IP address and browser details
-            in the normal way. Many mail apps fetch images through their own proxy, in which case GitHub
-            only sees the proxy. Turning images off in your mail app stops these requests.
+            Images in the newsletter email load when your mail app shows them. Photos in the letter come
+            from media.isaacadjei.me (served by Cloudflare R2) and the logo in the signature comes from
+            GitHub&rsquo;s servers, so Cloudflare and GitHub receive your IP address and browser details in
+            the normal way. Many mail apps fetch images through their own proxy, in which case those
+            services only see the proxy. Turning images off in your mail app stops these requests.
           </p>
         </div>
 
@@ -315,9 +316,11 @@ export default function PrivacyPage() {
         <div>
           <h2>Cookies</h2>
           <p>
-            This site uses a cookie to remember your theme preference (light or dark mode). It
-            stores only your chosen display mode, contains no personal information and is not
-            accessible to any third party. Google Analytics sets its own analytics cookies as
+            This site remembers your theme preference (light, dark or system) and a few small
+            choices, such as a map style you picked, a list&apos;s page size and the reactions you
+            gave a post, in your browser&apos;s local storage rather than a cookie. It stays on your
+            device, contains no personal information and is not sent to me or any third party.
+            Google Analytics sets its own analytics cookies as
             described above. Cloudflare, which sits in front of this site and its images, may set a
             short-lived security cookie (__cf_bm) to tell people from automated traffic; it holds no
             personal details. No advertising cookies are used. If
@@ -359,9 +362,10 @@ export default function PrivacyPage() {
         <div>
           <h2>Your rights</h2>
           <p>
-            Since I do not store personal data on my own systems, there is no profile to delete or
-            export. If you have a question about data you may have submitted through the contact
-            form or newsletter, feel free to get in touch and I will respond as quickly as I can.
+            I keep very little personal data on my own systems: there are no visitor accounts or
+            profiles, only the guestbook entries and one-way codes described above. If you have a
+            question about data you may have submitted through the contact form, the newsletter or
+            the guestbook, feel free to get in touch and I will respond as quickly as I can.
             If you believe any content on this site infringes your rights or if you have any other
             concern, you can raise it through the{" "}
             <Link

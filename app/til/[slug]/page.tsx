@@ -241,14 +241,15 @@ export default async function TILSlugPage({
           )}
 
           {entry.relatedPost && (
-            <div className="rounded-lg border border-border bg-muted/30 px-4 py-3">
-              <p className="text-xs text-muted-foreground">
-                This turned into a full post:{" "}
-                <Link href={`/blog/${entry.relatedPost}`} className="text-primary hover:underline">
-                  Read the full post
-                </Link>
-              </p>
-            </div>
+            <Callout kind="note" className="my-0">
+              This turned into a full post:{" "}
+              <Link
+                href={`/blog/${entry.relatedPost}`}
+                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              >
+                Read the full post
+              </Link>
+            </Callout>
           )}
 
           <TILFooter entry={entry} visibleEntries={sorted} />

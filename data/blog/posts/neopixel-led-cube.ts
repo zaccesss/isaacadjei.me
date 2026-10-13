@@ -15,7 +15,7 @@ const _neopixel_led_cube: BlogPost = {
       {
         type: "image",
         src: "/images/projects/led-cube/neopixel-main.webp",
-        alt: "4x4x4 NeoPixel LED Cube showing an active animation",
+        alt: "The unlit 4x4x4 NeoPixel LED Cube on its base beside the open wooden controller box, with the wiring and microcontroller visible inside",
         caption: "The finished 4x4x4 NeoPixel LED Cube - 64 WS2812B LEDs hand-soldered into a matrix",
       },
       {

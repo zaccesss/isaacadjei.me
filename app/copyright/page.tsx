@@ -72,6 +72,17 @@ export default function CopyrightPage() {
         </div>
 
         <div>
+          <h2>Images and credits</h2>
+          <p>
+            Third-party images are credited directly under the image, with the author, the licence and a link to the
+            source. My own photos, screenshots and diagrams are mine and fall under My content above. If you find an
+            image that is not credited or is credited wrongly, email{" "}
+            <a href="mailto:contact@isaacadjei.me" className={link}>contact@isaacadjei.me</a> with a link to the page
+            and I will fix the credit or remove the image.
+          </p>
+        </div>
+
+        <div>
           <h2>Reporting a problem</h2>
           <p>
             If you believe something on this site uses your work without permission, tell me through the{" "}

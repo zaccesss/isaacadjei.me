@@ -6,6 +6,7 @@ const _iot_security_gaps: BlogPost = {
     date: "2025-11-30",
     type: "research",
     cover_image: "/images/blog/covers/iot-security-gaps.webp",
+    cover_credit: "Photo: Austin Distel, Unsplash Licence, via Unsplash",
     description:
       "A technical review of the most common vulnerabilities in consumer IoT devices: hardcoded credentials, unencrypted traffic, insufficient update mechanisms and insecure interfaces, with reference to real incidents, CVEs and regulatory standards.",
     tags: ["IoT", "Security", "Research", "Embedded", "Networking"],

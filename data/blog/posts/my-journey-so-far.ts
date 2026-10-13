@@ -4,8 +4,11 @@ const _my_journey_so_far: BlogPost = {
     slug: "my-journey-so-far",
     title: "My Journey So Far",
     date: "2024-06-01",
+    updated: "2026-10-13",
     type: "journal",
     cover_image: "/images/blog/covers/my-journey-so-far.webp",
+    cover_credit: "Photo: Kradolferp, CC BY-SA 4.0, cropped, via Wikimedia Commons",
+    cover_alt: "Waves breaking over a long rocky reef on the coast at Cape Coast in Ghana, with painted wooden fishing canoes pulled up on the shore and a bright blue sky with white clouds",
     description:
       "From losing sight in one eye at age two, to losing my father, to moving countries and rebuilding from scratch. The full story of how I got to where I am today.",
     tags: ["Personal", "Ghana", "Aston", "Journey", "Engineering", "Faith"],
@@ -67,8 +70,14 @@ const _my_journey_so_far: BlogPost = {
         text: "Adisadel College",
       },
       {
+        type: "image",
+        src: "/images/blog/my-journey-so-far/adisadel.webp",
+        alt: "A paved path through the grounds of Adisadel College in Cape Coast, with the clock tower on the right and classroom blocks on the left",
+        caption: "Adisadel College, Cape Coast. Photo: Rberchie, CC BY-SA 4.0, via Wikimedia Commons",
+      },
+      {
         type: "p",
-        text: "I spent my senior high school years at Adisadel College in Cape Coast, one of the most prestigious boys' schools in Ghana, founded in 1910. The motto is Vel Primus, Vel Cum Primis: either the first or with the first. That motto is not decorative. It is a standard the school actually holds you to.",
+        text: "I spent my senior high school years at [Adisadel College](https://adisadelcollege.net) in Cape Coast, one of the most prestigious boys' schools in Ghana, founded in 1910. The motto is Vel Primus, Vel Cum Primis: either the first or with the first. That motto is not decorative. It is a standard the school actually holds you to.",
       },
       {
         type: "p",
@@ -88,7 +97,13 @@ const _my_journey_so_far: BlogPost = {
       },
       {
         type: "p",
-        text: "I enrolled at Stanmore College in London on a business course. After two months I knew it was wrong. I approached the college, sat the necessary examinations to demonstrate my aptitude and transferred onto the engineering programme, joining two months after it had already started. I had to catch up again, this time in a subject I had never formally studied, while balancing part-time work and everything that comes with being new to a country.",
+        text: "I enrolled at [Stanmore College](https://www.stanmore.ac.uk) in London on a business course. After two months I knew it was wrong. I approached the college, sat the necessary examinations to demonstrate my aptitude and transferred onto the engineering programme, joining two months after it had already started. I had to catch up again, this time in a subject I had never formally studied, while balancing part-time work and everything that comes with being new to a country.",
+      },
+      {
+        type: "image",
+        src: "/images/blog/my-journey-so-far/stanmore-station.webp",
+        alt: "The red brick station building at Stanmore, the Jubilee line terminus near Stanmore College in north-west London, with dormer windows and a blue station canopy",
+        caption: "Stanmore station, the Jubilee line stop near Stanmore College. Photo: TheFrog001, CC0, via Wikimedia Commons",
       },
       {
         type: "p",
@@ -97,6 +112,10 @@ const _my_journey_so_far: BlogPost = {
       {
         type: "p",
         text: "I graduated with D*DD: Distinction*, Distinction, Distinction in the Pearson BTEC Level 3 National Extended Diploma in Engineering. I was recognised as the Best and Most Hardworking Student at Stanmore College. Every day at that college I thought about my father and what he had built. He was my motivation.",
+      },
+      {
+        type: "p",
+        text: "I wrote more about what it is like to study engineering here after moving from abroad in [Navigating UK Engineering as an International Student](/blog/international-student-engineering-uk).",
       },
       {
         type: "h2",
@@ -108,11 +127,15 @@ const _my_journey_so_far: BlogPost = {
       },
       {
         type: "p",
-        text: "The project is called Zaccess. It takes photos of lecture slides or textbook pages, uses OCR to extract the text and converts it into high-contrast large-text notes with text-to-speech support. It was built to help me study more comfortably. But something more interesting happened: I shared it with another visually impaired student and he told me it saved him hours every week.",
+        text: "The first version was a demo I called Zaccess. It took photos of lecture slides or textbook pages, used OCR to extract the text and converted it into high-contrast large-text notes with text-to-speech support. It was built to help me study more comfortably. But something more interesting happened: I shared it with another visually impaired student and he told me it saved him hours every week.",
       },
       {
         type: "p",
         text: "That moment changed how I think about my condition. The limitations I have lived with are not separate from the engineer I am becoming. They are part of why I build the things I build. Sometimes your constraints become your direction.",
+      },
+      {
+        type: "p",
+        text: "That demo has since grown into Zacess, a proper product I am now building at [zacess.com](https://zacess.com). The aim is the same, only bigger: make every page accessible, turning slides, PDFs, handouts and web pages into high-contrast notes in your own reading profile, read aloud, on every device.",
       },
       {
         type: "h2",
@@ -127,12 +150,22 @@ const _my_journey_so_far: BlogPost = {
         text: "Aston University",
       },
       {
-        type: "p",
-        text: "I am now studying Electronic Engineering and Computer Science at Aston University, Birmingham, working towards a First Class degree. The programme covers embedded systems, digital electronics, software development, engineering mathematics and more. It is demanding and I am exactly where I want to be.",
+        type: "image",
+        src: "/images/projects/astoncv/campus-main.webp",
+        alt: "Aston University Main Building in Birmingham on a sunny autumn day, with trees in front",
+        caption: "Aston University, Birmingham. Photo: Christophe.Finot, CC BY-SA 3.0, via Wikimedia Commons",
       },
       {
         type: "p",
-        text: "I am a Student Representative at Aston Students Union, a Student Member of the [IET](https://www.theiet.org) and active in the Aston Ghana Society, Computing Society and Gaming Society. In 2026 I was named a Top 40 Finalist for the Black Heritage Undergraduate of the Year Award, run by TargetJobs and Sky. I completed the Cancer Research UK 10 Days of 5K Challenge, running more than 50 kilometres to raise funds for cancer research. I also completed a student judging role for the targetjobs National Graduate Recruitment Awards.",
+        text: "I am now studying Electronic Engineering and Computer Science at [Aston University](https://www.aston.ac.uk), Birmingham, working towards a First Class degree. The programme covers embedded systems, digital electronics, software development, engineering mathematics and more. It is demanding and I am exactly where I want to be.",
+      },
+      {
+        type: "p",
+        text: "I am a Student Representative for Electrical and Electronic Engineering and Electronic Engineering and Computer Science. I also lead [Peer Assisted Learning (PAL)](https://www.aston.ac.uk/library/learning-services/pal) sessions for first-year Python and Electronics. I am Treasurer of the [Computing and Electronics Society](https://www.astonsu.com/society/electronicssociety/), a Student Member of the [IET](https://www.theiet.org) and a member of the [Aston Ghana Society](https://www.astonsu.com/society/astonghanasoc/), [Computer Science Society](https://www.astonsu.com/society/computerscience/), [Gaming Society](https://www.astonsu.com/society/gamingsoc/) and [African-Caribbean Society](https://www.astonsu.com/society/afrocaribbean/). In 2026 I was named a Top 40 Finalist for the Black Heritage Undergraduate of the Year Award, run by TargetJobs and Sky. I completed the Cancer Research UK 10 Days of 5K Challenge, running more than 50 kilometres to raise funds for cancer research. I also completed a student judging role for the targetjobs National Graduate Recruitment Awards.",
+      },
+      {
+        type: "p",
+        text: "None of these roles were part of a plan. I have arrived late at almost every stage of my education, so I know what it is like to be catching up while everyone else seems ahead. Leading PAL sessions, speaking up for my course and looking after a society's money are my way of making that a little easier for someone else.",
       },
       {
         type: "h2",
@@ -140,11 +173,11 @@ const _my_journey_so_far: BlogPost = {
       },
       {
         type: "p",
-        text: "I have worked as a Consular Intern and Administrative and Estates Intern at the Ghana High Commission in London. I have completed virtual engineering programmes with British Airways, analysing A320 maintenance schedules and producing material forecast reports and with Yunex Traffic, exploring intelligent transport systems and air quality sensor networks. Between 2022 and 2025 I worked at Casa do Frango Piccadilly, developing communication and composure under pressure alongside my studies.",
+        text: "I have worked as a Consular Intern and Administrative and Estates Intern at the Ghana High Commission in London. I have completed virtual engineering programmes with [British Airways](/blog/british-airways-engineering-simulation), analysing A320 maintenance schedules and producing material forecast reports and with [Yunex Traffic](/blog/yunex-traffic-virtual-experience), exploring intelligent transport systems and air quality sensor networks. Between 2022 and 2025 I worked at Casa do Frango Piccadilly, developing communication and composure under pressure alongside my studies.",
       },
       {
         type: "p",
-        text: "On the technical side: I have designed and built a [two-stage audio amplifier](/blog/two-stage-audio-amplifier) as a PCB from scratch, a 4x4x4 [NeoPixel LED Cube](/projects/led-cube) with adaptive brightness, a full-stack predictive maintenance platform called [Phaemos](/projects/phaemos) (ongoing), an open-source Git course with over 200 files and Zaccess, an ongoing accessibility tool that uses OCR and text-to-speech to convert lecture slides into readable notes. I work across bare-metal C for microcontrollers, full-stack web with Next.js and Python-based machine learning.",
+        text: "On the technical side: I have designed and built a [two-stage audio amplifier](/blog/two-stage-audio-amplifier) as a PCB from scratch, a 4x4x4 [NeoPixel LED Cube](/projects/led-cube) with adaptive brightness and an open-source Git course, [git-unlocked](/projects/git-unlocked), with over 200 files. I now run two open-source organisations: [PHAEMOS](/projects/phaemos) builds a full-stack predictive maintenance platform and [MELOPHOS](/projects/melophos) builds a light-guided music practice system. [Vitafolio](/projects/vitafolio) went live in October 2026, [LidarSAT](/projects/lidarsat) is a drone navigation research project with a four-person team and Zacess is the accessibility product that grew out of my first demo. I work across bare-metal C for microcontrollers, full-stack web with Next.js and Python-based machine learning.",
       },
       {
         type: "p",

@@ -25,6 +25,25 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.80.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "A small fix behind the scenes",
+    ],
+  },
+  {
+    version: "v2.80.0",
+    date: "2026-10-13",
+    label: "Journey update",
+    changed: [
+      "My Journey So Far now covers my current roles at Aston and the projects I run today, including how my first accessibility demo grew into Zacess, with photos from Cape Coast to Aston",
+      "Blog covers that showed the wrong thing now match their posts. Every borrowed image credits its author, licence and source",
+      "The security policy offers GitHub's private vulnerability reporting. Notes and tips across the site share one clearer style",
+      "Tidier reminders behind the scenes, so important dates get a nudge before they arrive",
+    ],
+  },
+  {
     version: "v2.79.1",
     date: "2026-10-13",
     label: "Security update",

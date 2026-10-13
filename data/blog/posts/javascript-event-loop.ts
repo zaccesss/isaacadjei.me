@@ -6,6 +6,7 @@ const _javascript_event_loop: BlogPost = {
     date: "2026-06-22",
     type: "article",
     cover_image: "/images/blog/covers/javascript-event-loop.webp",
+    cover_credit: "Photo: Gabriel Heinzer, Unsplash Licence, via Unsplash",
     description:
       "Most explanations of the JavaScript event loop use hand-wavy analogies. This one explains the actual mechanism: the call stack, the task queue, the microtask queue and why the order matters for real code.",
     tags: ["JavaScript", "TypeScript", "Web", "Async", "Full-Stack"],
