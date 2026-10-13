@@ -100,6 +100,7 @@ import _61 from "./entries/wcag-aaa-contrast-7-to-1"
 import _62 from "./entries/git-colour-off-in-pipes"
 import _63 from "./entries/github-actions-timeout-minutes"
 import _64 from "./entries/postgres-now-transaction-time"
+import _65 from "./entries/isolation-forest-offset"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -166,4 +167,5 @@ export const tilEntries: TILEntry[] = [
   _62,
   _63,
   _64,
+  _65,
 ]
