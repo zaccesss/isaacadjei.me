@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.81.1] - 2026-10-13
+
+_Behind the scenes_
+
+### Changed
+
+- The coding stats keep updating after a change to how their data is read
+- Plain text files are labelled as plain text in the coding stats rather than as a language
+
 ## [2.81.0] - 2026-10-13
 
 _New writing_

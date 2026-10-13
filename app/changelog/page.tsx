@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.81.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "The coding stats keep updating after a change to how their data is read",
+      "Plain text files are labelled as plain text in the coding stats rather than as a language",
+    ],
+  },
+  {
     version: "v2.81.0",
     date: "2026-10-13",
     label: "New writing",
