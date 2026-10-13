@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useVisibleInterval } from "@/lib/use-visible-interval"
+import { useEffect, useRef, useState } from "react"
 import { Gamepad2 } from "lucide-react"
 
 type PS5Data = { online: boolean; lastSeen: string | null; game: string | null; gameImage: string | null; lastGame: string | null; lastGameImage: string | null }
@@ -18,6 +19,7 @@ function timeSince(ts: string | null) {
 export default function GamingPanel() {
   const [ps5, setPS5] = useState<PS5Data | null>(null)
   const [gpc, setGPC] = useState<GPCData | null>(null)
+  const loadRef = useRef<(() => Promise<void>) | null>(null)
 
   useEffect(() => {
     const load = async () => {
@@ -28,10 +30,10 @@ export default function GamingPanel() {
         setGPC(snapshot.gpc)
       }
     }
-    load()
-    const iv = setInterval(load, 45_000)
-    return () => clearInterval(iv)
+    loadRef.current = load
   }, [])
+
+  useVisibleInterval(() => void loadRef.current?.(), 45_000)
 
   const ps5Game = ps5?.game || ps5?.lastGame || null
   const ps5Art  = ps5?.game ? ps5.gameImage : ps5?.lastGameImage
