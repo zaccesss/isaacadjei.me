@@ -6,6 +6,7 @@ const _british_airways_engineering_simulation: BlogPost = {
     date: "2025-10-01",
     type: "journal",
     cover_image: "/images/blog/covers/british-airways-engineering-simulation.webp",
+    cover_credit: "Photo: Ross Parmly, Unsplash Licence, via Unsplash",
     description:
       "Reflections on the British Airways Engineering Virtual Experience on Forage, covering A320 maintenance planning, C-check operations and what aviation engineering looks like from the inside.",
     tags: ["British Airways", "Aviation", "Engineering", "Maintenance", "Career"],

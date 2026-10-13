@@ -23,8 +23,8 @@ const _astoncv_full_stack_cv_database: BlogPost = {
       {
         type: "image",
         src: "/images/projects/astoncv/main.webp",
-        alt: "AstonCV homepage showing the CV browse and search interface",
-        caption: "The AstonCV homepage - public CV browsing with search and filter, no account required",
+        alt: "The AstonCV homepage hero over a purple-tinted photo of the Aston campus, with Browse CVs and Add Your CV buttons and a count of CVs listed",
+        caption: "The AstonCV homepage hero. Browse CVs needs no account. Add Your CV lets you join",
       },
       {
         type: "h2",

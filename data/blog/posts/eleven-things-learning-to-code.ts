@@ -6,6 +6,7 @@ const _eleven_things_learning_to_code: BlogPost = {
     date: "2026-09-07",
     type: "article",
     cover_image: "/images/blog/covers/eleven-things-learning-to-code.webp",
+    cover_credit: "Photo: John, Unsplash Licence, via Unsplash",
     description:
       "Not 'learn Python first' or 'do LeetCode every day'. The things that actually made a difference when moving from knowing nothing to shipping things: how to read documentation, how to get unstuck, how to build the habit.",
     tags: ["Learning", "Career", "Programming", "Beginner", "Advice"],

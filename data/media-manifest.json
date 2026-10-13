@@ -38,7 +38,7 @@
   "ht": 649
  },
  "/images/blog/audio-amplifier/Figure11_PCB_Bottom.webp": {
-  "h": "d9ff85efb5",
+  "h": "5a990cde9d",
   "t": "img",
   "w": 948,
   "ht": 640
@@ -139,6 +139,12 @@
   "w": 1173,
   "ht": 586
  },
+ "/images/blog/audio-amplifier/hearing-range.webp": {
+  "h": "9face3fe09",
+  "t": "img",
+  "w": 1600,
+  "ht": 700
+ },
  "/images/blog/audio-amplifier/human_hearing_range.webp": {
   "h": "c7a828d62a",
   "t": "img",
@@ -163,6 +169,12 @@
   "w": 1110,
   "ht": 634
  },
+ "/images/blog/avr/atmega164p.webp": {
+  "h": "84b4efcaa3",
+  "t": "img",
+  "w": 1200,
+  "ht": 900
+ },
  "/images/blog/covers/accessibility-as-a-default-wcag-2-2-shot-dark.webp": {
   "h": "3e256c8660",
   "t": "img",
@@ -182,16 +194,16 @@
   "ht": 930
  },
  "/images/blog/covers/ariane-5-flight-501-overflow.webp": {
-  "h": "1c2f9769b9",
+  "h": "17392951dd",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/avr-bare-metal-atmega644p.webp": {
-  "h": "5bf14a10d8",
+  "h": "2d56e29817",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/bootstrap-any-machine-one-command.webp": {
   "h": "cbd7741225",
@@ -204,6 +216,18 @@
   "t": "img",
   "w": 1200,
   "ht": 797
+ },
+ "/images/blog/covers/building-my-portfolio-dark.webp": {
+  "h": "6c4694a4e5",
+  "t": "img",
+  "w": 1600,
+  "ht": 900
+ },
+ "/images/blog/covers/building-my-portfolio.webp": {
+  "h": "fe05d51894",
+  "t": "img",
+  "w": 1600,
+  "ht": 900
  },
  "/images/blog/covers/business-analytics-data-to-decisions.webp": {
   "h": "e350cae421",
@@ -230,10 +254,10 @@
   "ht": 900
  },
  "/images/blog/covers/dma-bare-metal.webp": {
-  "h": "87d056d6a4",
+  "h": "4bff3f5fbf",
   "t": "img",
-  "w": 1200,
-  "ht": 850
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/eleven-things-learning-to-code.webp": {
   "h": "158024288d",
@@ -242,10 +266,10 @@
   "ht": 800
  },
  "/images/blog/covers/fpga-vhdl-introduction.webp": {
-  "h": "cc66ac35e3",
+  "h": "a1ae140b5f",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/international-student-engineering-uk.webp": {
   "h": "1e8f31f8b8",
@@ -254,10 +278,10 @@
   "ht": 1800
  },
  "/images/blog/covers/interrupt-driven-embedded-design.webp": {
-  "h": "8fc540b40d",
+  "h": "f8b468e8ce",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/iot-security-gaps.webp": {
   "h": "23c5a29009",
@@ -284,16 +308,16 @@
   "ht": 800
  },
  "/images/blog/covers/my-development-setup-2026.webp": {
-  "h": "1372def49b",
+  "h": "6e01dc11e0",
   "t": "img",
-  "w": 1200,
-  "ht": 801
+  "w": 1600,
+  "ht": 1000
  },
  "/images/blog/covers/my-journey-so-far.webp": {
-  "h": "8595300e82",
+  "h": "46982cfb07",
   "t": "img",
-  "w": 1200,
-  "ht": 857
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/ocular-prosthetics-bionic-vision.webp": {
   "h": "f41935c983",
@@ -302,10 +326,10 @@
   "ht": 800
  },
  "/images/blog/covers/on-being-uncomfortable.webp": {
-  "h": "406fc2c253",
+  "h": "4e8f334e82",
   "t": "img",
-  "w": 1200,
-  "ht": 776
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/one-palette-eight-terminals.webp": {
   "h": "4b8cc42e02",
@@ -332,10 +356,10 @@
   "ht": 801
  },
  "/images/blog/covers/reading-datasheets.webp": {
-  "h": "27b8d5983d",
+  "h": "f7bced36f3",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/real-time-web-data.webp": {
   "h": "2f81a26573",
@@ -350,10 +374,10 @@
   "ht": 801
  },
  "/images/blog/covers/rtos-fundamentals.webp": {
-  "h": "e7939a5c1c",
+  "h": "cd57bba743",
   "t": "img",
-  "w": 1200,
-  "ht": 800
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/sky-animol-screening-invite.webp": {
   "h": "c09d567fad",
@@ -362,16 +386,16 @@
   "ht": 800
  },
  "/images/blog/covers/sky-black-heritage-celebration-day.webp": {
-  "h": "7572854127",
+  "h": "e383f4e56e",
   "t": "img",
-  "w": 1400,
-  "ht": 933
+  "w": 1600,
+  "ht": 1000
  },
  "/images/blog/covers/spi-vs-i2c.webp": {
-  "h": "853562ce1f",
+  "h": "c4745a5757",
   "t": "img",
-  "w": 1200,
-  "ht": 821
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/typescript-patterns-that-actually-matter.webp": {
   "h": "527b6f7af3",
@@ -380,10 +404,10 @@
   "ht": 675
  },
  "/images/blog/covers/uart-bare-metal.webp": {
-  "h": "6fb1d22b0f",
+  "h": "8237566ca9",
   "t": "img",
-  "w": 1200,
-  "ht": 675
+  "w": 1600,
+  "ht": 1067
  },
  "/images/blog/covers/why-software-engineers-should-understand-hardware.webp": {
   "h": "ca0cc3ed74",
@@ -398,10 +422,22 @@
   "ht": 901
  },
  "/images/blog/covers/yunex-traffic-virtual-experience.webp": {
-  "h": "9d95dc5978",
+  "h": "4c7f5c0c6d",
+  "t": "img",
+  "w": 1600,
+  "ht": 1000
+ },
+ "/images/blog/my-journey-so-far/adisadel.webp": {
+  "h": "7ebb0ff610",
+  "t": "img",
+  "w": 960,
+  "ht": 720
+ },
+ "/images/blog/my-journey-so-far/stanmore-station.webp": {
+  "h": "4ddff1d494",
   "t": "img",
   "w": 1200,
-  "ht": 800
+  "ht": 900
  },
  "/images/blog/sky-animol/animol-poster.webp": {
   "h": "48e57a0f0b",

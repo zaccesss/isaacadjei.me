@@ -6,7 +6,9 @@ const _phaemos_predictive_maintenance: BlogPost = {
     date: "2026-05-14",
     type: "blog",
     projectSlug: "phaemos",
-    cover_image: "/images/projects/phaemos/main.svg",
+    cover_image: "/images/projects/phaemos/cover-dashboard-light.webp",
+    cover_image_dark: "/images/projects/phaemos/cover-dashboard.webp",
+    cover_alt: "PHAEMOS dashboard overview in light mode: fleet health, four online machines, two critical anomaly alerts and a live anomaly score chart",
     description:
       "How I am building Phaemos - a full-stack predictive maintenance platform with four hardware nodes (ESP32, STM32 Black Pill, Arduino Nano, Raspberry Pi Pico 2W), 11 sensors, a FastAPI backend, Isolation Forest ML and a live Next.js dashboard.",
     tags: ["FastAPI", "Next.js", "ESP32", "STM32", "ML", "IoT", "Python", "MicroPython"],

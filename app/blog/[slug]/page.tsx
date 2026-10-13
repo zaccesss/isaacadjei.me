@@ -110,7 +110,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     author: {
       "@type": "Person",
       name: "Isaac Adjei",
@@ -166,6 +166,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <Calendar className="h-3 w-3" />
             {formatDate(post.date)}
           </span>
+          {post.updated && <span>Updated {formatDate(post.updated)}</span>}
           <span className="flex items-center gap-1.5">
             <Clock className="h-3 w-3" />
             {post.readingTime} min read
@@ -184,17 +185,22 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         )}
 
         {post.cover_image && (
-          <div className="relative w-full aspect-4/3 sm:aspect-video md:aspect-21/9 overflow-hidden rounded-xl mt-4">
-            <ThemedCover
-              src={post.cover_image}
-              darkSrc={post.cover_image_dark}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 800px"
-            />
-          </div>
+          <figure className="mt-4 space-y-2">
+            <div className="relative w-full aspect-4/3 sm:aspect-video md:aspect-21/9 overflow-hidden rounded-xl">
+              <ThemedCover
+                src={post.cover_image}
+                darkSrc={post.cover_image_dark}
+                alt={post.cover_alt ?? post.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
+            </div>
+            {post.cover_credit && (
+              <figcaption className="text-xs text-center text-muted-foreground italic">{post.cover_credit}</figcaption>
+            )}
+          </figure>
         )}
 
         {post.headerLinks && post.headerLinks.length > 0 && (

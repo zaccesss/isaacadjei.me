@@ -6,6 +6,7 @@ const _another_year_another_lesson: BlogPost = {
     date: "2026-06-25",
     type: "journal",
     cover_image: "/images/blog/covers/another-year-another-lesson.webp",
+    cover_credit: "Photo: davide ragusa, Unsplash Licence, via Unsplash",
     description:
       "Another year older. Reflections on what this year has shown me: the projects built, the research published, the doors opened, what my father taught me and what I am still learning about who I am becoming.",
     tags: ["Personal", "Reflection", "Faith", "Growth", "Journal", "Ghana"],

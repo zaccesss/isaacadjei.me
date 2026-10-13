@@ -6,6 +6,7 @@ const _resources_engineering_and_technology: BlogPost = {
     date: "2026-02-20",
     type: "resources",
     cover_image: "/images/blog/covers/resources-engineering-and-technology.webp",
+    cover_credit: "Photo: Susan Q Yin, Unsplash Licence, via Unsplash",
     description:
       "A curated list of books, courses, documentation, tools and videos I have found genuinely useful for learning embedded systems, software engineering, computer science and the craft of building things. Updated as I find new things worth recommending.",
     tags: ["Resources", "Embedded", "Software Engineering", "Learning", "Tools"],

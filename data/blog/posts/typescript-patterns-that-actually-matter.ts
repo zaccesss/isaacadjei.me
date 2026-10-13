@@ -6,6 +6,7 @@ const _typescript_patterns_that_actually_matter: BlogPost = {
     date: "2026-04-15",
     type: "blog",
     cover_image: "/images/blog/covers/typescript-patterns-that-actually-matter.webp",
+    cover_credit: "Photo: James Harrison, Unsplash Licence, via Unsplash",
     description:
       "The TypeScript features and patterns that have made the biggest practical difference in real codebases: discriminated unions, the satisfies operator, branded types, const assertions and when strict mode actually catches bugs.",
     tags: ["TypeScript", "Software Engineering", "Web", "Best Practices"],

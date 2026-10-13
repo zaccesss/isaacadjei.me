@@ -6,6 +6,8 @@ const _yunex_traffic_virtual_experience: BlogPost = {
     date: "2025-08-20",
     type: "journal",
     cover_image: "/images/blog/covers/yunex-traffic-virtual-experience.webp",
+    cover_credit: "Photo: M J Roscoe, CC BY-SA 2.0, cropped, via Wikimedia Commons",
+    cover_alt: "Traffic signals showing red at a junction on the A477 London Road in Wales, with vans and cars on the road",
     description:
       "Reflections on the Yunex Traffic Smart Mobility and Environmental Sustainability virtual work experience, covering intelligent transport systems, Zephyr air quality sensors and what the engineers behind smart cities actually do.",
     tags: ["Yunex", "IoT", "Transport", "Smart Cities", "Virtual"],

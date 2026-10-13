@@ -61,7 +61,8 @@ export default function SecurityPolicyPage() {
         </div>
         <p className="text-muted-foreground leading-relaxed">
           This policy covers <span className="font-medium text-foreground">isaacadjei.me</span> and
-          all its subdomains. Examples of issues that are in scope:
+          all its subdomains, along with <span className="font-medium text-foreground">zacess.com</span>.
+          Examples of issues that are in scope:
         </p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
           <li>Cross-site scripting (XSS)</li>
@@ -70,6 +71,21 @@ export default function SecurityPolicyPage() {
           <li>Sensitive data exposure</li>
           <li>Server-side injection vulnerabilities</li>
         </ul>
+        <p className="text-muted-foreground leading-relaxed">
+          Vitafolio, PHAEMOS and MELOPHOS each have their own policy: 
+          <a href="https://github.com/zaccesss/vitafolio/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+            Vitafolio
+          </a>
+          , 
+          <a href="https://github.com/phaemos/.github/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+            PHAEMOS
+          </a> 
+          and 
+          <a href="https://github.com/melophos/.github/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+            MELOPHOS
+          </a>
+          . Report issues in those projects there.
+        </p>
       </section>
 
       <Separator />
@@ -83,7 +99,7 @@ export default function SecurityPolicyPage() {
           The following are explicitly out of scope and should not be reported:
         </p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-          <li>Vulnerabilities in third-party services I do not control (Vercel, Cloudflare, GitHub, Resend, Upstash, Supabase, Sentry, Google and the map tile providers)</li>
+          <li>Vulnerabilities in third-party services I do not control (Vercel, Cloudflare, GitHub, Resend, Upstash, Supabase, Sentry, Google, Cal.com and the map tile providers)</li>
           <li>Denial of service attacks or volumetric testing of any kind</li>
           <li>Social engineering or phishing attempts targeting me or visitors</li>
           <li>Issues that require physical access to my devices</li>
@@ -100,17 +116,28 @@ export default function SecurityPolicyPage() {
           <h2 className="text-2xl font-bold">How to report</h2>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          The preferred route is a{" "}
+          The preferred route is GitHub&apos;s private vulnerability reporting. On the site&apos;s
+          public repository, open the Security tab and choose Report a vulnerability. You can also go
+          straight to the{" "}
           <a
             href="https://github.com/zaccesss/isaacadjei.me/security/advisories/new"
             target="_blank"
             rel="noreferrer"
             className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
           >
-            private security advisory
-          </a>{" "}
-          on the site&apos;s public repository. Only you and I can see it, it supports attachments and
-          the fix can be tracked against the report.
+            private report form for isaacadjei.me
+          </a>
+          . Only you and I can see the report, it supports attachments and the fix can be tracked
+          against it.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          My other public repositories take private reports the same way, through their own Security
+          tab or at{" "}
+          <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded break-all">
+            https://github.com/zaccesss/&lt;repo&gt;/security/advisories/new
+          </span>{" "}
+          with the repository&apos;s name in place of{" "}
+          <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">&lt;repo&gt;</span>.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           You can also send vulnerability reports by email to{" "}

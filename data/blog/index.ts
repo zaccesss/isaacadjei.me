@@ -28,6 +28,7 @@ export interface BlogPost {
   slug: string
   title: string
   date: string
+  updated?: string
   type: PostType
   description: string
   tags: string[]
@@ -38,6 +39,8 @@ export interface BlogPost {
   headerLinks?: { label: string; url: string }[]
   cover_image?: string
   cover_image_dark?: string
+  cover_alt?: string
+  cover_credit?: string
   series?: string
   seriesPart?: number
   featured?: boolean

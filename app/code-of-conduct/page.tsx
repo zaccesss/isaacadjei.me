@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import Callout from "@/components/shared/Callout"
 import {
   Users,
-  Info,
   Heart,
   ScrollText,
   Gavel,
@@ -46,26 +45,23 @@ export default function CodeOfConductPage() {
           belittled, whether they are opening an issue, leaving a comment, sending a change or helping
           with a hardware build.
         </p>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <Info className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            To report a concern, reach me privately at{" "}
-            <a
-              href="mailto:contact@isaacadjei.me"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
-            >
-              contact@isaacadjei.me
-            </a>{" "}
-            or through my{" "}
-            <Link
-              href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
-            >
-              contact page
-            </Link>
-            . I will handle it discreetly.
-          </AlertDescription>
-        </Alert>
+        <Callout kind="note" className="my-0">
+          To report a concern, reach me privately at{" "}
+          <a
+            href="mailto:contact@isaacadjei.me"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            contact@isaacadjei.me
+          </a>{" "}
+          or through my{" "}
+          <Link
+            href="/contact"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            contact page
+          </Link>
+          . I will handle it discreetly.
+        </Callout>
         <p className="text-muted-foreground leading-relaxed">
           The rest is the Contributor Covenant, the widely used community standard, which I adopt in
           full.

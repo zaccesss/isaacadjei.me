@@ -6,6 +6,7 @@ const _business_analytics_data_to_decisions: BlogPost = {
     date: "2026-05-01",
     type: "notes",
     cover_image: "/images/blog/covers/business-analytics-data-to-decisions.webp",
+    cover_credit: "Photo: Luke Chesser, Unsplash Licence, via Unsplash",
     description:
       "Notes from working through a structured executive education business analytics course, covering probability, statistics, Python, descriptive analytics, predictive ML and prescriptive optimisation.",
     tags: ["Data Science", "Python", "ML", "Analytics", "Learning"],

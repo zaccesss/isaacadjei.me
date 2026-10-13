@@ -1,13 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import Callout from "@/components/shared/Callout"
 import {
   LifeBuoy,
   MessagesSquare,
   Bug,
   Mail,
-  Info,
   ShieldAlert,
   BookOpen,
 } from "lucide-react"
@@ -108,21 +107,15 @@ export default function SupportPage() {
           <Mail className="h-6 w-6 text-primary" />
           <h2 className="text-2xl font-bold">Reach me directly</h2>
         </div>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <Info className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            For help, email me at{" "}
-            <a
-              href="mailto:support@isaacadjei.me"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
-            >
-              support@isaacadjei.me
-            </a>
-            .
-          </AlertDescription>
-        </Alert>
-        <p className="text-muted-foreground leading-relaxed">
-          For anything else, use{" "}
+        <Callout kind="tip" className="my-0">
+          For help, email me at{" "}
+          <a
+            href="mailto:support@isaacadjei.me"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            support@isaacadjei.me
+          </a>
+          . For anything else, use{" "}
           <a
             href="mailto:contact@isaacadjei.me"
             className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -137,7 +130,7 @@ export default function SupportPage() {
             contact page
           </Link>
           .
-        </p>
+        </Callout>
       </section>
 
       <Separator />

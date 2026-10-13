@@ -6,6 +6,7 @@ const _python_type_annotations: BlogPost = {
     date: "2026-09-01",
     type: "notes",
     cover_image: "/images/blog/covers/python-type-annotations.webp",
+    cover_credit: "Photo: Chris Ried, Unsplash Licence, via Unsplash",
     description:
       "A practical guide to Python type hints: where they help, where they get in the way and the specific patterns I reach for when annotating FastAPI handlers, dataclasses and utility functions.",
     tags: ["Python", "Types", "Backend", "FastAPI", "Notes"],

@@ -6,6 +6,8 @@ const _fpga_vhdl_introduction: BlogPost = {
     date: "2026-05-29",
     type: "blog",
     cover_image: "/images/blog/covers/fpga-vhdl-introduction.webp",
+    cover_credit: "Photo: Ordercrazy, CC0, via Wikimedia Commons",
+    cover_alt: "A ZedBoard FPGA development board with a Xilinx Zynq chip at its centre, surrounded by memory, connectors, switches and push buttons",
     description:
       "A beginner-friendly introduction to FPGAs and VHDL: what an FPGA actually is, how it differs from a microcontroller, why hardware description languages feel so different from programming and the mental model shift you need to make sense of it all.",
     tags: ["FPGA", "VHDL", "Embedded", "Hardware", "Digital Logic", "Beginners"],

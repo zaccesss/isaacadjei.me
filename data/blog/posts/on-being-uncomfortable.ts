@@ -6,6 +6,8 @@ const _on_being_uncomfortable: BlogPost = {
     date: "2026-09-19",
     type: "journal",
     cover_image: "/images/blog/covers/on-being-uncomfortable.webp",
+    cover_credit: "Photo: VaughnSaball, CC BY-SA 3.0, cropped, via Wikimedia Commons",
+    cover_alt: "A single red tulip standing out in a dense bed of white tulips",
     description:
       "A personal essay on discomfort, choosing difficult paths and what I have learned from consistently putting myself in situations where I do not know what I am doing yet.",
     tags: ["Personal", "Career", "Learning", "Mindset"],

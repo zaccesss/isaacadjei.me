@@ -103,7 +103,11 @@ export default function AboutPage() {
             I approached the college, sat the necessary entry exams and transferred onto the
             engineering programme, graduating with D*DD in the Pearson BTEC Level 3 National
             Extended Diploma in Engineering and being recognised as Best and Most Hardworking
-            Student in my cohort.
+            Student in my cohort. I tell the whole story in{" "}
+            <Link href="/blog/my-journey-so-far" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              My Journey So Far
+            </Link>
+            .
           </p>
           <p>
             At Aston I lead weekly Peer Assisted Learning sessions in Python and electronics, serve

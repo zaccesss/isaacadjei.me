@@ -6,6 +6,8 @@ const _sky_black_heritage_celebration_day: BlogPost = {
     date: "2026-06-24",
     type: "journal",
     cover_image: "/images/blog/covers/sky-black-heritage-celebration-day.webp",
+    cover_credit: "Photo: FSI USI MM, CC BY 4.0, via Wikimedia Commons",
+    cover_alt: "Two blue and silver star-shaped award trophies on plain plinths against a dark background",
     description:
       "Reflections on being invited to Sky Campus, Osterley, as a finalist for the Black Heritage Undergraduate of the Year award. What the day taught me about Sky, about career and about the importance of representation.",
     tags: ["Sky", "Career", "Award", "Black Heritage", "Networking", "Personal"],

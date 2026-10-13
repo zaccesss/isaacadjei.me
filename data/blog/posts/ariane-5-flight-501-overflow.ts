@@ -6,6 +6,8 @@ const _ariane_5_flight_501_overflow: BlogPost = {
   date: "2026-10-11",
   type: "article",
   cover_image: "/images/blog/covers/ariane-5-flight-501-overflow.webp",
+  cover_credit: "Photo: NASA/Bill Ingalls, public domain, via Wikimedia Commons",
+  cover_alt: "An Ariane 5 rocket standing on its launch pad at night in Kourou, French Guiana, lit from below between the lightning towers",
   description:
     "In 1996 the first Ariane 5 broke up about 40 seconds after launch because reused software converted a 64-bit value into a 16-bit integer. A walk through the inquiry report and the lessons I take from it as a student who writes embedded code.",
   tags: ["SoftwareEngineering", "Engineering", "Embedded", "Learning"],

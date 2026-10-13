@@ -6,6 +6,8 @@ const _dma_bare_metal: BlogPost = {
     date: "2026-07-01",
     type: "research",
     cover_image: "/images/blog/covers/dma-bare-metal.webp",
+    cover_credit: "Photo: Raimond Spekking, CC BY-SA 4.0, cropped, via Wikimedia Commons",
+    cover_alt: "Close-up of an STM32F107 ARM Cortex-M3 microcontroller on a circuit board, with the copper traces running to its pins",
     description:
       "How Direct Memory Access works on microcontrollers, why it matters for high-throughput embedded systems and how to configure a DMA transfer on an STM32 without relying on HAL.",
     tags: ["DMA", "STM32", "Embedded", "C", "Performance"],

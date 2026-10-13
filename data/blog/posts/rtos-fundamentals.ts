@@ -6,6 +6,8 @@ const _rtos_fundamentals: BlogPost = {
     date: "2026-06-15",
     type: "research",
     cover_image: "/images/blog/covers/rtos-fundamentals.webp",
+    cover_credit: "Photo: Ordercrazy, CC0, via Wikimedia Commons",
+    cover_alt: "An STM32 Nucleo-F401RE development board showing the microcontroller, user and reset buttons and labelled header pins",
     description:
       "A practical introduction to real-time operating systems: what a task scheduler does, why timing guarantees matter in embedded systems and how FreeRTOS implements preemptive multitasking on a microcontroller.",
     tags: ["RTOS", "FreeRTOS", "Embedded", "C", "Scheduling"],

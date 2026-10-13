@@ -6,6 +6,8 @@ const _interrupt_driven_embedded_design: BlogPost = {
     date: "2026-07-15",
     type: "blog",
     cover_image: "/images/blog/covers/interrupt-driven-embedded-design.webp",
+    cover_credit: "Photo: Popolon, CC BY-SA 4.0, cropped, via Wikimedia Commons",
+    cover_alt: "An STM32F103 Blue Pill microcontroller board with labelled pin headers, a reset button and a USB connector",
     description:
       "Why polling loops kill embedded systems and how to replace them with interrupt service routines. Covers ISR setup, volatile variables, debounce, critical sections and the rules that separate good embedded firmware from bad.",
     tags: ["Embedded", "C", "Microcontroller", "Hardware", "Firmware"],

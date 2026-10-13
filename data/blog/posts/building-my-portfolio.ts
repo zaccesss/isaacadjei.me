@@ -4,8 +4,11 @@ const _building_my_portfolio: BlogPost = {
     slug: "building-my-portfolio",
     title: "Building My Portfolio: Decisions, Stack and What I Learned",
     date: "2025-09-01",
+    updated: "2026-10-13",
     type: "blog",
-    cover_image: "/images/projects/zacess-pages/main.webp",
+    cover_image: "/images/blog/covers/building-my-portfolio.webp",
+    cover_image_dark: "/images/blog/covers/building-my-portfolio-dark.webp",
+    cover_alt: "The isaacadjei.me homepage in light mode: navigation bar, profile photo, the name Isaac Adjei and a short introduction",
     description:
       "How I rebuilt my portfolio from scratch and kept building it: Next.js App Router, TypeScript, Tailwind CSS, Upstash Redis, Vercel, Python daemons for live device status, a custom PS5 OAuth v2 Cloudflare Worker, 5-tier GPC game detection with IGDB cover art, Discord presence via Lanyard and Spotify now-playing - and what shipping something personal actually teaches you.",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Redis", "Vercel", "Python"],
@@ -36,7 +39,7 @@ const _building_my_portfolio: BlogPost = {
       {
         type: "ul",
         items: [
-          "Next.js 15 (App Router): the framework. Server components, file-based routing, layout nesting and built-in image optimisation",
+          "Next.js 16 (App Router): the framework. Server components, file-based routing, layout nesting and built-in image optimisation",
           "React 19: UI component library underpinning everything Next.js renders",
           "TypeScript: typed throughout. Every component, data file and API route is fully typed",
           "Tailwind CSS v4: utility-first CSS framework. Every style is a class, nothing is global except the base reset",
@@ -103,7 +106,7 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "p",
-        text: "The blog is built without a CMS or database. All posts live in data/blog.ts as TypeScript objects with a typed content array. Each content block has a type field (p, h2, h3, ul, ol, code, quote, image, divider) that the renderer uses to produce the right HTML. Adding a post is just adding an object to the array.",
+        text: "The blog is built without a CMS or database. Each post is its own TypeScript file under data/blog/posts, indexed by data/blog/index.ts, with a typed content array. Each content block has a type field (p, h2, h3, ul, ol, code, quote, image, divider) that the renderer uses to produce the right HTML. Adding a post is just adding one file.",
       },
       {
         type: "p",
@@ -175,11 +178,11 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "h2",
-        text: "This post was written in October 2025. The site has grown considerably since then.",
+        text: "The site has grown considerably since this post was first written",
       },
       {
         type: "p",
-        text: "The original post covered the base stack: Next.js, TypeScript, Tailwind CSS, Vercel, a contact form and a blog. Since then I have built a live device status system, a full private dashboard with authentication, a job scraper that runs automatically every morning and a set of Python daemons that push real-time data from my devices. What follows covers those additions.",
+        text: "The original post covered the base stack: Next.js, TypeScript, Tailwind CSS, Vercel, a contact form and a blog. Since then I have built a live device status system, a set of Python daemons that push real-time data from my devices and some private tools I use day to day. What follows covers those additions.",
       },
       {
         type: "h2",
@@ -191,7 +194,7 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "p",
-        text: "The system works through a set of Python daemons. The MacBook daemon runs via launchd on macOS and writes battery percentage, charging state, timezone and weather data to an [Upstash](https://upstash.com) Redis key every 30 seconds with a 600-second TTL. If the daemon stops running the key expires and the card shows the last-known state. The Lenovo and Gaming PC daemons run as Windows services via NSSM and report battery, CPU and GPU usage. The Gaming PC daemon uses pynvml to read NVIDIA GPU utilisation directly.",
+        text: "The system works through a set of Python daemons. The MacBook daemon runs via launchd on macOS and writes battery percentage, charging state, timezone and weather data to an [Upstash](https://upstash.com) Redis key every 120 seconds with a 600-second TTL. If the daemon stops running the key expires and the card shows the last-known state. The Lenovo and Gaming PC daemons run as Windows services via NSSM and report battery, CPU and GPU usage. The Gaming PC daemon uses pynvml to read NVIDIA GPU utilisation directly.",
       },
       {
         type: "p",
@@ -203,23 +206,15 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "h2",
-        text: "The Private Dashboard",
-      },
-      {
-        type: "p",
-        text: "Behind authentication there is a set of private tools I actually use day-to-day. The authentication layer uses bcrypt hashing with a Redis-backed rate limiter. Building the private side of the site turned out to teach me as much as the public side - the constraints are different when the user is you and the data is real. I will not detail the specifics here since it is private by design, but the technical patterns (authenticated layouts, server actions, Supabase as the data layer) are the same ones that show up in any production application.",
-      },
-      {
-        type: "h2",
         text: "Supabase as the Data Layer",
       },
       {
         type: "p",
-        text: "I chose [Supabase](https://supabase.com) (hosted PostgreSQL) for the dashboard data layer. The alternative was a flat file store, which would have been simpler but would not support the query patterns I needed: filtering applications by status, sorting by date, searching across all inventory items. PostgreSQL gives me a proper relational model with indexes where they matter.",
+        text: "I chose [Supabase](https://supabase.com) (hosted PostgreSQL) for the site's data: the guestbook, reading statistics and the coding and GitHub history behind the stats pages. The alternative was a flat file store, which would have been simpler but would not support the query patterns I needed: filtering, sorting by date and aggregating over time. PostgreSQL gives me a proper relational model with indexes where they matter.",
       },
       {
         type: "p",
-        text: "Supabase's auto-generated REST API means I can call supabase.from('applications').select() from a server action and get a typed result without writing any SQL for the common cases. For more complex queries like the weekly digest aggregation I drop into raw SQL. The free tier is generous enough for personal use and the connection pooling handles the serverless Next.js deployment well.",
+        text: "Supabase's auto-generated REST API means I can call supabase.from('guestbook_entries').select() from a server component and get a typed result without writing any SQL for the common cases. For more complex queries like the reading funnel I drop into raw SQL. The free tier is generous enough for personal use and the connection pooling handles the serverless Next.js deployment well.",
       },
       {
         type: "h2",
@@ -247,11 +242,27 @@ const _building_my_portfolio: BlogPost = {
       },
       {
         type: "h2",
+        text: "Since then: 2026",
+      },
+      {
+        type: "ul",
+        items: [
+          "The newsletter is sent by email through Resend broadcasts, as well as living on the site",
+          "Images and videos are served from Cloudflare R2 at media.isaacadjei.me, resized ahead of time so no image can fail at a monthly limit",
+          "Errors in the browser and on the server are tracked with Sentry, with source maps uploaded on every release",
+          "A public copy of the code is published after every production deploy, with its own changelog and releases",
+          "Accessibility is a default rather than an extra: high contrast, labelled callouts and motion that respects reduced-motion settings. I wrote about it in [Accessibility as a Default, Not a Feature](/blog/accessibility-as-a-default-wcag-2-2)",
+          "Every borrowed image now credits its author, licence and source",
+          "The security policy accepts private vulnerability reports through GitHub",
+        ],
+      },
+      {
+        type: "h2",
         text: "What the Site Is Now",
       },
       {
         type: "p",
-        text: "The site started as a portfolio. It is now a personal operating system. The public pages show work, writing and presence. The private dashboard manages applications, credentials, inventory and notes. The live widget shows what I am doing right now across six devices. The job scraper runs every morning without me touching it. The expiry alerts tell me when something needs attention.",
+        text: "The site started as a portfolio. It is now a personal operating system. The public pages show work, writing and presence. The live widget shows what I am doing right now across six devices. Scheduled jobs keep the data fresh without me touching them.",
       },
       {
         type: "p",

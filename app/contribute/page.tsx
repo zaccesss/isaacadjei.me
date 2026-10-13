@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import Callout from "@/components/shared/Callout"
 import {
   HeartHandshake,
   Bug,
@@ -218,13 +218,10 @@ export default function ContributePage() {
           <GitPullRequest className="h-6 w-6 text-primary" />
           <h2 className="text-2xl font-bold">Pull requests</h2>
         </div>
-        <Alert className="border-primary/30 [&>svg]:text-primary">
-          <Lightbulb className="h-4 w-4" />
-          <AlertDescription className="text-muted-foreground">
-            For anything beyond a quick fix, open an issue first. On a personal project I may simply
-            prefer to keep it as it is; I would rather save you the wasted effort.
-          </AlertDescription>
-        </Alert>
+        <Callout kind="tip" className="my-0">
+          For anything beyond a quick fix, open an issue first. On a personal project I may simply
+          prefer to keep it as it is; I would rather save you the wasted effort.
+        </Callout>
         <p className="text-muted-foreground leading-relaxed">Once we agree a change is worth doing:</p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
           <li>One change is one branch is one pull request. I keep unrelated work apart.</li>

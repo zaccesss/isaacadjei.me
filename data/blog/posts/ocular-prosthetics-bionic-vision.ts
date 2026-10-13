@@ -6,6 +6,7 @@ const _ocular_prosthetics_bionic_vision: BlogPost = {
     date: "2026-05-20",
     type: "research",
     cover_image: "/images/blog/covers/ocular-prosthetics-bionic-vision.webp",
+    cover_credit: "Photo: Ion Fet, Unsplash Licence, via Unsplash",
     description:
       "A technical survey of retinoblastoma, ocular prosthetics and bionic vision systems: what prosthetic eyes can and cannot do, how retinal implants work and where the engineering challenges in restoring functional vision lie.",
     tags: ["Health Tech", "Prosthetics", "Research", "Bioelectronics", "Vision"],

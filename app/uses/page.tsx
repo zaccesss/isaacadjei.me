@@ -45,7 +45,7 @@ const sections: Array<{
         name: "MacBook Air M5 (ZACCESS-MBK)",
         icon: `${DEV}/apple/apple-original.svg`,
         href: "https://www.apple.com/uk/macbook-air/",
-        detail: "My portable development machine: Apple M5, 24 GB of memory and 512 GB of storage. OrbStack runs Docker and a lightweight Ubuntu machine for anything Linux-only. I stop it when I am done so it never sits on memory or disk. Runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every 30 seconds, powering the live status widget on the now page.",
+        detail: "My portable development machine: Apple M5, 24 GB of memory and 512 GB of storage. OrbStack runs Docker and a lightweight Ubuntu machine for anything Linux-only. I stop it when I am done so it never sits on memory or disk. Runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every 120 seconds, powering the live status widget on the now page.",
       },
       {
         name: "Lenovo ThinkPad P14s Gen 5 AMD (ZACCESS-LNV)",
@@ -128,7 +128,7 @@ const sections: Array<{
         name: "Tailwind CSS with shadcn/ui",
         icon: `${SKI}=tailwind`,
         href: "https://tailwindcss.com",
-        detail: "Utility-first CSS combined with unstyled, accessible shadcn components. The design system for this site is built entirely on these two. I rarely write custom CSS. When I do it is usually for animations like the theme crossfade or skill grid layout.",
+        detail: "Utility-first CSS combined with unstyled, accessible shadcn components. The design system for this site is built entirely on these two. I rarely write custom CSS. When I do it is usually for animations like the circular theme switch or the skill grid layout.",
       },
       {
         name: "Python",
@@ -259,7 +259,7 @@ const sections: Array<{
         name: "Cloudinary",
         icon: `${SI}/cloudinary`,
         href: "https://cloudinary.com",
-        detail: "Private file storage for uploaded CVs and support screenshots.",
+        detail: "Private file storage for Vitafolio: uploaded CVs and support screenshots.",
       },
       {
         name: "Vercel",

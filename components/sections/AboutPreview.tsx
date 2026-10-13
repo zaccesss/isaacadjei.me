@@ -38,12 +38,20 @@ export default function AboutPreview() {
               and systems that serve real users, the kind of engineering that matters beyond the
               screen.
             </p>
-            <Button asChild variant="ghost" className="pl-0">
-              <Link href="/about">
-                Read more
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-wrap gap-x-6">
+              <Button asChild variant="ghost" className="pl-0">
+                <Link href="/about">
+                  Read more
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="ghost" className="pl-0">
+                <Link href="/blog/my-journey-so-far">
+                  Read my full story
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
       </div>

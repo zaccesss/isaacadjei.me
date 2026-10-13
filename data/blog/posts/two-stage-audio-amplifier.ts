@@ -46,9 +46,9 @@ const _two_stage_audio_amplifier: BlogPost = {
       },
       {
         type: "image",
-        src: "/images/blog/audio-amplifier/human_hearing_range.webp",
-        alt: "Human hearing range showing the audible frequency spectrum from 20 Hz to 20 kHz",
-        caption: "Human hearing range showing the audible frequency spectrum from 20 Hz to 20 kHz",
+        src: "/images/blog/audio-amplifier/hearing-range.webp",
+        alt: "Diagram of the range of human hearing on a logarithmic frequency axis from 20 Hz to 20 kHz, split into three labelled bands: bass from 20 Hz to 300 Hz, mid-range from 300 Hz to 4 kHz and treble from 4 kHz to 20 kHz",
+        caption: "The range of human hearing, split into bass, mid-range and treble",
       },
       {
         type: "p",
@@ -65,8 +65,8 @@ const _two_stage_audio_amplifier: BlogPost = {
       {
         type: "image",
         src: "/images/blog/audio-amplifier/Figure1_BPF.webp",
-        alt: "Frequency response of an ideal band-pass filter",
-        caption: "Figure 1: Frequency response of an ideal band-pass filter",
+        alt: "Frequency response of a typical band-pass filter, showing the passband between the lower and upper -3 dB cut-off frequencies fL and fH, the bandwidth and the stop bands either side",
+        caption: "Figure 1: Frequency response of a typical band-pass filter",
       },
       {
         type: "p",
@@ -96,7 +96,7 @@ const _two_stage_audio_amplifier: BlogPost = {
         type: "image",
         src: "/images/blog/audio-amplifier/TL071_pinout_diagram.webp",
         alt: "Pin configuration of the TL071 operational amplifier",
-        caption: "Figure 4: Pin configuration of the TL071 operational amplifier",
+        caption: "Figure 4: Pin configuration of the TL071 operational amplifier. Diagram: Texas Instruments, via the TL071 datasheet",
       },
       {
         type: "h3",
@@ -118,7 +118,7 @@ const _two_stage_audio_amplifier: BlogPost = {
         type: "image",
         src: "/images/blog/audio-amplifier/OPA551_pinout_diagram.webp",
         alt: "Pin configuration of the OPA551 operational amplifier",
-        caption: "Figure 5: Pin configuration of the OPA551 operational amplifier",
+        caption: "Figure 5: Pin configuration of the OPA551 operational amplifier. Diagram: Texas Instruments, via the OPA551 datasheet",
       },
       {
         type: "h3",
@@ -289,8 +289,8 @@ const _two_stage_audio_amplifier: BlogPost = {
       {
         type: "image",
         src: "/images/blog/audio-amplifier/Figure17c_PCB_Angled.webp",
-        alt: "Angled view with LED D1 illuminated",
-        caption: "Figure 17(c): Angled view with LED D1 illuminated",
+        alt: "Angled view of the assembled purple PCB mounted on its acrylic base, with the power leads connected",
+        caption: "Figure 17(c): Angled view of the assembled PCB on its acrylic base",
       },
       {
         type: "image",

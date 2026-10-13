@@ -6,6 +6,8 @@ const _reading_datasheets: BlogPost = {
     date: "2026-08-10",
     type: "notes",
     cover_image: "/images/blog/covers/reading-datasheets.webp",
+    cover_credit: "Image: Western Digital Corporation, public domain, via Wikimedia Commons",
+    cover_alt: "The first page of a 1979 floppy disk controller datasheet, showing the chip's pin connections and a system block diagram",
     description:
       "Datasheets are dense, inconsistently structured and written for engineers who already know the terminology. Here is how to navigate them, find what you actually need and use them to debug hardware problems.",
     tags: ["Embedded", "Hardware", "Microcontroller", "Learning", "Electronics"],

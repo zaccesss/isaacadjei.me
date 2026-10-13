@@ -52,7 +52,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Framer Motion",
-        detail: <><A href="https://motion.dev">Framer Motion</A> is used sparingly for the entrance animations on the homepage hero section. The staggered fade-in as the page loads is handled here. I deliberately keep motion minimal on the rest of the site - animation should enhance content, not compete with it.</>,
+        detail: <><A href="https://motion.dev">Framer Motion</A> is used sparingly for the entrance animations on the homepage: the hero and each section fade up once as they first come into view. I deliberately keep motion minimal on the rest of the site - animation should enhance content, not compete with it.</>,
       },
       {
         name: "Lucide React and React Icons",
@@ -71,8 +71,8 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: "Every colour on the site is a CSS custom property: background, foreground, card, muted, border, the blue primary and the focus ring. The light set lives on :root and the dark set on a .dark class that next-themes adds to the page, so a component never hard-codes a colour and switching theme is just a different set of values. Both themes keep body text at high contrast against its background and the muted grey is chosen so secondary text still reads comfortably.",
       },
       {
-        name: "Recharts and react-three-fiber",
-        detail: <>The charts on /lab and the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The 3D board on /lab uses <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
+        name: "Recharts, Apache ECharts and react-three-fiber",
+        detail: <>Most charts on /lab and the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The heatmaps, the radial listening clock and the map charts use <A href="https://echarts.apache.org">Apache ECharts</A>. The 3D board on /lab uses <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
       },
       {
         name: "Giscus",
@@ -164,7 +164,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Responsive but desktop-first content",
-        detail: "The site is fully responsive and works on any screen size, but the richer content - live status cards, the lab terminal, project galleries - is designed with a larger screen in mind. A slim dismissible banner appears on narrow screens to set that expectation. The banner text is foreground-coloured (not grey) so it is actually readable.",
+        detail: "The site is fully responsive and works on any screen size, but the richer content - live status cards, the lab terminal, project galleries - is designed with a larger screen in mind.",
       },
       {
         name: "Google Analytics (GA4)",
@@ -182,7 +182,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Callouts",
-        detail: "Posts, write-ups and TIL entries can carry five kinds of labelled callout: Note, Tip, Important, Warning and Caution. Each pairs an icon with its label word and a coloured edge on a soft tint, so the meaning never rests on colour alone. Light mode uses deeper shades so the label clears 6:1 on its tint and dark mode uses brighter ones that clear 5:1.",
+        detail: "Posts, write-ups, TIL entries and pages such as this site's policies can carry five kinds of labelled callout: Note, Tip, Important, Warning and Caution. Each pairs an icon with its label word and a coloured edge on a soft tint, so the meaning never rests on colour alone. Light mode uses deeper shades so the label clears 6:1 on its tint and dark mode uses brighter ones that clear 5:1.",
       },
       {
         name: "Diagrams with Mermaid",
@@ -234,7 +234,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Diagrams, tables, callouts and clips",
-        detail: "The same block renderer draws diagrams, real tables, labelled callouts and short screen recordings. Each of these has its own entry under Content rendering below.",
+        detail: "The same block renderer draws diagrams, real tables, labelled callouts and short screen recordings. Each of these has its own entry under Content rendering above.",
       },
       {
         name: "/projects - full write-ups",
@@ -266,7 +266,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "OG image generation",
-        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/functions/og-image-generation">Vercel&apos;s @vercel/og</A> library. It renders the page title and description as a styled card using the Geist font. This is why shared links look intentional rather than blank.</>,
+        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/functions/og-image-generation">Vercel&apos;s OG image library</A>, built into Next.js as next/og,. It renders the page title and description as a styled card using the Geist font. This is why shared links look intentional rather than blank.</>,
       },
     ],
   },

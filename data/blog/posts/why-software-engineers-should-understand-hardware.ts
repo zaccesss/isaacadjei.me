@@ -6,6 +6,7 @@ const _why_software_engineers_should_understand_hardware: BlogPost = {
     date: "2026-03-10",
     type: "article",
     cover_image: "/images/blog/covers/why-software-engineers-should-understand-hardware.webp",
+    cover_credit: "Photo: Alexandre Debi\u00e8ve, Unsplash Licence, via Unsplash",
     description:
       "An argument for why understanding hardware - registers, memory, timing, power - makes you a significantly better software engineer, regardless of whether you ever write firmware.",
     tags: ["Opinion", "Embedded", "Software Engineering", "Career"],

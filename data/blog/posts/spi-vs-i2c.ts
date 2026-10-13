@@ -6,6 +6,8 @@ const _spi_vs_i2c: BlogPost = {
     date: "2026-01-14",
     type: "research",
     cover_image: "/images/blog/covers/spi-vs-i2c.webp",
+    cover_credit: "Photo: oomlout, CC BY-SA 2.0, cropped, via Wikimedia Commons",
+    cover_alt: "A BMP085 pressure sensor breakout board with its I2C pins labelled SCL and SDA alongside VIN, 3Vo, XCLR, EOC and GND",
     description:
       "A detailed technical comparison of SPI and I2C for embedded projects: signalling, timing, addressing, clock modes, pull-ups, edge cases and when the choice actually matters.",
     tags: ["SPI", "I2C", "Embedded", "Notes", "Protocols"],
@@ -26,8 +28,8 @@ const _spi_vs_i2c: BlogPost = {
       {
         type: "image",
         src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/SPI_timing_diagram2.svg",
-        alt: "SPI timing diagram showing MOSI, MISO, SCLK and CS signal lines",
-        caption: "SPI timing diagram - MOSI and MISO transfer simultaneously on each clock edge. Source: Wikimedia Commons (CC BY-SA 3.0)",
+        alt: "SPI timing diagram showing the SCK, SS, MISO and MOSI signals for both clock polarities, CPOL 0 and CPOL 1, with sampling points for each clock phase",
+        caption: "SPI timing diagram - MOSI and MISO transfer simultaneously on each clock edge. Diagram: Cburnett, adapted by Jordsan, CC BY-SA 3.0, via Wikimedia Commons",
       },
       {
         type: "p",
@@ -84,7 +86,7 @@ uint8_t spi_transfer(uint8_t data) {
         type: "image",
         src: "https://upload.wikimedia.org/wikipedia/commons/3/3e/I2C.svg",
         alt: "I2C bus showing master, multiple slaves, SDA and SCL lines with pull-up resistors",
-        caption: "I2C bus topology - multiple devices share two wires with unique 7-bit addresses. Source: Wikimedia Commons (CC BY-SA 3.0)",
+        caption: "I2C bus topology - multiple devices share two wires with unique 7-bit addresses. Diagram: Cburnett, CC BY-SA 3.0, via Wikimedia Commons",
       },
       {
         type: "p",

@@ -6,6 +6,8 @@ const _uart_bare_metal: BlogPost = {
     date: "2026-06-01",
     type: "research",
     cover_image: "/images/blog/covers/uart-bare-metal.webp",
+    cover_credit: "Photo: Windell Oskay, CC BY 2.0, via Wikimedia Commons",
+    cover_alt: "A 40-pin AVR microcontroller soldered to a circuit board, with the PD0/RXD0 and PD1/TXD0 serial pins labelled on the silkscreen",
     description:
       "How to set up UART on an AVR microcontroller using bare metal C, configure baud rate registers, transmit and receive bytes and debug embedded systems over a serial monitor.",
     tags: ["UART", "Embedded", "AVR", "C", "Serial"],

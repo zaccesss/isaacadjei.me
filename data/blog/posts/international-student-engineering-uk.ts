@@ -6,6 +6,7 @@ const _international_student_engineering_uk: BlogPost = {
     date: "2026-08-20",
     type: "journal",
     cover_image: "/images/blog/covers/international-student-engineering-uk.webp",
+    cover_credit: "Photo: Sabrina Mazzeo, Unsplash Licence, via Unsplash",
     description:
       "The practical and personal side of studying Electronic Engineering and Computer Science in the UK as an international student: the paperwork, the culture shock, the academic differences and what actually helped.",
     tags: ["Personal", "Career", "University", "International", "Engineering"],
