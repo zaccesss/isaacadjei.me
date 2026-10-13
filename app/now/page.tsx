@@ -167,16 +167,14 @@ export default function NowPage() {
           </div>
           <div className="space-y-1">
             <p className="font-medium text-foreground">
-              <Link href="/projects/zacess-pages" className="hover:text-primary transition-colors">
-                Business website
-              </Link>
+              Zacess
             </p>
             <p className="leading-relaxed">
-              A terminal-style site at{" "}
+              A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile. The site is live at{" "}
               <a href="https://zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
                 zacess.com
               </a>{" "}
-              that will grow into a business presence for whatever venture comes next. A playground for ideas in the meantime.
+              and a browser version is next.
             </p>
           </div>
           <div className="space-y-1">
