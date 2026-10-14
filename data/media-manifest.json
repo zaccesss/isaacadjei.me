@@ -1596,13 +1596,13 @@
   "ht": 994
  },
  "/images/projects/zacess/app-dark.webp": {
-  "h": "c7ca1bbded",
+  "h": "d239ed4d5c",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/app-light.webp": {
-  "h": "398a56c7c9",
+  "h": "26f78c78cf",
   "t": "img",
   "w": 1280,
   "ht": 800
@@ -1620,43 +1620,49 @@
   "ht": 630
  },
  "/images/projects/zacess/links-list.webp": {
-  "h": "96ad1427bb",
+  "h": "0338397884",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/phone.webp": {
-  "h": "0b06add0f3",
+  "h": "cf394a664a",
   "t": "img",
   "w": 780,
   "ht": 1688
  },
  "/images/projects/zacess/reading-profile.webp": {
-  "h": "bcce703c77",
+  "h": "d4b1f462d2",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/scan-doubtful.webp": {
-  "h": "bfc600aa3f",
+  "h": "95d35535f7",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/site-home-dark.webp": {
-  "h": "a1bf769a16",
+  "h": "0da379a2a2",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/site-home.webp": {
-  "h": "808dd0439e",
+  "h": "acf93fb7e9",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/images/projects/zacess/site-how-it-works.webp": {
-  "h": "1f5b69072b",
+  "h": "8ff5f8df32",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/images/projects/zacess/themes-page.webp": {
+  "h": "0e75070361",
   "t": "img",
   "w": 1280,
   "ht": 800
@@ -2102,41 +2108,41 @@
   "ht": 800
  },
  "/videos/projects/zacess/links-export.mp4": {
-  "h": "3c49f34fe0",
+  "h": "73d80555f4",
   "t": "file"
  },
  "/videos/projects/zacess/links-export.webp": {
-  "h": "95ac7d20a4",
+  "h": "5e0cc16cfb",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/zacess/open.mp4": {
-  "h": "442f74eebf",
+  "h": "81774e2ae7",
   "t": "file"
  },
  "/videos/projects/zacess/open.webp": {
-  "h": "97ede5fa2b",
+  "h": "63b361be5e",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/zacess/phone.mp4": {
-  "h": "6735f04696",
+  "h": "3fa35f4802",
   "t": "file"
  },
  "/videos/projects/zacess/phone.webp": {
-  "h": "000500c48a",
+  "h": "412c81f290",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/zacess/profile.mp4": {
-  "h": "82cc26c38e",
+  "h": "1482509cb3",
   "t": "file"
  },
  "/videos/projects/zacess/profile.webp": {
-  "h": "19a0e6cf1e",
+  "h": "5dc68ee18d",
   "t": "img",
   "w": 1280,
   "ht": 800
@@ -2152,21 +2158,31 @@
   "ht": 800
  },
  "/videos/projects/zacess/scan.mp4": {
-  "h": "e10c586d51",
+  "h": "cff7eb668e",
   "t": "file"
  },
  "/videos/projects/zacess/scan.webp": {
-  "h": "9908fe2ec5",
+  "h": "ee029b5cea",
   "t": "img",
   "w": 1280,
   "ht": 800
  },
  "/videos/projects/zacess/site-tour.mp4": {
-  "h": "f96ac145cd",
+  "h": "09dfb62598",
   "t": "file"
  },
  "/videos/projects/zacess/site-tour.webp": {
-  "h": "7b7c8c286f",
+  "h": "54625acda9",
+  "t": "img",
+  "w": 1280,
+  "ht": 800
+ },
+ "/videos/projects/zacess/themes.mp4": {
+  "h": "3cdc6b0c95",
+  "t": "file"
+ },
+ "/videos/projects/zacess/themes.webp": {
+  "h": "511d4a1650",
   "t": "img",
   "w": 1280,
   "ht": 800

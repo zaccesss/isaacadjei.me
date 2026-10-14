@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.85.0] - 2026-10-14
+
+_Zacess_
+
+### Added
+
+- The Zacess project page has a section on the matching code themes for editors and terminals, with a new demo of the themes page
+- The Zacess launch post covers the code themes too
+
+### Changed
+
+- The Zacess demos are recorded again from the latest app and website
+
 ## [2.84.0] - 2026-10-13
 
 _Zacess_

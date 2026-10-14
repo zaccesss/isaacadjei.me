@@ -92,6 +92,7 @@ import _40 from "./posts/moving-a-production-database-to-tidb"
 import _41 from "./posts/ariane-5-flight-501-overflow"
 import _42 from "./posts/calibrating-anomaly-scores"
 import _77 from "./posts/sky-animol-screening-invite"
+import _80 from "./posts/building-zacess-a-reader-that-respects-the-file"
 
 export const posts: BlogPost[] = [
   _0,
@@ -137,6 +138,7 @@ export const posts: BlogPost[] = [
   _41,
   _42,
   _77,
+  _80,
 ]
 
 function withReadingTime(p: BlogPost): BlogPost & { readingTime: number } {

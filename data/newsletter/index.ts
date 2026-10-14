@@ -111,8 +111,9 @@ import _m7 from "./issues/midweek-07"
 import _m8 from "./issues/midweek-08"
 import _m9 from "./issues/midweek-09"
 import _m10 from "./issues/midweek-10"
+import _m11 from "./issues/midweek-11"
 
-const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, ]
+const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, _m11, ]
 
 function dayAfter(date: string): string {
   const [y, m, d] = date.split("-").map(Number)
