@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.85.1] - 2026-10-15
+
+_Behind the scenes_
+
+### Fixed
+
+- The 3D circuit board viewer on the Lab page loads again
+
 ## [2.85.0] - 2026-10-14
 
 _Zacess_

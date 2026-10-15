@@ -101,6 +101,7 @@ import _62 from "./entries/git-colour-off-in-pipes"
 import _63 from "./entries/github-actions-timeout-minutes"
 import _64 from "./entries/postgres-now-transaction-time"
 import _65 from "./entries/isolation-forest-offset"
+import _66 from "./entries/sqlalchemy-identity-not-null"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -168,4 +169,5 @@ export const tilEntries: TILEntry[] = [
   _63,
   _64,
   _65,
+  _66,
 ]

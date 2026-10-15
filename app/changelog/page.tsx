@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.85.1",
+    date: "2026-10-15",
+    label: "Behind the scenes",
+    fixed: [
+      "The 3D circuit board viewer on the Lab page loads again",
+    ],
+  },
+  {
     version: "v2.85.0",
     date: "2026-10-14",
     label: "Zacess",
