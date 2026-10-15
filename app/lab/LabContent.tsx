@@ -445,6 +445,8 @@ const NAV_COMMANDS: Record<string, string> = {
 }
 
 const MAIL_COMMANDS: Record<string, string> = {
+  requestcv:
+    "mailto:contact@isaacadjei.me?subject=CV%20request&body=Hi%20Isaac%2C%0A%0ACould%20you%20send%20me%20your%20CV%20for%20a%20...%20role%3F%0A%0AThanks%2C",
   collaborate:
     "mailto:contact@isaacadjei.me?subject=Collaboration%20Opportunity&body=Hi%20Isaac%2C%0A%0AI%20would%20love%20to%20collaborate%20with%20you%20on...%0A%0ABest%2C",
   suggest:
@@ -518,6 +520,7 @@ const COMMANDS: Record<string, (data: LabData) => Line[]> = {
     { type: "cmd-list", text: "  suggest      -  send a blog suggestion" },
     { type: "cmd-list", text: "  hire         -  why hire Isaac" },
     { type: "cmd-list", text: "  cv           -  download CV directly" },
+    { type: "cmd-list", text: "  requestcv    -  ask for a role-specific CV" },
     { type: "blank", text: "" },
     { type: "info", text: "  discover" },
     { type: "cmd-list", text: "  whoami       -  identity check" },
@@ -992,6 +995,12 @@ const COMMANDS: Record<string, (data: LabData) => Line[]> = {
   linkedin: () => [
     { type: "info", text: "opening: linkedin.com/in/isaacadjei" },
     { type: "output", text: "launching in new tab..." },
+  ],
+  requestcv: () => [
+    { type: "info", text: "opening mail client" },
+    { type: "output", text: "  to:      contact@isaacadjei.me" },
+    { type: "output", text: "  subject: CV request" },
+    { type: "output", text: "  tailored CVs: software, embedded, devops, data, quant, security" },
   ],
   collaborate: () => [
     { type: "info", text: "opening mail client" },

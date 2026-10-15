@@ -2,6 +2,18 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.0] - 2026-10-15
+
+_CV_
+
+### Added
+
+- The Lab has a new requestcv command to ask for a CV tailored to a specific role
+
+### Changed
+
+- The downloadable CV has a cleaner layout with links to every project
+
 ## [2.85.1] - 2026-10-15
 
 _Behind the scenes_
