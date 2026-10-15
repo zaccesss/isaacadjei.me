@@ -50,6 +50,8 @@ const nextConfig = {
     // Next.js negotiates the format automatically via Accept headers.
     formats: ["image/avif", "image/webp"],
   },
+  // the role CVs live outside public/ and are read at request time, so tracing has to be told to ship them
+  outputFileTracingIncludes: { "/api/dashboard/cv/[file]": ["./data/cv-files/**"] },
   experimental: {
     optimizePackageImports: ["lucide-react"],
     // server maps for readable server stack traces in Sentry, removed again after upload
@@ -66,6 +68,9 @@ const nextConfig = {
       { source: "/notes/world-cup-ai-predictor", destination: "/notes/multi-sport-ai-predictor", permanent: true },
       // the dotfiles project grew into the wider developer environment write-up
       { source: "/projects/dotfiles", destination: "/projects/dev-environment", permanent: true },
+      // role CVs moved behind the dashboard; the public page keeps the general CV
+      { source: "/cv/cv-picker", destination: "/cv", permanent: false },
+      { source: "/cv/cover-letters", destination: "/cv", permanent: false },
     ]
   },
   async headers() {

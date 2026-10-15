@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.0",
+    date: "2026-10-15",
+    label: "CV",
+    added: [
+      "The Lab has a new requestcv command to ask for a CV tailored to a specific role",
+    ],
+    changed: [
+      "The downloadable CV has a cleaner layout with links to every project",
+    ],
+  },
+  {
     version: "v2.85.1",
     date: "2026-10-15",
     label: "Behind the scenes",
