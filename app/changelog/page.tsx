@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.2",
+    date: "2026-10-15",
+    label: "Blog",
+    fixed: [
+      "Blog posts about git-unlocked now give the right file count and licence",
+    ],
+  },
+  {
     version: "v2.86.1",
     date: "2026-10-15",
     label: "Projects",
