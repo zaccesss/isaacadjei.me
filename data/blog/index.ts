@@ -91,6 +91,7 @@ import _39 from "./posts/one-palette-eight-terminals"
 import _40 from "./posts/moving-a-production-database-to-tidb"
 import _41 from "./posts/ariane-5-flight-501-overflow"
 import _42 from "./posts/calibrating-anomaly-scores"
+import _43 from "./posts/alerts-that-do-not-cry-wolf"
 import _77 from "./posts/sky-animol-screening-invite"
 import _80 from "./posts/building-zacess-a-reader-that-respects-the-file"
 
@@ -137,6 +138,7 @@ export const posts: BlogPost[] = [
   _40,
   _41,
   _42,
+  _43,
   _77,
   _80,
 ]
