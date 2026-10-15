@@ -6,11 +6,9 @@ import { SiZenodo, SiGooglescholar } from "react-icons/si"
 import { publications } from "@/data/respub"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
-import CodeBlock from "@/components/shared/CodeBlock"
-import { highlightCode } from "@/lib/highlight"
 import { CHIP_CLASS, LABEL_CLASS } from "@/components/shared/Tag"
-import { apaCitation, bibtexCitation, highwireDate, zenodoRecordId } from "@/data/respub/cite"
-import CopyCitationButtons from "@/components/respub/CopyCitationButtons"
+import { citationStyles, highwireDate, zenodoRecordId } from "@/data/respub/cite"
+import CitationPicker from "@/components/respub/CitationPicker"
 import ZenodoStats from "@/components/respub/ZenodoStats"
 
 const SITE = "https://www.isaacadjei.me"
@@ -66,8 +64,7 @@ export default async function PublicationSlugPage({
   const { slug } = await params
   const pub = publications.find((p) => p.id === slug)
   if (!pub) notFound()
-  const apa = apaCitation(pub)
-  const bibtex = bibtexCitation(pub)
+  const styles = citationStyles(pub)
   const recordId = zenodoRecordId(pub)
 
   return (
@@ -122,12 +119,8 @@ export default async function PublicationSlugPage({
       <Separator />
 
       <section className="space-y-4">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Cite this work</h2>
-          <CopyCitationButtons bibtex={bibtex} apa={apa} title={pub.title} />
-        </div>
-        <p className="text-sm text-muted-foreground leading-relaxed font-mono">{apa}</p>
-        <CodeBlock lang="bibtex" text={bibtex} html={await highlightCode(bibtex, "bibtex")} />
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Cite this work</h2>
+        <CitationPicker styles={styles} title={pub.title} />
       </section>
 
       <Separator />

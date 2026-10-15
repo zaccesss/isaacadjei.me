@@ -4,10 +4,10 @@ import { ArrowUpRight, FileText, Mail } from "lucide-react"
 import { FaLinkedin } from "react-icons/fa6"
 import { SiOrcid, SiGooglescholar, SiResearchgate, SiZotero } from "react-icons/si"
 import { publications } from "@/data/respub"
-import { apaCitation, bibtexCitation } from "@/data/respub/cite"
+import { citationStyles } from "@/data/respub/cite"
 import { keyPapers, researchInterests, researchLines, type ResearchLink } from "@/data/respub/research"
 import ResearchStatusBadge from "@/components/respub/ResearchStatusBadge"
-import CopyCitationButtons from "@/components/respub/CopyCitationButtons"
+import CitationPicker from "@/components/respub/CitationPicker"
 
 export const metadata: Metadata = {
   title: "Research & Publications",
@@ -134,7 +134,7 @@ export default function ResearchPublicationsPage() {
                       <FileText className="h-3.5 w-3.5" aria-hidden="true" />
                       Read details and citation
                     </Link>
-                    <CopyCitationButtons bibtex={bibtexCitation(pub)} apa={apaCitation(pub)} title={pub.title} />
+                    <CitationPicker styles={citationStyles(pub)} title={pub.title} showText={false} />
                   </div>
                 </div>
               ))}

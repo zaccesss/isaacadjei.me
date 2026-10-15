@@ -9,7 +9,7 @@ const _git_unlocked_2026: Publication = {
     month: 10,
     day: 15,
     doi: "10.5281/zenodo.20694983",
-    zenodoUrl: "https://zenodo.org/doi/10.5281/zenodo.20694983",
+    zenodoUrl: "https://zenodo.org/records/23394355",
     scholarUrl: "https://scholar.google.com/citations?user=YZq0XuMAAAAJ",
     pdfUrl: "/documents/git-unlocked-technical-note.pdf",
     type: "technical-note",

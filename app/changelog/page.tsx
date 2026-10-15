@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.4",
+    date: "2026-10-15",
+    label: "Research",
+    added: [
+      "Research pages offer APA, Harvard, IEEE, MLA, Chicago, BibTeX and RIS citations from one dropdown",
+    ],
+  },
+  {
     version: "v2.86.3",
     date: "2026-10-15",
     label: "Research",
