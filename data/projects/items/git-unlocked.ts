@@ -24,7 +24,6 @@ const _git_unlocked: Project = {
     status: "live",
     images: [
       "/images/projects/git-unlocked/github-logo-3d.webp",
-      "/images/projects/git-unlocked/git_unlocked_banner.svg",
       "/images/projects/git-unlocked/octocat-laptop.webp",
       "/images/projects/git-unlocked/octocat-groot.webp",
       "/images/projects/git-unlocked/octocat-closeup.webp",
@@ -41,7 +40,7 @@ const _git_unlocked: Project = {
       "First-contribution sandbox, a 120+ link resource index and markdownlint plus link checks in CI on every push",
     ],
     links: [
-      { label: "Zenodo DOI: 10.5281/zenodo.20694984", url: "https://doi.org/10.5281/zenodo.20694984" },
+      { label: "Zenodo DOI: 10.5281/zenodo.20694983", url: "https://doi.org/10.5281/zenodo.20694983" },
       { label: "Start the course", url: "https://github.com/zaccesss/git-unlocked/blob/main/00-welcome/README.md" },
       { label: "First-contribution sandbox", url: "https://github.com/zaccesss/git-unlocked/blob/main/11-first-contribution/README.md" },
       { label: "Changelog", url: "https://github.com/zaccesss/git-unlocked/blob/main/CHANGELOG.md" },
