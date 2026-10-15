@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.6",
+    date: "2026-10-15",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page links the code themes on the JetBrains Marketplace and in the Zed extension store",
+      "The CV lists the new places the code themes are published",
+    ],
+  },
+  {
     version: "v2.86.5",
     date: "2026-10-15",
     label: "Newsletter",

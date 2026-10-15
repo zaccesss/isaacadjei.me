@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.6] - 2026-10-15
+
+_Zacess_
+
+### Changed
+
+- The Zacess project page links the code themes on the JetBrains Marketplace and in the Zed extension store
+- The CV lists the new places the code themes are published
+
 ## [2.86.5] - 2026-10-15
 
 _Newsletter_
