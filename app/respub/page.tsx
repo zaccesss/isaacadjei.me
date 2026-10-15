@@ -62,9 +62,13 @@ export default function ResearchPublicationsPage() {
       <div className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Research &amp; Publications</h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          What I research, write up and formally publish. Citable papers, technical notes and
-          open-source curricula, with links to every record so you can find, cite or build on
-          the work.
+          Research and publications from my work across engineering and computing. So far that
+          includes how Git and version control are learned and taught, predictive maintenance on
+          low-cost hardware, GPS-free drone navigation and accessible documents through{" "}
+          <Link href="/projects/zacess" className="text-primary hover:underline">Zacess</Link> and{" "}
+          <Link href="/projects/vitafolio" className="text-primary hover:underline">Vitafolio</Link>.
+          Published work is openly licensed and archived with a DOI, so you can read it, cite it
+          in the style you need and build on it.
         </p>
 
         <div className="flex items-center gap-4 flex-wrap">

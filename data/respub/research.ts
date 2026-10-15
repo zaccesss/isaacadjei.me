@@ -86,6 +86,29 @@ export const researchLines: ResearchLine[] = [
       { label: "Changelog", href: "https://vitafolio.isaacadjei.me/changelog" },
     ],
   },
+  {
+    id: "zacess",
+    name: "Zacess",
+    projectSlug: "zacess",
+    question:
+      "Can one free tool turn the formats people find hardest to read (slides, scanned PDFs, photos of handouts, Word files and web pages) into text laid out for each reader, read it aloud and keep every file on the reader's own device without losing what the original said?",
+    method:
+      "A Rust core compiled to WebAssembly (440 KB) turns every import into one document model in which each run of text keeps its place on the original page. pdf.js, Tesseract and mammoth read PDFs, scans and Word files in the browser. Reading profiles set the font, size up to 96 points, line and letter spacing, line length and theme, with presets for low vision (Atkinson Hyperlegible at 24 points, 1.6 line spacing and 45-character lines) and dyslexia (Lexend with 0.12 em letter spacing and 1.75 line spacing on cream). Every recognised word carries a confidence and doubtful ones are marked for checking. Read aloud uses the voices on the device and highlights each sentence. HTML and EPUB 3 exports are checked with axe-core and EPUBCheck in CI. The matching code themes come from one palette, hold every syntax colour at 7:1 or more and are checked under simulated protanopia, deuteranopia and tritanopia.",
+    status: "live",
+    found:
+      "The browser version is live with zero axe-core violations at WCAG 2.2 A and AA on its main screens, checked on WebKit as well as Chromium. Text recognition on scanned, number-heavy notes misreads symbols such as kΩ as kQ, which is why every word's confidence is shown rather than hidden. A braille-ready export exists in the core but needs liblouis built for WebAssembly before it reaches the browser. The code themes are on the VS Code Marketplace, Open VSX and the Obsidian community directory.",
+    links: [
+      { label: "Project page", href: "/projects/zacess" },
+      { label: "app.zacess.com", href: "https://app.zacess.com" },
+      { label: "zacess.com", href: "https://zacess.com" },
+      { label: "Code themes", href: "https://zacess.com/themes/" },
+    ],
+    materials: [
+      { label: "Source code", href: "https://github.com/zacesshq/zacess" },
+      { label: "Documentation", href: "https://github.com/zacesshq/zacess/tree/main/docs" },
+      { label: "Code themes source", href: "https://github.com/zacesshq/themes" },
+    ],
+  },
 ]
 
 export interface ResearchInterest {
@@ -110,8 +133,11 @@ export const researchInterests: ResearchInterest[] = [
   {
     area: "Accessible document generation",
     detail:
-      "Generating PDFs that carry real structure (headings, bookmarks, a declared language and reading order) so assistive technology can follow them. Vitafolio writes tagged PDF/UA-1 CVs this way.",
-    links: [{ label: "Vitafolio", href: "/projects/vitafolio" }],
+      "Documents that carry real structure (headings, bookmarks, a declared language and reading order) so assistive technology can follow them. Readers that lay any document out for the person reading it are part of the same problem. Vitafolio writes tagged PDF/UA-1 CVs this way and Zacess rebuilds PDFs, scans and Word files into reading profiles with accessible HTML and EPUB exports.",
+    links: [
+      { label: "Vitafolio", href: "/projects/vitafolio" },
+      { label: "Zacess", href: "/projects/zacess" },
+    ],
   },
   {
     area: "Assistive technology for low vision",
@@ -136,6 +162,56 @@ export const researchInterests: ResearchInterest[] = [
       { label: "Prosthetics and health technology", href: "/notes/prosthetics-health-tech" },
       { label: "Could someone with one eye get a second?", href: "/notes/one-eye-vision-research" },
     ],
+  },
+  {
+    area: "FPGAs and digital design",
+    detail:
+      "Describing hardware in a language rather than wiring it by hand and weighing whether a job belongs in logic or in software. It runs through my Digital Design module and the reading I am doing this term. VHDL sits alongside C in the embedded work I want to do next.",
+  },
+  {
+    area: "Control systems and robotics",
+    detail:
+      "Feedback control, from a PID loop on a motor to the flight controller that keeps a drone on its mission. My Control Systems and Robotics module covers the theory and LidarSAT is where I watch an autopilot fly a planned route in simulation.",
+    links: [{ label: "LidarSAT", href: "/projects/lidarsat" }],
+  },
+  {
+    area: "Signal processing and communications",
+    detail:
+      "Getting useful information out of noisy signals: filters, spectra and how data survives a channel. PHAEMOS computes a vibration spectrum on a microcontroller and my audio amplifier is an active band-pass filter, both small cases of a much larger field.",
+    links: [
+      { label: "PHAEMOS", href: "/projects/phaemos" },
+      { label: "Audio amplifier", href: "/projects/audio-amplifier" },
+    ],
+  },
+  {
+    area: "Analogue and power electronics",
+    detail:
+      "Circuits that handle real voltages and currents, from op-amp stages to the converters that power every board. Building the audio amplifier from simulation to my own PCB made me want to understand power stages properly.",
+    links: [{ label: "Audio amplifier", href: "/projects/audio-amplifier" }],
+  },
+  {
+    area: "Machine learning on embedded devices",
+    detail:
+      "Running models close to the sensor on hardware with little memory and power, so a device can decide for itself without sending everything to a server. PHAEMOS scores readings on a server today, which makes this the natural next question.",
+    links: [{ label: "PHAEMOS", href: "/projects/phaemos" }],
+  },
+  {
+    area: "Hardware and embedded security",
+    detail:
+      "How devices are attacked and defended at the level of firmware, buses and keys rather than only on the network. I am learning security through capture the flag challenges and encryption. Bare-metal C on AVR shows how little stands between code and the hardware.",
+    links: [{ label: "avr-zac", href: "/projects/avr-zac" }],
+  },
+  {
+    area: "Space systems and engineering failures",
+    detail:
+      "What spacecraft, satellites and launchers teach about building systems that cannot be fixed once they fly. The inquiries into failures reveal as much about software, testing and assumptions as about hardware.",
+    links: [{ label: "Ariane 5 Flight 501", href: "/blog/ariane-5-flight-501-overflow" }],
+  },
+  {
+    area: "Computing education",
+    detail:
+      "How people learn technical tools and what makes teaching material work for someone learning alone. I lead weekly Peer Assisted Learning sessions in Python and wrote git-unlocked, so I see both sides: explaining in person and writing for a reader I never meet.",
+    links: [{ label: "git-unlocked", href: "/projects/git-unlocked" }],
   },
   {
     area: "Open education",
@@ -203,6 +279,65 @@ export const keyPapers: PaperGroup[] = [
         why: "The AA target for colours, keyboard use and motion in the interface.",
         href: "https://www.w3.org/TR/WCAG22/",
         identifier: "WCAG 2.2",
+      },
+    ],
+  },
+  {
+    line: "Zacess",
+    papers: [
+      {
+        citation: "Rello, L. and Baeza-Yates, R. (2013). Good fonts for dyslexia. Proceedings of the 15th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS).",
+        why: "Eye-tracking evidence that sans serif, monospaced and roman fonts read faster for people with dyslexia, behind the fonts in the presets.",
+        href: "https://doi.org/10.1145/2513383.2513447",
+        identifier: "doi:10.1145/2513383.2513447",
+      },
+      {
+        citation: "Zorzi, M., Barbiero, C., Facoetti, A., Lonciari, I., Carrozzi, M., Montico, M. et al. (2012). Extra-large letter spacing improves reading in dyslexia. Proceedings of the National Academy of Sciences, 109(28).",
+        why: "Why the dyslexia preset widens letter spacing.",
+        href: "https://doi.org/10.1073/pnas.1205566109",
+        identifier: "doi:10.1073/pnas.1205566109",
+      },
+      {
+        citation: "Rello, L., Pielot, M. and Marcos, M.-C. (2016). Make It Big! The Effect of Font Size and Line Spacing on Online Readability. Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems.",
+        why: "Evidence that larger text reads better, behind the large starting sizes and the 96-point limit.",
+        href: "https://doi.org/10.1145/2858036.2858204",
+        identifier: "doi:10.1145/2858036.2858204",
+      },
+      {
+        citation: "W3C (2024). Web Content Accessibility Guidelines (WCAG) 2.2. W3C Recommendation, 12 December 2024.",
+        why: "The text spacing, visual presentation and 7:1 contrast criteria the profiles and themes are built to. The app is tested against its AA level.",
+        href: "https://www.w3.org/TR/WCAG22/",
+        identifier: "WCAG 2.2",
+      },
+      {
+        citation: "Smith, R. (2007). An Overview of the Tesseract OCR Engine. Ninth International Conference on Document Analysis and Recognition (ICDAR 2007).",
+        why: "The text recognition engine, whose confidence for each word marks the doubtful ones.",
+        href: "https://doi.org/10.1109/ICDAR.2007.4376991",
+        identifier: "doi:10.1109/ICDAR.2007.4376991",
+      },
+      {
+        citation: "Haas, A., Rossberg, A., Schuff, D. L., Titzer, B. L., Holman, M., Gohman, D. et al. (2017). Bringing the web up to speed with WebAssembly. Proceedings of the 38th ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI).",
+        why: "The design of WebAssembly, which lets the Rust core run in the browser.",
+        href: "https://doi.org/10.1145/3062341.3062363",
+        identifier: "doi:10.1145/3062341.3062363",
+      },
+      {
+        citation: "W3C (2024). EPUB Accessibility 1.1. W3C Recommendation, 17 October 2024.",
+        why: "The accessibility requirements and metadata the EPUB 3 export follows.",
+        href: "https://www.w3.org/TR/epub-a11y-11/",
+        identifier: "EPUB Accessibility 1.1",
+      },
+      {
+        citation: "Machado, G. M., Oliveira, M. M. and Fernandes, L. A. F. (2009). A Physiologically-based Model for Simulation of Color Vision Deficiency. IEEE Transactions on Visualization and Computer Graphics, 15(6).",
+        why: "The colour vision simulation every pair of code theme colours is checked under.",
+        href: "https://doi.org/10.1109/TVCG.2009.113",
+        identifier: "doi:10.1109/TVCG.2009.113",
+      },
+      {
+        citation: "Ottosson, B. (2020). A perceptual color space for image processing (OKLab).",
+        why: "The colour space the themes use to measure whether two colours still differ in lightness.",
+        href: "https://bottosson.github.io/posts/oklab/",
+        identifier: "OKLab",
       },
     ],
   },

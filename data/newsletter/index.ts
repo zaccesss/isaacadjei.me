@@ -19,6 +19,8 @@ export interface NewsletterIssueFile {
   greeting?: string
   signOff?: string
   skip?: string[]
+  skipWorth?: boolean
+  skipMidweek?: boolean
   published: boolean
 }
 
@@ -198,22 +200,24 @@ export function allIssues(): Issue[] {
         midweek: [],
         items: [],
         worth: [],
-        greeting: file.greeting ?? GREETINGS[file.number % GREETINGS.length],
-        signOff: file.signOff ?? SIGN_OFFS[file.number % SIGN_OFFS.length],
+        greeting: file.greeting ?? GREETINGS[Math.floor(file.number) % GREETINGS.length],
+        signOff: file.signOff ?? SIGN_OFFS[Math.floor(file.number) % SIGN_OFFS.length],
       }
     }
-    const i = letters.indexOf(file)
-    const start = i === 0 ? FIRST_WINDOW_START : dayAfter(letters[i - 1].date)
+    const earlier = letters.filter((l) => l.date < file.date)
+    const start = earlier.length === 0 ? FIRST_WINDOW_START : dayAfter(earlier[earlier.length - 1].date)
     return {
       ...file,
       emailed: file.date >= EMAIL_FROM_DATE,
       items: gatherBetween(start, file.date, file.skip),
-      worth: worthBetween(start, file.date),
-      midweek: sorted
-        .filter((f) => (f.kind === "outside" || f.kind === "midweek") && f.published && f.date >= start && f.date <= file.date)
-        .map((f) => ({ label: issueLabel(f), title: f.title, subtitle: f.subtitle, slug: f.slug })),
-      greeting: file.greeting ?? GREETINGS[file.number % GREETINGS.length],
-      signOff: file.signOff ?? SIGN_OFFS[file.number % SIGN_OFFS.length],
+      worth: file.skipWorth ? [] : worthBetween(start, file.date),
+      midweek: file.skipMidweek
+        ? []
+        : sorted
+            .filter((f) => (f.kind === "outside" || f.kind === "midweek") && f.published && f.date >= start && f.date <= file.date)
+            .map((f) => ({ label: issueLabel(f), title: f.title, subtitle: f.subtitle, slug: f.slug })),
+      greeting: file.greeting ?? GREETINGS[Math.floor(file.number) % GREETINGS.length],
+      signOff: file.signOff ?? SIGN_OFFS[Math.floor(file.number) % SIGN_OFFS.length],
     }
   })
 }
@@ -228,6 +232,8 @@ export function getIssueBySlug(slug: string): Issue | undefined {
   return getPublishedIssues().find((i) => i.slug === slug)
 }
 
-export function issueForDate(date: string): Issue | undefined {
-  return allIssues().find((i) => i.published && i.date === date)
+export function issuesForDate(date: string): Issue[] {
+  return allIssues()
+    .filter((i) => i.published && i.date === date)
+    .sort((a, b) => a.number - b.number)
 }
