@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.4] - 2026-10-15
+
+_Research_
+
+### Added
+
+- Research pages offer APA, Harvard, IEEE, MLA, Chicago, BibTeX and RIS citations from one dropdown
+
 ## [2.86.3] - 2026-10-15
 
 _Research_
