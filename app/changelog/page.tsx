@@ -25,6 +25,19 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.5",
+    date: "2026-10-15",
+    label: "Newsletter",
+    added: [
+      "The first emailed newsletter arrives as two shorter issues at the same time",
+      "The research page has a Zacess research line with its references",
+      "The research page lists more research interests",
+    ],
+    changed: [
+      "The research page has a clearer introduction to the research areas",
+    ],
+  },
+  {
     version: "v2.86.4",
     date: "2026-10-15",
     label: "Research",

@@ -2,6 +2,20 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.5] - 2026-10-15
+
+_Newsletter_
+
+### Added
+
+- The first emailed newsletter arrives as two shorter issues at the same time
+- The research page has a Zacess research line with its references
+- The research page lists more research interests
+
+### Changed
+
+- The research page has a clearer introduction to the research areas
+
 ## [2.86.4] - 2026-10-15
 
 _Research_
