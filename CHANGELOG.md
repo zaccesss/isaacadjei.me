@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.1] - 2026-10-15
+
+_Projects_
+
+### Changed
+
+- Project dates now show the year each project started
+- The downloadable CV links straight to the blog, newsletter, Today I Learned and notes
+
 ## [2.86.0] - 2026-10-15
 
 _CV_

@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.86.1",
+    date: "2026-10-15",
+    label: "Projects",
+    changed: [
+      "Project dates now show the year each project started",
+      "The downloadable CV links straight to the blog, newsletter, Today I Learned and notes",
+    ],
+  },
+  {
     version: "v2.86.0",
     date: "2026-10-15",
     label: "CV",

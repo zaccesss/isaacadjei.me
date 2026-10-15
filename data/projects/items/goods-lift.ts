@@ -18,7 +18,7 @@ const _goods_lift: Project = {
       "/images/projects/goods-lift/breadboard.webp",
       "/images/projects/goods-lift/lcd.webp",
     ],
-    date: "2025",
+    date: "2024",
     highlights: [
       "Nearest-floor-in-direction dispatch queue with request merging and configurable expiry",
       "PWM soft-start and braking for precise floor alignment and reduced mechanical wear",

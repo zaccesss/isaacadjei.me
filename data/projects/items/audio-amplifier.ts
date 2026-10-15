@@ -31,7 +31,7 @@ const _audio_amplifier: Project = {
     ],
     github: "https://github.com/zaccesss/two-stage-audio-amplifier",
     getInvolved: {},
-    date: "2026",
+    date: "2025",
     highlights: [
       "Two-stage design: TL071 inverting summing band-pass filter (Stage 1) and OPA551 unity-gain buffer (Stage 2)",
       "Gain 10.67 dB, passband 6.63 Hz to 28.54 kHz, output 2.980 Vpp into 8 Ω at a 281 mW design output power",
