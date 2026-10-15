@@ -42,7 +42,7 @@ const _dev_environment: Project = {
       "/videos/projects/dev-environment/linux.webp",
     ],
     github: "https://github.com/zaccesss/dotfiles",
-    date: "2026",
+    date: "2025",
     highlights: [
       "One-command bootstraps for macOS, Windows 11 and Ubuntu 24.04 and 26.04 (desktop, server, VM and WSL2) that are safe to re-run",
       "Shell profiles split into numbered topic files with identical alias names in zsh, bash and PowerShell 7",

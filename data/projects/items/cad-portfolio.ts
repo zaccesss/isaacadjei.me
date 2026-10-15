@@ -18,7 +18,7 @@ const _cad_portfolio: Project = {
       "/images/projects/cad-portfolio/3d-model.webp",
       "/images/projects/cad-portfolio/assembly.webp",
     ],
-    date: "2025",
+    date: "2024",
     highlights: [
       "Three projects: a precision component, a mechanical assembly design cycle and a hairdryer product design",
       "Full GD&T: datum reference frames, form, orientation and location tolerances in feature control frames",

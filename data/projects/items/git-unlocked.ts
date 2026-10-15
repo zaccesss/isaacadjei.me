@@ -31,7 +31,7 @@ const _git_unlocked: Project = {
     ],
     github: "https://github.com/zaccesss/git-unlocked",
     getInvolved: { discussions: true },
-    date: "2026",
+    date: "2025",
     highlights: [
       "182 files across 12 sections: Git, GitHub, GitLab, Bitbucket, Azure DevOps, Gitea, Forgejo and Codeberg",
       "Every file tagged beginner, intermediate or advanced, with Windows, Mac and Linux commands side by side",

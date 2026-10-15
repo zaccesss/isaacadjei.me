@@ -18,7 +18,7 @@ const _zacess_pages: Project = {
       "/images/projects/zacess-pages/terminal.webp",
     ],
     github: "https://github.com/zaccesss/zacess-pages",
-    date: "2026",
+    date: "2025",
     highlights: [
       "Genuine terminal behaviour: ZacessOS boot sequence, blinking block cursor and output printed line by line at 20 ms per line",
       "Command history on the up and down arrows and tab autocomplete that lists every match when more than one fits",

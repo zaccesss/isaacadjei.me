@@ -21,7 +21,7 @@ const _avr_zac: Project = {
     ],
     github: "https://github.com/zaccesss/avr-zac",
     getInvolved: {},
-    date: "2026 - Present",
+    date: "2024",
     highlights: [
       "Seven projects from 00_fuse_test to 06_state_machine, all bare metal register access with no framework",
       "Nine-mode state machine: Chase, Blink All, Alternate, PWM Fade, Knight Rider, Binary Counter, Random, Reaction Game and Tetris Melody",
