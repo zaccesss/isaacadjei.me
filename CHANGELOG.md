@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.86.2] - 2026-10-15
+
+_Blog_
+
+### Fixed
+
+- Blog posts about git-unlocked now give the right file count and licence
+
 ## [2.86.1] - 2026-10-15
 
 _Projects_

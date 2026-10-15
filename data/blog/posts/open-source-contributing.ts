@@ -19,7 +19,7 @@ const _open_source_contributing: BlogPost = {
       },
       {
         type: "p",
-        text: "This post is a practical guide to crossing that gap: finding the right project, understanding the codebase before you touch it, making your first contribution and handling the review process gracefully. It is written from the perspective of someone who has done it repeatedly, built an open source Git course with 217 files and tracked merged PRs to external repos in a personal dashboard.",
+        text: "This post is a practical guide to crossing that gap: finding the right project, understanding the codebase before you touch it, making your first contribution and handling the review process gracefully. It is written from the perspective of someone who has done it repeatedly, built an open source Git course with 182 files and tracked merged PRs to external repos in a personal dashboard.",
       },
       {
         type: "h2",
@@ -207,7 +207,7 @@ Clicked the updated link in a browser preview. Verified the target page exists.
       },
       {
         type: "p",
-        text: "I built [git-unlocked](https://github.com/zaccesss/git-unlocked), a free open source MIT-licensed Git and version control course, as a direct response to the frustration of finding existing Git resources either too shallow or paywalled. It spans 217 files covering Git, GitHub, GitLab, Bitbucket, Azure DevOps, IDEs, the terminal, real-world workflows, disaster recovery and a curated resources section. Every file covers Windows, Mac and Linux side by side. The course itself became an exercise in everything this post describes: maintaining a consistent structure across hundreds of files, writing a changelog that documents every decision and keeping the CI pipeline (GitHub Actions running markdown linting and link checking) green.",
+        text: "I built [git-unlocked](https://github.com/zaccesss/git-unlocked), a free open source Git and version control course licensed CC BY-SA 4.0, as a direct response to the frustration of finding existing Git resources either too shallow or paywalled. It spans 182 files covering Git, GitHub, GitLab, Bitbucket, Azure DevOps, IDEs, the terminal, real-world workflows, disaster recovery and a curated resources section. Every file covers Windows, Mac and Linux side by side. The course itself became an exercise in everything this post describes: maintaining a consistent structure across hundreds of files, writing a changelog that documents every decision and keeping the CI pipeline (GitHub Actions running markdown linting and link checking) green.",
       },
       {
         type: "p",
@@ -245,7 +245,7 @@ Clicked the updated link in a browser preview. Verified the target page exists.
           { text: "First Contributions - a beginner-friendly project to practice your first PR", url: "https://firstcontributions.github.io/" },
           { text: "Good First Issue - curated list of beginner-friendly open source issues", url: "https://goodfirstissue.dev/" },
           { text: "Up For Grabs - projects that are looking for first-time contributors", url: "https://up-for-grabs.net/" },
-          { text: "git-unlocked - my open source Git course (MIT licensed, 217 files)", url: "https://github.com/zaccesss/git-unlocked" },
+          { text: "git-unlocked - my open source Git course (CC BY-SA 4.0, 182 files)", url: "https://github.com/zaccesss/git-unlocked" },
           { text: "Conventional Commits specification - a lightweight commit message convention", url: "https://www.conventionalcommits.org/" },
           { text: "Wikipedia: Open-source software - background and history", url: "https://en.wikipedia.org/wiki/Open-source_software" },
         ],

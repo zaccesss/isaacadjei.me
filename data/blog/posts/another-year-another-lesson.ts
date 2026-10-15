@@ -49,7 +49,7 @@ const _another_year_another_lesson: BlogPost = {
       },
       {
         type: "p",
-        text: "[git-unlocked](https://github.com/zaccesss/git-unlocked) was formally published on [Zenodo](https://zenodo.org/records/20694984) with a citable DOI this year. That sentence does not fully capture what it meant. git-unlocked is a complete open source Git curriculum: 217 files, every concept written and structured from scratch, MIT licensed. Publishing it formally on Zenodo with a DOI meant giving it a permanent academic record, an ORCID credit, a Google Scholar listing. That is my first peer-citable research output. I did not plan that. It grew from wanting to teach Git properly and then not stopping until the thing was complete.",
+        text: "[git-unlocked](https://github.com/zaccesss/git-unlocked) was formally published on [Zenodo](https://zenodo.org/records/20694984) with a citable DOI this year. That sentence does not fully capture what it meant. git-unlocked is a complete open source Git curriculum: 182 files, every concept written and structured from scratch, licensed CC BY-SA 4.0. Publishing it formally on Zenodo with a DOI meant giving it a permanent academic record, an ORCID credit, a Google Scholar listing. That is my first peer-citable research output. I did not plan that. It grew from wanting to teach Git properly and then not stopping until the thing was complete.",
       },
       {
         type: "p",

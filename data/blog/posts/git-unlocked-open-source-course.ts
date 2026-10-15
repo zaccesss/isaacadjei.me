@@ -2,14 +2,14 @@ import type { BlogPost } from "../index"
 
 const _git_unlocked_open_source_course: BlogPost = {
     slug: "git-unlocked-open-source-course",
-    title: "Why I Built a Free Git Course with 217 Files and No Paywall",
+    title: "Why I Built a Free Git Course with 182 Files and No Paywall",
     date: "2026-04-21",
     type: "blog",
     projectSlug: "git-unlocked",
     cover_image: "/images/projects/git-unlocked/octocat-laptop.webp",
     cover_credit: "Photo: Roman Synkevych, Unsplash Licence, via Unsplash",
     description:
-      "The motivation behind git-unlocked, an open-source Git and version control course spanning 12 sections and every major platform and what writing 217 files taught me about technical communication.",
+      "The motivation behind git-unlocked, an open-source Git and version control course spanning 12 sections and every major platform and what writing 182 files taught me about technical communication.",
     tags: ["Git", "Open Source", "Teaching", "GitHub"],
     published: true,
     content: [
@@ -19,7 +19,7 @@ const _git_unlocked_open_source_course: BlogPost = {
       },
       {
         type: "p",
-        text: "[git-unlocked](https://github.com/zaccesss/git-unlocked) is my attempt to fix that. It is a free, open-source Git and version control course covering everything from absolute zero to professional-level knowledge. 217 files. 12 sections. MIT licensed. No paywall.",
+        text: "[git-unlocked](https://github.com/zaccesss/git-unlocked) is my attempt to fix that. It is a free, open-source Git and version control course covering everything from absolute zero to professional-level knowledge. 182 files. 12 sections. Licensed CC BY-SA 4.0. No paywall.",
       },
       {
         type: "h2",
@@ -55,7 +55,7 @@ const _git_unlocked_open_source_course: BlogPost = {
       },
       {
         type: "p",
-        text: "Teaching is also one of the best ways to learn. Writing 217 files about Git forced me to understand everything at a depth I would not have reached by just using it. When you write a glossary definition for every Git term you realise quickly which concepts you only half understand.",
+        text: "Teaching is also one of the best ways to learn. Writing 182 files about Git forced me to understand everything at a depth I would not have reached by just using it. When you write a glossary definition for every Git term you realise quickly which concepts you only half understand.",
       },
       {
         type: "h2",
@@ -93,7 +93,7 @@ const _git_unlocked_open_source_course: BlogPost = {
       {
         type: "ol-links",
         items: [
-          { text: "git-unlocked repository - the full course, MIT licensed and free", url: "https://github.com/zaccesss/git-unlocked" },
+          { text: "git-unlocked repository - the full course, free under CC BY-SA 4.0", url: "https://github.com/zaccesss/git-unlocked" },
           { text: "GitHub Docs - official documentation for GitHub features, workflows and CLI", url: "https://docs.github.com" },
           { text: "Pro Git - Scott Chacon and Ben Straub (free online) - the most complete Git reference available", url: "https://git-scm.com/book/en/v2" },
           { text: "Open Source Guides - how to contribute to and maintain open source projects", url: "https://opensource.guide" },
