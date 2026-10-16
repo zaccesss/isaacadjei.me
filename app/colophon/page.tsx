@@ -114,7 +114,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Newsletter",
-        detail: <>The newsletter is part of this site. Each issue is a file in the repository with a short letter. The site gathers the posts, TILs and notes from the weeks before underneath it. Signing up sends a confirmation link first, then <A href="https://resend.com">Resend</A> keeps the subscriber list, sends each issue as a broadcast on the morning of its date and handles one-click unsubscribes. Email clients run no scripts, so a flowchart in an issue is drawn once to a PNG for the email, while the site draws the live version. Photos in an issue carry a caption with their credit.</>,
+        detail: <>The newsletter is part of this site. Each issue is a file in the repository with a short letter. The site gathers the posts, TILs and notes from the weeks before underneath it. Signing up sends a confirmation link first, then <A href="https://resend.com">Resend</A> keeps the subscriber list, sends each issue as a broadcast at 08:00 on its date and handles one-click unsubscribes. The page for each issue appears on the site at the same moment, so every link in the email opens a live page. Email clients run no scripts, so a flowchart in an issue is drawn once to a PNG for the email, while the site draws the live version. Photos in an issue carry a caption with their credit.</>,
       },
       {
         name: "GitHub Actions",
