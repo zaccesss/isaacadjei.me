@@ -3,7 +3,9 @@ import { posts } from "@/data/blog"
 import { tilEntries } from "@/data/til"
 import { notePosts } from "@/data/notes"
 import { videos, podcasts, books, articles, resources, others, MONTH_NUMBER, type Month } from "@/data/consumed"
-import { isLive } from "@/lib/schedule"
+import { isLiveFromHour } from "@/lib/schedule"
+
+export const ISSUE_LIVE_HOUR = 8
 
 export interface NewsletterIssueFile {
   kind?: "letter" | "outside" | "midweek"
@@ -224,7 +226,7 @@ export function allIssues(): Issue[] {
 
 export function getPublishedIssues(now: Date = new Date()): Issue[] {
   const all = allIssues()
-  const pool = process.env.NODE_ENV === "development" ? all : all.filter((i) => i.published && isLive(i.date, now))
+  const pool = process.env.NODE_ENV === "development" ? all : all.filter((i) => i.published && isLiveFromHour(i.date, ISSUE_LIVE_HOUR, now))
   return [...pool].reverse()
 }
 

@@ -7,6 +7,17 @@ export function isLive(date: string | undefined, now: Date = new Date()): boolea
   return date.slice(0, 10) <= londonToday(now)
 }
 
+export function londonHour(now: Date = new Date()): number {
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", hourCycle: "h23" })
+  return Number(fmt.format(now)) % 24
+}
+
+export function isLiveFromHour(date: string, hour: number, now: Date = new Date()): boolean {
+  const day = date.slice(0, 10)
+  const today = londonToday(now)
+  return day < today || (day === today && londonHour(now) >= hour)
+}
+
 export function liveOnly<T extends object>(items: T[], now: Date = new Date()): T[] {
   return items.filter((item) => {
     const { date, published } = item as { date?: string; published?: boolean }

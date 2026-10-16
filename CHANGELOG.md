@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.87.0] - 2026-10-16
+
+_Newsletter_
+
+### Changed
+
+- Newsletter issues appear on the site at 08:00 on their date, the same moment the email goes out
+
 ## [2.86.6] - 2026-10-15
 
 _Zacess_

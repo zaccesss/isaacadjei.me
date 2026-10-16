@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.87.0",
+    date: "2026-10-16",
+    label: "Newsletter",
+    changed: [
+      "Newsletter issues appear on the site at 08:00 on their date, the same moment the email goes out",
+    ],
+  },
+  {
     version: "v2.86.6",
     date: "2026-10-15",
     label: "Zacess",
