@@ -102,6 +102,7 @@ import _63 from "./entries/github-actions-timeout-minutes"
 import _64 from "./entries/postgres-now-transaction-time"
 import _65 from "./entries/isolation-forest-offset"
 import _66 from "./entries/sqlalchemy-identity-not-null"
+import _67 from "./entries/ardupilot-sitl-default-cmac"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -170,4 +171,5 @@ export const tilEntries: TILEntry[] = [
   _64,
   _65,
   _66,
+  _67,
 ]
