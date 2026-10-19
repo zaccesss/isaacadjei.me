@@ -300,7 +300,7 @@ const _zacess: Project = {
           ["VS Code", "[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=zacess.zacess-themes)"],
           ["Cursor, Windsurf, VSCodium and Antigravity", "[Open VSX](https://open-vsx.org/extension/zacess/zacess-themes)"],
           ["Obsidian", "[Obsidian community directory](https://community.obsidian.md/themes/zacess)"],
-          ["Neovim", "[zacess.nvim](https://github.com/zacesshq/zacess.nvim) with any plugin manager"],
+          ["Neovim", "[zacess.nvim](https://github.com/zacesshq/zacess.nvim) with any plugin manager, listed in [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)"],
           ["JetBrains IDEs", "[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35082-zacess-themes)"],
           ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess)"],
           ["Sublime Text, Helix and Emacs", "The [latest release](https://github.com/zacesshq/themes/releases/latest)"],

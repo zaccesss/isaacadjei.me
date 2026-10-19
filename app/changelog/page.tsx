@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.88.2",
+    date: "2026-10-19",
+    label: "Projects",
+    changed: [
+      "The Zacess project page notes that the Neovim themes are listed in awesome-neovim",
+    ],
+  },
+  {
     version: "v2.88.1",
     date: "2026-10-19",
     label: "Newsletter",
