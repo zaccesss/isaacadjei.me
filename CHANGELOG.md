@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.89.0] - 2026-10-19
+
+_Zacess_
+
+### Changed
+
+- The Zacess project page covers the two new high contrast themes, making six contrast themes in the reader and the code themes
+- The Zacess launch post has a dated update note about the new themes
+
 ## [2.88.3] - 2026-10-19
 
 _Newsletter_

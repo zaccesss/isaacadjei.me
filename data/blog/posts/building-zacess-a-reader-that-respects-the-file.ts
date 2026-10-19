@@ -247,8 +247,16 @@ const _building_zacess: BlogPost = {
     "Zacess is a free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. Why I built it, how it works, short demos, the matching code themes and what it cannot do yet.",
   tags: ["Accessibility", "Rust", "WebAssembly", "TypeScript", "Zacess", "Code themes"],
   projectSlug: "zacess",
+  updated: "2026-10-19",
   published: true,
-  content: zacessLaunch,
+  content: [
+    {
+      type: "callout",
+      tone: "note",
+      text: "Update, 19 October 2026: two high contrast themes have joined, Zacess High Contrast Dark and Zacess High Contrast Light, with pure black and pure white backgrounds. There are now six themes, both as code themes and as reading themes in the browser version. See them all on the [code themes page](https://zacess.com/themes/).",
+    },
+    ...zacessLaunch,
+  ],
 }
 
 export default _building_zacess

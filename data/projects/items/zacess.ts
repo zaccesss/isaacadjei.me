@@ -7,9 +7,9 @@ const _zacess: Project = {
     id: "zacess",
     title: "Zacess: Make Every Page Accessible",
     description:
-      "A free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. The browser version is live, built on a Rust core compiled to WebAssembly. The same four contrast themes ship as code themes for eight editors and five terminals.",
+      "A free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. The browser version is live, built on a Rust core compiled to WebAssembly. The same six contrast themes ship as code themes for eight editors and five terminals.",
     longDescription:
-      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe four contrast themes also became code themes. One palette file generates them for VS Code, JetBrains IDEs, Obsidian, Neovim, Zed, Sublime Text, Helix, Emacs and five terminals. A check holds every text and syntax colour to 7 to 1 and tests them under three kinds of colour blindness.",
+      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe six contrast themes also became code themes. One palette file generates them for VS Code, JetBrains IDEs, Obsidian, Neovim, Zed, Sublime Text, Helix, Emacs and five terminals. A check holds every text and syntax colour to 7 to 1 and tests them under three kinds of colour blindness.",
     technologies: [
       "Rust",
       "WebAssembly",
@@ -65,7 +65,7 @@ const _zacess: Project = {
       "Links inside documents become real links with a list of them. No address is ever fetched",
       "A 440 KB Rust core compiled to WebAssembly, shared by the browser version and the apps to come",
       "Zero axe violations at WCAG 2.2 A and AA, 44 pixel touch targets and checks on WebKit as well as Chromium",
-      "The four contrast themes as code themes for eight editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every colour at 7 to 1",
+      "The six contrast themes as code themes for eight editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every colour at 7 to 1 or more and the two high contrast themes above 9 to 1",
     ],
     links: [
       { label: "Code themes", url: "https://zacess.com/themes/" },
@@ -199,7 +199,7 @@ const _zacess: Project = {
           ["paragraph_spacing", "0 to 5 times the font size"],
           ["character_spacing", "0 to 0.5 times the font size"],
           ["column_width", "20 to 150 average character widths"],
-          ["contrast", "dark_on_light, light_on_dark, yellow_on_black or black_on_cream"],
+          ["contrast", "dark_on_light, light_on_dark, yellow_on_black, black_on_cream, high_contrast_dark or high_contrast_light"],
           ["reading_ruler", "Enabled, position from 0 to 1 and 1 to 5 lines"],
         ],
         caption: "The main reading profile fields",
@@ -212,6 +212,8 @@ const _zacess: Project = {
           ["light_on_dark", "#f5f5f5", "#121212", "17.2 to 1"],
           ["yellow_on_black", "#ffeb3b", "#000000", "17.2 to 1"],
           ["black_on_cream", "#000000", "#fdf6e3", "19.5 to 1"],
+          ["high_contrast_dark", "#ffffff", "#000000", "21 to 1"],
+          ["high_contrast_light", "#000000", "#ffffff", "21 to 1"],
         ],
         caption: "The themes are chosen by ratio, well above the 7 to 1 that WCAG AAA asks for",
       },
@@ -277,12 +279,12 @@ const _zacess: Project = {
       { type: "h2", text: "Code themes" },
       {
         type: "p",
-        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black and Zacess Cream are the same four themes as code themes. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
+        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black, Zacess Cream, Zacess High Contrast Dark and Zacess High Contrast Light are the same six themes as code themes. The two high contrast themes, added in version 0.2.0, sit on pure black and pure white and keep every code colour at 10.52 to 1 or more on dark and 9.08 to 1 or more on light, above the high contrast themes built into VS Code and GitHub, whose weakest code colours measure between 5.83 and 7.05 to 1. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
       },
       {
         type: "diagram",
         code: `flowchart LR
-    P["palette/zacess.json<br/>one palette, four themes"] --> B["build script"]
+    P["palette/zacess.json<br/>one palette, six themes"] --> B["build script"]
     B --> E["VS Code, JetBrains, Obsidian, Neovim, Zed,<br/>Sublime Text, Helix, Emacs"]
     B --> T["iTerm2, Alacritty, kitty,<br/>Ghostty, Windows Terminal"]
     P --> C["check script<br/>7 to 1 text, 3 to 1 borders,<br/>colour blindness pairs"]
@@ -302,7 +304,7 @@ const _zacess: Project = {
           ["Obsidian", "[Obsidian community directory](https://community.obsidian.md/themes/zacess)"],
           ["Neovim", "[zacess.nvim](https://github.com/zacesshq/zacess.nvim) with any plugin manager, listed in [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)"],
           ["JetBrains IDEs", "[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35082-zacess-themes)"],
-          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess)"],
+          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess), with the high contrast update in review"],
           ["Sublime Text, Helix and Emacs", "The [latest release](https://github.com/zacesshq/themes/releases/latest)"],
           ["iTerm2, Alacritty, kitty, Ghostty and Windows Terminal", "The [themes repository](https://github.com/zacesshq/themes)"],
         ],
@@ -381,8 +383,8 @@ const _zacess: Project = {
         type: "clip",
         src: `${VID}/themes.mp4`,
         poster: `${VID}/themes.webp`,
-        alt: "The code themes page at zacess.com: the theme menu switches between Zacess Light, Dark, Yellow on Black and Cream, the language menu switches between TypeScript, Python, Rust and HTML, then the page scrolls to the four-theme grid and the install cards",
-        caption: "The code themes page: each theme on each language",
+        alt: "The code themes page at zacess.com as it was with the original four themes: the theme menu switches between Zacess Light, Dark, Yellow on Black and Cream, the language menu switches between TypeScript, Python, Rust and HTML, then the page scrolls to the four-theme grid and the install cards",
+        caption: "The code themes page with the original four themes, each on each language",
       },
       { type: "h2", text: "What is next" },
       {

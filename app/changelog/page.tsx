@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.89.0",
+    date: "2026-10-19",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page covers the two new high contrast themes, making six contrast themes in the reader and the code themes",
+      "The Zacess launch post has a dated update note about the new themes",
+    ],
+  },
+  {
     version: "v2.88.3",
     date: "2026-10-19",
     label: "Newsletter",
