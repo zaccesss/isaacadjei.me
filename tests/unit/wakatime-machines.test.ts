@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest"
-import { dependencyName, humanCodingDay, languageName, machineName, publicEditorName, publicProjectName } from "@/lib/wakatime-editors"
+import { dependencyName, publicCodingDay, languageName, machineName, publicEditorName, publicProjectName } from "@/lib/wakatime-editors"
 
 describe("machineName", () => {
   it("folds the MacBook's old hostnames into one", () => {
     expect(machineName("ZACCESS-MBK.local")).toBe("ZACCESS-MBK")
     expect(machineName("Mac.Home")).toBe("ZACCESS-MBK")
     expect(machineName("Isaacs-MacBook-Air.local")).toBe("ZACCESS-MBK")
+    expect(machineName("mac.campus.aston.ac.uk")).toBe("ZACCESS-MBK")
+    expect(machineName("Mac.localdomain")).toBe("ZACCESS-MBK")
     expect(machineName("ZACCESS-MBK")).toBe("ZACCESS-MBK")
   })
 
@@ -34,34 +36,32 @@ describe("dependencyName", () => {
   })
 })
 
-describe("humanCodingDay", () => {
+describe("publicCodingDay", () => {
   const day = {
     total_seconds: 4000,
-    editors: [{ name: "Claude Code", total_seconds: 3000 }, { name: "VS Code", total_seconds: 1000 }],
+    editors: [{ name: "Claude Code", total_seconds: 2000 }, { name: "VS Code", total_seconds: 1000 }, { name: "Discord", total_seconds: 1000 }],
     languages: [{ name: "Python", total_seconds: 4000 }],
+    operating_systems: [{ name: "Mac", total_seconds: 3900 }, { name: "Unknown OS", total_seconds: 100 }],
     hours: Array.from({ length: 24 }, (_, h) => (h === 9 ? 4000 : 0)),
   }
 
-  it("takes the AI clients' time out of the total and the editors", () => {
-    const human = humanCodingDay(day)
-    expect(human.total_seconds).toBe(1000)
-    expect(human.editors).toEqual([{ name: "VS Code", total_seconds: 1000 }])
+  it("keeps AI time but takes chat apps out of the total and the editors", () => {
+    const d = publicCodingDay(day)
+    expect(d.total_seconds).toBe(3000)
+    expect(d.editors.map((e) => e.name)).toEqual(["Claude Code", "VS Code"])
   })
 
-  it("scales the languages and hours by the human share", () => {
-    const human = humanCodingDay(day)
-    expect(human.languages).toEqual([{ name: "Python", total_seconds: 1000 }])
-    expect(human.hours?.[9]).toBe(1000)
-  })
-
-  it("leaves a day with no AI clients untouched", () => {
-    const plain = { total_seconds: 60, editors: [{ name: "Zed", total_seconds: 60 }] }
-    expect(humanCodingDay(plain)).toBe(plain)
+  it("scales the languages and hours by the coding share and drops Unknown OS", () => {
+    const d = publicCodingDay(day)
+    expect(d.languages).toEqual([{ name: "Python", total_seconds: 3000 }])
+    expect(d.hours?.[9]).toBe(3000)
+    expect(d.operating_systems?.map((o) => o.name)).toEqual(["Mac"])
   })
 })
 
 describe("publicEditorName", () => {
-  it("counts the VS Code forks as VS Code and keeps every other name", () => {
+  it("counts AI tools and the VS Code forks as VS Code and keeps every other name", () => {
+    expect(publicEditorName("Claude Code")).toBe("VS Code")
     expect(publicEditorName("Cursor")).toBe("VS Code")
     expect(publicEditorName("Antigravity IDE")).toBe("VS Code")
     expect(publicEditorName("Obsidian")).toBe("Obsidian")

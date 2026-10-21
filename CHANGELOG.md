@@ -2,6 +2,17 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.94.0] - 2026-10-21
+
+_Stats_
+
+### Changed
+
+- Each tab on the stats page now shows that area in full, including the live charts, with a new GitHub tab
+- The Applications tab shows the live map of cities
+- The coding stats count all my coding time again and add public projects, systems and a year calendar
+- New charts across the stats page: coding and listening clocks, language and gaming breakdowns, applications by region and a year at a glance
+
 ## [2.92.0] - 2026-10-21
 
 _Stats_
