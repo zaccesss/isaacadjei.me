@@ -2,6 +2,20 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.90.0] - 2026-10-21
+
+_Fedora_
+
+### Added
+
+- A note on putting Fedora beside Windows on the ThinkPad
+- A TIL on listing Windows first in Fedora's boot menu
+
+### Changed
+
+- The ThinkPad's live status card names the running system, ZACCESS-LNV-WIN or ZACCESS-LNV-FED. It shows ZACCESS-LNV when the laptop is off
+- The uses page describes the ThinkPad's Fedora KDE setup
+
 ## [2.89.0] - 2026-10-19
 
 _Zacess_

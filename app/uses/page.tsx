@@ -51,7 +51,7 @@ const sections: Array<{
         name: "Lenovo ThinkPad P14s Gen 5 AMD (ZACCESS-LNV)",
         icon: `${SI}/lenovo`,
         href: "https://www.lenovo.com/gb/en/p/laptops/thinkpad/thinkpadp/lenovo-thinkpad-p14s-gen-5-14-inch-amd-mobile-workstation/len101t0101",
-        detail: "A Ryzen 7 PRO 8840HS mobile workstation with 16 GB of DDR5 and a 512 GB SSD. My secondary machine, dual booting Windows and Ubuntu so I can test my setup on both natively. On the Windows side WSL2 gives me a real Linux kernel for tooling that expects one. An NSSM-managed Python daemon feeds live battery and charging state to the site alongside the GPC and MacBook.",
+        detail: "A Ryzen 7 PRO 8840HS mobile workstation with 16 GB of DDR5 and a 512 GB SSD. My secondary machine, dual booting Windows 11 and Fedora KDE Plasma from one boot menu with Windows listed first. Fedora has 150 GB of its own on an encrypted Btrfs partition, with Secure Boot left on. Its desktop is set up like Windows 11: one taskbar centred along the bottom, the window keys I use with Rectangle on my Mac and my own high-contrast light and dark themes that switch by time of day. Kitty is the terminal and my OneDrive mounts through rclone. All of it lives in my config repos, so a new device can be rebuilt from them. On the Windows side WSL2 runs Ubuntu for tooling that expects Linux. The same small Python daemon runs on both systems (NSSM on Windows, systemd on Fedora) and feeds live battery and charging state to the now page, named for whichever system is running.",
       },
       {
         name: "PlayStation 5 (ZACCESS-PS5)",
