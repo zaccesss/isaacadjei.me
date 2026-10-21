@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.94.0",
+    date: "2026-10-21",
+    label: "Stats",
+    changed: [
+      "Each tab on the stats page now shows that area in full, including the live charts, with a new GitHub tab",
+      "The Applications tab shows the live map of cities",
+      "The coding stats count all my coding time again and add public projects, systems and a year calendar",
+      "New charts across the stats page: coding and listening clocks, language and gaming breakdowns, applications by region and a year at a glance",
+    ],
+  },
+  {
     version: "v2.93.0",
     date: "2026-10-21",
     label: "Now",

@@ -73,7 +73,7 @@ export function LineChart({
     <ResponsiveContainer width="100%" height={height}>
       <RLineChart data={data} margin={{ top: 6, right: 8, bottom: 0, left: 8 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={dots ? 22 : 5} />
+        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={22} />
         <YAxis hide />
         <Tooltip
           content={({ active, payload, label }) => (
@@ -127,7 +127,7 @@ export function BarChart({
             tick={hideXAxisTicks ? false : { fontSize: 10 }}
             tickLine={false}
             axisLine={false}
-            interval={data.length > 8 ? 0 : interval}
+            interval={data.length > 12 ? Math.ceil(data.length / 10) - 1 : data.length > 8 ? 0 : interval}
             angle={data.length > 5 ? -35 : 0}
             textAnchor={data.length > 5 ? "end" : "middle"}
             height={data.length > 5 && !hideXAxisTicks ? 54 : 30}
@@ -428,7 +428,7 @@ export function Composed({
     <ResponsiveContainer width="100%" height={height}>
       <RComposedChart data={data} margin={{ top: 6, right: 8, bottom: 0, left: 8 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={22} />
         <YAxis yAxisId="bar" hide />
         <YAxis yAxisId="line" orientation="right" hide />
         <Tooltip
@@ -556,7 +556,7 @@ export function StackedArea({
     <ResponsiveContainer width="100%" height={height}>
       <RAreaChart data={data} margin={{ top: 6, right: 8, bottom: 0, left: 8 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+        <XAxis dataKey={xKey} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" minTickGap={22} />
         <YAxis hide />
         <Tooltip
           content={({ active, payload, label }) => (
