@@ -1,5 +1,6 @@
 import { redis } from "@/lib/redis"
 import { DISCORD_USER_ID } from "@/lib/site-config"
+import { publicActivities } from "@/lib/lanyard-public"
 
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET
@@ -433,7 +434,7 @@ export async function getLanyard(): Promise<LanyardPublic | null> {
     application_id: a.application_id,
   }))
 
-  return { data: { discord_status: data.discord_status ?? "offline", activities } }
+  return { data: { discord_status: data.discord_status ?? "offline", activities: publicActivities(activities) } }
 }
 
 export interface LiveSnapshot {
