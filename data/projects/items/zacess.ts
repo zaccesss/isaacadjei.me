@@ -199,7 +199,7 @@ const _zacess: Project = {
           ["paragraph_spacing", "0 to 5 times the font size"],
           ["character_spacing", "0 to 0.5 times the font size"],
           ["column_width", "20 to 150 average character widths"],
-          ["contrast", "dark_on_light, light_on_dark, yellow_on_black, black_on_cream, high_contrast_dark or high_contrast_light"],
+          ["contrast", "dark_on_light, light_on_dark, yellow_on_black, black_on_cream, high_contrast_dark, high_contrast_light, deep_contrast_dark or deep_contrast_light"],
           ["reading_ruler", "Enabled, position from 0 to 1 and 1 to 5 lines"],
         ],
         caption: "The main reading profile fields",
@@ -214,6 +214,8 @@ const _zacess: Project = {
           ["black_on_cream", "#000000", "#fdf6e3", "19.5 to 1"],
           ["high_contrast_dark", "#ffffff", "#000000", "21 to 1"],
           ["high_contrast_light", "#000000", "#ffffff", "21 to 1"],
+          ["deep_contrast_dark", "#ffffff", "#000000", "21 to 1"],
+          ["deep_contrast_light", "#000000", "#ffffff", "21 to 1"],
         ],
         caption: "The themes are chosen by ratio, well above the 7 to 1 that WCAG AAA asks for",
       },
@@ -279,7 +281,7 @@ const _zacess: Project = {
       { type: "h2", text: "Code themes" },
       {
         type: "p",
-        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black and Zacess Cream match the reader's first four themes. Version 0.2.0 added Zacess High Contrast Dark and Zacess High Contrast Light on pure black and pure white. Version 0.3.0 adds Zacess Deep Contrast Dark and Zacess Deep Contrast Light for low vision: the same pure backgrounds with deep, fully saturated syntax colours, plus yellow focus outlines on dark and red ones on light. The core already has both Deep Contrast themes as reading themes and they reach the browser version with its next update. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
+        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black and Zacess Cream match the reader's first four themes. Version 0.2.0 added Zacess High Contrast Dark and Zacess High Contrast Light on pure black and pure white. Version 0.3.0 adds Zacess Deep Contrast Dark and Zacess Deep Contrast Light for low vision: the same pure backgrounds with deep, fully saturated syntax colours, plus yellow focus outlines on dark and red ones on light. Both Deep Contrast themes are reading themes in the browser version too, with #6bceff links and a yellow focus ring on dark and #0037df links and a red focus ring on light. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
 
       },
       {
