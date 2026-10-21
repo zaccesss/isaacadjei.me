@@ -25,6 +25,19 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.90.0",
+    date: "2026-10-21",
+    label: "Fedora",
+    added: [
+      "A note on putting Fedora beside Windows on the ThinkPad",
+      "A TIL on listing Windows first in Fedora's boot menu",
+    ],
+    changed: [
+      "The ThinkPad's live status card names the running system, ZACCESS-LNV-WIN or ZACCESS-LNV-FED. It shows ZACCESS-LNV when the laptop is off",
+      "The uses page describes the ThinkPad's Fedora KDE setup",
+    ],
+  },
+  {
     version: "v2.89.0",
     date: "2026-10-19",
     label: "Zacess",

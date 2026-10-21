@@ -211,6 +211,11 @@ function isStale(ts: string | null): boolean {
   return Date.now() - new Date(ts).getTime() > 5 * 60 * 1000
 }
 
+function laptopName(device: string | null, online: boolean): string {
+  if (!device) return "Lenovo"
+  return online ? device : device.replace(/-(WIN|FED)$/, "")
+}
+
 function currentTime(tz: string): string {
   return new Date().toLocaleTimeString("en-GB", {
     timeZone: tz,
@@ -674,7 +679,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
             <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <Laptop className={cn("h-4 w-4 shrink-0", lOnline ? "text-foreground" : "text-muted-foreground/40")} />
-                <p className={cn("text-xs font-semibold truncate", lOnline ? "" : "text-foreground/50")}>{lenovo.device ?? "Lenovo"}</p>
+                <p className={cn("text-xs font-semibold truncate", lOnline ? "" : "text-foreground/50")}>{laptopName(lenovo.device, lOnline)}</p>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-1.5">

@@ -103,6 +103,8 @@ import _64 from "./entries/postgres-now-transaction-time"
 import _65 from "./entries/isolation-forest-offset"
 import _66 from "./entries/sqlalchemy-identity-not-null"
 import _67 from "./entries/ardupilot-sitl-default-cmac"
+import _68 from "./entries/pymavlink-recv-match-type"
+import _100 from "./entries/grub-windows-first-on-fedora"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -172,4 +174,6 @@ export const tilEntries: TILEntry[] = [
   _65,
   _66,
   _67,
+  _68,
+  _100,
 ]
