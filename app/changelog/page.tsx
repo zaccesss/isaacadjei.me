@@ -25,6 +25,16 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.92.0",
+    date: "2026-10-21",
+    label: "Stats",
+    changed: [
+      "The coding stats count time spent coding in an editor only, so the totals are smaller and more honest",
+      "Every editor and app keeps its own name in the coding stats, with Cursor counted under VS Code",
+      "The coding stats name public projects only",
+    ],
+  },
+  {
     version: "v2.91.1",
     date: "2026-10-21",
     label: "Zacess",

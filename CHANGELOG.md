@@ -2,6 +2,16 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.92.0] - 2026-10-21
+
+_Stats_
+
+### Changed
+
+- The coding stats count time spent coding in an editor only, so the totals are smaller and more honest
+- Every editor and app keeps its own name in the coding stats, with Cursor counted under VS Code
+- The coding stats name public projects only
+
 ## [2.91.1] - 2026-10-21
 
 _Zacess_

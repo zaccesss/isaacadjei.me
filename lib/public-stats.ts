@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/supabase"
 import { readAll } from "@/lib/supabase-read-all"
-import { languageName, publicEditorName } from "@/lib/wakatime-editors"
+import { humanCodingDay, languageName, publicEditorName } from "@/lib/wakatime-editors"
 import { summarise, type GameSessionRow, type PlaytimeRow, type GenreRow, type GamingSummary } from "@/lib/gaming"
 
 export type Named = { name: string; value: number }
@@ -53,7 +53,7 @@ async function compute(): Promise<PublicStats> {
     supabase.from("location_geocodes").select("location, country_code"),
   ])
 
-  const wakaRows = (waka.data ?? []) as { date: string; total_seconds: number; languages: { name: string; total_seconds: number }[] | null; editors: { name: string; total_seconds: number }[] | null; hours: number[] | null }[]
+  const wakaRows = ((waka.data ?? []) as { date: string; total_seconds: number; languages: { name: string; total_seconds: number }[] | null; editors: { name: string; total_seconds: number }[] | null; hours: number[] | null }[]).map(humanCodingDay)
   const lang = new Map<string, number>()
   const editor = new Map<string, number>()
   const weekday = [0, 0, 0, 0, 0, 0, 0]
