@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.93.0",
+    date: "2026-10-21",
+    label: "Now",
+    changed: [
+      "The Discord card no longer repeats the song already shown on the Spotify card",
+      "The Discord card shows a project's name only when the project is public",
+    ],
+  },
+  {
     version: "v2.92.0",
     date: "2026-10-21",
     label: "Stats",
