@@ -7,9 +7,9 @@ const _zacess: Project = {
     id: "zacess",
     title: "Zacess: Make Every Page Accessible",
     description:
-      "A free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. The browser version is live, built on a Rust core compiled to WebAssembly. The same six contrast themes ship as code themes for eight editors and five terminals.",
+      "A free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. The browser version is live, built on a Rust core compiled to WebAssembly. Its contrast themes also ship as eight code themes for nine editors and five terminals.",
     longDescription:
-      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe six contrast themes also became code themes. One palette file generates them for VS Code, JetBrains IDEs, Obsidian, Neovim, Zed, Sublime Text, Helix, Emacs and five terminals. A check holds every text and syntax colour to 7 to 1 and tests them under three kinds of colour blindness.",
+      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe contrast themes also became code themes, eight of them now. One palette file generates them for VS Code, JetBrains IDEs, Obsidian, Neovim, Zed, Sublime Text, Helix, Emacs, Eclipse and five terminals. A check holds every text and syntax colour to 7 to 1 and tests them under three kinds of colour blindness.",
     technologies: [
       "Rust",
       "WebAssembly",
@@ -65,7 +65,7 @@ const _zacess: Project = {
       "Links inside documents become real links with a list of them. No address is ever fetched",
       "A 440 KB Rust core compiled to WebAssembly, shared by the browser version and the apps to come",
       "Zero axe violations at WCAG 2.2 A and AA, 44 pixel touch targets and checks on WebKit as well as Chromium",
-      "The six contrast themes as code themes for eight editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every colour at 7 to 1 or more and the two high contrast themes above 9 to 1",
+      "Eight code themes for nine editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every code colour at 7 to 1 or more on every surface",
     ],
     links: [
       { label: "Code themes", url: "https://zacess.com/themes/" },
@@ -279,13 +279,33 @@ const _zacess: Project = {
       { type: "h2", text: "Code themes" },
       {
         type: "p",
-        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black, Zacess Cream, Zacess High Contrast Dark and Zacess High Contrast Light are the same six themes as code themes. The two high contrast themes, added in version 0.2.0, sit on pure black and pure white and keep every code colour at 10.52 to 1 or more on dark and 9.08 to 1 or more on light, above the high contrast themes built into VS Code and GitHub, whose weakest code colours measure between 5.83 and 7.05 to 1. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
+        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. Zacess Light, Zacess Dark, Zacess Yellow on Black and Zacess Cream match the reader's first four themes. Version 0.2.0 added Zacess High Contrast Dark and Zacess High Contrast Light on pure black and pure white. Version 0.3.0 adds Zacess Deep Contrast Dark and Zacess Deep Contrast Light for low vision: the same pure backgrounds with deep, fully saturated syntax colours, plus yellow focus outlines on dark and red ones on light. The core already has both Deep Contrast themes as reading themes and they reach the browser version with its next update. They live in [zacesshq/themes](https://github.com/zacesshq/themes) under the MIT licence and you can try each one on 20 languages on the [code themes page](https://zacess.com/themes/).",
+
+      },
+      {
+        type: "table",
+        headers: ["Theme", "Made for", "Text on background", "Weakest code colour on the background"],
+        rows: [
+          ["Zacess Light", "Everyday use in a bright room", "#111111 on #ffffff", "8.2 to 1"],
+          ["Zacess Dark", "Everyday use in a dim room", "#f5f5f5 on #121212", "8.5 to 1"],
+          ["Zacess Yellow on Black", "Low vision", "#ffeb3b on #000000", "9.7 to 1"],
+          ["Zacess Cream", "Dyslexia friendly reading", "#000000 on #fdf6e3", "8.4 to 1"],
+          ["Zacess High Contrast Dark", "The highest contrast on a dark screen", "#ffffff on #000000", "9.9 to 1"],
+          ["Zacess High Contrast Light", "The highest contrast on a light screen", "#000000 on #ffffff", "8.6 to 1"],
+          ["Zacess Deep Contrast Dark", "Low vision, with deep saturated colours", "#ffffff on #000000", "9.0 to 1"],
+          ["Zacess Deep Contrast Light", "Low vision, with vivid deep colours", "#000000 on #ffffff", "7.7 to 1"],
+        ],
+        caption: "The eight code themes. Every ratio is rounded down and every code colour keeps 7 to 1 over the selection, the current line and the diff colours too",
+      },
+      {
+        type: "p",
+        text: "Version 0.3.0 also pushed every theme's syntax and terminal colours to full saturation without moving a single contrast ratio. It also gave comments a real colour instead of grey in six of the themes. The four high and deep contrast themes keep their weakest code colour at 7.7 to 1 or more on the background, above the high contrast themes built into VS Code and GitHub, whose weakest code colours measure between 5.83 and 7.05 to 1.",
       },
       {
         type: "diagram",
         code: `flowchart LR
-    P["palette/zacess.json<br/>one palette, six themes"] --> B["build script"]
-    B --> E["VS Code, JetBrains, Obsidian, Neovim, Zed,<br/>Sublime Text, Helix, Emacs"]
+    P["palette/zacess.json<br/>one palette, eight themes"] --> B["build script"]
+    B --> E["VS Code, JetBrains, Obsidian, Neovim, Zed,<br/>Sublime Text, Helix, Emacs, Eclipse"]
     B --> T["iTerm2, Alacritty, kitty,<br/>Ghostty, Windows Terminal"]
     P --> C["check script<br/>7 to 1 text, 3 to 1 borders,<br/>colour blindness pairs"]
     C --> R["release<br/>stores and read-only copies"]`,
@@ -293,7 +313,7 @@ const _zacess: Project = {
       },
       {
         type: "p",
-        text: "Every colour comes from one palette file, so a fix lands in every editor at once. The check script refuses any text or syntax colour under 7 to 1 on the background, the selection, the current line and the diff backgrounds. It refuses any border under 3 to 1. It also simulates protanopia, deuteranopia and tritanopia and fails if two kinds of code, such as functions and types, look the same to someone with that kind of colour blindness. When I made Yellow on Black use fewer greens, the first lavender I tried for types failed that check against the blue functions, so I picked a lighter one.",
+        text: "Every colour comes from one palette file, so a fix lands in every editor at once. The check script refuses any text or syntax colour under 7 to 1 on the background, the selection, the current line and the diff backgrounds. It refuses any border under 3 to 1. It also simulates protanopia, deuteranopia and tritanopia and fails if two kinds of code, such as functions and types, look the same to someone with that kind of colour blindness. When I made Yellow on Black use fewer greens, the first lavender I tried for types failed that check against the blue functions, so I picked a lighter one. Terminals are the one place with an allowance: the coloured slots in the four light themes may sit at 4.5 to 1, the level WCAG AA asks for, because at 7 to 1 they read as black on white. Their black, white and grey slots and every code colour stay at 7 to 1 or more.",
       },
       {
         type: "table",
@@ -304,15 +324,16 @@ const _zacess: Project = {
           ["Obsidian", "[Obsidian community directory](https://community.obsidian.md/themes/zacess)"],
           ["Neovim", "[zacess.nvim](https://github.com/zacesshq/zacess.nvim) with any plugin manager, listed in [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)"],
           ["JetBrains IDEs", "[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35082-zacess-themes)"],
-          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess), with the high contrast update in review"],
-          ["Sublime Text, Helix and Emacs", "The [latest release](https://github.com/zacesshq/themes/releases/latest)"],
-          ["iTerm2, Alacritty, kitty, Ghostty and Windows Terminal", "The [themes repository](https://github.com/zacesshq/themes)"],
+          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess), with the 0.3.0 update in review"],
+          ["Sublime Text, Helix, Emacs and Eclipse", "The [latest release](https://github.com/zacesshq/themes/releases/latest). Eclipse imports a preference file with File, Import, Preferences"],
+          ["iTerm2, Alacritty, kitty, Ghostty and Windows Terminal", "The [themes repository](https://github.com/zacesshq/themes). Light, Dark, Yellow on Black and Cream are in [iTerm2 Color Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes) and the other four are in review there"],
+          ["Latest release", "[0.3.0](https://github.com/zacesshq/themes/releases/tag/v0.3.0), 21 October 2026, live on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, Obsidian and zacess.nvim"],
         ],
         caption: "Where the code themes are published",
       },
       {
         type: "p",
-        text: "Each release builds the VS Code extension, the JetBrains plugin and zips for the other editors, then updates the read-only copies that Obsidian and Neovim install from, so one tag ships everywhere at once.",
+        text: "A tag builds the VS Code extension, the JetBrains plugin and zips for the other editors and publishes them to the stores. A release script then creates the GitHub release and updates the read-only copies that Obsidian and Neovim install from, with signed commits and tags.",
       },
       { type: "h2", text: "How it is checked" },
       {

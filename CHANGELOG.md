@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.91.0] - 2026-10-21
+
+_Zacess_
+
+### Changed
+
+- The Zacess project page covers Zacess Themes 0.3.0: two Deep Contrast themes, an Eclipse version and a table of all eight code themes
+- The Zacess launch post's update note covers the new themes
+
 ## [2.90.0] - 2026-10-21
 
 _Fedora_
