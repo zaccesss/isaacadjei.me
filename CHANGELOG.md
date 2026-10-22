@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.96.1] - 2026-10-22
+
+_Security_
+
+### Security
+
+- A security update for the library that reads the editor's text
+
 ## [2.96.0] - 2026-10-22
 
 _Open source_
