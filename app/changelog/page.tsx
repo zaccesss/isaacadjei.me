@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.96.1",
+    date: "2026-10-22",
+    label: "Security",
+    security: [
+      "A security update for the library that reads the editor's text",
+    ],
+  },
+  {
     version: "v2.96.0",
     date: "2026-10-22",
     label: "Open source",
