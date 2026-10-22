@@ -65,7 +65,7 @@ const _zacess: Project = {
       "Links inside documents become real links with a list of them. No address is ever fetched",
       "A 440 KB Rust core compiled to WebAssembly, shared by the browser version and the apps to come",
       "Zero axe violations at WCAG 2.2 A and AA, 44 pixel touch targets and checks on WebKit as well as Chromium",
-      "Eight code themes for nine editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every code colour at 7 to 1 or more on every surface",
+      "Eight code themes for ten editors and five terminals, on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, the Eclipse Marketplace, the Zed extension store and the Obsidian community directory, generated from one palette with every code colour at 7 to 1 or more on every surface",
     ],
     links: [
       { label: "Code themes", url: "https://zacess.com/themes/" },
@@ -307,7 +307,7 @@ const _zacess: Project = {
         type: "diagram",
         code: `flowchart LR
     P["palette/zacess.json<br/>one palette, eight themes"] --> B["build script"]
-    B --> E["VS Code, JetBrains, Obsidian, Neovim, Zed,<br/>Sublime Text, Helix, Emacs, Eclipse"]
+    B --> E["VS Code, JetBrains, Obsidian, Neovim, Zed,<br/>Sublime Text, Helix, Emacs, Eclipse, Xcode"]
     B --> T["iTerm2, Alacritty, kitty,<br/>Ghostty, Windows Terminal"]
     P --> C["check script<br/>7 to 1 text, 3 to 1 borders,<br/>colour blindness pairs"]
     C --> R["release<br/>stores and read-only copies"]`,
@@ -322,14 +322,16 @@ const _zacess: Project = {
         headers: ["Where", "How to get it"],
         rows: [
           ["VS Code", "[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=zacess.zacess-themes)"],
-          ["Cursor, Windsurf, VSCodium and Antigravity", "[Open VSX](https://open-vsx.org/extension/zacess/zacess-themes)"],
+          ["VSCodium and other VS Code based editors", "[Open VSX](https://open-vsx.org/extension/zacess/zacess-themes)"],
           ["Obsidian", "[Obsidian community directory](https://community.obsidian.md/themes/zacess)"],
           ["Neovim", "[zacess.nvim](https://github.com/zacesshq/zacess.nvim) with any plugin manager, listed in [awesome-neovim](https://github.com/rockerBOO/awesome-neovim)"],
           ["JetBrains IDEs", "[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/35082-zacess-themes)"],
-          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess), with the 0.3.0 update in review"],
-          ["Sublime Text, Helix, Emacs and Eclipse", "The [latest release](https://github.com/zacesshq/themes/releases/latest). Eclipse imports a preference file with File, Import, Preferences"],
+          ["Zed", "[Zed extension store](https://zed.dev/extensions?query=zacess)"],
+          ["Eclipse", "[Eclipse Marketplace](https://marketplace.eclipse.org/content/zacess-themes-0) or the [update site](https://zacesshq.github.io/themes/eclipse/) through Help, Install New Software"],
+          ["Xcode", "The [themes repository](https://github.com/zacesshq/themes/tree/main/editors/xcode), brought in with Settings, Themes, Import Classic Theme in Xcode 27"],
+          ["Sublime Text, Helix and Emacs", "The [latest release](https://github.com/zacesshq/themes/releases/latest)"],
           ["iTerm2, Alacritty, kitty, Ghostty and Windows Terminal", "The [themes repository](https://github.com/zacesshq/themes). Light, Dark, Yellow on Black and Cream are in [iTerm2 Color Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes) and the other four are in review there"],
-          ["Latest release", "[0.3.0](https://github.com/zacesshq/themes/releases/tag/v0.3.0), 21 October 2026, live on the VS Code Marketplace, Open VSX, the JetBrains Marketplace, Obsidian and zacess.nvim"],
+          ["Latest release", "The [latest release](https://github.com/zacesshq/themes/releases/latest) on GitHub, published to every store above at the same time"],
         ],
         caption: "Where the code themes are published",
       },

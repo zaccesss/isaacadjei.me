@@ -111,9 +111,9 @@ git clone https://github.com/zaccesss/linux-bootstrap.git
     },
     {
       type: "clip",
-      src: "/videos/projects/dev-environment/shell.mp4",
-      poster: "/videos/projects/dev-environment/shell.webp",
-      alt: "A new zsh session prints the welcome banner, cmds shows the colour-coded command reference grouped into navigation, Git, repos and system, then gs and glog show the repository status and recent history",
+      src: "/videos/projects/dev-environment/shell-zacess.mp4",
+      poster: "/videos/projects/dev-environment/shell-zacess.webp",
+      alt: "A new zsh session prints the welcome banner, cmds pages through the colour-coded command reference, then gs and glog show the status and recent history of a demo project",
       caption: "What a freshly bootstrapped shell looks like: the welcome banner, the cmds reference and the short Git aliases.",
     },
     {

@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.96.0] - 2026-10-22
+
+_Open source_
+
+### Changed
+
+- New contributions appear on the open source page once I have checked them
+- The developer environment project page covers my full setup across every machine and editor
+- New clips and screenshots of the terminal tools and every editor in the current themes, on the developer environment page and three posts
+- The CVs and cover letters list every store the Zacess themes are published in
+- The footer groups its links into three even columns
+- The Fedora dual boot note and its GRUB TIL describe the new boot menu, with Windows started only from a normal restart
+
 ## [2.95.0] - 2026-10-21
 
 _Open source_
