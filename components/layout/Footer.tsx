@@ -18,8 +18,6 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
       { href: "/open-source", label: "Open source" },
       { href: "/skills", label: "Skills" },
       { href: "/uses", label: "Uses" },
-      { href: "/friends", label: "Friends" },
-      { href: "/guestbook", label: "Guestbook" },
     ],
   },
   {
@@ -30,7 +28,8 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
       { href: "/all-pages", label: "All pages" },
       { href: "/colophon", label: "Colophon" },
       { href: "/changelog", label: "Changelog" },
-      { href: "/accessibility", label: "Accessibility" },
+      { href: "/friends", label: "Friends" },
+      { href: "/guestbook", label: "Guestbook" },
       { href: "/support", label: "Support" },
       { href: "https://status.isaacadjei.me", label: "Status", external: true },
     ],
@@ -40,6 +39,7 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/privacy", label: "Privacy Policy" },
       { href: "/security-policy", label: "Security Policy" },
+      { href: "/accessibility", label: "Accessibility" },
       { href: "/disclaimer", label: "Disclaimer" },
       { href: "/copyright", label: "Copyright" },
     ],

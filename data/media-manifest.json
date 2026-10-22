@@ -979,29 +979,107 @@
   "w": 1600,
   "ht": 1000
  },
- "/images/projects/dev-environment/hooks.webp": {
-  "h": "78cbf4ecf2",
+ "/images/projects/dev-environment/editors/eclipse-deep-contrast-dark.webp": {
+  "h": "653255c3d4",
   "t": "img",
-  "w": 1440,
-  "ht": 900
+  "w": 1600,
+  "ht": 895
  },
- "/images/projects/dev-environment/shell.webp": {
-  "h": "9a9f2ec12e",
+ "/images/projects/dev-environment/editors/eclipse-deep-contrast-light.webp": {
+  "h": "bf67c0cd0c",
   "t": "img",
-  "w": 1440,
-  "ht": 900
+  "w": 1600,
+  "ht": 895
  },
- "/images/projects/dev-environment/tmux-light.webp": {
-  "h": "62b0853b28",
+ "/images/projects/dev-environment/editors/intellij-deep-contrast-dark.webp": {
+  "h": "d6e9c84e83",
+  "t": "img",
+  "w": 1600,
+  "ht": 895
+ },
+ "/images/projects/dev-environment/editors/intellij-deep-contrast-light.webp": {
+  "h": "2ea67f0435",
+  "t": "img",
+  "w": 1600,
+  "ht": 895
+ },
+ "/images/projects/dev-environment/editors/pycharm-deep-contrast-dark.webp": {
+  "h": "499ab98c3b",
+  "t": "img",
+  "w": 1600,
+  "ht": 895
+ },
+ "/images/projects/dev-environment/editors/pycharm-deep-contrast-light.webp": {
+  "h": "9bb4d7578d",
+  "t": "img",
+  "w": 1600,
+  "ht": 895
+ },
+ "/images/projects/dev-environment/editors/vscode-cream.webp": {
+  "h": "8fe708209a",
+  "t": "img",
+  "w": 1600,
+  "ht": 910
+ },
+ "/images/projects/dev-environment/editors/vscode-deep-contrast-dark.webp": {
+  "h": "0df31fd79e",
+  "t": "img",
+  "w": 1600,
+  "ht": 910
+ },
+ "/images/projects/dev-environment/editors/vscode-deep-contrast-light.webp": {
+  "h": "7c04eb9f33",
+  "t": "img",
+  "w": 1600,
+  "ht": 910
+ },
+ "/images/projects/dev-environment/editors/vscode-yellow-on-black.webp": {
+  "h": "ae3ef8ffc4",
+  "t": "img",
+  "w": 1600,
+  "ht": 910
+ },
+ "/images/projects/dev-environment/editors/xcode-deep-contrast-dark.webp": {
+  "h": "cf0a0b4183",
+  "t": "img",
+  "w": 1600,
+  "ht": 994
+ },
+ "/images/projects/dev-environment/editors/zed-deep-contrast-dark.webp": {
+  "h": "ffc9fa38a9",
+  "t": "img",
+  "w": 1600,
+  "ht": 884
+ },
+ "/images/projects/dev-environment/editors/zed-deep-contrast-light.webp": {
+  "h": "48db1af708",
+  "t": "img",
+  "w": 1600,
+  "ht": 884
+ },
+ "/images/projects/dev-environment/themes/tmux-cream.webp": {
+  "h": "e2bd1dacec",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/images/projects/dev-environment/tmux.webp": {
-  "h": "bca1c8a0a4",
+ "/images/projects/dev-environment/themes/tmux-dark.webp": {
+  "h": "65535a86ef",
   "t": "img",
-  "w": 1440,
-  "ht": 900
+  "w": 1400,
+  "ht": 980
+ },
+ "/images/projects/dev-environment/themes/tmux-light.webp": {
+  "h": "9cca401931",
+  "t": "img",
+  "w": 1400,
+  "ht": 980
+ },
+ "/images/projects/dev-environment/themes/tmux-yellow-on-black.webp": {
+  "h": "3b1c12c86c",
+  "t": "img",
+  "w": 1400,
+  "ht": 980
  },
  "/images/projects/dotfiles/banner.webp": {
   "h": "2d6c13bec6",
@@ -1823,105 +1901,75 @@
   "w": 1280,
   "ht": 800
  },
- "/videos/projects/dev-environment/fzf.mp4": {
-  "h": "ee644a4018",
+ "/videos/projects/dev-environment/fzf-zacess.mp4": {
+  "h": "7ef5bbedcd",
   "t": "file"
  },
- "/videos/projects/dev-environment/fzf.webp": {
-  "h": "347f15e854",
+ "/videos/projects/dev-environment/fzf-zacess.webp": {
+  "h": "882e5d5a3b",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/hooks-palette.mp4": {
-  "h": "e41c280e4f",
+ "/videos/projects/dev-environment/hooks-zacess.mp4": {
+  "h": "aa2e201c56",
   "t": "file"
  },
- "/videos/projects/dev-environment/hooks-palette.webp": {
-  "h": "f7bee05d12",
+ "/videos/projects/dev-environment/hooks-zacess.webp": {
+  "h": "aef89038b6",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/hooks.mp4": {
-  "h": "cabb0fe6e6",
+ "/videos/projects/dev-environment/lazygit-zacess.mp4": {
+  "h": "a8db12f28a",
   "t": "file"
  },
- "/videos/projects/dev-environment/hooks.webp": {
-  "h": "8fb1766b87",
-  "t": "img",
-  "w": 1280,
-  "ht": 800
- },
- "/videos/projects/dev-environment/lazygit.mp4": {
-  "h": "95958e7fac",
-  "t": "file"
- },
- "/videos/projects/dev-environment/lazygit.webp": {
-  "h": "8326a0f87c",
+ "/videos/projects/dev-environment/lazygit-zacess.webp": {
+  "h": "3adbb56be4",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/linux.mp4": {
-  "h": "90e3f90a43",
+ "/videos/projects/dev-environment/linux-zacess.mp4": {
+  "h": "c77b55f3a7",
   "t": "file"
  },
- "/videos/projects/dev-environment/linux.webp": {
-  "h": "6ad759498c",
+ "/videos/projects/dev-environment/linux-zacess.webp": {
+  "h": "f6f2d30e46",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/neovim.mp4": {
-  "h": "aa97ef8823",
+ "/videos/projects/dev-environment/neovim-zacess.mp4": {
+  "h": "652a418717",
   "t": "file"
  },
- "/videos/projects/dev-environment/neovim.webp": {
-  "h": "04c6b2385c",
+ "/videos/projects/dev-environment/neovim-zacess.webp": {
+  "h": "3b2f37cbdd",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/shell-palette.mp4": {
-  "h": "32c45ed1d8",
+ "/videos/projects/dev-environment/shell-zacess.mp4": {
+  "h": "34a95dd42a",
   "t": "file"
  },
- "/videos/projects/dev-environment/shell-palette.webp": {
-  "h": "e1955b78d8",
+ "/videos/projects/dev-environment/shell-zacess.webp": {
+  "h": "6d98989ef6",
   "t": "img",
   "w": 1400,
-  "ht": 820
+  "ht": 980
  },
- "/videos/projects/dev-environment/shell.mp4": {
-  "h": "61d7f0ebd9",
+ "/videos/projects/dev-environment/tmux-zacess.mp4": {
+  "h": "68d9814c23",
   "t": "file"
  },
- "/videos/projects/dev-environment/shell.webp": {
-  "h": "abe9ca9a1d",
-  "t": "img",
-  "w": 1280,
-  "ht": 800
- },
- "/videos/projects/dev-environment/tmux-palette.mp4": {
-  "h": "1041885fbf",
-  "t": "file"
- },
- "/videos/projects/dev-environment/tmux-palette.webp": {
-  "h": "636f3daf6a",
+ "/videos/projects/dev-environment/tmux-zacess.webp": {
+  "h": "cf93110cba",
   "t": "img",
   "w": 1400,
-  "ht": 820
- },
- "/videos/projects/dev-environment/tmux.mp4": {
-  "h": "914c23791a",
-  "t": "file"
- },
- "/videos/projects/dev-environment/tmux.webp": {
-  "h": "a0cf0dac40",
-  "t": "img",
-  "w": 1280,
-  "ht": 800
+  "ht": 980
  },
  "/videos/projects/isaacadjei-me/command.mp4": {
   "h": "d459be3e30",

@@ -17,7 +17,7 @@ const post: NotePost = {
       "Fedora has 150 GB of its own on an encrypted Btrfs partition. It shares the existing EFI partition with Windows.",
       "Windows could not shrink its own partition far enough, so I shrank it from the Fedora live USB with KDE Partition Manager.",
       "Secure Boot stays on. The only firmware change was allowing the Microsoft third-party UEFI certificate, which Linux's boot loader is signed with.",
-      "The boot menu lists Windows first and starts it by default, with Fedora right underneath and a ten-second timeout.",
+      "Windows starts from a normal restart and Fedora from the laptop's F12 boot menu. GRUB lists only Fedora and waits five seconds. Starting Windows through GRUB made BitLocker ask for its recovery key, so Windows stays out of that menu.",
       "I removed the graphical boot splash, so the disk passphrase prompt is plain text. The splash hid it completely whenever my external monitor was plugged in.",
       "Both systems keep the hardware clock in local time, so neither one shifts the other's clock by an hour.",
     ] },
