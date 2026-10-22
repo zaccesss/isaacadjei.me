@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { getPublicStats } from "@/lib/public-stats"
 import { getContentStats } from "@/lib/content-stats"
 import { StatsTabs } from "@/components/stats/StatsTabs"
+import { getOpenSourceStats } from "@/lib/open-source"
 
 export const revalidate = 3600
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default async function StatsPage() {
-  const [stats, content] = [await getPublicStats(), getContentStats()]
+  const [stats, content, os] = [await getPublicStats(), getContentStats(), await getOpenSourceStats()]
   return (
     <div className="container max-w-3xl py-24 space-y-10">
       <div className="space-y-3">
@@ -28,7 +29,7 @@ export default async function StatsPage() {
         </p>
       </div>
 
-      <StatsTabs s={stats} c={content} />
+      <StatsTabs s={stats} c={content} os={os} />
     </div>
   )
 }

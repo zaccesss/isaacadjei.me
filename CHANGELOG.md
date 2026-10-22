@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.95.0] - 2026-10-21
+
+_Open source_
+
+### Changed
+
+- A new open source page lists every contribution with what it changed and a link to the work
+- The stats page gains an Open source tab
+- The experience timeline adds my School Representative role
+- My CVs list my open source contributions and the School Representative role
+- The command menu reaches every page, each with its own shortcut
+- The portfolio project is dated 2025, when the site began
+
 ## [2.94.0] - 2026-10-21
 
 _Stats_

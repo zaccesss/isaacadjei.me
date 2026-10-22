@@ -6,6 +6,8 @@ import dynamic from "next/dynamic"
 import { ArrowRight } from "lucide-react"
 import { HubOverview, OverviewMore, CodingMore, MusicMore, GamingMore, ApplicationsMore, WritingStats } from "./StatsCharts"
 import { HubCards } from "./HubCards"
+import { OpenSourceStats } from "./OpenSourceStats"
+import type { OpenSourceStats as OSStats } from "@/lib/open-source"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 import type { PublicStats } from "@/lib/public-stats"
 import type { getContentStats } from "@/lib/content-stats"
@@ -34,6 +36,7 @@ const TABS = [
   { id: "gaming", label: "Gaming", page: "/stats/gaming", blurb: "Live status for my PS5 and gaming PC and how I have been playing." },
   { id: "applications", label: "Applications", page: "/stats/applications", blurb: "Where my job search reaches: a live map of cities and the countries behind it, counts only." },
   { id: "writing", label: "Writing and projects", page: "/stats/writing", blurb: "What I write and build, month by month." },
+  { id: "open-source", label: "Open source", page: "/open-source", blurb: "What I have contributed to open source projects, with a link to each piece of work on the full page." },
 ] as const
 type Tab = (typeof TABS)[number]["id"]
 
@@ -46,7 +49,7 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{children}</h2>
 }
 
-export function StatsTabs({ s, c }: { s: PublicStats; c: Content }) {
+export function StatsTabs({ s, c, os }: { s: PublicStats; c: Content; os: OSStats }) {
   const hash = useSyncExternalStore(noSubscribe, readHash, serverHash)
   const [chosen, setTab] = useState<Tab | null>(null)
   const tab = chosen ?? asTab(hash)
@@ -93,7 +96,7 @@ export function StatsTabs({ s, c }: { s: PublicStats; c: Content }) {
         </div>
       )}
 
-      {tab !== "overview" && tab !== "writing" && tab !== "applications" ? (
+      {tab !== "overview" && tab !== "writing" && tab !== "applications" && tab !== "open-source" ? (
         <AnalyticsPeriodProvider defaultPeriod="30d">
           <div className="space-y-8">
             <div className="flex justify-end"><PeriodSelector /></div>
@@ -112,6 +115,7 @@ export function StatsTabs({ s, c }: { s: PublicStats; c: Content }) {
         </div>
       )}
       {tab === "writing" && <WritingStats c={c} />}
+      {tab === "open-source" && <OpenSourceStats s={os} />}
     </div>
   )
 }

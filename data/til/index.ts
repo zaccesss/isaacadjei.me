@@ -104,6 +104,7 @@ import _65 from "./entries/isolation-forest-offset"
 import _66 from "./entries/sqlalchemy-identity-not-null"
 import _67 from "./entries/ardupilot-sitl-default-cmac"
 import _68 from "./entries/pymavlink-recv-match-type"
+import _69 from "./entries/floating-input-pull-up"
 import _100 from "./entries/grub-windows-first-on-fedora"
 
 export const tilEntries: TILEntry[] = [
@@ -175,5 +176,6 @@ export const tilEntries: TILEntry[] = [
   _66,
   _67,
   _68,
+  _69,
   _100,
 ]

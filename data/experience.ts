@@ -54,6 +54,21 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: "aston-school-rep",
+    role: "School Representative",
+    company: "Aston Students' Union, College of Engineering and Physical Sciences",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Oct 2026",
+    endDate: "Present",
+    description:
+      "Appointed by application to represent students across the College of Engineering and Physical Sciences, the link between course representatives, School leadership and the Students' Union.",
+    achievements: [
+      "Spot the themes raised by course representatives across many programmes and take them to School-level meetings and the Learning and Teaching Committee",
+      "Work with School leadership, course representatives and the Students' Union on issues that reach beyond a single course",
+    ],
+  },
+  {
     id: "aston-student-rep",
     group: "student-rep",
     groupTitle: "Student Representative",
@@ -65,7 +80,7 @@ export const experiences: Experience[] = [
     startDate: "Sep 2026",
     endDate: "Present",
     description:
-      "Re-elected course representative for Electronic Engineering and Computer Science at Aston University.",
+      "Re-elected course representative for more than 100 Year 2 students across Electrical and Electronic Engineering and Electronic Engineering and Computer Science at Aston University.",
     achievements: [
       "Gather feedback from the cohort and bring it to academic staff through the Staff-Student Liaison Committee",
       "Work towards the Students' Union rep awards by logging issues raised, meetings attended and actions agreed",
