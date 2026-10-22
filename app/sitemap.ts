@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/notes`,                         lastModified: new Date("2026-05-29"), changeFrequency: "monthly", priority: 0.6  },
     { url: `${SITE_URL}/lab`,                           lastModified: new Date("2026-05-15"), changeFrequency: "monthly", priority: 0.5  },
     { url: `${SITE_URL}/stats`,                         lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.5  },
+    { url: `${SITE_URL}/open-source`,                   lastModified: new Date("2026-10-21"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/stats/github`,                  lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },
     { url: `${SITE_URL}/stats/coding`,                  lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },
     { url: `${SITE_URL}/stats/music`,                   lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },

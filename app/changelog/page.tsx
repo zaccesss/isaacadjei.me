@@ -25,6 +25,19 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.95.0",
+    date: "2026-10-21",
+    label: "Open source",
+    changed: [
+      "A new open source page lists every contribution with what it changed and a link to the work",
+      "The stats page gains an Open source tab",
+      "The experience timeline adds my School Representative role",
+      "My CVs list my open source contributions and the School Representative role",
+      "The command menu reaches every page, each with its own shortcut",
+      "The portfolio project is dated 2025, when the site began",
+    ],
+  },
+  {
     version: "v2.94.0",
     date: "2026-10-21",
     label: "Stats",

@@ -53,7 +53,7 @@ const _isaacadjei_me: Project = {
     github: "https://github.com/zaccesss/isaacadjei.me",
     getInvolved: {},
     demo: "https://isaacadjei.me",
-    date: "2026",
+    date: "2025",
     highlights: [
       "One Next.js 16 App Router app in TypeScript, deployed on Vercel behind Cloudflare, with content as typed TypeScript files rather than a CMS",
       "Live status cards for Spotify, gaming and coding, fed by Upstash Redis, a Cloudflare Worker and small device scripts, with every Redis use failing open",

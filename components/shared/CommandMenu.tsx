@@ -18,7 +18,7 @@ import {
   Home, User, Briefcase, Code, Mail, Cpu, BookOpen, Link2, NotebookPen,
   FlaskConical, Clock, Wrench, Info, ScrollText, Trophy, LayoutList, Shield, Rss,
   GraduationCap, Lightbulb, Tag, SearchIcon, Activity, BarChart3,
-  HeartHandshake, Users, LifeBuoy,
+  HeartHandshake, Users, LifeBuoy, GitPullRequest, BookUser, CalendarDays,
 } from "lucide-react"
 import { DialogTitle } from "@/components/ui/dialog"
 import { useModKey } from "@/hooks/useModKey"
@@ -67,6 +67,13 @@ export default function CommandMenu() {
             t: "/til",
             z: "/tags",
             s: "/search",
+            l: "/book",
+            e: "/feeds",
+            n: "/open-source",
+            b: "/guestbook",
+            i: "/friends",
+            v: "/copyright",
+            q: "/disclaimer",
           }
           const shiftPath = shiftShortcuts[e.key.toLowerCase()]
           if (shiftPath) {
@@ -186,6 +193,11 @@ export default function CommandMenu() {
             Contact
             <CommandShortcut>{shortcut("C")}</CommandShortcut>
           </CommandItem>
+          <CommandItem value="book a call meeting video chat schedule calendar" onSelect={() => go("/book")}>
+            <CalendarDays className="mr-2 h-4 w-4" />
+            Book a Call
+            <CommandShortcut>{shiftShortcut("L")}</CommandShortcut>
+          </CommandItem>
           <CommandItem value="links socials" onSelect={() => go("/links")}>
             <Link2 className="mr-2 h-4 w-4" />
             Links
@@ -207,6 +219,7 @@ export default function CommandMenu() {
           <CommandItem value="rss feeds subscribe reader blog til notes newsletter" onSelect={() => go("/feeds")}>
             <Rss className="mr-2 h-4 w-4" />
             RSS Feeds
+            <CommandShortcut>{shiftShortcut("E")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="research publications academic papers zenodo orcid" onSelect={() => go("/respub")}>
             <GraduationCap className="mr-2 h-4 w-4" />
@@ -227,6 +240,11 @@ export default function CommandMenu() {
             <BarChart3 className="mr-2 h-4 w-4" />
             Stats
             <CommandShortcut>{shortcut("Y")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="open source contributions pull requests projects merged" onSelect={() => go("/open-source")}>
+            <GitPullRequest className="mr-2 h-4 w-4" />
+            Open Source
+            <CommandShortcut>{shiftShortcut("N")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="lab experiments" onSelect={() => go("/lab")}>
             <FlaskConical className="mr-2 h-4 w-4" />
@@ -252,6 +270,16 @@ export default function CommandMenu() {
             <Trophy className="mr-2 h-4 w-4" />
             Hall of Fame
             <CommandShortcut>{shiftShortcut("F")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="guestbook visitors messages sign" onSelect={() => go("/guestbook")}>
+            <BookUser className="mr-2 h-4 w-4" />
+            Guestbook
+            <CommandShortcut>{shiftShortcut("B")}</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="friends personal websites people webring" onSelect={() => go("/friends")}>
+            <Users className="mr-2 h-4 w-4" />
+            Friends
+            <CommandShortcut>{shiftShortcut("I")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="tags topics categories browse" onSelect={() => go("/tags")}>
             <Tag className="mr-2 h-4 w-4" />
@@ -291,10 +319,12 @@ export default function CommandMenu() {
           <CommandItem value="copyright licence trade marks third party credits" onSelect={() => go("/copyright")}>
             <Copyright className="mr-2 h-4 w-4" />
             Copyright
+            <CommandShortcut>{shiftShortcut("V")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="disclaimer views advice accuracy liability" onSelect={() => go("/disclaimer")}>
             <Scale className="mr-2 h-4 w-4" />
             Disclaimer
+            <CommandShortcut>{shiftShortcut("Q")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="support help get in touch questions email" onSelect={() => go("/support")}>
             <LifeBuoy className="mr-2 h-4 w-4" />

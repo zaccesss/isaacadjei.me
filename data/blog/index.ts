@@ -92,6 +92,7 @@ import _40 from "./posts/moving-a-production-database-to-tidb"
 import _41 from "./posts/ariane-5-flight-501-overflow"
 import _42 from "./posts/calibrating-anomaly-scores"
 import _43 from "./posts/alerts-that-do-not-cry-wolf"
+import _46 from "./posts/how-the-transistor-got-small"
 import _69 from "./posts/isolation-forest-without-maths"
 import _71 from "./posts/monorepo-read-only-split-repos"
 import _77 from "./posts/sky-animol-screening-invite"
@@ -142,6 +143,7 @@ export const posts: BlogPost[] = [
   _41,
   _42,
   _43,
+  _46,
   _69,
   _71,
   _77,

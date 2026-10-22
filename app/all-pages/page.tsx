@@ -42,6 +42,7 @@ const PAGE_GROUPS = [
       { href: "/consumed", label: "Consumed",               description: "Books, videos and podcasts I am working through" },
       { href: "/respub",   label: "Research & Publications", description: "Academic publications and research contributions" },
       { href: "/uses",     label: "Uses",                   description: "Hardware, software and tools I use" },
+      { href: "/open-source", label: "Open source",      description: "My contributions to open source projects" },
     ],
   },
   {
