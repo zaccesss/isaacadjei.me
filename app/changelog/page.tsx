@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.98.0",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "The gaming PC status script no longer writes request details into its log",
+    ],
+  },
+  {
     version: "v2.97.0",
     date: "2026-10-23",
     label: "Open source",
