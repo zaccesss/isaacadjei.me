@@ -25,6 +25,19 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.97.0",
+    date: "2026-10-23",
+    label: "Open source",
+    added: [
+      "The open source page lists pull requests and issues separately and links a pull request to the issue it fixes",
+      "Screenshots of the shell on Windows on the developer environment project page",
+    ],
+    changed: [
+      "Links to my dotfiles and config repositories now point at their folders in the one dotfiles repository",
+      "The developer environment project page describes the single repository and the newer editors it covers",
+    ],
+  },
+  {
     version: "v2.96.1",
     date: "2026-10-22",
     label: "Security",

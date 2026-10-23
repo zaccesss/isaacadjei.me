@@ -19,8 +19,10 @@ export function OpenSourceStats({ s }: { s: Stats }) {
   if (s.total === 0) return null
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         <StatCard label="Contributions" value={s.total} />
+        <StatCard label="Pull requests" value={s.pullRequests} />
+        <StatCard label="Issues" value={s.issues} />
         <StatCard label="Merged" value={s.merged} />
         <StatCard label="Projects" value={s.projects} />
         <StatCard label="Languages" value={s.languages} />
