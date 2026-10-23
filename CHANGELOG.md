@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.98.2] - 2026-10-23
+
+_Fediverse_
+
+### Changed
+
+- @isaac@isaacadjei.me and the Mastodon link on the Links page now go to my account on hachyderm.io
+
 ## [2.98.1] - 2026-10-23
 
 _Behind the scenes_
