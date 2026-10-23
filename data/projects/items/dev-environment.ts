@@ -4,9 +4,9 @@ const _dev_environment: Project = {
     id: "dev-environment",
     title: "Developer Environment: Dotfiles, Configs and Bootstrap",
     description:
-      "A family of repositories that rebuilds my whole development setup on macOS, Windows 11, Fedora, Ubuntu and WSL2 with one command: shell profiles, terminal, tmux, every editor and IDE, Git configs, safety hooks, desktop settings and one high contrast palette.",
+      "One repository that rebuilds my whole development setup on macOS, Windows 11, Fedora, Ubuntu and WSL2 with one command: shell profiles, terminal, tmux, every editor and IDE, Git configs, safety hooks, desktop settings and one high contrast palette.",
     longDescription:
-      "This started as a single dotfiles repository and grew into a small system. The dotfiles hold the shell profiles for zsh on macOS, bash on Linux and WSL2 and PowerShell 7 on Windows, split into numbered topic files so the same short commands behave the same way on every machine. Around them sit focused config repositories for the terminal, tmux, Neovim, Git, SSH, the command line tools, VS Code, JetBrains IDEs, Eclipse, Zed, Raycast, Rectangle and the operating system's own settings, including a KDE Plasma desktop kept entirely as code.\n\nThree bootstrap repositories tie it together. Each one takes a fresh Mac, Windows 11 PC, Fedora or Ubuntu install, signs in to GitHub, clones the dotfiles and configs, links them into place and applies the captured system settings. Running it again on a machine that is already set up changes nothing and only acts where something is missing.\n\nAccessibility runs through all of it. One high contrast palette file builds the theme for every terminal on every platform, at 7:1 or better in light mode, with bold text that keeps its colour rather than switching to a softer bright shade. Accessibility is a practical need for me rather than polish, so these choices are written down in each repository and a shared accessibility statement links them.",
+      "This started as a single dotfiles repository, grew into a family of repositories and is now one repository again, with every config in its own folder. The shell folder holds the shell profiles for zsh on macOS, bash on Linux and WSL2 and PowerShell 7 on Windows, split into numbered topic files so the same short commands behave the same way on every machine. Around it sit grouped folders for the terminal, tmux, Neovim, Git, SSH, the command line tools, VS Code, JetBrains IDEs, Eclipse, Zed, Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++, Proteus, Raycast, Rectangle, Obsidian, Zotero and the operating system's own settings, including a KDE Plasma desktop kept entirely as code.\n\nThree bootstraps tie it together. Each one takes a fresh Mac, Windows 11 PC, Fedora or Ubuntu install, signs in to GitHub, clones the repository once, links every config into place and applies the captured system settings. Running it again on a machine that is already set up changes nothing and only acts where something is missing.\n\nAccessibility runs through all of it. One high contrast palette file builds the theme for every terminal on every platform, at 7:1 or better in light mode, with bold text that keeps its colour rather than switching to a softer bright shade. Accessibility is a practical need for me rather than polish, so these choices are written down in each folder and a shared accessibility statement links them.",
     technologies: [
       "Zsh",
       "Bash",
@@ -28,6 +28,17 @@ const _dev_environment: Project = {
       "JetBrains",
       "Eclipse",
       "Zed",
+      "Arduino IDE",
+      "KiCad",
+      "MATLAB",
+      "Thonny",
+      "LTspice",
+      "Processing",
+      "Vivado",
+      "Notepad++",
+      "Proteus",
+      "Obsidian",
+      "Zotero",
       "WakaTime",
       "GitHub Actions",
       "ShellCheck",
@@ -46,6 +57,8 @@ const _dev_environment: Project = {
       "/videos/projects/dev-environment/fzf-zacess.webp",
       "/videos/projects/dev-environment/hooks-zacess.webp",
       "/videos/projects/dev-environment/linux-zacess.webp",
+      "/images/projects/dev-environment/windows/windows-banner-dark.webp",
+      "/images/projects/dev-environment/windows/windows-git-dark.webp",
       "/images/projects/dev-environment/editors/vscode-deep-contrast-dark.webp",
       "/images/projects/dev-environment/editors/intellij-deep-contrast-light.webp",
       "/images/projects/dev-environment/editors/zed-deep-contrast-dark.webp",
@@ -71,24 +84,24 @@ const _dev_environment: Project = {
     order: 9,
     status: "live",
     links: [
-      { label: "mac-bootstrap", url: "https://github.com/zaccesss/mac-bootstrap" },
-      { label: "windows-bootstrap", url: "https://github.com/zaccesss/windows-bootstrap" },
-      { label: "linux-bootstrap", url: "https://github.com/zaccesss/linux-bootstrap" },
-      { label: "terminal-config", url: "https://github.com/zaccesss/terminal-config" },
-      { label: "tmux-config", url: "https://github.com/zaccesss/tmux-config" },
-      { label: "neovim-config", url: "https://github.com/zaccesss/neovim-config" },
-      { label: "git-hooks", url: "https://github.com/zaccesss/git-hooks" },
-      { label: "git-config", url: "https://github.com/zaccesss/git-config" },
-      { label: "ssh-config", url: "https://github.com/zaccesss/ssh-config" },
-      { label: "cli-tools-config", url: "https://github.com/zaccesss/cli-tools-config" },
-      { label: "system-defaults", url: "https://github.com/zaccesss/system-defaults" },
-      { label: "vscode-config", url: "https://github.com/zaccesss/vscode-config" },
-      { label: "jetbrains-config", url: "https://github.com/zaccesss/jetbrains-config" },
-      { label: "eclipse-config", url: "https://github.com/zaccesss/eclipse-config" },
-      { label: "zed-config", url: "https://github.com/zaccesss/zed-config" },
-      { label: "xcode-config", url: "https://github.com/zaccesss/xcode-config" },
-      { label: "raycast-config", url: "https://github.com/zaccesss/raycast-config" },
-      { label: "rectangle-config", url: "https://github.com/zaccesss/rectangle-config" },
+      { label: "setup/mac-bootstrap", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/mac-bootstrap" },
+      { label: "setup/windows-bootstrap", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/windows-bootstrap" },
+      { label: "setup/linux-bootstrap", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/linux-bootstrap" },
+      { label: "terminal/terminal", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal" },
+      { label: "terminal/tmux", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux" },
+      { label: "editors/neovim", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/neovim" },
+      { label: "git/git-hooks", url: "https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks" },
+      { label: "git/gitconfig", url: "https://github.com/zaccesss/dotfiles/tree/main/git/gitconfig" },
+      { label: "git/ssh", url: "https://github.com/zaccesss/dotfiles/tree/main/git/ssh" },
+      { label: "terminal/cli-tools", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/cli-tools" },
+      { label: "setup/defaults", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/defaults" },
+      { label: "editors/vscode", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/vscode" },
+      { label: "editors/jetbrains", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/jetbrains" },
+      { label: "editors/eclipse", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/eclipse" },
+      { label: "editors/zed", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/zed" },
+      { label: "editors/xcode", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/xcode" },
+      { label: "apps/raycast", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/raycast" },
+      { label: "apps/rectangle", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/rectangle" },
       { label: "email-setup-kit", url: "https://github.com/zaccesss/email-setup-kit" },
       { label: "Accessibility statement", url: "https://github.com/zaccesss/accessibility" },
     ],
@@ -102,22 +115,22 @@ const _dev_environment: Project = {
         type: "p",
         text: "The goal is the same muscle memory everywhere and a rebuild that is one command. The implementation differs per platform. The name of every command never does.",
       },
-      { type: "h2", text: "How the repositories fit together" },
+      { type: "h2", text: "How the folders fit together" },
       {
         type: "diagram",
         code: `flowchart TD
-    Mac["mac-bootstrap"] --> Dot["dotfiles<br/>zsh, bash, PowerShell 7<br/>Starship prompt"]
+    Mac["mac-bootstrap"] --> Dot["shell<br/>zsh, bash, PowerShell 7<br/>Starship prompt"]
     Win["windows-bootstrap"] --> Dot
     Lin["linux-bootstrap"] --> Dot
     Mac -- "OrbStack Ubuntu VM" --> Lin
     Win -- "WSL2 Ubuntu" --> Lin
-    Mac --> Cfg["Config repositories<br/>tmux, Neovim, CLI tools,<br/>VS Code, JetBrains, Eclipse,<br/>Zed, Git, SSH"]
+    Mac --> Cfg["Config folders<br/>tmux, Neovim, CLI tools,<br/>VS Code, JetBrains, Eclipse,<br/>Zed, Git, SSH"]
     Win --> Cfg
     Lin --> Cfg
-    Pal["terminal-config<br/>one palette file"] -- "build-themes.py" --> Themes["Terminal.app, iTerm2, Windows Terminal,<br/>Ptyxis, GNOME Terminal, Alacritty,<br/>Kitty and Hyper themes"]
+    Pal["terminal<br/>one palette file"] -- "build-themes.py" --> Themes["Terminal.app, iTerm2, Windows Terminal,<br/>Ptyxis, GNOME Terminal, Alacritty,<br/>Kitty and Hyper themes"]
     Mac --> Pal
     Win --> Pal
-    Mac --> Sys["system-defaults<br/>captured OS settings"]
+    Mac --> Sys["defaults<br/>captured OS settings"]
     Win --> Sys
     Cfg --> Hooks["git-hooks<br/>core.hooksPath on every repo"]
     A11y["accessibility<br/>shared statement"] -.-> Dot
@@ -126,22 +139,22 @@ const _dev_environment: Project = {
       },
       {
         type: "table",
-        headers: ["Layer", "Repositories", "What they provide"],
+        headers: ["Layer", "Folders", "What they provide"],
         rows: [
-          ["Bootstrap", "mac-bootstrap, windows-bootstrap, linux-bootstrap", "Package installs from a Brewfile or winget list, toolchains, cloning and linking every config, settings and optional extras"],
-          ["Shell", "dotfiles", "Profiles split into numbered topic files, identical aliases, the Starship prompt and a colour-coded command reference"],
-          ["Terminal", "terminal-config, tmux-config", "The High Contrast palette for eight terminals and tmux with vi-style copy mode and session restore"],
-          ["Editors", "neovim-config, vscode-config, jetbrains-config, eclipse-config, zed-config", "Neovim in Lua with LSP through Mason, VS Code settings and extensions, JetBrains plugin lists and keymaps, Eclipse preferences for Java and Zed settings, all on the same colour themes"],
-          ["Git and SSH", "git-config, git-hooks, ssh-config", "SSH commit signing, global safety hooks and per-host key selection"],
-          ["Desktop", "system-defaults, raycast-config, rectangle-config", "Captured macOS, Windows and KDE settings, launcher hotkeys and window shortcuts"],
-          ["Tools", "cli-tools-config", "ripgrep, fzf, lazygit and zoxide defaults with the same theme"],
-          ["Mail", "email-setup-kit", "Custom domain email with SPF, DKIM, DMARC, filters and accessible signatures"],
+          ["Bootstrap", "setup/mac-bootstrap, setup/windows-bootstrap, setup/linux-bootstrap", "Package installs from a Brewfile or winget list, toolchains, cloning and linking every config, settings and optional extras"],
+          ["Shell", "shell", "Profiles split into numbered topic files, identical aliases, the Starship prompt and a colour-coded command reference"],
+          ["Terminal", "terminal/terminal, terminal/tmux", "The High Contrast palette for eight terminals and tmux with vi-style copy mode and session restore"],
+          ["Editors", "editors/neovim, editors/vscode, editors/jetbrains, editors/eclipse, editors/zed and more", "Neovim in Lua with LSP through Mason, VS Code settings and extensions, JetBrains plugin lists and keymaps, Eclipse preferences for Java and Zed settings, plus Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++ and Proteus, all on the same colour themes"],
+          ["Git and SSH", "git/gitconfig, git/git-hooks, git/ssh", "SSH commit signing, global safety hooks and per-host key selection"],
+          ["Desktop", "setup/defaults, apps/raycast, apps/rectangle, apps/obsidian, apps/zotero", "Captured macOS, Windows and KDE settings, launcher hotkeys, window shortcuts and the Obsidian and Zotero themes"],
+          ["Tools", "terminal/cli-tools", "ripgrep, fzf, lazygit and zoxide defaults with the same theme"],
+          ["Mail", "email-setup-kit (its own repository)", "Custom domain email with SPF, DKIM, DMARC, filters and accessible signatures"],
         ],
-        caption: "The public repositories and their jobs",
+        caption: "The folders and their jobs",
       },
       {
         type: "p",
-        text: "The configs are cloned into one folder and linked into place, so editing a file in a repository applies straight away. The Git and SSH configs are copied once instead, because they hold a person's own name, keys and hosts. Anyone can fork the set and point the bootstrap at their own GitHub account.",
+        text: "The repository is cloned into one folder and each config is linked into place, so editing a file in it applies straight away. The Git and SSH configs are copied once instead, because they hold a person's own name, keys and hosts. Anyone can fork the repository and point the bootstrap at their own GitHub account.",
       },
       { type: "h2", text: "The shell" },
       {
@@ -250,7 +263,7 @@ const _dev_environment: Project = {
       { type: "h2", text: "Across platforms" },
       {
         type: "p",
-        text: "linux-bootstrap detects where it runs and adjusts: WSL gets systemd switched on, a desktop VM gets guest integration and desktop-only apps are skipped on a server. It supports Ubuntu 24.04 and 26.04 on both ARM64 and x86_64, which covers the OrbStack VM on the Mac and WSL2 on both PCs. The ThinkPad's Fedora KDE install follows its own guide in the same repository, from the dual boot beside an encrypted Windows to a TPM unlock for the Linux disk. windows-bootstrap installs WSL2 Ubuntu and hands over to it. system-defaults defines preferences once, then applies them through macOS defaults, the Windows registry and GNOME gsettings where a real equivalent exists.",
+        text: "linux-bootstrap detects where it runs and adjusts: WSL gets systemd switched on, a desktop VM gets guest integration and desktop-only apps are skipped on a server. It supports Ubuntu 24.04 and 26.04 on both ARM64 and x86_64, which covers the OrbStack VM on the Mac and WSL2 on both PCs. The ThinkPad's Fedora KDE install follows its own guide in the same repository, from the dual boot beside an encrypted Windows to a TPM unlock for the Linux disk. windows-bootstrap installs WSL2 Ubuntu and hands over to it. The defaults folder defines preferences once, then applies them through macOS defaults, the Windows registry and GNOME gsettings where a real equivalent exists.",
       },
       {
         type: "clip",
@@ -259,10 +272,28 @@ const _dev_environment: Project = {
         alt: "Ubuntu 26.04 in OrbStack on the Mac running the Linux profile in bash: the same welcome banner, the numbered topic files and a Git log of a demo project",
         caption: "The same dotfiles on Ubuntu in OrbStack, running bash",
       },
+      {
+        type: "image",
+        src: "/images/projects/dev-environment/windows/windows-banner-dark.webp",
+        alt: "PowerShell 7 on Windows 11 opens with the same welcome banner, showing the machine, Windows 11 Home, PowerShell 7.6 and the session time above a two-line prompt",
+        caption: "The welcome banner in PowerShell 7 on Windows 11",
+      },
+      {
+        type: "image",
+        src: "/images/projects/dev-environment/windows/windows-git-dark.webp",
+        alt: "gs and glog in a demo project under the Starship prompt in PowerShell, showing the branch symbol, a modified README and a short branch graph",
+        caption: "The same Git aliases and Starship prompt in PowerShell",
+      },
+      {
+        type: "image",
+        src: "/images/projects/dev-environment/windows/windows-cmd-dark.webp",
+        alt: "Command Prompt with the dotfiles prompt, user and machine in cyan, the folder in yellow and a green arrow, running the gs macro on a demo repository",
+        caption: "Even Command Prompt gets the prompt and the gs macro",
+      },
       { type: "h2", text: "Every editor, one set of themes" },
       {
         type: "p",
-        text: "The editors get the same treatment as the terminals. VS Code, the JetBrains IDEs, Eclipse, Zed, Xcode and Neovim each have a config repository with their settings, extensions or plugin lists. Every one of them runs the Zacess colour themes I publish for others too. One command switches every editor and terminal on a machine between the light, dark and deep contrast themes at once, so I never end up reading code in two different palettes. Each editor also reports to WakaTime, with file names, branch names and project folders hidden, so my coding stats cover all of them without exposing what I work on.",
+        text: "The editors get the same treatment as the terminals. VS Code, the JetBrains IDEs, Eclipse, Zed, Xcode and Neovim each have a folder with their settings, extensions or plugin lists. Every one of them runs the Zacess colour themes I publish for others too. One command switches every editor and terminal on a machine between the light, dark and deep contrast themes at once, so I never end up reading code in two different palettes. Each editor also reports to WakaTime, with file names, branch names and project folders hidden, so my coding stats cover all of them without exposing what I work on. Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++ and Proteus have folders of their own on the same themes, as do the Obsidian and Zotero apps.",
       },
       {
         type: "image",
@@ -297,7 +328,7 @@ const _dev_environment: Project = {
       { type: "h2", text: "The same desktop on every machine" },
       {
         type: "p",
-        text: "The settings repository captures how each operating system is set up and replays it: macOS defaults, the Windows registry and the KDE Plasma desktop on Fedora, which runs a Windows 11 style taskbar, the high contrast colour schemes and the same window snapping keys as the Mac. Some choices follow me everywhere because I rely on them. The pointer is larger and yellow with a black outline on all three systems, wallpapers sorted into categories shuffle every five minutes and the screen saver and lock always come before the display turns off, so a long build or download never stops while the machine is plugged in.",
+        text: "The settings folder captures how each operating system is set up and replays it: macOS defaults, the Windows registry and the KDE Plasma desktop on Fedora, which runs a Windows 11 style taskbar, the high contrast colour schemes and the same window snapping keys as the Mac. Some choices follow me everywhere because I rely on them. The pointer is larger and yellow with a black outline on all three systems, wallpapers sorted into categories shuffle every five minutes and the screen saver and lock always come before the display turns off, so a long build or download never stops while the machine is plugged in.",
       },
       {
         type: "p",
@@ -306,7 +337,7 @@ const _dev_environment: Project = {
       { type: "h2", text: "Keeping it consistent" },
       {
         type: "p",
-        text: "With this many repositories, drift is the real risk. Scheduled automation keeps labels, mirrors and backups consistent across all of them. Every repository that changes how something looks or is operated carries its own ACCESSIBILITY.md written from its real settings, pointing back to the shared statement. The dotfiles also keep an engineering journal of the decisions behind them, from the split into topic files to the alias conflicts and the prompt.",
+        text: "With this many configs, drift is the real risk. Scheduled automation keeps labels, mirrors and backups consistent across all of them. Every folder that changes how something looks or is operated carries its own ACCESSIBILITY.md written from its real settings, pointing back to the shared statement. The dotfiles also keep an engineering journal of the decisions behind them, from the split into topic files to the alias conflicts and the prompt.",
       },
     ],
     references: [

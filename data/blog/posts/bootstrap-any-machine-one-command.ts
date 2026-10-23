@@ -28,11 +28,11 @@ const _bootstrap_any_machine_one_command: BlogPost = {
       type: "table",
       headers: ["Platform", "Repository", "Entry point"],
       rows: [
-        ["macOS", "[mac-bootstrap](https://github.com/zaccesss/mac-bootstrap)", "bootstrap/bootstrap.sh"],
-        ["Ubuntu 24.04 and 26.04, ARM64 and x86_64, WSL2 and VMs", "[linux-bootstrap](https://github.com/zaccesss/linux-bootstrap)", "bootstrap/bootstrap.sh"],
-        ["Windows 11", "[windows-bootstrap](https://github.com/zaccesss/windows-bootstrap)", "bootstrap\\bootstrap.ps1"],
+        ["macOS", "[mac-bootstrap](https://github.com/zaccesss/dotfiles/tree/main/setup/mac-bootstrap)", "bootstrap/bootstrap.sh"],
+        ["Ubuntu 24.04 and 26.04, ARM64 and x86_64, WSL2 and VMs", "[linux-bootstrap](https://github.com/zaccesss/dotfiles/tree/main/setup/linux-bootstrap)", "bootstrap/bootstrap.sh"],
+        ["Windows 11", "[windows-bootstrap](https://github.com/zaccesss/dotfiles/tree/main/setup/windows-bootstrap)", "bootstrap\\bootstrap.ps1"],
       ],
-      caption: "Three repositories, one shape. All three pull from the same public dotfiles and config repositories.",
+      caption: "Three bootstraps, one shape. All three now live in one public dotfiles repository beside the configs they pull from.",
     },
     {
       type: "h2",
@@ -57,20 +57,20 @@ const _bootstrap_any_machine_one_command: BlogPost = {
     },
     {
       type: "p",
-      text: "The tool configs ([tmux](https://github.com/zaccesss/tmux-config), [Neovim](https://github.com/zaccesss/neovim-config), [VS Code](https://github.com/zaccesss/vscode-config), lazygit, ripgrep, fzf and the [Git hooks](https://github.com/zaccesss/git-hooks)) live in their own public repositories. The bootstrap clones them into `~/.dotfiles` and symlinks each file into place. Editing a file in the repository changes the live machine straight away, so there is never a question of which copy is the real one. The exceptions are `~/.gitconfig` and `~/.ssh/config`. Those hold a name, an email address, keys and hosts, so they are copied once as a starting point and then left alone.",
+      text: "The tool configs ([tmux](https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux), [Neovim](https://github.com/zaccesss/dotfiles/tree/main/editors/neovim), [VS Code](https://github.com/zaccesss/dotfiles/tree/main/editors/vscode), lazygit, ripgrep, fzf and the [Git hooks](https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks)) live in their own folders of the public dotfiles repository. The bootstrap clones it into `~/.dotfiles` and symlinks each file into place. Editing a file in the repository changes the live machine straight away, so there is never a question of which copy is the real one. The exceptions are `~/.gitconfig` and `~/.ssh/config`. Those hold a name, an email address, keys and hosts, so they are copied once as a starting point and then left alone.",
     },
     {
       type: "code",
       lang: "bash",
       text: `# a new Mac
 xcode-select --install
-git clone https://github.com/zaccesss/mac-bootstrap.git
-./mac-bootstrap/bootstrap/bootstrap.sh
+git clone https://github.com/zaccesss/dotfiles.git ~/.dotfiles/dotfiles
+~/.dotfiles/dotfiles/setup/mac-bootstrap/bootstrap/bootstrap.sh
 
 # a fresh Ubuntu install or WSL2
 sudo apt update && sudo apt install -y git
-git clone https://github.com/zaccesss/linux-bootstrap.git
-./linux-bootstrap/bootstrap/bootstrap.sh --with configs`,
+git clone https://github.com/zaccesss/dotfiles.git ~/.dotfiles/dotfiles
+~/.dotfiles/dotfiles/setup/linux-bootstrap/bootstrap/bootstrap.sh --with configs`,
     },
     {
       type: "h2",
@@ -107,7 +107,7 @@ git clone https://github.com/zaccesss/linux-bootstrap.git
     },
     {
       type: "p",
-      text: "The last stage applies operating system settings: a captured list of macOS preferences on the Mac, GNOME preferences on an Ubuntu desktop and a set of Windows settings. These live in a separate [system-defaults](https://github.com/zaccesss/system-defaults) repository. A capture command records the settings from a machine I am happy with and the apply step writes only the values that differ. That means my accessibility settings, such as the high contrast [terminal palette](https://github.com/zaccesss/terminal-config), follow me to every new machine without me having to remember them.",
+      text: "The last stage applies operating system settings: a captured list of macOS preferences on the Mac, GNOME preferences on an Ubuntu desktop and a set of Windows settings. These live in their own [setup/defaults folder](https://github.com/zaccesss/dotfiles/tree/main/setup/defaults) of the dotfiles repository. A capture command records the settings from a machine I am happy with and the apply step writes only the values that differ. That means my accessibility settings, such as the high contrast [terminal palette](https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal), follow me to every new machine without me having to remember them.",
     },
     {
       type: "clip",
@@ -142,10 +142,10 @@ git clone https://github.com/zaccesss/linux-bootstrap.git
     {
       type: "ol-links",
       items: [
-        { text: "mac-bootstrap on GitHub", url: "https://github.com/zaccesss/mac-bootstrap" },
-        { text: "linux-bootstrap on GitHub", url: "https://github.com/zaccesss/linux-bootstrap" },
-        { text: "windows-bootstrap on GitHub", url: "https://github.com/zaccesss/windows-bootstrap" },
-        { text: "dotfiles on GitHub: the shared shell setup all three pull from", url: "https://github.com/zaccesss/dotfiles" },
+        { text: "mac-bootstrap on GitHub", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/mac-bootstrap" },
+        { text: "linux-bootstrap on GitHub", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/linux-bootstrap" },
+        { text: "windows-bootstrap on GitHub", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/windows-bootstrap" },
+        { text: "dotfiles on GitHub: the shared shell setup all three pull from", url: "https://github.com/zaccesss/dotfiles/tree/main/shell" },
         { text: "Homebrew documentation: Brew Bundle and the Brewfile", url: "https://docs.brew.sh/Brew-Bundle-and-Brewfile" },
         { text: "Microsoft Learn: the winget package manager", url: "https://learn.microsoft.com/en-us/windows/package-manager/winget/" },
         { text: "Microsoft Learn: installing WSL", url: "https://learn.microsoft.com/en-us/windows/wsl/install" },

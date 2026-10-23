@@ -133,7 +133,7 @@ print(round(contrast("#006813", "#ffffff"), 1))  # light mode green: 7.0`,
     },
     {
       type: "p",
-      text: "The [bootstrap scripts](/blog/bootstrap-any-machine-one-command) install the palette on every new machine, so a fresh laptop looks right from the first command. If you want to try it, the [terminal-config repository](https://github.com/zaccesss/terminal-config) is public and every preference in it is a single edit and one script run away from your own version. It sits alongside the rest of my tools on the [development environment project page](/projects/dev-environment).",
+      text: "The [bootstrap scripts](/blog/bootstrap-any-machine-one-command) install the palette on every new machine, so a fresh laptop looks right from the first command. If you want to try it, the [terminal folder of my dotfiles repository](https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal) is public and every preference in it is a single edit and one script run away from your own version. It sits alongside the rest of my tools on the [development environment project page](/projects/dev-environment).",
     },
     {
       type: "h2",
@@ -142,7 +142,7 @@ print(round(contrast("#006813", "#ffffff"), 1))  # light mode green: 7.0`,
     {
       type: "ol-links",
       items: [
-        { text: "terminal-config on GitHub: the palette, the generator and every theme", url: "https://github.com/zaccesss/terminal-config" },
+        { text: "The terminal folder on GitHub: the palette, the generator and every theme", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal" },
         { text: "W3C: Understanding Contrast (Enhanced), the 7:1 criterion", url: "https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html" },
         { text: "WebAIM contrast checker", url: "https://webaim.org/resources/contrastchecker/" },
         { text: "iTerm2 documentation: Dynamic Profiles", url: "https://iterm2.com/documentation-dynamic-profiles.html" },

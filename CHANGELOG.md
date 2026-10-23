@@ -2,6 +2,20 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.97.0] - 2026-10-23
+
+_Open source_
+
+### Added
+
+- The open source page lists pull requests and issues separately and links a pull request to the issue it fixes
+- Screenshots of the shell on Windows on the developer environment project page
+
+### Changed
+
+- Links to my dotfiles and config repositories now point at their folders in the one dotfiles repository
+- The developer environment project page describes the single repository and the newer editors it covers
+
 ## [2.96.1] - 2026-10-22
 
 _Security_

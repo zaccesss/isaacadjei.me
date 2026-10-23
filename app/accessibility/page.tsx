@@ -29,15 +29,15 @@ export const metadata: Metadata = {
 }
 
 const REPOS_WITH_STATEMENTS = [
-  "dotfiles",
-  "terminal-config",
-  "vscode-config",
-  "neovim-config",
-  "tmux-config",
-  "cli-tools-config",
-  "jetbrains-config",
-  "raycast-config",
-  "rectangle-config",
+  { name: "dotfiles", url: "https://github.com/zaccesss/dotfiles" },
+  { name: "dotfiles/terminal/terminal", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal" },
+  { name: "dotfiles/editors/vscode", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/vscode" },
+  { name: "dotfiles/editors/neovim", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/neovim" },
+  { name: "dotfiles/terminal/tmux", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux" },
+  { name: "dotfiles/terminal/cli-tools", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/cli-tools" },
+  { name: "dotfiles/editors/jetbrains", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/jetbrains" },
+  { name: "dotfiles/apps/raycast", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/raycast" },
+  { name: "dotfiles/apps/rectangle", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/rectangle" },
 ]
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -185,16 +185,16 @@ export default function AccessibilityPage() {
           repository so I can consider it for everyone.
         </Callout>
         <p className="text-muted-foreground leading-relaxed">
-          Repositories with their own statement:{" "}
+          Repositories and folders with their own statement:{" "}
           {REPOS_WITH_STATEMENTS.map((repo, i) => (
-            <span key={repo}>
+            <span key={repo.name}>
               <a
-                href={`https://github.com/zaccesss/${repo}`}
+                href={repo.url}
                 target="_blank"
                 rel="noreferrer"
                 className={linkClass}
               >
-                {repo}
+                {repo.name}
               </a>
               {i < REPOS_WITH_STATEMENTS.length - 2 ? ", " : i === REPOS_WITH_STATEMENTS.length - 2 ? " and " : "."}
             </span>

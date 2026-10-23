@@ -1081,6 +1081,24 @@
   "w": 1400,
   "ht": 980
  },
+ "/images/projects/dev-environment/windows/windows-banner-dark.webp": {
+  "h": "76e320281c",
+  "t": "img",
+  "w": 1243,
+  "ht": 800
+ },
+ "/images/projects/dev-environment/windows/windows-cmd-dark.webp": {
+  "h": "41677cf096",
+  "t": "img",
+  "w": 1243,
+  "ht": 800
+ },
+ "/images/projects/dev-environment/windows/windows-git-dark.webp": {
+  "h": "f1debd7fe2",
+  "t": "img",
+  "w": 1243,
+  "ht": 800
+ },
  "/images/projects/dotfiles/banner.webp": {
   "h": "2d6c13bec6",
   "t": "img",
