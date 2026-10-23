@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.99.1] - 2026-10-23
+
+_Behind the scenes_
+
+### Fixed
+
+- Dates just after midnight in summer now follow UK time
+
 ## [2.99.0] - 2026-10-23
 
 _Behind the scenes_
