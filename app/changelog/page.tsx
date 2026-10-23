@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.98.2",
+    date: "2026-10-23",
+    label: "Fediverse",
+    changed: [
+      "@isaac@isaacadjei.me and the Mastodon link on the Links page now go to my account on hachyderm.io",
+    ],
+  },
+  {
     version: "v2.98.1",
     date: "2026-10-23",
     label: "Behind the scenes",

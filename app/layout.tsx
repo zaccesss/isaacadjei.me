@@ -84,8 +84,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="me" href="https://hachyderm.io/@isaacadjei" />
         <link rel="me" href="https://mastodon.social/@isaacadjei" />
-        <meta name="fediverse:creator" content="@isaacadjei@mastodon.social" />
+        <meta name="fediverse:creator" content="@isaacadjei@hachyderm.io" />
         <link
           rel="alternate"
           type="application/atom+xml"

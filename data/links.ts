@@ -285,7 +285,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Mastodon",
     description: "On the fediverse as @isaac@isaacadjei.me",
-    url: "https://mastodon.social/@isaacadjei",
+    url: "https://hachyderm.io/@isaacadjei",
     icon: "mastodon",
     category: "social",
   },

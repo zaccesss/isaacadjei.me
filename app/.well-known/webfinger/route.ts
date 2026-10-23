@@ -3,10 +3,10 @@ import { NextResponse } from "next/server"
 export const runtime = "edge"
 
 const ACCOUNT = {
-  subject: "acct:isaacadjei@mastodon.social",
-  profile: "https://mastodon.social/@isaacadjei",
-  actor: "https://mastodon.social/ap/users/117412377205870888",
-  server: "https://mastodon.social",
+  subject: "acct:isaacadjei@hachyderm.io",
+  profile: "https://hachyderm.io/@isaacadjei",
+  actor: "https://hachyderm.io/ap/users/117412355931947819",
+  server: "https://hachyderm.io",
 }
 
 const HANDLES = new Set(["isaac", "zaccesss", "isaacadjei"])
