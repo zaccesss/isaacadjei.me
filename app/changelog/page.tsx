@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.99.0",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    added: [
+      "Tools for keeping track of my society treasurer role",
+    ],
+  },
+  {
     version: "v2.98.2",
     date: "2026-10-23",
     label: "Fediverse",
