@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.99.1",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "Dates just after midnight in summer now follow UK time",
+    ],
+  },
+  {
     version: "v2.99.0",
     date: "2026-10-23",
     label: "Behind the scenes",
