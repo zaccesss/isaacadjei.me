@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.98.1",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "A security update for the library that cleans diagram output",
+    ],
+  },
+  {
     version: "v2.98.0",
     date: "2026-10-23",
     label: "Behind the scenes",
