@@ -1,6 +1,6 @@
 {
   "name": "isaacadjei.me",
-  "version": "2.99.1",
+  "version": "2.100.0",
   "private": true,
   "description": "Source of isaacadjei.me: the public pages, components and content of my portfolio site",
   "homepage": "https://isaacadjei.me",
@@ -38,7 +38,6 @@
     "echarts": "^6.1.0",
     "echarts-for-react": "^3.0.6",
     "framer-motion": "^13.5.1",
-    "geist": "^1.8.2",
     "lucide-react": "^1.61.0",
     "maplibre-gl": "^6.15.0",
     "mermaid": "^12.2.0",

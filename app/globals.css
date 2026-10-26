@@ -45,9 +45,6 @@
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -91,6 +88,25 @@
       transform: translateX(0);
     }
   }
+}
+
+/*
+  fonts. A plain @theme value lives on :root, where the next/font variables set on <body> do not exist, so
+  the old `--font-sans: var(--font-geist-sans)` never resolved and every page fell back to the system font:
+  SF Pro on Apple devices and Segoe UI on Windows, with Geist never loaded. `inline` makes the utilities
+  carry the value itself, so var() resolves on the body. Apple devices keep their system font on purpose:
+  it is the look the site was designed around and its licence keeps it on Apple platforms. Everywhere
+  else gets Geist, the closest licensed match, as hinted static weights from lib/fonts.ts. The platform
+  comes from the one-line check in app/layout.tsx that adds the `apple` class, because no font name does
+  this reliably: Chrome ignores -apple-system and parses BlinkMacSystemFont as the generic system-ui,
+  which on Windows is Segoe UI
+*/
+@theme inline {
+  --font-sans: var(--font-sans-platform, var(--font-geist-sans)), sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+html.apple {
+  --font-sans-platform: system-ui;
 }
 
 /*
@@ -170,6 +186,55 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+}
+
+/*
+  the same look on every operating system. macOS draws overlay scrollbars and tinted form controls of its
+  own, while Windows and Linux draw wide grey scrollbars and controls in whatever colour the system picked.
+  The theme takes over wherever CSS can: thin scrollbars in the theme's colours, the primary colour on
+  checkboxes, radios, ranges and progress bars, a themed text selection, balanced headings and lined-up
+  digits in chart labels. The fonts themselves are handled in lib/fonts.ts
+*/
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
+    accent-color: hsl(var(--primary));
+  }
+  html.dark {
+    scrollbar-color: hsl(var(--muted-foreground) / 0.45) transparent;
+  }
+  ::selection {
+    background-color: hsl(var(--primary) / 0.22);
+  }
+  .dark ::selection {
+    background-color: hsl(var(--primary) / 0.4);
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p, li, blockquote {
+    text-wrap: pretty;
+  }
+  .recharts-text,
+  .recharts-legend-item-text {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* the looping and entrance keyframes below stop when the device asks for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-slower {
+    animation: none;
+  }
+  .animate-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 
