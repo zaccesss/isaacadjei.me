@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.100.1",
+    date: "2026-10-26",
+    label: "Behind the scenes",
+    fixed: [
+      "The site's typeface files now ship with the site itself, so the public source copy builds again",
+    ],
+  },
+  {
     version: "v2.100.0",
     date: "2026-10-26",
     label: "Every screen",
