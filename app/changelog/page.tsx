@@ -25,6 +25,16 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.100.0",
+    date: "2026-10-26",
+    label: "Every screen",
+    changed: [
+      "Windows and Linux now get the site's own typeface, hinted so it stays crisp, instead of the system default",
+      "Scrollbars, checkboxes, text selection and headings follow the site's theme on every operating system",
+      "The command palette is translucent, so the page shows through a soft blur",
+    ],
+  },
+  {
     version: "v2.99.1",
     date: "2026-10-23",
     label: "Behind the scenes",

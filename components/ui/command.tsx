@@ -27,7 +27,10 @@ interface CommandDialogProps extends DialogProps {}
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg sm:max-w-xl">
+      <DialogContent
+        overlayClassName="bg-black/30 supports-backdrop-filter:backdrop-blur-[2px]"
+        className="overflow-hidden p-0 sm:max-w-xl sm:rounded-2xl border-border/60 bg-popover shadow-2xl shadow-black/25 ring-1 ring-white/10 supports-backdrop-filter:bg-popover/75 supports-backdrop-filter:backdrop-blur-2xl supports-backdrop-filter:backdrop-saturate-150"
+      >
         <Command className="**:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:font-bold **:[[cmdk-group-heading]]:text-foreground **:[[cmdk-group-heading]]:text-center [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 **:[[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 **:[[cmdk-input]]:h-12 **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
         </Command>

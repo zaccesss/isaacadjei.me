@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
+import { geistSans as GeistSans, geistMono as GeistMono } from "@/lib/fonts"
 import "./globals.css"
 import "@/styles/animations.css"
 import PublicShell from "@/components/layout/PublicShell"
@@ -84,6 +83,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';if(/mac|iphone|ipad|ipod|ios/i.test(p))document.documentElement.classList.add('apple')}catch(e){}",
+          }}
+        />
         <link rel="me" href="https://hachyderm.io/@isaacadjei" />
         <link rel="me" href="https://mastodon.social/@isaacadjei" />
         <meta name="fediverse:creator" content="@isaacadjei@hachyderm.io" />

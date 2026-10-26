@@ -85,7 +85,7 @@ export default function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-200 border-b",
         isScrolled
-          ? "bg-background/95 sm:backdrop-blur-sm sm:supports-backdrop-filter:bg-background/60"
+          ? "bg-background/95 sm:backdrop-blur-xl sm:backdrop-saturate-150 sm:supports-backdrop-filter:bg-background/65"
           : "bg-transparent"
       )}
     >

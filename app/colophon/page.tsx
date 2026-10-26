@@ -60,7 +60,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Geist",
-        detail: <><A href="https://vercel.com/font">Geist</A> is the typeface designed by Vercel and used across this site. Geist Sans for all body text, headings and UI labels - clean and highly legible at any size. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. Both come from the geist package and are self-hosted through Next.js font optimisation, so they are never fetched from an external CDN and the text does not jump when they arrive.</>,
+        detail: <>On an Apple device the site uses the system typeface, the look it was designed around and one Apple only licenses for its own platforms. Everywhere else it uses <A href="https://vercel.com/font">Geist</A>, the typeface designed by Vercel as the closest match: Geist Sans for body text, headings and UI labels, served as hinted static weights so it stays crisp on Windows and Linux, which rely on hinting where macOS does not. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. Both come from the geist package and are self-hosted through Next.js font optimisation, so they are never fetched from an external CDN and the text does not jump when they arrive. The theme also takes over what the operating system would otherwise draw: thin scrollbars in the theme colours, the accent colour on checkboxes and sliders and a themed text selection.</>,
       },
       {
         name: "next-themes",
@@ -204,7 +204,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Reduced motion",
-        detail: "If your device asks for reduced motion, the things that move stop moving: the lab terminal prints its output at once instead of line by line, the typing motto, header, favicon and page entrance animations stand still and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
+        detail: "If your device asks for reduced motion, the things that move stop moving: the lab terminal prints its output at once instead of line by line, the typing motto, header, favicon and page entrance animations stand still, the scrolling track title and the floating shapes hold their place and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
       },
       {
         name: "Focus rings",
