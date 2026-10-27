@@ -4,6 +4,7 @@ const _thank_you_stanmore: BlogPost = {
     slug: "thank-you-stanmore",
     title: "Thank You, Stanmore",
     date: "2026-10-17",
+    updated: "2026-10-27",
     type: "journal",
     cover_image: "/images/blog/covers/thank-you-stanmore-card.webp",
     cover_alt: "Close-up of a handwritten card from my business teacher reading: never let anyone stop your dreams from coming true",
@@ -138,7 +139,7 @@ const _thank_you_stanmore: BlogPost = {
       },
       {
         type: "p",
-        text: "In the summer of 2024 the results came through: D*DD in engineering, plus grade 4 passes in GCSE English and Maths. I spent six weeks of that summer as an intern at the Ghana High Commission in London, then started at Aston in September.",
+        text: "In the summer of 2024 the results came through: D*DD in engineering, plus passes in GCSE English and Maths. I spent six weeks of that summer as an intern at the Ghana High Commission in London, then started at Aston in September.",
       },
       {
         type: "p",
