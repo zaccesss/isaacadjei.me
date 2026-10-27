@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.100.5] - 2026-10-27
+
+_Behind the scenes_
+
+### Fixed
+
+- Finished tasks now close properly in the task tracker
+
 ## [2.100.4] - 2026-10-27
 
 _Behind the scenes_
