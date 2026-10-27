@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.100.4",
+    date: "2026-10-27",
+    label: "Behind the scenes",
+    fixed: [
+      "A daily summary message no longer fails on days with long lists",
+    ],
+  },
+  {
     version: "v2.100.3",
     date: "2026-10-27",
     label: "Behind the scenes",
