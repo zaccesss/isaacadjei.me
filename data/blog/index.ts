@@ -95,6 +95,7 @@ import _43 from "./posts/alerts-that-do-not-cry-wolf"
 import _46 from "./posts/how-the-transistor-got-small"
 import _47 from "./posts/git-hooks-that-saved-me"
 import _48 from "./posts/hubble-mirror-flaw"
+import _49 from "./posts/how-gps-works-relativity"
 import _69 from "./posts/isolation-forest-without-maths"
 import _71 from "./posts/monorepo-read-only-split-repos"
 import _77 from "./posts/sky-animol-screening-invite"
@@ -148,6 +149,7 @@ export const posts: BlogPost[] = [
   _46,
   _47,
   _48,
+  _49,
   _69,
   _71,
   _77,
