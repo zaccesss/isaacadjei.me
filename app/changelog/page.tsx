@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.102.0",
+    date: "2026-10-29",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page is shorter: it keeps the story of the reader and gives the code themes, Zacess Scenes and Zacess Games one card each with a live preview and a link to their full pages on zacess.com",
+    ],
+    added: [
+      "Live previews on the Zacess page: a code sample that switches between the eight themes and players for Zacess Scenes frames and recordings of six Zacess Games, which start paused when reduced motion is on",
+    ],
+  },
+  {
     version: "v2.101.0",
     date: "2026-10-29",
     label: "Zacess",

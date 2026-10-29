@@ -16,6 +16,7 @@ import { staggerContainer, fadeUp } from "@/lib/animations"
 import ShareButton from "@/components/shared/ShareButton"
 import { renderBlock, buildHeadingIds, renderInline } from "@/components/shared/ContentBlocks"
 import StatusBadge from "./StatusBadge"
+import ProductCard from "./ProductCard"
 import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/Tag"
 
 export type LabMeasurementPoint = {
@@ -155,7 +156,11 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
           <div className="space-y-4">
             {(() => {
               const ids = buildHeadingIds(project.sections)
-              return project.sections.map((block, i) => renderBlock(block, i, ids, project.sections![i - 1], highlighted))
+              return project.sections.map((block, i) => {
+                if (block.type === "product") return <ProductCard key={i} block={block} />
+                const prev = project.sections![i - 1]
+                return renderBlock(block, i, ids, prev?.type === "product" ? undefined : prev, highlighted)
+              })
             })()}
           </div>
         )}

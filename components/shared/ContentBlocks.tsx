@@ -35,12 +35,12 @@ export function slugify(text: string): string {
     .replace(/\s+/g, "-")
 }
 
-export function buildHeadingIds(content: ContentBlock[]): Map<number, string> {
+export function buildHeadingIds(content: readonly { type: string; text?: string }[]): Map<number, string> {
   const counts = new Map<string, number>()
   const ids = new Map<number, string>()
   content.forEach((block, i) => {
     if (block.type !== "h2" && block.type !== "h3") return
-    const base = slugify(block.text)
+    const base = slugify(block.text ?? "")
     const count = counts.get(base) ?? 0
     ids.set(i, count === 0 ? base : `${base}-${count}`)
     counts.set(base, count + 1)

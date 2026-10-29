@@ -1,4 +1,8 @@
 import type { ContentBlock } from "@/data/blog"
+import type { PreviewId } from "./zacess/previews"
+
+export type ProductCardBlock = { type: "product"; heading: string; text: string; preview: PreviewId; href: string }
+export type ProjectBlock = ContentBlock | ProductCardBlock
 
 export interface Project {
   id: string
@@ -23,7 +27,7 @@ export interface Project {
   order?: number
   status?: "live" | "in-progress" | "completed" | "archived" | "research"
   links?: { label: string; url: string }[]
-  sections?: ContentBlock[]
+  sections?: ProjectBlock[]
   team?: { name: string; github: string; role: string }[]
   references?: { title: string; url: string; note?: string }[]
   getInvolved?: { discussions?: boolean; roadmap?: string }
