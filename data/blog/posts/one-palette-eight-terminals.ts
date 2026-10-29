@@ -4,6 +4,7 @@ const _one_palette_eight_terminals: BlogPost = {
   slug: "one-palette-eight-terminals",
   title: "One Palette, Eight Terminals: Building Accessible Terminal Themes",
   date: "2026-10-05",
+  updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/one-palette-eight-terminals.webp",
   description:
@@ -12,6 +13,11 @@ const _one_palette_eight_terminals: BlogPost = {
   projectSlug: "dev-environment",
   published: true,
   content: [
+    {
+      type: "callout",
+      tone: "note",
+      text: "Update, 29 October 2026: the palette file is now `palette/zacess.json` and holds the eight Zacess themes. A second script, `sync-palette.py`, copies it from a pinned [Zacess Themes](https://github.com/zacesshq/themes) release and the generator now writes Ghostty and tmux theme files too. The approach in this post is unchanged.",
+    },
     {
       type: "p",
       text: "I spend most of my day in a terminal and I use a lot of them: [Terminal.app](https://support.apple.com/guide/terminal/welcome/mac) and [iTerm2](https://iterm2.com) on the Mac, [Ptyxis](https://devsuite.app/ptyxis/) on Ubuntu, [Windows Terminal](https://github.com/microsoft/terminal) on the laptop and occasionally [Alacritty](https://alacritty.org), [Kitty](https://sw.kovidgoyal.net/kitty/) or [Hyper](https://hyper.is) when I am testing something. For years each one had its own colours, tweaked by hand at different times. The same `git status` looked different in every app and some combinations were genuinely hard to read. This post is about replacing all of that with one palette and one generator script.",

@@ -10,7 +10,7 @@ export interface PublicActivity {
   application_id?: string
 }
 
-const AI_TOOL = /claude|chatgpt|openai|codex|copilot|gemini|perplexity|devin|\bagents?\b|dotagents|cloud-kit/i
+const AI_TOOL = /claude|chatgpt|openai|codex|copilot|gemini|perplexity|devin|\bagents?\b|dotagents|example-kit/i
 const CODING_APP = /code|cursor|zed|vim|intellij|pycharm|webstorm|clion|rider|goland|eclipse|xcode|antigravity|sublime|android studio/i
 
 function namesPublicProject(text: string): boolean {

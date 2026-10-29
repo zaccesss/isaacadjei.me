@@ -4,6 +4,7 @@ const _git_hooks_that_saved_me: BlogPost = {
   slug: "git-hooks-that-saved-me",
   title: "Git Hooks That Have Saved Me: Secrets, Big Files and Force Pushes",
   date: "2026-10-24",
+  updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/git-hooks-that-saved-me.webp",
   description:
@@ -18,7 +19,7 @@ const _git_hooks_that_saved_me: BlogPost = {
     },
     {
       type: "p",
-      text: "So I keep a small set of [Git hooks](https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks) that run on every commit and every push, on every repository, on all three of my machines: a Mac, a Lenovo laptop dual booting Windows and Ubuntu and WSL2 on the Windows side. This post walks through what they check, why each check exists and how you can build the same safety net in an afternoon.",
+      text: "So I keep a small set of [Git hooks](https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks) that run on every commit and every push, on every repository, on all three of my machines: a Mac, a Lenovo laptop dual booting Windows and Fedora and WSL2 on the Windows side. This post walks through what they check, why each check exists and how you can build the same safety net in an afternoon.",
     },
     {
       type: "h2",

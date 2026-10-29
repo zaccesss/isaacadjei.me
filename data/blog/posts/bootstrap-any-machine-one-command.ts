@@ -4,6 +4,7 @@ const _bootstrap_any_machine_one_command: BlogPost = {
   slug: "bootstrap-any-machine-one-command",
   title: "One Command to Set Up Any Machine: Bootstrapping macOS, Linux and Windows",
   date: "2026-10-01",
+  updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/bootstrap-any-machine-one-command.webp",
   description:
@@ -14,7 +15,7 @@ const _bootstrap_any_machine_one_command: BlogPost = {
   content: [
     {
       type: "p",
-      text: "I work across three machines: a Mac that runs Linux virtual machines through [OrbStack](https://orbstack.dev), a Lenovo laptop that dual boots Windows and Ubuntu and [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on the Windows side. For a long time each one was set up by hand from a notes file that was always slightly out of date. Every new install cost me an evening and every machine drifted a little further from the others. This post is about how I replaced that notes file with three bootstrap repositories and what I learned about writing setup scripts that are safe to run more than once.",
+      text: "I work across three machines: a Mac that runs Linux virtual machines through [OrbStack](https://orbstack.dev), a Lenovo laptop that dual boots Windows and Fedora and [WSL2](https://learn.microsoft.com/en-us/windows/wsl/about) on the Windows side. For a long time each one was set up by hand from a notes file that was always slightly out of date. Every new install cost me an evening and every machine drifted a little further from the others. This post is about how I replaced that notes file with three bootstrap repositories and what I learned about writing setup scripts that are safe to run more than once.",
     },
     {
       type: "h2",
@@ -40,7 +41,7 @@ const _bootstrap_any_machine_one_command: BlogPost = {
     },
     {
       type: "p",
-      text: "Each bootstrap runs a fixed list of stages in order. On the Mac they are the Xcode command line tools, [Homebrew](https://brew.sh), the dotfiles, the config repositories, the Brewfile, the toolchains and finally the macOS settings. The important design choice is that every stage looks first and only acts where something is missing. If `brew bundle check` says nothing is missing, the Brewfile stage ends without touching anything. If the Xcode tools are already there, Apple's installer never opens.",
+      text: "Each bootstrap runs a fixed list of stages in order. On the Mac they are the Xcode command line tools, [Homebrew](https://brew.sh), the dotfiles, the configs, the Brewfile, the toolchains, the macOS settings and finally the editors and apps. The important design choice is that every stage looks first and only acts where something is missing. If `brew bundle check` says nothing is missing, the Brewfile stage ends without touching anything. If the Xcode tools are already there, Apple's installer never opens.",
     },
     {
       type: "diagram",
@@ -49,7 +50,7 @@ const _bootstrap_any_machine_one_command: BlogPost = {
     },
     {
       type: "p",
-      text: "Three habits came out of this. First, never delete: an existing `~/.zshrc` is moved into a backups folder under `~/.local/state` before a link replaces it. Second, never upgrade silently: apps that are already installed stay at their version, because an upgrade should be a decision rather than a side effect. Third, write progress down. A small log of finished stages makes it obvious where a run stopped if the Wi-Fi drops halfway through.",
+      text: "Three habits came out of this. First, never delete: an existing `~/.zshrc` goes to the Bin before a link replaces it, so it can always be restored. Second, never upgrade silently: apps that are already installed stay at their version, because an upgrade should be a decision rather than a side effect. Third, write progress down. A small log of finished stages makes it obvious where a run stopped if the Wi-Fi drops halfway through.",
     },
     {
       type: "h3",
@@ -57,20 +58,20 @@ const _bootstrap_any_machine_one_command: BlogPost = {
     },
     {
       type: "p",
-      text: "The tool configs ([tmux](https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux), [Neovim](https://github.com/zaccesss/dotfiles/tree/main/editors/neovim), [VS Code](https://github.com/zaccesss/dotfiles/tree/main/editors/vscode), lazygit, ripgrep, fzf and the [Git hooks](https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks)) live in their own folders of the public dotfiles repository. The bootstrap clones it into `~/.dotfiles` and symlinks each file into place. Editing a file in the repository changes the live machine straight away, so there is never a question of which copy is the real one. The exceptions are `~/.gitconfig` and `~/.ssh/config`. Those hold a name, an email address, keys and hosts, so they are copied once as a starting point and then left alone.",
+      text: "The tool configs ([tmux](https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux), [Neovim](https://github.com/zaccesss/dotfiles/tree/main/editors/neovim), [VS Code](https://github.com/zaccesss/dotfiles/tree/main/editors/vscode), lazygit, ripgrep, fzf and the [Git hooks](https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks)) live in their own folders of the public dotfiles repository. The bootstrap clones it into `~/dev/github/repos/dotfiles` and symlinks each file into place. Editing a file in the repository changes the live machine straight away, so there is never a question of which copy is the real one. The exceptions are `~/.gitconfig` and `~/.ssh/config`. Those hold a name, an email address, keys and hosts, so they are copied once as a starting point and then left alone.",
     },
     {
       type: "code",
       lang: "bash",
       text: `# a new Mac
 xcode-select --install
-git clone https://github.com/zaccesss/dotfiles.git ~/.dotfiles/dotfiles
-~/.dotfiles/dotfiles/setup/mac-bootstrap/bootstrap/bootstrap.sh
+git clone https://github.com/zaccesss/dotfiles.git ~/dev/github/repos/dotfiles
+~/dev/github/repos/dotfiles/setup/mac-bootstrap/bootstrap/bootstrap.sh
 
 # a fresh Ubuntu install or WSL2
 sudo apt update && sudo apt install -y git
-git clone https://github.com/zaccesss/dotfiles.git ~/.dotfiles/dotfiles
-~/.dotfiles/dotfiles/setup/linux-bootstrap/bootstrap/bootstrap.sh --with configs`,
+git clone https://github.com/zaccesss/dotfiles.git ~/dev/github/repos/dotfiles
+~/dev/github/repos/dotfiles/setup/linux-bootstrap/bootstrap/bootstrap.sh --with configs`,
     },
     {
       type: "h2",
@@ -87,7 +88,7 @@ git clone https://github.com/zaccesss/dotfiles.git ~/.dotfiles/dotfiles
     {
       type: "callout",
       tone: "warning",
-      text: "The Windows bootstrap is honest about its status: it is tested on a Windows runner in CI and in plan mode but has not yet done a full end to end run on a real PC. A setup script deserves the same caution as any other code that changes a machine you care about.",
+      text: "The Windows bootstrap is honest about its status: it is tested on a Windows runner in CI and in plan mode. Since this post it has also run end to end on real PCs. A setup script deserves the same caution as any other code that changes a machine you care about.",
     },
     {
       type: "h2",

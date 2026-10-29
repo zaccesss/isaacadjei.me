@@ -48,7 +48,7 @@ export function publicCodingDay<T extends CodingDay>(day: T): T {
 
 const SITE_REPOSITORY = process.env.VERCEL_GIT_REPO_SLUG
 const PUBLIC_PROJECTS = new Set([
-  "DG1AID-Labs", "astoncv", "avr-zac", "code-of-conduct", "competitive-programming",
+  "astoncv", "avr-zac", "code-of-conduct", "competitive-programming",
   "competitive-programming-templates", "contribute", "dotfiles", "email-setup-kit", "git-hooks",
   "git-practice-lab", "git-unlocked", "isaac-adjei-automations", "isaac-adjei-portfolio-discussions",
   "isaacadjei.me", "latex-cv", "linux-bootstrap", "mac-bootstrap", "melophos", "neopixel-led-cube", "phaemos",

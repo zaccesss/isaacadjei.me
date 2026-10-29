@@ -50,8 +50,11 @@ const nextConfig = {
     // Next.js negotiates the format automatically via Accept headers.
     formats: ["image/avif", "image/webp"],
   },
-  // the role CVs live outside public/ and are read at request time, so tracing has to be told to ship them
-  outputFileTracingIncludes: { "/api/dashboard/cv/[file]": ["./data/cv-files/**"] },
+  // the role CVs and the private course documents live outside public/ and are read at request time, so tracing has to be told to ship them
+  outputFileTracingIncludes: {
+    "/api/dashboard/cv/[file]": ["./data/cv-files/**"],
+    "/api/dashboard/documents/[file]": ["./data/private-documents/**"],
+  },
   experimental: {
     optimizePackageImports: ["lucide-react"],
     // server maps for readable server stack traces in Sentry, removed again after upload

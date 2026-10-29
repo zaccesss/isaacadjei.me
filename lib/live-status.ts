@@ -361,7 +361,7 @@ async function fetchGithubAndCache(): Promise<GithubActivity> {
     const pat = process.env.GITHUB_PAT
     const res = await fetch("https://api.github.com/users/zaccesss/events?per_page=30", {
       headers: {
-        "User-Agent": "isaac-adjei-portfolio",
+        "User-Agent": "example-portfolio",
         Accept: "application/vnd.github+json",
         ...(pat ? { Authorization: `Bearer ${pat}` } : {}),
       },

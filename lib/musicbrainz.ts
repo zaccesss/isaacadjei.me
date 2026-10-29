@@ -2,7 +2,7 @@ import { redis } from "@/lib/redis"
 import { isJunkTag } from "@/lib/lastfm"
 
 const MB_BASE = "https://musicbrainz.org/ws/2"
-const USER_AGENT = "isaac-adjei-portfolio/1.0 (https://isaacadjei.me)"
+const USER_AGENT = "example-portfolio/1.0 (https://isaacadjei.me)"
 
 export interface MusicBrainzGenre { name: string; count: number }
 

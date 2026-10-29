@@ -4,9 +4,9 @@ const _dev_environment: Project = {
     id: "dev-environment",
     title: "Developer Environment: Dotfiles, Configs and Bootstrap",
     description:
-      "One repository that rebuilds my whole development setup on macOS, Windows 11, Fedora, Ubuntu and WSL2 with one command: shell profiles, terminal, tmux, every editor and IDE, Git configs, safety hooks, desktop settings and one high contrast palette.",
+      "One repository that rebuilds my whole development setup on macOS, Windows 11, Fedora, Ubuntu and WSL2 with one command: shell profiles, terminal, tmux, every editor and IDE, Git configs, safety hooks, desktop settings and the eight Zacess themes, switched everywhere by one command.",
     longDescription:
-      "This started as a single dotfiles repository, grew into a family of repositories and is now one repository again, with every config in its own folder. The shell folder holds the shell profiles for zsh on macOS, bash on Linux and WSL2 and PowerShell 7 on Windows, split into numbered topic files so the same short commands behave the same way on every machine. Around it sit grouped folders for the terminal, tmux, Neovim, Git, SSH, the command line tools, VS Code, JetBrains IDEs, Eclipse, Zed, Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++, Proteus, Raycast, Rectangle, Obsidian, Zotero and the operating system's own settings, including a KDE Plasma desktop kept entirely as code.\n\nThree bootstraps tie it together. Each one takes a fresh Mac, Windows 11 PC, Fedora or Ubuntu install, signs in to GitHub, clones the repository once, links every config into place and applies the captured system settings. Running it again on a machine that is already set up changes nothing and only acts where something is missing.\n\nAccessibility runs through all of it. One high contrast palette file builds the theme for every terminal on every platform, at 7:1 or better in light mode, with bold text that keeps its colour rather than switching to a softer bright shade. Accessibility is a practical need for me rather than polish, so these choices are written down in each folder and a shared accessibility statement links them.",
+      "This started as a single dotfiles repository, grew into a family of repositories and is now one repository again, with every config in its own folder. The shell folder holds the shell profiles for zsh on macOS, bash on Linux and WSL2 and PowerShell 7 on Windows, split into numbered topic files so the same short commands behave the same way on every machine. Around it sit grouped folders for the terminal, tmux, Neovim, Git, SSH, the command line tools, VS Code, JetBrains IDEs, Eclipse, Zed, Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++, Proteus, Raycast, Rectangle, Obsidian, Zotero and the operating system's own settings, including a KDE Plasma desktop kept entirely as code.\n\nThree bootstraps tie it together. Each one takes a fresh Mac, Windows 11 PC, Fedora or Ubuntu install, signs in to GitHub, clones the repository once, links every config into place and applies the captured system settings. Running it again on a machine that is already set up changes nothing and only acts where something is missing.\n\nAccessibility runs through all of it. One palette file, copied from a pinned release of the Zacess themes, builds the theme for every terminal on every platform, at 7:1 or better in light mode, with bold text that keeps its colour rather than switching to a softer bright shade. One command, zt, switches every terminal, editor and app between the eight themes at once and Zacess Scenes draws calm scenes in the same colours. Accessibility is a practical need for me rather than polish, so these choices are written down in each folder and a shared accessibility statement links them.",
     technologies: [
       "Zsh",
       "Bash",
@@ -24,6 +24,7 @@ const _dev_environment: Project = {
       "Fedora",
       "KDE Plasma",
       "Kitty",
+      "Ghostty",
       "VS Code",
       "JetBrains",
       "Eclipse",
@@ -66,6 +67,7 @@ const _dev_environment: Project = {
       "/images/projects/dev-environment/editors/xcode-deep-contrast-dark.webp",
       "/images/projects/dotfiles/cmds.webp",
       "/images/projects/dotfiles/banner.webp",
+      "/images/projects/zacess/scenes/watch-pass.webp",
     ],
     github: "https://github.com/zaccesss/dotfiles",
     date: "2025",
@@ -75,7 +77,8 @@ const _dev_environment: Project = {
       "One high contrast palette file builds every terminal theme, holding light mode at 7:1 or better and failing CI if a colour drops below its floor",
       "Global Git hooks block likely secrets, large files, .env files and force pushes to main before they leave the machine",
       "System settings captured from a configured Mac or PC and replayed on the next one, writing only values that differ",
-      "One theme family in every editor and terminal: VS Code, JetBrains IDEs, Eclipse, Zed, Xcode, Neovim and eight terminals, switched together by a single command",
+      "One theme family in every editor and terminal: VS Code, JetBrains IDEs, Eclipse, Zed, Xcode, Neovim and the terminals, switched together by zt, which can also undo a change, change every device through a synced folder and check every tool for drift",
+      "Zacess Scenes on every machine: zs for a calm scene, zw to watch a Rust build and a shared settings file, installed by every bootstrap and following the theme zt last set",
       "Coding time tracked in every editor and app with file names, branches and project folders kept private",
       "The same folder layout, commands, wallpapers, larger yellow pointer and screen, lock and sleep order on every machine",
       "Used daily on a MacBook with OrbStack, a ThinkPad dual booting Windows 11 and Fedora KDE with BitLocker kept on and a Windows gaming PC, with WSL2 on both PCs",
@@ -89,12 +92,14 @@ const _dev_environment: Project = {
       { label: "setup/linux-bootstrap", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/linux-bootstrap" },
       { label: "terminal/terminal", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal" },
       { label: "terminal/tmux", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/tmux" },
+      { label: "apps/zacess-scenes", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/zacess-scenes" },
       { label: "editors/neovim", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/neovim" },
       { label: "git/git-hooks", url: "https://github.com/zaccesss/dotfiles/tree/main/git/git-hooks" },
       { label: "git/gitconfig", url: "https://github.com/zaccesss/dotfiles/tree/main/git/gitconfig" },
       { label: "git/ssh", url: "https://github.com/zaccesss/dotfiles/tree/main/git/ssh" },
       { label: "terminal/cli-tools", url: "https://github.com/zaccesss/dotfiles/tree/main/terminal/cli-tools" },
       { label: "setup/defaults", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/defaults" },
+      { label: "KDE Plasma defaults", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/defaults/linux/kde" },
       { label: "editors/vscode", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/vscode" },
       { label: "editors/jetbrains", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/jetbrains" },
       { label: "editors/eclipse", url: "https://github.com/zaccesss/dotfiles/tree/main/editors/eclipse" },
@@ -127,7 +132,8 @@ const _dev_environment: Project = {
     Mac --> Cfg["Config folders<br/>tmux, Neovim, CLI tools,<br/>VS Code, JetBrains, Eclipse,<br/>Zed, Git, SSH"]
     Win --> Cfg
     Lin --> Cfg
-    Pal["terminal<br/>one palette file"] -- "build-themes.py" --> Themes["Terminal.app, iTerm2, Windows Terminal,<br/>Ptyxis, GNOME Terminal, Alacritty,<br/>Kitty and Hyper themes"]
+    Zt["Zacess Themes release"] -- "sync-palette.py" --> Pal["terminal<br/>one palette file"]
+    Pal -- "build-themes.py" --> Themes["Terminal.app, iTerm2, Windows Terminal,<br/>Ptyxis, GNOME Terminal, Alacritty,<br/>Kitty, Ghostty and Hyper themes<br/>plus tmux theme files"]
     Mac --> Pal
     Win --> Pal
     Mac --> Sys["defaults<br/>captured OS settings"]
@@ -143,10 +149,11 @@ const _dev_environment: Project = {
         rows: [
           ["Bootstrap", "setup/mac-bootstrap, setup/windows-bootstrap, setup/linux-bootstrap", "Package installs from a Brewfile or winget list, toolchains, cloning and linking every config, settings and optional extras"],
           ["Shell", "shell", "Profiles split into numbered topic files, identical aliases, the Starship prompt and a colour-coded command reference"],
-          ["Terminal", "terminal/terminal, terminal/tmux", "The High Contrast palette for eight terminals and tmux with vi-style copy mode and session restore"],
+          ["Terminal", "terminal/terminal, terminal/tmux", "The eight Zacess themes for every terminal and tmux with vi-style copy mode, session restore and a theme file per Zacess theme"],
           ["Editors", "editors/neovim, editors/vscode, editors/jetbrains, editors/eclipse, editors/zed and more", "Neovim in Lua with LSP through Mason, VS Code settings and extensions, JetBrains plugin lists and keymaps, Eclipse preferences for Java and Zed settings, plus Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++ and Proteus, all on the same colour themes"],
           ["Git and SSH", "git/gitconfig, git/git-hooks, git/ssh", "SSH commit signing, global safety hooks and per-host key selection"],
-          ["Desktop", "setup/defaults, apps/raycast, apps/rectangle, apps/obsidian, apps/zotero", "Captured macOS, Windows and KDE settings, launcher hotkeys, window shortcuts and the Obsidian and Zotero themes"],
+          ["Desktop", "setup/defaults, apps/raycast, apps/rectangle, apps/obsidian, apps/zotero, apps/translucenttb", "Captured macOS, Windows and KDE settings, launcher hotkeys, window shortcuts, the Obsidian and Zotero themes and the Windows taskbar"],
+          ["Scenes", "apps/zacess-scenes", "Zacess Scenes, its settings file and the zs and zw commands"],
           ["Tools", "terminal/cli-tools", "ripgrep, fzf, lazygit and zoxide defaults with the same theme"],
           ["Mail", "email-setup-kit (its own repository)", "Custom domain email with SPF, DKIM, DMARC, filters and accessible signatures"],
         ],
@@ -171,7 +178,7 @@ const _dev_environment: Project = {
       { type: "h2", text: "One palette for every terminal" },
       {
         type: "p",
-        text: "All the colours live in one JSON file. A Python script writes the theme for every terminal from it and also regenerates the colour table in the guide, so the documentation can never drift from the real values. CI fails when a generated file is out of date or a colour drops below its contrast floor.",
+        text: "All the colours live in one JSON file. A Python script writes the theme for every terminal from it and also regenerates the colour table in the guide, so the documentation can never drift from the real values. CI fails when a generated file is out of date or a colour drops below its contrast floor. That file now comes from the Zacess themes I publish: a second script copies the palette from a pinned release and moves the editor pins to the same release, so the terminals, tmux and the editors always change together.",
       },
       {
         type: "ul",
@@ -182,6 +189,8 @@ const _dev_environment: Project = {
           "Text is near-white rather than pure white in dark mode to cut glare over long sessions",
           "Windows are fully opaque, since a see-through window lets whatever sits behind it lower the contrast",
           "Reduced motion, increased contrast and zoom stay under the operating system's own accessibility settings, which the scripts never override",
+          "Terminals that can hold a minimum contrast for text a program prints on its own background have it switched on: iTerm2, Kitty, Windows Terminal, the VS Code terminal and the Zed terminal",
+          "The selection is a solid block with its own text colour in every terminal, the way the Zacess themes draw it",
         ],
       },
       {
@@ -293,7 +302,7 @@ const _dev_environment: Project = {
       { type: "h2", text: "Every editor, one set of themes" },
       {
         type: "p",
-        text: "The editors get the same treatment as the terminals. VS Code, the JetBrains IDEs, Eclipse, Zed, Xcode and Neovim each have a folder with their settings, extensions or plugin lists. Every one of them runs the Zacess colour themes I publish for others too. One command switches every editor and terminal on a machine between the light, dark and deep contrast themes at once, so I never end up reading code in two different palettes. Each editor also reports to WakaTime, with file names, branch names and project folders hidden, so my coding stats cover all of them without exposing what I work on. Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++ and Proteus have folders of their own on the same themes, as do the Obsidian and Zotero apps.",
+        text: "The editors get the same treatment as the terminals. VS Code, the JetBrains IDEs, Eclipse, Zed, Xcode and Neovim each have a folder with their settings, extensions or plugin lists. Every one of them runs the Zacess colour themes I publish for others too. One command, zt, switches every editor and terminal on a machine between the eight themes at once, so I never end up reading code in two different palettes. Each editor also reports to WakaTime, with file names, branch names and project folders hidden, so my coding stats cover all of them without exposing what I work on. Arduino IDE, KiCad, MATLAB, Thonny, LTspice, Processing, Vivado, Notepad++ and Proteus have folders of their own on the same themes, as do the Obsidian and Zotero apps.",
       },
       {
         type: "image",
@@ -325,10 +334,51 @@ const _dev_environment: Project = {
         alt: "Xcode in Zacess Deep Contrast Dark: a Swift struct and class on pure black with bold keywords",
         caption: "Xcode in Deep Contrast Dark",
       },
+      { type: "h2", text: "One command for every theme" },
+      {
+        type: "p",
+        text: "zt is a small shell command on the Mac, Linux and Windows. Given a theme, it runs the apply script of every terminal, editor and app on the machine and links the matching tmux theme file, so a running tmux changes at once. MATLAB and Microchip Studio take the change on their next start. It also sets the system text highlight from the theme's selection colour, so selected text in every other app matches too.",
+      },
+      {
+        type: "table",
+        headers: ["Command", "What it does"],
+        rows: [
+          ["zt <theme>", "Switches every terminal, editor and app to one of the eight Zacess themes"],
+          ["zt undo", "Goes back to the theme before the last change"],
+          ["zt <theme> --all", "Changes every device through a synced folder. Each one applies it once when a terminal next opens there"],
+          ["zt doctor", "Checks every installed theme file and every tool's own setting against the active theme with one line per tool. It fails on any drift"],
+          ["zt highlight default", "Puts the system's own text highlight back"],
+        ],
+        caption: "The zt commands added in version 2.1.0",
+      },
+      { type: "h2", text: "Calm scenes in the terminal" },
+      {
+        type: "p",
+        text: "Version 2.2.0 brought [Zacess Scenes](/projects/zacess) to every machine. Each bootstrap installs the newest release binary checked against its checksum. It also installs bacon for watch mode and links a settings file into place. The settings pick a few calm pass scenes and slow fail scenes on shuffle every ten minutes, calm motion, the bells sound set at volume 40 and quiet hours from 22:00 to 07:00. There is no theme in that file on purpose: Scenes reads the theme zt last set, so a scene always matches the terminal.",
+      },
+      {
+        type: "table",
+        headers: ["Command", "What it does"],
+        rows: [
+          ["zs", "A random calm scene"],
+          ["zs <scene>", "One scene by name, such as zs koi-pond"],
+          ["zs list, zs sounds, zs themes", "Every scene and sound set, a sound set played aloud and the themes with the active one marked"],
+          ["zs config, zs new, zs snap", "Opens the settings, writes a starter Lua scene and saves an SVG still of a scene"],
+          ["zw", "Watches the build in the current Rust project"],
+          ["zwc, zwt, zwa", "The same with Clippy, with the tests and with check-all"],
+        ],
+        caption: "The same commands in zsh, bash and PowerShell",
+      },
+      {
+        type: "image",
+        src: "/images/projects/zacess/scenes/watch-pass.webp",
+        alt: "Watch mode while a build passes: a calm sea of cyan and blue waves with gulls and a yellow sun, a large green ALL GOOD banner with a check mark and a status bar reading my-project, check, passing, 0 warnings, 12s ago",
+        caption: "What zw shows while a Rust build passes, in Deep Contrast Dark",
+      },
       { type: "h2", text: "The same desktop on every machine" },
       {
         type: "p",
-        text: "The settings folder captures how each operating system is set up and replays it: macOS defaults, the Windows registry and the KDE Plasma desktop on Fedora, which runs a Windows 11 style taskbar, the high contrast colour schemes and the same window snapping keys as the Mac. Some choices follow me everywhere because I rely on them. The pointer is larger and yellow with a black outline on all three systems, wallpapers sorted into categories shuffle every five minutes and the screen saver and lock always come before the display turns off, so a long build or download never stops while the machine is plugged in.",
+        text: "The settings folder captures how each operating system is set up and replays it: macOS defaults, the Windows registry and the KDE Plasma desktop on Fedora, which runs a Windows 11 style taskbar, the high contrast colour schemes and the same window snapping keys as the Mac. On Fedora the light and dark global themes switch by time of day, the see-through taskbar is a 15 percent tint over the blur with a centred start menu and the desktop, lock screen and login screen each have a wallpaper slideshow. On Windows TranslucentTB tints the taskbar over the desktop and turns it solid when a window is maximised. Some choices follow me everywhere because I rely on them. The pointer is larger and yellow with a black outline on all three systems, wallpapers sorted into categories shuffle every five minutes and the screen saver and lock always come before the display turns off, so a long build or download never stops while the machine is plugged in.",
       },
       {
         type: "p",
