@@ -247,13 +247,13 @@ const _building_zacess: BlogPost = {
     "Zacess is a free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. Why I built it, how it works, short demos, the matching code themes and what it cannot do yet.",
   tags: ["Accessibility", "Rust", "WebAssembly", "TypeScript", "Zacess", "Code themes"],
   projectSlug: "zacess",
-  updated: "2026-10-21",
+  updated: "2026-10-29",
   published: true,
   content: [
     {
       type: "callout",
       tone: "note",
-      text: "Update, 21 October 2026: four themes have joined since launch. Zacess High Contrast Dark and Zacess High Contrast Light arrived on 19 October with pure black and pure white backgrounds and are reading themes in the browser version too. Zacess Deep Contrast Dark and Zacess Deep Contrast Light followed on 21 October with deep, fully saturated colours for low vision, along with an Eclipse version. That makes eight code themes for nine editors and five terminals. See them all on the [code themes page](https://zacess.com/themes/).",
+      text: "Update, 21 October 2026: four themes have joined since launch. Zacess High Contrast Dark and Zacess High Contrast Light arrived on 19 October with pure black and pure white backgrounds and are reading themes in the browser version too. Zacess Deep Contrast Dark and Zacess Deep Contrast Light followed on 21 October with deep, fully saturated colours for low vision, along with an Eclipse version. That made eight code themes for nine editors and five terminals. Since then Xcode and three more terminals have joined, so by 29 October the themes covered ten editors and eight terminals. The same colours now draw [Zacess Scenes](https://zacess.com/scenes/), calm animated scenes for the terminal. See every theme on the [code themes page](https://zacess.com/themes/).",
     },
     ...zacessLaunch,
   ],

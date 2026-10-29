@@ -23,7 +23,7 @@ const post: NotePost = {
     ] },
     { type: "h2", text: "A desktop that feels like home" },
     { type: "p", text: "I tried a Mac-style dock first and it did not suit me. The desktop now copies Windows 11 instead: one taskbar along the bottom with the start menu and pinned apps in the middle, the tray and a 24-hour clock on the right. The window keys I use with Rectangle on my Mac work here too, so a window snaps to a half or a quarter with the same keys on every machine." },
-    { type: "p", text: "Colour matters to me more than most, because I see with one eye. KDE runs my own high-contrast light and dark themes and switches between them by time of day. Kitty is the terminal, with Ctrl+C and Ctrl+V copying and pasting as they do on Windows. My OneDrive mounts as a folder and my wallpaper set rotates every half hour." },
+    { type: "p", text: "Colour matters to me more than most, because I see with one eye. KDE runs my own high-contrast light and dark themes and switches between them by time of day. Kitty is the terminal, with Ctrl+C and Ctrl+V copying and pasting as they do on Windows. My OneDrive mounts as a folder and my wallpaper set changes every five minutes." },
     { type: "h2", text: "Everything is written down" },
     { type: "p", text: "None of this is clicked together by hand and forgotten. The themes, the taskbar, the shortcuts and the terminal are all saved as config files with a setup script. A written guide covers the install from start to finish. The next laptop should be an afternoon's work rather than a weekend's." },
     { type: "p", text: "The live status card on my [now page](/now) shows which side is running as ZACCESS-LNV-WIN or ZACCESS-LNV-FED. When the laptop is off it falls back to plain ZACCESS-LNV." },

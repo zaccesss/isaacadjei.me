@@ -4,4 +4,4 @@ export const DISCORD_PROFILE_ID = process.env.NEXT_PUBLIC_DISCORD_PROFILE_ID || 
 
 export const GH_OWNER = process.env.GH_OWNER || "zaccesss"
 export const AUTOMATIONS_REPO = process.env.AUTOMATIONS_REPO || "isaac-adjei-automations"
-export const PORTFOLIO_REPO = process.env.PORTFOLIO_REPO || "isaac-adjei-portfolio"
+export const PORTFOLIO_REPO = process.env.PORTFOLIO_REPO || "example-portfolio"

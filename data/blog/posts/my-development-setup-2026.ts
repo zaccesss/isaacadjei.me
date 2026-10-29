@@ -4,7 +4,7 @@ const _my_development_setup_2026: BlogPost = {
     slug: "my-development-setup-2026",
     title: "My Development Setup in 2026: Everything I Use to Build, Learn and Ship",
     date: "2026-06-29",
-    updated: "2026-10-23",
+    updated: "2026-10-29",
     type: "article",
     cover_image: "/images/blog/covers/my-development-setup-2026.webp",
     cover_credit: "Photo: Anas Alshanti, CC0, via Wikimedia Commons",
@@ -28,7 +28,7 @@ const _my_development_setup_2026: BlogPost = {
   },
   {
     type: "p",
-    text: "For portable development and anything Unix-native I use a MacBook (ZACCESS-MBK). The split is practical: web development, scripting, Next.js, Python and command-line work all run better in a Unix environment. The Mac runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every two minutes for the live status widget on the portfolio site. The Lenovo laptop (ZACCESS-LNV) is a secondary Windows machine with its own daemon doing the same for battery and charging state.",
+    text: "For portable development and anything Unix-native I use a MacBook (ZACCESS-MBK). The split is practical: web development, scripting, Next.js, Python and command-line work all run better in a Unix environment. The Mac runs a launchd-managed Python daemon (mac-daemon.py) that writes battery level, charging state, timezone and weather to Redis every two minutes for the live status widget on the portfolio site. The Lenovo laptop (ZACCESS-LNV) is a secondary machine that dual boots Windows 11 and Fedora KDE, with its own daemon doing the same for battery and charging state.",
   },
   {
     type: "p",
@@ -40,7 +40,7 @@ const _my_development_setup_2026: BlogPost = {
   },
   {
     type: "p",
-    text: "My prompt is [Starship](https://starship.rs) - a cross-shell Rust-based prompt configured once in ~/.config/starship.toml and working identically on macOS (zsh), Linux (bash) and Windows (PowerShell 7). It shows git branch and status, active language version and the exit code of the last command. It loads at topic file 59, so all aliases and environment variables are already in place before the prompt hooks in.",
+    text: "My prompt is [Starship](https://starship.rs) - a cross-shell Rust-based prompt configured once in ~/.config/starship.toml and working identically on macOS (zsh), Linux (bash) and Windows (PowerShell 7). It shows git branch and status, active language version and the exit code of the last command. It loads at topic file 34, so all aliases and environment variables are already in place before the prompt hooks in.",
   },
   {
     type: "p",
@@ -48,7 +48,7 @@ const _my_development_setup_2026: BlogPost = {
   },
   {
     type: "p",
-    text: "The dotfiles repository covers 63 numbered topic files loaded in order - from git aliases and navigation shortcuts through to Docker, Kubernetes, cloud platforms and 30+ language toolchains. Every alias has the same name on all three platforms. The colour scheme was chosen deliberately: I lost sight in my right eye at age two and colour does the depth-cue job that binocular vision usually handles. Cyan, magenta, green and yellow were chosen for contrast and tested under deuteranopia and protanopia simulations.",
+    text: "The dotfiles repository covers 39 numbered topic files loaded in order - from git aliases and navigation shortcuts through to Docker, Kubernetes, cloud platforms and a file per language toolchain. Every alias has the same name on all three platforms. The colour scheme was chosen deliberately: I lost sight in my right eye at age two and colour does the depth-cue job that binocular vision usually handles. Cyan, magenta, green and yellow were chosen for contrast and tested under deuteranopia and protanopia simulations. Every terminal and editor now runs the eight Zacess themes and one command, zt, switches them all at once.",
   },
   {
     type: "h2",

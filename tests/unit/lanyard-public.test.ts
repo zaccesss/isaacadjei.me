@@ -16,7 +16,7 @@ describe("publicActivities", () => {
   })
 
   it("hides the text for a private or AI workspace but keeps the app", () => {
-    for (const details of ["In repo-ops", "In .agents", "In dotagents", "In isaac-adjei-portfolio"]) {
+    for (const details of ["In example-ops", "In .example-config", "In dotagents", "In example-portfolio"]) {
       const [a] = publicActivities([{ type: 0, name: "Code", details, state: "Editing x.ts", assets: { large_text: "x.ts", large_image: "img" } }])
       expect(a.details).toBe("Working on a private project")
       expect(a.state).toBeUndefined()

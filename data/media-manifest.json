@@ -1789,6 +1789,42 @@
   "w": 1200,
   "ht": 630
  },
+ "/images/projects/zacess/games/learn-to-code.webp": {
+  "h": "d46bdda990",
+  "t": "img",
+  "w": 1736,
+  "ht": 1136
+ },
+ "/images/projects/zacess/games/menu.webp": {
+  "h": "35ab324e86",
+  "t": "img",
+  "w": 1736,
+  "ht": 1136
+ },
+ "/images/projects/zacess/games/stackline-compact-light.webp": {
+  "h": "5694412baf",
+  "t": "img",
+  "w": 1064,
+  "ht": 796
+ },
+ "/images/projects/zacess/games/stackline.webp": {
+  "h": "f2b32f485b",
+  "t": "img",
+  "w": 1736,
+  "ht": 1136
+ },
+ "/images/projects/zacess/games/touch-typing-large.webp": {
+  "h": "d391e7b4a3",
+  "t": "img",
+  "w": 3534,
+  "ht": 1748
+ },
+ "/images/projects/zacess/games/touch-typing.webp": {
+  "h": "d982be4626",
+  "t": "img",
+  "w": 1736,
+  "ht": 1136
+ },
  "/images/projects/zacess/links-list.webp": {
   "h": "0338397884",
   "t": "img",
@@ -1812,6 +1848,42 @@
   "t": "img",
   "w": 1280,
   "ht": 800
+ },
+ "/images/projects/zacess/scenes/flood.webp": {
+  "h": "258bb80f30",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
+ },
+ "/images/projects/zacess/scenes/harbour.webp": {
+  "h": "fa4010b1df",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
+ },
+ "/images/projects/zacess/scenes/koi-pond.webp": {
+  "h": "25d6bde7a3",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
+ },
+ "/images/projects/zacess/scenes/lanterns-light.webp": {
+  "h": "4f45caf402",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
+ },
+ "/images/projects/zacess/scenes/watch-fail.webp": {
+  "h": "9a7b9ba0ee",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
+ },
+ "/images/projects/zacess/scenes/watch-pass.webp": {
+  "h": "f4c3a24844",
+  "t": "img",
+  "w": 1867,
+  "ht": 1243
  },
  "/images/projects/zacess/site-home-dark.webp": {
   "h": "0da379a2a2",

@@ -41,7 +41,7 @@ export interface GitHubStats {
 
 function authHeaders(pat?: string) {
   return {
-    "User-Agent": "isaac-adjei-portfolio",
+    "User-Agent": "example-portfolio",
     Accept: "application/vnd.github+json",
     ...(pat ? { Authorization: `Bearer ${pat}` } : {}),
   }

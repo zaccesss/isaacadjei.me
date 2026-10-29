@@ -2,6 +2,23 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.101.0] - 2026-10-29
+
+_Zacess_
+
+### Added
+
+- The Zacess project page covers Zacess Scenes 0.4.0: 39 calm terminal scenes in the eight themes, a watch mode for Rust builds, eight sound sets and six new stills
+- The Zacess project page covers Zacess Games 0.1.0: fourteen original terminal games with sound and music, including Touch Typing and 287 levels of Learn to Code
+- The developer environment project page covers the zt theme switcher, Zacess Scenes on every machine and the Fedora KDE desktop
+
+### Changed
+
+- Five posts about Zacess and the development setup are updated with current versions, counts and install paths
+- A course document is no longer published on the site
+- A scheduled post about running Linux on my Windows machines is rewritten to match the current setup
+- The public source code copy no longer names other repositories
+
 ## [2.100.6] - 2026-10-29
 
 _Zacess_
