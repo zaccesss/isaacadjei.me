@@ -2,6 +2,18 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.102.0] - 2026-10-29
+
+_Zacess_
+
+### Added
+
+- Live previews on the Zacess page: a code sample that switches between the eight themes and players for Zacess Scenes frames and recordings of six Zacess Games, which start paused when reduced motion is on
+
+### Changed
+
+- The Zacess project page is shorter: it keeps the story of the reader and gives the code themes, Zacess Scenes and Zacess Games one card each with a live preview and a link to their full pages on zacess.com
+
 ## [2.101.0] - 2026-10-29
 
 _Zacess_
