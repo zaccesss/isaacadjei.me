@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.102.1] - 2026-11-01
+
+_Projects_
+
+### Changed
+
+- The Zacess page has a shorter card description, a dated history and the phases ahead for the reader
+- The developer environment page covers the new project layouts, psmux on Windows and btop in the Zacess themes, with a dated history and what comes next
+
 ## [2.102.0] - 2026-10-29
 
 _Zacess_

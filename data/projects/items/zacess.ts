@@ -7,7 +7,7 @@ const _zacess: Project = {
     id: "zacess",
     title: "Zacess: Make Every Page Accessible",
     description:
-      "A free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. The browser version is live, built on a Rust core compiled to WebAssembly. Its contrast themes also ship as eight code themes for ten editors and eight terminals. The same themes colour Zacess Scenes, calm animated scenes for the terminal, plus Zacess Games, fourteen original terminal games with sound and music.",
+      "A free, open-source reader that turns PDFs, scans and web pages into notes in your own reading profile, plus code themes, terminal scenes and games, all from one contrast-checked palette.",
     longDescription:
       "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe contrast themes also became eight code themes for ten editors and eight terminals, each checked so every code colour keeps 7 to 1 on the background. The same themes colour two terminal products: Zacess Scenes, calm animated scenes that show how a Rust build stands, plus Zacess Games, fourteen original games built on Scenes.",
     technologies: [
@@ -73,7 +73,7 @@ const _zacess: Project = {
       "Zero axe violations at WCAG 2.2 A and AA, 44 pixel touch targets and checks on WebKit as well as Chromium",
       "Eight code themes for ten editors and eight terminals in six stores, generated from one palette with every code colour at 7 to 1 or more on the background",
       "A selection, current line and find match that always stand out, measured by the same check as the colours",
-      "Zacess Scenes 0.4.0: 39 terminal scenes in all eight themes that never flash, with a watch mode for Rust builds",
+      "Zacess Scenes 0.5.1: 39 terminal scenes in all eight themes that never flash, with a watch mode for Rust builds and a follow mode that reacts to every command",
       "Zacess Games 0.2.0: fourteen original terminal games with their own sound and music, including 287 Learn to Code levels across fifteen tracks, plus a recording of real play for every game",
     ],
     links: [
@@ -412,10 +412,40 @@ const _zacess: Project = {
         alt: "The code themes page at zacess.com as it was with the original four themes: the theme menu switches between Zacess Light, Dark, Yellow on Black and Cream, the language menu switches between TypeScript, Python, Rust and HTML, then the page scrolls to the four-theme grid and the install cards",
         caption: "The code themes page with the original four themes, each on each language",
       },
+      { type: "h2", text: "How it has grown" },
+      {
+        type: "table",
+        headers: ["When", "What arrived"],
+        rows: [
+          ["11 October 2026", "The zacesshq organisation, the name and the brand"],
+          ["13 October 2026", "zacess.com, the browser version at app.zacess.com and the first release of the code themes"],
+          ["28 October 2026", "Zacess Scenes 0.1.0, calm scenes for the terminal in the same palette"],
+          ["29 October 2026", "Code themes 0.6.1 with eight themes in six stores and Zacess Games 0.1.0 and 0.2.0"],
+          ["30 October 2026", "Scenes 0.5.0 with a follow mode that reacts to every command in a shell"],
+          ["1 November 2026", "Scenes 0.5.1, which keeps follow mode running on Windows when a long log is emptied"],
+        ],
+        caption: "Dates from each repository's releases",
+      },
       { type: "h2", text: "What is next" },
       {
         type: "p",
-        text: "The core already has lecture capture, study tools, bilingual reading, universal capture and a local-first sync engine. They need interfaces. Next come the apps for Windows, macOS, Linux, iOS and Android on the same core, then those features in the browser. Before any of that, the browser version needs to be used by people who rely on screen readers every day, because automated checks cannot tell me whether it is pleasant to use. The roadmap lives in the issues of the repository and anyone is welcome to join in. Beside the reader, [Zacess Games](https://zacess.com/games/) takes ideas for new games through a game idea form in its repository and extra Trace, Relay and Learn to Code levels can be written in Lua without building anything.",
+        text: "The core already has lecture capture, study tools, bilingual reading, universal capture, questions answered only from your own material and a local-first sync engine. They need interfaces, so the roadmap works through them in phases, each useful on its own and each tested with people who have different access needs before it ships.",
+      },
+      {
+        type: "table",
+        headers: ["Phase", "What it brings"],
+        rows: [
+          ["v0", "A two-week test build on real devices, used by people who rely on screen readers every day"],
+          ["v1", "Lecture mode: slides captured from the projector with repeats skipped, plus lecture audio recorded on the device"],
+          ["v2", "Universal capture with a browser extension, study and bilingual reading, QR codes, maths and more file formats"],
+          ["v3", "Lecturer mode with a live slide feed for every student, accessible collaboration and connections to learning platforms and storage"],
+          ["v4", "Optional helpers that describe a diagram or explain a block more simply, always labelled and kept affordable with batching and prompt caching"],
+        ],
+        caption: "The phases come from the roadmap issues in the repository",
+      },
+      {
+        type: "p",
+        text: "Alongside the phases come the apps for Windows, macOS, Linux, iOS and Android on the same core, an interface ready for translation, reading documents in more languages and research into a Zacess typeface for low vision. The roadmap lives in the issues of the repository and anyone is welcome to join in. Beside the reader, [Zacess Games](https://zacess.com/games/) takes ideas for new games through a game idea form in its repository and extra Trace, Relay and Learn to Code levels can be written in Lua without building anything.",
       },
     ],
 }

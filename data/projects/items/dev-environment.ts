@@ -375,6 +375,30 @@ const _dev_environment: Project = {
         alt: "Watch mode while a build passes: a calm sea of cyan and blue waves with gulls and a yellow sun, a large green ALL GOOD banner with a check mark and a status bar reading my-project, check, passing, 0 warnings, 12s ago",
         caption: "What zw shows while a Rust build passes, in Deep Contrast Dark",
       },
+      { type: "h2", text: "A workspace for every project" },
+      {
+        type: "p",
+        text: "ide opens a project in its own tmux session: Neovim on top, a shell below, a scene that follows every command and a second window running lazygit. Version 2.5.0 added seven more layouts built from the same helpers, each named after the folder so two layouts of one project can be open at once. On Windows the same tmux config runs in psmux, a native tmux, so every layout and short command works in PowerShell and Command Prompt as well as on macOS, Linux and WSL2.",
+      },
+      {
+        type: "table",
+        headers: ["Command", "What it opens"],
+        rows: [
+          ["ide", "Neovim, a shell, a scene and lazygit"],
+          ["idev", "Neovim with a shell, the dev server's logs and a scene along the bottom"],
+          ["itest", "Neovim with a test watcher for Vitest, npm, Laravel, pytest or Cargo"],
+          ["imon", "btop with docker ps and a scene"],
+          ["ilab", "Neovim with build and serial monitor shells for lab work"],
+          ["ilog", "Two log panes and a scene"],
+          ["ireview", "Neovim with the open pull requests and lazygit"],
+          ["iplay", "Zacess Games beside a scene, for a break"],
+        ],
+        caption: "The same layouts in zsh, bash and PowerShell. Ctrl+B then f lists the projects to open",
+      },
+      {
+        type: "p",
+        text: "btop joined the palette in the same release with eight generated Zacess themes, every text colour at 4.5:1 or more on its background. zt now reaches programs that are already open: every tmux or psmux session, every running Neovim and btop on macOS and Linux change theme at once. Neovim also gained a debugger, a diff view, a key that shows a line's full error and a key that runs the current file in the pane below.",
+      },
       { type: "h2", text: "The same desktop on every machine" },
       {
         type: "p",
@@ -383,6 +407,24 @@ const _dev_environment: Project = {
       {
         type: "p",
         text: "Smaller habits match too. Every machine uses the same folder layout for repositories, forks and experiments. Commands such as cls and clearhist work the same in zsh, bash, PowerShell and even Command Prompt.",
+      },
+      { type: "h2", text: "How it has grown" },
+      {
+        type: "table",
+        headers: ["When", "Release", "What changed"],
+        rows: [
+          ["September 2026", "1.0", "The first public dotfiles: one-command bootstraps and shell profiles split into topic files"],
+          ["22 October 2026", "2.0.0", "The family of config repositories became one repository again, each folder with its own README, guides and accessibility statement"],
+          ["29 October 2026", "2.1.0 to 2.3.0", "The KDE Plasma desktop on Fedora kept as code, then Zacess Scenes and Zacess Games on every machine"],
+          ["30 October 2026", "2.4.0", "The ide workspace, a Neovim catch-up, scenes that follow each command and zt pin"],
+          ["1 November 2026", "2.5.0", "psmux on Windows, seven more layouts, btop in the Zacess themes and zt reloading open programs"],
+        ],
+        caption: "Each release is in the changelog of the public repository",
+      },
+      { type: "h2", text: "What is next" },
+      {
+        type: "p",
+        text: "The btop themes move into the Zacess themes repository with the other targets, then go to btop itself as a pull request so they ship with it. Zacess Scenes and Zacess Games read the theme when they start, so the next step there is following a zt switch while they run. psmux does not reflow text that scrolled away while a pane was small, which leaves the welcome banner cut off after a resize until the pane is refreshed. That is noted for now and worth fixing in psmux itself.",
       },
       { type: "h2", text: "Keeping it consistent" },
       {
