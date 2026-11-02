@@ -33,3 +33,13 @@ body:
     attributes:
       label: Browser and device
       placeholder: "Safari on iPhone"
+  - type: dropdown
+    id: ai-use
+    attributes:
+      label: AI use
+      description: "Required. Did AI help you find, test or check this? Write the title and description yourself either way. See the [AI policy](https://github.com/zaccesss/ai-policy). Dictation, translation and spelling tools do not count."
+      options:
+        - None
+        - "Assisted: AI helped me find, test or check it"
+    validations:
+      required: true

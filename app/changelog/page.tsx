@@ -25,6 +25,18 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.103.0",
+    date: "2026-11-02",
+    label: "Policies",
+    added: [
+      "An AI policy page for outside contributors, linked from the contributing guide, the support page and every repository template",
+      "A security address used only for security reports, on the security policy and in security.txt",
+    ],
+    changed: [
+      "The contributing and support pages link the AI policy and name the security address",
+    ],
+  },
+  {
     version: "v2.102.2",
     date: "2026-11-02",
     label: "Behind the scenes",

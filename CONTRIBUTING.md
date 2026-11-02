@@ -26,3 +26,7 @@ This repository is a published copy of the source of [isaacadjei.me](https://isa
 I read each issue and apply accepted fixes at the source. They appear here in the next publish. I will reference the issue when they do.
 
 Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Using AI
+
+AI tools are welcome within my [AI policy](https://github.com/zaccesss/ai-policy), also [on my site](https://isaacadjei.me/ai-policy). **Every pull request must say how AI was used, even when the answer is None.** Write your own issue and pull request titles and descriptions, understand everything you submit and test it before you open it.

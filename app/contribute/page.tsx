@@ -19,6 +19,7 @@ import {
   FolderGit2,
   Globe,
   Layers,
+  Languages,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 
@@ -194,6 +195,14 @@ export default function ContributePage() {
             </p>
           </div>
           <div className="flex gap-3">
+            <Languages className="h-5 w-5 text-primary shrink-0 mt-1" />
+            <p>
+              <span className="font-medium text-foreground">Write in English where you can.</span>{" "}
+              English is the working language for issues, pull requests and comments. Write in your
+              own language and translate it if that is easier. Imperfect English is fine.
+            </p>
+          </div>
+          <div className="flex gap-3">
             <ShieldAlert className="h-5 w-5 text-primary shrink-0 mt-1" />
             <p>
               <span className="font-medium text-foreground">Report a security issue.</span> Please do
@@ -204,7 +213,11 @@ export default function ContributePage() {
                 className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
               >
                 security policy
-              </Link>
+              </Link>{" "}
+              or email{" "}
+              <a href="mailto:security@isaacadjei.me" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                security@isaacadjei.me
+              </a>
               .
             </p>
           </div>
@@ -231,6 +244,10 @@ export default function ContributePage() {
             <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">Closes #123</span>.
           </li>
           <li>
+            Code comments explain why, not what: a hidden constraint or a workaround, never a
+            restatement of the line.
+          </li>
+          <li>
             Conventional commit prefixes in the present tense (a repository may override these):{" "}
             <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">feat</span>,{" "}
             <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">fix</span>,{" "}
@@ -249,23 +266,31 @@ export default function ContributePage() {
           <h2 className="text-2xl font-bold">Using AI</h2>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          You are welcome to use AI tools while you work. Two ground rules.
+          You are welcome to use AI tools while you work, within my{" "}
+          <Link href="/ai-policy" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+            AI policy
+          </Link>
+          . The short version:
         </p>
-        <div className="space-y-4 text-muted-foreground leading-relaxed">
-          <p>
-            <span className="font-medium text-foreground">Write in your own voice.</span> When you open
-            an issue, leave a comment or describe a pull request, use your own words. I do not mind
-            imperfect grammar; I mind not being able to tell what you actually mean. Pasted AI text
-            tends to be long, vague and sure of itself while being wrong, which makes it much harder to
-            help you.
-          </p>
-          <p>
-            <span className="font-medium text-foreground">Understand what you submit.</span> Use AI to
-            write code or to find your way around, but read it and make sense of it before it becomes a
-            pull request. Own it as your work. A change that is clearly generated with no understanding
-            behind it will probably be closed without a long discussion.
-          </p>
-        </div>
+        <ul className="space-y-3 text-muted-foreground leading-relaxed">
+          <li>
+            <span className="font-semibold text-foreground">
+              Every pull request must say how AI was used, even when the answer is None.
+            </span>{" "}
+            The template asks for None, Assisted or Generated.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Write in your own voice.</span> Issue and
+            pull request titles, descriptions, comments and reviews are yours. I do not mind imperfect
+            grammar; I mind not being able to tell what you actually mean.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Understand and test what you submit.</span>{" "}
+            Read AI output and make sense of it before it becomes a pull request. A change that is
+            clearly generated with no understanding or testing behind it will be closed with a short
+            note.
+          </li>
+        </ul>
       </section>
 
       <Separator />

@@ -77,6 +77,7 @@ const PAGE_GROUPS = [
       { href: "/disclaimer",      label: "Disclaimer",      description: "Personal views, information rather than advice and live data that can lag" },
       { href: "/copyright",       label: "Copyright",       description: "Who owns the content here and the licences for the code and third-party material" },
       { href: "/code-of-conduct", label: "Code of Conduct", description: "The standard I hold for taking part on my projects" },
+      { href: "/ai-policy",       label: "AI Policy",       description: "How AI may and may not be used in contributions to my projects" },
       { href: "/contribute",      label: "Contributing",    description: "How to report a bug, suggest an idea or open a pull request" },
       { href: "/support",         label: "Support",         description: "Where to get help across my projects and this site" },
     ],

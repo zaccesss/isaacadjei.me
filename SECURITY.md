@@ -10,7 +10,7 @@
 Report it privately in one of two ways:
 
 - Use GitHub's confidential vulnerability reporting (preferred): open this repository's **Security** tab and choose **Report a vulnerability**. You can also go straight to [the report form](https://github.com/zaccesss/isaacadjei.me/security/advisories/new). Only you and I can see the report and the fix can be tracked against it.
-- Email **contact@isaacadjei.me** with the subject line `Security Disclosure`.
+- Email **security@isaacadjei.me** with the subject line `Security Disclosure`.
 
 Any other public repository of mine takes confidential reports the same way, at `https://github.com/zaccesss/<repo>/security/advisories/new`.
 
