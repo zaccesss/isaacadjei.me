@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.102.2",
+    date: "2026-11-02",
+    label: "Behind the scenes",
+    fixed: [
+      "Dependency updates with no visible change",
+    ],
+  },
+  {
     version: "v2.102.1",
     date: "2026-11-01",
     label: "Projects",
