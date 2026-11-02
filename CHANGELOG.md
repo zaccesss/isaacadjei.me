@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.103.1] - 2026-11-02
+
+_Behind the scenes_
+
+### Fixed
+
+- The public copy's issue forms load again
+
 ## [2.103.0] - 2026-11-02
 
 _Policies_
