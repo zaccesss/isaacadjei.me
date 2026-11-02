@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.102.2] - 2026-11-02
+
+_Behind the scenes_
+
+### Fixed
+
+- Dependency updates with no visible change
+
 ## [2.102.1] - 2026-11-01
 
 _Projects_
