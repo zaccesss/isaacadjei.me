@@ -23,7 +23,7 @@ export default function SecurityPolicyPage() {
           <ShieldCheck className="h-8 w-8 text-primary" />
           <h1 className="text-4xl font-bold tracking-tight">Security Policy</h1>
         </div>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
+        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           I take the security of this site seriously. If you have discovered a vulnerability, I
           appreciate you letting me know responsibly.
@@ -142,13 +142,14 @@ export default function SecurityPolicyPage() {
         <p className="text-muted-foreground leading-relaxed">
           You can also send vulnerability reports by email to{" "}
           <a
-            href="mailto:contact@isaacadjei.me"
+            href="mailto:security@isaacadjei.me"
             className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
           >
-            contact@isaacadjei.me
+            security@isaacadjei.me
           </a>{" "}
           with the subject line{" "}
           <span className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">Security Disclosure</span>.
+          That address is only for security reports.
           If email is not convenient, you can also use the{" "}
           <Link
             href="/contact"

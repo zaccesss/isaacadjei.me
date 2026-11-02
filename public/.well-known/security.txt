@@ -1,3 +1,7 @@
-Contact: contact@isaacadjei.me
-Expires: 2026-11-11T00:00:00Z
+Contact: mailto:security@isaacadjei.me
+Contact: https://github.com/zaccesss/isaacadjei.me/security/advisories/new
+Expires: 2027-11-02T00:00:00Z
 Preferred-Languages: en
+Canonical: https://isaacadjei.me/.well-known/security.txt
+Policy: https://isaacadjei.me/security-policy
+Acknowledgments: https://isaacadjei.me/hall-of-fame

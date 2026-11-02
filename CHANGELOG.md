@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.103.0] - 2026-11-02
+
+_Policies_
+
+### Added
+
+- An AI policy page for outside contributors, linked from the contributing guide, the support page and every repository template
+- A security address used only for security reports, on the security policy and in security.txt
+
+### Changed
+
+- The contributing and support pages link the AI policy and name the security address
+
 ## [2.102.2] - 2026-11-02
 
 _Behind the scenes_

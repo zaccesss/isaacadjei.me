@@ -9,6 +9,7 @@ import {
   Mail,
   ShieldAlert,
   BookOpen,
+  Bot,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 
@@ -73,6 +74,20 @@ export default function SupportPage() {
                 contributing guide
               </Link>{" "}
               explains what to include, including hardware setups.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Bot className="h-5 w-5 text-primary shrink-0 mt-1" />
+            <p>
+              <span className="font-medium text-foreground">Using AI in a contribution?</span> Read
+              the{" "}
+              <Link
+                href="/ai-policy"
+                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              >
+                AI policy
+              </Link>{" "}
+              first. Every pull request says how AI was used, even when the answer is None.
             </p>
           </div>
           <div className="flex gap-3">
@@ -148,6 +163,13 @@ export default function SupportPage() {
           >
             security policy
           </Link>{" "}
+          or email{" "}
+          <a
+            href="mailto:security@isaacadjei.me"
+            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            security@isaacadjei.me
+          </a>{" "}
           rather than posting publicly.
         </p>
       </section>
