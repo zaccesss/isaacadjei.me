@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.104.0",
+    date: "2026-11-03",
+    label: "Behind the scenes",
+    fixed: [
+      "The Framer Motion icon in the repository README loads again",
+    ],
+  },
+  {
     version: "v2.103.1",
     date: "2026-11-02",
     label: "Behind the scenes",
