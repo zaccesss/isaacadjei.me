@@ -1,7 +1,8 @@
 # isaacadjei.me
 
 [![CI](https://github.com/zaccesss/isaacadjei.me/actions/workflows/ci.yml/badge.svg)](https://github.com/zaccesss/isaacadjei.me/actions/workflows/ci.yml)
-[![License: PolyForm NC](https://img.shields.io/badge/license-PolyForm%20Noncommercial-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/zaccesss/isaacadjei.me?label=release)](https://github.com/zaccesss/isaacadjei.me/releases/latest)
+[![Licence: PolyForm NC](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue.svg)](LICENSE)
 
 Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the personal site of Isaac Adjei, an Electronic Engineering and Computer Science student at Aston University. The site has a portfolio, a blog, Today I Learned entries, notes and a page of things read, watched and listened to. It also has public statistics pages with charts, maps and live status cards.
 
@@ -17,19 +18,19 @@ Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the 
 
 ### Framework and styling
 
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="60" /> | <img src="https://techstack-generator.vercel.app/react-icon.svg" width="60" /> | <img src="https://techstack-generator.vercel.app/ts-icon.svg" width="60" /> | <img src="https://skillicons.dev/icons?i=tailwind" width="60" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/framermotion/framermotion-original.svg" width="60" /> | <img src="https://cdn.simpleicons.org/radixui/8B5CF6" width="60" /> |
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="60" alt="" /> | <img src="https://techstack-generator.vercel.app/react-icon.svg" width="60" alt="" /> | <img src="https://techstack-generator.vercel.app/ts-icon.svg" width="60" alt="" /> | <img src="https://skillicons.dev/icons?i=tailwind" width="60" alt="" /> | <img src="https://cdn.simpleicons.org/framer/0055FF" width="60" alt="" /> | <img src="https://cdn.simpleicons.org/radixui/8B5CF6" width="60" alt="" /> |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Next.js** | **React** | **TypeScript** | **Tailwind CSS** | **Framer Motion** | **Radix UI** |
 
 ### Charts, maps and 3D
 
-| <img src="https://cdn.simpleicons.org/apacheecharts/AA344D" width="60" /> | <img src="https://cdn.simpleicons.org/maplibre/396CB2" width="60" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" width="60" /> |
+| <img src="https://cdn.simpleicons.org/apacheecharts/AA344D" width="60" alt="" /> | <img src="https://cdn.simpleicons.org/maplibre/396CB2" width="60" alt="" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" width="60" alt="" /> |
 | :---: | :---: | :---: |
 | **ECharts** | **MapLibre GL** | **three.js** |
 
 ### Tooling and hosting
 
-| <img src="https://cdn.simpleicons.org/vitest/6E9F18" width="60" /> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" width="60" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="60" /> | <img src="https://techstack-generator.vercel.app/github-icon.svg" width="60" /> | <img src="https://skillicons.dev/icons?i=vercel" width="60" /> |
+| <img src="https://cdn.simpleicons.org/vitest/6E9F18" width="60" alt="" /> | <img src="https://techstack-generator.vercel.app/eslint-icon.svg" width="60" alt="" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="60" alt="" /> | <img src="https://techstack-generator.vercel.app/github-icon.svg" width="60" alt="" /> | <img src="https://skillicons.dev/icons?i=vercel" width="60" alt="" /> |
 | :---: | :---: | :---: | :---: | :---: |
 | **Vitest** | **ESLint** | **Git** | **GitHub Actions** | **Vercel** |
 

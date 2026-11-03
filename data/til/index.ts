@@ -109,6 +109,7 @@ import _70 from "./entries/git-force-with-lease"
 import _71 from "./entries/tailwind-full-class-names"
 import _72 from "./entries/midi-note-on-velocity-zero"
 import _73 from "./entries/midi-note-number-frequency"
+import _74 from "./entries/op-amp-slew-rate"
 import _100 from "./entries/grub-windows-first-on-fedora"
 
 export const tilEntries: TILEntry[] = [
@@ -185,5 +186,6 @@ export const tilEntries: TILEntry[] = [
   _71,
   _72,
   _73,
+  _74,
   _100,
 ]
