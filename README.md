@@ -34,6 +34,12 @@ Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the 
 | :---: | :---: | :---: | :---: | :---: |
 | **Vitest** | **ESLint** | **Git** | **GitHub Actions** | **Vercel** |
 
+### Data and services
+
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="60" alt="" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" width="60" alt="" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="60" alt="" /> | <img src="https://skillicons.dev/icons?i=cloudflare" width="60" alt="" /> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sentry/sentry-original.svg" width="60" alt="" /> |
+| :---: | :---: | :---: | :---: | :---: |
+| **PostgreSQL** | **Upstash Redis** | **Node.js** | **Cloudflare** | **Sentry** |
+
 </div>
 
 ## Project structure

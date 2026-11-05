@@ -109,7 +109,7 @@ async function compute(): Promise<PublicStats> {
     supabase.from("game_sessions").select("id, device, game, started_at, last_seen, ended_at, samples, cpu_sum, gpu_sum, peak_cpu, peak_gpu").gte("started_at", iso(90)).limit(2000),
     supabase.from("game_playtime").select("platform, game, minutes, last_played").order("minutes", { ascending: false }).limit(50),
     supabase.from("game_genres").select("game, genres"),
-    supabase.from("github_contributions_days").select("date, count").gte("date", date(365)),
+    supabase.from("github_public_contributions_days").select("date, count").gte("date", date(365)),
     supabase.from("applications").select("location, created_at").limit(6000),
     supabase.from("location_geocodes").select("location, country_code"),
   ])
@@ -269,4 +269,4 @@ async function compute(): Promise<PublicStats> {
   }
 }
 
-export const getPublicStats = unstable_cache(compute, ["public-stats-v2"], { revalidate: 3600 })
+export const getPublicStats = unstable_cache(compute, ["public-stats-v3"], { revalidate: 3600 })

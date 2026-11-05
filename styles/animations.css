@@ -103,7 +103,7 @@
 @keyframes cp-flow2 { 0% { offset-distance: 0%; opacity: 0; } 8% { opacity: 0.9; } 26% { offset-distance: 100%; opacity: 0.9; } 32%, 100% { offset-distance: 100%; opacity: 0; } }
 @keyframes cp-glow { 0% { opacity: 0.55; transform: scale(1); } 45% { opacity: 0; transform: scale(2.1); } 100% { opacity: 0; transform: scale(2.1); } }
 
-/* 17 segment clock - the dashboard mark */
+/* 17 segment clock mark */
 .ia-segment .sg-seg { stroke: currentColor; stroke-width: 5.2; stroke-linecap: round; opacity: 0.1; }
 .ia-segment .sg-lit { opacity: 1; }
 .ia-segment .sg-g { stroke: hsl(var(--primary)); }

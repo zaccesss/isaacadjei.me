@@ -19,7 +19,7 @@ const _open_source_contributing: BlogPost = {
       },
       {
         type: "p",
-        text: "This post is a practical guide to crossing that gap: finding the right project, understanding the codebase before you touch it, making your first contribution and handling the review process gracefully. It is written from the perspective of someone who has done it repeatedly, built an open source Git course with 182 files and tracked merged PRs to external repos in a personal dashboard.",
+        text: "This post is a practical guide to crossing that gap: finding the right project, understanding the codebase before you touch it, making your first contribution and handling the review process gracefully. It is written from the perspective of someone who has done it repeatedly, built an open source Git course with 182 files and had pull requests merged into other people's projects.",
       },
       {
         type: "h2",

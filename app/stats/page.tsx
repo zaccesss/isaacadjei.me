@@ -24,7 +24,7 @@ export default async function StatsPage() {
       <div className="space-y-3">
         <h1 className="text-4xl font-bold tracking-tight">Stats</h1>
         <p className="text-lg text-muted-foreground">
-          Live and historical numbers pulled straight from my own dashboard - what I code, what I
+          Live and historical numbers from the services I use every day - what I code, what I
           listen to, where my applications have gone and what I am playing right now.
         </p>
       </div>

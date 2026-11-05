@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.107.0] - 2026-11-05
+
+_GitHub stats_
+
+### Changed
+
+- The GitHub stats count public work only, matching the GitHub profile
+- Clearer wording on the Stats page and in two blog posts
+
 ## [2.106.0] - 2026-11-05
 
 _Behind the scenes_
@@ -907,6 +916,12 @@ _Public stats_
 - The Sky Celebration Day post and TIL are live again, reworded to reflect that a red weather warning moved the day to fully virtual on the day itself
 - /lab: the genre chart could show a stray non-genre tag for an artist with little Last.fm data. Junk tags are now filtered more reliably
 - The homepage's Today I Learned preview could show older entries ahead of a genuinely new one. It now always shows the 3 most recent
+
+## [2.55.0] - 2026-07-20
+
+### Fixed
+
+- The whole site runs leaner. The check that gates maintenance mode and the sign-in redirect runs at the edge again rather than as a full server function on every request
 
 ## [2.52.0] - 2026-07-17
 
