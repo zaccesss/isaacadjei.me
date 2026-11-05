@@ -28,6 +28,20 @@ function statusColour(status: string): string {
 
 const dayMs = 24 * 60 * 60 * 1000
 
+const LABEL_WIDTH = 180
+const LABEL_CHARS = 28
+
+function TaskLabel({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) {
+  const name = payload?.value ?? ""
+  const shown = name.length > LABEL_CHARS ? `${name.slice(0, LABEL_CHARS - 1).trimEnd()}…` : name
+  return (
+    <text x={x} y={y} dy={4} textAnchor="end" fontSize={11} fill="currentColor" className="text-muted-foreground">
+      <title>{name}</title>
+      {shown}
+    </text>
+  )
+}
+
 export function Gantt({ tasks, height }: { tasks: GanttTask[]; height?: number }) {
   if (!tasks.length) {
     return <p className="text-xs text-muted-foreground">No tasks yet - add a task with a start and end date to plot a timeline.</p>
@@ -58,8 +72,9 @@ export function Gantt({ tasks, height }: { tasks: GanttTask[]; height?: number }
         <YAxis
           type="category"
           dataKey="name"
-          width={140}
-          tick={{ fontSize: 11 }}
+          width={LABEL_WIDTH}
+          interval={0}
+          tick={<TaskLabel />}
           tickLine={false}
           axisLine={false}
         />

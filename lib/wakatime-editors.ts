@@ -48,12 +48,17 @@ export function publicCodingDay<T extends CodingDay>(day: T): T {
 
 const SITE_REPOSITORY = process.env.VERCEL_GIT_REPO_SLUG
 const PUBLIC_PROJECTS = new Set([
-  "astoncv", "avr-zac", "code-of-conduct", "competitive-programming",
-  "competitive-programming-templates", "contribute", "dotfiles", "email-setup-kit", "git-hooks",
-  "git-practice-lab", "git-unlocked", "isaac-adjei-automations", "isaac-adjei-portfolio-discussions",
-  "isaacadjei.me", "latex-cv", "linux-bootstrap", "mac-bootstrap", "melophos", "neopixel-led-cube", "phaemos",
-  "py-video", "security-policy", "two-stage-audio-amplifier", "vitafolio", "vscode-config", "windows-bootstrap",
-  "zaccesss", "zacess", "zacess-pages",
+  "PythonDataScienceHandbook", "accessibility", "ai-policy", "antfu.me", "ardupilot_wiki", "astoncv", "avr-zac",
+  "awesome-neovim", "btop", "cli-tools-config", "code-of-conduct", "competitive-programming",
+  "competitive-programming-templates", "contribute", "desktop-wakatime", "dotfiles", "eclipse-config",
+  "eclipse-wakatime", "email-setup-kit", "extensions", "footprints", "frankenphp", "git-config", "git-hooks",
+  "git-practice-lab", "git-unlocked", "homebrew-tap", "iTerm2-Color-Schemes", "isaac-adjei-automations",
+  "isaac-adjei-portfolio-discussions", "isaacadjei.me", "jetbrains-config", "kitty-themes", "latex-cv",
+  "linux-bootstrap", "mac-bootstrap", "macos-wakatime", "melophos", "neopixel-led-cube", "neovim-config",
+  "obsidian-releases", "phaemos", "py-video", "pymavlink", "raycast-config", "rectangle-config", "security-policy",
+  "ssh-config", "stm32cubeide-config", "system-defaults", "terminal-config", "themes", "tiptap-docs", "tmux-config",
+  "two-stage-audio-amplifier", "vitafolio", "vitafolio-latex", "vscode-config", "wakatime-cli", "windows-bootstrap",
+  "winget-pkgs", "xcode-config", "zaccesss", "zacess", "zacess-pages", "zed-config", "zotero-wakatime"
 ])
 
 export function publicProjectName(name: string): string | null {

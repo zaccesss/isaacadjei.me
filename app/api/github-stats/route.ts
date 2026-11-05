@@ -6,7 +6,7 @@ import { GH_OWNER } from "@/lib/site-config"
 import { getStoredGithubContributions } from "@/lib/github-contributions"
 
 const GITHUB_USER = GH_OWNER
-const CACHE_KEY = "github:stats:v6"
+const CACHE_KEY = "github:stats:v7"
 const CACHE_TTL = 600
 
 interface GitHubRepo {
@@ -16,6 +16,7 @@ interface GitHubRepo {
   stargazers_count: number
   language: string | null
   fork: boolean
+  private: boolean
 }
 
 export interface ContributionDay {
@@ -61,7 +62,7 @@ export async function GET(req: Request) {
     const headers = authHeaders(pat)
 
     const [reposRes, userRes, stored] = await Promise.all([
-      fetch(`https://api.github.com/user/repos?affiliation=owner&per_page=100&sort=updated`, {
+      fetch(`https://api.github.com/users/${GITHUB_USER}/repos?type=owner&per_page=100&sort=updated`, {
         headers,
         signal: AbortSignal.timeout(6000),
       }),
@@ -69,7 +70,7 @@ export async function GET(req: Request) {
         headers,
         signal: AbortSignal.timeout(6000),
       }),
-      getStoredGithubContributions(),
+      getStoredGithubContributions("public"),
     ])
 
     if (!reposRes.ok) {
@@ -77,7 +78,7 @@ export async function GET(req: Request) {
     }
 
     const repos: GitHubRepo[] = await reposRes.json()
-    const ownRepos = repos.filter((r) => !r.fork)
+    const ownRepos = repos.filter((r) => !r.fork && !r.private)
     const totalStars = ownRepos.reduce((sum, r) => sum + r.stargazers_count, 0)
 
     const langCount: Record<string, number> = {}
@@ -96,9 +97,11 @@ export async function GET(req: Request) {
       .map((r) => ({ name: r.name, description: r.description ?? "", stars: r.stargazers_count, url: r.html_url }))
 
     let followers = 0
+    let publicRepos = repos.filter((r) => !r.private).length
     if (userRes.ok) {
       const user = await userRes.json()
       followers = user.followers ?? 0
+      publicRepos = user.public_repos ?? publicRepos
     } else {
       console.error("github-stats /users request failed:", userRes.status, await userRes.text())
     }
@@ -115,7 +118,7 @@ export async function GET(req: Request) {
       : null
 
     const stats: GitHubStats = {
-      publicRepos: repos.length,
+      publicRepos,
       followers,
       totalStars,
       topLanguages,

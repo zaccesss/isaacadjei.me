@@ -3,6 +3,13 @@ import { GH_OWNER } from "@/lib/site-config"
 
 const FIRST_YEAR = 2020
 
+export type ContributionScope = "full" | "public"
+
+const TABLES: Record<ContributionScope, { days: string; years: string }> = {
+  full: { days: "github_contributions_days", years: "github_contributions_years" },
+  public: { days: "github_public_contributions_days", years: "github_public_contributions_years" },
+}
+
 interface YearContributions {
   year: number
   commits: number
@@ -65,16 +72,17 @@ async function fetchYear(pat: string, year: number): Promise<YearContributions |
   }
 }
 
-async function persistYear(y: YearContributions): Promise<void> {
+async function persistYear(y: YearContributions, scope: ContributionScope): Promise<void> {
   const todayIso = new Date().toISOString().slice(0, 10)
   const realDays = y.days.filter((d) => d.date <= todayIso)
   if (realDays.length > 0) {
-    await supabase.from("github_contributions_days").upsert(
+    const { error: daysError } = await supabase.from(TABLES[scope].days).upsert(
       realDays.map((d) => ({ date: d.date, count: d.count })),
       { onConflict: "date" }
     )
+    if (daysError) throw new Error(`${TABLES[scope].days}: ${daysError.message}`)
   }
-  await supabase.from("github_contributions_years").upsert(
+  const { error: yearsError } = await supabase.from(TABLES[scope].years).upsert(
     {
       year: y.year,
       commits: y.commits,
@@ -86,6 +94,7 @@ async function persistYear(y: YearContributions): Promise<void> {
     },
     { onConflict: "year" }
   )
+  if (yearsError) throw new Error(`${TABLES[scope].years}: ${yearsError.message}`)
 }
 
 export interface GithubContributionsData {
@@ -97,15 +106,15 @@ export interface GithubContributionsData {
 
 const EMPTY_YEAR = { commits: 0, pullRequests: 0, reviews: 0, issues: 0, total: 0 }
 
-export async function getStoredGithubContributions(): Promise<GithubContributionsData> {
+export async function getStoredGithubContributions(scope: ContributionScope): Promise<GithubContributionsData> {
   const since = new Date()
   since.setDate(since.getDate() - 365)
   const sinceIso = since.toISOString().slice(0, 10)
   const todayIso = new Date().toISOString().slice(0, 10)
 
   const [{ data: days }, { data: years }] = await Promise.all([
-    supabase.from("github_contributions_days").select("date, count").gte("date", sinceIso).lte("date", todayIso).order("date"),
-    supabase.from("github_contributions_years").select("year, commits, pull_requests, reviews, issues, total"),
+    supabase.from(TABLES[scope].days).select("date, count").gte("date", sinceIso).lte("date", todayIso).order("date"),
+    supabase.from(TABLES[scope].years).select("year, commits, pull_requests, reviews, issues, total"),
   ])
 
   const currentYearRow = years?.find((y) => y.year === new Date().getFullYear())
@@ -127,14 +136,12 @@ export async function getStoredGithubContributions(): Promise<GithubContribution
   }
 }
 
-export async function syncGithubContributions(): Promise<number> {
-  const pat = process.env.GH_PAT ?? process.env.GITHUB_PAT
-  if (!pat) return -1
-
+async function syncScope(pat: string, scope: ContributionScope): Promise<number> {
   const currentYear = new Date().getFullYear()
-  const { count } = await supabase
-    .from("github_contributions_years")
+  const { count, error: countError } = await supabase
+    .from(TABLES[scope].years)
     .select("year", { count: "exact", head: true })
+  if (countError) throw new Error(`${TABLES[scope].years}: ${countError.message}`)
 
   const years = !count ? Array.from({ length: currentYear - FIRST_YEAR + 1 }, (_, i) => FIRST_YEAR + i) : [currentYear]
 
@@ -142,8 +149,20 @@ export async function syncGithubContributions(): Promise<number> {
   for (const year of years) {
     const data = await fetchYear(pat, year)
     if (!data) continue
-    await persistYear(data)
+    await persistYear(data, scope)
     synced++
   }
   return synced
+}
+
+export async function syncGithubContributions(): Promise<number> {
+  const pat = process.env.GH_PAT ?? process.env.GITHUB_PAT
+  if (!pat) return -1
+  return syncScope(pat, "full")
+}
+
+export async function syncPublicGithubContributions(): Promise<number> {
+  const pat = process.env.GITHUB_PUBLIC_PAT
+  if (!pat) return -1
+  return syncScope(pat, "public")
 }

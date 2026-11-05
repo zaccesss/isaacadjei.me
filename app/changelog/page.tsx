@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.107.0",
+    date: "2026-11-05",
+    label: "GitHub stats",
+    changed: [
+      "The GitHub stats count public work only, matching the GitHub profile",
+      "Clearer wording on the Stats page and in two blog posts",
+    ],
+  },
+  {
     version: "v2.106.0",
     date: "2026-11-05",
     label: "Behind the scenes",
@@ -928,7 +937,7 @@ const releases: ChangeEntry[] = [
     version: "v2.55.0",
     date: "2026-07-20",
     fixed: [
-      "The whole site runs leaner. The check that gates maintenance mode and the logged-out dashboard redirect runs at the edge again rather than as a full server function on every request",
+      "The whole site runs leaner. The check that gates maintenance mode and the sign-in redirect runs at the edge again rather than as a full server function on every request",
     ],
   },
   {

@@ -24,7 +24,7 @@ const _my_development_setup_2026: BlogPost = {
   },
   {
     type: "p",
-    text: "I run three machines with distinct purposes. The main development and gaming machine (ZACCESS-GPC) is a custom Windows desktop with an NVIDIA GeForce RTX 4060 and an Intel CPU. This is where embedded tooling lives: STM32CubeIDE, ST-Link utilities, Proteus for circuit simulation and the GPC daemon that handles game presence detection for the portfolio dashboard. STM32CubeIDE and most manufacturer programming tools are Windows-first and either do not exist on macOS or are awkward enough to make the jump not worth it.",
+    text: "I run three machines with distinct purposes. The main development and gaming machine (ZACCESS-GPC) is a custom Windows desktop with an NVIDIA GeForce RTX 4060 and an Intel CPU. This is where embedded tooling lives: STM32CubeIDE, ST-Link utilities, Proteus for circuit simulation and the GPC daemon that reports which game is running to the live status on this site. STM32CubeIDE and most manufacturer programming tools are Windows-first and either do not exist on macOS or are awkward enough to make the jump not worth it.",
   },
   {
     type: "p",

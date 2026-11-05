@@ -9,14 +9,14 @@ const isDev = process.env.NODE_ENV === "development"
 // WebAssembly, which a plain script-src blocks. It allows WebAssembly compilation only, never JavaScript eval
 const scriptSrc = ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https://challenges.cloudflare.com", "https://www.googletagmanager.com", "https://static.cloudflareinsights.com", "https://vercel.live", "https://app.cal.com"]
 // app.cal.com serves the /book embed script, which sizes the booking calendar to its content and themes it to match the site
-// api.maptiler.com serves the private dashboard Applications map's vector tiles, glyphs and style
-// JSON - all fetched by MapLibre GL JS via connect-src, not img-src (they are not plain <img>
-// requests). tiles.openfreemap.org backs the same map's manual OpenFreeMap fallback provider and
-// the public /stats map, kept on a separate no-key provider so a traffic spike on the public page
-// can never exhaust the private dashboard's shared MapTiler quota; services.arcgisonline.com is
-// OpenFreeMap's own satellite style, a raster source on a third, separate domain. All three were
-// needed here but only api.maptiler.com was ever listed for a while - an earlier PR swapped
-// tiles.openfreemap.org out for api.maptiler.com when the dashboard map briefly went MapTiler-only,
+// api.maptiler.com serves vector tiles, glyphs and style JSON for the MapTiler map, all fetched by
+// MapLibre GL JS via connect-src, not img-src (they are not plain <img> requests).
+// tiles.openfreemap.org backs the manual OpenFreeMap fallback provider and the public /stats map,
+// kept on a separate no-key provider so a traffic spike on the public page can never exhaust the
+// MapTiler quota; services.arcgisonline.com is OpenFreeMap's own satellite style, a raster source
+// on a third, separate domain. All three were needed here but only api.maptiler.com was ever
+// listed for a while - an earlier PR swapped tiles.openfreemap.org out for api.maptiler.com when
+// the map briefly went MapTiler-only,
 // then a later PR reintroduced the OpenFreeMap toggle without restoring its own connect-src entry,
 // so every OpenFreeMap style was silently CSP-blocked until this was fixed (confirmed via real
 // console CSP-violation errors, not a guess).
@@ -71,7 +71,7 @@ const nextConfig = {
       { source: "/notes/world-cup-ai-predictor", destination: "/notes/multi-sport-ai-predictor", permanent: true },
       // the dotfiles project grew into the wider developer environment write-up
       { source: "/projects/dotfiles", destination: "/projects/dev-environment", permanent: true },
-      // role CVs moved behind the dashboard; the public page keeps the general CV
+      // role CVs are no longer public; the public page keeps the general CV
       { source: "/cv/cv-picker", destination: "/cv", permanent: false },
       { source: "/cv/cover-letters", destination: "/cv", permanent: false },
     ]
