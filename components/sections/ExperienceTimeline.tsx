@@ -100,9 +100,9 @@ export default function ExperienceTimeline({ experiences }: Props) {
                 </div>
                 <h3 className="font-semibold leading-snug">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {new Set(item.entries.map((e) => e.company)).size === 1
+                  {item.entries[0].groupSubtitle ?? (new Set(item.entries.map((e) => e.company)).size === 1
                     ? `${item.entries[0].company} · ${item.entries[0].location} · ${item.entries.length} terms`
-                    : `${item.entries.length} ventures`}
+                    : `${item.entries.length} ventures`)}
                 </p>
               </div>
               <ol className="relative space-y-5 border-l border-border pl-5">

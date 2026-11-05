@@ -25,6 +25,24 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.106.0",
+    date: "2026-11-05",
+    label: "Behind the scenes",
+    changed: [
+      "Routine tidy-up of two newsletter issues and a blog post",
+    ],
+  },
+  {
+    version: "v2.105.0",
+    date: "2026-11-05",
+    label: "Experience page",
+    changed: [
+      "The Experience page is split into work, leadership and representation, ventures and volunteering",
+      "Student and School Representative roles are shown together under the Students' Union",
+      "Zacess is listed with the other ventures",
+    ],
+  },
+  {
     version: "v2.104.0",
     date: "2026-11-03",
     label: "Behind the scenes",
