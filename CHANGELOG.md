@@ -2,6 +2,24 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.106.0] - 2026-11-05
+
+_Behind the scenes_
+
+### Changed
+
+- Routine tidy-up of two newsletter issues and a blog post
+
+## [2.105.0] - 2026-11-05
+
+_Experience page_
+
+### Changed
+
+- The Experience page is split into work, leadership and representation, ventures and volunteering
+- Student and School Representative roles are shown together under the Students' Union
+- Zacess is listed with the other ventures
+
 ## [2.104.0] - 2026-11-03
 
 _Behind the scenes_

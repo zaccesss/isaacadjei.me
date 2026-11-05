@@ -13,10 +13,13 @@ export interface Experience {
   group?: string
   groupTitle?: string
   groupStart?: string
+  groupSubtitle?: string
+  hidden?: boolean
   link?: { label: string; url: string }
 }
 
 export function isExperienceVisible(exp: Experience): boolean {
+  if (exp.hidden) return false
   return !exp.visibleFrom || new Date() >= new Date(exp.visibleFrom)
 }
 
@@ -55,6 +58,10 @@ export const experiences: Experience[] = [
   },
   {
     id: "aston-school-rep",
+    group: "aston-su-rep",
+    groupTitle: "Student and School Representative",
+    groupStart: "Sep 2025",
+    groupSubtitle: "Aston Students' Union · Birmingham, UK · 2 roles",
     role: "School Representative",
     company: "Aston Students' Union, College of Engineering and Physical Sciences",
     location: "Birmingham, UK",
@@ -70,38 +77,20 @@ export const experiences: Experience[] = [
   },
   {
     id: "aston-student-rep",
-    group: "student-rep",
-    groupTitle: "Student Representative",
-    groupStart: "Sep 2025",
-    role: "Student Representative",
-    company: "Aston Students' Union",
-    location: "Birmingham, UK",
-    type: "work",
-    startDate: "Sep 2026",
-    endDate: "Present",
-    description:
-      "Re-elected course representative for more than 100 Year 2 students across Electrical and Electronic Engineering and Electronic Engineering and Computer Science at Aston University.",
-    achievements: [
-      "Gather feedback from the cohort and bring it to academic staff through the Staff-Student Liaison Committee",
-      "Work towards the Students' Union rep awards by logging issues raised, meetings attended and actions agreed",
-    ],
-  },
-  {
-    id: "aston-student-rep-2025",
-    group: "student-rep",
+    group: "aston-su-rep",
     role: "Student Representative",
     company: "Aston Students' Union",
     location: "Birmingham, UK",
     type: "work",
     startDate: "Sep 2025",
-    endDate: "Jul 2026",
+    endDate: "Present",
     description:
-      "Elected course representative for Electronic Engineering and Computer Science at Aston University.",
+      "Course representative since 2025: elected for Electronic Engineering and Computer Science, then re-elected in 2026 for more than 100 Year 2 students across Electrical and Electronic Engineering and Electronic Engineering and Computer Science.",
     achievements: [
-      "Represented student voice by gathering and communicating feedback to academic staff",
-      "Attended Staff-Student Liaison Committee (SSLC), Senate and Council meetings",
-      "Presented student feedback and contributed to discussions on course improvements",
-      "Collaborated with staff to agree and implement actions based on feedback",
+      "Gather feedback from the cohort and bring it to academic staff through the Staff-Student Liaison Committee (SSLC)",
+      "Present student feedback, contribute to discussions on course improvements and agree actions with staff",
+      "Attend SSLC, Union Senate and Union Council meetings",
+      "Log issues raised, meetings attended and actions agreed, working towards the Students' Union rep awards",
       "Completed official Student Representative training at Aston Students' Union",
     ],
   },
@@ -110,6 +99,7 @@ export const experiences: Experience[] = [
     group: "founder",
     groupTitle: "Founder",
     groupStart: "Dec 2025",
+    groupSubtitle: "4 ventures",
     role: "Founder, PHAEMOS",
     company: "PHAEMOS",
     location: "Birmingham, UK",
@@ -124,6 +114,24 @@ export const experiences: Experience[] = [
       "Run the project in the open as an organisation with a monorepo, read-only component repositories, milestones and documentation",
     ],
     technologies: ["Python", "FastAPI", "Next.js", "Rust", "C", "PostgreSQL", "scikit-learn", "Docker"],
+  },
+  {
+    id: "founder-zacess",
+    group: "founder",
+    role: "Founder and developer, Zacess",
+    company: "Zacess",
+    location: "Birmingham, UK",
+    type: "work",
+    startDate: "Oct 2026",
+    endDate: "Present",
+    link: { label: "zacess.com", url: "https://zacess.com" },
+    description: "A free, open-source reader that turns PDFs, scans and web pages into notes in your own reading profile, built from my experience of reading with one eye. Every file stays on the device.",
+    achievements: [
+      "Built the core in Rust compiled to WebAssembly: layout, reading order, a confidence mark on every doubtful word and HTML or EPUB export, live in the browser at app.zacess.com",
+      "Checked with axe at WCAG 2.2 AA on WebKit as well as Chromium so it works by touch on phones and tablets",
+      "Turned the contrast palette into code themes for ten editors and eight terminals, with every code colour kept at 7 to 1 on its background",
+    ],
+    technologies: ["Rust", "WebAssembly", "TypeScript", "React", "Playwright", "axe-core"],
   },
   {
     id: "founder-melophos",
@@ -200,6 +208,7 @@ export const experiences: Experience[] = [
     type: "virtual",
     startDate: "Oct 2025",
     endDate: "Oct 2025",
+    hidden: true,
     description:
       "Completed a virtual engineering operations simulation focused on real-world aircraft maintenance and supply-chain planning.",
     achievements: [
@@ -218,6 +227,7 @@ export const experiences: Experience[] = [
     type: "virtual",
     startDate: "Aug 2025",
     endDate: "Aug 2025",
+    hidden: true,
     description:
       "Explored intelligent transport systems, IoT sensor networks and real-time air quality monitoring in smart city environments.",
     achievements: [
@@ -225,6 +235,21 @@ export const experiences: Experience[] = [
       "Studied traffic lights design, sensor integration and data-driven transport management in smart cities",
       "Created an infographic demonstrating Zephyr® air quality sensors monitoring NO₂, O₃ and PM₁₀ pollution in real time",
       "Gained professional insight into engineering, software and project management roles within Yunex Traffic",
+    ],
+  },
+  {
+    id: "mcdonalds",
+    role: "Crew Member (part-time)",
+    company: "McDonald's",
+    location: "Bilston, UK",
+    type: "work",
+    startDate: "Jan 2026",
+    endDate: "Present",
+    hidden: true,
+    description: "Part-time crew member in a high-volume restaurant alongside full-time study.",
+    achievements: [
+      "Serve customers to strict speed and quality standards, often at peak times, taking orders and payments",
+      "Prepare food safely, keep the station clean and support colleagues when the restaurant is busy",
     ],
   },
   {
