@@ -11,7 +11,7 @@ const _avr_zac: Project = {
     category: "embedded",
     featured: false,
     cover: "/images/projects/avr-zac/cover.webp",
-    order: 11,
+    order: 10,
     status: "in-progress",
     ongoing: true,
     images: [

@@ -1,3 +1,4 @@
+import type React from "react"
 import { TrendIndicator } from "./TrendIndicator"
 
 function StatCardSparkline({ data }: { data: number[] }) {
@@ -36,7 +37,7 @@ export function StatCard({
   sparkline,
 }: {
   label: string
-  value: string | number
+  value: React.ReactNode
   trend?: { delta: number; label?: string }
   accentClassName?: string
   scope?: "all-time" | "current"

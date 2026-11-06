@@ -64,10 +64,10 @@ export const metadata: Metadata = {
       "Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science solutions.",
     siteName: "Isaac Adjei Portfolio",
     images: [{
-      url: "/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20Student",
+      url: "/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E",
       width: 1200,
       height: 630,
-      alt: "Isaac Adjei - Electronic Engineering and Computer Science Student",
+      alt: "Isaac Adjei, Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science",
     }],
   },
   twitter: {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Isaac Adjei | EECS",
     description:
       "Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science solutions.",
-    images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20Student"],
+    images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E"],
   },
 }
 

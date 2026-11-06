@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: "https://www.isaacadjei.me/hall-of-fame",
   },
   openGraph: {
-    images: ["/api/og?title=Hall%20of%20Fame&description=The%20people%20I%20am%20most%20grateful%20for%2C%20and%20security%20researchers%20who%20have%20helped%20improve%20this%20site%2E"],
+    images: ["/api/og?title=Hall%20of%20Fame&description=The%20people%20I%20am%20most%20grateful%20for%20and%20the%20security%20researchers%20who%20have%20helped%20improve%20this%20site%2E"],
   },
 }
 

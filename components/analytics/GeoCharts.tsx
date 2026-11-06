@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import ReactECharts from "echarts-for-react"
+import ReactECharts from "./EChart"
 import * as echarts from "echarts"
 import { useTheme } from "next-themes"
 import { useEChartsColours } from "./echarts-theme"

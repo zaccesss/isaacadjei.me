@@ -49,6 +49,7 @@ import _12 from "./items/melophos"
 import _13 from "./items/lidarsat"
 import _14 from "./items/isaacadjei-me"
 import _15 from "./items/zacess"
+import _16 from "./items/footprints"
 
 const all: Project[] = [
   _0,
@@ -67,6 +68,7 @@ const all: Project[] = [
   _13,
   _14,
   _15,
+  _16,
 ]
 
 export const projects: Project[] = [...all].sort((a, b) => (a.order ?? 999) - (b.order ?? 999))

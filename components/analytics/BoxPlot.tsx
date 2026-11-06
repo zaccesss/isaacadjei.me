@@ -34,11 +34,13 @@ export function BoxPlot({
   height = 220,
   colour = "hsl(var(--primary))",
   valueFormatter,
+  unit = "day",
 }: {
   groups: BoxPlotGroup[]
   height?: number
   colour?: string
   valueFormatter?: (value: number) => string
+  unit?: string
 }) {
   const [active, setActive] = useState<number | null>(null)
   const withData = groups.filter((g) => g.values.length > 0)
@@ -57,7 +59,7 @@ export function BoxPlot({
   const boxWidth = Math.min(60 / withData.length, 14)
   const summaries = withData.map((g) => ({ g, s: stats(g.values) }))
   const describe = ({ g, s }: (typeof summaries)[number]) =>
-    `${g.name}: median ${format(s.median)}, middle half ${format(s.q1)} to ${format(s.q3)}, range ${format(s.min)} to ${format(s.max)} over ${g.values.length} day${g.values.length === 1 ? "" : "s"}`
+    `${g.name}: median ${format(s.median)}, middle half ${format(s.q1)} to ${format(s.q3)}, range ${format(s.min)} to ${format(s.max)} over ${g.values.length} ${unit}${g.values.length === 1 ? "" : "s"}`
 
   return (
     <div className="flex flex-col gap-2">

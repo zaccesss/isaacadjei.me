@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   robots: {
     index: false,
   },
+  openGraph: {
+    images: ["/api/og?title=Privacy%20Policy&description=How%20this%20site%20handles%20data%2C%20cookies%20and%20analytics%2E"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/api/og?title=Privacy%20Policy&description=How%20this%20site%20handles%20data%2C%20cookies%20and%20analytics%2E"],
+  },
 }
 
 function Ext({ href, children }: { href: string; children: React.ReactNode }) {

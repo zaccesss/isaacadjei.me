@@ -1,6 +1,6 @@
 "use client"
 
-import ReactECharts from "echarts-for-react"
+import ReactECharts from "./EChart"
 import { useEChartsColours } from "./echarts-theme"
 
 const HOUR_LABELS = Array.from({ length: 24 }, (_, h) => String(h).padStart(2, "0"))

@@ -4,6 +4,10 @@ import GitHubYearlyChart from "@/components/stats/GitHubYearlyChart"
 import GitHubActivityChart from "@/components/stats/GitHubActivityChart"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
+import { getPublicStats } from "@/lib/public-stats"
+import { getMilestones } from "@/lib/stats-milestones"
+import { RecordsRow, GitHubMonths } from "@/components/stats/StatsExtras"
+import { GitHubPatterns } from "@/components/stats/StatsCharts"
 
 export const metadata: Metadata = {
   title: "GitHub Stats",
@@ -16,7 +20,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function StatsGitHubPage() {
+export const revalidate = 3600
+
+export default async function StatsGitHubPage() {
+  const stats = await getPublicStats()
   return (
     <AnalyticsPeriodProvider defaultPeriod="30d">
       <div className="container max-w-3xl py-24 space-y-8">
@@ -27,6 +34,9 @@ export default function StatsGitHubPage() {
           />
           <PeriodSelector />
         </div>
+        <RecordsRow s={stats} show={["githubWeek"]} />
+        <GitHubMonths s={stats} milestones={getMilestones()} />
+        <GitHubPatterns s={stats} />
         <GitHubActivityChart />
         <GitHubYearlyChart />
         <GitHubStats />

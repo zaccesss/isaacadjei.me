@@ -4,9 +4,11 @@ import { useMemo } from "react"
 import { useAnalyticsPeriod, filterByPeriod } from "@/components/analytics"
 import { computeContentStats, type Named, type RawPost, type RawTIL, type RawProject, type RawDated } from "@/lib/content-stats-compute"
 import { WritingStats } from "@/components/stats/StatsCharts"
+import { writingExtra } from "@/components/stats/chart-data"
+import type { Milestone } from "@/lib/stats-milestone-place"
 
 export function WritingHistory({
-  posts, til, projects, notes, issues, consumed,
+  posts, til, projects, notes, issues, consumed, milestones = [],
 }: {
   posts: RawPost[]
   til: RawTIL[]
@@ -14,6 +16,7 @@ export function WritingHistory({
   issues: RawDated[]
   projects: RawProject[]
   consumed: Named[]
+  milestones?: Milestone[]
 }) {
   const { period } = useAnalyticsPeriod()
   const periodPosts = useMemo(() => filterByPeriod(posts, period, (p) => p.date), [posts, period])
@@ -25,5 +28,6 @@ export function WritingHistory({
     () => ({ ...computeContentStats(periodPosts, periodTil, periodProjects, periodNotes, periodIssues), consumed }),
     [periodPosts, periodTil, periodProjects, periodNotes, periodIssues, consumed],
   )
-  return <WritingStats c={c} />
+  const extra = useMemo(() => writingExtra(periodPosts, periodTil, periodNotes, periodIssues), [periodPosts, periodTil, periodNotes, periodIssues])
+  return <WritingStats c={c} milestones={milestones} extra={extra} />
 }

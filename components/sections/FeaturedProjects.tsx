@@ -10,10 +10,10 @@ import ProjectCard from "@/components/projects/ProjectCard"
 import { staggerContainer, fadeUp } from "@/lib/animations"
 
 const FEATURED_ORDER = [
-  "audio-amplifier",
-  "led-cube",
+  "zacess",
   "phaemos",
-  "melophos",
+  "led-cube",
+  "audio-amplifier",
   "vitafolio",
   "lidarsat",
 ]

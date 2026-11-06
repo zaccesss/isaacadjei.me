@@ -38,8 +38,17 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
   const tPrevRef = useRef(0)
   const intensityRef = useRef(0)
   const driftRef = useRef(0)
+  const reduceRef = useRef(false)
 
   useEffect(() => { playingRef.current = playing }, [playing])
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const read = () => { reduceRef.current = mq.matches }
+    read()
+    mq.addEventListener("change", read)
+    return () => mq.removeEventListener("change", read)
+  }, [])
 
   useEffect(() => {
     rgbRef.current = colours
@@ -92,9 +101,11 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
     ro.observe(canvas)
 
     const draw = (t: number) => {
-      const dt = tPrevRef.current ? Math.min((t - tPrevRef.current) / 1000, 0.05) : 0.016
+      const still = reduceRef.current
+      const dt = still ? 0 : tPrevRef.current ? Math.min((t - tPrevRef.current) / 1000, 0.05) : 0.016
       tPrevRef.current = t
-      intensityRef.current += ((playingRef.current ? 1 : 0) - intensityRef.current) * Math.min(1, dt * 3)
+      const target = playingRef.current ? 1 : 0
+      intensityRef.current = still ? target : intensityRef.current + (target - intensityRef.current) * Math.min(1, dt * 3)
       const intensity = intensityRef.current
       driftRef.current += dt
       const isDark = isDarkRef.current

@@ -7,6 +7,7 @@ import { FaGithub as Github } from "react-icons/fa6"
 import SpotifyBars from "@/components/shared/SpotifyBars"
 import { SiPlaystation, SiDiscord, SiSpotify } from "react-icons/si"
 import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { DISCORD_PROFILE_ID, DISCORD_USER_ID } from "@/lib/site-config"
 
 interface LastPlayed {
@@ -163,6 +164,7 @@ function MarqueeText({ text, active, className }: { text: string; active: boolea
   const containerRef = useRef<HTMLDivElement>(null)
   const measureRef = useRef<HTMLSpanElement>(null)
   const [overflows, setOverflows] = useState(false)
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
 
   useEffect(() => {
     if (!containerRef.current || !measureRef.current) return
@@ -174,7 +176,7 @@ function MarqueeText({ text, active, className }: { text: string; active: boolea
       <span ref={measureRef} className="absolute invisible whitespace-nowrap pointer-events-none" aria-hidden>
         {text}
       </span>
-      {overflows && active ? (
+      {overflows && active && !reduce ? (
         <div className="flex whitespace-nowrap animate-marquee gap-10">
           <span>{text}</span>
           <span aria-hidden>{text}</span>
@@ -514,7 +516,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <div className={`relative w-14 h-14 rounded-full shrink-0 ${spotify.playing ? "animate-spin [animation-duration:6s]" : ""}`}>
+              <div className={`relative w-14 h-14 rounded-full shrink-0 ${spotify.playing ? "motion-safe:animate-spin motion-safe:[animation-duration:6s]" : ""}`}>
                 <div className="absolute inset-0 rounded-full border-2 border-border/40" />
                 {spotify.albumArt ? (
                   <img src={spotify.albumArt} alt="" className="w-full h-full rounded-full object-cover" />

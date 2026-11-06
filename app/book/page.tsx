@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   title: "Book a call",
   description: "Book a 30 minute video call with Isaac Adjei at a time that suits you.",
   alternates: { canonical: "https://www.isaacadjei.me/book" },
+  openGraph: {
+    images: ["/api/og?title=Book%20a%20call&description=Book%20a%2030%20minute%20video%20call%20with%20me%20at%20a%20time%20that%20suits%20you%2E"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/api/og?title=Book%20a%20call&description=Book%20a%2030%20minute%20video%20call%20with%20me%20at%20a%20time%20that%20suits%20you%2E"],
+  },
 }
 
 const link = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"

@@ -2,6 +2,30 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.108.0] - 2026-11-05
+
+_Lab terminal and Footprints_
+
+### Added
+
+- A Footprints project page
+- The lab terminal runs zsh, bash, PowerShell and cmd, with nano, the eight Zacess themes and Zacess scenes and games to try
+- Share cards for every TIL entry and five more pages
+- Headline numbers on the Stats page count up and cards lift slightly on hover
+- Records, a coding soundtrack chart, launch markers and new charts on every Stats page
+- Two more people under People I learn from
+
+### Changed
+
+- A new project order, 18 projects a page and a refreshed homepage selection
+- Updated About, Now, Uses and Colophon pages
+
+### Fixed
+
+- Coding hours by time of day are shown in UK time
+- Language charts count programming languages only
+- Every animation stops when reduced motion is turned on
+
 ## [2.107.0] - 2026-11-05
 
 _GitHub stats_

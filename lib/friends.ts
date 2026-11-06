@@ -75,4 +75,16 @@ export const FRIENDS: Friend[] = [
     about: "Created Linux and Git, two tools I use every single day.",
     group: "learn",
   },
+  {
+    name: "David Peter",
+    url: "https://david-peter.de",
+    about: "Created bat and fd, fast Rust command-line tools that rethink cat and find.",
+    group: "learn",
+  },
+  {
+    name: "Stephen Blum",
+    url: "https://github.com/stephenlb",
+    about: "CTO of PubNub, the real-time messaging network, with 25 years of building in tech.",
+    group: "learn",
+  },
 ]
