@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/supabase"
+import { UNCATEGORISED, compareCategories } from "@/lib/open-source-categories"
 
 export type PublicKind = "Pull request" | "Issue" | "Listing"
 
@@ -12,8 +13,10 @@ export type PublicContribution = {
   url: string | null
   status: "Merged" | "Open"
   language: string | null
+  category: string
   date: string
   relation: { text: string; url: string | null } | null
+  pinned: boolean
 }
 
 export type Named = { name: string; value: number }
@@ -27,12 +30,14 @@ export type OpenSourceStats = {
   projects: number
   languages: number
   byProject: Named[]
+  byCategory: Named[]
   byLanguage: Named[]
   byStatus: Named[]
   byMonth: Named[]
 }
 
-const projectName = (repo: string) => (repo.includes("/") ? repo.split("/")[1] : repo)
+const projectName = (repo: string) =>
+  repo.startsWith("torvalds/linux") ? repo.replace("torvalds/linux", "Linux kernel") : repo.includes("/") ? repo.split("/")[1] : repo
 
 const tally = (items: string[]): Named[] => {
   const m = new Map<string, number>()
@@ -51,11 +56,14 @@ type Row = {
   is_private: boolean
   status: string
   language: string | null
+  category: string | null
   summary: string | null
   submitted_at: string
 }
 
 export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
+
+const PINNED = new Set(["https://lore.kernel.org/r/20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me"])
 
 const KIND_LABEL: Record<Row["kind"], PublicKind> = { pr: "Pull request", issue: "Issue", other: "Listing" }
 
@@ -77,7 +85,7 @@ function relationText(self: Row, other: Row, outgoing: boolean): string {
 async function compute(): Promise<OpenSourceStats> {
   const { data } = await supabase
     .from("opensource_contributions")
-    .select("id, repo, pr_title, pr_url, pr_number, kind, related_id, is_private, status, language, summary, submitted_at")
+    .select("id, repo, pr_title, pr_url, pr_number, kind, related_id, is_private, status, language, category, summary, submitted_at")
     .eq("show_public", true)
     .eq("is_private", false)
     .in("status", ["merged", "open", "draft"])
@@ -102,8 +110,10 @@ async function compute(): Promise<OpenSourceStats> {
     url: r.pr_url,
     status: r.status === "merged" ? "Merged" : "Open",
     language: r.language,
+    category: r.category?.trim() || UNCATEGORISED,
     date: r.submitted_at.slice(0, 10),
     relation: relationOf(r),
+    pinned: !!r.pr_url && PINNED.has(r.pr_url),
   }))
   const months = new Map<string, number>()
   for (const c of contributions) months.set(c.date.slice(0, 7), (months.get(c.date.slice(0, 7)) ?? 0) + 1)
@@ -116,10 +126,11 @@ async function compute(): Promise<OpenSourceStats> {
     projects: new Set(contributions.map((c) => c.project)).size,
     languages: new Set(contributions.map((c) => c.language).filter(Boolean)).size,
     byProject: tally(contributions.map((c) => c.project)),
+    byCategory: tally(contributions.map((c) => c.category)).sort((a, b) => compareCategories(a.name, b.name)),
     byLanguage: tally(contributions.map((c) => c.language ?? "Other")),
     byStatus: tally(contributions.map((c) => c.status)),
     byMonth: [...months.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([name, value]) => ({ name, value })),
   }
 }
 
-export const getOpenSourceStats = unstable_cache(compute, ["open-source-v2"], { revalidate: 3600, tags: ["open-source"] })
+export const getOpenSourceStats = unstable_cache(compute, ["open-source-v3"], { revalidate: 3600, tags: ["open-source"] })

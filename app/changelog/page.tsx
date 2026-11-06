@@ -25,6 +25,18 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.109.0",
+    date: "2026-11-06",
+    label: "Open source categories",
+    added: [
+      "The Open Source page pins my Linux kernel patch at the top, now applied by the GPIO maintainer",
+      "Contributions on the Open Source page are grouped by the kind of work, with a chart of each category",
+    ],
+    changed: [
+      "The CV leads its open source line with the Linux kernel fix",
+    ],
+  },
+  {
     version: "v2.108.1",
     date: "2026-11-06",
     label: "Experience page",

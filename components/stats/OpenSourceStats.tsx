@@ -27,6 +27,9 @@ export function OpenSourceStats({ s }: { s: Stats }) {
         <StatCard label="Projects" value={s.projects} />
         <StatCard label="Languages" value={s.languages} />
       </div>
+      <Card title="Categories" note="contributions per kind of work">
+        <BarChart data={s.byCategory.map((c) => ({ name: c.name, count: c.value }))} dataKey="count" xKey="name" height={220} />
+      </Card>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card title="Projects" note="contributions per project">
           <BarChart data={s.byProject.map((p) => ({ name: p.name, count: p.value }))} dataKey="count" xKey="name" height={220} />

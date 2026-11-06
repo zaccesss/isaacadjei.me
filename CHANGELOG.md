@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.109.0] - 2026-11-06
+
+_Open source categories_
+
+### Added
+
+- The Open Source page pins my Linux kernel patch at the top, now applied by the GPIO maintainer
+- Contributions on the Open Source page are grouped by the kind of work, with a chart of each category
+
+### Changed
+
+- The CV leads its open source line with the Linux kernel fix
+
 ## [2.108.1] - 2026-11-06
 
 _Experience page_
