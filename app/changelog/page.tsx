@@ -25,6 +25,18 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.108.1",
+    date: "2026-11-06",
+    label: "Experience page",
+    changed: [
+      "The Experience page shows its download and contact buttons at the top",
+      "The Open Source page lists more contributions, a Linux kernel patch among them",
+    ],
+    fixed: [
+      "Small reliability fixes behind the scenes",
+    ],
+  },
+  {
     version: "v2.108.0",
     date: "2026-11-05",
     label: "Lab terminal and Footprints",

@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.108.1] - 2026-11-06
+
+_Experience page_
+
+### Changed
+
+- The Experience page shows its download and contact buttons at the top
+- The Open Source page lists more contributions, a Linux kernel patch among them
+
+### Fixed
+
+- Small reliability fixes behind the scenes
+
 ## [2.108.0] - 2026-11-05
 
 _Lab terminal and Footprints_

@@ -47,6 +47,30 @@ export default function ExperiencePage() {
         <p className="text-lg text-muted-foreground">
           Work, leadership roles, the ventures I founded and volunteering.
         </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button
+            asChild
+            size="lg"
+            className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+          >
+            <a href="/api/cv-pdf">
+              <Download className="mr-2 h-4 w-4" />
+              Download CV
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <Link href="/projects">
+              View My Work
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild size="lg">
+            <Link href="/contact">
+              Get in touch
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
       </div>
       {sections
         .filter((section) => section.items.length > 0)
@@ -56,31 +80,6 @@ export default function ExperiencePage() {
             <ExperienceTimeline experiences={section.items} />
           </div>
         ))}
-
-      <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center">
-        <Button
-          asChild
-          size="lg"
-          className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
-        >
-          <a href="/api/cv-pdf">
-            <Download className="mr-2 h-4 w-4" />
-            Download CV
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline">
-          <Link href="/projects">
-            View My Work
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-        <Button asChild size="lg">
-          <Link href="/contact">
-            Get in touch
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
     </div>
   )
 }
