@@ -25,6 +25,14 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.110.1",
+    date: "2026-11-06",
+    label: "Open source link",
+    changed: [
+      "The Linux kernel patch on the Open Source page links the whole thread, including the maintainer's reply applying it",
+    ],
+  },
+  {
     version: "v2.110.0",
     date: "2026-11-06",
     label: "Install page",

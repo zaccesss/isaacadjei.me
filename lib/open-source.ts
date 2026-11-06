@@ -63,7 +63,7 @@ type Row = {
 
 export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
 
-const PINNED = new Set(["https://lore.kernel.org/r/20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me"])
+const PINNED = ["20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me"]
 
 const KIND_LABEL: Record<Row["kind"], PublicKind> = { pr: "Pull request", issue: "Issue", other: "Listing" }
 
@@ -113,7 +113,7 @@ async function compute(): Promise<OpenSourceStats> {
     category: r.category?.trim() || UNCATEGORISED,
     date: r.submitted_at.slice(0, 10),
     relation: relationOf(r),
-    pinned: !!r.pr_url && PINNED.has(r.pr_url),
+    pinned: !!r.pr_url && PINNED.some((id) => r.pr_url!.includes(id)),
   }))
   const months = new Map<string, number>()
   for (const c of contributions) months.set(c.date.slice(0, 7), (months.get(c.date.slice(0, 7)) ?? 0) + 1)
