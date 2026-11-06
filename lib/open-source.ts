@@ -55,6 +55,8 @@ type Row = {
   submitted_at: string
 }
 
+export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
+
 const KIND_LABEL: Record<Row["kind"], PublicKind> = { pr: "Pull request", issue: "Issue", other: "Listing" }
 
 const numberOf = (r: Row) => r.pr_number ?? (Number(r.pr_url?.match(/\/(?:pull|issues)\/(\d+)/)?.[1]) || null)
@@ -93,7 +95,7 @@ async function compute(): Promise<OpenSourceStats> {
   }
   const contributions: PublicContribution[] = rows.map((r) => ({
     project: projectName(r.repo),
-    kind: KIND_LABEL[r.kind] ?? "Listing",
+    kind: isMailedPatch(r.pr_url) ? "Pull request" : KIND_LABEL[r.kind] ?? "Listing",
     number: numberOf(r),
     title: r.pr_title,
     summary: r.summary || r.pr_title,

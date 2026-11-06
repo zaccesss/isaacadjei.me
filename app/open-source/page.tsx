@@ -3,7 +3,7 @@ import Link from "next/link"
 import { ExternalLink } from "lucide-react"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { OpenSourceStats } from "@/components/stats/OpenSourceStats"
-import { getOpenSourceStats, type PublicContribution } from "@/lib/open-source"
+import { getOpenSourceStats, isMailedPatch, type PublicContribution } from "@/lib/open-source"
 
 export const revalidate = 3600
 
@@ -23,7 +23,7 @@ function byProject(items: PublicContribution[]) {
 const slug = (v: string) => v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
 
 function Item({ c }: { c: PublicContribution }) {
-  const what = c.kind === "Issue" ? "issue" : c.kind === "Pull request" ? "pull request" : "listing"
+  const what = isMailedPatch(c.url) ? "patch" : c.kind === "Issue" ? "issue" : c.kind === "Pull request" ? "pull request" : "listing"
   return (
     <li className="border-l-2 border-border pl-4">
       <p className="text-sm">{c.summary}</p>
