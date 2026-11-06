@@ -3,6 +3,8 @@ import WakatimeStats from "@/components/lab/WakatimeStats"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { CodingMore } from "@/components/stats/StatsCharts"
 import { getPublicStats } from "@/lib/public-stats"
+import { getMilestones } from "@/lib/stats-milestones"
+import { RecordsRow, SoundtrackCard } from "@/components/stats/StatsExtras"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 
 export const metadata: Metadata = {
@@ -30,8 +32,8 @@ export default async function StatsCodingPage() {
           />
           <PeriodSelector />
         </div>
-        <CodingMore s={stats} />
-        <WakatimeStats />
+        <CodingMore s={stats} milestones={getMilestones()} afterTiles={<><WakatimeStats /><RecordsRow s={stats} show={["streak", "codingDay"]} /></>} />
+        <div className="grid gap-4 sm:grid-cols-2"><SoundtrackCard s={stats} /></div>
       </div>
     </AnalyticsPeriodProvider>
   )

@@ -16,8 +16,8 @@ const TYPE_LABELS: Record<PostType, string> = {
 }
 
 const PINNED = [
-  "why-software-engineers-should-understand-hardware",
   "ocular-prosthetics-bionic-vision",
+  "two-stage-audio-amplifier",
 ]
 const TOTAL = 6
 
@@ -29,7 +29,7 @@ function FeaturedPostCard({ post }: { post: BlogCard }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all overflow-hidden"
+      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border hover:shadow-md transition-all duration-200 ease-out overflow-hidden motion-safe:hover:-translate-y-0.5"
     >
       {post.cover_image && (
         <div className="relative w-full h-40 overflow-hidden">

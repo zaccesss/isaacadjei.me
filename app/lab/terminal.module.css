@@ -127,13 +127,56 @@
   color: var(--t-bg);
 }
 
+/* a chosen Zacess theme sets --t-panel to its selection colour, where its border colour would be too
+   light behind bold text */
 .nvimB {
-  background: var(--t-border);
-  color: var(--t-bold);
+  background: var(--t-panel, var(--t-border));
+  color: var(--t-panel-fg, var(--t-bold));
 }
 
 .cursorLine {
-  background: var(--t-chrome);
+  background: var(--t-line, var(--t-chrome));
+}
+
+/* nano's title bar and shortcut keys are reverse video, the way nano draws them */
+.nanoBar {
+  background: var(--t-fg);
+  color: var(--t-bg);
+}
+
+/* scenes, games and nano take keys directly, so their focus shows as a ring inside the box */
+.viewRegion {
+  outline: none;
+}
+
+.viewRegion:focus-visible {
+  outline: 2px solid var(--t-blue);
+  outline-offset: -2px;
+}
+
+/* measures one character cell without taking up a row of the scene */
+.probe {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+}
+
+.menuItem {
+  color: var(--t-fg);
+  background: transparent;
+  border-radius: 2px;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--t-fg);
+  color: var(--t-bg);
+  outline: none;
+}
+
+.menuItem:hover span,
+.menuItem:focus-visible span {
+  color: inherit;
 }
 
 .chip {

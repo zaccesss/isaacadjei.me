@@ -108,7 +108,7 @@ export default function ExperienceTimeline({ experiences }: Props) {
               <ol className="relative space-y-5 border-l border-border pl-5">
                 {item.entries.map((exp) => (
                   <li key={exp.id} className="relative space-y-2">
-                    <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background bg-primary" aria-hidden="true" />
+                    <span className="absolute -left-6.25 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background bg-primary" aria-hidden="true" />
                     <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                       <h4 className="font-medium leading-snug">{exp.role}</h4>
                       <span className="text-xs text-muted-foreground whitespace-nowrap">{exp.startDate} - {exp.endDate}</span>

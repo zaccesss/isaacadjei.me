@@ -21,12 +21,12 @@ export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn more about Isaac Adjei - his story, education and involvement.",
+  description: "About Isaac Adjei: my story, education and involvement.",
   alternates: {
     canonical: "https://www.isaacadjei.me/about",
   },
   openGraph: {
-    images: ["/api/og?title=About%20Isaac%20Adjei&description=Learn%20more%20about%20Isaac%20Adjei%20-%20his%20story%2C%20education%20and%20involvement%2E"],
+    images: ["/api/og?title=About%20Isaac%20Adjei&description=My%20story%2C%20education%20and%20involvement%2E"],
   },
 }
 
@@ -118,7 +118,8 @@ export default function AboutPage() {
             <a href="https://www.astonsu.com/society/afrocaribbean/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Aston African-Caribbean Society</a>.
             Outside lectures I founded{" "}
             <a href="https://phaemos.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">PHAEMOS</a> and{" "}
-            <a href="https://melophos.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">MELOPHOS</a>, run{" "}
+            <a href="https://melophos.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">MELOPHOS</a>, build{" "}
+            <a href="https://zacess.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Zacess</a>, run{" "}
             <a href="https://vitafolio.isaacadjei.me" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Vitafolio</a> and work on{" "}
             <Link href="/projects/lidarsat" className="text-primary hover:underline">LidarSAT</Link> with a research team. In 2026 I was shortlisted as a Top 40 Finalist for the Black
             Heritage Undergraduate of the Year Award, run by TargetJobs and Sky to recognise
@@ -134,6 +135,11 @@ export default function AboutPage() {
             and Laravel and Python-based machine learning with scikit-learn, TensorFlow and PyTorch.
             I am also expanding into Java, cloud computing, cyber security and game development. My
             projects include{" "}
+            <Link href="/projects/zacess" className="text-primary hover:underline">Zacess</Link>{" "}
+            (a free, open-source reader that turns PDFs, scans, Word files and web pages into notes
+            in your own reading profile, with read aloud and every file kept on the device. It has
+            grown into a family built on one contrast-checked palette: code themes in seven editor
+            stores, terminal scenes, games and a profile tool),{" "}
             <Link href="/projects/vitafolio" className="text-primary hover:underline">Vitafolio</Link>{" "}
             (a live app for building and sharing every version of a CV),{" "}
             <Link href="/projects/phaemos" className="text-primary hover:underline">PHAEMOS</Link>{" "}
@@ -144,9 +150,7 @@ export default function AboutPage() {
             <Link href="/projects/lidarsat" className="text-primary hover:underline">LidarSAT</Link>{" "}
             (team research on GPS-denied drone navigation), a two-stage audio amplifier PCB built from
             scratch, a 4x4x4 NeoPixel LED Cube, avr-zac (bare-metal C on an ATmega644P), this site
-            itself, an open-source Git course with over 200 structured topic files and Zaccess, an
-            accessibility tool that converts lecture slides and textbook pages into high-contrast
-            readable notes using OCR and text-to-speech.
+            itself and an open-source Git course with over 200 structured topic files.
           </p>
         </div>
         <ApproachAnimation />

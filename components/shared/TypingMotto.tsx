@@ -57,8 +57,9 @@ export default function TypingMotto({
 
   return (
     <p className={`font-mono text-xs flex items-center gap-1.5 ${className ?? ""}`}>
-      <span className="text-primary font-semibold shrink-0">$</span>
-      <span className="text-foreground/75">{displayed}</span>
+      <span className="text-primary font-semibold shrink-0" aria-hidden="true">$</span>
+      <span className="sr-only">{text}</span>
+      <span className="text-foreground/75" aria-hidden="true">{displayed}</span>
       {!done && (
         <span
           className="inline-block w-[0.5em] h-[0.85em] bg-primary/60 shrink-0 animate-[blink_0.7s_step-end_infinite]"

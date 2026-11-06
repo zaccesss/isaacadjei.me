@@ -4,6 +4,7 @@ import MusicHistory from "@/components/stats/MusicHistory"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { MusicMore } from "@/components/stats/StatsCharts"
 import { getPublicStats } from "@/lib/public-stats"
+import { RecordsRow } from "@/components/stats/StatsExtras"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default async function StatsMusicPage() {
           />
           <PeriodSelector />
         </div>
+        <RecordsRow s={stats} show={["playsDay"]} />
         <MusicMore s={stats} />
         <MusicHistory />
         <SpotifyAnalytics />

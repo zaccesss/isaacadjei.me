@@ -1,6 +1,6 @@
 "use client"
 
-import ReactECharts from "echarts-for-react"
+import ReactECharts from "./EChart"
 import { useEChartsColours } from "./echarts-theme"
 
 export function Gauge({

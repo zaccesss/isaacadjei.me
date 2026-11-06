@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://www.isaacadjei.me",
   },
   openGraph: {
-    images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20%26%20Computer%20Science%20Student%20at%20Aston%20University."],
+    images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E"],
   },
 }
 

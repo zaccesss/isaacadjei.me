@@ -8,21 +8,20 @@ import { useModKey } from "@/hooks/useModKey"
 import BrailleDivider from "@/components/shared/marks/BrailleDivider"
 import dynamic from "next/dynamic"
 import s from "./terminal.module.css"
+import type { Line, LineType, ShellId, Tone } from "./_terminal/types"
+import {
+  DEFAULT_THEME, findTheme, loadTheme, saveTheme, themeById, themeListLines, themePaletteLines, themeStyle,
+} from "./_terminal/themes"
+import {
+  PROFILE_FILE, SHELL_ALIASES, SHELL_IDS, SHELL_TITLE, fileMissingLines, loadShell, normaliseFileArg, notFoundLines,
+  profilePath, promptText, rcFiles, saveShell, shellFromName, shellHelpLines, shellStartLines, windowsPath,
+} from "./_terminal/shells"
+import { SCENES, ScenesView, findScene } from "./_terminal/scenes"
+import { GAMES, GamesView, INSTALL_LINES, findGame, gamesListLines } from "./_terminal/games"
 
 const PCBViewer = dynamic(() => import("@/components/lab/PCBViewer"), { ssr: false })
 
 type WindowState = "normal" | "minimized" | "maximized" | "closed"
-type LineType =
-  | "system" | "cmd-echo" | "output" | "error" | "info" | "blank" | "success" | "cmd-list" | "kv" | "link"
-  | "rule" | "banner" | "title" | "heading" | "pair" | "legend" | "swatch"
-type Tone = "fg" | "bold" | "dim" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white"
-
-interface Line {
-  type: LineType
-  text: string
-  tone?: Tone
-  bold?: boolean
-}
 
 const PROMPT_DIR = "isaacadjei.me/lab"
 const PROMPT_BRANCH = "main"
@@ -47,7 +46,7 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const pad2 = (n: number) => String(n).padStart(2, "0")
 
-function bannerLines(name: string): Line[] {
+function bannerLines(name: string, shell: ShellId = "zsh"): Line[] {
   const d = new Date()
   const stamp = `${DAYS[d.getDay()]} ${pad2(d.getDate())} ${MONTHS[d.getMonth()]} ${d.getFullYear()}  ${pad2(d.getHours())}:${pad2(d.getMinutes())}`
   const rule = "-".repeat(45)
@@ -56,7 +55,7 @@ function bannerLines(name: string): Line[] {
     { type: "rule", text: rule },
     { type: "banner", text: `  Welcome back, ${name}!`, tone: "cyan", bold: true },
     { type: "banner", text: "  web profile loaded", tone: "green" },
-    { type: "banner", text: "  isaacadjei.me - zsh", tone: "magenta" },
+    { type: "banner", text: `  isaacadjei.me - ${SHELL_TITLE[shell]}`, tone: "magenta" },
     { type: "banner", text: `  ${stamp}`, tone: "yellow" },
     { type: "rule", text: rule },
     { type: "blank", text: "" },
@@ -67,6 +66,7 @@ const HINTS: Line[] = [
   { type: "output", text: "type 'help' for every command or 'cmds' for the cheat-sheet." },
   { type: "output", text: "type 'pages' to see every public page on this site." },
   { type: "output", text: "try: 'palette', 'git commit', 'ls', 'man', 'stack', 'faith'" },
+  { type: "output", text: "new: 'theme list', 'bash', 'pwsh', 'zacess-scenes' and 'zacess-games'" },
   { type: "blank", text: "" },
 ]
 
@@ -128,10 +128,10 @@ function startupSteps(name: string): [Line, number][] {
   ]
 }
 
-function introSteps(name: string): [Line, number][] {
+function introSteps(name: string, shell: ShellId): [Line, number][] {
   return [
     ...startupSteps(name),
-    ...[...bannerLines(name), ...HINTS].map((line): [Line, number] => [line, 55]),
+    ...[...bannerLines(name, shell), ...HINTS].map((line): [Line, number] => [line, 55]),
   ]
 }
 
@@ -186,6 +186,17 @@ const CMDS_LINES: Line[] = [
   { type: "heading", text: "TMUX AND NEOVIM" },
   { type: "pair", text: "  tmux ls / tls  the running sessions" },
   { type: "pair", text: "  nvim [file] / vim  open README.md, about.md or tmux.conf read-only" },
+  { type: "pair", text: "  nano [file]  the same files in a nano view, Ctrl+X to leave" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "SHELLS AND THEMES" },
+  { type: "pair", text: "  zsh / bash / pwsh / cmd  switch shell; exit goes back" },
+  { type: "pair", text: "  chsh -s <shell>  the shell this lab opens with" },
+  { type: "pair", text: "  theme list / theme <name>  the eight Zacess themes" },
+  { type: "pair", text: "  cat ~/.zshrc  a start-up file that follows the theme" },
+  { type: "blank", text: "" },
+  { type: "heading", text: "ZACESS" },
+  { type: "pair", text: "  zacess-scenes [list | name]  a calm animated scene" },
+  { type: "pair", text: "  zacess-games [list | name]  small terminal games" },
   { type: "blank", text: "" },
   { type: "heading", text: "SHELL" },
   { type: "pair", text: "  ll / la  the long listing aliases" },
@@ -309,6 +320,20 @@ const ALIASES: Record<string, string> = {
   vim: "nvim",
 }
 
+const SHELL_PATHS: Record<ShellId, string> = {
+  zsh: "/bin/zsh",
+  bash: "/bin/bash",
+  pwsh: "/usr/local/bin/pwsh",
+  cmd: "C:\\Windows\\System32\\cmd.exe",
+}
+
+const CD_MISSING: Record<ShellId, (arg: string) => string> = {
+  zsh: (arg) => `cd: no such file or directory: ${arg}`,
+  bash: (arg) => `bash: cd: ${arg}: No such file or directory`,
+  pwsh: (arg) => `Set-Location: Cannot find path '${arg}' because it does not exist.`,
+  cmd: () => "The system cannot find the path specified.",
+}
+
 const TMUX_SESSION = "lab"
 
 function tmuxStamp(d: Date): string {
@@ -394,13 +419,17 @@ interface EditorState {
   filetype: string
   lines: string[]
   message: string
+  kind?: "nvim" | "nano"
 }
 
-function openFile(arg: string): EditorState | null {
-  const file = arg.trim() || "README.md"
-  const hit = Object.keys(NVIM_FILES).find((k) => k.toLowerCase() === file.toLowerCase())
+type FileTable = Record<string, { filetype: string; lines: string[] }>
+
+function openFile(arg: string, extra: FileTable = {}): EditorState | null {
+  const file = normaliseFileArg(arg) || "README.md"
+  const table: FileTable = { ...NVIM_FILES, ...extra }
+  const hit = Object.keys(table).find((k) => k.toLowerCase() === file.toLowerCase())
   if (!hit) return null
-  const { filetype, lines } = NVIM_FILES[hit]
+  const { filetype, lines } = table[hit]
   return { file: hit, filetype, lines, message: `"${hit}" [readonly] ${lines.length}L` }
 }
 
@@ -568,6 +597,9 @@ const COMMANDS: Record<string, (data: LabData) => Line[]> = {
     { type: "output", text: "  drwxr-xr-x  /tags         browse all topics" },
     { type: "output", text: "  drwxr-xr-x  /search       search across everything" },
     { type: "output", text: "  drwxr-xr-x  /all-pages    every public page" },
+    { type: "blank", text: "" },
+    { type: "output", text: "  files: README.md  about.md  tmux.conf  .zshrc  .bashrc" },
+    { type: "output", text: "  open one with 'cat', 'nvim' or 'nano'" },
   ],
 
   cmds: () => CMDS_LINES,
@@ -1372,6 +1404,32 @@ function PromptMeta() {
   )
 }
 
+function ShellPrompt({ shell, user }: { shell: ShellId; user: string }) {
+  if (shell === "bash") {
+    return (
+      <span aria-hidden="true" className="whitespace-pre">
+        <span className={`${s.green} font-bold`}>{user}@isaacadjei</span>
+        <span className={s.fg}>:</span>
+        <span className={`${s.blue} font-bold`}>~/lab</span>
+        <span className={s.fg}>$ </span>
+      </span>
+    )
+  }
+  if (shell === "pwsh") {
+    return (
+      <span aria-hidden="true" className="whitespace-pre">
+        <span className={`${s.blue} font-bold`}>PS </span>
+        <span className={s.fg}>{windowsPath(user)}&gt; </span>
+      </span>
+    )
+  }
+  return (
+    <span aria-hidden="true" className={`${s.fg} whitespace-pre`}>
+      {promptText(shell, user)}
+    </span>
+  )
+}
+
 function renderLine(line: Line, i: number) {
   if (line.type === "blank") return <div key={i} className="h-2" />
 
@@ -1437,6 +1495,16 @@ function renderLine(line: Line, i: number) {
       >
         {url}
       </a>
+    )
+  }
+
+  if (line.type === "cmd-echo" && line.shell && line.shell !== "zsh") {
+    return (
+      <div key={i} className={`${LINE} mt-1`}>
+        <ShellPrompt shell={line.shell} user={line.user ?? DEFAULT_NAME} />
+        <span className="sr-only">command: </span>
+        <span className={s.bold}>{line.text}</span>
+      </div>
     )
   }
 
@@ -1550,13 +1618,93 @@ function NvimView({ editor, heightClass }: { editor: EditorState; heightClass: s
   )
 }
 
-function TmuxBar({ window, clock }: { window: string; clock: string | null }) {
+const NANO_KEYS: [string, string][][] = [
+  [["^G", "Help"], ["^O", "Write Out"], ["^W", "Where Is"], ["^K", "Cut"], ["^T", "Execute"], ["^C", "Location"]],
+  [["^X", "Exit"], ["^R", "Read File"], ["^\\", "Replace"], ["^U", "Paste"], ["^J", "Justify"], ["^/", "Go To Line"]],
+]
+
+function NanoView({
+  editor,
+  heightClass,
+  onExit,
+  onMessage,
+}: {
+  editor: EditorState
+  heightClass: string
+  onExit: () => void
+  onMessage: (message: string) => void
+}) {
+  const regionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    regionRef.current?.focus({ preventScroll: true })
+  }, [])
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const k = e.key.toLowerCase()
+    if (e.key === "Escape" || (e.ctrlKey && k === "x")) onExit()
+    else if (e.ctrlKey && k === "o") onMessage("[ File is read-only: nothing can be written ]")
+    else if (e.ctrlKey && k === "g") onMessage("[ Ctrl+X or Escape leaves. Arrow keys and Page Up or Down scroll. ]")
+    else if (e.ctrlKey && k === "c") onMessage(`[ line 1/${editor.lines.length}, col 1/1, char 1 ]`)
+    else if (e.ctrlKey && ["w", "k", "t", "r", "u", "j", "\\"].includes(k)) onMessage("[ Not available in a read-only buffer ]")
+    else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) onMessage("[ File is read-only ]")
+    else return
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  return (
+    <div
+      ref={regionRef}
+      role="region"
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+      aria-label={`nano: ${editor.file}, read-only. Press Control X or Escape to return to the shell.`}
+      className={`${s.viewRegion} flex flex-col ${heightClass}`}
+    >
+      <div className={`${s.nanoBar} flex items-center justify-between gap-2 px-2 text-xs leading-6 shrink-0`} aria-hidden="true">
+        <span className="shrink-0">nano 8.2</span>
+        <span className="truncate min-w-0 font-bold">{editor.file}</span>
+        <span className="shrink-0">read-only</span>
+      </div>
+      <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-1 sm:px-2 pt-1">
+        {editor.lines.map((text, n) => (
+          <div key={n} className={`${LINE} ${s.fg}`}>
+            {text || " "}
+          </div>
+        ))}
+      </div>
+      <div className={`flex items-center justify-between gap-2 px-1 sm:px-2 shrink-0`}>
+        <span className={`${LINE} ${s.fg} min-w-0`} aria-live="polite">
+          {editor.message}
+        </span>
+        <button type="button" onClick={onExit} className={`${s.chip} min-h-11 px-3 rounded text-xs shrink-0`}>
+          ^X Exit
+        </button>
+      </div>
+      <div className="text-xs leading-5 shrink-0 px-1 sm:px-2 pb-1" aria-hidden="true">
+        {NANO_KEYS.map((row, r) => (
+          <div key={r} className="grid grid-cols-3 sm:grid-cols-6 gap-x-2">
+            {row.map(([k, label]) => (
+              <span key={k} className="whitespace-pre truncate">
+                <span className={s.nanoBar}>{k}</span>
+                <span className={s.fg}> {label}</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function TmuxBar({ window, clock, shell = "zsh" }: { window: string; clock: string | null; shell?: string }) {
   return (
     <div className={`${s.tmux} flex items-center justify-between gap-2 px-2 text-xs leading-6 shrink-0`} aria-hidden="true">
       <span className="truncate min-w-0">
         <span className="font-bold">{TMUX_SESSION}</span>{" "}
         <span className={`${s.tmuxCurrent} font-bold`}>{`1:${window}*`}</span>{" "}
-        <span>2:zsh-</span>
+        <span>{`2:${shell}-`}</span>
       </span>
       <span className="shrink-0">{clock ?? ""}</span>
     </div>
@@ -1576,6 +1724,12 @@ export default function LabPage({ data }: { data: LabData }) {
   const [cmdHistory, setCmdHistory] = useState<string[]>([])
   const [histIdx, setHistIdx] = useState(-1)
   const [winState, setWinState] = useState<WindowState>("normal")
+  const [shell, setShell] = useState<ShellId>("zsh")
+  const [shellStack, setShellStack] = useState<ShellId[]>([])
+  const [themeId, setThemeId] = useState<string>(DEFAULT_THEME)
+  const [scene, setScene] = useState<number | null>(null)
+  const [games, setGames] = useState<{ start: number; seed: number; today: number } | null>(null)
+  const [reduced, setReduced] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
   const promptRef = useRef<HTMLFormElement>(null)
@@ -1584,6 +1738,10 @@ export default function LabPage({ data }: { data: LabData }) {
   useEffect(() => {
     const t = setTimeout(() => {
       const stored = loadName()
+      const storedShell = loadShell()
+      if (storedShell) setShell(storedShell)
+      setThemeId(loadTheme())
+      setReduced(prefersReducedMotion())
       if (stored) {
         setName(stored)
         setPhase("intro")
@@ -1597,7 +1755,7 @@ export default function LabPage({ data }: { data: LabData }) {
 
   useEffect(() => {
     if (phase !== "intro") return
-    const steps = introSteps(name)
+    const steps = introSteps(name, shell)
     const timers: ReturnType<typeof setTimeout>[] = []
     if (prefersReducedMotion()) {
       timers.push(
@@ -1615,6 +1773,8 @@ export default function LabPage({ data }: { data: LabData }) {
       timers.push(setTimeout(() => setPhase("ready"), at))
     }
     return () => timers.forEach(clearTimeout)
+    // the shell only names the banner, so changing it later must not replay the start-up
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, name])
 
   useEffect(() => {
@@ -1630,10 +1790,34 @@ export default function LabPage({ data }: { data: LabData }) {
     }
   }, [])
 
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const onChange = () => setReduced(mq.matches)
+    mq.addEventListener("change", onChange)
+    return () => mq.removeEventListener("change", onChange)
+  }, [])
+
+  const theme = themeById(themeId)
+
+  const focusPrompt = () => {
+    setTimeout(() => {
+      if (!isCoarsePointer()) inputRef.current?.focus({ preventScroll: true })
+    }, 0)
+  }
+
   const closeEditor = () => {
+    const kind = editor?.kind ?? "nvim"
     setEditor(null)
     setInputVal("")
-    setSrStatus("Closed nvim. Back in the shell.")
+    setSrStatus(`Closed ${kind}. Back in the shell.`)
+    focusPrompt()
+  }
+
+  const closeView = (message: string) => {
+    setScene(null)
+    setGames(null)
+    setSrStatus(`${message} Back in the shell.`)
+    focusPrompt()
   }
 
   const editorCommand = (raw: string) => {
@@ -1686,8 +1870,13 @@ export default function LabPage({ data }: { data: LabData }) {
   const execCommand = useCallback((raw: string) => {
     const typed = raw.trim()
     const first = (typed.split(/\s+/)[0] ?? "").toLowerCase()
-    const trimmed = ALIASES[first] ? ALIASES[first] + typed.slice(first.length) : typed
+    const alias = SHELL_ALIASES[shell][first] ?? ALIASES[first]
+    const trimmed = alias ? alias + typed.slice(first.length) : typed
     const cmd = trimmed.toLowerCase()
+    const handle = nameHandle(name)
+    const echo: Line = { type: "cmd-echo", text: typed, shell, user: handle }
+    const blank: Line = { type: "blank", text: "" }
+    const print = (out: Line[]) => setLines((prev) => [...prev, echo, ...out, blank])
 
     if (!cmd) {
       setLines((prev) => [...prev, { type: "blank", text: "" }])
@@ -1704,7 +1893,225 @@ export default function LabPage({ data }: { data: LabData }) {
     }
 
     if (cmd === "cls") {
-      setLines(bannerLines(name))
+      setLines(bannerLines(name, shell))
+      return
+    }
+
+    const asShell = shellFromName(cmd)
+    if (asShell) {
+      setShellStack((prev) => [...prev, shell])
+      setShell(asShell)
+      saveShell(asShell)
+      print(shellStartLines(asShell, shell))
+      return
+    }
+
+    if (cmd === "exit" || cmd === "logout") {
+      const parent = shellStack[shellStack.length - 1]
+      if (!parent) {
+        print([
+          { type: "info", text: `exit: ${shell} is the login shell, so there is nothing to go back to.` },
+          { type: "output", text: "  start another with 'zsh', 'bash', 'pwsh' or 'cmd' or change it with 'chsh -s <shell>'." },
+        ])
+        return
+      }
+      setShellStack((prev) => prev.slice(0, -1))
+      setShell(parent)
+      saveShell(parent)
+      print([{ type: "info", text: `back in ${parent}` }])
+      return
+    }
+
+    const chsh = /^chsh(?:\s+-s)?(?:\s+(\S+))?$/i.exec(trimmed)
+    if (chsh) {
+      const target = chsh[1] ? shellFromName(chsh[1]) : null
+      if (!target) {
+        print([
+          ...(chsh[1] ? [{ type: "error" as LineType, text: `chsh: ${chsh[1]}: non-standard shell` }] : []),
+          { type: "output", text: "usage: chsh -s <shell>" },
+          { type: "output", text: `  shells: ${SHELL_IDS.join(", ")} (see 'cat /etc/shells')` },
+        ])
+        return
+      }
+      setShell(target)
+      setShellStack([])
+      saveShell(target)
+      print([
+        { type: "success", text: `chsh: login shell changed to ${SHELL_PATHS[target]}` },
+        { type: "output", text: "  saved for your next visit." },
+        ...shellStartLines(target, null),
+      ])
+      return
+    }
+
+    const themeCmd = /^theme(?:\s+(.*))?$/i.exec(trimmed)
+    if (themeCmd) {
+      const arg = (themeCmd[1] ?? "").trim()
+      if (!arg || /^(list|ls)$/i.test(arg)) {
+        print(themeListLines(themeId))
+        return
+      }
+      const found = findTheme(arg)
+      if (!found) {
+        print([
+          { type: "error", text: `theme: no theme called '${arg}'` },
+          { type: "output", text: "  type 'theme list' to see all eight." },
+        ])
+        return
+      }
+      const id = found === "default" ? DEFAULT_THEME : found.id
+      setThemeId(id)
+      saveTheme(id)
+      print([
+        { type: "success", text: `theme: ${found === "default" ? "the site palette" : found.name}` },
+        { type: "output", text: "  saved for your next visit. type 'palette' to see its colours." },
+      ])
+      return
+    }
+
+    const scenesCmd = /^zacess-scenes(?:\s+(.*))?$/i.exec(trimmed)
+    if (scenesCmd) {
+      const arg = (scenesCmd[1] ?? "").trim().toLowerCase()
+      if (arg === "list") {
+        print([
+          { type: "title", text: "Zacess Scenes in this lab" },
+          ...SCENES.map((sc): Line => ({ type: "pair", text: `  ${sc.id.padEnd(10)}  ${sc.summary}` })),
+          blank,
+          { type: "output", text: "  keys: n next, b back, Space pause and q quit." },
+          { type: "output", text: "  the full program has 39 scenes, a build monitor and sound:" },
+          { type: "output", text: "    cargo install --locked zacess-scenes" },
+          { type: "output", text: "    brew install zacesshq/tap/zacess-scenes" },
+        ])
+        return
+      }
+      const idx = arg ? findScene(arg) : 0
+      if (idx < 0) {
+        print([
+          { type: "error", text: `zacess-scenes: no scene called '${arg}' in this lab` },
+          { type: "output", text: "  type 'zacess-scenes list' to see the four here." },
+        ])
+        return
+      }
+      setLines((prev) => [...prev, echo])
+      setScene(idx)
+      setSrStatus(`Opened zacess-scenes: ${SCENES[idx].title}. n next, b back, Space pause, q quit.`)
+      return
+    }
+
+    const gamesCmd = /^zacess-games(?:\s+(.*))?$/i.exec(trimmed)
+    if (gamesCmd) {
+      const arg = (gamesCmd[1] ?? "").trim().toLowerCase()
+      if (arg === "list") {
+        print(gamesListLines())
+        return
+      }
+      const idx = arg ? findGame(arg) : -1
+      if (arg && idx < 0) {
+        print([
+          { type: "error", text: `zacess-games: no game called '${arg}'` },
+          { type: "output", text: "  type 'zacess-games list' to see all fourteen." },
+        ])
+        return
+      }
+      if (idx >= 0 && !GAMES[idx].playable) {
+        print([
+          { type: "info", text: `${GAMES[idx].name} runs in the full terminal app:` },
+          { type: "output", text: `  ${INSTALL_LINES[0]}` },
+          { type: "output", text: `  ${INSTALL_LINES[1]}` },
+          { type: "output", text: "  here: 'zacess-games termle', 'zacess-games merge-gates' or 'zacess-games trace'." },
+        ])
+        return
+      }
+      const d = new Date()
+      setLines((prev) => [...prev, echo])
+      setGames({
+        start: idx,
+        seed: Math.floor(Math.random() * 2 ** 31),
+        today: Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86_400_000),
+      })
+      setSrStatus(idx >= 0 ? `Opened ${GAMES[idx].name}.` : "Opened the Zacess Games menu.")
+      return
+    }
+
+    if (cmd === "cat" || cmd.startsWith("cat ")) {
+      const arg = trimmed.slice(3).trim()
+      if (!arg) {
+        print([{ type: "output", text: "usage: cat <file>   files: README.md, about.md, tmux.conf, .zshrc, .bashrc, $PROFILE" }])
+        return
+      }
+      if (arg === "/etc/shells") {
+        print([
+          { type: "output", text: "# shells this lab can start" },
+          ...SHELL_IDS.map((id): Line => ({ type: "output", text: SHELL_PATHS[id] })),
+        ])
+        return
+      }
+      const opened = openFile(arg, rcFiles(handle, theme))
+      print(opened ? opened.lines.map((text): Line => ({ type: "output", text })) : fileMissingLines(shell, arg))
+      return
+    }
+
+    if (cmd === "$profile" && shell === "pwsh") {
+      print([{ type: "output", text: profilePath(handle) }])
+      return
+    }
+
+    if (cmd === "ver" && shell === "cmd") {
+      print([{ type: "output", text: "isaacadjei.me Command Prompt [Version 10.0.lab]" }])
+      return
+    }
+
+    if (cmd === "cd" || cmd.startsWith("cd ")) {
+      const arg = trimmed.slice(2).trim()
+      const section = arg.replace(/^\/+|\/+$/g, "").toLowerCase()
+      if (!arg || arg === "~" || arg === "." || section === "lab") {
+        print(shell === "cmd" && !arg ? [{ type: "output", text: windowsPath(handle) }] : [])
+      } else if (arg === "..") {
+        print([{ type: "info", text: "  this lab keeps you in /lab. type 'pages' to see every page." }])
+      } else if (NAV_COMMANDS[section]) {
+        print([{ type: "output", text: `  ${section} is a page here, not a folder. type '${section}' to open it.` }])
+      } else {
+        print([{ type: "error", text: CD_MISSING[shell](arg) }])
+      }
+      return
+    }
+
+    if (cmd === "pwd" && shell !== "zsh" && shell !== "bash") {
+      print(
+        shell === "pwsh"
+          ? [{ type: "output", text: "Path" }, { type: "output", text: "----" }, { type: "output", text: windowsPath(handle) }]
+          : [{ type: "output", text: windowsPath(handle) }],
+      )
+      return
+    }
+
+    if (cmd === "echo") {
+      print([{ type: "output", text: shell === "cmd" ? "ECHO is on." : "" }])
+      return
+    }
+
+    if (cmd === "help") {
+      print([...shellHelpLines(shell), ...COMMANDS.help(data)])
+      return
+    }
+
+    if (cmd === "palette" && theme) {
+      print(themePaletteLines(theme))
+      return
+    }
+
+    if (cmd === "nano" || cmd.startsWith("nano ")) {
+      const opened = openFile(trimmed.slice(4), rcFiles(handle, theme))
+      if (!opened) {
+        print([
+          { type: "error", text: `nano: no file called '${trimmed.slice(5).trim()}' in this lab` },
+          { type: "output", text: `  try: ${[...Object.keys(NVIM_FILES), ".zshrc", ".bashrc", PROFILE_FILE].join(", ")}` },
+        ])
+        return
+      }
+      setLines((prev) => [...prev, echo])
+      setEditor({ ...opened, kind: "nano", message: `[ Read ${opened.lines.length} lines (read-only) ]` })
+      setSrStatus(`Opened ${opened.file} in nano, read-only. Press Control X or Escape to return to the shell.`)
       return
     }
 
@@ -1716,12 +2123,12 @@ export default function LabPage({ data }: { data: LabData }) {
         setName(chosen)
         setLines((prev) => [
           ...prev,
-          { type: "cmd-echo", text: typed },
+          echo,
           { type: "output", text: `  you are now ${chosen}` },
-          ...bannerLines(chosen),
+          ...bannerLines(chosen, shell),
         ])
       } else {
-        setLines((prev) => [...prev, { type: "cmd-echo", text: typed }, ...LOGIN_LINES])
+        setLines((prev) => [...prev, echo, ...LOGIN_LINES])
         setPhase("login")
       }
       return
@@ -1730,7 +2137,7 @@ export default function LabPage({ data }: { data: LabData }) {
     if (cmd === "tmux" || cmd.startsWith("tmux ")) {
       setLines((prev) => [
         ...prev,
-        { type: "cmd-echo", text: typed },
+        echo,
         ...tmuxLines(trimmed, new Date(performance.timeOrigin)),
         { type: "blank", text: "" },
       ])
@@ -1738,33 +2145,37 @@ export default function LabPage({ data }: { data: LabData }) {
     }
 
     if (cmd === "nvim" || cmd.startsWith("nvim ")) {
-      const opened = openFile(trimmed.slice(4))
+      const opened = openFile(trimmed.slice(4), rcFiles(handle, theme))
       if (!opened) {
         setLines((prev) => [
           ...prev,
-          { type: "cmd-echo", text: typed },
+          echo,
           { type: "error", text: `nvim: no file called '${trimmed.slice(5).trim()}' in this lab` },
-          { type: "output", text: `  try: ${Object.keys(NVIM_FILES).join(", ")}` },
+          { type: "output", text: `  try: ${[...Object.keys(NVIM_FILES), ".zshrc", ".bashrc", PROFILE_FILE].join(", ")}` },
           { type: "blank", text: "" },
         ])
         return
       }
-      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }])
+      setLines((prev) => [...prev, echo])
       setEditor(opened)
       setSrStatus(`Opened ${opened.file} in nvim, read-only. ${EDITOR_HELP}`)
       return
     }
 
     if (cmd === "git" || cmd.startsWith("git ")) {
-      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }, ...gitLines(trimmed), { type: "blank", text: "" }])
+      setLines((prev) => [...prev, echo, ...gitLines(trimmed), { type: "blank", text: "" }])
       return
     }
 
     if (cmd.startsWith("echo ")) {
+      const said = trimmed
+        .slice(5)
+        .replace(/\$SHELL\b/g, shell === "zsh" || shell === "bash" ? SHELL_PATHS[shell] : "")
+        .replace(/\$PROFILE\b/gi, shell === "pwsh" ? profilePath(handle) : "")
       setLines((prev) => [
         ...prev,
-        { type: "cmd-echo", text: typed },
-        { type: "output", text: `  ${trimmed.slice(5)}` },
+        echo,
+        { type: "output", text: `  ${said}` },
         { type: "blank", text: "" },
       ])
       return
@@ -1775,13 +2186,13 @@ export default function LabPage({ data }: { data: LabData }) {
       if (prefersReducedMotion()) {
         setLines((prev) => [
           ...prev,
-          { type: "cmd-echo", text: typed },
+          echo,
           ...steps.map((st) => st.line),
           { type: "blank", text: "" },
         ])
         return
       }
-      setLines((prev) => [...prev, { type: "cmd-echo", text: typed }])
+      setLines((prev) => [...prev, echo])
       const maxDelay = Math.max(...steps.map((st) => st.delay))
       steps.forEach(({ line, delay }) => {
         setTimeout(() => setLines((prev) => [...prev, line]), delay)
@@ -1793,7 +2204,7 @@ export default function LabPage({ data }: { data: LabData }) {
     if (ASYNC_COMMANDS[cmd]) {
       setLines((prev) => [
         ...prev,
-        { type: "cmd-echo", text: typed },
+        echo,
         { type: "info", text: "  fetching..." },
         { type: "blank", text: "" },
       ])
@@ -1815,10 +2226,7 @@ export default function LabPage({ data }: { data: LabData }) {
       ? cmd === "whoami"
         ? withVisitor(COMMANDS[cmd](data), name)
         : COMMANDS[cmd](data)
-      : [
-          { type: "error", text: `zsh: command not found: ${cmd}` },
-          { type: "output", text: "  type 'help' to see available commands" },
-        ]
+      : notFoundLines(shell, shell === "zsh" ? cmd : (typed.split(/\s+/)[0] ?? cmd))
 
     const redirectUrl = NAV_COMMANDS[cmd]
     if (redirectUrl) window.open(redirectUrl, "_blank", "noopener,noreferrer")
@@ -1828,11 +2236,11 @@ export default function LabPage({ data }: { data: LabData }) {
 
     setLines((prev) => [
       ...prev,
-      { type: "cmd-echo", text: typed },
+      echo,
       ...output,
       { type: "blank", text: "" },
     ])
-  }, [data, name])
+  }, [data, name, shell, shellStack, themeId, theme])
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowUp") {
@@ -1849,6 +2257,8 @@ export default function LabPage({ data }: { data: LabData }) {
   }
 
   const isMaximized = winState === "maximized"
+  const bodyHeight = isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-105 min-h-65 sm:h-110 sm:max-h-none"
+  const viewOpen = scene !== null || games !== null || editor?.kind === "nano"
   const isMinimized = winState === "minimized"
   const isClosed = winState === "closed"
 
@@ -1890,6 +2300,7 @@ export default function LabPage({ data }: { data: LabData }) {
               closeEditor()
             }
           }}
+          style={themeStyle(theme)}
           className={`${s.term} font-mono text-[13px] min-w-0 ${
             isMaximized
               ? "fixed top-16 inset-x-0 bottom-0 z-50 flex flex-col mt-0!"
@@ -1927,15 +2338,37 @@ export default function LabPage({ data }: { data: LabData }) {
               </button>
             </div>
             <span className="text-xs truncate min-w-0" aria-hidden="true">
-              {nameHandle(name)}@isaacadjei.me - zsh<span className="hidden sm:inline"> - 80x24</span>
+              {nameHandle(name)}@isaacadjei.me - {SHELL_TITLE[shell]}
+              {theme ? <span className="hidden md:inline"> - {theme.name}</span> : null}
+              <span className="hidden sm:inline"> - 80x24</span>
             </span>
             <span className="w-7 sm:w-21 shrink-0" />
           </div>
 
           {!isMinimized && (
             <div className={`${s.body} flex flex-col min-h-0 ${isMaximized ? "flex-1" : ""}`}>
-              {editor ? (
-                <NvimView editor={editor} heightClass={isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-[420px] min-h-[260px] sm:h-[440px] sm:max-h-none"} />
+              {scene !== null ? (
+                <ScenesView
+                  start={scene}
+                  themeName={theme ? theme.name : "site palette"}
+                  reducedMotion={reduced}
+                  heightClass={bodyHeight}
+                  onExit={closeView}
+                />
+              ) : games ? (
+                <GamesView start={games.start} seed={games.seed} today={games.today} heightClass={bodyHeight} onExit={closeView} />
+              ) : editor?.kind === "nano" ? (
+                <NanoView
+                  editor={editor}
+                  heightClass={bodyHeight}
+                  onExit={closeEditor}
+                  onMessage={(message) => {
+                    setEditor((prev) => (prev ? { ...prev, message } : prev))
+                    setSrStatus(message)
+                  }}
+                />
+              ) : editor ? (
+                <NvimView editor={editor} heightClass={bodyHeight} />
               ) : (
                 <div
                   ref={bodyRef}
@@ -1947,7 +2380,7 @@ export default function LabPage({ data }: { data: LabData }) {
                     if (!window.getSelection()?.toString()) inputRef.current?.focus({ preventScroll: true })
                   }}
                   className={`px-3 sm:px-5 pt-3 sm:pt-4 pb-1 overflow-y-auto overflow-x-hidden overscroll-contain cursor-text select-text ${
-                    isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-[420px] min-h-[260px] sm:h-[440px] sm:max-h-none"
+                    isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-105 min-h-65 sm:h-110 sm:max-h-none"
                   }`}
                 >
                   {lines.map((line, i) => renderLine(line, i))}
@@ -1957,7 +2390,7 @@ export default function LabPage({ data }: { data: LabData }) {
                 {srStatus}
               </p>
 
-              {booted && (
+              {booted && !viewOpen && (
                 <form
                   ref={promptRef}
                   onSubmit={(e) => {
@@ -1968,21 +2401,27 @@ export default function LabPage({ data }: { data: LabData }) {
                   }}
                   className="px-3 sm:px-5 pt-1 pb-2 shrink-0"
                 >
-                  {!asking && !editor && (
+                  {!asking && !editor && shell === "zsh" && (
                     <div className="leading-relaxed">
                       <PromptMeta />
                     </div>
                   )}
-                  <div className={`${s.promptRow} flex items-center min-h-11`}>
-                    <span className={`${asking ? s.cyan : s.green} font-bold shrink-0 whitespace-pre`} aria-hidden="true">
-                      {asking ? "login: " : editor ? "" : "> "}
-                    </span>
+                  <div className={`${s.promptRow} flex flex-wrap items-center min-h-11`}>
+                    {!asking && !editor && shell !== "zsh" ? (
+                      <span className="shrink-0 min-w-0 break-all">
+                        <ShellPrompt shell={shell} user={nameHandle(name)} />
+                      </span>
+                    ) : (
+                      <span className={`${asking ? s.cyan : s.green} font-bold shrink-0 whitespace-pre`} aria-hidden="true">
+                        {asking ? "login: " : editor ? "" : "> "}
+                      </span>
+                    )}
                     <label htmlFor="lab-terminal-input" className="sr-only">
                       {asking
                         ? `Your name. Type what this terminal should call you and press Enter. Leave it empty to stay as ${DEFAULT_NAME}.`
                         : editor
                           ? `Neovim command line for ${editor.file}, read-only. ${EDITOR_HELP}`
-                          : "Terminal command. Type a command such as help and press Enter."}
+                          : `Terminal command in ${SHELL_TITLE[shell]}. Type a command such as help and press Enter.`}
                     </label>
                     <input
                       id="lab-terminal-input"
@@ -2002,12 +2441,16 @@ export default function LabPage({ data }: { data: LabData }) {
                       autoComplete="off"
                       autoCorrect="off"
                       spellCheck={false}
-                      className={`${s.input} flex-1 min-w-0 h-11 p-0 border-0 text-base sm:text-[13px] outline-hidden`}
+                      className={`${s.input} flex-1 min-w-[12ch] h-11 p-0 border-0 text-base sm:text-[13px] outline-hidden`}
                     />
                   </div>
                 </form>
               )}
-              <TmuxBar window={editor ? "nvim" : "zsh"} clock={clock} />
+              <TmuxBar
+                window={scene !== null ? "scenes" : games ? "games" : editor ? (editor.kind ?? "nvim") : SHELL_TITLE[shell]}
+                shell={SHELL_TITLE[shellStack[shellStack.length - 1] ?? "zsh"]}
+                clock={clock}
+              />
             </div>
           )}
         </section>

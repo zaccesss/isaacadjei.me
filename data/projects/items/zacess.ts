@@ -9,7 +9,7 @@ const _zacess: Project = {
     description:
       "A free, open-source reader that turns PDFs, scans and web pages into notes in your own reading profile, plus code themes, terminal scenes and games, all from one contrast-checked palette.",
     longDescription:
-      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe contrast themes also became eight code themes for ten editors and eight terminals, each checked so every code colour keeps 7 to 1 on the background. The same themes colour two terminal products: Zacess Scenes, calm animated scenes that show how a Rust build stands, plus Zacess Games, fourteen original games built on Scenes.",
+      "Zacess (said like success, from the Latin cēdō, the root of both access and success) is a reader I am building for people who find standard documents hard to read. You open a PDF, a photo of a handout, a Word file or a web page and it comes back as notes in a reading profile you set once: font, size up to 96 points, line and letter spacing, column width, a contrast theme and a reading ruler. It can read the page aloud with the voices already on the device and export clean HTML or EPUB 3.\n\nI read with one eye, so contrast, size and spacing are practical needs for me. Much of what I study arrives as slides, PDFs with no text layer and photos of whiteboards, which are the formats that are hardest to read. The tools that help are scattered and some keep your files on someone else's server. Zacess is the single tool I wanted: it does the work in the browser, never uploads a file, needs no account and tracks nothing.\n\nThe heart of it is a core written in Rust and compiled to WebAssembly, which lays out text, finds the reading order, marks every doubtful word and writes the document. The same code runs in the browser version at app.zacess.com now and will run inside the desktop and mobile apps later. pdf.js reads PDFs, Tesseract recognises pictures on the device and mammoth turns Word files into HTML before the core takes over. The interface is React with shadcn/ui on Radix. It is checked with axe and on WebKit as well as Chromium so it works by touch on phones and tablets.\n\nThe contrast themes also became eight code themes for ten editors and eight terminals, each checked so every code colour keeps 7 to 1 on the background. The same themes colour two terminal products: Zacess Scenes, calm animated scenes that show how a Rust build stands, plus Zacess Games, fourteen original games built on Scenes. Zacess Profile carries the same idea to terminals and editors: you state your needs once in a small file and the zprf command writes a palette for seven apps, checked against WCAG 2.2 and under simulated colour vision deficiencies.",
     technologies: [
       "Rust",
       "WebAssembly",
@@ -38,7 +38,7 @@ const _zacess: Project = {
     featured: false,
     cover: `${IMG}/cover.webp`,
     coverDark: `${IMG}/cover-dark.webp`,
-    order: 3,
+    order: 2,
     status: "live",
     ongoing: true,
     images: [
@@ -75,14 +75,14 @@ const _zacess: Project = {
       "A selection, current line and find match that always stand out, measured by the same check as the colours",
       "Zacess Scenes 0.5.1: 39 terminal scenes in all eight themes that never flash, with a watch mode for Rust builds and a follow mode that reacts to every command",
       "Zacess Games 0.2.0: fourteen original terminal games with their own sound and music, including 287 Learn to Code levels across fifteen tracks, plus a recording of real play for every game",
+      "Zacess Profile 0.2.1: needs stated once and written as checked settings for seven apps (Ghostty, kitty, WezTerm, Alacritty, tmux, Neovim and VS Code), with each of the eight starter profiles measuring 224 colour pairs",
     ],
     links: [
       { label: "Code themes", url: "https://zacess.com/themes/" },
       { label: "Zacess Themes on the VS Code Marketplace", url: "https://marketplace.visualstudio.com/items?itemName=zacess.zacess-themes" },
       { label: "Zacess Scenes", url: "https://zacess.com/scenes/" },
-      { label: "Zacess Scenes on GitHub", url: "https://github.com/zacesshq/scenes" },
       { label: "Zacess Games", url: "https://zacess.com/games/" },
-      { label: "Zacess Games on GitHub", url: "https://github.com/zacesshq/games" },
+      { label: "Zacess Profile", url: "https://zacess.com/profile/" },
       { label: "Discussions", url: "https://github.com/orgs/zacesshq/discussions" },
     ],
     sections: [
@@ -294,7 +294,7 @@ const _zacess: Project = {
       { type: "h2", text: "Beyond the reader" },
       {
         type: "p",
-        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. That grew into three more products in the same family. Each one has a full page on zacess.com that updates with every release, so here each gets a short card and a live preview.",
+        text: "The contrast themes worked so well in the reader that I wanted them where I spend the rest of my day: in the editor and the terminal. That grew into four more products in the same family. Each one has a full page on zacess.com that updates with every release, so here each gets a short card and a live preview.",
       },
       {
         type: "product",
@@ -316,6 +316,19 @@ const _zacess: Project = {
         text: "Zacess Games is fourteen original terminal games built on Scenes, with their own sound and music. They include a touch typing trainer and 287 Learn to Code levels across fifteen tracks. These six recordings of real play come straight from the 0.2.0 release, which records every game and passes each frame through the same flash meter as Scenes.",
         preview: "zacess-games",
         href: "https://zacess.com/games/",
+      },
+      { type: "h2", text: "One accessibility profile for every app" },
+      {
+        type: "p",
+        text: "Zacess Profile is the newest part of the family. It is the `zprf` command and a browser extension that read one open file format. A profile states needs rather than colours: a contrast floor, a font and size, reduced motion, a cursor size, a focus ring, line spacing and a line length. `zprf` fills in any colour the profile leaves out, checks every foreground and background pair against WCAG 2.2, checks that neighbouring colours stay apart under simulated protanopia, deuteranopia and tritanopia and writes settings for Ghostty, kitty, WezTerm, Alacritty, tmux, Neovim and VS Code. A profile that fails a pair is never written.",
+      },
+      {
+        type: "p",
+        text: "It ties the family together. The eight code themes ship as its starter profiles and its colour vision checks use the same rules as the themes. Its format shares fields with the reader's reading profile, so font, size, spacing, column width, cursor size and reduced motion mean the same thing in both.",
+      },
+      {
+        type: "p",
+        text: "Version 0.2.1 installs with `brew install zacesshq/tap/zacess-profile`, with `cargo install zacess-profile` or from the release binaries for macOS, Linux and Windows. The winget package is pending review. The browser extension for Chrome and Firefox applies the same profile to every web page. It is not in the browser stores yet, so it is loaded unpacked for now.",
       },
       { type: "h2", text: "The hard problems" },
       {
@@ -423,6 +436,7 @@ const _zacess: Project = {
           ["29 October 2026", "Code themes 0.6.1 with eight themes in six stores and Zacess Games 0.1.0 and 0.2.0"],
           ["30 October 2026", "Scenes 0.5.0 with a follow mode that reacts to every command in a shell"],
           ["1 November 2026", "Scenes 0.5.1, which keeps follow mode running on Windows when a long log is emptied"],
+          ["5 November 2026", "Zacess Profile 0.1.0 to 0.2.1, one accessibility profile for terminals, editors and the browser"],
         ],
         caption: "Dates from each repository's releases",
       },

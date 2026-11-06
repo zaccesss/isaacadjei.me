@@ -1,6 +1,6 @@
 "use client"
 
-import ReactECharts from "echarts-for-react"
+import ReactECharts from "./EChart"
 import { useEChartsColours, type EChartsColours } from "./echarts-theme"
 import { DEFAULT_CHART_COLOURS } from "./charts"
 

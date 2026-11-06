@@ -53,7 +53,7 @@ const _phaemos: Project = {
     ],
     cover: "/images/projects/phaemos/cover-dashboard-light.webp",
     coverDark: "/images/projects/phaemos/cover-dashboard.webp",
-    order: 5,
+    order: 3,
     status: "in-progress",
     links: [
       { label: "PHAEMOS on GitHub", url: "https://github.com/phaemos" },

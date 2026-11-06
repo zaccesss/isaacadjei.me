@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   title: "Guestbook",
   description: "Leave a message for Isaac Adjei and read what other visitors have written.",
   alternates: { canonical: "https://www.isaacadjei.me/guestbook" },
+  openGraph: {
+    images: ["/api/og?title=Guestbook&description=Leave%20me%20a%20message%20and%20read%20what%20other%20visitors%20have%20written%2E"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/api/og?title=Guestbook&description=Leave%20me%20a%20message%20and%20read%20what%20other%20visitors%20have%20written%2E"],
+  },
 }
 
 type Entry = { id: string; name: string; message: string; website: string | null; created_at: string }

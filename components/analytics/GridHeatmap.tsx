@@ -1,6 +1,6 @@
 "use client"
 
-import ReactECharts from "echarts-for-react"
+import ReactECharts from "./EChart"
 import { useEChartsColours, intensityScale, relativeLevel } from "./echarts-theme"
 
 const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

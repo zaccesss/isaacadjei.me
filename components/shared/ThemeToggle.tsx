@@ -42,7 +42,7 @@ export default function ThemeToggle({ onChange, className }: { onChange?: (choic
   }
 
   const icon = (choice: ThemeChoice) =>
-    cn("h-4 w-4 transition-all", choice !== "light" && "absolute", mounted && choice === current ? "rotate-0 scale-100" : "-rotate-90 scale-0")
+    cn("h-4 w-4 transition-all motion-reduce:transition-none", choice !== "light" && "absolute", mounted && choice === current ? "rotate-0 scale-100" : "-rotate-90 scale-0")
 
   return (
     <Button

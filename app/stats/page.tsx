@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { getPublicStats } from "@/lib/public-stats"
-import { getContentStats } from "@/lib/content-stats"
+import { getContentStats, getRawContentItems } from "@/lib/content-stats"
+import { writingExtra } from "@/components/stats/chart-data"
 import { StatsTabs } from "@/components/stats/StatsTabs"
 import { getOpenSourceStats } from "@/lib/open-source"
+import { getMilestones } from "@/lib/stats-milestones"
 
 export const revalidate = 3600
 
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function StatsPage() {
   const [stats, content, os] = [await getPublicStats(), getContentStats(), await getOpenSourceStats()]
+  const raw = getRawContentItems()
   return (
     <div className="container max-w-3xl py-24 space-y-10">
       <div className="space-y-3">
@@ -29,7 +32,7 @@ export default async function StatsPage() {
         </p>
       </div>
 
-      <StatsTabs s={stats} c={content} os={os} />
+      <StatsTabs s={stats} c={content} os={os} milestones={getMilestones()} wx={writingExtra(raw.posts, raw.til, raw.notes, raw.issues)} />
     </div>
   )
 }

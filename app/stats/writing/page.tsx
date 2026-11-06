@@ -3,6 +3,7 @@ import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { WritingHistory } from "@/components/stats/WritingHistory"
 import { getRawContentItems, getConsumedStats } from "@/lib/content-stats"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
+import { getMilestones } from "@/lib/stats-milestones"
 
 export const metadata: Metadata = {
   title: "Writing and Projects Stats",
@@ -21,7 +22,7 @@ export default function StatsWritingPage() {
           <StatsPageHeader title="Writing and projects" description="What I publish, what I write about, what I build and what I read and watch, counted from my own content." />
           <PeriodSelector />
         </div>
-        <WritingHistory posts={posts} til={til} projects={projects} notes={notes} issues={issues} consumed={consumed} />
+        <WritingHistory posts={posts} til={til} projects={projects} notes={notes} issues={issues} consumed={consumed} milestones={getMilestones()} />
       </div>
     </AnalyticsPeriodProvider>
   )

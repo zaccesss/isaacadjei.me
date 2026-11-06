@@ -60,7 +60,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Geist",
-        detail: <>On an Apple device the site uses the system typeface, the look it was designed around and one Apple only licenses for its own platforms. Everywhere else it uses <A href="https://vercel.com/font">Geist</A>, the typeface designed by Vercel as the closest match: Geist Sans for body text, headings and UI labels, served as hinted static weights so it stays crisp on Windows and Linux, which rely on hinting where macOS does not. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. Both come from the geist package and are self-hosted through Next.js font optimisation, so they are never fetched from an external CDN and the text does not jump when they arrive. The theme also takes over what the operating system would otherwise draw: thin scrollbars in the theme colours, the accent colour on checkboxes and sliders and a themed text selection.</>,
+        detail: <>On an Apple device the site uses the system typeface, the look it was designed around and one Apple only licenses for its own platforms. Everywhere else it uses <A href="https://vercel.com/font">Geist</A>, the typeface designed by Vercel as the closest match: Geist Sans for body text, headings and UI labels, served as hinted static weights so it stays crisp on Windows and Linux, which rely on hinting where macOS does not. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. Both are bundled with the site in lib/fonts in only the weights it uses. Next.js font optimisation serves them from the site itself, so they are never fetched from an external CDN and the text does not jump when they arrive. The theme also takes over what the operating system would otherwise draw: thin scrollbars in the theme colours, the accent colour on checkboxes and sliders and a themed text selection.</>,
       },
       {
         name: "next-themes",
@@ -71,8 +71,8 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: "Every colour on the site is a CSS custom property: background, foreground, card, muted, border, the blue primary and the focus ring. The light set lives on :root and the dark set on a .dark class that next-themes adds to the page, so a component never hard-codes a colour and switching theme is just a different set of values. Both themes keep body text at high contrast against its background and the muted grey is chosen so secondary text still reads comfortably.",
       },
       {
-        name: "Recharts, Apache ECharts and react-three-fiber",
-        detail: <>Most charts on /lab and the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The heatmaps, the radial listening clock and the map charts use <A href="https://echarts.apache.org">Apache ECharts</A>. The 3D board on /lab uses <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
+        name: "Recharts, Apache ECharts, MapLibre and react-three-fiber",
+        detail: <>Most charts on /lab and the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The heatmaps, the radial listening clock and the shaded country chart use <A href="https://echarts.apache.org">Apache ECharts</A>. The map on the applications stats page is drawn by <A href="https://maplibre.org">MapLibre GL</A> with styles from <A href="https://openfreemap.org">OpenFreeMap</A>, so it needs no API key. The 3D board on /lab uses <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
       },
       {
         name: "Giscus",
@@ -102,7 +102,11 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Content data",
-        detail: <>All content on this site is stored as typed TypeScript files. Blog posts live in data/blog/, TIL entries in data/til/, project listings in data/projects.ts, research publications in data/respub/ and consumed media in per-category files under data/consumed/ (videos, podcasts, books, music, articles, resources, others and themed collections). There is no external CMS, no database and no third-party content API. Everything is written directly as code, versioned in Git alongside everything else and renders instantly with no database round-trip. Blog posts and TIL entries share the same block-based structure: each is an array of explicitly typed blocks (heading, paragraph, list, code, image, quote, callout, table, diagram, video, embed) rendered by a shared component. This gives complete control over how every element looks with full type safety throughout.</>,
+        detail: <>All content on this site is stored as typed TypeScript files. Blog posts live in data/blog/, TIL entries in data/til/, project listings in data/projects/items/ (one file per project), research publications in data/respub/ and consumed media in per-category files under data/consumed/ (videos, podcasts, books, music, articles, resources, others and themed collections). There is no external CMS and no third-party content API. Everything is written directly as code, versioned in Git alongside everything else and renders with no database round-trip. Blog posts and TIL entries share the same block-based structure: each is an array of explicitly typed blocks (heading, paragraph, list, code, image, quote, callout, table, diagram, video, embed) rendered by a shared component. This gives complete control over how every element looks with full type safety throughout.</>,
+      },
+      {
+        name: "PostgreSQL",
+        detail: <>The numbers on <A href="/stats">/stats</A> and the guestbook entries live in a <A href="https://www.postgresql.org">PostgreSQL</A> database. The stats pages are built from one cached read of it and rebuilt at most once an hour, so a visit never queries the database. Only totals, hours and shares ever reach those pages.</>,
       },
       {
         name: "Atom feeds",
@@ -121,6 +125,10 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: <><A href="https://github.com/features/actions">GitHub Actions</A> runs automated workflows whenever code changes. They type check, lint and build every change, scan every push for leaked secrets and handle jobs such as publishing the public copy of the site after each deploy. Nothing reaches the live site without passing them first.</>,
       },
       {
+        name: "Sentry",
+        detail: <><A href="https://sentry.io">Sentry</A> reports errors from the browser and the server, so a page that breaks for a visitor reaches me instead of going unnoticed. It records errors only: no performance tracing, no session replay and no personal data. Each report is tied to the deploy it came from and uploaded source maps point its stack trace at the real line of code.</>,
+      },
+      {
         name: "Cloudflare Turnstile",
         detail: <><A href="https://www.cloudflare.com/products/turnstile/">Cloudflare Turnstile</A> is the bot protection on the contact form. Unlike traditional CAPTCHAs that make you identify traffic lights or buses, Turnstile works silently in the background and only challenges when it suspects bot activity. Server-side verification happens before any email is sent - if the Turnstile check fails, the request is rejected. Free tier, no tracking pixels, no fingerprinting.</>,
       },
@@ -136,7 +144,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Very little motion",
-        detail: "Motion is kept to a minimum because it adds visual noise, can cause nausea for people sensitive to motion and makes a page feel slower even when it is not. The homepage sections fade up once as they first come into view; every other page just loads. Every animation on the site follows your device's reduce motion setting and stops entirely when it is on.",
+        detail: "Motion is kept to a minimum because it adds visual noise, can cause nausea for people sensitive to motion and makes a page feel slower even when it is not. The homepage sections fade up once as they first come into view, the headline numbers on /stats count up once and project and blog cards lift slightly on hover. Everything else just loads. Every animation on the site follows your device's reduce motion setting and stops entirely when it is on.",
       },
       {
         name: "No city, ever",
@@ -169,6 +177,10 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       {
         name: "Google Analytics (GA4)",
         detail: <>Privacy-conscious page-view analytics via <A href="https://marketingplatform.google.com/about/analytics/">Google Analytics</A>. Fully anonymised - no individual visitor is identified or tracked across other websites. I can see which pages are read most and which content is landing well, which helps me decide what to write next. Nothing personal is collected.</>,
+      },
+      {
+        name: "Vercel and Cloudflare Web Analytics",
+        detail: <><A href="https://vercel.com/docs/analytics">Vercel Web Analytics</A> and <A href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</A> count page views without cookies, which gives me a second view of which pages are read alongside Google Analytics. Neither identifies an individual visitor.</>,
       },
     ],
   },
@@ -204,7 +216,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Reduced motion",
-        detail: "If your device asks for reduced motion, the things that move stop moving: the lab terminal prints its output at once instead of line by line, the typing motto, header, favicon and page entrance animations stand still, the scrolling track title and the floating shapes hold their place and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
+        detail: "If your device asks for reduced motion, the things that move stop moving. The lab terminal prints its output at once instead of line by line. The typing motto, header, favicon and page entrance animations stand still. The scrolling track title, the floating shapes, the live status lights, the music visualiser and the spinning album art hold their place. Charts draw without animating, the numbers on /stats show their final value straight away, cards do not lift on hover, the 3D board does not turn by itself and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
       },
       {
         name: "Focus rings",

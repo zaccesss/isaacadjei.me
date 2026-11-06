@@ -5,6 +5,7 @@ import { Suspense, useState, useCallback, useEffect, useRef } from "react"
 import { Canvas, useThree } from "@react-three/fiber"
 import { OrbitControls, useGLTF, Center } from "@react-three/drei"
 import { X, CircuitBoard } from "lucide-react"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import * as THREE from "three"
 import styles from "./PCBViewer.module.css"
 
@@ -85,7 +86,9 @@ const VIEW_PRESETS: { label: string; pos: CamPos }[] = [
 
 function PCB3DCard() {
   const [wireframe,  setWireframe]  = useState(false)
-  const [autoRotate, setAutoRotate] = useState(true)
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
+  const [rotateChoice, setAutoRotate] = useState<boolean | null>(null)
+  const autoRotate = rotateChoice ?? !reduce
   const [showGrid,   setShowGrid]   = useState(false)
   const [camView,    setCamView]    = useState<{ pos: CamPos; trigger: number }>({ pos: [0, 8, 0.01], trigger: 0 })
 
@@ -131,7 +134,7 @@ function PCB3DCard() {
 
       <div className="flex gap-1 flex-wrap items-center border-t border-border/30 pt-2">
         <button type="button" className={toggleBtn(wireframe)}  onClick={() => setWireframe(v => !v)}>wireframe</button>
-        <button type="button" className={toggleBtn(autoRotate)} onClick={() => setAutoRotate(v => !v)}>auto-rotate</button>
+        <button type="button" className={toggleBtn(autoRotate)} onClick={() => setAutoRotate(!autoRotate)}>auto-rotate</button>
         <button type="button" className={toggleBtn(showGrid)}   onClick={() => setShowGrid(v => !v)}>grid</button>
       </div>
     </div>

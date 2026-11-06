@@ -18,12 +18,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Now",
-  description: "What Isaac Adjei is doing right now - studying, building and thinking about.",
+  description: "What I am studying, building and thinking about right now.",
   alternates: {
     canonical: "https://www.isaacadjei.me/now",
   },
   openGraph: {
-    images: ["/api/og?title=Now&description=What%20Isaac%20Adjei%20is%20doing%20right%20now%20-%20studying%2C%20building%20and%20thinking%20about%2E"],
+    images: ["/api/og?title=Now&description=What%20I%20am%20studying%2C%20building%20and%20thinking%20about%20right%20now%2E"],
   },
 }
 
@@ -37,7 +37,7 @@ export default function NowPage() {
       <section className="space-y-4">
         <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
           <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+            <span className="motion-safe:animate-ping motion-reduce:hidden absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" />
           </span>
           Updated live
@@ -92,13 +92,14 @@ export default function NowPage() {
         </div>
         <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
           <p>
-            This term is digital design in VHDL on FPGAs, object-oriented C++, embedded software and a
-            group project on robot motor control. The FPGA work builds straight on the VHDL I started
-            over the summer.
+            This term is embedded systems in C on AVR microcontrollers, object-oriented programming
+            and artificial intelligence. Digital design in VHDL on FPGAs comes next term, so I am
+            getting ahead on it now, building on the VHDL I started over the summer.
           </p>
           <p>
             I lead weekly Peer Assisted Learning sessions in Python and electronics, serve as Treasurer
-            of the Computing and Electronics Society and represent my course as a Student Rep.
+            of the Computing and Electronics Society and represent students as a Student Rep for my
+            course and a School Rep.
           </p>
           <p>
             Competitive programming carries on alongside: NeetCode and LeetCode most weeks, Codeforces
@@ -167,10 +168,12 @@ export default function NowPage() {
           </div>
           <div className="space-y-1">
             <p className="font-medium text-foreground">
-              Zacess
+              <Link href="/projects/zacess" className="hover:text-primary transition-colors">
+                Zacess
+              </Link>
             </p>
             <p className="leading-relaxed">
-              A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile. The browser version is open to try at{" "}
+              A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile, now part of a family built on one contrast-checked palette: code themes in seven editor stores, terminal scenes, games and a profile tool. The browser version is open to try at{" "}
               <a href="https://app.zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
                 app.zacess.com
               </a>{" "}
@@ -182,23 +185,34 @@ export default function NowPage() {
             </p>
           </div>
           <div className="space-y-1">
+            <p className="font-medium text-foreground">
+              <Link href="/projects/footprints" className="hover:text-primary transition-colors">
+                Footprints
+              </Link>
+            </p>
+            <p className="leading-relaxed">
+              A local record of what AI coding agents do on a machine: every file change, shell command
+              and network call, with a diff and a one-step undo for each file change. Next is an
+              automatic size budget and installing an agent&apos;s hooks after showing the change.
+            </p>
+          </div>
+          <div className="space-y-1">
             <p className="font-medium text-foreground">This site</p>
             <p className="leading-relaxed">
-              Every publication on{" "}
-              <Link href="/respub" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-                /respub
+              A new{" "}
+              <Link href="/experience" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                Experience
               </Link>{" "}
-              now gets its own page with a proper APA citation and a copyable BibTeX block. Just
-              finished rebuilding{" "}
-              <Link href="/consumed" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-                /consumed
+              page in four sections, the newsletter now sent from the site itself and{" "}
+              <Link href="/stats" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                /stats
               </Link>{" "}
-              too: everything is dated by real year instead of a hardcoded one, sorted newest first,
-              searchable in one place, with prev/next navigation between items and every genre or tag
-              properly linked into{" "}
-              <Link href="/tags" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
-                /tags
-              </Link>.
+              counting public work only. The{" "}
+              <Link href="/lab" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+                lab terminal
+              </Link>{" "}
+              now runs zsh, bash, PowerShell and cmd, switches between the eight Zacess themes and
+              has Zacess scenes and three of the games to try in the browser.
             </p>
           </div>
         </div>

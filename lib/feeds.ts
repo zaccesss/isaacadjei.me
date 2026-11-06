@@ -15,11 +15,11 @@ export interface FeedInfo {
 }
 
 export const FEEDS: FeedInfo[] = [
+  { id: "all", title: "Everything", description: "Blog posts, newsletter issues, TILs and notes in one feed.", href: "/feed.xml" },
   { id: "blog", title: "Blog", description: "New writing: tutorials, project write-ups and essays.", href: "/blog/feed.xml" },
+  { id: "newsletter", title: "Newsletter", description: "Every newsletter issue, as it goes out.", href: "/newsletter/feed.xml" },
   { id: "til", title: "TIL", description: "Short things I learned while building and studying.", href: "/til/feed.xml" },
   { id: "notes", title: "Notes", description: "Dated notes from my public notebook.", href: "/notes/feed.xml" },
-  { id: "newsletter", title: "Newsletter", description: "Every newsletter issue, as it goes out.", href: "/newsletter/feed.xml" },
-  { id: "all", title: "Everything", description: "Blog posts, TILs, notes and newsletter issues in one feed.", href: "/feed.xml" },
 ]
 
 export function feedAlternates(...ids: FeedInfo["id"][]) {

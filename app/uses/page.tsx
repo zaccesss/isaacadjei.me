@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { Monitor, Code2, Terminal, Wrench, Globe, Gamepad2, BookOpen } from "lucide-react"
 
@@ -21,7 +22,7 @@ const SI = "https://cdn.simpleicons.org"
 
 type UsesItem = {
   name: string
-  detail: string
+  detail: React.ReactNode
   icon?: string
   href?: string
 }
@@ -167,10 +168,16 @@ const sections: Array<{
         detail: "My cross-platform shell environment for macOS (zsh), Linux (bash) and Windows (PowerShell 7). 59 numbered topic files loaded in order, one per area of concern, from git aliases and navigation shortcuts through to Docker, Kubernetes, cloud platforms and 30+ language toolchains. Every alias has the same name on all three platforms so muscle memory carries across machines. The colour scheme is deliberate: I lost sight in my right eye at age two and colour does the depth-cue job that binocular vision usually handles. Cyan, magenta, green and yellow were chosen for contrast and tested under deuteranopia and protanopia simulations. Every repository is mirrored to GitLab, Codeberg and Bitbucket on a schedule, so GitHub stays the single place I push to.",
       },
       {
+        name: "Zacess themes",
+        icon: "/images/ventures/zacess.png",
+        href: "https://zacess.com",
+        detail: <>Every terminal and editor I use wears the Zacess themes: eight high-contrast themes, light and dark, that grew out of the contrast settings in <Link href="/projects/zacess" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Zacess</Link>, my accessible document reader. Every code colour keeps 7:1 contrast or more against its background. One command, zt, switches every terminal, editor and app on a machine at once. Zacess Deep Contrast Dark is my default.</>,
+      },
+      {
         name: "High contrast terminal palette",
         icon: `${SI}/iterm2`,
         href: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal",
-        detail: "One palette file generates matching themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty and Hyper. Dark is vivid on black and light reaches 7:1 contrast or better on white. Bold text stays bold rather than switching to bright colours.",
+        detail: "One palette file, synced from each Zacess themes release, builds all eight themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty, Ghostty and Hyper, with a tmux theme to match each one. CI fails if a colour drops below its contrast floor. Bold text stays bold rather than switching to bright colours.",
       },
       {
         name: "tmux",
@@ -206,12 +213,12 @@ const sections: Array<{
         name: "PowerShell",
         icon: `${WIKI}/2/2f/PowerShell_5.0_icon.png`,
         href: "https://learn.microsoft.com/en-us/powershell",
-        detail: "Default shell on both the GPC and Lenovo. I use it for NSSM service management, setting up Python virtual environments, running builds and general scripting. Most of the daemon setup and service registration was done in PowerShell.",
+        detail: "Default shell on Windows: the GPC and the Windows 11 side of the ThinkPad, which dual boots Fedora KDE Plasma as well. I use it for NSSM service management, setting up Python virtual environments, running builds and general scripting. Most of the daemon setup and service registration was done in PowerShell.",
       },
       {
         name: "Bash / zsh",
         icon: `${DEV}/bash/bash-original.svg`,
-        detail: "Shell of choice on the MacBook and any Linux environment. zsh on macOS, bash on Linux - both load the same dotfiles topic structure so the experience is identical.",
+        detail: "Shell of choice on the MacBook and every Linux environment: Fedora on the ThinkPad and WSL2 Ubuntu on both PCs. zsh on macOS, bash on Linux - both load the same dotfiles topic structure so the experience is identical.",
       },
       {
         name: "NSSM",

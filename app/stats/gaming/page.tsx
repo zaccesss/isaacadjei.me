@@ -4,6 +4,7 @@ import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { GamingHistory } from "@/components/stats/GamingHistory"
 import { GamingMore } from "@/components/stats/StatsCharts"
 import { getPublicStats } from "@/lib/public-stats"
+import { RecordsRow } from "@/components/stats/StatsExtras"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 
 export const revalidate = 3600
@@ -31,6 +32,7 @@ export default async function StatsGamingPage() {
           />
           <PeriodSelector />
         </div>
+        <RecordsRow s={stats} show={["gamingSession"]} />
         <GamingPanel />
         <GamingHistory />
         <GamingMore s={stats} />

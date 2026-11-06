@@ -70,7 +70,7 @@ function CodingHeatmap({ data }: { data: { dow: number; hour: number; seconds: n
         height={200}
       />
       <p className="text-[9px] font-mono text-muted-foreground/70">
-        peak <span className="text-primary">{peakHour}:00 UTC</span>
+        peak <span className="text-primary">{peakHour}:00 London time</span>
       </p>
     </div>
   )
@@ -291,12 +291,12 @@ export default function WakatimeStats() {
           {stats.heatmap.length > 0 && (
             <div className="flex gap-6 items-start flex-wrap">
               <div className="space-y-2 shrink-0">
-                <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">when I code (UTC hour x day)</p>
+                <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">when I code (London hour x day)</p>
                 <CodingHeatmap data={stats.heatmap} />
               </div>
               {hourData.some((d) => d.hours > 0) && (
                 <div className="flex-1 min-w-[180px] space-y-2">
-                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">by hour of day (UTC)</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">by hour of day (London time)</p>
                   <ResponsiveContainer width="100%" height={160}>
                     <BarChart data={hourData} barSize={10} margin={{ top: 4, right: 4, left: -24, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />

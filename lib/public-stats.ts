@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/supabase"
 import { readAll } from "@/lib/supabase-read-all"
 import { publicCodingDay, languageName, publicEditorName, publicProjectName } from "@/lib/wakatime-editors"
+import { longestRun, isCode, utcHoursToLondon } from "@/lib/stats-helpers"
 import { summarise, sessionMinutes, type GameSessionRow, type PlaytimeRow, type GenreRow, type GamingSummary } from "@/lib/gaming"
 
 export type Named = { name: string; value: number }
@@ -25,12 +26,18 @@ export type PublicStats = {
     languageMonths: [string, number, string][]
     languageGroups: Tree[]
   }
-  music: { plays30: number; totalPlays: number; months: Named[]; grid: { day: number; hour: number; value: number }[]; weekdays: Named[]; hours: number[]; weekdayMonths: { month: string; day: number; value: number }[] }
-  gamingMore: { deviceTree: Tree[]; lengths: number[] }
+  music: { plays30: number; totalPlays: number; months: Named[]; grid: { day: number; hour: number; value: number }[]; weekdays: Named[]; hours: number[]; weekdayMonths: { month: string; day: number; value: number }[]; perDay: number[] }
+  gamingMore: { deviceTree: Tree[]; lengths: number[]; deviceLengths: { name: string; values: number[] }[] }
   activeDays: { date: string; value: number }[]
   gaming: GamingSummary
-  github: { total30: number; total365: number; months: Named[] }
-  applications: { total: number; countries: Named[]; months: Named[]; regionMonths: Record<string, number | string>[]; regions: string[]; regionTree: Tree[] }
+  github: { total30: number; total365: number; months: Named[]; weekdays: Named[]; runs: Named[] }
+  applications: { total: number; located: number; countryCount: number; countries: Named[]; months: Named[]; regionMonths: Record<string, number | string>[]; regions: string[]; regionTree: Tree[]; types: Named[]; categories: Named[] }
+  records: {
+    longestStreak: { days: number; end: string } | null
+    biggestDay: { date: string; hours: number } | null
+    githubWeek: { week: string; count: number } | null
+    playsDay: { date: string; count: number } | null
+  }
 }
 
 const DAY = 86400000
@@ -39,6 +46,17 @@ const round = (n: number, d = 1) => Math.round(n * 10 ** d) / 10 ** d
 function weekKey(d: Date): string {
   const wd = (d.getUTCDay() + 6) % 7
   return new Date(d.getTime() - wd * DAY).toISOString().slice(5, 10)
+}
+
+function weekStartIso(dateStr: string): string {
+  const d = new Date(`${dateStr}T12:00:00Z`)
+  return new Date(d.getTime() - ((d.getUTCDay() + 6) % 7) * DAY).toISOString().slice(0, 10)
+}
+
+function biggest(m: Map<string, number>): [string, number] | null {
+  let best: [string, number] | null = null
+  for (const e of m) if (e[1] > 0 && (!best || e[1] > best[1])) best = e
+  return best
 }
 
 type Tree = { name: string; value?: number; children?: Tree[] }
@@ -90,6 +108,34 @@ const REGION_OF: Record<string, string> = {
 }
 const regionOf = (cc: string) => REGION_OF[cc.toUpperCase()] ?? "Other"
 
+const TYPE_ORDER = ["Internship", "Placement", "Graduate", "Spring week", "Event", "Job", "Other"]
+function typeLabel(t: string | null): string {
+  const x = (t ?? "").trim().toLowerCase()
+  if (x === "internship" || x === "summer internship" || x === "scraped") return "Internship"
+  if (x === "industrial placement" || x === "placement") return "Placement"
+  if (x === "graduate") return "Graduate"
+  if (x === "spring week") return "Spring week"
+  if (x === "event") return "Event"
+  if (x === "full-time job") return "Job"
+  return "Other"
+}
+
+const RUN_BANDS: [string, number, number][] = [["1 day", 1, 1], ["2 to 3", 2, 3], ["4 to 7", 4, 7], ["8 to 14", 8, 14], ["15+", 15, Infinity]]
+function runBuckets(dates: Set<string>): Named[] {
+  const counts = RUN_BANDS.map(([name]) => ({ name, value: 0 }))
+  let run = 0
+  let prev = 0
+  const close = () => { if (run > 0) counts[RUN_BANDS.findIndex(([, lo, hi]) => run >= lo && run <= hi)].value++ }
+  for (const d of [...dates].sort()) {
+    const t = Date.parse(`${d}T12:00:00Z`)
+    if (run > 0 && t - prev === DAY) run++
+    else { close(); run = 1 }
+    prev = t
+  }
+  close()
+  return counts
+}
+
 function activeDayScores(sets: Set<string>[]): { date: string; value: number }[] {
   const all = new Set(sets.flatMap((s) => [...s]))
   return [...all].map((date) => ({ date, value: sets.filter((s) => s.has(date)).length })).sort((a, b) => a.date.localeCompare(b.date))
@@ -110,7 +156,7 @@ async function compute(): Promise<PublicStats> {
     supabase.from("game_playtime").select("platform, game, minutes, last_played").order("minutes", { ascending: false }).limit(50),
     supabase.from("game_genres").select("game, genres"),
     supabase.from("github_public_contributions_days").select("date, count").gte("date", date(365)),
-    supabase.from("applications").select("location, created_at").limit(6000),
+    supabase.from("applications").select("location, created_at, type, category").limit(6000),
     supabase.from("location_geocodes").select("location, country_code"),
   ])
 
@@ -129,14 +175,17 @@ async function compute(): Promise<PublicStats> {
   let total = 0
   const cutoff30 = date(30)
   const activeDates = new Set<string>()
+  let bigDay: { date: string; seconds: number } | null = null
   for (const r of wakaRows) {
     total += r.total_seconds
+    if (r.total_seconds > 0 && (!bigDay || r.total_seconds > bigDay.seconds)) bigDay = { date: r.date, seconds: r.total_seconds }
     if (r.total_seconds > 0) activeDates.add(r.date)
     if (r.date >= cutoff30) { s30 += r.total_seconds; if (r.total_seconds > 0) active30++ }
     const d = new Date(`${r.date}T12:00:00Z`)
     weekday[(d.getUTCDay() + 6) % 7] += r.total_seconds
     month.set(r.date.slice(0, 7), (month.get(r.date.slice(0, 7)) ?? 0) + r.total_seconds)
     for (const l of r.languages ?? []) {
+      if (!isCode(l.name) || !isCode(languageName(l.name))) continue
       lang.set(languageName(l.name), (lang.get(languageName(l.name)) ?? 0) + l.total_seconds)
       const key = `${r.date.slice(0, 7)}|${languageName(l.name)}`
       langMonth.set(key, (langMonth.get(key) ?? 0) + l.total_seconds)
@@ -145,7 +194,7 @@ async function compute(): Promise<PublicStats> {
     for (const pr of r.projects ?? []) { const k = publicProjectName(pr.name); if (k) project.set(k, (project.get(k) ?? 0) + pr.total_seconds) }
     for (const o of r.operating_systems ?? []) system.set(o.name, (system.get(o.name) ?? 0) + o.total_seconds)
     if (r.total_seconds > 0) daily.push({ date: r.date, value: round(r.total_seconds / 3600) })
-    if (Array.isArray(r.hours) && r.hours.length === 24) r.hours.forEach((v, h) => { hourOfDay[h] += v ?? 0 })
+    if (Array.isArray(r.hours) && r.hours.length === 24) utcHoursToLondon(r.hours, r.date).forEach((v, h) => { hourOfDay[h] += v })
     const w = weekIndex.get(weekKey(d))
     if (w != null) weeks[w].coding += r.total_seconds / 3600
   }
@@ -162,6 +211,8 @@ async function compute(): Promise<PublicStats> {
   const playHour = Array(24).fill(0) as number[]
   const weekdayMonth = new Map<string, number>()
   const playDays = new Set<string>()
+  const fmtDate = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London", year: "numeric", month: "2-digit", day: "2-digit" })
+  const playsPerDay = new Map<string, number>()
   let plays30 = 0
   for (const p of plays) {
     const at = new Date(p.played_at)
@@ -173,6 +224,8 @@ async function compute(): Promise<PublicStats> {
     playHour[h]++
     weekdayMonth.set(`${p.played_at.slice(0, 7)}|${d}`, (weekdayMonth.get(`${p.played_at.slice(0, 7)}|${d}`) ?? 0) + 1)
     playDays.add(p.played_at.slice(0, 10))
+    const londonDate = fmtDate.format(at)
+    playsPerDay.set(londonDate, (playsPerDay.get(londonDate) ?? 0) + 1)
     playMonth.set(p.played_at.slice(0, 7), (playMonth.get(p.played_at.slice(0, 7)) ?? 0) + 1)
     const w = weekIndex.get(weekKey(at))
     if (w != null) weeks[w].plays++
@@ -181,11 +234,14 @@ async function compute(): Promise<PublicStats> {
   const gaming = summarise((sessionsRes.data ?? []) as GameSessionRow[], (playtimeRes.data ?? []) as PlaytimeRow[], (genresRes.data ?? []) as GenreRow[])
   const deviceGame = new Map<string, number>()
   const sessionLengths: number[] = []
+  const deviceLengths = new Map<string, number[]>()
   const gameDays = new Set<string>()
   for (const s of (sessionsRes.data ?? []) as GameSessionRow[]) {
     const min = sessionMinutes(s)
     deviceGame.set(`${s.device}|${s.game}`, (deviceGame.get(`${s.device}|${s.game}`) ?? 0) + min)
     sessionLengths.push(Math.round(min))
+    const dev = s.device === "ps5" ? "PS5" : "Gaming PC"
+    deviceLengths.set(dev, [...(deviceLengths.get(dev) ?? []), Math.round(min)])
     gameDays.add(s.started_at.slice(0, 10))
     const w = weekIndex.get(weekKey(new Date(s.started_at)))
     if (w != null) weeks[w].gaming += (new Date(s.ended_at ?? s.last_seen).getTime() - new Date(s.started_at).getTime()) / 3600000 + 2 / 60
@@ -196,8 +252,12 @@ async function compute(): Promise<PublicStats> {
   let g30 = 0
   let g365 = 0
   const ghActive = new Set<string>()
+  const ghWeek = new Map<string, number>()
+  const ghWeekday = [0, 0, 0, 0, 0, 0, 0]
   for (const r of gh) {
     g365 += r.count
+    ghWeekday[(new Date(`${r.date}T12:00:00Z`).getUTCDay() + 6) % 7] += r.count
+    ghWeek.set(weekStartIso(r.date), (ghWeek.get(weekStartIso(r.date)) ?? 0) + r.count)
     if (r.count > 0) ghActive.add(r.date)
     if (r.date >= cutoff30) g30 += r.count
     ghMonth.set(r.date.slice(0, 7), (ghMonth.get(r.date.slice(0, 7)) ?? 0) + r.count)
@@ -211,10 +271,17 @@ async function compute(): Promise<PublicStats> {
   const appMonth = new Map<string, number>()
   const regionMonth = new Map<string, Map<string, number>>()
   const regionCountry = new Map<string, number>()
-  const appRows = (apps.data ?? []) as { location: string | null; created_at: string }[]
+  const appRows = (apps.data ?? []) as { location: string | null; created_at: string; type: string | null; category: string | null }[]
+  const appType = new Map<string, number>()
+  const appCategory = new Map<string, number>()
+  let located = 0
   for (const a of appRows) {
+    appType.set(typeLabel(a.type), (appType.get(typeLabel(a.type)) ?? 0) + 1)
+    const cat = a.category?.trim() || "Not sorted yet"
+    appCategory.set(cat, (appCategory.get(cat) ?? 0) + 1)
     const cc = a.location ? codeOf.get(a.location) : null
     if (cc) {
+      located++
       const n = names.of(cc.toUpperCase()) ?? cc
       country.set(n, (country.get(n) ?? 0) + 1)
       const region = regionOf(cc)
@@ -253,20 +320,41 @@ async function compute(): Promise<PublicStats> {
       weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((name, i) => ({ name, value: playWeekday[i] })),
       hours: playHour,
       weekdayMonths: [...weekdayMonth.entries()].map(([k, value]) => { const [month, day] = k.split("|"); return { month, day: Number(day), value } }).sort((a, b) => a.month.localeCompare(b.month)),
+      perDay: [...playsPerDay.values()],
     },
-    gamingMore: { deviceTree: tree(deviceGame, (d) => (d === "ps5" ? "PS5" : d === "pc" ? "Gaming PC" : d), (m) => round(m / 60)), lengths: sessionLengths },
+    gamingMore: { deviceTree: tree(deviceGame, (d) => (d === "ps5" ? "PS5" : d === "pc" ? "Gaming PC" : d), (m) => round(m / 60)), lengths: sessionLengths, deviceLengths: [...deviceLengths.entries()].map(([name, values]) => ({ name, values })) },
     activeDays: activeDayScores([new Set(daily.map((d) => d.date)), playDays, gameDays, ghActive]),
     gaming,
-    github: { total30: g30, total365: g365, months: sortedMonths(ghMonth) },
+    github: {
+      total30: g30,
+      total365: g365,
+      months: sortedMonths(ghMonth),
+      weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((name, i) => ({ name, value: ghWeekday[i] })),
+      runs: runBuckets(ghActive),
+    },
     applications: {
       total: appRows.length,
+      located,
+      countryCount: country.size,
       countries: [...country.entries()].map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value).slice(0, 25),
       months: sortedMonths(appMonth),
       regions: REGIONS.filter((r) => [...regionMonth.values()].some((m) => m.has(r))),
       regionMonths: [...regionMonth.entries()].sort((a, b) => a[0].localeCompare(b[0])).slice(-12).map(([name, m]) => ({ name, ...Object.fromEntries(REGIONS.map((r) => [r, m.get(r) ?? 0])) })),
       regionTree: tree(regionCountry, (r) => r, (v) => v),
+      types: TYPE_ORDER.map((name) => ({ name, value: appType.get(name) ?? 0 })).filter((t) => t.value > 0),
+      categories: [...appCategory.entries()].map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value).slice(0, 10),
     },
+    records: (() => {
+      const gw = biggest(ghWeek)
+      const pd = biggest(playsPerDay)
+      return {
+        longestStreak: longestRun(activeDates),
+        biggestDay: bigDay ? { date: bigDay.date, hours: round(bigDay.seconds / 3600) } : null,
+        githubWeek: gw ? { week: gw[0], count: gw[1] } : null,
+        playsDay: pd ? { date: pd[0], count: pd[1] } : null,
+      }
+    })(),
   }
 }
 
-export const getPublicStats = unstable_cache(compute, ["public-stats-v3"], { revalidate: 3600 })
+export const getPublicStats = unstable_cache(compute, ["public-stats-v7"], { revalidate: 3600 })

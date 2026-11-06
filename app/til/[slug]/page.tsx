@@ -74,8 +74,21 @@ export async function generateMetadata({
     openGraph: {
       title: `TIL | ${entry.title}`,
       description: entry.body,
+      type: "article",
+      publishedTime: entry.date,
+      images: [tilOgImage(entry.title, entry.body)],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [tilOgImage(entry.title, entry.body)],
     },
   }
+}
+
+function tilOgImage(title: string, body: string): string {
+  const plain = body.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*_]/g, "").replace(/\s+/g, " ").trim()
+  const summary = plain.length > 160 ? `${plain.slice(0, 160).replace(/\s+\S*$/, "")}...` : plain
+  return `/api/og?title=${encodeURIComponent(`TIL: ${title}`)}&description=${encodeURIComponent(summary)}`
 }
 
 function renderBlock(block: TILBlock, i: number, highlighted: Record<number, string>): React.ReactNode {

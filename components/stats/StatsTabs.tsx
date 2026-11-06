@@ -4,12 +4,15 @@ import { useState, useSyncExternalStore } from "react"
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import { ArrowRight } from "lucide-react"
-import { HubOverview, OverviewMore, CodingMore, MusicMore, GamingMore, ApplicationsMore, WritingStats } from "./StatsCharts"
+import { HubOverview, OverviewMore, CodingMore, MusicMore, GamingMore, ApplicationsMore, WritingStats, GitHubPatterns } from "./StatsCharts"
+import type { WritingExtra } from "./chart-data"
 import { HubCards } from "./HubCards"
 import { OpenSourceStats } from "./OpenSourceStats"
 import type { OpenSourceStats as OSStats } from "@/lib/open-source"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 import type { PublicStats } from "@/lib/public-stats"
+import type { Milestone } from "@/lib/stats-milestone-place"
+import { RecordsRow, SoundtrackCard, GitHubMonths } from "./StatsExtras"
 import type { getContentStats } from "@/lib/content-stats"
 
 type Content = ReturnType<typeof getContentStats>
@@ -49,7 +52,7 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{children}</h2>
 }
 
-export function StatsTabs({ s, c, os }: { s: PublicStats; c: Content; os: OSStats }) {
+export function StatsTabs({ s, c, os, milestones = [], wx }: { s: PublicStats; c: Content; os: OSStats; milestones?: Milestone[]; wx?: WritingExtra }) {
   const hash = useSyncExternalStore(noSubscribe, readHash, serverHash)
   const [chosen, setTab] = useState<Tab | null>(null)
   const tab = chosen ?? asTab(hash)
@@ -90,9 +93,10 @@ export function StatsTabs({ s, c, os }: { s: PublicStats; c: Content; os: OSStat
 
       {tab === "overview" && (
         <div className="space-y-8">
-          <section className="space-y-3"><Heading>At a glance</Heading><HubOverview s={s} c={c} /></section>
+          <section className="space-y-3"><Heading>At a glance</Heading><HubOverview s={s} c={c} milestones={milestones} /></section>
+          <RecordsRow s={s} show={["streak", "codingDay", "githubWeek", "gamingSession", "playsDay"]} />
           <section className="space-y-3"><Heading>Explore each area</Heading><HubCards s={s} c={c} /></section>
-          <section className="space-y-3"><Heading>How it all compares</Heading><OverviewMore s={s} c={c} /></section>
+          <section className="space-y-3"><Heading>How it all compares</Heading><div className="grid gap-4 sm:grid-cols-2"><SoundtrackCard s={s} /></div><OverviewMore s={s} c={c} /></section>
         </div>
       )}
 
@@ -100,10 +104,10 @@ export function StatsTabs({ s, c, os }: { s: PublicStats; c: Content; os: OSStat
         <AnalyticsPeriodProvider defaultPeriod="30d">
           <div className="space-y-8">
             <div className="flex justify-end"><PeriodSelector /></div>
-            {tab === "coding" && <><CodingMore s={s} /><WakatimeStats /></>}
-            {tab === "github" && <><GitHubStats /><GitHubActivityChart /><GitHubYearlyChart /></>}
-            {tab === "music" && <><MusicMore s={s} /><MusicHistory /><SpotifyAnalytics /></>}
-            {tab === "gaming" && <><GamingPanel /><GamingHistory /><GamingMore s={s} /></>}
+            {tab === "coding" && <CodingMore s={s} milestones={milestones} afterTiles={<><WakatimeStats /><RecordsRow s={s} show={["streak", "codingDay"]} /></>} />}
+            {tab === "github" && <><RecordsRow s={s} show={["githubWeek"]} /><GitHubMonths s={s} milestones={milestones} /><GitHubPatterns s={s} /><GitHubStats /><GitHubActivityChart /><GitHubYearlyChart /></>}
+            {tab === "music" && <><RecordsRow s={s} show={["playsDay"]} /><MusicMore s={s} /><MusicHistory /><SpotifyAnalytics /></>}
+            {tab === "gaming" && <><RecordsRow s={s} show={["gamingSession"]} /><GamingPanel /><GamingHistory /><GamingMore s={s} /></>}
           </div>
         </AnalyticsPeriodProvider>
       ) : null}
@@ -114,7 +118,7 @@ export function StatsTabs({ s, c, os }: { s: PublicStats; c: Content; os: OSStat
           <TopLocationsChart />
         </div>
       )}
-      {tab === "writing" && <WritingStats c={c} />}
+      {tab === "writing" && <WritingStats c={c} milestones={milestones} extra={wx} />}
       {tab === "open-source" && <OpenSourceStats s={os} />}
     </div>
   )
