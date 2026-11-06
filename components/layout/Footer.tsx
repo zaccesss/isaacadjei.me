@@ -18,6 +18,7 @@ const GROUPS: { title: string; links: FooterLink[] }[] = [
       { href: "/open-source", label: "Open source" },
       { href: "/skills", label: "Skills" },
       { href: "/uses", label: "Uses" },
+      { href: "/install", label: "Install" },
     ],
   },
   {

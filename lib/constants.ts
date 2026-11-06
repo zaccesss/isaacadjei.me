@@ -11,6 +11,7 @@ export const ROUTES = {
   links: "/links",
   now: "/now",
   uses: "/uses",
+  install: "/install",
   colophon: "/colophon",
   changelog: "/changelog",
   consumed: "/consumed",

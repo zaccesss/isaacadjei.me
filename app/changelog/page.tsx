@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.110.0",
+    date: "2026-11-06",
+    label: "Install page",
+    added: [
+      "An Install page listing every tool I publish, with copyable commands, store links and each tool's latest version",
+    ],
+    changed: [
+      "The Zacess page links the browser extensions now in the Chrome, Firefox and Edge stores",
+    ],
+  },
+  {
     version: "v2.109.1",
     date: "2026-11-06",
     label: "Open source layout",

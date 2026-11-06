@@ -16,7 +16,7 @@ import {
   Copyright,
   Scale,
   Home, User, Briefcase, Code, Mail, Cpu, BookOpen, Link2, NotebookPen,
-  FlaskConical, Clock, Wrench, Info, ScrollText, Trophy, LayoutList, Shield, Rss,
+  FlaskConical, Clock, Wrench, Download, Info, ScrollText, Trophy, LayoutList, Shield, Rss,
   GraduationCap, Lightbulb, Tag, SearchIcon, Activity, BarChart3,
   HeartHandshake, Users, LifeBuoy, GitPullRequest, BookUser, CalendarDays,
 } from "lucide-react"
@@ -71,7 +71,8 @@ export default function CommandMenu() {
             e: "/feeds",
             n: "/open-source",
             b: "/guestbook",
-            i: "/friends",
+            i: "/install",
+            m: "/friends",
             v: "/copyright",
             q: "/disclaimer",
           }
@@ -251,6 +252,11 @@ export default function CommandMenu() {
             Lab
             <CommandShortcut>{shortcut("J")}</CommandShortcut>
           </CommandItem>
+          <CommandItem value="install tools homebrew winget cargo extensions themes download" onSelect={() => go("/install")}>
+            <Download className="mr-2 h-4 w-4" />
+            Install
+            <CommandShortcut>{shiftShortcut("I")}</CommandShortcut>
+          </CommandItem>
           <CommandItem value="uses hardware software tools setup gear" onSelect={() => go("/uses")}>
             <Wrench className="mr-2 h-4 w-4" />
             Uses
@@ -279,7 +285,7 @@ export default function CommandMenu() {
           <CommandItem value="friends personal websites people webring" onSelect={() => go("/friends")}>
             <Users className="mr-2 h-4 w-4" />
             Friends
-            <CommandShortcut>{shiftShortcut("I")}</CommandShortcut>
+            <CommandShortcut>{shiftShortcut("M")}</CommandShortcut>
           </CommandItem>
           <CommandItem value="tags topics categories browse" onSelect={() => go("/tags")}>
             <Tag className="mr-2 h-4 w-4" />

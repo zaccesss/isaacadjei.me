@@ -12,6 +12,7 @@ import {
   LineChart as RLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts"
 import { CATEGORY_LABELS, type Project } from "@/data/projects"
+import { releaseDate, type LatestRelease } from "@/lib/github-releases"
 import { staggerContainer, fadeUp } from "@/lib/animations"
 import ShareButton from "@/components/shared/ShareButton"
 import { renderBlock, buildHeadingIds, renderInline } from "@/components/shared/ContentBlocks"
@@ -30,6 +31,7 @@ interface Props {
   project: Project
   measurements?: LabMeasurementPoint[]
   highlighted?: Record<number, string>
+  releases?: { name: string; repo: string; release: LatestRelease | null }[]
 }
 
 const BODE_COLOURS = ["#8b5cf6", "#22c55e", "#f59e0b", "#ef4444", "#06b6d4", "#ec4899"]
@@ -48,7 +50,7 @@ function linkedElsewhere(url: string, links: string[], ...buttons: (string | und
   return [...links, ...buttons].some((other) => other !== undefined && sameUrl(url, other))
 }
 
-export default function ProjectDetail({ project, measurements, highlighted }: Props) {
+export default function ProjectDetail({ project, measurements, highlighted, releases }: Props) {
   const sets = measurements?.length ? [...new Set(measurements.map((m) => m.measurement_set))] : []
   const frequencies = measurements?.length ? [...new Set(measurements.map((m) => m.frequency_hz))].sort((a, b) => a - b) : []
   const magnitudeData = frequencies.map((f) => {
@@ -176,6 +178,25 @@ export default function ProjectDetail({ project, measurements, highlighted }: Pr
             ))}
           </ul>
         </div>
+
+        {releases && releases.some((r) => r.release) && (
+          <div className="space-y-3">
+            <h2 className="text-xl font-semibold">Latest releases</h2>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              {releases.map((r) => r.release && (
+                <li key={r.repo}>
+                  {r.name}{" "}
+                  <a href={r.release.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+                    {r.release.tag}, released {releaseDate(r.release.date)}<span className="sr-only"> (release notes open in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-muted-foreground">
+              Every way to install them is on the <Link href="/install" className="text-primary underline underline-offset-2">Install</Link> page.
+            </p>
+          </div>
+        )}
 
         <div className="space-y-3">
           <h2 className="text-xl font-semibold">Technologies</h2>

@@ -4,6 +4,9 @@ import { projects } from "@/data/projects"
 import { supabase } from "@/lib/supabase"
 import ProjectDetail from "@/components/projects/ProjectDetail"
 import { highlightBlocks } from "@/lib/highlight"
+import { latestRelease } from "@/lib/github-releases"
+
+export const revalidate = 86400
 
 const LAB_PROJECT_LABELS: Record<string, string> = {
   "audio-amplifier": "Two-Stage Audio Amplifier",
@@ -52,5 +55,9 @@ export default async function ProjectPage({ params }: Props) {
 
   const highlighted = await highlightBlocks(project.sections, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
 
-  return <ProjectDetail project={project} measurements={measurements} highlighted={highlighted} />
+  const releases = await Promise.all(
+    (project.releaseRepos ?? []).map(async (r) => ({ name: r.name, repo: r.repo, release: await latestRelease(r.repo) })),
+  )
+
+  return <ProjectDetail project={project} measurements={measurements} highlighted={highlighted} releases={releases} />
 }
