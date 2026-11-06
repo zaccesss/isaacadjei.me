@@ -24,13 +24,12 @@ function byProject(items: PublicContribution[]) {
 
 const slug = (v: string) => v.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
 
-function Item({ c, showProject = false }: { c: PublicContribution; showProject?: boolean }) {
+function Item({ c }: { c: PublicContribution }) {
   const mailed = isMailedPatch(c.url)
   const what = mailed ? "patch" : c.kind === "Issue" ? "issue" : c.kind === "Pull request" ? "pull request" : "listing"
   const status = mailed && c.status === "Merged" ? "Applied" : c.status
   return (
     <li className="border-l-2 border-border pl-4">
-      {showProject && <p className="text-sm font-semibold">{c.project}</p>}
       <p className="text-sm">{c.summary}</p>
       <p className="text-xs text-muted-foreground mt-1 flex flex-wrap items-center gap-x-2">
         <span className={c.status === "Merged" ? "font-medium text-foreground" : undefined}>{status}</span>
@@ -82,8 +81,10 @@ export default async function OpenSourcePage() {
   const s = await getOpenSourceStats()
   const categories = new Map<string, PublicContribution[]>()
   for (const c of s.contributions) categories.set(c.category, [...(categories.get(c.category) ?? []), c])
-  const sections = [...categories.entries()].sort((a, b) => compareCategories(a[0], b[0]))
-  const pinned = s.contributions.filter((c) => c.pinned)
+  const hasPinned = (l: PublicContribution[]) => (l.some((c) => c.pinned) ? 1 : 0)
+  const sections = [...categories.entries()]
+    .map(([title, items]) => [title, [...items].sort((a, b) => Number(b.pinned) - Number(a.pinned))] as const)
+    .sort((a, b) => hasPinned(b[1]) - hasPinned(a[1]) || compareCategories(a[0], b[0]))
 
   return (
     <div className="container max-w-3xl py-24 space-y-10">
@@ -91,15 +92,6 @@ export default async function OpenSourcePage() {
         title="Open source"
         description="Work I have contributed to other people's projects and to the tools I publish for everyone to use, all in the open. Each entry says what it changed and links to the work itself."
       />
-
-      {pinned.length > 0 && (
-        <section className="space-y-3" aria-labelledby="os-pinned">
-          <h2 id="os-pinned" className="text-xl font-semibold tracking-tight">Pinned</h2>
-          <ul className="space-y-3">
-            {pinned.map((c) => <Item key={`pinned-${c.kind}-${c.title}-${c.date}`} c={c} showProject />)}
-          </ul>
-        </section>
-      )}
 
       <OpenSourceStats s={s} />
 
