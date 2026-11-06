@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.109.1] - 2026-11-06
+
+_Open source layout_
+
+### Changed
+
+- The Linux kernel patch leads the Open Source page under the charts instead of appearing twice
+
 ## [2.109.0] - 2026-11-06
 
 _Open source categories_
