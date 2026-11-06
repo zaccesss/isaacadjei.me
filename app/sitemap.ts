@@ -53,6 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/consumed/resources`,            lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/consumed/articles`,             lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/consumed/others`,               lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.5  },
+    { url: `${SITE_URL}/install`,                       lastModified: new Date("2026-11-06"), changeFrequency: "weekly", priority: 0.6  },
     { url: `${SITE_URL}/uses`,                          lastModified: new Date("2026-05-29"), changeFrequency: "monthly", priority: 0.5  },
     { url: `${SITE_URL}/changelog`,                     lastModified: new Date("2026-05-29"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/colophon`,                      lastModified: new Date("2026-05-29"), changeFrequency: "yearly",  priority: 0.4  },

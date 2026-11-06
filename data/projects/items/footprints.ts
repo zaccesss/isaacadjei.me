@@ -35,16 +35,18 @@ const _footprints: Project = {
     highlights: [
       "Native hooks for four agents (Claude Code, Cursor, Codex CLI and Gemini CLI), a wrapper for anything started from a terminal and a daemon for everything else, with 14 agent setup guides plus one for any other agent",
       "Three platforms and five release builds: macOS on arm64 and x86_64, Linux on x86_64 and aarch64 and Windows on x86_64, all three tested in CI with a real end-to-end run",
-      "Four releases from 0.1.0 to 0.4.0. Since 0.2.0 each one ships five binaries with SHA-256 sums and goes to crates.io. The latest is also in a Homebrew tap",
+      "Every release since 0.2.0 ships five binaries with SHA-256 sums and goes to crates.io and a Homebrew tap",
       "An undo that refuses with exit status 3 when the file changed since, plus a session undo that simulates every step first and changes nothing if one fails",
       "Every file image stored once under its BLAKE3 hash and compressed with zstd, with files up to 32 MiB reversible by default",
       "An MCP server with three tools and no force option, so an agent can check and undo its own steps but never overwrite newer work or prune its own trail",
       "A menu bar app on macOS, Windows and Linux with 44 pixel buttons, states written in words and the system's own colours",
     ],
+    releaseRepos: [{ name: "Footprints", repo: "zaccesss/footprints" }],
     links: [
       { label: "Documentation", url: `${REPO}/tree/main/docs` },
       { label: "Changelog", url: `${REPO}/blob/main/CHANGELOG.md` },
       { label: "Releases", url: `${REPO}/releases` },
+      { label: "Install", url: "/install#footprints" },
     ],
     sections: [
       { type: "h2", text: "Why I built it" },

@@ -43,6 +43,7 @@ const PAGE_GROUPS = [
       { href: "/respub",   label: "Research & Publications", description: "Academic publications and research contributions" },
       { href: "/uses",     label: "Uses",                   description: "Hardware, software and tools I use" },
       { href: "/open-source", label: "Open source",      description: "My contributions to open source projects" },
+      { href: "/install",  label: "Install",                description: "Every tool I publish and how to install it" },
     ],
   },
   {

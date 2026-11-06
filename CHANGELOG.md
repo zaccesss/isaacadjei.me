@@ -2,6 +2,18 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.110.0] - 2026-11-06
+
+_Install page_
+
+### Added
+
+- An Install page listing every tool I publish, with copyable commands, store links and each tool's latest version
+
+### Changed
+
+- The Zacess page links the browser extensions now in the Chrome, Firefox and Edge stores
+
 ## [2.109.1] - 2026-11-06
 
 _Open source layout_

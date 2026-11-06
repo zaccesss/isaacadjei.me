@@ -21,6 +21,7 @@ export interface Project {
   demo?: string
   date: string
   highlights: string[]
+  releaseRepos?: { name: string; repo: string }[]
   ongoing?: boolean
   cover?: string
   coverDark?: string
