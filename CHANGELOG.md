@@ -2,6 +2,14 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.111.0] - 2026-11-07
+
+_Résumé refresh_
+
+### Changed
+
+- The downloadable résumé describes each project by the work behind it, with Footprints added and the Linux kernel patch linking its full thread
+
 ## [2.110.1] - 2026-11-06
 
 _Open source link_

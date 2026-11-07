@@ -111,6 +111,7 @@ import _72 from "./entries/midi-note-on-velocity-zero"
 import _73 from "./entries/midi-note-number-frequency"
 import _74 from "./entries/op-amp-slew-rate"
 import _75 from "./entries/pdf-ua-iso-14289"
+import _76 from "./entries/html-dir-attribute-rtl"
 import _100 from "./entries/grub-windows-first-on-fedora"
 
 export const tilEntries: TILEntry[] = [
@@ -189,5 +190,6 @@ export const tilEntries: TILEntry[] = [
   _73,
   _74,
   _75,
+  _76,
   _100,
 ]
