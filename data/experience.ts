@@ -129,7 +129,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Built the core in Rust compiled to WebAssembly: layout, reading order, a confidence mark on every doubtful word and HTML or EPUB export, live in the browser at app.zacess.com",
       "Checked with axe at WCAG 2.2 AA on WebKit as well as Chromium so it works by touch on phones and tablets",
-      "Turned the contrast palette into code themes for ten editors and eight terminals, with every code colour kept at 7 to 1 on its background",
+      "Turned the contrast palette into ten code themes for ten editors and eight terminals, with every code colour kept at 7 to 1 on its background and a gentler warm pair at 4.5 to 1",
     ],
     technologies: ["Rust", "WebAssembly", "TypeScript", "React", "Playwright", "axe-core"],
   },

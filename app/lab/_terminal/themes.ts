@@ -57,6 +57,16 @@ export const ZACESS_THEMES: ZacessTheme[] = [
     bg: "#ffffff", fg: "#000000", surface: "#ffffff", border: "#0f4a85", selection: "#ffbcfa", muted: "#4d4d4d", line: "#ffffff",
     ansi: ["#000000", "#ca0000", "#00892e", "#ad6500", "#0040ff", "#cd01cd", "#016e78", "#595959"],
   },
+  {
+    id: "warm-dark", short: "warm-dark", name: "Zacess Warm Dark", appearance: "dark",
+    bg: "#211b17", fg: "#e5d5b6", surface: "#1a1512", border: "#988c7e", selection: "#2c465c", muted: "#cabca9", line: "#36322d",
+    ansi: ["#ada398", "#fc9a8d", "#a2be6f", "#e4b35b", "#88b9e3", "#dfa1ca", "#73c2b8", "#cbc1b1"],
+  },
+  {
+    id: "warm-light", short: "warm-light", name: "Zacess Warm Light", appearance: "light",
+    bg: "#f4ead5", fg: "#342410", surface: "#ece1ca", border: "#7e6f5f", selection: "#a0d2fe", muted: "#483b2c", line: "#d0cec0",
+    ansi: ["#342410", "#8c1a16", "#275200", "#6a4603", "#014b79", "#742c60", "#05514d", "#574e44"],
+  },
 ]
 
 export const DEFAULT_THEME = "default"

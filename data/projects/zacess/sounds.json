@@ -1,0 +1,156 @@
+{
+  "ambient": [
+    {
+      "id": "water",
+      "summary": "slow waves"
+    },
+    {
+      "id": "rain",
+      "summary": "a steady hiss with soft drops"
+    },
+    {
+      "id": "wind",
+      "summary": "slow gusts"
+    },
+    {
+      "id": "fire",
+      "summary": "a low rumble and soft crackles"
+    },
+    {
+      "id": "stream",
+      "summary": "a babbling stream with rising bubbles"
+    },
+    {
+      "id": "birds",
+      "summary": "a soft breeze with phrases of birdsong"
+    },
+    {
+      "id": "hum",
+      "summary": "a quiet machine room, a low hum and a fan"
+    },
+    {
+      "id": "city",
+      "summary": "distant traffic with cars passing far off"
+    },
+    {
+      "id": "pad",
+      "summary": "a slow warm chord that swells and fades"
+    },
+    {
+      "id": "night",
+      "summary": "a quiet bed with the odd cricket"
+    }
+  ],
+  "scenes": {
+    "sea": "water",
+    "waves": "water",
+    "lily-pads": "water",
+    "koi-pond": "water",
+    "harbour": "water",
+    "lanterns": "water",
+    "mountain-lake": "water",
+    "tide-pools": "water",
+    "paper-boats": "water",
+    "rocket-launch": "water",
+    "flood": "water",
+    "listing-ship": "water",
+    "broken-bridge": "water",
+    "leak": "water",
+    "erosion": "water",
+    "launch-scrub": "water",
+    "rain": "rain",
+    "storm": "rain",
+    "tea": "rain",
+    "snow": "wind",
+    "desert-night": "wind",
+    "balloons": "wind",
+    "autumn": "wind",
+    "windmills": "wind",
+    "wilt": "wind",
+    "fog": "wind",
+    "drought": "wind",
+    "rockslide": "wind",
+    "dust-storm": "wind",
+    "thin-ice": "wind",
+    "drone-landing": "wind",
+    "landing-abort": "wind",
+    "campfire": "fire",
+    "winter-cabin": "fire",
+    "volcano": "fire",
+    "forest-stream": "stream",
+    "countryside": "birds",
+    "blossom": "birds",
+    "garden": "birds",
+    "sunflower-field": "birds",
+    "picnic": "birds",
+    "overgrown": "birds",
+    "pcb-bring-up": "hum",
+    "dead-led": "hum",
+    "short-circuit": "hum",
+    "corrosion": "hum",
+    "tangle": "hum",
+    "rooftops": "city",
+    "city-night": "city",
+    "traffic-jam": "city",
+    "pit-stop": "city",
+    "pit-stop-stuck": "city",
+    "zacess": "pad",
+    "aurora": "pad",
+    "orbit": "pad",
+    "constellations": "pad",
+    "tiles": "pad",
+    "ribbons": "pad"
+  },
+  "games": {
+    "stackline": "hum",
+    "merge-gates": "hum",
+    "trace": "hum",
+    "rooms": "hum",
+    "relay": "hum",
+    "heatsink": "hum",
+    "termle": "pad",
+    "signal": "pad",
+    "drift": "birds",
+    "through-ball": "wind",
+    "slipstream": "city",
+    "array-guard": "night",
+    "touch-typing": "rain",
+    "learn-to-code": "rain"
+  },
+  "sets": [
+    "bells",
+    "marimba",
+    "kalimba",
+    "pad",
+    "chip",
+    "glass",
+    "piano",
+    "rain"
+  ],
+  "events": [
+    "pass",
+    "fail",
+    "tick",
+    "recovered",
+    "still_failing",
+    "warnings",
+    "typo",
+    "clean",
+    "stopped"
+  ],
+  "effects": [
+    "tick",
+    "tap",
+    "good",
+    "win",
+    "low",
+    "warn",
+    "note0"
+  ],
+  "levels": {
+    "tone": 50,
+    "ambient": 20,
+    "music": 20,
+    "effect": 35
+  }
+}

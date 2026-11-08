@@ -1,8 +1,9 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { usePoll } from "@/lib/use-live-polling"
 
 type SpotifyState = {
   playing: boolean
@@ -28,22 +29,18 @@ export function SpotifyNowPlaying() {
   const [data, setData] = useState<SpotifyState>({ playing: false })
   const [progressMs, setProgressMs] = useState(0)
 
-  useEffect(() => {
-    async function poll() {
-      if (document.hidden) return
-      try {
-        const res = await fetch("/api/spotify")
-        if (res.ok) {
-          const d: SpotifyState = await res.json()
-          setData(d)
-          setProgressMs(d.progressMs ?? 0)
-        }
-      } catch {}
-    }
-    poll()
-    const id = setInterval(poll, 8000)
-    return () => clearInterval(id)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const poll = useCallback(async () => {
+    try {
+      const res = await fetch("/api/spotify")
+      if (res.ok) {
+        const d: SpotifyState = await res.json()
+        setData(d)
+        setProgressMs(d.progressMs ?? 0)
+      }
+    } catch {}
   }, [])
+  usePoll(poll, rootRef, 15_000)
 
   useEffect(() => {
     if (!data.playing) return
@@ -62,10 +59,10 @@ export function SpotifyNowPlaying() {
     : null
   const label = data.playing ? "Live on Spotify" : data.paused ? "Paused" : "Last Played"
 
-  if (!displayTrack) return null
+  if (!displayTrack) return <div ref={rootRef} />
 
   return (
-    <div className="w-full max-w-sm">
+    <div ref={rootRef} className="w-full max-w-sm">
       <div className={cn("rounded-xl border border-border/60 bg-card p-4 space-y-3", data.paused && "opacity-70")}>
         <div className="flex items-center gap-2">
           <span className={cn("text-[10px] font-semibold uppercase tracking-widest", data.playing ? "text-green-500" : "text-muted-foreground")}>

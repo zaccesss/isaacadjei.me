@@ -154,11 +154,16 @@
   outline-offset: -2px;
 }
 
-/* measures one character cell without taking up a row of the scene */
-.probe {
-  position: absolute;
-  visibility: hidden;
-  white-space: pre;
+/* a recording keeps its 80 by 24 shape and shrinks to fit the box, never cropped */
+.recording {
+  overflow: hidden;
+}
+
+.recordingCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .menuItem {

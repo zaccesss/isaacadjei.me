@@ -148,7 +148,7 @@ const COMMON_EXTRAS: Line[] = [
   { type: "pair", text: "  zsh / bash / pwsh / cmd  start that shell inside this one" },
   { type: "pair", text: "  exit  leave the current shell for the one before" },
   { type: "pair", text: "  chsh -s <shell>  change the login shell this lab opens with" },
-  { type: "pair", text: "  theme list / theme <name>  switch between the eight Zacess themes" },
+  { type: "pair", text: "  theme list / theme <name>  switch between the ten Zacess themes" },
   { type: "pair", text: "  zacess-scenes [list | name]  a calm animated scene" },
   { type: "pair", text: "  zacess-games [list | name]  small terminal games" },
 ]

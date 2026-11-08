@@ -211,8 +211,9 @@ export default function NowPage() {
               <Link href="/lab" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
                 lab terminal
               </Link>{" "}
-              now runs zsh, bash, PowerShell and cmd, switches between the eight Zacess themes and
-              has Zacess scenes and three of the games to try in the browser.
+              now runs zsh, bash, PowerShell and cmd, switches between the ten Zacess themes and
+              plays all 65 Zacess scenes and recordings of every game in the theme you pick, with
+              three of the games playable in the browser.
             </p>
           </div>
         </div>

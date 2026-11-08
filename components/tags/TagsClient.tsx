@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { Search, Tag } from "lucide-react"
 import { fieldScore } from "@/lib/search"
 

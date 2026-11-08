@@ -1,7 +1,7 @@
 "use client"
 
 import { relevanceScore } from "@/lib/search"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import ThemedCover from "@/components/shared/ThemedCover"
 import { Calendar, Clock, Rss } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/Tag"

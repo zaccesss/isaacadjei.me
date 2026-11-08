@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { ArrowUp, CalendarDays, Mail } from "lucide-react"
 import SocialLinks from "@/components/shared/SocialLinks"
 import FooterNewsletter from "@/components/layout/FooterNewsletter"

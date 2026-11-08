@@ -1,25 +1,27 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import manifest from "@/data/projects/zacess/studio-manifest.json"
+import type { Recording } from "./scenes"
 import type { Line } from "./types"
 import s from "../terminal.module.css"
 
-export const GAMES: { id: string; name: string; summary: string; playable: boolean }[] = [
-  { id: "stackline", name: "Stackline", summary: "circuit parts fall into two wells; a full row that carries wire across joins the rails and clears", playable: false },
-  { id: "merge-gates", name: "Merge Gates", summary: "push four-bit tiles together through a track of logic gates to make the target output", playable: true },
-  { id: "termle", name: "Termle", summary: "a daily electronics or programming term from a category clue and arrow feedback", playable: true },
-  { id: "signal", name: "Signal", summary: "a calm rhythm game: catch notes on three lanes as they reach the line", playable: false },
-  { id: "trace", name: "Trace", summary: "route wire from a source to light every node without crossing, with vias and one-way nodes", playable: true },
-  { id: "drift", name: "Drift", summary: "steer a lantern over a quiet landscape to gather light, with no way to lose", playable: false },
-  { id: "rooms", name: "Rooms", summary: "a short roguelike through a broken server: carry parts to faults to open the doors", playable: false },
-  { id: "relay", name: "Relay", summary: "move a packet through gates that keep time with the move count, portals and one-way tiles", playable: false },
-  { id: "through-ball", name: "Through Ball", summary: "turn-based football about passing lanes and a keeper's reach, over five attacks", playable: false },
-  { id: "slipstream", name: "Slipstream", summary: "a calm road race against the fuel gauge, with slipstreams and a pit lane", playable: false },
-  { id: "array-guard", name: "Array Guard", summary: "clear drifting debris to protect five satellite dishes, with shields and waves", playable: false },
-  { id: "heatsink", name: "Heatsink", summary: "type electronics terms and code fragments before they reach a chip and heat it", playable: false },
-  { id: "touch-typing", name: "Touch Typing", summary: "a trainer from the home row to timed tests, with the finger shown for every key", playable: false },
-  { id: "learn-to-code", name: "Learn to Code", summary: "fifteen tracks of small programs to fill in, from first steps to job-ready", playable: false },
-]
+const PLAYABLE = new Set(["merge-gates", "termle", "trace"])
+
+export const GAMES: { id: string; name: string; summary: string; playable: boolean }[] = manifest.catalogue.games.map((g) => ({
+  id: g.id,
+  name: g.name,
+  summary: g.description.replace(/\.\s*$/, ""),
+  playable: PLAYABLE.has(g.id),
+}))
+
+export const GAME_RECORDINGS: Recording[] = GAMES.filter((g) => !g.playable).map((g) => ({
+  source: "games",
+  id: g.id,
+  name: g.name,
+  description: g.summary,
+  group: "game",
+}))
 
 export const INSTALL_LINES = ["cargo install --locked zacess-games", "brew install zacesshq/tap/zacess-games"]
 
@@ -33,12 +35,12 @@ export function findGame(raw: string): number {
 export function gamesListLines(): Line[] {
   return [
     { type: "title", text: "Zacess Games" },
-    { type: "output", text: "  [here] plays in this browser. [app] runs in the full terminal program." },
+    { type: "output", text: "  [here] plays in this browser. [watch] plays a recording in your chosen theme." },
     { type: "blank", text: "" },
-    ...GAMES.map((g): Line => ({ type: "pair", text: `  ${g.playable ? "[here]" : "[app]"} ${g.id}  ${g.summary}` })),
+    ...GAMES.map((g): Line => ({ type: "pair", text: `  ${g.playable ? "[here] " : "[watch]"} ${g.id}  ${g.summary}` })),
     { type: "blank", text: "" },
     { type: "output", text: "  type 'zacess-games' for the menu or 'zacess-games termle' for one game." },
-    { type: "output", text: `  the full program: ${INSTALL_LINES[0]}` },
+    { type: "output", text: `  to play them all, the full program: ${INSTALL_LINES[0]}` },
     { type: "output", text: `  or with Homebrew: ${INSTALL_LINES[1]}` },
   ]
 }
@@ -968,12 +970,14 @@ export function GamesView({
   today,
   heightClass,
   onExit,
+  onWatch,
 }: {
   start: number
   seed: number
   today: number
   heightClass: string
   onExit: (message: string) => void
+  onWatch: (id: string) => void
 }) {
   const [open, setOpen] = useState<string | null>(start >= 0 && GAMES[start].playable ? GAMES[start].id : null)
   const [focus, setFocus] = useState(Math.max(0, start))
@@ -1036,13 +1040,13 @@ export function GamesView({
                 type="button"
                 tabIndex={i === focus ? 0 : -1}
                 onFocus={() => setFocus(i)}
-                onClick={() => (g.playable ? setOpen(g.id) : setFocus(i))}
+                onClick={() => (g.playable ? setOpen(g.id) : onWatch(g.id))}
                 aria-describedby="zacess-game-detail"
                 className={`${s.menuItem} w-full min-h-11 px-2 text-left`}
               >
                 <span aria-hidden="true">{i === focus ? "> " : "  "}</span>
                 <span className="font-bold">{g.name}</span>
-                <span className={s.white}>{g.playable ? "  [here]" : "  [app]"}</span>
+                <span className={s.white}>{g.playable ? "  [here]" : "  [watch]"}</span>
               </button>
             </li>
           ))}
@@ -1054,7 +1058,8 @@ export function GamesView({
             <p className={s.green}>plays here: press Enter.</p>
           ) : (
             <>
-              <p className={s.yellow}>runs in the full terminal app:</p>
+              <p className={s.green}>a recording plays here: press Enter.</p>
+              <p className={s.yellow}>to play it, the full terminal app:</p>
               <p className={s.fg}>  {INSTALL_LINES[0]}</p>
               <p className={s.fg}>  {INSTALL_LINES[1]}</p>
             </>

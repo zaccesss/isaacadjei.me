@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import type { ConsumedSummary } from "@/data/consumed/summary"
 import { LABEL_CLASS } from "@/components/shared/Tag"
 import { ConsumedImage, SiteIcon } from "./ConsumedImage"

@@ -1,0 +1,215 @@
+/* the Zacess studio's laptop, drawn with CSS 3D transforms only, as on zacess.com: the lid stands up, the deck is a
+   plane folded back under it and the device turns a little towards the reader. The screen's colours come from the
+   chosen theme through custom properties set on it. Reduced motion and the flat view draw the laptop face on */
+.root {
+  --shell: #c3c7cd;
+  --shell-edge: #8d939b;
+  --deck-top: #d7dade;
+  --deck: #aeb3ba;
+  --bezel: #0b0c0e;
+  --shade: rgba(17, 17, 17, 0.28);
+}
+:global(.dark) .root {
+  --shell: #3b4048;
+  --shell-edge: #626a75;
+  --deck-top: #4b515a;
+  --deck: #2c3137;
+  --bezel: #050506;
+  --shade: rgba(0, 0, 0, 0.6);
+}
+
+.main { min-width: 0; container-type: inline-size; }
+
+.stage {
+  --rx0: 8deg;
+  --ry0: -12deg;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 calc(1.5rem + 13cqw);
+  perspective: 1900px;
+  perspective-origin: 50% 30%;
+  overflow-x: clip;
+  isolation: isolate;
+}
+/* a soft shadow on the desk, faint enough to read as depth rather than decoration */
+.stage::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0.6rem;
+  height: 2.2rem;
+  z-index: -1;
+  background: radial-gradient(closest-side, var(--shade), transparent);
+}
+.device {
+  position: relative;
+  width: min(84cqw, 46rem);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, var(--rx0))) rotateY(var(--ry, var(--ry0)));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .device { transition: transform 0.45s ease-out; }
+}
+.lid {
+  position: relative;
+  transform-style: preserve-3d;
+  padding: clamp(0.5rem, 1.6cqw, 1rem) clamp(0.5rem, 1.6cqw, 1rem) clamp(0.75rem, 2cqw, 1.3rem);
+  background: var(--bezel);
+  border-radius: 16px 16px 6px 6px;
+  box-shadow: 0 0 0 3px var(--shell), 0 0 0 4px var(--shell-edge), 0 1.75rem 3rem -1.5rem var(--shade);
+}
+/* the back of the lid, set behind the screen so its edge shows as thickness when the laptop turns */
+.lid::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 18px 18px 8px 8px;
+  background: var(--shell-edge);
+  transform: translateZ(-6px);
+}
+/* the camera, a small dark mark in the top bezel */
+.lid::before {
+  content: "";
+  position: absolute;
+  top: clamp(0.18rem, 0.6cqw, 0.4rem);
+  left: 50%;
+  width: 0.35rem;
+  height: 0.35rem;
+  margin-left: -0.175rem;
+  border-radius: 50%;
+  background: #2a2d33;
+}
+.base {
+  position: absolute;
+  left: -7%;
+  right: -7%;
+  top: 100%;
+  height: 34cqw;
+  transform-origin: top center;
+  transform: rotateX(83deg);
+  background: linear-gradient(to bottom, var(--deck-top), var(--deck));
+  border-radius: 4px 4px 22px 22px;
+  box-shadow: 0 0 0 1px var(--shell-edge);
+}
+.pad {
+  position: absolute;
+  left: 36%;
+  right: 36%;
+  bottom: 7%;
+  height: 26%;
+  border-radius: 10px;
+  border: 1px solid var(--shell-edge);
+  background: var(--shell);
+}
+.flat .device { transform: none; width: min(92cqw, 50rem); }
+.flat .lid::after { display: none; }
+.flat .base { position: relative; top: auto; left: auto; right: auto; height: 0.9rem; margin: 0 -6%; transform: none; border-radius: 0 0 14px 14px; }
+.flat .pad { left: 42%; right: 42%; top: 0; bottom: auto; height: 0.3rem; border-radius: 0 0 6px 6px; border-top: 0; }
+.flat .stage { padding-bottom: 2rem; }
+@media (prefers-reduced-motion: reduce) {
+  .device { transform: none; width: min(92cqw, 50rem); }
+  .lid::after { display: none; }
+  .base { position: relative; top: auto; left: auto; right: auto; height: 0.9rem; margin: 0 -6%; transform: none; border-radius: 0 0 14px 14px; }
+  .pad { left: 42%; right: 42%; top: 0; bottom: auto; height: 0.3rem; border-radius: 0 0 6px 6px; border-top: 0; }
+  .stage { padding-bottom: 2rem; }
+}
+@media (max-width: 40rem) {
+  .stage { --rx0: 5deg; --ry0: -7deg; padding-top: 0.5rem; }
+}
+
+/* the screen, in the chosen theme */
+.screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--t-bg);
+  color: var(--t-fg);
+}
+.bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.3rem 0.7rem;
+  background: var(--t-bar);
+  color: var(--t-fg);
+  border-bottom: 1px solid var(--t-border);
+  font: 700 clamp(0.62rem, 1.4cqw, 0.82rem) / 1.4 var(--font-geist-mono, ui-monospace), ui-monospace, Menlo, Consolas, monospace;
+}
+.bar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barTheme { font-weight: 400; color: var(--t-muted); }
+.view { position: relative; aspect-ratio: 720 / 456; overflow: hidden; background: var(--t-bg); }
+.canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+.message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--t-fg);
+}
+
+/* the editor, with line numbers in the theme's gutter colour */
+.code {
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  padding: 0.6rem 0.75rem;
+  font: 400 clamp(0.6rem, 1.45cqw, 0.86rem) / 1.55 var(--font-geist-mono, ui-monospace), ui-monospace, Menlo, Consolas, monospace;
+  tab-size: 4;
+}
+.ln { display: inline-block; width: 2.4ch; margin-right: 1.4ch; text-align: right; color: var(--t-muted); user-select: none; }
+.code:focus-visible, .pre:focus-visible { outline: var(--ring-w, 3px) solid var(--t-focus, var(--t-fg)); outline-offset: -4px; }
+
+/* the profile: its TOML above, zprf check below, in the profile's own palette and needs */
+.profile { display: flex; flex-direction: column; height: 100%; }
+.pre {
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 400 calc(clamp(0.56rem, 1.25cqw, 0.8rem) * var(--scale, 1)) / var(--leading, 1.45) var(--font-geist-mono, ui-monospace), ui-monospace, Menlo, Consolas, monospace;
+}
+.editor { flex: 0 0 56%; min-height: 0; }
+.term { flex: 1 1 44%; min-height: 0; display: flex; flex-direction: column; background: var(--t-bar); border-top: 1px solid var(--t-border); }
+.termText { flex: 1 1 auto; min-height: 0; }
+.prompt { color: var(--t-accent); font-weight: 700; }
+.cursor { display: inline-block; width: var(--cursor-w, 0.55ch); height: 1.1em; vertical-align: text-bottom; background: var(--t-cursor); }
+.ansi {
+  list-style: none;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0.15rem 0.75rem 0.45rem;
+  color: var(--t-muted);
+  font: 400 clamp(0.45rem, 1cqw, 0.66rem) / 1.2 ui-monospace, Menlo, Consolas, monospace;
+  text-align: center;
+}
+.ansi li { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+.chip { display: block; width: 100%; height: clamp(0.4rem, 1.1cqw, 0.75rem); border: 1px solid var(--t-border); border-radius: 2px; }
+
+/* the theme swatch on each picker button: the theme's background and text with its accent as a bar */
+.swatch {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  border: 1px solid;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (forced-colors: active) {
+  .screen, .swatch, .chip { forced-color-adjust: none; }
+}

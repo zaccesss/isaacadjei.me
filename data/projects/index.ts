@@ -1,8 +1,8 @@
 import type { ContentBlock } from "@/data/blog"
-import type { PreviewId } from "./zacess/previews"
 
-export type ProductCardBlock = { type: "product"; heading: string; text: string; preview: PreviewId; href: string }
-export type ProjectBlock = ContentBlock | ProductCardBlock
+export type ProductCardBlock = { type: "product"; heading: string; text: string; href: string }
+export type StudioBlock = { type: "studio" }
+export type ProjectBlock = ContentBlock | ProductCardBlock | StudioBlock
 
 export interface Project {
   id: string

@@ -171,13 +171,13 @@ const sections: Array<{
         name: "Zacess themes",
         icon: "/images/ventures/zacess.png",
         href: "https://zacess.com",
-        detail: <>Every terminal and editor I use wears the Zacess themes: eight high-contrast themes, light and dark, that grew out of the contrast settings in <Link href="/projects/zacess" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Zacess</Link>, my accessible document reader. Every code colour keeps 7:1 contrast or more against its background. One command, zt, switches every terminal, editor and app on a machine at once. Zacess Deep Contrast Dark is my default.</>,
+        detail: <>Every terminal and editor I use wears the Zacess themes: ten themes, light and dark, that grew out of the contrast settings in <Link href="/projects/zacess" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Zacess</Link>, my accessible document reader. Eight are high contrast, with every code colour at 7:1 or more against its background. Warm Dark and Warm Light are a gentler pair at 4.5:1 for anyone who finds high contrast too intense. One command, zt, switches every terminal, editor and app on a machine at once. Zacess Deep Contrast Dark is my default.</>,
       },
       {
         name: "High contrast terminal palette",
         icon: `${SI}/iterm2`,
         href: "https://github.com/zaccesss/dotfiles/tree/main/terminal/terminal",
-        detail: "One palette file, synced from each Zacess themes release, builds all eight themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty, Ghostty and Hyper, with a tmux theme to match each one. CI fails if a colour drops below its contrast floor. Bold text stays bold rather than switching to bright colours.",
+        detail: "One palette file, synced from each Zacess themes release, builds all ten themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty, Ghostty and Hyper, with a tmux theme to match each one. CI fails if a colour drops below its contrast floor. Bold text stays bold rather than switching to bright colours.",
       },
       {
         name: "tmux",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { ArrowRight } from "lucide-react"
 import { CommandShortcut } from "@/components/shared/CommandShortcut"
 

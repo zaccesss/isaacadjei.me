@@ -69,18 +69,18 @@ function render(state: FetchState) {
         lang: "typescript",
         text: `type Routes = Record<string, { path: string; auth: boolean }>
 
-// with 'as': loses the literal type, path is string not "/dashboard"
+// with 'as': loses the literal type, path is string not "/settings"
 const routes1 = {
-  dashboard: { path: "/dashboard", auth: true },
+  settings: { path: "/settings", auth: true },
 } as Routes
 
 // with 'satisfies': validates shape AND preserves literal types
 const routes2 = {
-  dashboard: { path: "/dashboard", auth: true },
+  settings: { path: "/settings", auth: true },
 } satisfies Routes
 
-// routes2.dashboard.path is "/dashboard", not string
-// routes1.dashboard.path is string`,
+// routes2.settings.path is "/settings", not string
+// routes1.settings.path is string`,
       },
       {
         type: "h2",

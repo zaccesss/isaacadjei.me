@@ -1,6 +1,6 @@
 "use client"
 
-import { useVisibleInterval } from "@/lib/use-visible-interval"
+import { usePoll } from "@/lib/use-live-polling"
 import { useEffect, useRef, useState } from "react"
 import { Gamepad2 } from "lucide-react"
 
@@ -20,6 +20,7 @@ export default function GamingPanel() {
   const [ps5, setPS5] = useState<PS5Data | null>(null)
   const [gpc, setGPC] = useState<GPCData | null>(null)
   const loadRef = useRef<(() => Promise<void>) | null>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const load = async () => {
@@ -33,7 +34,7 @@ export default function GamingPanel() {
     loadRef.current = load
   }, [])
 
-  useVisibleInterval(() => void loadRef.current?.(), 45_000)
+  usePoll(() => void loadRef.current?.(), rootRef, 60_000)
 
   const ps5Game = ps5?.game || ps5?.lastGame || null
   const ps5Art  = ps5?.game ? ps5.gameImage : ps5?.lastGameImage
@@ -41,7 +42,7 @@ export default function GamingPanel() {
   const gpcArt  = gpc?.gameImage ?? null
 
   return (
-    <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 space-y-4">
+    <div ref={rootRef} className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 space-y-4">
       <div className="flex items-center gap-1.5">
         <Gamepad2 className="h-3 w-3 text-muted-foreground shrink-0" />
         <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">gaming</p>

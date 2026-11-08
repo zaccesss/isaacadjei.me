@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { NAV_LINKS, ROUTES } from "@/lib/constants"

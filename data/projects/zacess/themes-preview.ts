@@ -507,6 +507,76 @@ export const ZACESS_THEMES = {
         "changed": "#002ec2"
       },
       "weakest": 7.7
+    },
+    {
+      "id": "warm-dark",
+      "name": "Zacess Warm Dark",
+      "appearance": "dark",
+      "ui": {
+        "background": "#211b17",
+        "foreground": "#e5d5b6",
+        "border": "#988c7e",
+        "lineHighlight": "#36322d",
+        "lineNumber": "#bbafa0",
+        "lineNumberActive": "#e5d5b6"
+      },
+      "syntax": {
+        "foreground": "#e5d5b6",
+        "keyword": "#f69d74",
+        "control": "#ffafc0",
+        "function": "#ffe8a1",
+        "type": "#71c0b6",
+        "variable": "#e5d5b6",
+        "parameter": "#ffd1ad",
+        "property": "#a4c9e9",
+        "string": "#abba6f",
+        "number": "#ecb4d8",
+        "comment": "#beb19e",
+        "operator": "#e5d5b6",
+        "tag": "#f89b7b",
+        "attribute": "#ffce9f",
+        "regex": "#a6e3cd",
+        "invalid": "#ffb1aa",
+        "added": "#94be7d",
+        "removed": "#ffb1aa",
+        "changed": "#b6dbfc"
+      },
+      "weakest": 8.0
+    },
+    {
+      "id": "warm-light",
+      "name": "Zacess Warm Light",
+      "appearance": "light",
+      "ui": {
+        "background": "#f4ead5",
+        "foreground": "#342410",
+        "border": "#7e6f5f",
+        "lineHighlight": "#d0cec0",
+        "lineNumber": "#514639",
+        "lineNumberActive": "#342410"
+      },
+      "syntax": {
+        "foreground": "#342410",
+        "keyword": "#832a01",
+        "control": "#760244",
+        "function": "#744f01",
+        "type": "#045247",
+        "variable": "#342410",
+        "parameter": "#723902",
+        "property": "#02318d",
+        "string": "#04523a",
+        "number": "#962b70",
+        "comment": "#625240",
+        "operator": "#342410",
+        "tag": "#930e04",
+        "attribute": "#8c4105",
+        "regex": "#064045",
+        "invalid": "#62020b",
+        "added": "#08651b",
+        "removed": "#790411",
+        "changed": "#04488d"
+      },
+      "weakest": 6.0
     }
   ]
 } as const

@@ -47,7 +47,7 @@ import {
 } from "react-icons/si"
 import { Globe, Mail, ExternalLink, Newspaper } from "lucide-react"
 import Image from "@/components/shared/MediaImage"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { profileLinks, type LinkItem } from "@/data/links"
 import { cn } from "@/lib/utils"
 import ShareButton from "@/components/shared/ShareButton"

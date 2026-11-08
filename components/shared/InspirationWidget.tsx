@@ -1,40 +1,36 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useCallback, useRef, useState } from "react"
 import { Separator } from "@/components/ui/separator"
+import { usePoll } from "@/lib/use-live-polling"
 
 export default function InspirationWidget() {
   const [quote, setQuote] = useState<{ quote: string; author: string } | null>(null)
   const [bible, setBible] = useState<{ verse: string; reference: string } | null>(null)
 
-  useEffect(() => {
-    const fetchQuote = async () => {
-      try {
-        const res = await fetch("/api/quote")
-        const data = await res.json()
-        setQuote(data)
-      } catch {}
-    }
-    const t = setTimeout(fetchQuote, 80)
-    const interval = setInterval(fetchQuote, 30 * 60 * 1000)
-    return () => { clearTimeout(t); clearInterval(interval) }
-  }, [])
+  const rootRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const fetchVerse = async () => {
-      try {
-        const res = await fetch("/api/bible-verse")
-        const data = await res.json()
-        setBible(data)
-      } catch {}
-    }
-    const t = setTimeout(fetchVerse, 80)
-    const interval = setInterval(fetchVerse, 30 * 60 * 1000)
-    return () => { clearTimeout(t); clearInterval(interval) }
+  const loadQuote = useCallback(async (fresh = false) => {
+    try {
+      const res = await fetch(fresh ? `/api/quote?r=${Date.now()}` : "/api/quote")
+      setQuote(await res.json())
+    } catch {}
   }, [])
+  const loadVerse = useCallback(async (fresh = false) => {
+    try {
+      const res = await fetch(fresh ? `/api/bible-verse?r=${Date.now()}` : "/api/bible-verse")
+      setBible(await res.json())
+    } catch {}
+  }, [])
+  const loadBoth = useCallback(() => {
+    void loadQuote()
+    void loadVerse()
+  }, [loadQuote, loadVerse])
+
+  usePoll(loadBoth, rootRef, 30 * 60 * 1000)
 
   return (
-    <div className="space-y-4">
+    <div ref={rootRef} className="space-y-4">
       <Separator />
 
       <div className="rounded-lg border border-border/60 bg-muted/30 px-6 py-5 space-y-2">
@@ -42,11 +38,9 @@ export default function InspirationWidget() {
           <p className="text-xs font-mono text-primary uppercase tracking-widest">motivation</p>
           <button
             type="button"
-            onClick={async () => {
+            onClick={() => {
               setQuote(null)
-              const res = await fetch("/api/quote")
-              const data = await res.json()
-              setQuote(data)
+              void loadQuote(true)
             }}
             className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >
@@ -68,11 +62,9 @@ export default function InspirationWidget() {
           <p className="text-xs font-mono text-primary uppercase tracking-widest">scripture</p>
           <button
             type="button"
-            onClick={async () => {
+            onClick={() => {
               setBible(null)
-              const res = await fetch("/api/bible-verse")
-              const data = await res.json()
-              setBible(data)
+              void loadVerse(true)
             }}
             className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >

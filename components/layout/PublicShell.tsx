@@ -7,7 +7,7 @@ import Footer from "./Footer"
 export default function PublicShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
-  if (pathname.startsWith("/dashboard") || pathname === "/maintenance") return <>{children}</>
+  if (pathname === "/maintenance") return <>{children}</>
 
   return (
     <div className="relative flex min-h-dvh flex-col">

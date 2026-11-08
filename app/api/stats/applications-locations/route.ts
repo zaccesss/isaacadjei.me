@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { cdnCache } from "@/lib/cdn-cache"
 import { supabase } from "@/lib/supabase"
 import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
 import { cityLabel, mergeByLabel, isRemoteLocation } from "@/lib/location-labels"
@@ -45,6 +46,6 @@ export async function GET(req: Request) {
 
   return NextResponse.json(
     { total, points, remoteCount },
-    { headers: { "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=3600" } },
+    { headers: cdnCache(1800, 3600) },
   )
 }

@@ -1,0 +1,1538 @@
+{
+  "about": "Written by scripts/zacess/studio-assets.mjs. available lists what the zacess-media bucket holds once .zacess-media is uploaded; local lists the release copies in public/frames/zacess that every miss falls back to.",
+  "layout": {
+    "scenes": "scenes/{theme}/{id}.json",
+    "games": "games/{theme}/{id}.json",
+    "myScenes": "my-scenes/{theme}/{id}.json",
+    "profile": "profile/{id}.json"
+  },
+  "fallbackTheme": "deep-contrast-dark",
+  "local": {
+    "scenes": [
+      "fog",
+      "koi-pond",
+      "lanterns"
+    ],
+    "games": [
+      "learn-to-code",
+      "slipstream",
+      "stackline",
+      "termle",
+      "through-ball",
+      "touch-typing"
+    ],
+    "profile": [
+      "zacess-cream",
+      "zacess-dark",
+      "zacess-deep-contrast-dark",
+      "zacess-deep-contrast-light",
+      "zacess-high-contrast-dark",
+      "zacess-high-contrast-light",
+      "zacess-light",
+      "zacess-warm-dark",
+      "zacess-warm-light",
+      "zacess-yellow-on-black"
+    ],
+    "code": [
+      "light",
+      "dark",
+      "yellow-on-black",
+      "cream",
+      "high-contrast-dark",
+      "high-contrast-light",
+      "deep-contrast-dark",
+      "deep-contrast-light",
+      "warm-dark",
+      "warm-light"
+    ]
+  },
+  "available": {
+    "scenes": {
+      "light": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "dark": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "yellow-on-black": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "cream": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "high-contrast-dark": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "high-contrast-light": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "deep-contrast-dark": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "deep-contrast-light": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "warm-dark": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ],
+      "warm-light": [
+        "aurora",
+        "autumn",
+        "balloons",
+        "blackout",
+        "blossom",
+        "broken-bridge",
+        "campfire",
+        "cat-nap",
+        "city-night",
+        "code-rain",
+        "constellations",
+        "corrosion",
+        "countryside",
+        "dead-led",
+        "desert-night",
+        "drone-landing",
+        "drought",
+        "dust-storm",
+        "erosion",
+        "fireflies",
+        "flood",
+        "fog",
+        "forest-stream",
+        "garden",
+        "harbour",
+        "kettle-boil",
+        "kettle-cold",
+        "koi-pond",
+        "landing-abort",
+        "lanterns",
+        "launch-scrub",
+        "leak",
+        "lily-pads",
+        "listing-ship",
+        "mountain-lake",
+        "orbit",
+        "overgrown",
+        "paper-boats",
+        "pcb-bring-up",
+        "picnic",
+        "pit-stop",
+        "pit-stop-stuck",
+        "rain",
+        "ribbons",
+        "rocket-launch",
+        "rockslide",
+        "rooftops",
+        "sea",
+        "short-circuit",
+        "snow",
+        "starfield",
+        "storm",
+        "sunflower-field",
+        "tangle",
+        "tea",
+        "thin-ice",
+        "tide-pools",
+        "tiles",
+        "traffic-jam",
+        "volcano",
+        "waves",
+        "wilt",
+        "windmills",
+        "winter-cabin",
+        "zacess"
+      ]
+    },
+    "games": {
+      "light": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "dark": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "yellow-on-black": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "cream": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "high-contrast-dark": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "high-contrast-light": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "deep-contrast-dark": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "deep-contrast-light": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "warm-dark": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ],
+      "warm-light": [
+        "array-guard",
+        "drift",
+        "heatsink",
+        "learn-to-code",
+        "merge-gates",
+        "relay",
+        "rooms",
+        "signal",
+        "slipstream",
+        "stackline",
+        "termle",
+        "through-ball",
+        "touch-typing",
+        "trace"
+      ]
+    },
+    "myScenes": {
+      "light": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "dark": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "yellow-on-black": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "cream": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "high-contrast-dark": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "high-contrast-light": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "deep-contrast-dark": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "deep-contrast-light": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "warm-dark": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ],
+      "warm-light": [
+        "build-failed",
+        "build-passed",
+        "football",
+        "hello-isaac",
+        "lidarsat",
+        "now-building",
+        "phaemos",
+        "scope"
+      ]
+    },
+    "profile": [
+      "zacess-cream",
+      "zacess-dark",
+      "zacess-deep-contrast-dark",
+      "zacess-deep-contrast-light",
+      "zacess-high-contrast-dark",
+      "zacess-high-contrast-light",
+      "zacess-light",
+      "zacess-warm-dark",
+      "zacess-warm-light",
+      "zacess-yellow-on-black"
+    ]
+  },
+  "catalogue": {
+    "scenes": [
+      {
+        "id": "sea",
+        "kind": "general",
+        "description": "Fish of three sizes, bubbles, seaweed on a sandy bed, a boat on the surface and, now and then, a whale crossing the deep water under a sky that warms to the horizon"
+      },
+      {
+        "id": "rain",
+        "kind": "general",
+        "description": "Rain at three depths on a wet evening street under drifting cloud, with lit windows, street lamps mirrored in the road, puddles ringing, someone walking under an umbrella and a distant bolt of lightning every few seconds at most"
+      },
+      {
+        "id": "snow",
+        "kind": "general",
+        "description": "Flakes at three depths drifting down over two lines of hills with snowy pines, settling into a bank along the bottom. A winter night on dark themes and a snowy day on light ones"
+      },
+      {
+        "id": "starfield",
+        "kind": "general",
+        "description": "Stars that brighten and fade slowly over a faint band of the galaxy and two low lines of hills, a crescent moon and now and then a slow shooting star. On light themes the same sky at dawn with the last few stars"
+      },
+      {
+        "id": "code-rain",
+        "kind": "general",
+        "description": "Columns of characters falling in the theme's syntax colours, each with a bright head and a tail that fades away"
+      },
+      {
+        "id": "fireflies",
+        "kind": "general",
+        "description": "A meadow at dusk under a moon, with hills, a line of trees, one great tree and long swaying grass, where lights drift and pulse slowly. On light themes a summer afternoon with a sun, clouds, wild flowers, butterflies and drifting pollen"
+      },
+      {
+        "id": "aurora",
+        "kind": "general",
+        "description": "Two or three slow curtains of colour across the upper sky over a ridge of snow-capped peaks, a starry night on dark themes and the blue hour on light ones"
+      },
+      {
+        "id": "campfire",
+        "kind": "general",
+        "description": "A campfire in a clearing ringed by pines, flames whose rows take a new shape one at a time, each at most once every 0.6 seconds, over logs on a bed of coals inside a ring of stones, with rising embers and a steady glow"
+      },
+      {
+        "id": "waves",
+        "kind": "general",
+        "description": "A calm sea to the horizon under a sun, with gulls crossing the sky"
+      },
+      {
+        "id": "zacess",
+        "kind": "general",
+        "description": "The Zacess mark at about half the screen's height, floating slowly round the middle over a soft wash with two ribbons of colour flowing across it"
+      },
+      {
+        "id": "forest-stream",
+        "kind": "general",
+        "description": "A stream winding through a forest towards the viewer, trunks at three depths under the canopy, shafts of light drifting slowly across them, ripples flowing downstream, leaves riding the current, stones and ferns on the banks and motes of dust in the light"
+      },
+      {
+        "id": "desert-night",
+        "kind": "general",
+        "description": "Dunes in three ranges under a starry sky, a moon rising over a few minutes and then holding, a caravan of camels on the far ridge, a cactus and now and then a slow shooting star; at sunrise in light themes, with a pale sun over golden dunes and no stars"
+      },
+      {
+        "id": "rooftops",
+        "kind": "general",
+        "description": "Rooftops at dusk from a high window: a far skyline, a terrace whose windows light up and go dark one at a time, then near slate roofs with chimney stacks, smoke, aerials and pigeons on the ridges, one now and then flying to another roof; late afternoon in light themes"
+      },
+      {
+        "id": "lily-pads",
+        "kind": "general",
+        "description": "A pond seen from above with lily pads and a few water lilies, frogs that hop from pad to pad now and then with rings of ripples and dragonflies darting between hovers"
+      },
+      {
+        "id": "koi-pond",
+        "kind": "pass",
+        "description": "A garden pond from above in solid colour, with koi seen from above swimming slow curves past lily pads by the banks and a soft ripple now and then"
+      },
+      {
+        "id": "harbour",
+        "kind": "pass",
+        "description": "A harbour town at night, with lit houses behind a stone quay, lamps and their long shimmering reflections, moored boats swaying at their masts, a striped lighthouse and a passing ferry; a sunny afternoon with clouds in light themes"
+      },
+      {
+        "id": "lanterns",
+        "kind": "pass",
+        "description": "Glowing paper lanterns rising slowly from a dark lake at three depths, each with a soft halo and a reflection that slides down the water as it climbs; a dusk sky in light themes"
+      },
+      {
+        "id": "balloons",
+        "kind": "pass",
+        "description": "Striped, shaded hot air balloons in three sizes lifting from behind three ridges of rolling hills under soft drifting clouds, in a dawn sky or a day sky in light themes"
+      },
+      {
+        "id": "countryside",
+        "kind": "pass",
+        "description": "A steam train crossing open country on a golden evening, with hills, a patchwork of fields, trees and a fence sliding past at their own speeds; a clear day in light themes"
+      },
+      {
+        "id": "winter-cabin",
+        "kind": "pass",
+        "description": "A log cabin in the snow at night, with a lit window, chimney smoke, snowy pines and gently falling snow; a winter afternoon in light themes"
+      },
+      {
+        "id": "autumn",
+        "kind": "pass",
+        "description": "A shaded tree in autumn colour dropping leaves that turn as they drift down and gather in a pile, with geese crossing now and then, on an evening; a clear afternoon in light themes"
+      },
+      {
+        "id": "blossom",
+        "kind": "pass",
+        "description": "A flowering branch letting petals go on a breeze, down to a stream that carries them away, with a bird on the branch, under a pink evening sky; a clear day in light themes"
+      },
+      {
+        "id": "city-night",
+        "kind": "pass",
+        "description": "A night skyline where windows light and darken one at a time, a moon, a river and a train that crosses a bridge now and then; dusk in light themes"
+      },
+      {
+        "id": "orbit",
+        "kind": "pass",
+        "description": "A shaded, banded planet with a broad ring that passes behind it and in front of it, with a moon on a slow 40 second orbit; a bright planet on a pale sky in light themes"
+      },
+      {
+        "id": "constellations",
+        "kind": "pass",
+        "description": "Stars in a painted night sky over a line of wooded hills, joined slowly into named figures, one group at a time, held and then faded; the blue hour in light themes"
+      },
+      {
+        "id": "tea",
+        "kind": "pass",
+        "description": "A mug of tea with curling steam, books, a plant and a lamp, with rain or snow at the window"
+      },
+      {
+        "id": "cat-nap",
+        "kind": "pass",
+        "description": "A ginger cat asleep on a cushion, breathing slowly, with drifting z's, wool on the rug and a night window; the window shows a day sky in light themes"
+      },
+      {
+        "id": "garden",
+        "kind": "pass",
+        "description": "A flower bed in front of a picket fence and a hedge whose seeds sprout, grow and bloom over a season of about two minutes, with butterflies, before the bed starts again"
+      },
+      {
+        "id": "tiles",
+        "kind": "pass",
+        "description": "A grid of small shaded pages with the Zacess fold, one tile changing colour at a time"
+      },
+      {
+        "id": "ribbons",
+        "kind": "pass",
+        "description": "Broad ribbons of shaded silk that twist as they flow slowly across the screen, each casting a soft shadow on what lies behind it"
+      },
+      {
+        "id": "sunflower-field",
+        "kind": "pass",
+        "description": "Rows of sunflowers at three depths swaying as the wind passes along the field, under a warm sky with a low sun, with bees drifting between the heads"
+      },
+      {
+        "id": "mountain-lake",
+        "kind": "pass",
+        "description": "Three ranges and a line of pines mirrored in a still lake at sunrise, the sun's rim in a notch of the peaks, mist on the water, a slow ripple through the reflection and a heron fishing in the shallows"
+      },
+      {
+        "id": "tide-pools",
+        "kind": "pass",
+        "description": "Rock pools at low tide in shaded rocks with weed round the pools, light shimmering over the water, anemones waving, starfish on the bottom and crabs walking sideways across the sand"
+      },
+      {
+        "id": "paper-boats",
+        "kind": "pass",
+        "description": "Folded paper boats in five colours drifting down a stream at three distances, ripples carried along by the current and reeds swaying on both banks"
+      },
+      {
+        "id": "windmills",
+        "kind": "pass",
+        "description": "A row of tower mills from near to far over a patchwork of furrowed fields and hedges, each with a red cap and four latticed sails turning slowly, clouds drifting overhead"
+      },
+      {
+        "id": "picnic",
+        "kind": "pass",
+        "description": "A checked blanket with a wicker basket on a grassy hill beside a shady tree, kites flying overhead on long strings with rippling tails and clouds drifting by"
+      },
+      {
+        "id": "drone-landing",
+        "kind": "pass",
+        "description": "A quadcopter flying in over rolling country, a faint beam from its sensor mapping the ground below as a line of dots on the land's own contour, then a hover, a slow descent onto a marked pad, its rotors spinning down and a POSITION FIX GOOD readout"
+      },
+      {
+        "id": "kettle-boil",
+        "kind": "pass",
+        "description": "A kitchen counter with a kettle on its base, a mug with a tea bag in it and a window onto a garden: bubbles rise in the kettle's gauge and its lid rattles, steam curls from the spout, the switch clicks off and the kettle lifts and pours into the mug, then steam rises from the cup"
+      },
+      {
+        "id": "rocket-launch",
+        "kind": "pass",
+        "description": "A rocket rolling in on its tracked platform to a pad on the coast beside a lattice gantry, the access arm swinging in and away while a board counts down, a glow swelling under it at zero as smoke billows out along the ground, then lift-off and a long trail climbing into the sky and thinning away before the next rocket rolls in"
+      },
+      {
+        "id": "pit-stop",
+        "kind": "pass",
+        "description": "A pit lane side on with the lit garage behind, where a race car slides into its box, goes up on the jacks, has its wheels changed by gunners and carriers and pulls away when the lollipop lifts, the board showing its stop time, before the carriers fetch new wheels for the next car"
+      },
+      {
+        "id": "pcb-bring-up",
+        "kind": "pass",
+        "description": "A circuit board on a workbench under an angled lamp, with an oscilloscope and a bench supply, where the LEDs along the board light one after another until the status LED glows a steady green, the POWER GOOD legend lights up and the scope settles on a square wave, then the supply switches off and the chain lights again"
+      },
+      {
+        "id": "storm",
+        "kind": "fail",
+        "description": "Rain slanting in a strong wind at three depths under three banks of cloud, a tree in full leaf bending in the gusts on a hill above a field with a hedgerow and a cottage. A bolt of lightning every 5 to 9 seconds at most, never in the first five"
+      },
+      {
+        "id": "flood",
+        "kind": "fail",
+        "description": "A street already awash where the water rises slowly past the doors and a parked car, then holds with a gentle swell and debris drifting along the surface"
+      },
+      {
+        "id": "listing-ship",
+        "kind": "fail",
+        "description": "A container ship on a grey sea that settles by the bow over a minute as its waterline creeps up past the portholes, then rolls gently while a lifebuoy and a crate drift away"
+      },
+      {
+        "id": "corrosion",
+        "kind": "fail",
+        "description": "Lapped steel plates fixed with rows of rivets where rust creeps out from a few rivets, crusts and flakes, with rusty stains running down and a drop sliding down each now and then"
+      },
+      {
+        "id": "tangle",
+        "kind": "fail",
+        "description": "Round cables hanging from a patch panel, already crossed, that slowly wander, loop and knot into a swaying snarl trailing over the floor, with one port's link light gone red"
+      },
+      {
+        "id": "wilt",
+        "kind": "fail",
+        "description": "Potted plants on a sill before a window of hard sun whose stems droop over, flowers fade to dry heads, leaves dry and fall onto the sill and soil cracks"
+      },
+      {
+        "id": "fog",
+        "kind": "fail",
+        "description": "A country road at dusk bending away between hedges, lamps, marker posts and signs, where a bank of fog rolls in from the distance and swallows all but the nearest stretch while the lamps glow dimly through it"
+      },
+      {
+        "id": "broken-bridge",
+        "kind": "fail",
+        "description": "A bridge over a flowing river with its middle span gone, girders hanging, the fallen span in the water, a barrier with a BRIDGE OUT board and a waiting car"
+      },
+      {
+        "id": "leak",
+        "kind": "fail",
+        "description": "A split pipe in a brick basement lit by a bare bulb, dripping into a pail that fills, brims over and spreads into a puddle that holds, with a damp stain creeping down the wall"
+      },
+      {
+        "id": "blackout",
+        "kind": "fail",
+        "description": "A night skyline whose lit windows go dark one at a time beside a snapped power line, leaving a few candles and windows on their own power, at dusk in light themes"
+      },
+      {
+        "id": "traffic-jam",
+        "kind": "fail",
+        "description": "Cars, hatchbacks and vans queued bumper to bumper on a two lane road behind a signal stuck on red, with cones, a ROAD CLOSED board and exhaust drifting up, at dusk or by day in light themes"
+      },
+      {
+        "id": "erosion",
+        "kind": "fail",
+        "description": "A chalk cliff edge crumbling into the sea, stones tumbling and splashing and a fence left hanging over the drop until the face reaches harder rock"
+      },
+      {
+        "id": "drought",
+        "kind": "fail",
+        "description": "A plain of cracked mud plates shrinking towards a hazy horizon under a heavy sun, more cracks opening edge by edge, a dry riverbed whose last puddle dries to a damp stain, a dead tree with its long shadow, drifting dust and a gliding bird"
+      },
+      {
+        "id": "volcano",
+        "kind": "fail",
+        "description": "A ridged volcano at dusk with two ranges behind it, a glowing crater, a plume of ash with embers lifting in it and three lava flows that break out one after another, creep down the gullies and spread into glowing pools on the plain"
+      },
+      {
+        "id": "rockslide",
+        "kind": "fail",
+        "description": "Boulders breaking loose under a pale scar high on a layered mountainside and tumbling down in heavy hops, raising dust where they strike and heaping up across the road against a striped barrier until it is blocked, then only the odd pebble"
+      },
+      {
+        "id": "dust-storm",
+        "kind": "fail",
+        "description": "A towering wall of dust rolling in from the right over mesas, two ranges of dunes and a line of telegraph poles, swallowing them and finally the low sun while sand streams past, with the near pole and a wire fence left clear"
+      },
+      {
+        "id": "thin-ice",
+        "kind": "fail",
+        "description": "A frozen lake under a moon with snowy hills and pines on the far shore, cracks running out in a star from one weak point, branching and joined by a ring, a ragged hole of dark water opening, light snow and reeds in a drift on the near bank"
+      },
+      {
+        "id": "short-circuit",
+        "kind": "fail",
+        "description": "A circuit board with a processor, a smaller chip, a crystal, resistors, capacitors and edge fingers where one trace has burnt through: the copper blackens back along it, a scorch spreads round the break, a soft glow swells and a few slow sparks and a thin curl of smoke rise from it"
+      },
+      {
+        "id": "overgrown",
+        "kind": "fail",
+        "description": "Vines climbing a brick wall, its two capped posts and the bars of its iron gate while weeds push up between the paving slabs, taller nearer the viewer, until the path is lost and the gate half hidden"
+      },
+      {
+        "id": "landing-abort",
+        "kind": "fail",
+        "description": "The drone-landing approach where the mapped dots scatter above and below the ground instead of following it: the drone hovers over the pad with no match, its lamp turns amber and it climbs calmly away to hold high over the field beside a NO TERRAIN MATCH readout"
+      },
+      {
+        "id": "kettle-cold",
+        "kind": "fail",
+        "description": "The kettle-boil counter where the kettle's lamp comes on and goes off again four seconds later with the water barely stirring: no steam, an empty mug and a note pinned by it that says try again"
+      },
+      {
+        "id": "launch-scrub",
+        "kind": "fail",
+        "description": "The same coastal pad with the rocket held on its platform: the board reads HOLD, the gantry's access arm swings slowly back in and steam vents from the rocket's sides and drifts off on the wind, with a low mist round the platform"
+      },
+      {
+        "id": "pit-stop-stuck",
+        "kind": "fail",
+        "description": "The same pit stop where the front wheel is changed but the rear one will not come off, its hub marked in the error colour, the crew gathering round while the car waits on its jacks and the time on the board climbs"
+      },
+      {
+        "id": "dead-led",
+        "kind": "fail",
+        "description": "The same bench where one LED in the chain stays dark, the status LED and the POWER GOOD legend stay unlit and the probe moves slowly from the mat to the dark LED while the scope sweeps along a flat trace"
+      }
+    ],
+    "games": [
+      {
+        "id": "stackline",
+        "name": "Stackline",
+        "description": "Circuit parts fall into two wells. A full row whose parts all carry wire across joins the rails and clears, pushing a feedback row with one break into the other well"
+      },
+      {
+        "id": "merge-gates",
+        "name": "Merge Gates",
+        "description": "Push four-bit tiles together through a track of logic gates to make the target output"
+      },
+      {
+        "id": "termle",
+        "name": "Termle",
+        "description": "A daily electronics or programming term from a category clue and arrow feedback, with a streak for days in a row"
+      },
+      {
+        "id": "signal",
+        "name": "Signal",
+        "description": "A calm rhythm game: catch notes on three lanes as they reach the line"
+      },
+      {
+        "id": "trace",
+        "name": "Trace",
+        "description": "Route wire from a source to light every node without crossing, with vias and one-way nodes"
+      },
+      {
+        "id": "drift",
+        "name": "Drift",
+        "description": "Steer a lantern over a quiet landscape to gather light. There is no way to lose"
+      },
+      {
+        "id": "rooms",
+        "name": "Rooms",
+        "description": "A short roguelike through a broken server: carry parts to faults to open the doors"
+      },
+      {
+        "id": "relay",
+        "name": "Relay",
+        "description": "Move a packet through gates that keep time with the move count, portals and one-way tiles"
+      },
+      {
+        "id": "through-ball",
+        "name": "Through Ball",
+        "description": "Turn-based football about passing lanes and a keeper's reach, over five attacks"
+      },
+      {
+        "id": "slipstream",
+        "name": "Slipstream",
+        "description": "A calm road race against the fuel gauge, with slipstreams and a pit lane"
+      },
+      {
+        "id": "array-guard",
+        "name": "Array Guard",
+        "description": "Clear drifting debris to protect five satellite dishes, with shields, capsules and waves"
+      },
+      {
+        "id": "heatsink",
+        "name": "Heatsink",
+        "description": "Type electronics terms and code fragments before they reach a chip and heat it, with a calm mode"
+      },
+      {
+        "id": "touch-typing",
+        "name": "Touch Typing",
+        "description": "A trainer from the home row to timed tests, with an on-screen keyboard showing the finger for every key. It follows the keyboard in use (UK Mac, UK PC or US), read from the system"
+      },
+      {
+        "id": "learn-to-code",
+        "name": "Learn to Code",
+        "description": "Fifteen tracks from first steps to job-ready: Python, Java, C, C++, JavaScript, TypeScript, SQL, Bash and Linux, Git, Rust, Go, C#, Kotlin, Data Structures and Algorithms and AI in Python. Fill in small programs with hints, teaching messages, saved progress, a level list to go back to any level reached and a Try it line that runs the code in a shell"
+      }
+    ],
+    "myScenes": [
+      {
+        "id": "hello-isaac",
+        "name": "Hello Isaac",
+        "kind": "general",
+        "description": "A scrolling greeting for the time of day over a pixel sky, hills and my projects"
+      },
+      {
+        "id": "now-building",
+        "name": "Now building",
+        "kind": "general",
+        "description": "A split-flap departure board of my projects with a scrolling ticker of taglines"
+      },
+      {
+        "id": "lidarsat",
+        "name": "LidarSAT",
+        "kind": "general",
+        "description": "A pixel quadcopter mapping hills and rooftops with a lidar fan, no GPS needed"
+      },
+      {
+        "id": "scope",
+        "name": "Scope",
+        "kind": "general",
+        "description": "A pixel oscilloscope in roll mode with a sine and a PWM trace and a bench ticker"
+      },
+      {
+        "id": "phaemos",
+        "name": "PHAEMOS",
+        "kind": "general",
+        "description": "PHAEMOS nodes on a motor and pump, sending vibration readings to a live panel"
+      },
+      {
+        "id": "build-passed",
+        "name": "Build passed",
+        "kind": "pass",
+        "description": "BUILD PASSED in big letters with the time, bunting and tumbling pixel confetti"
+      },
+      {
+        "id": "build-failed",
+        "name": "Build failed",
+        "kind": "fail",
+        "description": "BUILD FAILED scrolling slowly over a pixel circuit board with one broken trace"
+      },
+      {
+        "id": "football",
+        "name": "Football",
+        "kind": "general",
+        "description": "BUILD FC on a pixel pitch: a goal for a pass, off the post for a fail, a match report"
+      }
+    ],
+    "languages": [
+      {
+        "id": "typescript",
+        "name": "TypeScript"
+      },
+      {
+        "id": "javascript",
+        "name": "JavaScript"
+      },
+      {
+        "id": "python",
+        "name": "Python"
+      },
+      {
+        "id": "rust",
+        "name": "Rust"
+      },
+      {
+        "id": "java",
+        "name": "Java"
+      },
+      {
+        "id": "c",
+        "name": "C"
+      },
+      {
+        "id": "cpp",
+        "name": "C++"
+      },
+      {
+        "id": "csharp",
+        "name": "C#"
+      },
+      {
+        "id": "go",
+        "name": "Go"
+      },
+      {
+        "id": "php",
+        "name": "PHP"
+      },
+      {
+        "id": "ruby",
+        "name": "Ruby"
+      },
+      {
+        "id": "swift",
+        "name": "Swift"
+      },
+      {
+        "id": "kotlin",
+        "name": "Kotlin"
+      },
+      {
+        "id": "html",
+        "name": "HTML"
+      },
+      {
+        "id": "css",
+        "name": "CSS"
+      },
+      {
+        "id": "json",
+        "name": "JSON"
+      },
+      {
+        "id": "yaml",
+        "name": "YAML"
+      },
+      {
+        "id": "markdown",
+        "name": "Markdown"
+      },
+      {
+        "id": "bash",
+        "name": "Bash"
+      },
+      {
+        "id": "sql",
+        "name": "SQL"
+      }
+    ]
+  },
+  "recording": {
+    "size": "80x24",
+    "frames": 72,
+    "fps": 12,
+    "clock": "09:30"
+  }
+}

@@ -145,12 +145,6 @@
   "w": 1600,
   "ht": 700
  },
- "/images/blog/audio-amplifier/human_hearing_range.webp": {
-  "h": "c7a828d62a",
-  "t": "img",
-  "w": 1536,
-  "ht": 1024
- },
  "/images/blog/audio-amplifier/phone-characterisation-graph.webp": {
   "h": "ce732b1320",
   "t": "img",
@@ -162,12 +156,6 @@
   "t": "img",
   "w": 1336,
   "ht": 751
- },
- "/images/blog/audio-amplifier/system_block_diagram_v2.webp": {
-  "h": "5ff9104f8d",
-  "t": "img",
-  "w": 1110,
-  "ht": 634
  },
  "/images/blog/avr/atmega164p.webp": {
   "h": "84b4efcaa3",
@@ -625,12 +613,6 @@
   "w": 949,
   "ht": 649
  },
- "/images/lab/pcb.png": {
-  "h": "87e6fcc554",
-  "t": "img",
-  "w": 1108,
-  "ht": 688
- },
  "/images/newsletter/akosombo-dam.jpg": {
   "h": "0b24e5f38c",
   "t": "img",
@@ -775,29 +757,11 @@
   "w": 1600,
   "ht": 1200
  },
- "/images/projects/astoncv/aston-skyline.webp": {
-  "h": "384220e8ee",
-  "t": "img",
-  "w": 1140,
-  "ht": 650
- },
- "/images/projects/astoncv/campus-aerial.webp": {
-  "h": "dabeb06305",
-  "t": "img",
-  "w": 297,
-  "ht": 169
- },
  "/images/projects/astoncv/campus-hero.webp": {
   "h": "27316f4a81",
   "t": "img",
   "w": 1280,
   "ht": 960
- },
- "/images/projects/astoncv/campus-lake.webp": {
-  "h": "b1bc0d0614",
-  "t": "img",
-  "w": 294,
-  "ht": 172
  },
  "/images/projects/astoncv/campus-library.webp": {
   "h": "30877fbd9d",
@@ -1015,20 +979,8 @@
   "w": 1600,
   "ht": 1000
  },
- "/images/projects/dev-environment/editors/eclipse-deep-contrast-dark.webp": {
-  "h": "653255c3d4",
-  "t": "img",
-  "w": 1600,
-  "ht": 895
- },
  "/images/projects/dev-environment/editors/eclipse-deep-contrast-light.webp": {
   "h": "bf67c0cd0c",
-  "t": "img",
-  "w": 1600,
-  "ht": 895
- },
- "/images/projects/dev-environment/editors/intellij-deep-contrast-dark.webp": {
-  "h": "d6e9c84e83",
   "t": "img",
   "w": 1600,
   "ht": 895
@@ -1039,38 +991,8 @@
   "w": 1600,
   "ht": 895
  },
- "/images/projects/dev-environment/editors/pycharm-deep-contrast-dark.webp": {
-  "h": "499ab98c3b",
-  "t": "img",
-  "w": 1600,
-  "ht": 895
- },
- "/images/projects/dev-environment/editors/pycharm-deep-contrast-light.webp": {
-  "h": "9bb4d7578d",
-  "t": "img",
-  "w": 1600,
-  "ht": 895
- },
- "/images/projects/dev-environment/editors/vscode-cream.webp": {
-  "h": "8fe708209a",
-  "t": "img",
-  "w": 1600,
-  "ht": 910
- },
  "/images/projects/dev-environment/editors/vscode-deep-contrast-dark.webp": {
   "h": "0df31fd79e",
-  "t": "img",
-  "w": 1600,
-  "ht": 910
- },
- "/images/projects/dev-environment/editors/vscode-deep-contrast-light.webp": {
-  "h": "7c04eb9f33",
-  "t": "img",
-  "w": 1600,
-  "ht": 910
- },
- "/images/projects/dev-environment/editors/vscode-yellow-on-black.webp": {
-  "h": "ae3ef8ffc4",
   "t": "img",
   "w": 1600,
   "ht": 910
@@ -1087,32 +1009,20 @@
   "w": 1600,
   "ht": 884
  },
- "/images/projects/dev-environment/editors/zed-deep-contrast-light.webp": {
-  "h": "48db1af708",
-  "t": "img",
-  "w": 1600,
-  "ht": 884
- },
- "/images/projects/dev-environment/themes/tmux-cream.webp": {
-  "h": "e2bd1dacec",
+ "/images/projects/dev-environment/themes/tmux-cream-v2.webp": {
+  "h": "ec91637cb7",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/images/projects/dev-environment/themes/tmux-dark.webp": {
-  "h": "65535a86ef",
+ "/images/projects/dev-environment/themes/tmux-light-v2.webp": {
+  "h": "98fb5d79e5",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/images/projects/dev-environment/themes/tmux-light.webp": {
-  "h": "9cca401931",
-  "t": "img",
-  "w": 1400,
-  "ht": 980
- },
- "/images/projects/dev-environment/themes/tmux-yellow-on-black.webp": {
-  "h": "3b1c12c86c",
+ "/images/projects/dev-environment/themes/tmux-yellow-on-black-v2.webp": {
+  "h": "729769dd33",
   "t": "img",
   "w": 1400,
   "ht": 980
@@ -1213,20 +1123,8 @@
   "w": 557,
   "ht": 627
  },
- "/images/projects/isaacadjei-me/about-dark.webp": {
-  "h": "c9336c35c3",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/isaacadjei-me/about-light.webp": {
   "h": "7ac6aa0129",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/blog-dark.webp": {
-  "h": "4cc0700ac3",
   "t": "img",
   "w": 1920,
   "ht": 1200
@@ -1239,18 +1137,6 @@
  },
  "/images/projects/isaacadjei-me/colophon-dark.webp": {
   "h": "8e3db3e4aa",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/colophon-light.webp": {
-  "h": "b0cbcf50fa",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/consumed-dark.webp": {
-  "h": "284911df3a",
   "t": "img",
   "w": 1920,
   "ht": 1200
@@ -1273,20 +1159,8 @@
   "w": 1920,
   "ht": 1200
  },
- "/images/projects/isaacadjei-me/experience-light.webp": {
-  "h": "9590699cfb",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/isaacadjei-me/guestbook-dark.webp": {
   "h": "a8c47ccc2c",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/guestbook-light.webp": {
-  "h": "fab072946d",
   "t": "img",
   "w": 1920,
   "ht": 1200
@@ -1309,26 +1183,8 @@
   "w": 1920,
   "ht": 1200
  },
- "/images/projects/isaacadjei-me/lab-light.webp": {
-  "h": "15392a9657",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/links-dark.webp": {
-  "h": "0d08352266",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/isaacadjei-me/links-light.webp": {
   "h": "c39523c0ee",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/now-dark.webp": {
-  "h": "9c79ff2edc",
   "t": "img",
   "w": 1920,
   "ht": 1200
@@ -1345,18 +1201,6 @@
   "w": 1920,
   "ht": 1200
  },
- "/images/projects/isaacadjei-me/projects-audio-amplifier-light.webp": {
-  "h": "60f00a663c",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/projects-dark.webp": {
-  "h": "d8f77b3156",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/isaacadjei-me/projects-light.webp": {
   "h": "e024b834e2",
   "t": "img",
@@ -1369,18 +1213,6 @@
   "w": 1920,
   "ht": 1200
  },
- "/images/projects/isaacadjei-me/search-light.webp": {
-  "h": "7e870b292a",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/stats-dark.webp": {
-  "h": "8241d1a3d0",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/isaacadjei-me/stats-light.webp": {
   "h": "83881966b8",
   "t": "img",
@@ -1389,18 +1221,6 @@
  },
  "/images/projects/isaacadjei-me/til-dark.webp": {
   "h": "07acbd8463",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/til-light.webp": {
-  "h": "fc94efb852",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
- "/images/projects/isaacadjei-me/uses-dark.webp": {
-  "h": "d2f0c9b4c3",
   "t": "img",
   "w": 1920,
   "ht": 1200
@@ -1428,12 +1248,6 @@
   "t": "img",
   "w": 1600,
   "ht": 1000
- },
- "/images/projects/led-cube/cube-enclosure-angle.webp": {
-  "h": "6c73e076fd",
-  "t": "img",
-  "w": 1702,
-  "ht": 1920
  },
  "/images/projects/led-cube/cube-lit-2.webp": {
   "h": "6882e93144",
@@ -1513,18 +1327,6 @@
   "w": 1920,
   "ht": 1206
  },
- "/images/projects/melophos/cover-brand-light.webp": {
-  "h": "5876b78084",
-  "t": "img",
-  "w": 1600,
-  "ht": 1000
- },
- "/images/projects/melophos/cover-brand.webp": {
-  "h": "b3fa480fcb",
-  "t": "img",
-  "w": 1600,
-  "ht": 1000
- },
  "/images/projects/melophos/cover-studio.webp": {
   "h": "3a391ee2ae",
   "t": "img",
@@ -1561,23 +1363,11 @@
   "w": 1920,
   "ht": 1200
  },
- "/images/projects/phaemos/alerts-light.webp": {
-  "h": "a640ee95bc",
-  "t": "img",
-  "w": 1920,
-  "ht": 1200
- },
  "/images/projects/phaemos/alerts.webp": {
   "h": "9b13e9411f",
   "t": "img",
   "w": 1920,
   "ht": 1200
- },
- "/images/projects/phaemos/brand-board.webp": {
-  "h": "b48a81e06e",
-  "t": "img",
-  "w": 1536,
-  "ht": 1024
  },
  "/images/projects/phaemos/compare-light.webp": {
   "h": "2eb785e8d4",
@@ -1590,18 +1380,6 @@
   "t": "img",
   "w": 1920,
   "ht": 1200
- },
- "/images/projects/phaemos/cover-brand-light.webp": {
-  "h": "4b1a0c4db5",
-  "t": "img",
-  "w": 1600,
-  "ht": 1000
- },
- "/images/projects/phaemos/cover-brand.webp": {
-  "h": "2158099795",
-  "t": "img",
-  "w": 1600,
-  "ht": 1000
  },
  "/images/projects/phaemos/cover-dashboard-light.webp": {
   "h": "39a03a5c14",
@@ -1651,10 +1429,6 @@
  },
  "/images/projects/phaemos/main.svg": {
   "h": "eafe0d21ce",
-  "t": "file"
- },
- "/images/projects/phaemos/pipeline.svg": {
-  "h": "83d2274f19",
   "t": "file"
  },
  "/images/projects/phaemos/social-preview.webp": {
@@ -1819,38 +1593,14 @@
   "w": 1200,
   "ht": 630
  },
- "/images/projects/zacess/games/learn-to-code.webp": {
-  "h": "d46bdda990",
+ "/images/projects/zacess/games/learn-to-code-v2.webp": {
+  "h": "69442eff0e",
   "t": "img",
   "w": 1736,
   "ht": 1136
  },
  "/images/projects/zacess/games/menu.webp": {
   "h": "35ab324e86",
-  "t": "img",
-  "w": 1736,
-  "ht": 1136
- },
- "/images/projects/zacess/games/stackline-compact-light.webp": {
-  "h": "5694412baf",
-  "t": "img",
-  "w": 1064,
-  "ht": 796
- },
- "/images/projects/zacess/games/stackline.webp": {
-  "h": "f2b32f485b",
-  "t": "img",
-  "w": 1736,
-  "ht": 1136
- },
- "/images/projects/zacess/games/touch-typing-large.webp": {
-  "h": "d391e7b4a3",
-  "t": "img",
-  "w": 3534,
-  "ht": 1748
- },
- "/images/projects/zacess/games/touch-typing.webp": {
-  "h": "d982be4626",
   "t": "img",
   "w": 1736,
   "ht": 1136
@@ -1879,47 +1629,17 @@
   "w": 1280,
   "ht": 800
  },
- "/images/projects/zacess/scenes/flood.webp": {
-  "h": "258bb80f30",
+ "/images/projects/zacess/scenes/koi-pond-v2.webp": {
+  "h": "b458481812",
   "t": "img",
   "w": 1867,
   "ht": 1243
  },
- "/images/projects/zacess/scenes/harbour.webp": {
-  "h": "fa4010b1df",
+ "/images/projects/zacess/scenes/watch-pass-v2.webp": {
+  "h": "84f41188d4",
   "t": "img",
   "w": 1867,
   "ht": 1243
- },
- "/images/projects/zacess/scenes/koi-pond.webp": {
-  "h": "25d6bde7a3",
-  "t": "img",
-  "w": 1867,
-  "ht": 1243
- },
- "/images/projects/zacess/scenes/lanterns-light.webp": {
-  "h": "4f45caf402",
-  "t": "img",
-  "w": 1867,
-  "ht": 1243
- },
- "/images/projects/zacess/scenes/watch-fail.webp": {
-  "h": "9a7b9ba0ee",
-  "t": "img",
-  "w": 1867,
-  "ht": 1243
- },
- "/images/projects/zacess/scenes/watch-pass.webp": {
-  "h": "f4c3a24844",
-  "t": "img",
-  "w": 1867,
-  "ht": 1243
- },
- "/images/projects/zacess/site-home-dark.webp": {
-  "h": "0da379a2a2",
-  "t": "img",
-  "w": 1280,
-  "ht": 800
  },
  "/images/projects/zacess/site-home.webp": {
   "h": "acf93fb7e9",
@@ -1933,11 +1653,11 @@
   "w": 1280,
   "ht": 800
  },
- "/images/projects/zacess/themes-page.webp": {
-  "h": "0e75070361",
+ "/images/projects/zacess/themes/ten-themes.webp": {
+  "h": "3b32ba3d10",
   "t": "img",
-  "w": 1280,
-  "ht": 800
+  "w": 2384,
+  "ht": 2376
  },
  "/images/proteus.webp": {
   "h": "1b829d8f89",
@@ -1975,12 +1695,6 @@
   "w": 144,
   "ht": 144
  },
- "/images/ventures/zaccess.png": {
-  "h": "f6529d1ae0",
-  "t": "img",
-  "w": 144,
-  "ht": 144
- },
  "/images/ventures/zacess.png": {
   "h": "4fe3023cc2",
   "t": "img",
@@ -1992,12 +1706,6 @@
   "t": "img",
   "w": 2400,
   "ht": 3000
- },
- "/images/zacess_logo.webp": {
-  "h": "87847129ff",
-  "t": "img",
-  "w": 1024,
-  "ht": 1024
  },
  "/videos/projects/astoncv/browse.mp4": {
   "h": "99e378696d",
@@ -2039,72 +1747,72 @@
   "w": 1280,
   "ht": 800
  },
- "/videos/projects/dev-environment/fzf-zacess.mp4": {
-  "h": "7ef5bbedcd",
+ "/videos/projects/dev-environment/fzf-zacess-v2.mp4": {
+  "h": "8663633518",
   "t": "file"
  },
- "/videos/projects/dev-environment/fzf-zacess.webp": {
-  "h": "882e5d5a3b",
+ "/videos/projects/dev-environment/fzf-zacess-v2.webp": {
+  "h": "25d346fcaa",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/hooks-zacess.mp4": {
-  "h": "aa2e201c56",
+ "/videos/projects/dev-environment/hooks-zacess-v2.mp4": {
+  "h": "6bbc371420",
   "t": "file"
  },
- "/videos/projects/dev-environment/hooks-zacess.webp": {
-  "h": "aef89038b6",
+ "/videos/projects/dev-environment/hooks-zacess-v2.webp": {
+  "h": "fa8f0a102e",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/lazygit-zacess.mp4": {
-  "h": "a8db12f28a",
+ "/videos/projects/dev-environment/lazygit-zacess-v2.mp4": {
+  "h": "e44f2a3307",
   "t": "file"
  },
- "/videos/projects/dev-environment/lazygit-zacess.webp": {
-  "h": "3adbb56be4",
+ "/videos/projects/dev-environment/lazygit-zacess-v2.webp": {
+  "h": "8a7a26beeb",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/linux-zacess.mp4": {
-  "h": "c77b55f3a7",
+ "/videos/projects/dev-environment/linux-zacess-v2.mp4": {
+  "h": "ccc8aecd42",
   "t": "file"
  },
- "/videos/projects/dev-environment/linux-zacess.webp": {
-  "h": "f6f2d30e46",
+ "/videos/projects/dev-environment/linux-zacess-v2.webp": {
+  "h": "b92aa0351a",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/neovim-zacess.mp4": {
-  "h": "652a418717",
+ "/videos/projects/dev-environment/neovim-zacess-v2.mp4": {
+  "h": "32cddecd85",
   "t": "file"
  },
- "/videos/projects/dev-environment/neovim-zacess.webp": {
-  "h": "3b2f37cbdd",
+ "/videos/projects/dev-environment/neovim-zacess-v2.webp": {
+  "h": "026e6a347e",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/shell-zacess.mp4": {
-  "h": "34a95dd42a",
+ "/videos/projects/dev-environment/shell-zacess-v2.mp4": {
+  "h": "bd63c69662",
   "t": "file"
  },
- "/videos/projects/dev-environment/shell-zacess.webp": {
-  "h": "6d98989ef6",
+ "/videos/projects/dev-environment/shell-zacess-v2.webp": {
+  "h": "6f05f95f20",
   "t": "img",
   "w": 1400,
   "ht": 980
  },
- "/videos/projects/dev-environment/tmux-zacess.mp4": {
-  "h": "68d9814c23",
+ "/videos/projects/dev-environment/tmux-zacess-v2.mp4": {
+  "h": "6e80b536a3",
   "t": "file"
  },
- "/videos/projects/dev-environment/tmux-zacess.webp": {
-  "h": "cf93110cba",
+ "/videos/projects/dev-environment/tmux-zacess-v2.webp": {
+  "h": "ea0a21d173",
   "t": "img",
   "w": 1400,
   "ht": 980

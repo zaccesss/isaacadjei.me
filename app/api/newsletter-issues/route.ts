@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { cdnCache } from "@/lib/cdn-cache"
 import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
 import { fetchNewsletterIssues, type NewsletterIssue } from "@/lib/newsletter"
 
@@ -10,7 +11,7 @@ export async function GET(req: Request) {
   }
   try {
     const issues = await fetchNewsletterIssues()
-    return NextResponse.json(issues, { headers: { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=3600" } })
+    return NextResponse.json(issues, { headers: cdnCache(600, 3600) })
   } catch {
     return NextResponse.json([], { headers: { "Cache-Control": "no-store" } })
   }

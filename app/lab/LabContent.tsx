@@ -16,8 +16,9 @@ import {
   PROFILE_FILE, SHELL_ALIASES, SHELL_IDS, SHELL_TITLE, fileMissingLines, loadShell, normaliseFileArg, notFoundLines,
   profilePath, promptText, rcFiles, saveShell, shellFromName, shellHelpLines, shellStartLines, windowsPath,
 } from "./_terminal/shells"
-import { SCENES, ScenesView, findScene } from "./_terminal/scenes"
-import { GAMES, GamesView, INSTALL_LINES, findGame, gamesListLines } from "./_terminal/games"
+import { TmuxView, type TmuxStart } from "./_terminal/tmux"
+import { RecordingView, SCENES, findRecording, sceneListLines, zacessThemeFor } from "./_terminal/scenes"
+import { GAMES, GAME_RECORDINGS, GamesView, findGame, gamesListLines } from "./_terminal/games"
 
 const PCBViewer = dynamic(() => import("@/components/lab/PCBViewer"), { ssr: false })
 
@@ -184,6 +185,9 @@ const CMDS_LINES: Line[] = [
   { type: "pair", text: "  gs / gb / glog  the real aliases: status, branch and the log graph" },
   { type: "blank", text: "" },
   { type: "heading", text: "TMUX AND NEOVIM" },
+  { type: "pair", text: "  tmux           open the session: Ctrl+B then | or - to split, c for a window, d to detach" },
+  { type: "pair", text: "  ide / idev     tmux with Neovim on top over a shell and a scene (idev adds the dev server's logs)" },
+  { type: "pair", text: "  imon           tmux with a coding stats monitor, a shell and a scene" },
   { type: "pair", text: "  tmux ls / tls  the running sessions" },
   { type: "pair", text: "  nvim [file] / vim  open README.md, about.md or tmux.conf read-only" },
   { type: "pair", text: "  nano [file]  the same files in a nano view, Ctrl+X to leave" },
@@ -191,12 +195,12 @@ const CMDS_LINES: Line[] = [
   { type: "heading", text: "SHELLS AND THEMES" },
   { type: "pair", text: "  zsh / bash / pwsh / cmd  switch shell; exit goes back" },
   { type: "pair", text: "  chsh -s <shell>  the shell this lab opens with" },
-  { type: "pair", text: "  theme list / theme <name>  the eight Zacess themes" },
+  { type: "pair", text: "  theme list / theme <name>  the ten Zacess themes" },
   { type: "pair", text: "  cat ~/.zshrc  a start-up file that follows the theme" },
   { type: "blank", text: "" },
   { type: "heading", text: "ZACESS" },
-  { type: "pair", text: "  zacess-scenes [list | name]  a calm animated scene" },
-  { type: "pair", text: "  zacess-games [list | name]  small terminal games" },
+  { type: "pair", text: "  zacess-scenes [list | name]  play a recorded scene in your theme" },
+  { type: "pair", text: "  zacess-games [list | name]  three games to play, recordings of the rest" },
   { type: "blank", text: "" },
   { type: "heading", text: "SHELL" },
   { type: "pair", text: "  ll / la  the long listing aliases" },
@@ -1727,8 +1731,9 @@ export default function LabPage({ data }: { data: LabData }) {
   const [shell, setShell] = useState<ShellId>("zsh")
   const [shellStack, setShellStack] = useState<ShellId[]>([])
   const [themeId, setThemeId] = useState<string>(DEFAULT_THEME)
-  const [scene, setScene] = useState<number | null>(null)
+  const [recording, setRecording] = useState<{ kind: "scenes" | "games"; start: number; theme: string; siteDefault: boolean } | null>(null)
   const [games, setGames] = useState<{ start: number; seed: number; today: number } | null>(null)
+  const [tmux, setTmux] = useState<{ start: TmuxStart; theme: string } | null>(null)
   const [reduced, setReduced] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
@@ -1813,8 +1818,21 @@ export default function LabPage({ data }: { data: LabData }) {
     focusPrompt()
   }
 
+  const openRecording = useCallback((kind: "scenes" | "games", start: number) => {
+    const dark = document.documentElement.classList.contains("dark")
+    setGames(null)
+    setRecording({ kind, start, theme: zacessThemeFor(themeId, dark), siteDefault: !themeById(themeId) })
+  }, [themeId])
+
+  const closeTmux = (message: string) => {
+    setTmux(null)
+    setLines((prev) => [...prev, { type: "output", text: message }, { type: "blank", text: "" }])
+    setSrStatus(`${message} Back in the shell.`)
+    focusPrompt()
+  }
+
   const closeView = (message: string) => {
-    setScene(null)
+    setRecording(null)
     setGames(null)
     setSrStatus(`${message} Back in the shell.`)
     focusPrompt()
@@ -1955,7 +1973,7 @@ export default function LabPage({ data }: { data: LabData }) {
       if (!found) {
         print([
           { type: "error", text: `theme: no theme called '${arg}'` },
-          { type: "output", text: "  type 'theme list' to see all eight." },
+          { type: "output", text: "  type 'theme list' to see all ten." },
         ])
         return
       }
@@ -1973,28 +1991,20 @@ export default function LabPage({ data }: { data: LabData }) {
     if (scenesCmd) {
       const arg = (scenesCmd[1] ?? "").trim().toLowerCase()
       if (arg === "list") {
-        print([
-          { type: "title", text: "Zacess Scenes in this lab" },
-          ...SCENES.map((sc): Line => ({ type: "pair", text: `  ${sc.id.padEnd(10)}  ${sc.summary}` })),
-          blank,
-          { type: "output", text: "  keys: n next, b back, Space pause and q quit." },
-          { type: "output", text: "  the full program has 39 scenes, a build monitor and sound:" },
-          { type: "output", text: "    cargo install --locked zacess-scenes" },
-          { type: "output", text: "    brew install zacesshq/tap/zacess-scenes" },
-        ])
+        print(sceneListLines())
         return
       }
-      const idx = arg ? findScene(arg) : 0
+      const idx = arg ? findRecording(SCENES, arg) : 0
       if (idx < 0) {
         print([
-          { type: "error", text: `zacess-scenes: no scene called '${arg}' in this lab` },
-          { type: "output", text: "  type 'zacess-scenes list' to see the four here." },
+          { type: "error", text: `zacess-scenes: no scene called '${arg}'` },
+          { type: "output", text: `  type 'zacess-scenes list' to see all ${SCENES.length}.` },
         ])
         return
       }
       setLines((prev) => [...prev, echo])
-      setScene(idx)
-      setSrStatus(`Opened zacess-scenes: ${SCENES[idx].title}. n next, b back, Space pause, q quit.`)
+      openRecording("scenes", idx)
+      setSrStatus(`Opened zacess-scenes: ${SCENES[idx].name}. n next, b back, Space pause, s sound, q quit.`)
       return
     }
 
@@ -2009,17 +2019,14 @@ export default function LabPage({ data }: { data: LabData }) {
       if (arg && idx < 0) {
         print([
           { type: "error", text: `zacess-games: no game called '${arg}'` },
-          { type: "output", text: "  type 'zacess-games list' to see all fourteen." },
+          { type: "output", text: `  type 'zacess-games list' to see all ${GAMES.length}.` },
         ])
         return
       }
       if (idx >= 0 && !GAMES[idx].playable) {
-        print([
-          { type: "info", text: `${GAMES[idx].name} runs in the full terminal app:` },
-          { type: "output", text: `  ${INSTALL_LINES[0]}` },
-          { type: "output", text: `  ${INSTALL_LINES[1]}` },
-          { type: "output", text: "  here: 'zacess-games termle', 'zacess-games merge-gates' or 'zacess-games trace'." },
-        ])
+        setLines((prev) => [...prev, echo])
+        openRecording("games", GAME_RECORDINGS.findIndex((g) => g.id === GAMES[idx].id))
+        setSrStatus(`Opened a recording of ${GAMES[idx].name}. n next, b back, Space pause, s sound, q quit.`)
         return
       }
       const d = new Date()
@@ -2134,6 +2141,16 @@ export default function LabPage({ data }: { data: LabData }) {
       return
     }
 
+    const layout = /^(ide|idev|imon)$/i.exec(cmd)?.[1]?.toLowerCase() as TmuxStart | undefined
+    if (layout || /^tmux(?:\s+(?:new|new-session|attach|attach-session|at|a)(?:\s.*)?)?$/i.test(cmd)) {
+      const start: TmuxStart = layout ?? "tmux"
+      const dark = document.documentElement.classList.contains("dark")
+      setLines((prev) => [...prev, echo])
+      setTmux({ start, theme: zacessThemeFor(themeId, dark) })
+      setSrStatus(`Opened tmux${start === "tmux" ? "" : ` with the ${start} layout`}. Control B then a key: | and - split, c new window, d detach.`)
+      return
+    }
+
     if (cmd === "tmux" || cmd.startsWith("tmux ")) {
       setLines((prev) => [
         ...prev,
@@ -2240,7 +2257,7 @@ export default function LabPage({ data }: { data: LabData }) {
       ...output,
       { type: "blank", text: "" },
     ])
-  }, [data, name, shell, shellStack, themeId, theme])
+  }, [data, name, shell, shellStack, themeId, theme, openRecording])
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowUp") {
@@ -2258,7 +2275,7 @@ export default function LabPage({ data }: { data: LabData }) {
 
   const isMaximized = winState === "maximized"
   const bodyHeight = isMaximized ? "flex-1 min-h-0" : "h-[52svh] max-h-105 min-h-65 sm:h-110 sm:max-h-none"
-  const viewOpen = scene !== null || games !== null || editor?.kind === "nano"
+  const viewOpen = recording !== null || games !== null || tmux !== null || editor?.kind === "nano"
   const isMinimized = winState === "minimized"
   const isClosed = winState === "closed"
 
@@ -2347,16 +2364,32 @@ export default function LabPage({ data }: { data: LabData }) {
 
           {!isMinimized && (
             <div className={`${s.body} flex flex-col min-h-0 ${isMaximized ? "flex-1" : ""}`}>
-              {scene !== null ? (
-                <ScenesView
-                  start={scene}
-                  themeName={theme ? theme.name : "site palette"}
+              {recording ? (
+                <RecordingView
+                  key={`${recording.kind}:${recording.start}`}
+                  kind={recording.kind}
+                  items={recording.kind === "scenes" ? SCENES : GAME_RECORDINGS}
+                  start={recording.start}
+                  theme={recording.theme}
+                  siteDefault={recording.siteDefault}
                   reducedMotion={reduced}
                   heightClass={bodyHeight}
                   onExit={closeView}
                 />
               ) : games ? (
-                <GamesView start={games.start} seed={games.seed} today={games.today} heightClass={bodyHeight} onExit={closeView} />
+                <GamesView
+                  start={games.start}
+                  seed={games.seed}
+                  today={games.today}
+                  heightClass={bodyHeight}
+                  onExit={closeView}
+                  onWatch={(id) => {
+                    openRecording("games", GAME_RECORDINGS.findIndex((g) => g.id === id))
+                    setSrStatus(`Opened a recording of ${GAME_RECORDINGS.find((g) => g.id === id)?.name ?? id}.`)
+                  }}
+                />
+              ) : tmux ? (
+                <TmuxView key={tmux.start} start={tmux.start} handle={nameHandle(name)} theme={tmux.theme} reduced={reduced} heightClass={bodyHeight} onExit={closeTmux} />
               ) : editor?.kind === "nano" ? (
                 <NanoView
                   editor={editor}
@@ -2447,7 +2480,7 @@ export default function LabPage({ data }: { data: LabData }) {
                 </form>
               )}
               <TmuxBar
-                window={scene !== null ? "scenes" : games ? "games" : editor ? (editor.kind ?? "nvim") : SHELL_TITLE[shell]}
+                window={recording ? recording.kind : games ? "games" : editor ? (editor.kind ?? "nvim") : SHELL_TITLE[shell]}
                 shell={SHELL_TITLE[shellStack[shellStack.length - 1] ?? "zsh"]}
                 clock={clock}
               />

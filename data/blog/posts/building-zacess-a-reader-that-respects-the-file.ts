@@ -235,6 +235,13 @@ export const zacessLaunch: ContentBlock[] = [
   },
 ]
 
+const tenThemes: ContentBlock = {
+  type: "image",
+  src: `${IMG}/themes/ten-themes.webp`,
+  alt: "The ten Zacess code themes on the same TypeScript and Python sample, in five rows of two: Light and Dark, Yellow on Black and Cream, High Contrast Dark and Light, Deep Contrast Dark and Light, then Warm Dark and Warm Light. Each panel is headed with the theme's name",
+  caption: "All ten code themes today, from the previews in the themes repository",
+}
+
 const _building_zacess: BlogPost = {
   slug: "building-zacess-a-reader-that-respects-the-file",
   title: "Building Zacess: A Reader That Respects the File",
@@ -247,15 +254,20 @@ const _building_zacess: BlogPost = {
     "Zacess is a free, open-source reader that turns PDFs, scans, Word files and web pages into notes in your own reading profile, reads them aloud and keeps every file on your device. Why I built it, how it works, short demos, the matching code themes and what it cannot do yet.",
   tags: ["Accessibility", "Rust", "WebAssembly", "TypeScript", "Zacess", "Code themes"],
   projectSlug: "zacess",
-  updated: "2026-10-29",
+  updated: "2026-11-07",
   published: true,
   content: [
     {
       type: "callout",
       tone: "note",
+      text: "Update, 7 November 2026: Zacess Warm Dark and Zacess Warm Light have joined, a gentler pair for anyone who finds high contrast too intense. They hold every code colour at 4.5 to 1 rather than 7 to 1, which makes ten code themes. I have added a picture of all ten under the code themes clip, which still shows the original four.",
+    },
+    {
+      type: "callout",
+      tone: "note",
       text: "Update, 21 October 2026: four themes have joined since launch. Zacess High Contrast Dark and Zacess High Contrast Light arrived on 19 October with pure black and pure white backgrounds and are reading themes in the browser version too. Zacess Deep Contrast Dark and Zacess Deep Contrast Light followed on 21 October with deep, fully saturated colours for low vision, along with an Eclipse version. That made eight code themes for nine editors and five terminals. Since then Xcode and three more terminals have joined, so by 29 October the themes covered ten editors and eight terminals. The same colours now draw [Zacess Scenes](https://zacess.com/scenes/), calm animated scenes for the terminal. See every theme on the [code themes page](https://zacess.com/themes/).",
     },
-    ...zacessLaunch,
+    ...zacessLaunch.flatMap((b) => (b.type === "clip" && b.src === `${VID}/themes.mp4` ? [b, tenThemes] : [b])),
   ],
 }
 

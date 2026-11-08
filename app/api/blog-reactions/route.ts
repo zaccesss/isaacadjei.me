@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { redis } from "@/lib/redis"
 import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
 
-export const PRESET_TYPES = [
+const PRESET_TYPES = [
   "👍","❤️","🔥","💡","🤯","🎉","💯","🎯",
   "👎","😄","😕","😢","🚀","👀","🙌","😮","💪","🧠","✨","🌟","🙏","😍","🤝","😎","🫶","🥹","🫠","🤌",
 ] as const

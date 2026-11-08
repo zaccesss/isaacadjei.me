@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"
 
 export default function Analytics({ gaId, cfToken }: { gaId?: string; cfToken?: string }) {
   const pathname = usePathname()
-  if (pathname?.startsWith("/dashboard")) return null
   return (
     <>
       {gaId && (

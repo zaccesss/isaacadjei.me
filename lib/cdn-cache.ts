@@ -4,5 +4,6 @@ export function cdnCache(sMaxage: number, swr: number = sMaxage * 2): Record<str
     "Cache-Control": "public, max-age=0, must-revalidate",
     "CDN-Cache-Control": cdn,
     "Vercel-CDN-Cache-Control": cdn,
+    "Cloudflare-CDN-Cache-Control": `public, max-age=${sMaxage}, stale-while-revalidate=${swr}`,
   }
 }

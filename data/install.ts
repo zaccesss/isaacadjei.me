@@ -20,7 +20,7 @@ export const installTools: InstallTool[] = [
   {
     id: "zacess-themes",
     name: "Zacess Themes",
-    summary: "Eight high-contrast colour themes for code editors, terminals and notes, built for low vision and checked for contrast.",
+    summary: "Ten colour themes for code editors, terminals and notes: eight high-contrast themes built for low vision and a gentler warm pair, all checked for contrast.",
     repo: "zacesshq/themes",
     project: "/projects/zacess",
     channels: [

@@ -112,8 +112,8 @@ git clone https://github.com/zaccesss/dotfiles.git ~/dev/github/repos/dotfiles
     },
     {
       type: "clip",
-      src: "/videos/projects/dev-environment/shell-zacess.mp4",
-      poster: "/videos/projects/dev-environment/shell-zacess.webp",
+      src: "/videos/projects/dev-environment/shell-zacess-v2.mp4",
+      poster: "/videos/projects/dev-environment/shell-zacess-v2.webp",
       alt: "A new zsh session prints the welcome banner, cmds pages through the colour-coded command reference, then gs and glog show the status and recent history of a demo project",
       caption: "What a freshly bootstrapped shell looks like: the welcome banner, the cmds reference and the short Git aliases.",
     },

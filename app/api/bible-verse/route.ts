@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { cdnCache } from "@/lib/cdn-cache"
 import { heavyApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
 import { stripHtmlTags } from "@/lib/strip-html-tags"
 
@@ -23,7 +24,7 @@ export async function GET(req: Request) {
     return NextResponse.json({
       verse: cleanText,
       reference: `${bookname} ${chapter}:${verse}`,
-    })
+    }, { headers: cdnCache(600) })
   } catch {
     return NextResponse.json({
       verse:

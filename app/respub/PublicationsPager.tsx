@@ -1,7 +1,7 @@
 "use client"
 
 import { Children, Suspense, type ReactNode } from "react"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 

@@ -239,7 +239,7 @@ html.apple {
   /*
     the public pages promise that every animation follows this setting, so the utility keyframes (pulse, ping, spin,
     bounce, the typing cursors and the enter and exit fades on menus and dialogs) all stop here as one net. Only the
-    public shell renders #main-content, so the dashboard keeps its own behaviour. Portalled menus sit outside the
+    public shell renders #main-content, so other layouts keep their own behaviour. Portalled menus sit outside the
     shell, which is why the match runs from body rather than from the shell itself
   */
   body:has(#main-content) *,

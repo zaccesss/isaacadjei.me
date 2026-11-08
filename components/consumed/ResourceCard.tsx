@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { ExternalLink, FileText } from "lucide-react"
 import { type ResourceEntry } from "@/data/consumed/types"
 import { consumedSlug, normTag } from "@/lib/tags"

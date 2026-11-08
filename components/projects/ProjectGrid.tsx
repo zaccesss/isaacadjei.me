@@ -74,7 +74,7 @@ export default function ProjectGrid({ projects }: Props) {
         {filtered.length === 0 ? (
           <p className="text-muted-foreground text-center py-16">No projects match these filters.</p>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {paginated.map((project, i) => (
               <ProjectCard key={project.id} project={project} priority={page === 1 && i === 0} />
             ))}

@@ -21,7 +21,8 @@ const scriptSrc = ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https://c
 // so every OpenFreeMap style was silently CSP-blocked until this was fixed (confirmed via real
 // console CSP-violation errors, not a guess).
 // *.ingest.de.sentry.io receives browser error reports (instrumentation-client.ts); the org lives in Sentry's EU region
-const connectSrc = ["'self'", "https://*.ingest.de.sentry.io", "https://challenges.cloudflare.com", "https://zenquotes.io", "https://*.google-analytics.com", "https://analytics.google.com", "https://api.lanyard.rest", "wss://api.lanyard.rest", "https://cloudflareinsights.com", "https://vercel.live", "wss://ws-us3.pusher.com", "https://api.maptiler.com", "https://tiles.openfreemap.org", "https://services.arcgisonline.com"]
+// media.zacess.com serves the Zacess scene and game frames as JSON fetched by the frame player (lib/zacess-media.ts)
+const connectSrc = ["'self'", "https://media.zacess.com", "https://*.ingest.de.sentry.io", "https://challenges.cloudflare.com", "https://zenquotes.io", "https://*.google-analytics.com", "https://analytics.google.com", "https://api.lanyard.rest", "wss://api.lanyard.rest", "https://cloudflareinsights.com", "https://vercel.live", "wss://ws-us3.pusher.com", "https://api.maptiler.com", "https://tiles.openfreemap.org", "https://services.arcgisonline.com"]
 
 if (isDev) {
   scriptSrc.push("'unsafe-eval'")
@@ -42,6 +43,8 @@ const nextConfig = {
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "i.scdn.co" },
       { protocol: "https", hostname: "mosaic.scdn.co" },
+      // Zacess product stills and posters from the zacess-media bucket (lib/zacess-media.ts)
+      { protocol: "https", hostname: "media.zacess.com" },
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
@@ -50,10 +53,7 @@ const nextConfig = {
     // Next.js negotiates the format automatically via Accept headers.
     formats: ["image/avif", "image/webp"],
   },
-  // the role CVs and the private course documents live outside public/ and are read at request time, so tracing has to be told to ship them
   outputFileTracingIncludes: {
-    "/api/dashboard/cv/[file]": ["./data/cv-files/**"],
-    "/api/dashboard/documents/[file]": ["./data/private-documents/**"],
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
@@ -66,7 +66,6 @@ const nextConfig = {
   async redirects() {
     return [
       // renamed the posts analytics route from blog-analytics to post-analytics; keep old links working.
-      { source: "/dashboard/blog-analytics", destination: "/dashboard/post-analytics", permanent: true },
       // the World Cup predictor note generalised into a multi-sport platform; keep the old link working.
       { source: "/notes/world-cup-ai-predictor", destination: "/notes/multi-sport-ai-predictor", permanent: true },
       // the dotfiles project grew into the wider developer environment write-up
@@ -78,6 +77,24 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // public files and metadata routes go out with max-age=0, so Cloudflare revalidates each one with Vercel and every
+      // view still counts as a Vercel CDN request. Cloudflare-CDN-Cache-Control is read only by Cloudflare and never reaches
+      // the browser (https://developers.cloudflare.com/cache/concepts/cdn-cache-control/), so Cloudflare holds files for a
+      // day and the feeds for an hour while the browser behaviour stays as it was. /resume is left out on purpose: the CV
+      // must update the moment a new one is built.
+      ...[
+        "/images/:path*", "/Media/:path*", "/brand/:path*", "/frames/:path*", "/maps/:path*", "/models/:path*",
+        "/videos/:path*", "/documents/:path*", "/icon.svg", "/icon.png", "/apple-icon", "/manifest.webmanifest",
+        "/opengraph-image", "/twitter-image", "/:any+/opengraph-image", "/:any+/twitter-image",
+        "/giscus-theme-dark.css", "/giscus-theme-light.css",
+      ].map((source) => ({
+        source,
+        headers: [{ key: "Cloudflare-CDN-Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      })),
+      ...["/robots.txt", "/sitemap.xml", "/feed.xml", "/newsletter/feed.xml"].map((source) => ({
+        source,
+        headers: [{ key: "Cloudflare-CDN-Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
+      })),
       // noindex OG and Twitter image generation routes - they are internal
       // image endpoints, not content pages and should not appear in search results.
       { source: "/opengraph-image",          headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
@@ -103,8 +120,9 @@ const nextConfig = {
               "font-src 'self' data: https://cal.com",
               "img-src 'self' data: blob: https:",
               // demo clips and their posters load from the R2 media domain (lib/media.ts); without this, video falls
-              // back to default-src 'self' and every clip would be blocked
-              "media-src 'self' https://media.isaacadjei.me",
+              // back to default-src 'self' and every clip would be blocked. media.zacess.com is the Zacess product
+              // bucket, so its recordings can play here once they are uploaded at a release
+              "media-src 'self' https://media.isaacadjei.me https://media.zacess.com",
               `connect-src ${connectSrc.join(" ")}`,
               // MapLibre GL JS (the Applications map) parses vector tiles in a Web Worker created
               // from a blob: URL - worker-src falls back to script-src, not default-src, per the

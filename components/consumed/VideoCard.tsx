@@ -1,5 +1,5 @@
 "use client"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { Play, ExternalLink, FileText } from "lucide-react"
 import { youtubeThumbUrl, type VideoEntry } from "@/data/consumed/types"
 import { consumedSlug, normTag } from "@/lib/tags"

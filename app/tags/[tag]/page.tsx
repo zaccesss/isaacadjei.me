@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import { notFound } from "next/navigation"
 import { ArrowLeft, Tag } from "lucide-react"
 import { getPublishedPosts } from "@/data/blog"

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Laptop, Zap, Wifi, WifiOff, GitBranch, Monitor, ExternalLink } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
@@ -9,6 +9,7 @@ import { SiPlaystation, SiDiscord, SiSpotify } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { DISCORD_PROFILE_ID, DISCORD_USER_ID } from "@/lib/site-config"
+import { schedule, useLiveMode } from "@/lib/use-live-polling"
 
 interface LastPlayed {
   track: string
@@ -332,19 +333,59 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
     return () => clearInterval(id)
   }, [])
 
+  const rootRef = useRef<HTMLDivElement>(null)
+  const mode = useLiveMode(rootRef)
+  const [socketUp, setSocketUp] = useState(false)
+  const lastSpotifyPoll = useRef(0)
+  const lastSnapshotPoll = useRef(0)
+
+  const pollSpotify = useCallback(async (fresh = false) => {
+    try {
+      const r = await fetch(fresh ? `/api/spotify?t=${Math.floor(Date.now() / 3000)}` : "/api/spotify")
+      if (r.ok) setSpotify(await r.json())
+    } catch {}
+  }, [])
+
+  const pollSnapshot = useCallback(async () => {
+    try {
+      const r = await fetch("/api/live-status")
+      if (!r.ok) return
+      const { macbook, lenovo, gpc, ps5, github, lanyard: l } = await r.json()
+      if (macbook) setMac(macbook)
+      if (lenovo) setLenovo(lenovo)
+      if (gpc) {
+        setGamingPC({
+          online:        gpc.online,
+          lastSeen:      gpc.lastSeen,
+          device:        gpc.device,
+          cpu:           gpc.cpu,
+          gpu:           gpc.gpu,
+          currentGame:   gpc.game,
+          gameImage:     gpc.gameImage ?? null,
+          lastGame:      gpc.lastGame ?? null,
+          lastGameImage: gpc.lastGameImage ?? null,
+        })
+        if (gpc.online && gpc.lastSeen && gpc.lastSeen !== lastGpcSampleRef.current) {
+          lastGpcSampleRef.current = gpc.lastSeen
+          setGpcHistory((h) => [...h, { cpu: gpc.cpu ?? 0, gpu: gpc.gpu ?? 0 }].slice(-GPC_SPARK_SAMPLES))
+        } else if (!gpc.online) {
+          lastGpcSampleRef.current = null
+          setGpcHistory((h) => (h.length ? [] : h))
+        }
+      }
+      if (ps5) setPs5Data(ps5)
+      if (github) setGithub(github)
+      if (l?.data) {
+        setLanyard(l.data)
+        if (l.data.discord_status !== "offline") setLanyardLastOnline(Date.now())
+      }
+    } catch {}
+  }, [])
+
+  const watched = mode !== "off"
   useEffect(() => {
+    if (!watched) return
     let stopped = false
-    let spotifyTimer: ReturnType<typeof setInterval> | undefined
-    let spotifyEvery = 8000
-    let snapshotTimer: ReturnType<typeof setInterval> | undefined
-
-    const pollSpotify = async (fresh = false) => {
-      try {
-        const r = await fetch(fresh ? `/api/spotify?t=${Math.floor(Date.now() / 3000)}` : "/api/spotify")
-        if (r.ok) setSpotify(await r.json())
-      } catch {}
-    }
-
     let socket: WebSocket | undefined
     let socketBeat: ReturnType<typeof setInterval> | undefined
     let socketRetry: ReturnType<typeof setTimeout> | undefined
@@ -370,85 +411,39 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
             } else if (msg.op === 0) {
               const sp = msg.d?.spotify
               const key = sp ? `${sp.track_id}|${sp.timestamps?.start}` : "none"
-              if (lastTrackKey !== null && key !== lastTrackKey) pollSpotify(true)
+              if (lastTrackKey !== null && key !== lastTrackKey) void pollSpotify(true)
               lastTrackKey = key
-              if (spotifyTimer && spotifyEvery !== 30000) { clearInterval(spotifyTimer); spotifyEvery = 30000; spotifyTimer = setInterval(pollSpotify, spotifyEvery) }
+              setSocketUp(true)
             }
           } catch {}
         }
         ws.onclose = () => {
           closeSocket()
-          if (spotifyTimer && spotifyEvery !== 8000) { clearInterval(spotifyTimer); spotifyEvery = 8000; spotifyTimer = setInterval(pollSpotify, spotifyEvery) }
+          setSocketUp(false)
           if (!stopped && document.visibilityState === "visible") socketRetry = setTimeout(openSocket, 15000)
         }
         ws.onerror = () => ws.close()
       } catch {}
     }
-
-    const pollSnapshot = async () => {
-      try {
-        const r = await fetch("/api/live-status")
-        if (!r.ok) return
-        const { macbook, lenovo, gpc, ps5, github, lanyard: l } = await r.json()
-        if (macbook) setMac(macbook)
-        if (lenovo) setLenovo(lenovo)
-        if (gpc) {
-          setGamingPC({
-            online:        gpc.online,
-            lastSeen:      gpc.lastSeen,
-            device:        gpc.device,
-            cpu:           gpc.cpu,
-            gpu:           gpc.gpu,
-            currentGame:   gpc.game,
-            gameImage:     gpc.gameImage ?? null,
-            lastGame:      gpc.lastGame ?? null,
-            lastGameImage: gpc.lastGameImage ?? null,
-          })
-          if (gpc.online && gpc.lastSeen && gpc.lastSeen !== lastGpcSampleRef.current) {
-            lastGpcSampleRef.current = gpc.lastSeen
-            setGpcHistory((h) => [...h, { cpu: gpc.cpu ?? 0, gpu: gpc.gpu ?? 0 }].slice(-GPC_SPARK_SAMPLES))
-          } else if (!gpc.online) {
-            lastGpcSampleRef.current = null
-            setGpcHistory((h) => (h.length ? [] : h))
-          }
-        }
-        if (ps5) setPs5Data(ps5)
-        if (github) setGithub(github)
-        if (l?.data) {
-          setLanyard(l.data)
-          if (l.data.discord_status !== "offline") setLanyardLastOnline(Date.now())
-        }
-      } catch {}
-    }
-
-    const start = () => {
-      if (stopped || spotifyTimer || snapshotTimer) return
-      pollSpotify()
-      pollSnapshot()
-      spotifyEvery = 8000
-      spotifyTimer = setInterval(pollSpotify, spotifyEvery)
-      snapshotTimer = setInterval(pollSnapshot, 45000)
-      openSocket()
-    }
-    const stop = () => {
-      if (spotifyTimer) { clearInterval(spotifyTimer); spotifyTimer = undefined }
-      if (snapshotTimer) { clearInterval(snapshotTimer); snapshotTimer = undefined }
-      closeSocket()
-    }
-
-    const onVisibility = () => {
-      if (document.visibilityState === "visible") start()
-      else stop()
-    }
-
-    if (document.visibilityState === "visible") start()
-    document.addEventListener("visibilitychange", onVisibility)
+    openSocket()
     return () => {
       stopped = true
-      stop()
-      document.removeEventListener("visibilitychange", onVisibility)
+      closeSocket()
+      setSocketUp(false)
     }
-  }, [])
+  }, [watched, pollSpotify])
+
+  useEffect(() => {
+    if (mode === "off") return
+    const spotifyEvery = mode === "live" && !socketUp ? 15_000 : 60_000
+    const snapshotEvery = mode === "live" ? 60_000 : 240_000
+    const stopSpotify = schedule(() => void pollSpotify(), spotifyEvery, lastSpotifyPoll)
+    const stopSnapshot = schedule(() => void pollSnapshot(), snapshotEvery, lastSnapshotPoll)
+    return () => {
+      stopSpotify()
+      stopSnapshot()
+    }
+  }, [mode, socketUp, pollSpotify, pollSnapshot])
 
   useEffect(() => {
     const reset = setTimeout(() => {
@@ -472,7 +467,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
     : "Paused"
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-3 text-left">
+    <div ref={rootRef} className="w-full max-w-md mx-auto space-y-3 text-left">
 
       <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 flex items-center justify-between gap-4">
         <div className="min-w-0">
@@ -604,6 +599,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   height={56}
                   sizes="56px"
                   className="rounded-lg shrink-0 shadow-xs grayscale"
+                  unoptimized
                 />
               ) : (
                 <div className="w-14 h-14 rounded-lg bg-muted shrink-0 flex items-center justify-center">

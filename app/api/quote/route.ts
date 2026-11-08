@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { cdnCache } from "@/lib/cdn-cache"
 import { heavyApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
 
 export const revalidate = 0
@@ -18,7 +19,7 @@ export async function GET(req: Request) {
     const data = await res.json()
     const { q: quote, a: author } = data[0]
 
-    return NextResponse.json({ quote, author })
+    return NextResponse.json({ quote, author }, { headers: cdnCache(600) })
   } catch {
     return NextResponse.json({
       quote: "Engineering that thinks. Technology that serves. Growth as a lifestyle.",

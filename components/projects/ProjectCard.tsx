@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/shared/IntentLink"
 import Image from "@/components/shared/MediaImage"
 import { ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"

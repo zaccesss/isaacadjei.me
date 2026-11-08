@@ -84,8 +84,8 @@ check_pattern '-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' "private key hea
     },
     {
       type: "clip",
-      src: "/videos/projects/dev-environment/hooks-zacess.mp4",
-      poster: "/videos/projects/dev-environment/hooks-zacess.webp",
+      src: "/videos/projects/dev-environment/hooks-zacess-v2.mp4",
+      poster: "/videos/projects/dev-environment/hooks-zacess-v2.webp",
       alt: "A config file holding an example AWS access key ID is staged and committed. The pre-commit hook refuses the commit with an explanation and the escape hatch for a false positive",
       caption: "The pre-commit hook refusing a commit that contains an example access key.",
     },

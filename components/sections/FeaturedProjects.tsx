@@ -46,7 +46,7 @@ export default function FeaturedProjects() {
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid gap-6 md:grid-cols-2">
+          <motion.div variants={fadeUp} className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {featured.map((project, i) => (
               <div
                 key={project.id}

@@ -25,6 +25,24 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.112.0",
+    date: "2026-11-08",
+    label: "Zacess studio",
+    added: [
+      "A studio on the Zacess page to try every theme, scene, game, code sample and starter profile on a drawn laptop",
+      "The lab terminal plays every Zacess scene and game recording in the theme you pick",
+      "Sound for the scenes and games in the studio and the lab terminal, off until you turn it on",
+      "A tmux session in the lab terminal, with the ide, idev and imon layouts from my setup",
+    ],
+    changed: [
+      "All ten Zacess themes, including the gentler Warm pair, wherever the themes are listed",
+      "Live widgets refresh only while they are on screen and more pages load from the nearest cache, so the site stays quick and well within its hosting limits",
+    ],
+    fixed: [
+      "Project cards and long link buttons no longer run off the screen on small phones",
+    ],
+  },
+  {
     version: "v2.111.0",
     date: "2026-11-07",
     label: "Résumé refresh",
@@ -1170,11 +1188,11 @@ const releases: ChangeEntry[] = [
     version: "v2.10.0",
     date: "2026-06-19",
     added: [
-      "/lab: WakaTime coding dashboard - period selector (24h/7d/30d/90d/1y/all), stat cards, daily trend line chart, 7x24 interactive coding heatmap with hourly sparkline (total activity per UTC hour collapsed across all days) and peak coding hour, language and project progress bars, language and editor pie charts, weekday and hour-of-day bar charts, all with hover tooltips",
+      "/lab: WakaTime coding stats panel - period selector (24h/7d/30d/90d/1y/all), stat cards, daily trend line chart, 7x24 interactive coding heatmap with hourly sparkline (total activity per UTC hour collapsed across all days) and peak coding hour, language and project progress bars, language and editor pie charts, weekday and hour-of-day bar charts, all with hover tooltips",
       "/lab: 20+ new terminal commands including stats, streak, today, languages, vscode, os (live WakaTime data), posts (most-read blog and TIL), grade, uptime, now, mottos, hire, cv, decrypt, matrix, make",
       "/lab: theatrical command animations - hack, coffee, decrypt, matrix, make, sudo and zac now play out line by line with real delays",
       "/lab: clickable link line type in the terminal - URLs render as primary-coloured anchor tags",
-      "/lab: TypingMotto component - types out bash-style commands character by character, pauses then loops; used under the GitHub stats panel and the coding dashboard",
+      "/lab: TypingMotto component - types out bash-style commands character by character, pauses then loops; used under the GitHub stats panel and the coding stats panel",
       "/lab: Spotify visualiser - 52-column horizontal equaliser with a gradient darkening from light violet at the base to dark indigo at the peak (taller bar = darker colour); album art spins like a vinyl record when playing and its colours bleed through the bar shapes via SVG clipPath; bright indigo sine wave below the bars brightens with track energy; blurred album art as card background",
       "/lab: PCB viewer full redesign - full-width interactive 3D model (real geometry from the original 3DS file converted to GLB, loaded via react-three-fiber + drei); angle presets (front, back, top, bottom, left, right); wireframe toggle, auto-rotate toggle and grid helper; below the 3D model: copper layer drag-to-orbit panels, real board front/back flip card (photos of the actual built board), assembled board photo and full circuit schematic - the photo and schematic cards open in a fullscreen lightbox on click",
       "/about: approach code animation now ends with a highlighted primary-blue motto line - nohup hustle && disown impostor_syndrome",
@@ -1206,7 +1224,7 @@ const releases: ChangeEntry[] = [
       "Notes page TIL callout card linking to /til",
       "Lab terminal new commands: til, respub, rss, blogfeed, tilfeed, newsletterfeed, playing (async), lastgame (async), pushed (async)",
       "Newsletter While you wait section: TIL and Research and publications cross-links added",
-      "Dual PWA manifests: separate manifests for the public portfolio and dashboard with distinct icons, names and start URLs",
+      "A web app manifest with its own icons, name and start URL, so the site installs as an app",
       "Links page restructured from 4 to 10 sections (Professional, Writing, Academic, Code, Competitive Programming, Hackathons, Social, Content, Support, Other); 12 new platforms added including HackerRank, CodeChef, Stack Overflow, TryHackMe and ResearchGate; quick social icon row under bio",
       "Projects pagination: 9 per page with prev/next navigation; AI/ML added as a project category",
       "dotfiles project added to /projects: full detail page with overview, 8 highlights, tech stack and 2-image gallery; covers 59 topic files, cross-platform aliases, 3-platform git mirroring and Starship integration",
