@@ -25,6 +25,15 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.113.0",
+    date: "2026-11-09",
+    label: "Corrections",
+    changed: [
+      "The audio amplifier project page and post now give the correct output power and gain figures",
+      "Small behind-the-scenes improvements",
+    ],
+  },
+  {
     version: "v2.112.0",
     date: "2026-11-08",
     label: "Zacess studio",

@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     const website = /^https?:\/\/[^\s]+$/i.test(rawSite) ? rawSite.slice(0, 200) : null
     if (!name || !message) return json({ error: "Please add your name and a message." }, { status: 400 })
 
-    const salt = process.env.AUTH_SECRET ?? "guestbook"
+    const salt = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "guestbook"
     const ipHash = createHash("sha256").update(`${salt}:${ip}`).digest("hex").slice(0, 32)
     const { error } = await supabase.from("guestbook_entries").insert({ name, message, website, ip_hash: ipHash })
     if (error) {

@@ -431,3 +431,19 @@ html.apple {
 @media (min-width: 2400px) {
   html { font-size: 18px; }
 }
+
+/* the line that says what the Assistant is doing right now: plain text under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .assistant-live {
+    background: linear-gradient(90deg, hsl(var(--muted-foreground)) 35%, hsl(var(--foreground)) 50%, hsl(var(--muted-foreground)) 65%);
+    background-size: 220% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: assistant-live 2s linear infinite;
+  }
+  @keyframes assistant-live {
+    from { background-position: 110% 0; }
+    to { background-position: -110% 0; }
+  }
+}

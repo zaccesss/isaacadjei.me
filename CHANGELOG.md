@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.113.0] - 2026-11-09
+
+_Corrections_
+
+### Changed
+
+- The audio amplifier project page and post now give the correct output power and gain figures
+- Small behind-the-scenes improvements
+
 ## [2.112.0] - 2026-11-08
 
 _Zacess studio_

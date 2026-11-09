@@ -6,6 +6,7 @@ import PublicShell from "@/components/layout/PublicShell"
 import CommandMenu from "@/components/shared/CommandMenu"
 import FaviconAnimator from "@/components/shared/FaviconAnimator"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { PLATFORM_SCRIPT, THEME_SCRIPT } from "@/lib/inline-scripts"
 import { SITE_URL } from "@/lib/constants"
 import { Analytics } from "@vercel/analytics/next"
 import SiteAnalytics from "@/components/shared/Analytics"
@@ -84,11 +85,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';if(/mac|iphone|ipad|ipod|ios/i.test(p))document.documentElement.classList.add('apple')}catch(e){}",
-          }}
+          dangerouslySetInnerHTML={{ __html: PLATFORM_SCRIPT }}
         />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <link rel="me" href="https://hachyderm.io/@isaacadjei" />
         <link rel="me" href="https://mastodon.social/@isaacadjei" />
         <meta name="fediverse:creator" content="@isaacadjei@hachyderm.io" />
@@ -119,6 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          scriptProps={{ type: "text/plain" }}
         >
           <PublicShell>{children}</PublicShell>
           <CommandMenu />

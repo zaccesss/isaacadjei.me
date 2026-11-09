@@ -4,6 +4,7 @@ const _two_stage_audio_amplifier: BlogPost = {
     slug: "two-stage-audio-amplifier",
     title: "Designing and Building a Two-Stage Audio Amplifier from Scratch",
     date: "2026-03-01",
+    updated: "2026-11-09",
     type: "report",
     projectSlug: "audio-amplifier",
     cover_image: "/images/projects/audio-amplifier/pcb-angled.webp",
@@ -145,7 +146,7 @@ const _two_stage_audio_amplifier: BlogPost = {
           "Upper cut-off frequency: 28.54 kHz (target 29 kHz, limited by stock capacitor C1 = 68 pF)",
           "Measured gain: 10.67 dB (3.42 V/V), R1 = 82 kOhm, R2 = 24 kOhm",
           "Target output voltage: 3 Vpp across 8 ohm speaker load",
-          "Output power: 281 mW",
+          "Output power: 141 mW",
           "Key ICs: TL071CP (Stage 1 active filter) and OPA551PA (Stage 2 unity-gain buffer)",
           "PCB dimensions: 65 mm x 40 mm, two-layer design in Proteus",
         ],
@@ -222,7 +223,7 @@ const _two_stage_audio_amplifier: BlogPost = {
       },
       {
         type: "p",
-        text: "The frequency response of the first amplifier stage was measured on breadboard with a dual +/-9 V power supply. The simulated and measured midband gain at 440 Hz were both 10.67 dB, demonstrating exact agreement. The measured lower cut-off frequency was approximately 7.2 Hz and the upper was approximately 26.0 kHz, both in close agreement with calculated values. Small discrepancies are attributable to component tolerances.",
+        text: "The frequency response of the first amplifier stage was measured on breadboard with a dual +/-9 V power supply. The simulated midband gain at 440 Hz was 10.67 dB and the measured value was approximately 10.58 dB, in close agreement. The measured lower cut-off frequency was approximately 7.2 Hz and the upper was approximately 26.0 kHz, both in close agreement with calculated values. Small discrepancies are attributable to component tolerances.",
       },
       {
         type: "image",
@@ -252,7 +253,7 @@ const _two_stage_audio_amplifier: BlogPost = {
       },
       {
         type: "p",
-        text: "Time-domain testing at 440 Hz: Stage 1 output was 3.000 Vpp for a 868 mVpp input (gain 10.77 dB). Stage 2 output was 2.980 Vpp for a 872 mVpp input (gain 10.67 dB), in exact agreement with the calculated value. All waveforms were clean, undistorted sinusoids confirming linear operation throughout.",
+        text: "Time-domain testing at 440 Hz: Stage 1 output was 3.000 Vpp for a 868 mVpp input (gain 10.77 dB). Stage 2 output was 2.980 Vpp for a 872 mVpp input (overall gain 10.67 dB), in exact agreement with the calculated value. Stage 2 alone took 3.000 Vpp and delivered 2.980 Vpp, about -0.06 dB. All waveforms were clean, undistorted sinusoids confirming linear operation throughout.",
       },
       {
         type: "image",
