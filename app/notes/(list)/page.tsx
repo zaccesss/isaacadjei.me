@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { feedAlternates } from "@/lib/feeds"
+import { feedAlternates } from "@/lib/content/feeds"
 import Link from "@/components/shared/IntentLink"
 import { Separator } from "@/components/ui/separator"
 import { Rss } from "lucide-react"

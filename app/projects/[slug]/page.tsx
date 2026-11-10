@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { projects } from "@/data/projects"
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/lib/core/supabase"
 import ProjectDetail from "@/components/projects/ProjectDetail"
-import { highlightBlocks } from "@/lib/highlight"
-import { latestRelease } from "@/lib/github-releases"
+import { highlightBlocks } from "@/lib/content/highlight"
+import { latestRelease } from "@/lib/integrations/github-releases"
+import { sameShareImage } from "@/lib/content/share-image"
 
 export const revalidate = 86400
 
@@ -24,7 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const project = projects.find((p) => p.id === slug)
   if (!project) return {}
-  return {
+  const image = project.cover
+    ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.isaacadjei.me"}${project.cover}`
+    : `/api/og?title=${encodeURIComponent(project.title)}&description=${encodeURIComponent(project.description)}`
+  return sameShareImage({
     title: `Project | ${project.title}`,
     description: project.description,
     alternates: {
@@ -32,9 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       title: `Project | ${project.title}`,
-      images: [`/api/og?title=${encodeURIComponent(project.title)}&description=${encodeURIComponent(project.description)}`],
+      images: [image],
     },
-  }
+  })
 }
 
 export default async function ProjectPage({ params }: Props) {

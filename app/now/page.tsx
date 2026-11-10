@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import LiveStatusCards from "@/components/shared/LiveStatusCards"
-import InspirationWidget from "@/components/shared/InspirationWidget"
+import LiveStatusCards from "@/components/shared/live/LiveStatusCards"
+import InspirationWidget from "@/components/shared/live/InspirationWidget"
 import { getPublishedNotes } from "@/data/notes"
 import {
   BookOpen,

@@ -363,7 +363,7 @@ html.apple {
 
 /*
   code blocks: VS Code Light Modern and Dark Modern. Shiki emits both palettes as --shiki-light and --shiki-dark
-  on every span (lib/highlight.ts), so the site theme class alone picks the colours and a theme switch never
+  on every span (lib/content/highlight.ts), so the site theme class alone picks the colours and a theme switch never
   flashes or re-renders. Header colours are the Modern tab bar shades, both above 7:1 for the label text.
 */
 .code-frame {

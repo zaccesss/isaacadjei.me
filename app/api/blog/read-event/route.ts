@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { redis } from "@/lib/redis"
-import { supabase } from "@/lib/supabase"
+import { redis } from "@/lib/core/redis"
+import { supabase } from "@/lib/core/supabase"
 
 const VALID_DEPTHS = new Set([25, 50, 75, 100])
 const VALID_SLUG = /^[a-z0-9-]{1,120}$/

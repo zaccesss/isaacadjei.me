@@ -4,10 +4,11 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { artists } from "@/data/consumed/music"
-import { consumedSlug, normTag } from "@/lib/tags"
+import { consumedSlug, normTag } from "@/lib/content/tags"
 import ShareButton from "@/components/shared/ShareButton"
 import { ConsumedPrevNext } from "@/components/consumed/ConsumedPrevNext"
-import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
+import { sameShareImage } from "@/lib/content/share-image"
 
 type Artist = (typeof artists)[number]
 
@@ -38,7 +39,7 @@ export async function generateMetadata({
   const { slug } = await params
   const artist = findArtist(slug)
   if (!artist) return { title: "Not found" }
-  return {
+  return sameShareImage({
     title: `Consumed | ${artist.name}`,
     description: artist.note,
     alternates: { canonical: `https://www.isaacadjei.me/consumed/music/${slug}` },
@@ -46,7 +47,7 @@ export async function generateMetadata({
       title: `Consumed | ${artist.name}`,
       images: [`/api/og?title=${encodeURIComponent(artist.name)}&description=${encodeURIComponent(artist.note)}`],
     },
-  }
+  })
 }
 
 export default async function MusicArtistPage({

@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
+import SketchView from "@/components/guestbook/SketchView"
+import { sketchHasInk, type Sketch } from "@/lib/content/sketch"
 import { unstable_cache } from "next/cache"
 import { Separator } from "@/components/ui/separator"
 import GuestbookForm from "@/components/guestbook/GuestbookForm"
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/lib/core/supabase"
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -17,13 +19,13 @@ export const metadata: Metadata = {
   },
 }
 
-type Entry = { id: string; name: string; message: string; website: string | null; created_at: string }
+type Entry = { id: string; name: string; message: string; website: string | null; created_at: string; signature: Sketch | null; drawing: Sketch | null }
 
 const getEntries = unstable_cache(
   async (): Promise<Entry[]> => {
     const { data } = await supabase
       .from("guestbook_entries")
-      .select("id, name, message, website, created_at")
+      .select("id, name, message, website, created_at, signature, drawing")
       .eq("approved", true)
       .order("created_at", { ascending: false })
       .limit(200)
@@ -44,7 +46,9 @@ export default async function GuestbookPage() {
         <h1 className="text-4xl font-bold tracking-tight">Guestbook</h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
           Say hello, share what brought you here or leave a note for the next visitor. Messages appear once I have read
-          them.
+          them. Want your site listed or a letter from me once a month? See the{" "}
+          <a href="/friends" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">friends page</a> or{" "}
+          <a href="/friends#become-friends" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">go to the form</a>.
         </p>
       </section>
 
@@ -58,7 +62,13 @@ export default async function GuestbookPage() {
         <ul className="grid gap-4 sm:grid-cols-2">
           {entries.map((entry) => (
             <li key={entry.id} className="flex flex-col gap-3 rounded-xl border p-5 transition-colors hover:border-primary/40">
+              {sketchHasInk(entry.drawing) && (
+                <SketchView sketch={entry.drawing!} label={`Drawing by ${entry.name}`} className="w-full rounded-md border bg-white" />
+              )}
               <p className="leading-relaxed">{entry.message}</p>
+              {sketchHasInk(entry.signature) && (
+                <SketchView sketch={entry.signature!} label={`Signature of ${entry.name}`} className="h-16 w-auto max-w-full self-start rounded bg-white" />
+              )}
               <p className="mt-auto text-sm text-muted-foreground">
                 {entry.website ? (
                   <a href={entry.website} rel="nofollow ugc noopener" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">

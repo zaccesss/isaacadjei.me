@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import { CONSUMED_COLLECTIONS, findCollection } from "@/data/consumed/collections"
 import { consumedCollectionItems } from "@/data/consumed/summary"
 import { SummaryCard } from "@/components/consumed/SummaryCard"
+import { sameShareImage } from "@/lib/content/share-image"
 
 export const revalidate = 604800
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const collection = findCollection(slug)
   if (!collection) return { title: "Not found" }
   const title = `${collection.title} | Consumed`
-  return {
+  return sameShareImage({
     title,
     description: collection.description,
     alternates: { canonical: `https://www.isaacadjei.me/consumed/collections/${slug}` },
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       images: [`/api/og?title=${encodeURIComponent(collection.title)}&description=${encodeURIComponent(collection.description)}`],
     },
-  }
+  })
 }
 
 export default async function ConsumedCollectionPage({ params }: { params: Promise<{ slug: string }> }) {

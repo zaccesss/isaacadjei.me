@@ -1,6 +1,6 @@
 import { ExternalLink } from "lucide-react"
 import type { ProductCardBlock } from "@/data/projects"
-import { renderInline, slugify } from "@/components/shared/ContentBlocks"
+import { renderInline, slugify } from "@/components/shared/markdown/ContentBlocks"
 
 export default function ProductCard({ block }: { block: ProductCardBlock }) {
   const id = slugify(block.heading)

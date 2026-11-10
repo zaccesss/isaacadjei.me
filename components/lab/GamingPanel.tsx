@@ -1,6 +1,6 @@
 "use client"
 
-import { usePoll } from "@/lib/use-live-polling"
+import { usePoll } from "@/hooks/use-live-polling"
 import { useEffect, useRef, useState } from "react"
 import { Gamepad2 } from "lucide-react"
 

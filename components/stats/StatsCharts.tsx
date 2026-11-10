@@ -8,9 +8,9 @@ import { Choropleth } from "@/components/analytics/GeoCharts"
 import { WordCloud } from "@/components/analytics"
 import CountUp from "@/components/stats/CountUp"
 import { ChartMarkers } from "@/components/stats/ChartMarkers"
-import type { PublicStats } from "@/lib/public-stats"
-import { placeOnMonths, placeOnWeeks, type Milestone } from "@/lib/stats-milestone-place"
-import type { getContentStats } from "@/lib/content-stats"
+import type { PublicStats } from "@/lib/stats/public-stats"
+import { placeOnMonths, placeOnWeeks, type Milestone } from "@/lib/stats/stats-milestone-place"
+import type { getContentStats } from "@/lib/content/content-stats"
 import { cumulative, yearToDate, weekdayTotals, fourWeekChange, daysByAreas, weekdaySummary, listSummary, spreadSummary, totalSummary, type WritingExtra } from "@/components/stats/chart-data"
 
 type Content = ReturnType<typeof getContentStats>

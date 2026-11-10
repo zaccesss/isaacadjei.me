@@ -1,4 +1,4 @@
-import { isLive } from "@/lib/schedule"
+import { isLive } from "@/lib/time/schedule"
 
 export type Month =
   | "January" | "February" | "March" | "April" | "May" | "June"

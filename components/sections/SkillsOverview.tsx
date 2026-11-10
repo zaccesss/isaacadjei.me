@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { TAG_LINK_CLASS, CHIP_CLASS } from "@/components/shared/Tag"
+import { TAG_LINK_CLASS, CHIP_CLASS } from "@/components/shared/lists/Tag"
 import { skillCategories } from "@/data/skills"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 
 export default function SkillsOverview() {
   const HIDDEN_ON_HOME = ["Assembly", "Rust", "C#", "Go", "JSON", "Markdown"]

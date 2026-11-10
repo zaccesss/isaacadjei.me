@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react"
 import { FaGithub } from "react-icons/fa6"
 import CommandLine from "@/components/install/CommandLine"
 import { installTools, type InstallTool } from "@/data/install"
-import { latestRelease, releaseDate, type LatestRelease } from "@/lib/github-releases"
+import { latestRelease, releaseDate, type LatestRelease } from "@/lib/integrations/github-releases"
 
 export const revalidate = 86400
 

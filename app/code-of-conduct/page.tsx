@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import Callout from "@/components/shared/Callout"
+import Callout from "@/components/shared/markdown/Callout"
 import {
   Users,
   Heart,
@@ -36,7 +36,7 @@ export default function CodeOfConductPage() {
         </div>
         <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          This is the code of conduct for all my projects, software or hardware, public or private,
+          This is the code of conduct for all my projects, software or hardware, public or private
           and for this website. I keep the full version here in one place so every repository can point
           to it.
         </p>

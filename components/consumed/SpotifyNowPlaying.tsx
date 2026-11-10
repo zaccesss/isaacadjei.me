@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { usePoll } from "@/lib/use-live-polling"
+import { usePoll } from "@/hooks/use-live-polling"
 
 type SpotifyState = {
   playing: boolean

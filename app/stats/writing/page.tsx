@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { WritingHistory } from "@/components/stats/WritingHistory"
-import { getRawContentItems, getConsumedStats } from "@/lib/content-stats"
+import { getRawContentItems, getConsumedStats } from "@/lib/content/content-stats"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
-import { getMilestones } from "@/lib/stats-milestones"
+import { getMilestones } from "@/lib/stats/stats-milestones"
 
 export const metadata: Metadata = {
   title: "Writing and Projects Stats",

@@ -3,7 +3,7 @@ import GamingPanel from "@/components/lab/GamingPanel"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { GamingHistory } from "@/components/stats/GamingHistory"
 import { GamingMore } from "@/components/stats/StatsCharts"
-import { getPublicStats } from "@/lib/public-stats"
+import { getPublicStats } from "@/lib/stats/public-stats"
 import { RecordsRow } from "@/components/stats/StatsExtras"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 

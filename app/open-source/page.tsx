@@ -3,8 +3,8 @@ import Link from "next/link"
 import { ExternalLink } from "lucide-react"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { OpenSourceStats } from "@/components/stats/OpenSourceStats"
-import { getOpenSourceStats, isMailedPatch, type PublicContribution } from "@/lib/open-source"
-import { compareCategories } from "@/lib/open-source-categories"
+import { getOpenSourceStats, isMailedPatch, type PublicContribution } from "@/lib/opensource/open-source"
+import { compareCategories } from "@/lib/opensource/open-source-categories"
 
 export const revalidate = 3600
 

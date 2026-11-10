@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, ExternalLink, Rss } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import type { NewsletterIssue } from "@/app/api/newsletter-issues/route"
 
 function formatDate(iso: string) {

@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
-import { redis } from "@/lib/redis"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
+import { redis } from "@/lib/core/redis"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
+import { getPublishedPosts } from "@/data/blog"
+import { RECENT_REACTIONS } from "@/lib/content/reactions"
+import { getPublishedIssues } from "@/data/newsletter"
+import { getPublishedNotes } from "@/data/notes"
+import { getPublishedTILEntries } from "@/data/til"
+
+function knownSlug(slug: string): boolean {
+  if (slug.startsWith("newsletter-")) return getPublishedIssues().some((i) => i.slug === slug.slice(11))
+  if (slug.startsWith("note-")) return getPublishedNotes().some((n) => n.slug === slug.slice(5))
+  if (slug.startsWith("til-")) return getPublishedTILEntries().some((e) => e.id === slug.slice(4))
+  return getPublishedPosts().some((p) => p.slug === slug)
+}
 
 const PRESET_TYPES = [
   "👍","❤️","🔥","💡","🤯","🎉","💯","🎯",
@@ -73,7 +85,7 @@ export async function POST(req: NextRequest) {
     const { slug, type } = body
     const action = body.action ?? "react"
 
-    if (!slug || !type || !VALID_SLUG.test(slug)) {
+    if (!slug || !type || !VALID_SLUG.test(slug) || !knownSlug(slug)) {
       return NextResponse.json({ error: "slug and type required" }, { status: 400 })
     }
     if (!isValidType(type)) {
@@ -96,6 +108,8 @@ export async function POST(req: NextRequest) {
       }
     } else {
       newCount = await redis.incr(key)
+      await redis.lpush(RECENT_REACTIONS, JSON.stringify({ slug, emoji: type, at: new Date().toISOString() }))
+      await redis.ltrim(RECENT_REACTIONS, 0, 499)
       if (isCustom) {
         await redis.sadd(customSetKey(slug), type)
       }

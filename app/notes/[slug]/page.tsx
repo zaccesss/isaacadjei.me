@@ -5,13 +5,15 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { notePosts, getNotePostBySlug, getAdjacentNotes, type NotePost } from "@/data/notes"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
-import { renderBlock as renderContentBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
-import { TAG_CLASS } from "@/components/shared/Tag"
-import CodeBlock from "@/components/shared/CodeBlock"
-import { highlightBlocks } from "@/lib/highlight"
-import ReadingProgress from "@/components/shared/ReadingProgress"
-import HashScroll from "@/components/shared/HashScroll"
+import BlogReactions from "@/components/shared/BlogReactions"
+import { renderBlock as renderContentBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
+import { TAG_CLASS } from "@/components/shared/lists/Tag"
+import CodeBlock from "@/components/shared/markdown/CodeBlock"
+import { highlightBlocks } from "@/lib/content/highlight"
+import ReadingProgress from "@/components/shared/scroll/ReadingProgress"
+import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
+import { sameShareImage } from "@/lib/content/share-image"
 
 export const revalidate = 604800
 export const dynamicParams = true
@@ -40,7 +42,7 @@ export async function generateMetadata({
   const post = getNotePostBySlug(slug)
   if (post) {
     const og = `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`
-    return {
+    return sameShareImage({
       title: `Notes | ${post.title}`,
       description: post.description,
       alternates: {
@@ -53,7 +55,7 @@ export async function generateMetadata({
         publishedTime: post.date,
         images: [og],
       },
-    }
+    })
   }
   return {}
 }
@@ -107,6 +109,8 @@ async function NotePostView({ post }: { post: NotePost }) {
       <article className="space-y-4">
         {post.content.map((block, i) => renderContentBlock(block, i, headingIds, post.content[i - 1], highlighted))}
       </article>
+
+      <BlogReactions slug={`note-${post.slug}`} />
 
       <Separator />
 

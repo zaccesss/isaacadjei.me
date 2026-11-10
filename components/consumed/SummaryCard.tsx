@@ -1,6 +1,6 @@
 import Link from "@/components/shared/IntentLink"
 import type { ConsumedSummary } from "@/data/consumed/summary"
-import { LABEL_CLASS } from "@/components/shared/Tag"
+import { LABEL_CLASS } from "@/components/shared/lists/Tag"
 import { ConsumedImage, SiteIcon } from "./ConsumedImage"
 import { LedTo } from "./LedTo"
 

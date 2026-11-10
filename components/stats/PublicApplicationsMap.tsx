@@ -4,9 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { useTheme } from "next-themes"
 import MapGL, { Marker, NavigationControl, Popup, type MapRef } from "react-map-gl/maplibre"
 import { setWorkerUrl } from "maplibre-gl"
-import { MAPLIBRE_VERSION } from "@/lib/maplibre-version"
+import { MAPLIBRE_VERSION } from "@/lib/ui/maplibre-version"
 import "maplibre-gl/dist/maplibre-gl.css"
-import { openFreeMapStyles, skyForView } from "@/lib/map-styles"
+import { openFreeMapStyles, skyForView } from "@/lib/ui/map-styles"
 import { Globe2, Map as MapIcon, Box, Square } from "lucide-react"
 
 setWorkerUrl(`/maplibre/${MAPLIBRE_VERSION}/maplibre-gl-worker.mjs`)

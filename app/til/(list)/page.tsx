@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { feedAlternates } from "@/lib/feeds"
+import { feedAlternates } from "@/lib/content/feeds"
 import { Rss } from "lucide-react"
 import { getPublishedTILEntries } from "@/data/til"
 import TILList from "@/components/til/TILList"

@@ -5,12 +5,11 @@ import Link from "next/link"
 import { ArrowRight, Lightbulb } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { TILEntry } from "@/data/til"
-import { tilCategoryLabelClass } from "@/components/shared/Tag"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { tilCategoryLabelClass } from "@/components/shared/lists/Tag"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
+import { ukShortDate } from "@/lib/time/short-date"
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
-}
+const formatDate = ukShortDate
 
 export default function FeaturedTIL({ entries }: { entries: TILEntry[] }) {
 

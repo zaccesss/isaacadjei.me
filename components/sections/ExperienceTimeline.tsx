@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { type Experience } from "@/data/experience"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 

@@ -92,11 +92,12 @@ export default function BlogReactions({ slug }: { slug: string }) {
     })
 
     try {
-      await fetch("/api/blog-reactions", {
+      const res = await fetch("/api/blog-reactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ slug, type: emoji, action: already ? "unreact" : "react" }),
       })
+      if (!res.ok) throw new Error(String(res.status))
     } catch {
       setCounts((prev) => ({ ...prev, [emoji]: Math.max(0, (prev[emoji] ?? 0) - delta) }))
       setReacted((prev) => {
@@ -156,9 +157,10 @@ export default function BlogReactions({ slug }: { slug: string }) {
             <button
               type="button"
               title="Add reaction"
-              className="inline-flex items-center justify-center rounded-md border border-border/50 p-1.5 text-muted-foreground transition-all hover:border-border hover:text-foreground hover:bg-muted/30 select-none cursor-pointer"
+              aria-label="Add a reaction"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-border/50 p-1.5 text-muted-foreground transition-all hover:border-border hover:text-foreground hover:bg-muted/30 select-none cursor-pointer"
             >
-              <SmilePlus className="h-4 w-4" />
+              <SmilePlus className="h-4 w-4" aria-hidden="true" />
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-2" align="center" side="top" sideOffset={8}>
@@ -171,9 +173,11 @@ export default function BlogReactions({ slug }: { slug: string }) {
                     key={emoji}
                     type="button"
                     title={label}
+                    aria-label={hasReacted ? `${label}, reacted. Remove` : label}
+                    aria-pressed={hasReacted}
                     onClick={() => { handleToggle(emoji); setPickerOpen(false) }}
                     className={`
-                      flex items-center justify-center rounded p-1.5 text-lg transition-all hover:bg-muted/60 cursor-pointer
+                      flex min-h-11 min-w-11 items-center justify-center rounded p-1.5 text-lg transition-all hover:bg-muted/60 cursor-pointer
                       ${hasReacted ? "bg-primary/10 ring-1 ring-primary/40" : ""}
                     `}
                   >
@@ -199,8 +203,10 @@ function ReactionButton({
       type="button"
       onClick={onToggle}
       title={label}
+      aria-label={`${label}${count ? `, ${count}` : ""}${hasReacted ? ", reacted. Remove" : ""}`}
+      aria-pressed={hasReacted}
       className={`
-        inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm
+        inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-md border px-2 py-1 text-sm
         transition-all select-none cursor-pointer
         ${hasReacted
           ? "border-primary/50 bg-primary/10 text-primary"
@@ -210,7 +216,8 @@ function ReactionButton({
         }
       `}
     >
-      <span className="text-base leading-none">{emoji}</span>
+      <span className="text-base leading-none" aria-hidden="true">{emoji}</span>
+      {hasReacted && <span className="text-[10px] font-semibold" aria-hidden="true">✓</span>}
       {count > 0 && (
         <span className="text-xs font-mono tabular-nums">{count}</span>
       )}

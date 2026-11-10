@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { supabase } from "@/lib/supabase"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
-import { cityLabel, mergeByLabel, isRemoteLocation } from "@/lib/location-labels"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { supabase } from "@/lib/core/supabase"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
+import { cityLabel, mergeByLabel, isRemoteLocation } from "@/lib/applications/location-labels"
 
 export const dynamic = "force-dynamic"
 

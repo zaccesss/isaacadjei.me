@@ -3,7 +3,7 @@ import { posts } from "@/data/blog"
 import { tilEntries } from "@/data/til"
 import { notePosts } from "@/data/notes"
 import { videos, podcasts, books, articles, resources, others, MONTH_NUMBER, type Month } from "@/data/consumed"
-import { isLiveFromHour } from "@/lib/schedule"
+import { isLiveFromHour } from "@/lib/time/schedule"
 
 export const ISSUE_LIVE_HOUR = 8
 

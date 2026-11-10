@@ -3,7 +3,7 @@ import SpotifyAnalytics from "@/components/lab/SpotifyAnalytics"
 import MusicHistory from "@/components/stats/MusicHistory"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { MusicMore } from "@/components/stats/StatsCharts"
-import { getPublicStats } from "@/lib/public-stats"
+import { getPublicStats } from "@/lib/stats/public-stats"
 import { RecordsRow } from "@/components/stats/StatsExtras"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 

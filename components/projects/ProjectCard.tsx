@@ -1,5 +1,5 @@
 import Link from "@/components/shared/IntentLink"
-import Image from "@/components/shared/MediaImage"
+import Image from "@/components/shared/media/MediaImage"
 import { ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import {
@@ -13,8 +13,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { CATEGORY_LABELS, type Project } from "@/data/projects"
 import StatusBadge from "./StatusBadge"
-import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/Tag"
-import ThemedCover from "@/components/shared/ThemedCover"
+import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/lists/Tag"
+import ThemedCover from "@/components/shared/media/ThemedCover"
 
 interface Props {
   project: Project

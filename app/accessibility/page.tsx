@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import Callout from "@/components/shared/Callout"
+import Callout from "@/components/shared/markdown/Callout"
 import {
   Accessibility,
   BookOpen,
@@ -90,8 +90,9 @@ export default function AccessibilityPage() {
           <div className="flex gap-3">
             <Keyboard className="h-5 w-5 text-primary shrink-0 mt-1" />
             <p className="text-muted-foreground leading-relaxed">
-              <span className="font-medium text-foreground">Keyboard first.</span> Everything is
-              reachable from the keyboard, with a visible focus.
+              <span className="font-medium text-foreground">Keyboard first.</span> Every page and
+              form can be used from the keyboard, with a visible focus. The one exception is listed
+              under the known limitations below.
             </p>
           </div>
           <div className="flex gap-3">
@@ -148,8 +149,10 @@ export default function AccessibilityPage() {
         <Callout kind="warning" className="my-0">
           Known limitations: the charts, maps and 3D views on the lab and stats pages are visual by
           nature. Where a chart has a text summary the figures are in it, but not every chart has one
-          yet. Where a page embeds content from another service, that content follows the
-          service&apos;s own accessibility.
+          yet. The signature and drawing boards on the guestbook need a mouse, a finger or a pen.
+          Both are optional, so the guestbook can still be signed from the keyboard alone. Where a
+          page embeds content from another service, that content follows the service&apos;s own
+          accessibility.
         </Callout>
       </section>
 

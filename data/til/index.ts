@@ -1,4 +1,4 @@
-import { isLive } from "@/lib/schedule"
+import { isLive } from "@/lib/time/schedule"
 
 export type TILBlock =
   | { type: "p"; text: string }
@@ -112,6 +112,7 @@ import _73 from "./entries/midi-note-number-frequency"
 import _74 from "./entries/op-amp-slew-rate"
 import _75 from "./entries/pdf-ua-iso-14289"
 import _76 from "./entries/html-dir-attribute-rtl"
+import _77 from "./entries/commonmark-heading-permalinks"
 import _100 from "./entries/grub-windows-first-on-fedora"
 
 export const tilEntries: TILEntry[] = [
@@ -191,5 +192,6 @@ export const tilEntries: TILEntry[] = [
   _74,
   _75,
   _76,
+  _77,
   _100,
 ]

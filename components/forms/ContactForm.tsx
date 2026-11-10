@@ -57,7 +57,7 @@ export default function ContactForm() {
   }
 
   const field =
-    "w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    "min-h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -155,7 +155,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         disabled={status === "loading" || !turnstileToken}
-        className="w-full sm:w-auto"
+        className="min-h-11 w-full sm:w-auto"
       >
         {status === "loading" ? (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />

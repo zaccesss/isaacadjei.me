@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
-import { sendConfirmEmail } from "@/lib/newsletter-subscribe"
+import { sendConfirmEmail } from "@/lib/newsletter/newsletter-subscribe"
 
 function json(body: unknown, init?: ResponseInit): NextResponse {
   return NextResponse.json(body, {

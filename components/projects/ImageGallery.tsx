@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import Image from "@/components/shared/MediaImage"
+import Image from "@/components/shared/media/MediaImage"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
 interface Props {

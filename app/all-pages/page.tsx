@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "@/components/shared/IntentLink"
 import { ArrowRight } from "lucide-react"
-import { CommandShortcut } from "@/components/shared/CommandShortcut"
+import { CommandShortcut } from "@/components/shared/command/CommandShortcut"
 
 export const metadata: Metadata = {
   title: "All Pages",
@@ -49,8 +49,8 @@ const PAGE_GROUPS = [
   {
     heading: "Community",
     pages: [
-      { href: "/guestbook",    label: "Guestbook",    description: "Leave a message and read what other visitors have written" },
-      { href: "/friends",      label: "Friends",      description: "Personal websites of people I know online, part of the /friends project" },
+      { href: "/guestbook",    label: "Guestbook",    description: "Leave a message, a signature or a drawing and read what other visitors have written" },
+      { href: "/friends",      label: "Friends",      description: "Personal websites of people I know online, part of the /friends project, with a form to ask to be friends or pen pals" },
       { href: "/hall-of-fame", label: "Hall of Fame", description: "Acknowledgements and security researchers" },
     ],
   },

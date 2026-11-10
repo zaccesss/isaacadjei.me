@@ -1,7 +1,7 @@
 import Link from "@/components/shared/IntentLink"
 import { FileText } from "lucide-react"
 import { type PodcastEntry } from "@/data/consumed/types"
-import { consumedSlug } from "@/lib/tags"
+import { consumedSlug } from "@/lib/content/tags"
 import { LedTo } from "./LedTo"
 
 export function PodcastCard({ podcast, compact = false }: { podcast: PodcastEntry; compact?: boolean }) {

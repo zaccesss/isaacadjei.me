@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import manifest from "@/data/projects/zacess/studio-manifest.json"
-import { ZACESS_STUDIO_BASE } from "@/lib/zacess-media"
+import { ZACESS_STUDIO_BASE } from "@/lib/content/zacess-media"
 
 export type FrameSource = "scenes" | "games" | "myScenes"
 

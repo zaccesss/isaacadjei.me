@@ -2,8 +2,8 @@
 import Link from "@/components/shared/IntentLink"
 import { Play, ExternalLink, FileText } from "lucide-react"
 import { youtubeThumbUrl, type VideoEntry } from "@/data/consumed/types"
-import { consumedSlug, normTag } from "@/lib/tags"
-import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { consumedSlug, normTag } from "@/lib/content/tags"
+import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
 import { LedTo } from "./LedTo"
 
 export function VideoCard({

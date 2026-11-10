@@ -4,9 +4,9 @@ import { BarChart, Composed, StatCard } from "@/components/analytics"
 import CountUp from "@/components/stats/CountUp"
 import { Card } from "@/components/stats/StatsCharts"
 import { ChartMarkers } from "@/components/stats/ChartMarkers"
-import type { PublicStats } from "@/lib/public-stats"
-import { dayName, soundtrack } from "@/lib/stats-helpers"
-import { placeOnMonths, type Milestone } from "@/lib/stats-milestone-place"
+import type { PublicStats } from "@/lib/stats/public-stats"
+import { dayName, soundtrack } from "@/lib/stats/stats-helpers"
+import { placeOnMonths, type Milestone } from "@/lib/stats/stats-milestone-place"
 
 const CODING_LINE = "#ea580c"
 

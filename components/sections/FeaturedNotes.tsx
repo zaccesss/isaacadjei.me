@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, NotebookPen } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
+import { ukShortDate } from "@/lib/time/short-date"
 
 export interface NoteCard {
   slug: string
@@ -14,9 +15,7 @@ export interface NoteCard {
   tags: string[]
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
-}
+const formatDate = ukShortDate
 
 export default function FeaturedNotes({ notes }: { notes: NoteCard[] }) {
   if (notes.length === 0) return null

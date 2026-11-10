@@ -1,5 +1,5 @@
 import { computeReadingTime } from "@/lib/utils"
-import { isLive } from "@/lib/schedule"
+import { isLive } from "@/lib/time/schedule"
 import type { BlogCard } from "./meta"
 
 export type PostType = "blog" | "journal" | "research" | "notes" | "report" | "article" | "resources"
@@ -98,6 +98,7 @@ import _48 from "./posts/hubble-mirror-flaw"
 import _49 from "./posts/how-gps-works-relativity"
 import _50 from "./posts/web-midi-light-guided-practice"
 import _53 from "./posts/website-in-seven-languages"
+import _54 from "./posts/how-knuth-built-tex"
 import _69 from "./posts/isolation-forest-without-maths"
 import _71 from "./posts/monorepo-read-only-split-repos"
 import _77 from "./posts/sky-animol-screening-invite"
@@ -154,6 +155,7 @@ export const posts: BlogPost[] = [
   _49,
   _50,
   _53,
+  _54,
   _69,
   _71,
   _77,

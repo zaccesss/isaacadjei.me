@@ -1,7 +1,7 @@
 import { getPublishedNotes } from "@/data/notes"
-import { notesChannel, noteItems } from "@/lib/feeds"
-import { rssResponse } from "@/lib/rss"
-import { cacheUntilMidnight } from "@/lib/schedule"
+import { notesChannel, noteItems } from "@/lib/content/feeds"
+import { rssResponse } from "@/lib/content/rss"
+import { cacheUntilMidnight } from "@/lib/time/schedule"
 
 export const dynamic = "force-dynamic"
 

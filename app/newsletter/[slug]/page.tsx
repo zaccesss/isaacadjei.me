@@ -3,17 +3,18 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Calendar, CalendarDays, Clock, Lightbulb, NotebookPen } from "lucide-react"
-import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
+import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { computeReadingTime } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
-import ReadingProgress from "@/components/shared/ReadingProgress"
-import HashScroll from "@/components/shared/HashScroll"
+import ReadingProgress from "@/components/shared/scroll/ReadingProgress"
+import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import BlogReactions from "@/components/shared/BlogReactions"
 import GiscusComments from "@/components/blog/GiscusComments"
 import ShareButton from "@/components/shared/ShareButton"
-import { renderBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
+import { renderBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
 import { allIssues, getIssueBySlug, getPublishedIssues, SIGN_OFF_NAME, SIGNATURE, issueLabel, type GatheredItem, type GatheredKind } from "@/data/newsletter"
+import { sameShareImage } from "@/lib/content/share-image"
 
 export const revalidate = 604800
 export const dynamicParams = true
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const issue = getIssueBySlug(slug)
   if (!issue) return {}
-  return {
+  return sameShareImage({
     title: `Newsletter | ${issue.title}`,
     description: issue.subtitle,
     alternates: { canonical: `https://www.isaacadjei.me/newsletter/${slug}` },
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: issue.date,
       images: [`/api/og?title=${encodeURIComponent(issue.title)}&description=${encodeURIComponent(issue.subtitle)}`],
     },
-  }
+  })
 }
 
 const SECTIONS: { kind: GatheredKind; title: string; icon: typeof BookOpen }[] = [

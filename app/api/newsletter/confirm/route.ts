@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { verifyConfirm, addSubscriber } from "@/lib/newsletter-subscribe"
-import { recordActivity } from "@/lib/activity"
+import { verifyConfirm, addSubscriber } from "@/lib/newsletter/newsletter-subscribe"
+import { recordActivity } from "@/lib/core/activity"
 
 export async function POST(req: Request) {
   const form = await req.formData().catch(() => null)

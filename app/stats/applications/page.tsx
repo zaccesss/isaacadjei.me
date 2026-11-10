@@ -3,7 +3,7 @@ import { PublicApplicationsMap } from "@/components/stats/PublicApplicationsMap"
 import TopLocationsChart from "@/components/stats/TopLocationsChart"
 import { StatsPageHeader } from "@/components/stats/StatsPageHeader"
 import { ApplicationsMore } from "@/components/stats/StatsCharts"
-import { getPublicStats } from "@/lib/public-stats"
+import { getPublicStats } from "@/lib/stats/public-stats"
 
 export const metadata: Metadata = {
   title: "Application Geography",

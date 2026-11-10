@@ -1,4 +1,4 @@
-import type { RawPost, RawTIL, RawDated } from "@/lib/content-stats-compute"
+import type { RawPost, RawTIL, RawDated } from "@/lib/content/content-stats-compute"
 
 type Named = { name: string; value: number }
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

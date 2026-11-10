@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { redis } from "@/lib/redis"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
-import { getTagsForArtists, aggregateGenres, mergeGenreTags, type LastfmTag } from "@/lib/lastfm"
-import { getMusicBrainzGenresForArtists } from "@/lib/musicbrainz"
-import { stripHtmlTags } from "@/lib/strip-html-tags"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { redis } from "@/lib/core/redis"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
+import { getTagsForArtists, aggregateGenres, mergeGenreTags, type LastfmTag } from "@/lib/integrations/lastfm"
+import { getMusicBrainzGenresForArtists } from "@/lib/integrations/musicbrainz"
+import { stripHtmlTags } from "@/lib/content/strip-html-tags"
 
 async function getAccessToken(): Promise<string | null> {
   const { SPOTIFY_CLIENT_ID: cid, SPOTIFY_CLIENT_SECRET: sec, SPOTIFY_REFRESH_TOKEN: rt } = process.env

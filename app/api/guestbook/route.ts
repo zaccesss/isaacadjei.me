@@ -2,9 +2,10 @@ import { createHash } from "node:crypto"
 import { NextResponse } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
-import { stripHtmlTags } from "@/lib/strip-html-tags"
-import { supabase } from "@/lib/supabase"
-import { recordActivity } from "@/lib/activity"
+import { stripHtmlTags } from "@/lib/content/strip-html-tags"
+import { supabase } from "@/lib/core/supabase"
+import { recordActivity } from "@/lib/core/activity"
+import { parseSketch } from "@/lib/content/sketch"
 
 let ratelimit: Ratelimit | null = null
 if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
@@ -55,10 +56,15 @@ export async function POST(request: Request) {
     const rawSite = String(body?.website ?? "").trim()
     const website = /^https?:\/\/[^\s]+$/i.test(rawSite) ? rawSite.slice(0, 200) : null
     if (!name || !message) return json({ error: "Please add your name and a message." }, { status: 400 })
+    const signature = parseSketch(body?.signature)
+    const drawing = parseSketch(body?.drawing)
+    if (typeof signature === "string" || typeof drawing === "string") {
+      return json({ error: "The drawing could not be read. Try a simpler one." }, { status: 400 })
+    }
 
     const salt = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "guestbook"
     const ipHash = createHash("sha256").update(`${salt}:${ip}`).digest("hex").slice(0, 32)
-    const { error } = await supabase.from("guestbook_entries").insert({ name, message, website, ip_hash: ipHash })
+    const { error } = await supabase.from("guestbook_entries").insert({ name, message, website, ip_hash: ipHash, signature, drawing })
     if (error) {
       console.error("Guestbook insert failed:", error.message)
       return json({ error: "Something went wrong. Please try again." }, { status: 500 })

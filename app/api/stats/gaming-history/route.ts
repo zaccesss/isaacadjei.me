@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
-import { supabase } from "@/lib/supabase"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
-import { summarise, type GameSessionRow, type PlaytimeRow, type GenreRow } from "@/lib/gaming"
+import { supabase } from "@/lib/core/supabase"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
+import { summarise, type GameSessionRow, type PlaytimeRow, type GenreRow } from "@/lib/stats/gaming"
 
 export const dynamic = "force-dynamic"
 

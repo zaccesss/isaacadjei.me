@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-import Image from "@/components/shared/MediaImage"
+import Image from "@/components/shared/media/MediaImage"
 import { publications } from "@/data/respub"
 import Link from "next/link"
 import { useModKey } from "@/hooks/useModKey"

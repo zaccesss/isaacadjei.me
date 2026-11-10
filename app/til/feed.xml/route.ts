@@ -1,7 +1,7 @@
 import { getPublishedTILEntries } from "@/data/til"
-import { tilChannel, tilItems } from "@/lib/feeds"
-import { rssResponse } from "@/lib/rss"
-import { cacheUntilMidnight } from "@/lib/schedule"
+import { tilChannel, tilItems } from "@/lib/content/feeds"
+import { rssResponse } from "@/lib/content/rss"
+import { cacheUntilMidnight } from "@/lib/time/schedule"
 
 export const dynamic = "force-dynamic"
 

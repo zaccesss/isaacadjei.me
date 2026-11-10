@@ -39,7 +39,7 @@ export default function PrivacyPage() {
     <div className="container max-w-3xl py-24 space-y-12">
       <section className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
+        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This page covers how Isaac Adjei handles your data, who owns the content on this site
           and the terms under which you access it. By using this site you agree to the terms
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
             ) and is not stored in any database on my end. It is not shared with any other party.
           </p>
           <p className="mt-3">
-            The contact form is also protected by{" "}
+            The contact form, the guestbook and the friends form are also protected by{" "}
             <a
               href="https://www.cloudflare.com/products/turnstile/"
               target="_blank"
@@ -229,8 +229,30 @@ export default function PrivacyPage() {
           <p>
             If you sign the guestbook, I store the name, message and optional website you enter, the time you signed
             and a one-way code made from your network address. The code is only used to spot repeated abuse and cannot
-            be turned back into the address. Nothing is shown publicly until I approve it. Your name, message, website
-            and the date appear on the guestbook page once approved. To have an entry removed, ask through the{" "}
+            be turned back into the address. If you add a hand signature or a drawing, I store it as the pen strokes
+            you made (points, colours and line widths, not a picture file). Nothing is shown publicly until I approve
+            it. Your name, message, website, signature, drawing and the date appear on the guestbook page once
+            approved. An entry stays until I remove it or you ask me to. To have an entry removed, ask through the{" "}
+            <Link
+              href="/contact"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              contact page
+            </Link>
+            .
+          </p>
+        </div>
+
+        <div>
+          <h2>Friend and pen pal requests</h2>
+          <p>
+            If you ask to be friends or pen pals on the friends page, I store your name, email address, the optional
+            website and note you enter, your choices and the same one-way code as the guestbook. Your email address and
+            note are never shown publicly. If you are a friend who asked to be listed, only your name and website appear
+            on the friends page once I approve the request. If you asked for the monthly letter, you join the list only
+            after you confirm your address from the email I send. The letters are sent through Resend, the same
+            service as the newsletter. Every letter has an unsubscribe link. A request stays until I remove it or you
+            ask me to. To have a request removed, ask through the{" "}
             <Link
               href="/contact"
               className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -325,7 +347,7 @@ export default function PrivacyPage() {
           <p>
             This site remembers your theme preference (light, dark or system) and a few small
             choices, such as a map style you picked, a list&apos;s page size and the reactions you
-            gave a post, in your browser&apos;s local storage rather than a cookie. It stays on your
+            gave a post, a note or a TIL, in your browser&apos;s local storage rather than a cookie. It stays on your
             device, contains no personal information and is not sent to me or any third party.
             Google Analytics sets its own analytics cookies as
             described above. Cloudflare, which sits in front of this site and its images, may set a
@@ -370,9 +392,10 @@ export default function PrivacyPage() {
           <h2>Your rights</h2>
           <p>
             I keep very little personal data on my own systems: there are no visitor accounts or
-            profiles, only the guestbook entries and one-way codes described above. If you have a
-            question about data you may have submitted through the contact form, the newsletter or
-            the guestbook, feel free to get in touch and I will respond as quickly as I can.
+            profiles, only the guestbook entries, the friend and pen pal requests with their email
+            addresses and the one-way codes described above. If you have a question about data you
+            may have submitted through the contact form, the newsletter, the guestbook or the
+            friends form, feel free to get in touch and I will respond as quickly as I can.
             If you believe any content on this site infringes your rights or if you have any other
             concern, you can raise it through the{" "}
             <Link

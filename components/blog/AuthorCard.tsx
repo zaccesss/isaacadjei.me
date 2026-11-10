@@ -1,4 +1,4 @@
-import Image from "@/components/shared/MediaImage"
+import Image from "@/components/shared/media/MediaImage"
 import { Mail } from "lucide-react"
 import { FaGithub, FaLinkedin } from "react-icons/fa6"
 import { SiOrcid, SiBuymeacoffee, SiGooglescholar } from "react-icons/si"

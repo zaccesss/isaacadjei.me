@@ -5,11 +5,12 @@ import Link from "@/components/shared/IntentLink"
 import { ExternalLink } from "lucide-react"
 import { cn, computeReadingTime } from "@/lib/utils"
 import type { TILEntry } from "@/data/til"
-import { relevanceScore } from "@/lib/search"
-import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
-import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
-import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
-import Tag, { tilCategoryLabelClass } from "@/components/shared/Tag"
+import { relevanceScore } from "@/lib/content/search"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
+import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
+import Tag, { tilCategoryLabelClass } from "@/components/shared/lists/Tag"
+import { ukShortDate } from "@/lib/time/short-date"
 
 function tilReadingTime(entry: TILEntry): number {
   const blocks: { type: string; text?: string; code?: string }[] = [
@@ -50,13 +51,7 @@ export const CATEGORY_STYLES: Record<string, string> = {
   "OOP":                        "bg-cyan-600/10 text-cyan-600 dark:text-cyan-400",
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  })
-}
+const formatDate = ukShortDate
 
 interface Props {
   entries: TILEntry[]

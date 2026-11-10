@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { createHmac, timingSafeEqual } from "node:crypto"
-import { countEvent, type Engagement } from "@/lib/newsletter-engagement"
-import { recordActivity } from "@/lib/activity"
+import { countEvent, type Engagement } from "@/lib/newsletter/newsletter-engagement"
+import { recordActivity } from "@/lib/core/activity"
 
 const EVENTS: Record<string, keyof Engagement> = {
   "email.delivered": "delivered",

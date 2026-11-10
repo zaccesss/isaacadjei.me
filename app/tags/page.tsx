@@ -6,7 +6,7 @@ import { projects } from "@/data/projects"
 import { getPublishedIssues } from "@/data/newsletter"
 import { publications } from "@/data/respub"
 import { videos, articles, others, books, resources, artists, liveConsumed } from "@/data/consumed"
-import { normTag } from "@/lib/tags"
+import { normTag } from "@/lib/content/tags"
 import TagsClient from "@/components/tags/TagsClient"
 
 export const metadata: Metadata = {

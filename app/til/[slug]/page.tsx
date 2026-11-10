@@ -7,14 +7,15 @@ import {
   getPublishedTILEntries,
   type TILBlock,
 } from "@/data/til"
-import CodeBlock from "@/components/shared/CodeBlock"
-import Callout from "@/components/shared/Callout"
-import Tag, { tilCategoryLabelClass } from "@/components/shared/Tag"
-import { highlightBlocks } from "@/lib/highlight"
+import CodeBlock from "@/components/shared/markdown/CodeBlock"
+import Callout from "@/components/shared/markdown/Callout"
+import Tag, { tilCategoryLabelClass } from "@/components/shared/lists/Tag"
+import { highlightBlocks } from "@/lib/content/highlight"
 import ShareButton from "@/components/shared/ShareButton"
-import TableOfContents, { type TocHeading } from "@/components/shared/TableOfContents"
+import BlogReactions from "@/components/shared/BlogReactions"
+import TableOfContents, { type TocHeading } from "@/components/shared/markdown/TableOfContents"
 import { cn } from "@/lib/utils"
-import { isLive } from "@/lib/schedule"
+import { isLive } from "@/lib/time/schedule"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import TILFooter from "@/components/til/TILFooter"
 
@@ -264,6 +265,8 @@ export default async function TILSlugPage({
               </Link>
             </Callout>
           )}
+
+          <BlogReactions slug={`til-${entry.id}`} />
 
           <TILFooter entry={entry} visibleEntries={sorted} />
 

@@ -8,12 +8,12 @@ import { HubOverview, OverviewMore, CodingMore, MusicMore, GamingMore, Applicati
 import type { WritingExtra } from "./chart-data"
 import { HubCards } from "./HubCards"
 import { OpenSourceStats } from "./OpenSourceStats"
-import type { OpenSourceStats as OSStats } from "@/lib/open-source"
+import type { OpenSourceStats as OSStats } from "@/lib/opensource/open-source"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
-import type { PublicStats } from "@/lib/public-stats"
-import type { Milestone } from "@/lib/stats-milestone-place"
+import type { PublicStats } from "@/lib/stats/public-stats"
+import type { Milestone } from "@/lib/stats/stats-milestone-place"
 import { RecordsRow, SoundtrackCard, GitHubMonths } from "./StatsExtras"
-import type { getContentStats } from "@/lib/content-stats"
+import type { getContentStats } from "@/lib/content/content-stats"
 
 type Content = ReturnType<typeof getContentStats>
 
@@ -29,7 +29,7 @@ const PublicApplicationsMap = dynamic(() => import("./PublicApplicationsMap").th
 const TopLocationsChart = dynamic(() => import("./TopLocationsChart"), { ssr: false, loading: PanelLoading })
 const GitHubActivityChart = dynamic(() => import("./GitHubActivityChart"), { ssr: false, loading: PanelLoading })
 const GitHubYearlyChart = dynamic(() => import("./GitHubYearlyChart"), { ssr: false, loading: PanelLoading })
-const GitHubStats = dynamic(() => import("@/components/shared/GitHubStats"), { ssr: false, loading: PanelLoading })
+const GitHubStats = dynamic(() => import("@/components/shared/live/GitHubStats"), { ssr: false, loading: PanelLoading })
 
 const TABS = [
   { id: "overview", label: "Overview", page: null, blurb: "" },

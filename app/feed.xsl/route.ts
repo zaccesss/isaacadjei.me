@@ -1,6 +1,6 @@
 import { POST_TYPES } from "@/data/blog/meta"
-import { HUE_COLOURS, KIND_HUE, POST_TYPE_HUE, TIL_CATEGORY_HUE, type Hue } from "@/lib/feed-view"
-import { escapeXml } from "@/lib/rss"
+import { HUE_COLOURS, KIND_HUE, POST_TYPE_HUE, TIL_CATEGORY_HUE, type Hue } from "@/lib/content/feed-view"
+import { escapeXml } from "@/lib/content/rss"
 
 export const dynamic = "force-static"
 

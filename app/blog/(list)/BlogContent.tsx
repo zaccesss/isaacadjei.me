@@ -1,15 +1,15 @@
 "use client"
 
-import { relevanceScore } from "@/lib/search"
+import { relevanceScore } from "@/lib/content/search"
 import Link from "@/components/shared/IntentLink"
-import ThemedCover from "@/components/shared/ThemedCover"
+import ThemedCover from "@/components/shared/media/ThemedCover"
 import { Calendar, Clock, Rss } from "lucide-react"
-import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
+import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { POST_TYPES, type BlogCard } from "@/data/blog/meta"
 import type { PostType } from "@/data/blog"
-import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
-import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
-import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
+import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-GB", {

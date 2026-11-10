@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { heavyApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { heavyApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
 
 export const revalidate = 0
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { StatCard, BarChart, PieChart } from "@/components/analytics"
-import type { OpenSourceStats as Stats } from "@/lib/open-source"
+import type { OpenSourceStats as Stats } from "@/lib/opensource/open-source"
 
 function Card({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
   return (

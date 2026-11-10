@@ -12,7 +12,8 @@ import {
   videos as allVideos, articles as allArticles, others as allOthers, books as allBooks,
   resources as allResources, artists, liveConsumed,
 } from "@/data/consumed"
-import { normTag, consumedSlug } from "@/lib/tags"
+import { normTag, consumedSlug } from "@/lib/content/tags"
+import { sameShareImage } from "@/lib/content/share-image"
 
 function fmtDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-GB", {
@@ -60,14 +61,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tag } = await params
   const description = `Everything tagged with ${tag}: blog posts, TIL entries, notes, newsletter issues, projects, publications and consumed items.`
-  return {
+  return sameShareImage({
     title: `#${tag} - Tags`,
     description,
     alternates: { canonical: `https://www.isaacadjei.me/tags/${tag}` },
     openGraph: {
       images: [`/api/og?title=%23${encodeURIComponent(tag)}&description=${encodeURIComponent(description)}`],
     },
-  }
+  })
 }
 
 export default async function TagPage({

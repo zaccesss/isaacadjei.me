@@ -2,13 +2,13 @@
 
 import { type Project, CATEGORY_LABELS } from "@/data/projects"
 import ProjectCard from "./ProjectCard"
-import { relevanceScore } from "@/lib/search"
+import { relevanceScore } from "@/lib/content/search"
 import ProjectFilter from "./ProjectFilter"
-import { Pagination, usePageSize } from "@/components/shared/Pagination"
+import { Pagination, usePageSize } from "@/components/shared/lists/Pagination"
 
 const PROJECT_PAGE_SIZES = [18, 36, 54]
-import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
-import { countedOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import { countedOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 
 type Category = Project["category"] | "all"
 

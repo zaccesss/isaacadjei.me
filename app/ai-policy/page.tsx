@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import Callout from "@/components/shared/Callout"
+import Callout from "@/components/shared/markdown/Callout"
 import {
   Bot,
   Sparkles,

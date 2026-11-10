@@ -11,7 +11,7 @@ import ThemeToggle from "@/components/shared/ThemeToggle"
 import { Button } from "@/components/ui/button"
 import { Rss, Search } from "lucide-react"
 import { useModKey } from "@/hooks/useModKey"
-import ScriptMark from "@/components/shared/ScriptMark"
+import ScriptMark from "@/components/shared/motion/ScriptMark"
 
 const WORDMARK = "isaac adjei"
 const RESIGN_MS = 5 * 60 * 1000

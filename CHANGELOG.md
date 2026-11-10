@@ -2,6 +2,26 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.114.0] - 2026-11-10
+
+_Reactions_
+
+### Added
+
+- Notes and Today I Learned entries now take reactions, the same as posts
+- The friends page has a form to ask to be friends or pen pals. Pen pals get a letter from me once a month
+- Friends who ask to be listed now appear on the friends page once I approve them
+- The guestbook takes a signature or a drawing, with a board you can save as a picture
+
+### Changed
+
+- Reaction buttons are larger, have screen reader labels and show a tick as well as a colour when chosen
+- A reaction that does not save no longer looks saved
+- Text boxes and buttons on the contact, guestbook and friends forms are larger and easier to tap
+- Dates on the Today I Learned list and the home page read the same in every browser
+- The privacy and accessibility pages cover the guestbook drawings and the friends form
+- Small behind-the-scenes improvements
+
 ## [2.113.0] - 2026-11-09
 
 _Corrections_

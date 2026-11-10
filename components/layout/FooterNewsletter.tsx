@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import NewsletterForm from "@/components/shared/NewsletterForm"
+import NewsletterForm from "@/components/shared/newsletter/NewsletterForm"
 
 export default function FooterNewsletter() {
   const pathname = usePathname()

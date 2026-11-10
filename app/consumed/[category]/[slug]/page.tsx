@@ -22,11 +22,12 @@ import {
   siteHost,
   type LedToLink,
 } from "@/data/consumed"
-import { consumedSlug, normTag } from "@/lib/tags"
+import { consumedSlug, normTag } from "@/lib/content/tags"
 import { ConsumedPrevNext } from "@/components/consumed/ConsumedPrevNext"
-import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
 import { ConsumedImage, SiteIcon } from "@/components/consumed/ConsumedImage"
 import { LedTo } from "@/components/consumed/LedTo"
+import { sameShareImage } from "@/lib/content/share-image"
 
 function liveLinks(links: LedToLink[] | undefined): LedToLink[] {
   return process.env.NODE_ENV === "development" ? links ?? [] : liveLedTo(links)
@@ -134,7 +135,7 @@ export async function generateMetadata({
     undefined
   const title = `Consumed | ${found.item.title}`
   const desc = description ?? found.item.title
-  return {
+  return sameShareImage({
     title,
     description: desc,
     alternates: { canonical: `https://www.isaacadjei.me/consumed/${category}/${slug}` },
@@ -142,7 +143,7 @@ export async function generateMetadata({
       title,
       images: [`/api/og?title=${encodeURIComponent(found.item.title)}&description=${encodeURIComponent(desc)}`],
     },
-  }
+  })
 }
 
 const PROSE_LINK = "text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"

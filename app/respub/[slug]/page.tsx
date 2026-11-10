@@ -6,10 +6,11 @@ import { SiZenodo, SiGooglescholar } from "react-icons/si"
 import { publications } from "@/data/respub"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
-import { CHIP_CLASS, LABEL_CLASS } from "@/components/shared/Tag"
+import { CHIP_CLASS, LABEL_CLASS } from "@/components/shared/lists/Tag"
 import { citationStyles, highwireDate, zenodoRecordId } from "@/data/respub/cite"
 import CitationPicker from "@/components/respub/CitationPicker"
 import ZenodoStats from "@/components/respub/ZenodoStats"
+import { sameShareImage } from "@/lib/content/share-image"
 
 const SITE = "https://www.isaacadjei.me"
 
@@ -35,7 +36,7 @@ export async function generateMetadata({
 
   const description = pub.abstract ?? `${pub.venue}, ${pub.year}`
 
-  return {
+  return sameShareImage({
     title: `Research | ${pub.title}`,
     description,
     alternates: {
@@ -53,7 +54,7 @@ export async function generateMetadata({
       citation_publisher: pub.venue,
       ...(pub.pdfUrl ? { citation_pdf_url: pub.pdfUrl.startsWith("http") ? pub.pdfUrl : `${SITE}${pub.pdfUrl}` } : {}),
     },
-  }
+  })
 }
 
 export default async function PublicationSlugPage({

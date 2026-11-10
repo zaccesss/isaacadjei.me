@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
-import { getPublicStats } from "@/lib/public-stats"
-import { getContentStats, getRawContentItems } from "@/lib/content-stats"
+import { getPublicStats } from "@/lib/stats/public-stats"
+import { getContentStats, getRawContentItems } from "@/lib/content/content-stats"
 import { writingExtra } from "@/components/stats/chart-data"
 import { StatsTabs } from "@/components/stats/StatsTabs"
-import { getOpenSourceStats } from "@/lib/open-source"
-import { getMilestones } from "@/lib/stats-milestones"
+import { getOpenSourceStats } from "@/lib/opensource/open-source"
+import { getMilestones } from "@/lib/stats/stats-milestones"
 
 export const revalidate = 3600
 

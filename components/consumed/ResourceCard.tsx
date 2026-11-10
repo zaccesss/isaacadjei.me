@@ -1,8 +1,8 @@
 import Link from "@/components/shared/IntentLink"
 import { ExternalLink, FileText } from "lucide-react"
 import { type ResourceEntry } from "@/data/consumed/types"
-import { consumedSlug, normTag } from "@/lib/tags"
-import { TAG_LINK_CLASS } from "@/components/shared/Tag"
+import { consumedSlug, normTag } from "@/lib/content/tags"
+import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
 import { ConsumedImage, SiteIcon } from "./ConsumedImage"
 import { LedTo } from "./LedTo"
 

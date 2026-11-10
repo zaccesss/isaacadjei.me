@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
-import { stripHtmlTags } from "@/lib/strip-html-tags"
+import { stripHtmlTags } from "@/lib/content/strip-html-tags"
 
 function json(body: unknown, init?: ResponseInit): NextResponse {
   return NextResponse.json(body, {
@@ -90,6 +90,9 @@ export async function POST(request: Request) {
       }
     }
 
+    if (![name, email, subject, message].every((v) => typeof v === "string")) {
+      return json({ error: "All fields are required." }, { status: 400 })
+    }
     if (!name || !email || !subject || !message) {
       return json({ error: "All fields are required." }, { status: 400 })
     }
@@ -101,10 +104,13 @@ export async function POST(request: Request) {
       return json({ error: "Invalid email address." }, { status: 400 })
     }
 
-    const safeName = stripHtmlTags(name)
-    const safeEmail = stripHtmlTags(email)
-    const safeSubject = stripHtmlTags(subject)
-    const safeMessage = stripHtmlTags(message)
+    const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+    const plainEmail = stripHtmlTags(email)
+    const plainSubject = stripHtmlTags(subject).replace(/[\r\n]+/g, " ")
+    const safeName = escapeHtml(stripHtmlTags(name))
+    const safeEmail = escapeHtml(plainEmail)
+    const safeSubject = escapeHtml(plainSubject)
+    const safeMessage = escapeHtml(stripHtmlTags(message))
 
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
@@ -120,8 +126,8 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: "Portfolio Contact <contact@isaacadjei.me>",
         to: ["contact@isaacadjei.me"],
-        reply_to: safeEmail,
-        subject: `[Portfolio] ${safeSubject}`,
+        reply_to: plainEmail,
+        subject: `[Portfolio] ${plainSubject}`,
         html: `
           <p><strong>From:</strong> ${safeName} &lt;${safeEmail}&gt;</p>
           <p><strong>Subject:</strong> ${safeSubject}</p>

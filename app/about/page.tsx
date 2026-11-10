@@ -3,7 +3,7 @@ import Link from "next/link"
 import { education } from "@/data/education"
 import { societies, isSocietyRoleVisible } from "@/data/societies"
 import { Separator } from "@/components/ui/separator"
-import ApproachAnimation from "@/components/shared/ApproachAnimation"
+import ApproachAnimation from "@/components/shared/motion/ApproachAnimation"
 import {
   GraduationCap,
   Users,
@@ -15,7 +15,7 @@ import {
   Quote,
   HeartHandshake,
 } from "lucide-react"
-import { CHIP_CLASS } from "@/components/shared/Tag"
+import { CHIP_CLASS } from "@/components/shared/lists/Tag"
 
 export const revalidate = 86400
 

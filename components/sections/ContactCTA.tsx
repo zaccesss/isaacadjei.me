@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Mail, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { fadeUp } from "@/lib/animations"
+import { fadeUp } from "@/lib/ui/animations"
 
 export default function ContactCTA() {
   return (

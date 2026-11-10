@@ -9,7 +9,7 @@ import type { TILEntry } from "@/data/til"
 import type { Project } from "@/data/projects"
 import type { Publication } from "@/data/respub"
 import type { NewsletterIssue } from "@/app/api/newsletter-issues/route"
-import { relevanceScore, fieldScore } from "@/lib/search"
+import { relevanceScore, fieldScore } from "@/lib/content/search"
 
 interface NoteEntry {
   href: string

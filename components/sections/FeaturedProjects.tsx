@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { projects } from "@/data/projects"
 import type { Project } from "@/data/projects"
 import ProjectCard from "@/components/projects/ProjectCard"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 
 const FEATURED_ORDER = [
   "zacess",

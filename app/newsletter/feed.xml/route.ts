@@ -1,6 +1,6 @@
-import { newsletterChannel, newsletterItems } from "@/lib/feeds"
-import { fetchNewsletterIssues } from "@/lib/newsletter"
-import { rssResponse } from "@/lib/rss"
+import { newsletterChannel, newsletterItems } from "@/lib/content/feeds"
+import { fetchNewsletterIssues } from "@/lib/newsletter/newsletter"
+import { rssResponse } from "@/lib/content/rss"
 
 export const dynamic = "force-dynamic"
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import ImageGallery from "./ImageGallery"
-import { mediaSrc } from "@/lib/media"
+import { mediaSrc } from "@/lib/content/media"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -12,14 +12,14 @@ import {
   LineChart as RLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts"
 import { CATEGORY_LABELS, type Project } from "@/data/projects"
-import { releaseDate, type LatestRelease } from "@/lib/github-releases"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { releaseDate, type LatestRelease } from "@/lib/integrations/github-releases"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import ShareButton from "@/components/shared/ShareButton"
-import { renderBlock, buildHeadingIds, renderInline } from "@/components/shared/ContentBlocks"
+import { renderBlock, buildHeadingIds, renderInline } from "@/components/shared/markdown/ContentBlocks"
 import StatusBadge from "./StatusBadge"
 import ProductCard from "./ProductCard"
 import ZacessStudio from "./zacess/Studio"
-import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/Tag"
+import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/lists/Tag"
 
 export type LabMeasurementPoint = {
   measurement_set: string

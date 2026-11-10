@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { feedAlternates } from "@/lib/feeds"
+import { feedAlternates } from "@/lib/content/feeds"
 import { Rss } from "lucide-react"
-import SubscribeBox from "@/components/shared/SubscribeBox"
-import RecentIssues from "@/components/shared/RecentIssues"
-import { fetchNewsletterIssues } from "@/lib/newsletter"
+import SubscribeBox from "@/components/shared/newsletter/SubscribeBox"
+import RecentIssues from "@/components/shared/newsletter/RecentIssues"
+import { fetchNewsletterIssues } from "@/lib/newsletter/newsletter"
 
 export const revalidate = 604800
 

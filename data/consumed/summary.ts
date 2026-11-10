@@ -7,8 +7,8 @@ import { others } from "./others"
 import { consumedForPage } from "./index"
 import { liveLedTo, bookCoverUrl, youtubeThumbUrl, siteHost, MONTH_NUMBER, type LedToLink, type Month } from "./types"
 import { CONSUMED_COLLECTIONS, type ConsumedCollection } from "./collections"
-import { consumedSlug } from "@/lib/tags"
-import { londonToday } from "@/lib/schedule"
+import { consumedSlug } from "@/lib/content/tags"
+import { londonToday } from "@/lib/time/schedule"
 
 export type ConsumedCategory = "books" | "videos" | "podcasts" | "articles" | "resources" | "others"
 

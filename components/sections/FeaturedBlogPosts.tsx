@@ -3,12 +3,12 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
-import { TAG_CLASS, postTypeLabelClass } from "@/components/shared/Tag"
+import { TAG_CLASS, postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { Button } from "@/components/ui/button"
-import { staggerContainer, fadeUp } from "@/lib/animations"
+import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import type { PostType } from "@/data/blog"
 import type { BlogCard } from "@/data/blog/meta"
-import ThemedCover from "@/components/shared/ThemedCover"
+import ThemedCover from "@/components/shared/media/ThemedCover"
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog", journal: "Journal", research: "Research", notes: "Notes",

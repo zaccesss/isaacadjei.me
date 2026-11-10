@@ -1,11 +1,11 @@
 "use client"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import Tag from "@/components/shared/Tag"
-import { relevanceScore } from "@/lib/search"
-import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/Pagination"
-import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
-import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import Tag from "@/components/shared/lists/Tag"
+import { relevanceScore } from "@/lib/content/search"
+import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
+import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 
 export interface NotePostCard {
   slug: string

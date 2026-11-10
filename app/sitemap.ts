@@ -5,7 +5,7 @@ import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
 import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, artists, liveConsumed } from "@/data/consumed"
-import { normTag, consumedSlug } from "@/lib/tags"
+import { normTag, consumedSlug } from "@/lib/content/tags"
 import { SITE_URL } from "@/lib/constants"
 
 function projectDate(dateStr: string): Date {
@@ -57,17 +57,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/uses`,                          lastModified: new Date("2026-05-29"), changeFrequency: "monthly", priority: 0.5  },
     { url: `${SITE_URL}/changelog`,                     lastModified: new Date("2026-05-29"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/colophon`,                      lastModified: new Date("2026-05-29"), changeFrequency: "yearly",  priority: 0.4  },
-    { url: `${SITE_URL}/all-pages`,                     lastModified: new Date("2026-05-15"), changeFrequency: "monthly", priority: 0.4  },
+    { url: `${SITE_URL}/all-pages`,                     lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.4  },
     { url: `${SITE_URL}/security-policy`,               lastModified: new Date("2026-11-02"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/contribute`,                    lastModified: new Date("2026-11-02"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/code-of-conduct`,               lastModified: new Date("2026-07-11"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/ai-policy`,                     lastModified: new Date("2026-11-02"), changeFrequency: "yearly",  priority: 0.3  },
-    { url: `${SITE_URL}/accessibility`,                 lastModified: new Date("2026-10-02"), changeFrequency: "yearly",  priority: 0.3  },
+    { url: `${SITE_URL}/accessibility`,                 lastModified: new Date("2026-11-10"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/copyright`,                    lastModified: new Date("2026-10-06"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/disclaimer`,                   lastModified: new Date("2026-10-06"), changeFrequency: "yearly",  priority: 0.3  },
-    { url: `${SITE_URL}/friends`,                      lastModified: new Date("2026-10-06"), changeFrequency: "yearly",  priority: 0.3  },
+    { url: `${SITE_URL}/friends`,                      lastModified: new Date("2026-11-10"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/book`,                         lastModified: new Date("2026-10-06"), changeFrequency: "yearly",  priority: 0.3  },
-    { url: `${SITE_URL}/guestbook`,                    lastModified: new Date("2026-10-06"), changeFrequency: "weekly",  priority: 0.3  },
+    { url: `${SITE_URL}/guestbook`,                    lastModified: new Date("2026-11-10"), changeFrequency: "weekly",  priority: 0.3  },
     { url: `${SITE_URL}/support`,                       lastModified: new Date("2026-11-02"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/hall-of-fame`,                  lastModified: new Date("2026-04-01"), changeFrequency: "yearly",  priority: 0.3  },
     { url: `${SITE_URL}/respub`,           lastModified: new Date("2026-06-16"), changeFrequency: "monthly", priority: 0.7  },

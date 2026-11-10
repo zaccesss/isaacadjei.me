@@ -4,19 +4,20 @@ import Link from "next/link"
 import { ArrowLeft, ArrowRight, Clock, Calendar, ExternalLink } from "lucide-react"
 import { getPostBySlug, getPublishedPosts, getAdjacentPosts, getSeriesPosts, SERIES_LABELS, type PostType } from "@/data/blog"
 import { projects } from "@/data/projects"
-import Tag, { postTypeLabelClass } from "@/components/shared/Tag"
-import { highlightBlocks } from "@/lib/highlight"
-import ReadingProgress from "@/components/shared/ReadingProgress"
-import HashScroll from "@/components/shared/HashScroll"
+import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
+import { highlightBlocks } from "@/lib/content/highlight"
+import ReadingProgress from "@/components/shared/scroll/ReadingProgress"
+import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
-import { renderBlock, buildHeadingIds } from "@/components/shared/ContentBlocks"
-import TableOfContents, { type TocHeading } from "@/components/shared/TableOfContents"
+import { renderBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
+import TableOfContents, { type TocHeading } from "@/components/shared/markdown/TableOfContents"
 import BlogReactions from "@/components/shared/BlogReactions"
 import SeriesBanner from "@/components/shared/SeriesBanner"
 import ShareButton from "@/components/shared/ShareButton"
 import GiscusComments from "@/components/blog/GiscusComments"
 import AuthorCard from "@/components/blog/AuthorCard"
-import ThemedCover from "@/components/shared/ThemedCover"
+import ThemedCover from "@/components/shared/media/ThemedCover"
+import { sameShareImage } from "@/lib/content/share-image"
 
 export const revalidate = 604800
 
@@ -58,7 +59,7 @@ export async function generateMetadata({
       },
     }
   }
-  return {
+  return sameShareImage({
     title: `Blog | ${post.title}`,
     description: post.description,
     alternates: {
@@ -72,7 +73,7 @@ export async function generateMetadata({
           : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`,
       ],
     },
-  }
+  })
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {

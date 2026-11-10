@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import Image from "@/components/shared/MediaImage"
+import Image from "@/components/shared/media/MediaImage"
 import Link from "next/link"
 import SocialLinks from "@/components/shared/SocialLinks"
-import { fadeUp, staggerContainer } from "@/lib/animations"
+import { fadeUp, staggerContainer } from "@/lib/ui/animations"
 import { useModKey } from "@/hooks/useModKey"
 
 export default function Hero() {

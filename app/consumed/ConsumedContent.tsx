@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import ListControls, { type FilterGroup } from "@/components/shared/ListControls"
-import { monthOptions, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import { monthOptions, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 import { useSearchParams } from "next/navigation"
 import {
   BookOpen, Headphones, Tv2,

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import type { LucideIcon } from "lucide-react"
 import { Lightbulb, Newspaper, NotebookPen, PenLine, Rss } from "lucide-react"
-import { FEEDS, feedAlternates, type FeedInfo } from "@/lib/feeds"
+import { FEEDS, feedAlternates, type FeedInfo } from "@/lib/content/feeds"
 
 export const metadata: Metadata = {
   title: "Feeds",

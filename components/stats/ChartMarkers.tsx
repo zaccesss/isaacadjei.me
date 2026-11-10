@@ -1,8 +1,8 @@
 "use client"
 
 import type { ReactNode } from "react"
-import type { PlacedMarker } from "@/lib/stats-milestone-place"
-import { dayName } from "@/lib/stats-helpers"
+import type { PlacedMarker } from "@/lib/stats/stats-milestone-place"
+import { dayName } from "@/lib/stats/stats-helpers"
 
 function Badge({ children }: { children: ReactNode }) {
   return (

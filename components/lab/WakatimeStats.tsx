@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import TypingMotto from "@/components/shared/TypingMotto"
+import TypingMotto from "@/components/shared/motion/TypingMotto"
 import {
   ResponsiveContainer,
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,

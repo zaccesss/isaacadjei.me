@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { feedAlternates } from "@/lib/feeds"
+import { feedAlternates } from "@/lib/content/feeds"
 
 export const metadata: Metadata = {
   title: "Blog",

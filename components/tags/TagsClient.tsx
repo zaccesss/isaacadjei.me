@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "@/components/shared/IntentLink"
 import { Search, Tag } from "lucide-react"
-import { fieldScore } from "@/lib/search"
+import { fieldScore } from "@/lib/content/search"
 
 interface TagItem {
   slug: string

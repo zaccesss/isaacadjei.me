@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { redis } from "@/lib/redis"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { redis } from "@/lib/core/redis"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
 import { GH_OWNER } from "@/lib/site-config"
-import { getStoredGithubContributions } from "@/lib/github-contributions"
+import { getStoredGithubContributions } from "@/lib/integrations/github-contributions"
 
 const GITHUB_USER = GH_OWNER
 const CACHE_KEY = "github:stats:v7"

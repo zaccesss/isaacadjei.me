@@ -1,7 +1,7 @@
 "use client"
-import { usePageSize, GRID_PAGE_SIZES } from "@/components/shared/Pagination"
-import type { FilterGroup } from "@/components/shared/ListControls"
-import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/useListQuery"
+import { usePageSize, GRID_PAGE_SIZES } from "@/components/shared/lists/Pagination"
+import type { FilterGroup } from "@/components/shared/lists/ListControls"
+import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 import { MONTH_NUMBER, isMonthAvailable, type Month } from "@/data/consumed/types"
 
 type Dated = { title: string; month: Month; year: number; day?: number }

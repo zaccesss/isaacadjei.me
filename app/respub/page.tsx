@@ -31,7 +31,7 @@ const typeLabel: Record<string, string> = {
 }
 
 import PublicationsPager from "./PublicationsPager"
-import { LABEL_CLASS } from "@/components/shared/Tag"
+import { LABEL_CLASS } from "@/components/shared/lists/Tag"
 
 const ITEMS_PER_PAGE = 6
 

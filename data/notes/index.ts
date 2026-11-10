@@ -1,5 +1,5 @@
 import type { ContentBlock } from "@/data/blog"
-import { isLive } from "@/lib/schedule"
+import { isLive } from "@/lib/time/schedule"
 
 export interface NotePost {
   slug: string

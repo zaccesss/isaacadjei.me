@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import Callout from "@/components/shared/Callout"
+import Callout from "@/components/shared/markdown/Callout"
 import { Trophy, Heart, Shield, Users } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -105,7 +105,7 @@ export default function HallOfFamePage() {
           <div className="rounded-lg border border-border/60 bg-muted/20 px-6 py-5 space-y-2">
             <p className="font-semibold text-foreground">My girlfriend</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The woman who pushes me. She holds me to a standard I would not always hold myself to,
+              The woman who pushes me. She holds me to a standard I would not always hold myself to
               and she does it with patience and belief in equal measure. Having someone in your corner
               who genuinely wants to see you win changes everything.
             </p>

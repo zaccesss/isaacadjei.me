@@ -2,10 +2,10 @@
 
 import { useMemo } from "react"
 import { useAnalyticsPeriod, filterByPeriod } from "@/components/analytics"
-import { computeContentStats, type Named, type RawPost, type RawTIL, type RawProject, type RawDated } from "@/lib/content-stats-compute"
+import { computeContentStats, type Named, type RawPost, type RawTIL, type RawProject, type RawDated } from "@/lib/content/content-stats-compute"
 import { WritingStats } from "@/components/stats/StatsCharts"
 import { writingExtra } from "@/components/stats/chart-data"
-import type { Milestone } from "@/lib/stats-milestone-place"
+import type { Milestone } from "@/lib/stats/stats-milestone-place"
 
 export function WritingHistory({
   posts, til, projects, notes, issues, consumed, milestones = [],

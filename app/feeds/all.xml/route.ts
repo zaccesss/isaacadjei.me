@@ -1,10 +1,10 @@
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedNotes } from "@/data/notes"
 import { getPublishedTILEntries } from "@/data/til"
-import { allChannel, blogItems, newsletterItems, noteItems, tilItems } from "@/lib/feeds"
-import { fetchNewsletterIssues } from "@/lib/newsletter"
-import { rssResponse } from "@/lib/rss"
-import { cacheUntilMidnight } from "@/lib/schedule"
+import { allChannel, blogItems, newsletterItems, noteItems, tilItems } from "@/lib/content/feeds"
+import { fetchNewsletterIssues } from "@/lib/newsletter/newsletter"
+import { rssResponse } from "@/lib/content/rss"
+import { cacheUntilMidnight } from "@/lib/time/schedule"
 
 export const dynamic = "force-dynamic"
 

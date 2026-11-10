@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { fadeUp, staggerContainer } from "@/lib/animations"
+import { fadeUp, staggerContainer } from "@/lib/ui/animations"
 
 export default function AboutPreview() {
   return (

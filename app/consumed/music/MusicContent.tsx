@@ -2,11 +2,11 @@ import Link from "next/link"
 import { ArrowLeft, Music2, ExternalLink } from "lucide-react"
 import { artists, genres } from "@/data/consumed/music"
 import { consumedTotals } from "@/data/consumed"
-import { consumedSlug, normTag } from "@/lib/tags"
+import { consumedSlug, normTag } from "@/lib/content/tags"
 import { SpotifyNowPlaying } from "@/components/consumed/SpotifyNowPlaying"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { Separator } from "@/components/ui/separator"
-import { TAG_CLASS } from "@/components/shared/Tag"
+import { TAG_CLASS } from "@/components/shared/lists/Tag"
 
 export default function MusicContent() {
   return (

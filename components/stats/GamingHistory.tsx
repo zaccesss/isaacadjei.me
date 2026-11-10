@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { BarChart, LineChart, StatCard, useAnalyticsPeriod } from "@/components/analytics"
-import type { GamingSummary } from "@/lib/gaming"
+import type { GamingSummary } from "@/lib/stats/gaming"
 
 export function GamingHistory() {
   const { period } = useAnalyticsPeriod()

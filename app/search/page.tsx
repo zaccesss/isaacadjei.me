@@ -6,7 +6,7 @@ import { getPublishedNotes } from "@/data/notes"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
 import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, liveConsumed } from "@/data/consumed"
-import { consumedSlug } from "@/lib/tags"
+import { consumedSlug } from "@/lib/content/tags"
 import SearchClient from "@/components/search/SearchClient"
 
 export const metadata: Metadata = {

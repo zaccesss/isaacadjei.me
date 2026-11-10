@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
-import { fetchNewsletterIssues, type NewsletterIssue } from "@/lib/newsletter"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
+import { fetchNewsletterIssues, type NewsletterIssue } from "@/lib/newsletter/newsletter"
 
 export type { NewsletterIssue }
 

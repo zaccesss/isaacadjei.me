@@ -1,4 +1,4 @@
-import { contentSecurityPolicy } from "./lib/csp.mjs"
+import { contentSecurityPolicy, permissionsPolicy } from "./lib/security/csp.mjs"
 
 const isDev = process.env.NODE_ENV === "development"
 
@@ -17,7 +17,7 @@ const nextConfig = {
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "i.scdn.co" },
       { protocol: "https", hostname: "mosaic.scdn.co" },
-      // Zacess product stills and posters from the zacess-media bucket (lib/zacess-media.ts)
+      // Zacess product stills and posters from the zacess-media bucket (lib/content/zacess-media.ts)
       { protocol: "https", hostname: "media.zacess.com" },
     ],
     dangerouslyAllowSVG: true,
@@ -103,7 +103,7 @@ const nextConfig = {
           // only send the origin (no path/query) as Referer on cross-origin requests
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           // disable browser features the portfolio does not use
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), usb=(), serial=(), hid=(), bluetooth=(), midi=(), browsing-topics=()" },
+          { key: "Permissions-Policy", value: permissionsPolicy() },
           // no other site's window can reach into this one. Popups stay allowed for the CV print window and sign-in
           { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
           { key: "X-Permitted-Cross-Domain-Policies", value: "none" },

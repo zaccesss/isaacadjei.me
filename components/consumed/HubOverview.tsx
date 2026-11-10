@@ -2,8 +2,8 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import type { ConsumedSummary, ConsumedYearSummary } from "@/data/consumed/summary"
 import type { ConsumedCollection } from "@/data/consumed/collections"
-import { TAG_LINK_CLASS } from "@/components/shared/Tag"
-import { normTag } from "@/lib/tags"
+import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
+import { normTag } from "@/lib/content/tags"
 import { SummaryCard } from "./SummaryCard"
 
 export type HubOverviewProps = {

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { skillCategories, professionalSkillGroups, type Skill } from "@/data/skills"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
-import { CHIP_CLASS } from "@/components/shared/Tag"
+import { CHIP_CLASS } from "@/components/shared/lists/Tag"
 
 const TILE =
   "group flex flex-col items-center gap-2 p-3 w-[70px] sm:w-[88px] rounded-xl border bg-card hover:border-primary/50 hover:shadow-lg sm:hover:-translate-y-1.5 sm:hover:scale-105 motion-reduce:sm:hover:translate-y-0 motion-reduce:sm:hover:scale-100 transition-[border-color,box-shadow] sm:transition-all duration-200"

@@ -3,8 +3,8 @@
 import Link from "next/link"
 import { ArrowRight, Code2, Gamepad2, MapPinned, Music2, PenLine } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
-import type { PublicStats } from "@/lib/public-stats"
-import type { getContentStats } from "@/lib/content-stats"
+import type { PublicStats } from "@/lib/stats/public-stats"
+import type { getContentStats } from "@/lib/content/content-stats"
 
 type Content = ReturnType<typeof getContentStats>
 

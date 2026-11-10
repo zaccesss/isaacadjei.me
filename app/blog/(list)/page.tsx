@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { feedAlternates } from "@/lib/feeds"
+import { feedAlternates } from "@/lib/content/feeds"
 import { Suspense } from "react"
 import BlogContent from "./BlogContent"
 import { getPublishedPosts, toCard } from "@/data/blog"

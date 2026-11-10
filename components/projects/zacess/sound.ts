@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react"
 import sounds from "@/data/projects/zacess/sounds.json"
-import { ZACESS_STUDIO_BASE } from "@/lib/zacess-media"
+import { ZACESS_STUDIO_BASE } from "@/lib/content/zacess-media"
 
 export type SoundKind = "scenes" | "games"
 type Level = "tone" | "ambient" | "music" | "effect"

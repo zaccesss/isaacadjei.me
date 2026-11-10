@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
-import { cdnCache } from "@/lib/cdn-cache"
-import { supabase } from "@/lib/supabase"
-import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/ratelimit"
+import { cdnCache } from "@/lib/core/cdn-cache"
+import { supabase } from "@/lib/core/supabase"
+import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
 
 export const dynamic = "force-dynamic"
 
