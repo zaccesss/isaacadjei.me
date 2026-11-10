@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "How AI may and may not be used in contributions to my projects: declare it on every pull request, write your own words, understand and test what you submit.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/ai-policy",
+    canonical: "https://isaacadjei.me/ai-policy",
   },
   openGraph: {
     images: ["/api/og?title=AI%20Policy&description=How%20AI%20may%20and%20may%20not%20be%20used%20in%20contributions%20to%20my%20projects%2E"],

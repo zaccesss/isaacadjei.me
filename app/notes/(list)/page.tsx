@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Notes",
   description: "A public notebook. What I am building, thinking about and planning.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/notes",
+    canonical: "https://isaacadjei.me/notes",
     types: feedAlternates("notes", "all"),
   },
   openGraph: {

@@ -1,6 +1,6 @@
 import { getPublishedIssues, getIssueBySlug, issueLabel, type Issue } from "@/data/newsletter"
 
-const SITE = "https://www.isaacadjei.me"
+const SITE = "https://isaacadjei.me"
 
 export interface NewsletterIssue {
   id: string

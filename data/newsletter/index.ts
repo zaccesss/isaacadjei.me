@@ -174,7 +174,7 @@ const consumedDate = (e: { year: number; month: Month; day?: number }) =>
 
 export function worthBetween(start: string, end: string): WorthItem[] {
   const all: (Omit<WorthItem, "date"> & { date: string | null })[] = [
-    ...books.map((b) => ({ kind: "Book", title: b.title, by: b.author, url: b.link ?? "https://www.isaacadjei.me/consumed/books", date: consumedDate(b) })),
+    ...books.map((b) => ({ kind: "Book", title: b.title, by: b.author, url: b.link ?? "https://isaacadjei.me/consumed/books", date: consumedDate(b) })),
     ...articles.map((a) => ({ kind: "Article", title: a.title, by: a.source, url: a.url, date: consumedDate(a) })),
     ...videos.map((v) => ({
       kind: "Video",

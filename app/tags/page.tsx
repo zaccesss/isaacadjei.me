@@ -12,7 +12,7 @@ import TagsClient from "@/components/tags/TagsClient"
 export const metadata: Metadata = {
   title: "Tags",
   description: "Browse all topics across blog posts, TIL entries, notes, projects, publications and consumed items.",
-  alternates: { canonical: "https://www.isaacadjei.me/tags" },
+  alternates: { canonical: "https://isaacadjei.me/tags" },
   openGraph: {
     images: ["/api/og?title=Tags&description=Browse%20all%20topics%20across%20blog%20posts%2C%20TIL%20entries%2C%20notes%2C%20projects%2C%20publications%20and%20consumed%20items."],
   },

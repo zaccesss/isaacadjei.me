@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "What I do so this site and my projects can be read and used by as many people as possible, plus how to tell me when something gets in the way.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/accessibility",
+    canonical: "https://isaacadjei.me/accessibility",
   },
   openGraph: {
     images: ["/api/og?title=Accessibility&description=What%20I%20do%20so%20this%20site%20and%20my%20projects%20can%20be%20read%20and%20used%20by%20as%20many%20people%20as%20possible%2E"],

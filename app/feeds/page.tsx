@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Feeds",
   description: "Follow the blog, TIL, notes and newsletter from isaacadjei.me in any RSS or Atom reader.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/feeds",
+    canonical: "https://isaacadjei.me/feeds",
     types: feedAlternates("all", "blog", "til", "notes", "newsletter"),
   },
   openGraph: {

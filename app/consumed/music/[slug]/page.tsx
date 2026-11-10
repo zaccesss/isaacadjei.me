@@ -42,7 +42,7 @@ export async function generateMetadata({
   return sameShareImage({
     title: `Consumed | ${artist.name}`,
     description: artist.note,
-    alternates: { canonical: `https://www.isaacadjei.me/consumed/music/${slug}` },
+    alternates: { canonical: `https://isaacadjei.me/consumed/music/${slug}` },
     openGraph: {
       title: `Consumed | ${artist.name}`,
       images: [`/api/og?title=${encodeURIComponent(artist.name)}&description=${encodeURIComponent(artist.note)}`],

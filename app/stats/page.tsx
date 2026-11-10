@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Stats",
   description: "Live and historical stats from isaacadjei.me - GitHub activity, coding hours, listening history, application geography and gaming status.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/stats",
+    canonical: "https://isaacadjei.me/stats",
   },
   openGraph: {
     images: ["/api/og?title=Stats&description=Live%20and%20historical%20stats%20from%20isaacadjei.me."],

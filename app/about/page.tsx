@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "About",
   description: "About Isaac Adjei: my story, education and involvement.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/about",
+    canonical: "https://isaacadjei.me/about",
   },
   openGraph: {
     images: ["/api/og?title=About%20Isaac%20Adjei&description=My%20story%2C%20education%20and%20involvement%2E"],

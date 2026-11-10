@@ -11,7 +11,7 @@ export const revalidate = 86400
 export const metadata: Metadata = {
   title: "Install",
   description: "Every tool I publish and how to install it: Homebrew, winget, Cargo, editor marketplaces and browser stores. All free and open source.",
-  alternates: { canonical: "https://www.isaacadjei.me/install" },
+  alternates: { canonical: "https://isaacadjei.me/install" },
   openGraph: { images: ["/api/og?title=Install&description=Every%20tool%20I%20publish%20and%20how%20to%20install%20it."] },
 }
 

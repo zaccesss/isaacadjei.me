@@ -64,7 +64,7 @@ export async function generateMetadata({
   return sameShareImage({
     title: `#${tag} - Tags`,
     description,
-    alternates: { canonical: `https://www.isaacadjei.me/tags/${tag}` },
+    alternates: { canonical: `https://isaacadjei.me/tags/${tag}` },
     openGraph: {
       images: [`/api/og?title=%23${encodeURIComponent(tag)}&description=${encodeURIComponent(description)}`],
     },

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Subscribe to my newsletter: engineering write-ups, project breakdowns, tech reflections and things I am building and learning. Written by Isaac Adjei.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/newsletter",
+    canonical: "https://isaacadjei.me/newsletter",
     types: feedAlternates("newsletter"),
   },
   openGraph: {

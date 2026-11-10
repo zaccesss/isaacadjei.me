@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Coding Stats",
   description: "My WakaTime coding stats - daily trend, languages, projects, editors and when I actually code.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/stats/coding",
+    canonical: "https://isaacadjei.me/stats/coding",
   },
   openGraph: {
     images: ["/api/og?title=Coding%20Stats&description=My%20WakaTime%20coding%20stats%20-%20languages%2C%20projects%2C%20editors%20and%20when%20I%20actually%20code."],

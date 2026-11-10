@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "All Pages",
   description: "Every public page on isaacadjei.me in one place.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/all-pages",
+    canonical: "https://isaacadjei.me/all-pages",
   },
   openGraph: {
     images: ["/api/og?title=All%20Pages&description=Every%20public%20page%20on%20isaacadjei%2Eme%20in%20one%20place%2E"],

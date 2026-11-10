@@ -17,7 +17,7 @@ export const revalidate = 604800
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://www.isaacadjei.me",
+    canonical: "https://isaacadjei.me",
   },
   openGraph: {
     images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E"],

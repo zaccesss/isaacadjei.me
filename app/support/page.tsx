@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Support",
   description: "Where to get help on my projects and this website: discussions, an issue, my support email or my contact page.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/support",
+    canonical: "https://isaacadjei.me/support",
   },
   openGraph: {
     images: ["/api/og?title=Support&description=Where%20to%20get%20help%20on%20my%20projects%20and%20this%20website%2E"],

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description: "Writing on tech, engineering and ideas.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/blog",
+    canonical: "https://isaacadjei.me/blog",
     types: feedAlternates("blog", "all"),
   },
   openGraph: {

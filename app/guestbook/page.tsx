@@ -9,7 +9,7 @@ import { supabase } from "@/lib/core/supabase"
 export const metadata: Metadata = {
   title: "Guestbook",
   description: "Leave a message for Isaac Adjei and read what other visitors have written.",
-  alternates: { canonical: "https://www.isaacadjei.me/guestbook" },
+  alternates: { canonical: "https://isaacadjei.me/guestbook" },
   openGraph: {
     images: ["/api/og?title=Guestbook&description=Leave%20me%20a%20message%20and%20read%20what%20other%20visitors%20have%20written%2E"],
   },

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     "My hardware, software and accessibility projects: embedded circuits, web apps, a tool that records and undoes what AI agents do and an accessible document reader.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/projects",
+    canonical: "https://isaacadjei.me/projects",
   },
   openGraph: {
     images: ["/api/og?title=Projects&description=My%20engineering%20projects%20across%20hardware%2C%20software%20and%20accessibility%20tools%2E"],

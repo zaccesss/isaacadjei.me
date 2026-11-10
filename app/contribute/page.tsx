@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "How to help on my projects: report a bug, flag a hardware problem, improve the writing, suggest an idea or open a pull request.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/contribute",
+    canonical: "https://isaacadjei.me/contribute",
   },
   openGraph: {
     images: ["/api/og?title=Contributing&description=How%20to%20report%20a%20bug%2C%20suggest%20an%20idea%20or%20open%20a%20pull%20request%20on%20my%20projects%2E"],

@@ -12,7 +12,7 @@ import SearchClient from "@/components/search/SearchClient"
 export const metadata: Metadata = {
   title: "Search",
   description: "Search across blog posts, TIL entries, projects, publications, notes and newsletter issues.",
-  alternates: { canonical: "https://www.isaacadjei.me/search" },
+  alternates: { canonical: "https://isaacadjei.me/search" },
   openGraph: {
     images: ["/api/og?title=Search&description=Search%20across%20blog%20posts%2C%20TIL%20entries%2C%20projects%20and%20more."],
   },

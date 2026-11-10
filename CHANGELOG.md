@@ -2,6 +2,15 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.115.0] - 2026-11-10
+
+_One address_
+
+### Changed
+
+- Page addresses in search results, feeds, share links and emails now use isaacadjei.me without the www
+- Small behind-the-scenes improvements
+
 ## [2.114.0] - 2026-11-10
 
 _Reactions_

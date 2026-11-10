@@ -3,7 +3,7 @@ import { SIGN_OFF_NAME, SIGNATURE, issueLabel, type Issue, type GatheredKind } f
 import { diagramImagePath } from "@/lib/content/diagram-image"
 import { isSyncedImage, mediaEmailSrc } from "@/lib/content/media"
 
-export const SITE = "https://www.isaacadjei.me"
+export const SITE = "https://isaacadjei.me"
 export const ASSETS = "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public"
 const EMAIL_IMAGES_FROM_MEDIA = true
 

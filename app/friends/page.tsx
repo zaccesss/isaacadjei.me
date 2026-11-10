@@ -8,7 +8,7 @@ import FriendRequestForm from "@/components/friends/FriendRequestForm"
 export const metadata: Metadata = {
   title: "Friends",
   description: "Personal websites of people I know online. Part of the /friends project.",
-  alternates: { canonical: "https://www.isaacadjei.me/friends" },
+  alternates: { canonical: "https://isaacadjei.me/friends" },
   openGraph: {
     images: ["/api/og?title=Friends&description=Personal%20websites%20of%20people%20I%20know%20online%2E"],
   },

@@ -63,13 +63,13 @@ export async function generateMetadata({
     title: `Blog | ${post.title}`,
     description: post.description,
     alternates: {
-      canonical: `https://www.isaacadjei.me/blog/${slug}`,
+      canonical: `https://isaacadjei.me/blog/${slug}`,
     },
     openGraph: {
       title: `Blog | ${post.title}`,
       images: [
         post.cover_image
-          ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.isaacadjei.me"}${post.cover_image}`
+          ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaacadjei.me"}${post.cover_image}`
           : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`,
       ],
     },
@@ -115,13 +115,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     author: {
       "@type": "Person",
       name: "Isaac Adjei",
-      url: "https://www.isaacadjei.me",
+      url: "https://isaacadjei.me",
     },
     publisher: {
       "@type": "Person",
       name: "Isaac Adjei",
     },
-    url: `https://www.isaacadjei.me/blog/${slug}`,
+    url: `https://isaacadjei.me/blog/${slug}`,
     keywords: post.tags.join(", "),
     timeRequired: `PT${post.readingTime}M`,
   }

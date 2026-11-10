@@ -1,7 +1,7 @@
 import { addSubscriber, apiKey, signedParams } from "@/lib/newsletter/newsletter-subscribe"
 import { letterEmailHtml, letterEmailText, type LetterEmail } from "@/lib/friends/letter-email"
 
-const SITE = "https://www.isaacadjei.me"
+const SITE = "https://isaacadjei.me"
 export const LETTERS_FROM = "Isaac Adjei <newsletter@isaacadjei.me>"
 export const LETTERS_REPLY_TO = "contact@isaacadjei.me"
 export const LETTERS_PURPOSE = "letters"

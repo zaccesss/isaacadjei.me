@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Gaming Status",
   description: "Live PS5 and gaming PC status - what I am playing right now or last played, plus my play history.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/stats/gaming",
+    canonical: "https://isaacadjei.me/stats/gaming",
   },
   openGraph: {
     images: ["/api/og?title=Gaming%20Status&description=Live%20PS5%20and%20gaming%20PC%20status."],

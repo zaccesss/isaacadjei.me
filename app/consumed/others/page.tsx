@@ -9,7 +9,7 @@ export const revalidate = 604800
 export const metadata: Metadata = {
   title: "Others",
   description: "Tools, repos, extensions and miscellaneous finds that do not fit neatly into any other category.",
-  alternates: { canonical: "https://www.isaacadjei.me/consumed/others" },
+  alternates: { canonical: "https://isaacadjei.me/consumed/others" },
   openGraph: {
     images: ["/api/og?title=Others%20%7C%20Consumed&description=Tools%2C%20repos%20and%20miscellaneous%20finds%20that%20do%20not%20fit%20neatly%20into%20any%20other%20category."],
   },

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "What Isaac Adjei researches, writes up and formally publishes. Citable papers, technical notes and open-source curricula, with links to every record.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/respub",
+    canonical: "https://isaacadjei.me/respub",
   },
   openGraph: {
     images: [

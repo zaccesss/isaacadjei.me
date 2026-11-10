@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return sameShareImage({
     title,
     description: collection.description,
-    alternates: { canonical: `https://www.isaacadjei.me/consumed/collections/${slug}` },
+    alternates: { canonical: `https://isaacadjei.me/consumed/collections/${slug}` },
     openGraph: {
       title,
       images: [`/api/og?title=${encodeURIComponent(collection.title)}&description=${encodeURIComponent(collection.description)}`],

@@ -12,7 +12,7 @@ import CitationPicker from "@/components/respub/CitationPicker"
 import ZenodoStats from "@/components/respub/ZenodoStats"
 import { sameShareImage } from "@/lib/content/share-image"
 
-const SITE = "https://www.isaacadjei.me"
+const SITE = "https://isaacadjei.me"
 
 const typeLabel: Record<string, string> = {
   "technical-note": "Technical Note",
@@ -40,7 +40,7 @@ export async function generateMetadata({
     title: `Research | ${pub.title}`,
     description,
     alternates: {
-      canonical: `https://www.isaacadjei.me/respub/${slug}`,
+      canonical: `https://isaacadjei.me/respub/${slug}`,
     },
     openGraph: {
       title: `Research | ${pub.title}`,

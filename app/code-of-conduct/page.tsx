@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "The code of conduct for all my projects, software or hardware, public or private: the Contributor Covenant 2.1, adopted in full.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/code-of-conduct",
+    canonical: "https://isaacadjei.me/code-of-conduct",
   },
   openGraph: {
     images: ["/api/og?title=Code%20of%20Conduct&description=The%20standard%20I%20hold%20for%20taking%20part%20anywhere%20I%20build%2E"],

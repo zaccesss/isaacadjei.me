@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "GitHub Stats",
   description: "My GitHub contribution history, top languages and top repos.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/stats/github",
+    canonical: "https://isaacadjei.me/stats/github",
   },
   openGraph: {
     images: ["/api/og?title=GitHub%20Stats&description=My%20GitHub%20contribution%20history%2C%20top%20languages%20and%20top%20repos."],

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Changelog",
   description: "What has changed on isaacadjei.me, from the first commit to the latest update.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/changelog",
+    canonical: "https://isaacadjei.me/changelog",
   },
   openGraph: {
     images: ["/api/og?title=Changelog&description=What%20has%20changed%20on%20isaacadjei%2Eme%2C%20from%20the%20first%20commit%20to%20the%20latest%20update%2E"],
@@ -24,6 +24,15 @@ type ChangeEntry = {
 }
 
 const releases: ChangeEntry[] = [
+  {
+    version: "v2.115.0",
+    date: "2026-11-10",
+    label: "One address",
+    changed: [
+      "Page addresses in search results, feeds, share links and emails now use isaacadjei.me without the www",
+      "Small behind-the-scenes improvements",
+    ],
+  },
   {
     version: "v2.114.0",
     date: "2026-11-10",

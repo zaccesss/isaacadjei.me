@@ -8,7 +8,7 @@ import { getMilestones } from "@/lib/stats/stats-milestones"
 export const metadata: Metadata = {
   title: "Writing and Projects Stats",
   description: "Numbers about what I publish: posts, TILs, notes and newsletter issues by month, what I write about, my projects and what I read and watch.",
-  alternates: { canonical: "https://www.isaacadjei.me/stats/writing" },
+  alternates: { canonical: "https://isaacadjei.me/stats/writing" },
   openGraph: { images: ["/api/og?title=Writing%20and%20Projects&description=Numbers%20about%20what%20I%20publish."] },
 }
 

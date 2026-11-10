@@ -46,7 +46,7 @@ export async function generateMetadata({
       title: `Notes | ${post.title}`,
       description: post.description,
       alternates: {
-        canonical: `https://www.isaacadjei.me/notes/${slug}`,
+        canonical: `https://isaacadjei.me/notes/${slug}`,
       },
       openGraph: {
         title: `Notes | ${post.title}`,

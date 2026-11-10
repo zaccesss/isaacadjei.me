@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Music Stats",
   description: "My top tracks and artists, plus a year of listening history by day and hour.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/stats/music",
+    canonical: "https://isaacadjei.me/stats/music",
   },
   openGraph: {
     images: ["/api/og?title=Music%20Stats&description=My%20top%20tracks%20and%20artists%2C%20plus%20a%20year%20of%20listening%20history."],

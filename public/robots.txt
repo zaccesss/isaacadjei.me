@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /resume/
 
-Sitemap: https://www.isaacadjei.me/sitemap.xml
+Sitemap: https://isaacadjei.me/sitemap.xml

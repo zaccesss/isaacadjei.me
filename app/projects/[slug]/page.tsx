@@ -26,13 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.id === slug)
   if (!project) return {}
   const image = project.cover
-    ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.isaacadjei.me"}${project.cover}`
+    ? `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaacadjei.me"}${project.cover}`
     : `/api/og?title=${encodeURIComponent(project.title)}&description=${encodeURIComponent(project.description)}`
   return sameShareImage({
     title: `Project | ${project.title}`,
     description: project.description,
     alternates: {
-      canonical: `https://www.isaacadjei.me/projects/${slug}`,
+      canonical: `https://isaacadjei.me/projects/${slug}`,
     },
     openGraph: {
       title: `Project | ${project.title}`,

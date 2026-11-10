@@ -9,7 +9,7 @@ export const revalidate = 604800
 export const metadata: Metadata = {
   title: "Audio",
   description: "Podcast episodes and shows listened to this year. Play them directly here where possible.",
-  alternates: { canonical: "https://www.isaacadjei.me/consumed/podcasts" },
+  alternates: { canonical: "https://isaacadjei.me/consumed/podcasts" },
   openGraph: {
     images: ["/api/og?title=Audio%20%7C%20Consumed&description=Podcast%20episodes%20and%20shows%20listened%20to%20this%20year."],
   },

@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 export const metadata: Metadata = {
   title: "Disclaimer",
   description: "What the content on isaacadjei.me is and is not: personal views, information rather than advice and live data that can lag.",
-  alternates: { canonical: "https://www.isaacadjei.me/disclaimer" },
+  alternates: { canonical: "https://isaacadjei.me/disclaimer" },
   openGraph: {
     images: ["/api/og?title=Disclaimer&description=Personal%20views%2C%20information%20rather%20than%20advice%20and%20live%20data%20that%20can%20lag%2E"],
   },

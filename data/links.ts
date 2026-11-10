@@ -25,7 +25,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Portfolio",
     description: "Projects, blog, CV and everything me",
-    url: "https://www.isaacadjei.me",
+    url: "https://isaacadjei.me",
     icon: "globe",
     iconImage: "/images/avatar.webp",
     category: "professional",
@@ -99,7 +99,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Newsletter",
     description: "A letter every couple of weeks: what I built, learned and wrote",
-    url: "https://www.isaacadjei.me/newsletter",
+    url: "https://isaacadjei.me/newsletter",
     icon: "newspaper",
     category: "writing",
   },

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Experience",
   description: "My work experience, leadership roles, ventures and volunteering.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/experience",
+    canonical: "https://isaacadjei.me/experience",
   },
   openGraph: {
     images: ["/api/og?title=Experience&description=My%20work%20experience%2C%20leadership%20roles%2C%20ventures%20and%20volunteering%2E"],

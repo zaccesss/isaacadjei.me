@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 export const metadata: Metadata = {
   title: "Copyright",
   description: "Who owns the content on isaacadjei.me, the licence for the site's code and the third-party material it uses.",
-  alternates: { canonical: "https://www.isaacadjei.me/copyright" },
+  alternates: { canonical: "https://isaacadjei.me/copyright" },
   openGraph: {
     images: ["/api/og?title=Copyright&description=Who%20owns%20the%20content%20here%2C%20the%20licence%20for%20the%20site%27s%20code%20and%20the%20third-party%20material%20it%20uses%2E"],
   },

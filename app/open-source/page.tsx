@@ -11,7 +11,7 @@ export const revalidate = 3600
 export const metadata: Metadata = {
   title: "Open Source",
   description: "My contributions to open source projects: what each one changed, in which project and a link to the work.",
-  alternates: { canonical: "https://www.isaacadjei.me/open-source" },
+  alternates: { canonical: "https://isaacadjei.me/open-source" },
   openGraph: { images: ["/api/og?title=Open%20Source&description=My%20contributions%20to%20open%20source%20projects."] },
 }
 

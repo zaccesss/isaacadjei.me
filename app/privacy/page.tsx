@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Privacy Policy and legal terms for isaacadjei.me. How this site handles data, intellectual property, cookies and analytics.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/privacy",
+    canonical: "https://isaacadjei.me/privacy",
   },
   robots: {
     index: false,

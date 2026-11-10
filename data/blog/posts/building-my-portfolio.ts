@@ -16,7 +16,7 @@ const _building_my_portfolio: BlogPost = {
     content: [
       {
         type: "p",
-        text: "For a while my portfolio was a terminal-style single-page HTML file at zacess.com. It worked, it was fun and I was genuinely proud of it at the time. Looking back, it was mostly vibe-coded: I built it by piecing together things I had found online without deeply understanding what I was doing. It loaded fast, looked interesting and told you almost nothing about my actual work. No project pages. No blog. No way to see anything beyond a blinking cursor and a few hardcoded text responses. The current version lives at [isaacadjei.me](https://www.isaacadjei.me).",
+        text: "For a while my portfolio was a terminal-style single-page HTML file at zacess.com. It worked, it was fun and I was genuinely proud of it at the time. Looking back, it was mostly vibe-coded: I built it by piecing together things I had found online without deeply understanding what I was doing. It loaded fast, looked interesting and told you almost nothing about my actual work. No project pages. No blog. No way to see anything beyond a blinking cursor and a few hardcoded text responses. The current version lives at [isaacadjei.me](https://isaacadjei.me).",
       },
       {
         type: "image",

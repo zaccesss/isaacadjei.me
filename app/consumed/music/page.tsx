@@ -5,7 +5,7 @@ import MusicContent from "./MusicContent"
 export const metadata: Metadata = {
   title: "Music",
   description: "Artists and genres on heavy rotation this year. What shapes the mood of work sessions, commutes and quiet mornings.",
-  alternates: { canonical: "https://www.isaacadjei.me/consumed/music" },
+  alternates: { canonical: "https://isaacadjei.me/consumed/music" },
   openGraph: {
     images: ["/api/og?title=Music%20%7C%20Consumed&description=Artists%20and%20genres%20on%20heavy%20rotation%20this%20year."],
   },

@@ -1,7 +1,7 @@
 import { createHmac } from "crypto"
 import { secretEquals } from "@/lib/security/secure-compare"
 
-const SITE = "https://www.isaacadjei.me"
+const SITE = "https://isaacadjei.me"
 const LINK_TTL_SECONDS = 3 * 24 * 3600
 
 function secret(): string | undefined {

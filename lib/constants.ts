@@ -36,4 +36,4 @@ export const NAV_LINKS = [
 
 export const BOOKING_URL = "https://cal.com/isaacadjei.me/chat"
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.isaacadjei.me"
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaacadjei.me"

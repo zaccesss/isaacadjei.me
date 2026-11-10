@@ -12,17 +12,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: "https://www.isaacadjei.me/share",
+    url: "https://isaacadjei.me/share",
     type: "website",
-    images: ["https://www.isaacadjei.me/opengraph-image?v=20260424b"],
+    images: ["https://isaacadjei.me/opengraph-image?v=20260424b"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["https://www.isaacadjei.me/twitter-image?v=20260424b"],
+    images: ["https://isaacadjei.me/twitter-image?v=20260424b"],
   },
-  alternates: { canonical: "https://www.isaacadjei.me/share" },
+  alternates: { canonical: "https://isaacadjei.me/share" },
   robots: { index: false, follow: false },
 }
 

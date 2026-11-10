@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Security Policy",
   description: "How to responsibly disclose security vulnerabilities on isaacadjei.me.",
   alternates: {
-    canonical: "https://www.isaacadjei.me/security-policy",
+    canonical: "https://isaacadjei.me/security-policy",
   },
   openGraph: {
     images: ["/api/og?title=Security%20Policy&description=How%20to%20responsibly%20disclose%20security%20vulnerabilities%20on%20isaacadjei%2Eme%2E"],
