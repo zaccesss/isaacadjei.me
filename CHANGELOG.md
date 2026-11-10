@@ -2,6 +2,21 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.117.0] - 2026-11-10
+
+_Share cards_
+
+### Changed
+
+- The Linux kernel patch on the Open Source page links its commit in the GPIO tree beside its thread
+- Small behind-the-scenes improvements
+
+### Fixed
+
+- Every page now shows the same picture when shared on X as it does elsewhere, where some showed the general site card
+- Today I Learned descriptions in search results and share cards are plain text, with no stray formatting marks
+- The sitemap gives a date only to pages that have one, so search engines are no longer told that every list changed on each update
+
 ## [2.116.0] - 2026-11-10
 
 _Behind the scenes_

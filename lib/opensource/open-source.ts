@@ -17,6 +17,7 @@ export type PublicContribution = {
   date: string
   relation: { text: string; url: string | null } | null
   pinned: boolean
+  commit: { url: string; tree: string } | null
 }
 
 export type Named = { name: string; value: number }
@@ -64,6 +65,14 @@ type Row = {
 export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
 
 const PINNED = ["20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me"]
+
+const APPLIED_AS: Record<string, { url: string; tree: string }> = {
+  "20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me": {
+    url: "https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git/commit/?id=cfbd01eddaf5bfdd4f53560013fe830571a186e9",
+    tree: "the GPIO tree",
+  },
+}
+const commitOf = (url: string | null) => Object.entries(APPLIED_AS).find(([id]) => url?.includes(id))?.[1] ?? null
 
 const KIND_LABEL: Record<Row["kind"], PublicKind> = { pr: "Pull request", issue: "Issue", other: "Listing" }
 
@@ -114,6 +123,7 @@ async function compute(): Promise<OpenSourceStats> {
     date: r.submitted_at.slice(0, 10),
     relation: relationOf(r),
     pinned: !!r.pr_url && PINNED.some((id) => r.pr_url!.includes(id)),
+    commit: commitOf(r.pr_url),
   }))
   const months = new Map<string, number>()
   for (const c of contributions) months.set(c.date.slice(0, 7), (months.get(c.date.slice(0, 7)) ?? 0) + 1)

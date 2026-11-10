@@ -128,19 +128,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const tagRoutes: MetadataRoute.Sitemap = [...tagSlugs].map((slug) => ({
     url: `${SITE_URL}/tags/${slug}`,
-    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.4,
   }))
 
   const consumedItemRoutes: MetadataRoute.Sitemap = [
-    ...books.map((b) => ({ url: `${SITE_URL}/consumed/books/${consumedSlug(b.title)}`,       lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...videos.map((v) => ({ url: `${SITE_URL}/consumed/videos/${consumedSlug(v.title)}`,     lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...podcasts.map((p) => ({ url: `${SITE_URL}/consumed/podcasts/${consumedSlug(p.title)}`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...articles.map((a) => ({ url: `${SITE_URL}/consumed/articles/${consumedSlug(a.title)}`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...resources.map((r) => ({ url: `${SITE_URL}/consumed/resources/${consumedSlug(r.title)}`, lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...others.map((o) => ({ url: `${SITE_URL}/consumed/others/${consumedSlug(o.title)}`,     lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
-    ...artists.map((a) => ({ url: `${SITE_URL}/consumed/music/${consumedSlug(a.name)}`,      lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...books.map((b) => ({ url: `${SITE_URL}/consumed/books/${consumedSlug(b.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...videos.map((v) => ({ url: `${SITE_URL}/consumed/videos/${consumedSlug(v.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...podcasts.map((p) => ({ url: `${SITE_URL}/consumed/podcasts/${consumedSlug(p.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...articles.map((a) => ({ url: `${SITE_URL}/consumed/articles/${consumedSlug(a.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...resources.map((r) => ({ url: `${SITE_URL}/consumed/resources/${consumedSlug(r.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...others.map((o) => ({ url: `${SITE_URL}/consumed/others/${consumedSlug(o.title)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
+    ...artists.map((a) => ({ url: `${SITE_URL}/consumed/music/${consumedSlug(a.name)}`, changeFrequency: "yearly" as const, priority: 0.4 })),
   ]
 
   const collectionRoutes: MetadataRoute.Sitemap = CONSUMED_COLLECTIONS.map((c) => ({

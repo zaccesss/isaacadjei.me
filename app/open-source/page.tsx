@@ -51,7 +51,13 @@ function Item({ c }: { c: PublicContribution }) {
         )}
         {c.url && (
           <a href={c.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary underline underline-offset-2">
-            View the {what}<span className="sr-only">: {c.title} (opens in a new tab)</span>
+            View the {mailed && c.commit ? "thread" : what}<span className="sr-only">: {c.title} (opens in a new tab)</span>
+            <ExternalLink className="h-3 w-3" aria-hidden />
+          </a>
+        )}
+        {c.commit && (
+          <a href={c.commit.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary underline underline-offset-2">
+            View the commit in {c.commit.tree}<span className="sr-only">: {c.title} (opens in a new tab)</span>
             <ExternalLink className="h-3 w-3" aria-hidden />
           </a>
         )}

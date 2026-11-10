@@ -25,6 +25,20 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.117.0",
+    date: "2026-11-10",
+    label: "Share cards",
+    changed: [
+      "The Linux kernel patch on the Open Source page links its commit in the GPIO tree beside its thread",
+      "Small behind-the-scenes improvements",
+    ],
+    fixed: [
+      "Every page now shows the same picture when shared on X as it does elsewhere, where some showed the general site card",
+      "Today I Learned descriptions in search results and share cards are plain text, with no stray formatting marks",
+      "The sitemap gives a date only to pages that have one, so search engines are no longer told that every list changed on each update",
+    ],
+  },
+  {
     version: "v2.116.0",
     date: "2026-11-10",
     label: "Behind the scenes",

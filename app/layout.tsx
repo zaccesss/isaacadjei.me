@@ -73,10 +73,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Isaac Adjei | EECS",
-    description:
-      "Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science solutions.",
-    images: ["/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E"],
   },
 }
 

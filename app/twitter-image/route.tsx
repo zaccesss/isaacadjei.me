@@ -2,14 +2,12 @@ import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
 
-export const alt = "Isaac Adjei | EECS"
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 }
-export const contentType = "image/png"
 
-export default function TwitterImage() {
+export function GET() {
   return new ImageResponse(
     <div tw="h-full w-full flex flex-col justify-between bg-slate-950 text-slate-50 p-16">
       <div tw="flex justify-between items-center text-[28px] tracking-[1px] uppercase text-slate-300">

@@ -68,13 +68,13 @@ export async function generateMetadata({
 
   return {
     title: `TIL | ${entry.title}`,
-    description: entry.body,
+    description: plainText(entry.body),
     ...(isFuture && {
       robots: { index: false, follow: false },
     }),
     openGraph: {
       title: `TIL | ${entry.title}`,
-      description: entry.body,
+      description: plainText(entry.body),
       type: "article",
       publishedTime: entry.date,
       images: [tilOgImage(entry.title, entry.body)],
@@ -86,8 +86,12 @@ export async function generateMetadata({
   }
 }
 
+function plainText(body: string): string {
+  return body.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*_]/g, "").replace(/\s+/g, " ").trim()
+}
+
 function tilOgImage(title: string, body: string): string {
-  const plain = body.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*_]/g, "").replace(/\s+/g, " ").trim()
+  const plain = plainText(body)
   const summary = plain.length > 160 ? `${plain.slice(0, 160).replace(/\s+\S*$/, "")}...` : plain
   return `/api/og?title=${encodeURIComponent(`TIL: ${title}`)}&description=${encodeURIComponent(summary)}`
 }

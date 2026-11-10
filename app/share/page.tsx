@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["https://isaacadjei.me/twitter-image?v=20260424b"],
+    images: ["https://isaacadjei.me/opengraph-image?v=20260424b"],
   },
   alternates: { canonical: "https://isaacadjei.me/share" },
   robots: { index: false, follow: false },
