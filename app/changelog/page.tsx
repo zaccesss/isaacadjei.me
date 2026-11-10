@@ -25,6 +25,17 @@ type ChangeEntry = {
 
 const releases: ChangeEntry[] = [
   {
+    version: "v2.116.0",
+    date: "2026-11-10",
+    label: "Behind the scenes",
+    changed: [
+      "Small behind-the-scenes improvements",
+    ],
+    fixed: [
+      "A security update to a library that reads image sizes",
+    ],
+  },
+  {
     version: "v2.115.0",
     date: "2026-11-10",
     label: "One address",

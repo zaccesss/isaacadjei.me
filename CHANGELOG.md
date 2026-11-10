@@ -2,6 +2,18 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.116.0] - 2026-11-10
+
+_Behind the scenes_
+
+### Changed
+
+- Small behind-the-scenes improvements
+
+### Fixed
+
+- A security update to a library that reads image sizes
+
 ## [2.115.0] - 2026-11-10
 
 _One address_

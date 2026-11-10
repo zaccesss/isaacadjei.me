@@ -53,7 +53,7 @@ export async function POST(request: Request) {
 
     const kind = body?.kind === "penpal" ? "penpal" : "friend"
     const name = stripHtmlTags(String(body?.name ?? "")).trim().slice(0, 60)
-    const email = String(body?.example-config ?? "").trim().toLowerCase().slice(0, 254)
+    const email = String(body?.email ?? "").trim().toLowerCase().slice(0, 254)
     const note = stripHtmlTags(String(body?.note ?? "")).trim().slice(0, 500)
     const rawSite = String(body?.website ?? "").trim()
     const website = /^https:\/\/[^\s]+$/i.test(rawSite) ? rawSite.slice(0, 200) : null
