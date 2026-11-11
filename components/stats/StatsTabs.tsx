@@ -11,6 +11,8 @@ import { OpenSourceStats } from "./OpenSourceStats"
 import type { OpenSourceStats as OSStats } from "@/lib/opensource/open-source"
 import { AnalyticsPeriodProvider, PeriodSelector } from "@/components/analytics"
 import type { PublicStats } from "@/lib/stats/public-stats"
+import type { ResearchStats as ResearchStatsData } from "@/lib/stats/research-stats"
+import { ReleaseStats, ResearchStats } from "@/components/stats/ResearchStats"
 import type { Milestone } from "@/lib/stats/stats-milestone-place"
 import { RecordsRow, SoundtrackCard, GitHubMonths } from "./StatsExtras"
 import type { getContentStats } from "@/lib/content/content-stats"
@@ -39,6 +41,8 @@ const TABS = [
   { id: "gaming", label: "Gaming", page: "/stats/gaming", blurb: "Live status for my PS5 and gaming PC and how I have been playing." },
   { id: "applications", label: "Applications", page: "/stats/applications", blurb: "Where my job search reaches: a live map of cities and the countries behind it, counts only." },
   { id: "writing", label: "Writing and projects", page: "/stats/writing", blurb: "What I write and build, month by month." },
+  { id: "research", label: "Research", page: "/stats/research", blurb: "What I have published and how often it is read and how far each line of research has got." },
+  { id: "releases", label: "Releases", page: "/stats/releases", blurb: "How this site has been released, month by month, counted from its own changelog." },
   { id: "open-source", label: "Open source", page: "/open-source", blurb: "What I have contributed to open source projects, with a link to each piece of work on the full page." },
 ] as const
 type Tab = (typeof TABS)[number]["id"]
@@ -52,7 +56,7 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{children}</h2>
 }
 
-export function StatsTabs({ s, c, os, milestones = [], wx }: { s: PublicStats; c: Content; os: OSStats; milestones?: Milestone[]; wx?: WritingExtra }) {
+export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStats; c: Content; os: OSStats; rs?: ResearchStatsData; milestones?: Milestone[]; wx?: WritingExtra }) {
   const hash = useSyncExternalStore(noSubscribe, readHash, serverHash)
   const [chosen, setTab] = useState<Tab | null>(null)
   const tab = chosen ?? asTab(hash)
@@ -95,12 +99,12 @@ export function StatsTabs({ s, c, os, milestones = [], wx }: { s: PublicStats; c
         <div className="space-y-8">
           <section className="space-y-3"><Heading>At a glance</Heading><HubOverview s={s} c={c} milestones={milestones} /></section>
           <RecordsRow s={s} show={["streak", "codingDay", "githubWeek", "gamingSession", "playsDay"]} />
-          <section className="space-y-3"><Heading>Explore each area</Heading><HubCards s={s} c={c} /></section>
+          <section className="space-y-3"><Heading>Explore each area</Heading><HubCards s={s} c={c} rs={rs} /></section>
           <section className="space-y-3"><Heading>How it all compares</Heading><div className="grid gap-4 sm:grid-cols-2"><SoundtrackCard s={s} /></div><OverviewMore s={s} c={c} /></section>
         </div>
       )}
 
-      {tab !== "overview" && tab !== "writing" && tab !== "applications" && tab !== "open-source" ? (
+      {tab !== "overview" && tab !== "writing" && tab !== "applications" && tab !== "open-source" && tab !== "research" && tab !== "releases" ? (
         <AnalyticsPeriodProvider defaultPeriod="30d">
           <div className="space-y-8">
             <div className="flex justify-end"><PeriodSelector /></div>
@@ -119,6 +123,8 @@ export function StatsTabs({ s, c, os, milestones = [], wx }: { s: PublicStats; c
         </div>
       )}
       {tab === "writing" && <WritingStats c={c} milestones={milestones} extra={wx} />}
+      {tab === "research" && rs && <ResearchStats s={rs} />}
+      {tab === "releases" && rs && <ReleaseStats releases={rs.releases} />}
       {tab === "open-source" && <OpenSourceStats s={os} />}
     </div>
   )

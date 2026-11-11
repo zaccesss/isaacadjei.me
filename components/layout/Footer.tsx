@@ -5,46 +5,63 @@ import FooterNewsletter from "@/components/layout/FooterNewsletter"
 
 type FooterLink = { href: string; label: string; external?: boolean }
 
-const GROUPS: { title: string; links: FooterLink[] }[] = [
-  {
-    title: "Explore",
-    links: [
-      { href: "/now", label: "Now" },
-      { href: "/lab", label: "Lab" },
-      { href: "/stats", label: "Stats" },
-      { href: "/notes", label: "Notes" },
-      { href: "/consumed", label: "Consumed" },
-      { href: "/respub", label: "Research" },
-      { href: "/open-source", label: "Open source" },
-      { href: "/skills", label: "Skills" },
-      { href: "/uses", label: "Uses" },
-      { href: "/install", label: "Install" },
-    ],
-  },
-  {
-    title: "Site",
-    links: [
-      { href: "/search", label: "Search" },
-      { href: "/tags", label: "Tags" },
-      { href: "/all-pages", label: "All pages" },
-      { href: "/colophon", label: "Colophon" },
-      { href: "/changelog", label: "Changelog" },
-      { href: "/friends", label: "Friends" },
-      { href: "/guestbook", label: "Guestbook" },
-      { href: "/support", label: "Support" },
-      { href: "https://status.isaacadjei.me", label: "Status", external: true },
-    ],
-  },
-  {
-    title: "Legal & Privacy",
-    links: [
-      { href: "/privacy", label: "Privacy Policy" },
-      { href: "/security-policy", label: "Security Policy" },
-      { href: "/accessibility", label: "Accessibility" },
-      { href: "/disclaimer", label: "Disclaimer" },
-      { href: "/copyright", label: "Copyright" },
-    ],
-  },
+type FooterGroup = { title: string; links: FooterLink[] }
+
+const COLUMNS: FooterGroup[][] = [
+  [
+    {
+      title: "Explore",
+      links: [
+        { href: "/now", label: "Now" },
+        { href: "/lab", label: "Lab" },
+        { href: "/stats", label: "Stats" },
+        { href: "/skills", label: "Skills" },
+        { href: "/uses", label: "Uses" },
+        { href: "/consumed", label: "Consumed" },
+        { href: "/install", label: "Install" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "Work",
+      links: [
+        { href: "/research", label: "Research" },
+        { href: "/publications", label: "Publications" },
+        { href: "/open-source", label: "Open source" },
+      ],
+    },
+    {
+      title: "Community",
+      links: [
+        { href: "/friends", label: "Friends" },
+        { href: "/guestbook", label: "Guestbook" },
+        { href: "/support", label: "Support" },
+      ],
+    },
+  ],
+  [
+    {
+      title: "Site",
+      links: [
+        { href: "/search", label: "Search" },
+        { href: "/tags", label: "Tags" },
+        { href: "/all-pages", label: "All pages" },
+        { href: "/colophon", label: "Colophon" },
+        { href: "/changelog", label: "Changelog" },
+        { href: "/feeds", label: "Feeds" },
+        { href: "https://status.isaacadjei.me", label: "Status", external: true },
+      ],
+    },
+  ],
+]
+
+const LEGAL: FooterLink[] = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/security-policy", label: "Security" },
+  { href: "/accessibility", label: "Accessibility" },
+  { href: "/disclaimer", label: "Disclaimer" },
+  { href: "/copyright", label: "Copyright" },
 ]
 
 const linkClass = "text-[13px] text-muted-foreground hover:text-foreground transition-colors"
@@ -54,7 +71,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t">
-      <div className="container py-12">
+      <div className="container pt-12 pb-6">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr_1.2fr] lg:gap-x-20 xl:gap-x-28">
           <div className="flex flex-col items-start gap-8">
             <FooterNewsletter />
@@ -63,29 +80,33 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {GROUPS.map((group) => (
-              <nav key={group.title} aria-labelledby={`footer-${group.title.toLowerCase()}`}>
-                <h2 id={`footer-${group.title.toLowerCase()}`} className="mb-3 text-sm font-semibold text-foreground">
-                  {group.title}
-                </h2>
-                <ul className="space-y-2">
-                  {group.links.map((item) => (
-                    <li key={item.href}>
-                      {item.external ? (
-                        <a href={item.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                          {item.label}
-                          <span className="sr-only"> (opens in a new tab)</span>
-                        </a>
-                      ) : (
-                        <Link href={item.href} className={linkClass}>
-                          {item.label}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:flex lg:justify-between">
+            {COLUMNS.map((column) => (
+              <div key={column[0].title} className="space-y-3">
+                {column.map((group, at) => (
+                  <nav key={group.title} aria-labelledby={`footer-${group.title.toLowerCase()}`}>
+                    <h2 id={`footer-${group.title.toLowerCase()}`} className={`${at === 0 ? "mb-3" : "mb-2"} text-sm font-semibold text-foreground`}>
+                      {group.title}
+                    </h2>
+                    <ul className="space-y-2">
+                      {group.links.map((item) => (
+                        <li key={item.href}>
+                          {item.external ? (
+                            <a href={item.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                              {item.label}
+                              <span className="sr-only"> (opens in a new tab)</span>
+                            </a>
+                          ) : (
+                            <Link href={item.href} className={linkClass}>
+                              {item.label}
+                            </Link>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                ))}
+              </div>
             ))}
           </div>
 
@@ -109,16 +130,27 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-3 border-t pt-6 text-xs text-muted-foreground sm:flex-row">
-          <p>
-            <Link href="/copyright" className="hover:text-foreground transition-colors">
+        <div className="mt-10 flex flex-col-reverse items-center gap-3 border-t pt-6 text-xs text-muted-foreground lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+          <p className="lg:justify-self-start">
+            <Link href="/copyright" className="font-medium text-primary underline-offset-4 hover:underline">
               &copy; {year} Isaac Adjei
             </Link>
             <span>. All rights reserved.</span>
           </p>
+          <nav aria-label="Legal and privacy">
+            <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+              {LEGAL.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-foreground transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <a
             href="#top"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-full"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4 lg:justify-self-end focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-full"
           >
             Back to top
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

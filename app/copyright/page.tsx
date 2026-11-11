@@ -22,7 +22,7 @@ export default function CopyrightPage() {
     <div className="container max-w-3xl py-24 space-y-12">
       <section className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Copyright</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
+        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           Who owns what on this site and how you can use it. For anything not covered here, ask me through the{" "}
           <Link href="/contact" className={link}>contact page</Link>.
@@ -35,7 +35,7 @@ export default function CopyrightPage() {
         <div>
           <h2>My content</h2>
           <p>
-            &copy; 2026 Isaac Adjei. All rights reserved. This covers my writing, blog posts, project and research
+            <strong className="font-semibold text-primary">&copy; 2026 Isaac Adjei</strong>. All rights reserved. This covers my writing, blog posts, project and research
             write-ups, photos, diagrams, my logo and the design of the site. You are welcome to link to any page and
             to quote short passages with a credit and a link back. Anything beyond that, such as republishing a post
             or using my photos, needs my written permission first.

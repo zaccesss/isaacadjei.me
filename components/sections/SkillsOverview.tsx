@@ -5,20 +5,26 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TAG_LINK_CLASS, CHIP_CLASS } from "@/components/shared/lists/Tag"
-import { skillCategories } from "@/data/skills"
+import { skillAnchor, skillCategories } from "@/data/skills"
 import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 
 export default function SkillsOverview() {
-  const HIDDEN_ON_HOME = ["Assembly", "Rust", "C#", "Go", "JSON", "Markdown"]
-  const SHOW_CATEGORIES = ["Platforms & Operating Systems", "Core Tools", "Languages & Software"]
-  const topCategories = skillCategories
-    .filter((cat) => SHOW_CATEGORIES.includes(cat.category))
-    .sort((a, b) => SHOW_CATEGORIES.indexOf(a.category) - SHOW_CATEGORIES.indexOf(b.category))
-    .map((cat) =>
-      cat.category === "Languages & Software"
-        ? { ...cat, skills: cat.skills.filter((s) => !HIDDEN_ON_HOME.includes(s.name)) }
-        : cat
-    )
+  const PICKS: { label: string; from: string; names: string[] }[] = [
+    { label: "Platforms & OS", from: "Platforms & Operating Systems", names: ["Windows", "macOS", "Linux", "Fedora", "Ubuntu"] },
+    { label: "Core Tools", from: "Core Tools", names: ["Git", "GitHub", "VS Code", "Neovim", "tmux", "Linear"] },
+    { label: "Languages", from: "Languages & Software", names: ["C", "C++", "Python", "TypeScript", "Java", "Rust"] },
+    { label: "Embedded & Hardware", from: "Embedded & Hardware", names: ["Embedded C", "ESP32", "STM32", "Atmel AVR", "KiCad", "FreeRTOS"] },
+    { label: "Robotics", from: "Robotics", names: ["ROS", "ArduPilot", "NVIDIA Jetson", "Gazebo", "PyBullet"] },
+    { label: "Frontend", from: "Frontend", names: ["Next.js", "React", "Tailwind CSS", "Vite", "Playwright", "Three.js"] },
+    { label: "Backend", from: "Backend", names: ["Node.js", "Laravel", "FastAPI", "Django", "GraphQL", "PHP"] },
+    { label: "Databases", from: "Databases", names: ["PostgreSQL", "MySQL", "Supabase", "Redis", "MongoDB", "TiDB"] },
+    { label: "Cloud & DevOps", from: "Cloud & DevOps", names: ["Docker", "Cloudflare", "GitHub Actions", "Vercel", "AWS", "Terraform"] },
+    { label: "AI / ML & Data", from: "AI / ML & Data", names: ["PyTorch", "TensorFlow", "NumPy", "Pandas", "Scikit-Learn", "OpenCV"] },
+  ]
+  const topCategories = PICKS.map(({ label, from, names }) => {
+    const all = skillCategories.find((cat) => cat.category === from)?.skills ?? []
+    return { category: label, href: `/skills#${skillAnchor(from)}`, skills: names.flatMap((name) => all.filter((skill) => skill.name === name)) }
+  }).filter((cat) => cat.skills.length > 0)
 
   return (
     <section className="py-24 border-t">
@@ -43,21 +49,24 @@ export default function SkillsOverview() {
             </Button>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid gap-8 sm:grid-cols-3">
+          <motion.div variants={fadeUp} className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {topCategories.map((cat) => (
               <div key={cat.category} className="space-y-3">
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                  {cat.category}
+<h3 className="text-xs font-semibold uppercase tracking-wider">
+                  <Link href={cat.href} className="text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                    {cat.category}
+                    <span className="sr-only"> on the Skills page</span>
+                  </Link>
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {cat.skills.map((skill) => (
                     skill.url ? (
-                      <a key={skill.name} href={skill.url} target="_blank" rel="noopener noreferrer" className={TAG_LINK_CLASS}>
+                      <a key={skill.name} href={skill.url} target="_blank" rel="noopener noreferrer" className={`${TAG_LINK_CLASS} text-xs`}>
                         {skill.name}
                         <span className="sr-only"> (official site, opens in a new tab)</span>
                       </a>
                     ) : (
-                      <span key={skill.name} className={CHIP_CLASS}>{skill.name}</span>
+                      <span key={skill.name} className={`${CHIP_CLASS} text-xs`}>{skill.name}</span>
                     )
                   ))}
                 </div>

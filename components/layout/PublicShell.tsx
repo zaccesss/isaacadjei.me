@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation"
 import Header from "./Header"
 import Footer from "./Footer"
+import PageIntro from "./PageIntro"
 
 export default function PublicShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -17,6 +18,7 @@ export default function PublicShell({ children }: { children: React.ReactNode })
       >
         Skip to content
       </a>
+      <PageIntro />
       <Header />
       <main id="main-content" className="flex-1">{children}</main>
       <Footer />

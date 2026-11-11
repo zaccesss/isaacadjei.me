@@ -1,3 +1,4 @@
+import { getResearchStats } from "@/lib/stats/research-stats"
 import type { Metadata } from "next"
 import { getPublicStats } from "@/lib/stats/public-stats"
 import { getContentStats, getRawContentItems } from "@/lib/content/content-stats"
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export default async function StatsPage() {
-  const [stats, content, os] = [await getPublicStats(), getContentStats(), await getOpenSourceStats()]
+  const [stats, content, os, research] = [await getPublicStats(), getContentStats(), await getOpenSourceStats(), await getResearchStats()]
   const raw = getRawContentItems()
   return (
     <div className="container max-w-3xl py-24 space-y-10">
@@ -28,11 +29,12 @@ export default async function StatsPage() {
         <h1 className="text-4xl font-bold tracking-tight">Stats</h1>
         <p className="text-lg text-muted-foreground">
           Live and historical numbers from the services I use every day - what I code, what I
-          listen to, where my applications have gone and what I am playing right now.
+          listen to, where my applications have gone, what I am playing right now, what I have
+          published and how this site has been released.
         </p>
       </div>
 
-      <StatsTabs s={stats} c={content} os={os} milestones={getMilestones()} wx={writingExtra(raw.posts, raw.til, raw.notes, raw.issues)} />
+      <StatsTabs s={stats} c={content} os={os} rs={research} milestones={getMilestones()} wx={writingExtra(raw.posts, raw.til, raw.notes, raw.issues)} />
     </div>
   )
 }

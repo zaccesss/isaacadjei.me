@@ -227,6 +227,7 @@ export default function LinksPage() {
         {categories.map((category, catIndex) => {
           const links = profileLinks.filter((l) => l.category === category)
           const label = categoryLabel[category]
+          if (links.length === 0) return null
           return (
             <div
               key={category}

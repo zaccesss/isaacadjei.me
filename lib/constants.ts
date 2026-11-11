@@ -18,7 +18,8 @@ export const ROUTES = {
   newsletter: "/newsletter",
   hallOfFame: "/hall-of-fame",
   allPages: "/all-pages",
-  researchPublications: "/respub",
+  researchPublications: "/publications",
+  research: "/research",
   til: "/til",
 } as const
 

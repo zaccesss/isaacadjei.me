@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Code2, Gamepad2, MapPinned, Music2, PenLine } from "lucide-react"
+import { ArrowRight, Code2, Gamepad2, GraduationCap, MapPinned, Music2, PenLine, Rocket } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import type { PublicStats } from "@/lib/stats/public-stats"
+import type { ResearchStats } from "@/lib/stats/research-stats"
 import type { getContentStats } from "@/lib/content/content-stats"
 
 type Content = ReturnType<typeof getContentStats>
@@ -72,7 +73,7 @@ function HubCard({ href, label, icon: Icon, tint, headline, sub, children }: Car
   )
 }
 
-export function HubCards({ s, c }: { s: PublicStats; c: Content }) {
+export function HubCards({ s, c, rs }: { s: PublicStats; c: Content; rs?: ResearchStats }) {
   const codingWeeks = s.weeks.map((w) => w.coding)
   const playWeeks = s.weeks.map((w) => w.plays)
   const gitWeeks = s.weeks.map((w) => w.github)
@@ -99,6 +100,16 @@ export function HubCards({ s, c }: { s: PublicStats; c: Content }) {
       <HubCard href="/stats/writing" label="Writing and projects" icon={PenLine} tint="from-amber-500/10 via-card to-card" headline={`${c.postCount + c.tilCount} pieces`} sub={`${c.postCount} posts, ${c.tilCount} TILs and ${c.projectCount} projects`}>
         <Chips items={c.tags.slice(0, 4).map((t) => t.name)} />
       </HubCard>
+      {rs && (
+        <HubCard href="/stats/research" label="Research" icon={GraduationCap} tint="from-sky-500/10 via-card to-card" headline={`${rs.publications.count} publications`} sub={rs.publications.views === null ? `${rs.research.lines} lines of research` : `${rs.publications.views} views on Zenodo and ${rs.research.lines} lines of research`}>
+          <Chips items={rs.publications.kinds.map((k) => k.name)} />
+        </HubCard>
+      )}
+      {rs && (
+        <HubCard href="/stats/releases" label="Releases" icon={Rocket} tint="from-indigo-500/10 via-card to-card" headline={`${rs.releases.total} releases`} sub={`of this site over ${rs.releases.byMonth.length} months`}>
+          <Spark values={rs.releases.byMonth.map((m) => m.total)} colour="#6366f1" />
+        </HubCard>
+      )}
     </div>
   )
 }

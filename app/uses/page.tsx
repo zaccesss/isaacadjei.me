@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 const DEV = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons"
-const TSG = "https://techstack-generator.vercel.app"
+const TSG = "https://cdn.jsdelivr.net/gh/qkrdmstlr3/techstack-generator@1a8656741692dfe08effc82600f4d0d4bb87d420/static"
 const SKI = "https://skillicons.dev/icons?i"
 const WIKI = "https://upload.wikimedia.org/wikipedia/commons"
 const SI = "https://cdn.simpleicons.org"

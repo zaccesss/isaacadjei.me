@@ -42,6 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/stats/applications`,            lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },
     { url: `${SITE_URL}/stats/gaming`,                  lastModified: new Date("2026-08-19"), changeFrequency: "daily",   priority: 0.4  },
     { url: `${SITE_URL}/stats/writing`,                 lastModified: new Date("2026-09-25"), changeFrequency: "weekly",  priority: 0.4  },
+    { url: `${SITE_URL}/stats/research`,                lastModified: new Date("2026-11-10"), changeFrequency: "weekly",  priority: 0.4  },
+    { url: `${SITE_URL}/stats/releases`,                lastModified: new Date("2026-11-10"), changeFrequency: "weekly",  priority: 0.4  },
     { url: `${SITE_URL}/newsletter`,                    lastModified: new Date("2026-05-29"), changeFrequency: "yearly",  priority: 0.5  },
     { url: `${SITE_URL}/feeds`,                         lastModified: new Date("2026-10-08"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/now`,                           lastModified: new Date("2026-05-29"), changeFrequency: "weekly",  priority: 0.7  },
@@ -70,7 +72,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/guestbook`,                    lastModified: new Date("2026-11-10"), changeFrequency: "weekly",  priority: 0.3  },
     { url: `${SITE_URL}/support`,                       lastModified: new Date("2026-11-02"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/hall-of-fame`,                  lastModified: new Date("2026-04-01"), changeFrequency: "yearly",  priority: 0.3  },
-    { url: `${SITE_URL}/respub`,           lastModified: new Date("2026-06-16"), changeFrequency: "monthly", priority: 0.7  },
+    { url: `${SITE_URL}/publications`,           lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.7  },
+    { url: `${SITE_URL}/research`,         lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.7  },
     { url: `${SITE_URL}/til`,             lastModified: new Date("2026-06-16"), changeFrequency: "weekly",  priority: 0.6  },
     { url: `${SITE_URL}/tags`,            lastModified: new Date("2026-06-18"), changeFrequency: "weekly",  priority: 0.6  },
     { url: `${SITE_URL}/search`,          lastModified: new Date("2026-06-18"), changeFrequency: "monthly", priority: 0.5  },
@@ -100,7 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
 
   const pubRoutes: MetadataRoute.Sitemap = publications.map((pub) => ({
-    url: `${SITE_URL}/respub/${pub.id}`,
+    url: `${SITE_URL}/publications/${pub.id}`,
     lastModified: new Date(pub.year, (pub.month ?? 1) - 1, 1),
     changeFrequency: "yearly" as const,
     priority: 0.5,

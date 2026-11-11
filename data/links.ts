@@ -80,7 +80,7 @@ export const profileLinks: LinkItem[] = [
   },
   {
     title: "Zacess",
-    description: "A free, open-source accessibility reader I am building",
+    description: "Free, open-source accessibility tools: a reader, themes, Profile, Scenes and Games",
     url: "https://zacess.com",
     icon: "globe",
     iconImage: "/images/ventures/zacess.png",
@@ -399,13 +399,13 @@ export const profileLinks: LinkItem[] = [
     description: "Articles and writing on Medium",
     url: "https://medium.com/@zaccesss",
     icon: "medium",
-    category: "other",
+    category: "writing",
   },
   {
     title: "Hashnode",
     description: "Developer blog on Hashnode",
     url: "https://hashnode.com/@zaccesss",
     icon: "hashnode",
-    category: "other",
+    category: "writing",
   },
 ]

@@ -56,7 +56,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Lucide React and React Icons",
-        detail: <>All icons across the site. <A href="https://lucide.dev">Lucide React</A> for UI icons (arrows, checks, chevrons, status indicators and so on). <A href="https://react-icons.github.io/react-icons/">React Icons</A> for brand logos where Lucide does not have an official one - GitHub, LinkedIn, Spotify, Discord and similar.</>,
+        detail: <>All icons across the site. <A href="https://lucide.dev">Lucide React</A> for UI icons (arrows, checks, chevrons, status indicators and so on). <A href="https://react-icons.github.io/react-icons/">React Icons</A> for brand logos where Lucide does not have an official one - GitHub, LinkedIn, Spotify, Discord and similar. The logos on /skills and /uses come from <A href="https://simpleicons.org">Simple Icons</A>, with the animated ones from <A href="https://github.com/qkrdmstlr3/techstack-generator">techstack-generator</A> served at a fixed commit so they cannot change under the page.</>,
       },
       {
         name: "Geist",
@@ -164,7 +164,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Command palette",
-        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/pacocoursey/cmdk">cmdk</A>. You can jump to any page, search projects, toggle the theme and more without touching the mouse. The shortcut is I for Isaac rather than K (the more common convention) - a small personal touch.</>,
+        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/pacocoursey/cmdk">cmdk</A>. You can jump to any page or search the whole site without touching the mouse. Pages sit in the same eight groups as /all-pages and every page has one key: the first two groups use Cmd or Ctrl plus a letter and the rest use Shift plus a letter. The shortcut is I for Isaac rather than K (the more common convention) - a small personal touch.</>,
       },
       {
         name: "Share feature",
@@ -216,7 +216,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Reduced motion",
-        detail: "If your device asks for reduced motion, the things that move stop moving. The lab terminal prints its output at once instead of line by line. The typing motto, header, favicon and page entrance animations stand still. The scrolling track title, the floating shapes, the live status lights, the music visualiser and the spinning album art hold their place. Charts draw without animating, the numbers on /stats show their final value straight away, cards do not lift on hover, the 3D board does not turn by itself and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
+        detail: "If your device asks for reduced motion, the things that move stop moving. The lab terminal prints its output at once instead of line by line. The typing motto, header, favicon and page entrance animations stand still. The scrolling track title, the floating shapes, the live status lights, the music visualiser and the spinning album art hold their place. Charts draw without animating, the numbers on /stats show their final value straight away, cards do not lift on hover, the 3D board does not turn by itself, the dot on the changelog timeline is not drawn, the short drawing that plays when the site first opens is not drawn and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
       },
       {
         name: "Focus rings",
@@ -257,8 +257,8 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: <>Short, structured notes on things I discover while working. Each entry has a category, date, a lead paragraph and optional detail blocks using the same typed block system as blog posts, so a TIL entry can contain syntax-highlighted code examples, section headings, note callouts, embeds and source links. The listing page uses the shared search, filter panel and pager, with categories derived from the entries actually present (no empty categories ever appear). Each entry has its own permalink at /til/[slug] where the full detail, tags and prev/next navigation are shown. There is a subscribe-in-your-reader RSS feed at <A href="/til/feed.xml">/til/feed.xml</A>. Entries span a wide range: embedded systems and firmware, algorithms and data structures, TypeScript and Next.js, Linux internals, Git internals, security concepts, hardware design, music and piano practice, fitness, Ghanaian cooking and culture and faith.</>,
       },
       {
-        name: "/respub - research and publications",
-        detail: <>A catalogue of formal research outputs: citable papers, technical notes and open-source curricula. Each entry links directly to its record on <A href="https://zenodo.org">Zenodo</A>, <A href="https://orcid.org">ORCID</A> or the relevant platform so it can be found, cited or built on. The page also shows profile links across academic networks (<A href="https://orcid.org">ORCID</A>, <A href="https://scholar.google.com">Google Scholar</A>, <A href="https://zenodo.org">Zenodo</A>, <A href="https://www.researchgate.net">ResearchGate</A>, <A href="https://www.academia.edu">Academia.edu</A>) in a single row. Each publication has a one-click copy for its citation in BibTeX and APA, confirmed through a polite live region so a screen reader hears it without losing focus. Detail pages carry the <A href="https://scholar.google.com/intl/en/scholar/inclusion.html">Google Scholar citation meta tags</A> (title, authors, date, DOI, publisher and PDF) so indexers can pick a paper up correctly, plus live view and download counts from the <A href="https://developers.zenodo.org">Zenodo API</A>, fetched on the server and cached for a day. If Zenodo is slow or down the counts simply do not show, rather than a broken figure. Research lines show their stage as a dot and a word (In simulation, Hardware phase, Live), so the word carries the meaning. Data lives in data/respub/ alongside the other content files. No external academic CMS.</>,
+        name: "/publications and /research",
+        detail: <>Two pages that were one. /publications lists finished work: papers, technical notes, hardware designs and software, each archived on <A href="https://zenodo.org">Zenodo</A> with a DOI so it can be found, cited or built on. A dropdown gives the citation in seven styles (APA 7, Harvard, IEEE, MLA 9, Chicago, BibTeX and RIS) and copying one is confirmed through a polite live region, so a screen reader hears it without losing focus. One row links my academic profiles (<A href="https://orcid.org">ORCID</A>, <A href="https://scholar.google.com">Google Scholar</A>, <A href="https://www.researchgate.net">ResearchGate</A> and <A href="https://www.zotero.org">Zotero</A>), each with its name beside the icon. Detail pages carry the <A href="https://scholar.google.com/intl/en/scholar/inclusion.html">Google Scholar citation meta tags</A> so indexers can pick a record up correctly, plus live view and download counts from the <A href="https://developers.zenodo.org">Zenodo API</A>, fetched on the server and cached for a day. If Zenodo is slow or down the counts simply do not show. /research holds the work in progress: each line&apos;s question, method and findings so far, the papers behind it and the open materials. A line shows its stage as a dot and a word (In simulation, Hardware phase, In use), so the word carries the meaning. The old /respub address redirects. Data lives in data/respub/ alongside the other content files. No external academic CMS.</>,
       },
       {
         name: "/links - social hub",
@@ -274,7 +274,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "/changelog - public release history",
-        detail: "Every meaningful change to the site is logged here as a versioned entry. Updated manually in CHANGELOG.md and rendered as a timeline. It is a habit I picked up from open-source projects and I find it useful for tracking how the site has evolved over time.",
+        detail: "Every meaningful change to the site is logged here as a versioned entry. Updated manually in CHANGELOG.md and rendered as a timeline grouped by month, with a dot that follows your place as you scroll and a link to jump to any month. A release with nothing a visitor would notice is one quiet line. It is a habit I picked up from open-source projects and I find it useful for tracking how the site has evolved over time.",
       },
       {
         name: "OG image generation",

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { skillCategories, professionalSkillGroups, type Skill } from "@/data/skills"
+import { skillCategories, professionalSkillGroups, type Skill, skillAnchor } from "@/data/skills"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import { CHIP_CLASS } from "@/components/shared/lists/Tag"
@@ -71,8 +71,9 @@ function CategorySection({ cat }: { cat: (typeof skillCategories)[0] }) {
   return (
     <section
       ref={ref}
+      id={skillAnchor(cat.category)}
       className={cn(
-        "transition-all duration-700",
+        "scroll-mt-24 transition-all duration-700",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       )}
     >

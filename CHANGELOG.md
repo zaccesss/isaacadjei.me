@@ -2,6 +2,37 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.118.0] - 2026-11-11
+
+_Research, publications and a clearer changelog_
+
+### Added
+
+- A Research page of its own for the work in progress, with Publications now a page for finished, citable work
+- Two more publications: the Two-Stage Audio Amplifier and the NeoPixel LED Cube, each with its DOI
+- The command menu is grouped the same way as All Pages, so a page is in one place wherever you look
+- Publications has a new address, /publications. The old one still works
+- Stats has a Research tab (how often each publication is read and how far each line of research has got) and a Releases tab (how this site has been released)
+- The skills on the home page are a shorter pick from ten groups
+- A very faint drawing plays behind the page for a few seconds when you first open the site, in one of five styles, then it is gone. It is not drawn if you have asked for reduced motion
+- Search finds each line of research and opens a publication on its own page
+- The Skills page lists more of what I use, with new groups for ways of working and accessibility
+
+### Changed
+
+- This changelog is grouped by month down a timeline, with dates written out, stronger text and a link to jump to any month
+- A dot travels down the timeline as you scroll, so you can see where you are. It stays still if you have asked for reduced motion
+- Releases with nothing a visitor would notice are folded to a single line
+- The footer is tidier: its links are grouped by what they are for and the legal pages sit along the bottom
+- Each row of icons on the Skills page is centred, so a short last row no longer sits to one side
+- All Pages is grouped by what you are looking for and the Links page puts every writing profile together
+- Small behind-the-scenes improvements
+
+### Fixed
+
+- Icons that had gone blank on the Skills and Uses pages are back
+- View and download counts show again on publication pages
+
 ## [2.117.0] - 2026-11-10
 
 _Share cards_

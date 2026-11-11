@@ -23,6 +23,29 @@ export const professionalSkillGroups: SkillGroup[] = [
     ],
   },
   {
+    label: "Ways of Working",
+    skills: [
+      "Agile & Scrum",
+      "Weekly Sprints (Linear, GitHub Projects)",
+      "Code Review through Pull Requests",
+      "Technical Writing",
+      "Teaching & Presenting",
+      "Runbooks",
+      "CI/CD",
+    ],
+  },
+  {
+    label: "Accessibility",
+    skills: [
+      "WCAG 2.2 AA",
+      "axe-core Checks",
+      "High-Contrast Design",
+      "Screen Reader Testing",
+      "Keyboard Testing",
+      "Reduced Motion",
+    ],
+  },
+  {
     label: "Hardware & Lab Skills",
     skills: [
       "Circuit Design",
@@ -37,12 +60,15 @@ export const professionalSkillGroups: SkillGroup[] = [
       "PWM Control",
       "Debugging & Fault Finding",
       "Technical CAD Drawing",
+      "Schematic Capture",
+      "Board Bring-up & Validation",
+      "Op-amp & Active Filter Design",
     ],
   },
 ]
 
 const DEV = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons"
-const TSG = "https://techstack-generator.vercel.app"
+const TSG = "https://cdn.jsdelivr.net/gh/qkrdmstlr3/techstack-generator@1a8656741692dfe08effc82600f4d0d4bb87d420/static"
 const SKI = "https://skillicons.dev/icons?i"
 const WIKI = "https://upload.wikimedia.org/wikipedia/commons"
 
@@ -58,15 +84,18 @@ export interface SkillCategory {
   skills: Skill[]
 }
 
+export const skillAnchor = (category: string) => category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+
 export const skillCategories: SkillCategory[] = [
   {
     category: "Platforms & Operating Systems",
-    columns: 4,
+    columns: 5,
     skills: [
       { name: "Windows", url: "https://www.microsoft.com/windows", icon: `${DEV}/windows11/windows11-original.svg` },
       { name: "macOS", url: "https://www.apple.com/macos/", icon: `${DEV}/apple/apple-original.svg` },
-      { name: "Ubuntu", url: "https://ubuntu.com/", icon: `${DEV}/ubuntu/ubuntu-original.svg` },
       { name: "Linux", url: "https://www.kernel.org/", icon: `${DEV}/linux/linux-original.svg` },
+      { name: "Fedora", url: "https://fedoraproject.org/", icon: `${DEV}/fedora/fedora-original.svg` },
+      { name: "Ubuntu", url: "https://ubuntu.com/", icon: `${DEV}/ubuntu/ubuntu-original.svg` },
     ],
   },
   {
@@ -86,6 +115,9 @@ export const skillCategories: SkillCategory[] = [
       { name: "Neovim", url: "https://neovim.io/", icon: "https://cdn.simpleicons.org/neovim" },
       { name: "Zsh", url: "https://www.zsh.org/", icon: "https://cdn.simpleicons.org/zsh" },
       { name: "Homebrew", url: "https://brew.sh/", icon: "https://cdn.simpleicons.org/homebrew" },
+      { name: "GitLab", url: "https://gitlab.com/", icon: `${DEV}/gitlab/gitlab-original.svg` },
+      { name: "Bitbucket", url: "https://bitbucket.org/", icon: `${DEV}/bitbucket/bitbucket-original.svg` },
+      { name: "Linear", url: "https://linear.app/", icon: "https://cdn.simpleicons.org/linear" },
     ],
   },
   {
@@ -116,7 +148,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "Languages & Software",
-    columns: 5,
+    columns: 6,
     skills: [
       { name: "C", url: "https://www.open-std.org/jtc1/sc22/wg14/", icon: `${DEV}/c/c-original.svg` },
       { name: "C++", url: "https://isocpp.org/", icon: `${TSG}/cpp-icon.svg` },
@@ -139,7 +171,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "AI / ML & Data",
-    columns: 6,
+    columns: 5,
     skills: [
       { name: "TensorFlow", url: "https://www.tensorflow.org/", icon: `${DEV}/tensorflow/tensorflow-original.svg` },
       { name: "PyTorch", url: "https://pytorch.org/", icon: `${DEV}/pytorch/pytorch-original.svg` },
@@ -150,18 +182,19 @@ export const skillCategories: SkillCategory[] = [
       { name: "OpenCV", url: "https://opencv.org/", icon: `${DEV}/opencv/opencv-original.svg` },
       { name: "Matplotlib", url: "https://matplotlib.org/", icon: `${WIKI}/8/84/Matplotlib_icon.svg` },
       { name: "CUDA", url: "https://developer.nvidia.com/cuda-toolkit", icon: "/images/Nvidia_CUDA_Logo.webp" },
+      { name: "Deepgram", url: "https://deepgram.com/", icon: "https://cdn.simpleicons.org/deepgram" },
     ],
   },
   {
     category: "Frontend",
-    columns: 5,
+    columns: 6,
     skills: [
       { name: "Next.js", url: "https://nextjs.org/", icon: `${DEV}/nextjs/nextjs-original.svg` },
       { name: "React", url: "https://react.dev/", icon: `${TSG}/react-icon.svg` },
       { name: "Vue", url: "https://vuejs.org/", icon: `${SKI}=vue` },
       { name: "Tailwind CSS", url: "https://tailwindcss.com/", icon: `${SKI}=tailwind` },
       { name: "Bootstrap", url: "https://getbootstrap.com/", icon: `${SKI}=bootstrap` },
-      { name: "Sass", url: "https://sass-lang.com/", icon: `${SKI}=sass` },
+      { name: "Sass", url: "https://sass-lang.com/", icon: `${TSG}/sass-icon.svg` },
       { name: "jQuery", url: "https://jquery.com/", icon: `${SKI}=jquery` },
       { name: "Webpack", url: "https://webpack.js.org/", icon: `${TSG}/webpack-icon.svg` },
       { name: "Electron", url: "https://www.electronjs.org/", icon: `${SKI}=electron` },
@@ -172,6 +205,10 @@ export const skillCategories: SkillCategory[] = [
       { name: "MapLibre", url: "https://maplibre.org/", icon: "https://cdn.simpleicons.org/maplibre" },
       { name: "Alpine.js", url: "https://alpinejs.dev/", icon: "https://cdn.simpleicons.org/alpinedotjs" },
       { name: "Mermaid", url: "https://mermaid.js.org/", icon: "https://cdn.simpleicons.org/mermaid" },
+      { name: "Astro", url: "https://astro.build/", icon: `${DEV}/astro/astro-original.svg` },
+      { name: "shadcn/ui", url: "https://ui.shadcn.com/", icon: "https://cdn.simpleicons.org/shadcnui" },
+      { name: "Radix UI", url: "https://www.radix-ui.com/", icon: "https://cdn.simpleicons.org/radixui" },
+      { name: "Playwright", url: "https://playwright.dev/", icon: `${DEV}/playwright/playwright-original.svg` },
       { name: "WebAssembly", url: "https://webassembly.org/", icon: "https://cdn.simpleicons.org/webassembly" },
     ],
   },
@@ -188,7 +225,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "WordPress", url: "https://wordpress.org/", icon: `${DEV}/wordpress/wordpress-original.svg` },
       { name: "Apache", url: "https://httpd.apache.org/", icon: `${DEV}/apache/apache-original.svg` },
       { name: "Composer", url: "https://getcomposer.org/", icon: `${DEV}/composer/composer-original.svg` },
-      { name: "GraphQL", url: "https://graphql.org/", icon: `${SKI}=graphql` },
+      { name: "GraphQL", url: "https://graphql.org/", icon: `${TSG}/graphql-icon.svg` },
       { name: "FastAPI", url: "https://fastapi.tiangolo.com/", icon: "https://cdn.simpleicons.org/fastapi" },
       { name: "pytest", url: "https://docs.pytest.org/", icon: "https://cdn.simpleicons.org/pytest" },
       { name: "Ruff", url: "https://docs.astral.sh/ruff/", icon: "https://cdn.simpleicons.org/ruff" },
@@ -214,7 +251,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "AWS", url: "https://aws.amazon.com/", icon: `${TSG}/aws-icon.svg` },
       { name: "Azure", url: "https://azure.microsoft.com/", icon: `${DEV}/azure/azure-original.svg` },
-      { name: "Google Cloud", url: "https://cloud.google.com/", icon: `${DEV}/googlecloud/googlecloud-original.svg` },
+      { name: "Google Cloud", url: "https://cloud.google.com/", icon: `${TSG}/gcp-icon.svg` },
       { name: "Docker", url: "https://www.docker.com/", icon: `${TSG}/docker-icon.svg` },
       { name: "Kubernetes", url: "https://kubernetes.io/", icon: `${TSG}/kubernetes-icon.svg` },
       { name: "Vercel", url: "https://vercel.com/", icon: `${SKI}=vercel` },
@@ -227,6 +264,11 @@ export const skillCategories: SkillCategory[] = [
       { name: "Cloudinary", url: "https://cloudinary.com/", icon: "https://cdn.simpleicons.org/cloudinary" },
       { name: "Grafana", url: "https://grafana.com/", icon: "https://cdn.simpleicons.org/grafana" },
       { name: "Prometheus", url: "https://prometheus.io/", icon: "https://cdn.simpleicons.org/prometheus" },
+      { name: "Cloudflare Workers", url: "https://workers.cloudflare.com/", icon: "https://cdn.simpleicons.org/cloudflareworkers" },
+      { name: "Terraform", url: "https://www.terraform.io/", icon: `${DEV}/terraform/terraform-original.svg` },
+      { name: "Trivy", url: "https://trivy.dev/", icon: "https://cdn.simpleicons.org/trivy" },
+      { name: "Dependabot", url: "https://github.com/dependabot", icon: "https://cdn.simpleicons.org/dependabot" },
+      { name: "pre-commit", url: "https://pre-commit.com/", icon: "https://cdn.simpleicons.org/precommit" },
     ],
   },
   {
@@ -246,11 +288,11 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     category: "Embedded & Hardware",
-    columns: 6,
+    columns: 5,
     skills: [
       { name: "Atmel AVR", url: "https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus", icon: "/images/atmelavr.webp" },
       { name: "Arduino", url: "https://www.arduino.cc/", icon: `${DEV}/arduino/arduino-original.svg` },
-      { name: "Raspberry Pi", url: "https://www.raspberrypi.com/", icon: `${DEV}/raspberrypi/raspberrypi-original.svg` },
+      { name: "Raspberry Pi", url: "https://www.raspberrypi.com/", icon: `${TSG}/raspberrypi-icon.svg` },
       { name: "Embedded C", url: "https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1169.pdf", icon: `${DEV}/embeddedc/embeddedc-original.svg` },
       { name: "KiCad", url: "https://www.kicad.org/", icon: `${WIKI}/5/59/KiCad-Logo.svg` },
       { name: "Eagle", url: "https://www.autodesk.com/products/eagle/overview", icon: "https://cdn.simpleicons.org/eagle" },
@@ -271,13 +313,16 @@ export const skillCategories: SkillCategory[] = [
       { name: "MicroPython", url: "https://micropython.org/", icon: "https://cdn.simpleicons.org/micropython" },
       { name: "MQTT", url: "https://mqtt.org/", icon: "https://cdn.simpleicons.org/mqtt" },
       { name: "FreeRTOS", url: "https://www.freertos.org/" },
+      { name: "LTspice", url: "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html", icon: "https://cdn.simpleicons.org/ltspice" },
+      { name: "STM32CubeIDE", url: "https://www.st.com/en/development-tools/stm32cubeide.html", icon: "https://cdn.simpleicons.org/stmicroelectronics" },
+      { name: "Verilog", url: "https://www.verilog.com/" },
       { name: "LaTeX", url: "https://www.latex-project.org/", icon: "https://cdn.simpleicons.org/latex" },
       { name: "Typst", url: "https://typst.app/", icon: "https://cdn.simpleicons.org/typst" },
     ],
   },
   {
     category: "Robotics",
-    columns: 4,
+    columns: 5,
     skills: [
       { name: "ROS", url: "https://www.ros.org/", icon: `${DEV}/ros/ros-original.svg` },
       { name: "NVIDIA Jetson", url: "https://developer.nvidia.com/embedded-computing", icon: "https://cdn.simpleicons.org/nvidia" },

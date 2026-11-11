@@ -1,0 +1,1568 @@
+export type ChangeEntry = {
+  version: string
+  date: string
+  label?: string
+  added?: string[]
+  changed?: string[]
+  fixed?: string[]
+  security?: string[]
+}
+
+export const releases: ChangeEntry[] = [
+  {
+    version: "v2.118.0",
+    date: "2026-11-11",
+    label: "Research, publications and a clearer changelog",
+    added: [
+      "A Research page of its own for the work in progress, with Publications now a page for finished, citable work",
+      "Two more publications: the Two-Stage Audio Amplifier and the NeoPixel LED Cube, each with its DOI",
+      "The command menu is grouped the same way as All Pages, so a page is in one place wherever you look",
+      "Publications has a new address, /publications. The old one still works",
+      "Stats has a Research tab (how often each publication is read and how far each line of research has got) and a Releases tab (how this site has been released)",
+      "The skills on the home page are a shorter pick from ten groups",
+      "A very faint drawing plays behind the page for a few seconds when you first open the site, in one of five styles, then it is gone. It is not drawn if you have asked for reduced motion",
+      "Search finds each line of research and opens a publication on its own page",
+      "The Skills page lists more of what I use, with new groups for ways of working and accessibility",
+    ],
+    changed: [
+      "This changelog is grouped by month down a timeline, with dates written out, stronger text and a link to jump to any month",
+      "A dot travels down the timeline as you scroll, so you can see where you are. It stays still if you have asked for reduced motion",
+      "Releases with nothing a visitor would notice are folded to a single line",
+      "The footer is tidier: its links are grouped by what they are for and the legal pages sit along the bottom",
+      "Each row of icons on the Skills page is centred, so a short last row no longer sits to one side",
+      "All Pages is grouped by what you are looking for and the Links page puts every writing profile together",
+      "Small behind-the-scenes improvements",
+    ],
+    fixed: [
+      "Icons that had gone blank on the Skills and Uses pages are back",
+      "View and download counts show again on publication pages",
+    ],
+  },
+  {
+    version: "v2.117.0",
+    date: "2026-11-10",
+    label: "Share cards",
+    changed: [
+      "The Linux kernel patch on the Open Source page links its commit in the GPIO tree beside its thread",
+      "Small behind-the-scenes improvements",
+    ],
+    fixed: [
+      "Every page now shows the same picture when shared on X as it does elsewhere, where some showed the general site card",
+      "Today I Learned descriptions in search results and share cards are plain text, with no stray formatting marks",
+      "The sitemap gives a date only to pages that have one, so search engines are no longer told that every list changed on each update",
+    ],
+  },
+  {
+    version: "v2.116.0",
+    date: "2026-11-10",
+    label: "Behind the scenes",
+    changed: [
+      "Small behind-the-scenes improvements",
+    ],
+    fixed: [
+      "A security update to a library that reads image sizes",
+    ],
+  },
+  {
+    version: "v2.115.0",
+    date: "2026-11-10",
+    label: "One address",
+    changed: [
+      "Page addresses in search results, feeds, share links and emails now use isaacadjei.me without the www",
+      "Small behind-the-scenes improvements",
+    ],
+  },
+  {
+    version: "v2.114.0",
+    date: "2026-11-10",
+    label: "Reactions",
+    added: [
+      "Notes and Today I Learned entries now take reactions, the same as posts",
+      "The friends page has a form to ask to be friends or pen pals. Pen pals get a letter from me once a month",
+      "Friends who ask to be listed now appear on the friends page once I approve them",
+      "The guestbook takes a signature or a drawing, with a board you can save as a picture",
+    ],
+    changed: [
+      "Links to posts and projects shared on Discord, X and other apps now show that page's own cover or title card",
+      "Reaction buttons are larger, have screen reader labels and show a tick as well as a colour when chosen",
+      "A reaction that does not save no longer looks saved",
+      "Text boxes and buttons on the contact, guestbook and friends forms are larger and easier to tap",
+      "Dates on the Today I Learned list and the home page read the same in every browser",
+      "The privacy and accessibility pages cover the guestbook drawings and the friends form",
+      "Small behind-the-scenes improvements",
+    ],
+  },
+  {
+    version: "v2.113.0",
+    date: "2026-11-09",
+    label: "Corrections",
+    changed: [
+      "The audio amplifier project page and post now give the correct output power and gain figures",
+      "Small behind-the-scenes improvements",
+    ],
+  },
+  {
+    version: "v2.112.0",
+    date: "2026-11-08",
+    label: "Zacess studio",
+    added: [
+      "A studio on the Zacess page to try every theme, scene, game, code sample and starter profile on a drawn laptop",
+      "The lab terminal plays every Zacess scene and game recording in the theme you pick",
+      "Sound for the scenes and games in the studio and the lab terminal, off until you turn it on",
+      "A tmux session in the lab terminal, with the ide, idev and imon layouts from my setup",
+    ],
+    changed: [
+      "All ten Zacess themes, including the gentler Warm pair, wherever the themes are listed",
+      "Live widgets refresh only while they are on screen and more pages load from the nearest cache, so the site stays quick and well within its hosting limits",
+    ],
+    fixed: [
+      "Project cards and long link buttons no longer run off the screen on small phones",
+    ],
+  },
+  {
+    version: "v2.111.0",
+    date: "2026-11-07",
+    label: "Résumé refresh",
+    changed: [
+      "The downloadable résumé describes each project by the work behind it, with Footprints added and the Linux kernel patch linking its full thread",
+    ],
+  },
+  {
+    version: "v2.110.1",
+    date: "2026-11-06",
+    label: "Open source link",
+    changed: [
+      "The Linux kernel patch on the Open Source page links the whole thread, including the maintainer's reply applying it",
+    ],
+  },
+  {
+    version: "v2.110.0",
+    date: "2026-11-06",
+    label: "Install page",
+    added: [
+      "An Install page listing every tool I publish, with copyable commands, store links and each tool's latest version",
+    ],
+    changed: [
+      "The Zacess page links the browser extensions now in the Chrome, Firefox and Edge stores",
+    ],
+  },
+  {
+    version: "v2.109.1",
+    date: "2026-11-06",
+    label: "Open source layout",
+    changed: [
+      "The Linux kernel patch leads the Open Source page under the charts instead of appearing twice",
+    ],
+  },
+  {
+    version: "v2.109.0",
+    date: "2026-11-06",
+    label: "Open source categories",
+    added: [
+      "The Open Source page pins my Linux kernel patch at the top, now applied by the GPIO maintainer",
+      "Contributions on the Open Source page are grouped by the kind of work, with a chart of each category",
+    ],
+    changed: [
+      "The CV leads its open source line with the Linux kernel fix",
+    ],
+  },
+  {
+    version: "v2.108.1",
+    date: "2026-11-06",
+    label: "Experience page",
+    changed: [
+      "The Experience page shows its download and contact buttons at the top",
+      "The Open Source page lists more contributions, a Linux kernel patch among them",
+    ],
+    fixed: [
+      "Small reliability fixes behind the scenes",
+    ],
+  },
+  {
+    version: "v2.108.0",
+    date: "2026-11-05",
+    label: "Lab terminal and Footprints",
+    added: [
+      "A Footprints project page",
+      "The lab terminal runs zsh, bash, PowerShell and cmd, with nano, the eight Zacess themes and Zacess scenes and games to try",
+      "Share cards for every TIL entry and five more pages",
+      "Headline numbers on the Stats page count up and cards lift slightly on hover",
+      "Records, a coding soundtrack chart, launch markers and new charts on every Stats page",
+      "Two more people under People I learn from",
+    ],
+    changed: [
+      "A new project order, 18 projects a page and a refreshed homepage selection",
+      "Updated About, Now, Uses and Colophon pages",
+    ],
+    fixed: [
+      "Coding hours by time of day are shown in UK time",
+      "Language charts count programming languages only",
+      "Every animation stops when reduced motion is turned on",
+    ],
+  },
+  {
+    version: "v2.107.0",
+    date: "2026-11-05",
+    label: "GitHub stats",
+    changed: [
+      "The GitHub stats count public work only, matching the GitHub profile",
+      "Clearer wording on the Stats page and in two blog posts",
+    ],
+  },
+  {
+    version: "v2.106.0",
+    date: "2026-11-05",
+    label: "Behind the scenes",
+    changed: [
+      "Routine tidy-up of two newsletter issues and a blog post",
+    ],
+  },
+  {
+    version: "v2.105.0",
+    date: "2026-11-05",
+    label: "Experience page",
+    changed: [
+      "The Experience page is split into work, leadership and representation, ventures and volunteering",
+      "Student and School Representative roles are shown together under the Students' Union",
+      "Zacess is listed with the other ventures",
+    ],
+  },
+  {
+    version: "v2.104.0",
+    date: "2026-11-03",
+    label: "Behind the scenes",
+    fixed: [
+      "The Framer Motion icon in the repository README loads again",
+    ],
+  },
+  {
+    version: "v2.103.1",
+    date: "2026-11-02",
+    label: "Behind the scenes",
+    fixed: [
+      "The public copy's issue forms load again",
+    ],
+  },
+  {
+    version: "v2.103.0",
+    date: "2026-11-02",
+    label: "Policies",
+    added: [
+      "An AI policy page for outside contributors, linked from the contributing guide, the support page and every repository template",
+      "A security address used only for security reports, on the security policy and in security.txt",
+    ],
+    changed: [
+      "The contributing and support pages link the AI policy and name the security address",
+    ],
+  },
+  {
+    version: "v2.102.2",
+    date: "2026-11-02",
+    label: "Behind the scenes",
+    fixed: [
+      "Dependency updates with no visible change",
+    ],
+  },
+  {
+    version: "v2.102.1",
+    date: "2026-11-01",
+    label: "Projects",
+    changed: [
+      "The Zacess page has a shorter card description, a dated history and the phases ahead for the reader",
+      "The developer environment page covers the new project layouts, psmux on Windows and btop in the Zacess themes, with a dated history and what comes next",
+    ],
+  },
+  {
+    version: "v2.102.0",
+    date: "2026-10-29",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page is shorter: it keeps the story of the reader and gives the code themes, Zacess Scenes and Zacess Games one card each with a live preview and a link to their full pages on zacess.com",
+    ],
+    added: [
+      "Live previews on the Zacess page: a code sample that switches between the eight themes and players for Zacess Scenes frames and recordings of six Zacess Games, which start paused when reduced motion is on",
+    ],
+  },
+  {
+    version: "v2.101.0",
+    date: "2026-10-29",
+    label: "Zacess",
+    added: [
+      "The Zacess project page covers Zacess Scenes 0.4.0: 39 calm terminal scenes in the eight themes, a watch mode for Rust builds, eight sound sets and six new stills",
+      "The Zacess project page covers Zacess Games 0.1.0: fourteen original terminal games with sound and music, including Touch Typing and 287 levels of Learn to Code",
+      "The developer environment project page covers the zt theme switcher, Zacess Scenes on every machine and the Fedora KDE desktop",
+    ],
+    changed: [
+      "Five posts about Zacess and the development setup are updated with current versions, counts and install paths",
+      "A course document is no longer published on the site",
+      "A scheduled post about running Linux on my Windows machines is rewritten to match the current setup",
+      "The public source code copy no longer names other repositories",
+    ],
+  },
+  {
+    version: "v2.100.6",
+    date: "2026-10-29",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page covers code themes 0.4.0 to 0.6.1: the selection, current line and find matches that always stand out, eight terminals with one installer, Xcode and Eclipse",
+    ],
+  },
+  {
+    version: "v2.100.5",
+    date: "2026-10-27",
+    label: "Behind the scenes",
+    fixed: [
+      "Finished tasks now close properly in the task tracker",
+    ],
+  },
+  {
+    version: "v2.100.4",
+    date: "2026-10-27",
+    label: "Behind the scenes",
+    fixed: [
+      "A daily summary message no longer fails on days with long lists",
+    ],
+  },
+  {
+    version: "v2.100.3",
+    date: "2026-10-27",
+    label: "Behind the scenes",
+    fixed: [
+      "Routine tidy-up of a blog post",
+    ],
+  },
+  {
+    version: "v2.100.2",
+    date: "2026-10-26",
+    label: "Behind the scenes",
+    fixed: [
+      "Dependency updates with no visible change",
+    ],
+  },
+  {
+    version: "v2.100.1",
+    date: "2026-10-26",
+    label: "Behind the scenes",
+    fixed: [
+      "The site's typeface files now ship with the site itself, so the public source copy builds again",
+    ],
+  },
+  {
+    version: "v2.100.0",
+    date: "2026-10-26",
+    label: "Every screen",
+    changed: [
+      "Windows and Linux now get the site's own typeface, hinted so it stays crisp, instead of the system default",
+      "Scrollbars, checkboxes, text selection and headings follow the site's theme on every operating system",
+      "The command palette is translucent, so the page shows through a soft blur",
+    ],
+  },
+  {
+    version: "v2.99.1",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "Dates just after midnight in summer now follow UK time",
+    ],
+  },
+  {
+    version: "v2.99.0",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    added: [
+      "Tools for keeping track of my society treasurer role",
+    ],
+  },
+  {
+    version: "v2.98.2",
+    date: "2026-10-23",
+    label: "Fediverse",
+    changed: [
+      "@isaac@isaacadjei.me and the Mastodon link on the Links page now go to my account on hachyderm.io",
+    ],
+  },
+  {
+    version: "v2.98.1",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "A security update for the library that cleans diagram output",
+    ],
+  },
+  {
+    version: "v2.98.0",
+    date: "2026-10-23",
+    label: "Behind the scenes",
+    fixed: [
+      "The gaming PC status script no longer writes request details into its log",
+    ],
+  },
+  {
+    version: "v2.97.0",
+    date: "2026-10-23",
+    label: "Open source",
+    added: [
+      "The open source page lists pull requests and issues separately and links a pull request to the issue it fixes",
+      "Screenshots of the shell on Windows on the developer environment project page",
+    ],
+    changed: [
+      "Links to my dotfiles and config repositories now point at their folders in the one dotfiles repository",
+      "The developer environment project page describes the single repository and the newer editors it covers",
+    ],
+  },
+  {
+    version: "v2.96.1",
+    date: "2026-10-22",
+    label: "Security",
+    security: [
+      "A security update for the library that reads the editor's text",
+    ],
+  },
+  {
+    version: "v2.96.0",
+    date: "2026-10-22",
+    label: "Open source",
+    changed: [
+      "New contributions appear on the open source page once I have checked them",
+      "The developer environment project page covers my full setup across every machine and editor",
+      "New clips and screenshots of the terminal tools and every editor in the current themes, on the developer environment page and three posts",
+      "The CVs and cover letters list every store the Zacess themes are published in",
+      "The footer groups its links into three even columns",
+      "The Fedora dual boot note and its GRUB TIL describe the new boot menu, with Windows started only from a normal restart",
+    ],
+  },
+  {
+    version: "v2.95.0",
+    date: "2026-10-21",
+    label: "Open source",
+    changed: [
+      "A new open source page lists every contribution with what it changed and a link to the work",
+      "The stats page gains an Open source tab",
+      "The experience timeline adds my School Representative role",
+      "My CVs list my open source contributions and the School Representative role",
+      "The command menu reaches every page, each with its own shortcut",
+      "The portfolio project is dated 2025, when the site began",
+    ],
+  },
+  {
+    version: "v2.94.0",
+    date: "2026-10-21",
+    label: "Stats",
+    changed: [
+      "Each tab on the stats page now shows that area in full, including the live charts, with a new GitHub tab",
+      "The Applications tab shows the live map of cities",
+      "The coding stats count all my coding time again and add public projects, systems and a year calendar",
+      "New charts across the stats page: coding and listening clocks, language and gaming breakdowns, applications by region and a year at a glance",
+    ],
+  },
+  {
+    version: "v2.93.0",
+    date: "2026-10-21",
+    label: "Now",
+    changed: [
+      "The Discord card no longer repeats the song already shown on the Spotify card",
+      "The Discord card shows a project's name only when the project is public",
+    ],
+  },
+  {
+    version: "v2.92.0",
+    date: "2026-10-21",
+    label: "Stats",
+    changed: [
+      "The coding stats count time spent coding in an editor only, so the totals are smaller and more honest",
+      "Every editor and app keeps its own name in the coding stats, with Cursor counted under VS Code",
+      "The coding stats name public projects only",
+    ],
+  },
+  {
+    version: "v2.91.1",
+    date: "2026-10-21",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page lists the two Deep Contrast reading themes, now live in the browser version",
+    ],
+  },
+  {
+    version: "v2.91.0",
+    date: "2026-10-21",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page covers Zacess Themes 0.3.0: two Deep Contrast themes, an Eclipse version and a table of all eight code themes",
+      "The Zacess launch post's update note covers the new themes",
+    ],
+  },
+  {
+    version: "v2.90.0",
+    date: "2026-10-21",
+    label: "Fedora",
+    added: [
+      "A note on putting Fedora beside Windows on the ThinkPad",
+      "A TIL on listing Windows first in Fedora's boot menu",
+    ],
+    changed: [
+      "The ThinkPad's live status card names the running system, ZACCESS-LNV-WIN or ZACCESS-LNV-FED. It shows ZACCESS-LNV when the laptop is off",
+      "The uses page describes the ThinkPad's Fedora KDE setup",
+    ],
+  },
+  {
+    version: "v2.89.0",
+    date: "2026-10-19",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page covers the two new high contrast themes, making six contrast themes in the reader and the code themes",
+      "The Zacess launch post has a dated update note about the new themes",
+    ],
+  },
+  {
+    version: "v2.88.3",
+    date: "2026-10-19",
+    label: "Newsletter",
+    changed: [
+      "The signature at the end of each newsletter is updated",
+    ],
+  },
+  {
+    version: "v2.88.2",
+    date: "2026-10-19",
+    label: "Projects",
+    changed: [
+      "The Zacess project page notes that the Neovim themes are listed in awesome-neovim",
+    ],
+  },
+  {
+    version: "v2.88.1",
+    date: "2026-10-19",
+    label: "Newsletter",
+    changed: [
+      "Newsletter emails link the privacy policy at the bottom",
+    ],
+  },
+  {
+    version: "v2.88.0",
+    date: "2026-10-18",
+    label: "Behind the scenes",
+    changed: [
+      "Private tools for my student representative roles now cover a second role",
+    ],
+  },
+  {
+    version: "v2.87.1",
+    date: "2026-10-18",
+    label: "Newsletter",
+    changed: [
+      "A scheduled newsletter issue is updated with the latest facts before it goes out",
+    ],
+  },
+  {
+    version: "v2.87.0",
+    date: "2026-10-16",
+    label: "Newsletter",
+    changed: [
+      "Newsletter issues appear on the site at 08:00 on their date, the same moment the email goes out",
+    ],
+  },
+  {
+    version: "v2.86.6",
+    date: "2026-10-15",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page links the code themes on the JetBrains Marketplace and in the Zed extension store",
+      "The CV lists the new places the code themes are published",
+    ],
+  },
+  {
+    version: "v2.86.5",
+    date: "2026-10-15",
+    label: "Newsletter",
+    added: [
+      "The first emailed newsletter arrives as two shorter issues at the same time",
+      "The research page has a Zacess research line with its references",
+      "The research page lists more research interests",
+    ],
+    changed: [
+      "The research page has a clearer introduction to the research areas",
+    ],
+  },
+  {
+    version: "v2.86.4",
+    date: "2026-10-15",
+    label: "Research",
+    added: [
+      "Research pages offer APA, Harvard, IEEE, MLA, Chicago, BibTeX and RIS citations from one dropdown",
+    ],
+  },
+  {
+    version: "v2.86.3",
+    date: "2026-10-15",
+    label: "Research",
+    changed: [
+      "The git-unlocked technical note is updated to a fuller, fully referenced second version",
+    ],
+    fixed: [
+      "The git-unlocked research summary shows the right file count and licence",
+    ],
+  },
+  {
+    version: "v2.86.2",
+    date: "2026-10-15",
+    label: "Blog",
+    fixed: [
+      "Blog posts about git-unlocked now give the right file count and licence",
+    ],
+  },
+  {
+    version: "v2.86.1",
+    date: "2026-10-15",
+    label: "Projects",
+    changed: [
+      "Project dates now show the year each project started",
+      "The downloadable CV links straight to the blog, newsletter, Today I Learned and notes",
+    ],
+  },
+  {
+    version: "v2.86.0",
+    date: "2026-10-15",
+    label: "CV",
+    added: [
+      "The Lab has a new requestcv command to ask for a CV tailored to a specific role",
+    ],
+    changed: [
+      "The downloadable CV has a cleaner layout with links to every project",
+    ],
+  },
+  {
+    version: "v2.85.1",
+    date: "2026-10-15",
+    label: "Behind the scenes",
+    fixed: [
+      "The 3D circuit board viewer on the Lab page loads again",
+    ],
+  },
+  {
+    version: "v2.85.0",
+    date: "2026-10-14",
+    label: "Zacess",
+    added: [
+      "The Zacess project page has a section on the matching code themes for editors and terminals, with a new demo of the themes page",
+      "The Zacess launch post covers the code themes too",
+    ],
+    changed: [
+      "The Zacess demos are recorded again from the latest app and website",
+    ],
+  },
+  {
+    version: "v2.84.0",
+    date: "2026-10-13",
+    label: "Zacess",
+    changed: [
+      "The Zacess project page links the write-up about building it, which goes live at midnight",
+    ],
+  },
+  {
+    version: "v2.83.0",
+    date: "2026-10-13",
+    label: "Zacess",
+    added: [
+      "A project page for Zacess with demos, diagrams and links to the site and the browser version",
+      "A write-up about building Zacess, out on 14 October",
+    ],
+    changed: [
+      "The Links and Now pages point to the browser version",
+      "Zacess sits third on the projects page",
+    ],
+  },
+  {
+    version: "v2.82.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "Live panels stop refreshing while their tab is in the background",
+    ],
+  },
+  {
+    version: "v2.82.0",
+    date: "2026-10-13",
+    label: "Zacess",
+    changed: [
+      "zacess.com is now the home of Zacess, a free, open-source accessibility reader",
+      "The old terminal landing page is archived",
+    ],
+  },
+  {
+    version: "v2.81.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "The coding stats keep updating after a change to how their data is read",
+      "Plain text files are labelled as plain text in the coding stats rather than as a language",
+    ],
+  },
+  {
+    version: "v2.81.0",
+    date: "2026-10-13",
+    label: "New writing",
+    changed: [
+      "A new journal post is scheduled for later this week",
+    ],
+  },
+  {
+    version: "v2.80.1",
+    date: "2026-10-13",
+    label: "Behind the scenes",
+    changed: [
+      "A small fix behind the scenes",
+    ],
+  },
+  {
+    version: "v2.80.0",
+    date: "2026-10-13",
+    label: "Journey update",
+    changed: [
+      "My Journey So Far now covers my current roles at Aston and the projects I run today, including how my first accessibility demo grew into Zacess, with photos from Cape Coast to Aston",
+      "Blog covers that showed the wrong thing now match their posts. Every borrowed image credits its author, licence and source",
+      "The security policy offers GitHub's private vulnerability reporting. Notes and tips across the site share one clearer style",
+      "Tidier reminders behind the scenes, so important dates get a nudge before they arrive",
+    ],
+  },
+  {
+    version: "v2.79.1",
+    date: "2026-10-13",
+    label: "Security update",
+    changed: [
+      "A build dependency was updated to fix a security issue",
+    ],
+  },
+  {
+    version: "v2.79.0",
+    date: "2026-10-11",
+    label: "Midweek by email",
+    changed: [
+      "Midweek issues now arrive by email on their Wednesday. Each letter also links the Outside and Midweek issues from its fortnight in case you missed one",
+    ],
+  },
+  {
+    version: "v2.78.0",
+    date: "2026-10-10",
+    label: "Midweek issues",
+    added: [
+      "Midweek issues every other Wednesday on topics beyond engineering, from Ghana and Africa to football, psychology and culture. They are on the site only, so your inbox still gets one email a week at most",
+      "Three more Outside issues and photos in earlier ones",
+      "Blog posts show their covers in the feeds again",
+    ],
+    changed: [
+      "Newsletter cards and feeds show whether an issue is a letter, an Outside issue or a Midweek issue",
+      "The CNC milling machine project describes the real build",
+      "Project pages no longer show the same link twice",
+    ],
+    fixed: ["Pages that do not exist now return a proper not found status"],
+  },
+  {
+    version: "v2.77.0",
+    date: "2026-10-10",
+    label: "Covers, notes and images",
+    added: [
+      "A Notes section on the homepage and previous and next links on every note",
+      "Photos and flowcharts in newsletter issues, in the email as well as on the site",
+      "New demo clips of the site, including the light and dark switch",
+    ],
+    changed: [
+      "Blog posts show their covers again, on the list, the post itself and the homepage",
+      "Switching between light and dark is one smooth reveal from the toggle. With reduced motion it is instant",
+      "Images load from the site's own media domain in sizes made in advance, so they stay sharp on any screen",
+      "The homepage reads Projects, Blog, Newsletter, TIL then Notes and lines up evenly on wide screens",
+      "Four research notes are dated and appear with the rest of the notes",
+    ],
+  },
+  {
+    version: "v2.76.0",
+    date: "2026-10-10",
+    label: "Newsletter signature",
+    changed: [
+      "Newsletter issues end with the updated signature, with my pronouns and the links on their own line so they read well on a phone",
+    ],
+  },
+  {
+    version: "v2.75.1",
+    date: "2026-10-10",
+    label: "Behind the scenes",
+    fixed: [
+      "Music stats count every play, with none missed or counted twice",
+      "Two charts behind the scenes show their figures as soon as you hover or focus them",
+    ],
+  },
+  {
+    version: "v2.75.0",
+    date: "2026-10-09",
+    label: "Ventures",
+    added: [
+      "The Links page has a Ventures section for PHAEMOS, MELOPHOS, Vitafolio and Zaccess",
+    ],
+  },
+  {
+    version: "v2.72.4",
+    date: "2026-10-09",
+    label: "On the fediverse",
+    added: [
+      "You can follow me on Mastodon at @isaac@isaacadjei.me. Links shared from here now show who wrote them",
+    ],
+  },
+  {
+    version: "v2.72.3",
+    date: "2026-10-09",
+    label: "Newsletter touches",
+    added: [
+      "Newsletter issues show their tags in the list, like blog posts and TILs",
+    ],
+    changed: [
+      "Every newsletter issue ends with an updated signature and a link to book a call",
+    ],
+  },
+  {
+    version: "v2.72.2",
+    date: "2026-10-09",
+    label: "Behind the scenes",
+    fixed: [
+      "A page that failed to open behind the scenes now loads again",
+    ],
+  },
+  {
+    version: "v2.72.1",
+    date: "2026-10-09",
+    label: "Behind the scenes",
+    changed: [
+      "Tidier task tracking behind the scenes, so finished work is never shown as overdue",
+    ],
+  },
+  {
+    version: "v2.72.0",
+    date: "2026-10-09",
+    label: "Behind the scenes",
+    added: [
+      "New posts, notes and newsletter issues are announced the moment they go live",
+      "Newsletter issues now show how many readers opened and clicked them, without keeping anyone's address",
+    ],
+  },
+  {
+    version: "v2.71.2",
+    date: "2026-10-09",
+    label: "The tools in action",
+    changed: [
+      "The development environment project shows every tool in action, from the shell and tmux to Neovim, lazygit, fzf, the Git hooks and Linux, in the same high contrast colours in dark and light mode",
+    ],
+  },
+  {
+    version: "v2.71.1",
+    date: "2026-10-09",
+    label: "Lighter and better watched",
+    changed: [
+      "Pages refresh only when something on them changes, so the site does far less work behind the scenes",
+    ],
+    fixed: [
+      "The command menu works by tap and click again, not only from the keyboard",
+      "Reactions and Comments links from the feeds open at that section on iPhones too",
+      "Errors from the site are reported again, including ones that happen in your browser",
+    ],
+  },
+  {
+    version: "v2.71.0",
+    date: "2026-10-09",
+    label: "The newsletter moves onto the site",
+    added: [
+      "/newsletter: a letter every other week with everything I published since the last one, plus a short Outside issue in the weeks between on something beyond my own work",
+      "Every issue has its own page with reactions, comments and the same signature as my emails. The archive goes back to May",
+      "Sign up with a confirmation link and leave in one click. Issues arrive by email on the morning of their date",
+      "Issues have tags and appear in search, on tag pages and in the all-in-one feed",
+      "Each letter lists what I read, watched and listened to that fortnight",
+      "Notes from May to September, one a month, plus my summer and autumn plans as notes",
+      "The command menu can search the whole site",
+    ],
+    changed: [
+      "Blog posts lead with their words instead of a cover image. Projects keep their covers",
+      "Notes is a list like the blog and TIL. What I am building and what is next moved to /now",
+      "Every list pages the same way: 20 per page for writing and feed pages, 15 for project and Consumed cards",
+      "Notes and newsletter issues appear in the writing stats",
+      "One newsletter sign-up per page and a tidier footer",
+    ],
+  },
+  {
+    version: "v2.70.0",
+    date: "2026-10-08",
+    label: "Projects, writing and feeds",
+    added: [
+      "/projects: full write-ups for every project with covers, demo clips, diagrams, the team and references, plus new pages for Vitafolio, PHAEMOS, MELOPHOS, LidarSAT, this site and my development environment",
+      "/feeds: Atom feeds for the blog, TIL, notes and newsletter, plus /feed.xml for everything, each opening as a designed page in a browser",
+      "Notes has its own posts with pages and a feed. The newsletter page shows issues on the site itself",
+      "/respub: current research, the papers behind it, open materials and one-click BibTeX and APA citations",
+      "/consumed: Start here picks, collections, a yearly summary, book covers, page previews and what each item led to",
+      "A search button in the header opens the command menu on every page and device",
+      "The /lab terminal asks your name and mirrors a real setup with a tmux status bar, a Neovim view and Git aliases",
+    ],
+    changed: [
+      "One filter panel and pager on every list, with filters kept in the address so a view can be shared",
+      "Code blocks in VS Code colours, callouts with icons and one quiet style for tags and labels",
+      "The header shows Notes and Newsletter, More opens All pages and narrower screens use the menu",
+      "/about, /experience, /uses, /colophon, /now and /friends brought up to date",
+      "The site scales up slightly on large monitors and every animation follows reduced motion",
+    ],
+    fixed: [
+      "No sideways scrolling on phones, a phone menu that closes with Escape and larger tap targets everywhere",
+      "Code blocks and the lab terminal use the monospace font again",
+    ],
+  },
+  {
+    version: "v2.69.0",
+    date: "2026-10-07",
+    label: "Community and a new look",
+    added: [
+      "A system theme option alongside light and dark, so the site can follow the device setting",
+      "/guestbook: sign the guestbook. Messages appear once they have been approved",
+      "/friends: the personal sites of people I know online, part of the slashfriends project",
+      "/book: book a 30 minute video call in a time that suits you, with a Google Meet link sent straight away",
+      "/copyright and /disclaimer: what is mine, the code licence, trade marks and every third-party font, icon set, map and chart library",
+      "/accessibility: an accessibility statement covering what the site does, its known limits and how to report a problem, plus a skip link to the main content on every page",
+    ],
+    changed: [
+      "A tidier header: the main pages stay in the bar and More opens a dropdown of everything else, with the same list in the mobile menu",
+      "A redesigned footer with social links, the newsletter sign-up, grouped links and a back to top link. On phones it stacks in reading order",
+      "All Pages is reorganised so every public page sits in a sensible group, with Guestbook, Friends and Hall of Fame under Community",
+      "/privacy covers the guestbook: what is stored, approval before anything is public and how to have an entry removed",
+      "The ia mark and favicon stay readable on any background",
+      "Under the hood: newer React, error reporting and editor libraries",
+    ],
+    fixed: [
+      "/book: the booking calendar follows the site theme instead of always showing dark",
+    ],
+  },
+  {
+    version: "v2.68.0",
+    date: "2026-09-26",
+    label: "Public stats and source",
+    added: [
+      "/stats: the hub opens on category tabs for Overview, Coding, Music, Gaming, Applications and Writing and projects, with every area's charts on the same page",
+      "/stats: an At a glance section with headline numbers plus a How it all compares block that sets coding, gaming, listening and GitHub side by side week by week. Each area has a designed card with its own small live picture such as a coding trend, a listening equaliser or a contribution grid",
+      "/stats/writing: a new page covering posts, TILs, tags, reading time, projects, technologies and what I read and watch",
+      "/stats/coding, /stats/music, /stats/gaming and /stats/applications: more charts including radars, treemaps, heatmaps, monthly trends and a country map for applications, drawn from one hourly cached read that holds counts only",
+      "/stats/gaming: a play history block with hours, most played and weekly hours under the live status",
+      "Now playing: the card updates almost at once when the track changes",
+      "The public source code is now on GitHub as isaacadjei.me, published from the site's own source with its own changelog and releases",
+    ],
+    changed: [
+      "Every stats page opens on the last 30 days",
+      "Posts and TIL entries dated today now go live at midnight UTC, so an entry no longer shows in a list while its page says not found",
+      "Chart labels no longer overlap: pie and donut legends sit under the chart with the percentages inside the ring and bar chart names are shortened and slanted when there are many",
+      "The site does less work on each visit: the GitHub stats and top tracks data are cached at the edge. The blog feed and share images are cached too. The research page is built ahead and the newsletter issue list is cached for 10 minutes",
+      "/about and /experience refresh daily so a role that starts on a set date appears on its own",
+      "/colophon, /changelog and one blog post link to the new public source repository",
+      "Under the hood: React 19, Tailwind 4, TypeScript 6 and newer chart and icon libraries",
+    ],
+    fixed: [
+      "/stats/applications: the maps open in the mode you are viewing the site in. The country map has a dark version with a brighter shading scale",
+      "/stats/applications: the map renders again in every style. Its supporting file had gone out of step with the map library after an upgrade so only the satellite view worked",
+      "The latest push card only shows public repositories",
+    ],
+  },
+  {
+    version: "v2.67.0",
+    date: "2026-09-24",
+    added: [
+      "/notes: a new research note on the routes to restoring sight in a missing eye, covering prosthetic eyes, retinal and cortical implants and whole-eye transplant, with linked sources",
+    ],
+    changed: [
+      "/stats/coding: the editor breakdown now names only real editors, with any other client time counted under VS Code",
+      "/til: the Ghanaian day names entry is rewritten with corrected details and linked sources, with Ga day names, birth order names, twin names and the outdooring added",
+      "/links: the Discord link opens the updated profile",
+      "/privacy and /security-policy: updated to cover every analytics tool, the map and embed providers and the services now in use",
+    ],
+  },
+  {
+    version: "v2.65.2",
+    date: "2026-09-10",
+    security: [
+      "Updated a few dependencies to close known vulnerabilities in packages the site relies on",
+    ],
+  },
+  {
+    version: "v2.65.1",
+    date: "2026-09-08",
+    fixed: [
+      "/stats/applications: the top-cities chart only showed some of its labels, so they are hidden now that the colour legend beneath already names every bar. Applications tagged Remote have no city to plot, so they now appear as their own Remote entry instead of quietly disappearing",
+    ],
+  },
+  {
+    version: "v2.65.0",
+    date: "2026-09-07",
+    label: "Public stats",
+    added: [
+      "A new /stats section: a hub page linking into GitHub, coding, music, applications and gaming stats, each on its own page. GitHub, coding and gaming stats moved here from /lab, which now just has the terminal and PCB viewer",
+      "/stats/github: a year-by-year contributions bar chart alongside the usual calendar, plus a period-filterable daily activity chart with a bar per day and a running total line",
+      "/stats/music: real listening history, with a calendar of daily play counts, a radial clock of listening by hour of day, a genre treemap, a release-decade bar chart and a word cloud of top artists, most of them filterable by period",
+      "/stats/applications: a map of where my job search has reached, one pin per city sized by count, with an always-on total and a top-10-cities bar chart alongside it. It is count-only, with no company, role or date behind any pin",
+      "/stats is linked from the footer, /all-pages and the command menu",
+      "/projects/audio-amplifier: a real Bode plot built from hand-logged breadboard and PCB readings, drawn alongside a theoretical curve calculated from the reported component values",
+    ],
+    fixed: [
+      "/stats/applications: the headline overstated its total as applications sent, when most tracked locations are listings I found and logged rather than places I applied to. The headline, popups and chart now say opportunities tracked instead",
+      "The applications map gained a style picker, globe and 3D toggles and clickable clustering. Its globe view now fills the box with a real sky behind it and the map follows the site's light and dark toggle",
+      "Pin labels and the top-cities chart now show a real city and country instead of the raw location text",
+      "The map's background files had drifted behind the main bundle after updates, so they are now kept in step with it",
+    ],
+    security: [
+      "Patched a dependency vulnerability in a shared transitive package",
+    ],
+  },
+  {
+    version: "v2.60.0",
+    date: "2026-08-10",
+    changed: [
+      "/about: the Societies & Memberships section now shows month-level dates and a society can list more than one role over time. ESOC shows both my Member & Student Representative role and my incoming Treasurer role, which stays hidden until its September 2026 start date. Aston Computer Science Society and Aston Gaming Society joined the list too",
+    ],
+    security: [
+      "Tightened how the contact and newsletter forms and a few other public routes handle input",
+    ],
+  },
+  {
+    version: "v2.59.2",
+    date: "2026-08-04",
+    security: [
+      "Patched another batch of dependency vulnerabilities, all in packages pulled in indirectly by the tools the site is built with",
+    ],
+  },
+  {
+    version: "v2.59.1",
+    date: "2026-08-03",
+    fixed: [
+      "/stats and /lab: the GitHub contributions calendar had quietly lost its horizontal scroll on mobile, squashing a whole year of cells to fit the screen. It scrolls again at a proper tappable size and opens already scrolled to today",
+    ],
+  },
+  {
+    version: "v2.59.0",
+    date: "2026-07-25",
+    added: [
+      "Calendar and grid heatmaps now have a Less to More legend, so the colour scale is explained on every one of them",
+    ],
+  },
+  {
+    version: "v2.58.1",
+    date: "2026-07-24",
+    fixed: [
+      "/lab: the GitHub contributions calendar had started showing the current calendar year instead of a real rolling 365 days, because placeholder rows for future days were being stored. It now shows a true rolling year again",
+      "/lab: a small label now marks the isometric calendar so it is clear which view is which",
+    ],
+  },
+  {
+    version: "v2.58.0",
+    date: "2026-07-23",
+    added: [
+      "/lab: the GitHub contributions calendar has a second, circuit-board-styled isometric view under the flat one. Each day is an extruded block and the busiest days light up like an LED. It supports drag to rotate, scroll to zoom and a flat top-down view. Its board follows light and dark mode",
+    ],
+    changed: [
+      "/lab: the GitHub contributions calendar now shows a genuine year of history from a daily-synced record instead of GitHub's rolling 52-week graph. It shares one heatmap style with the coding and Strava calendars",
+    ],
+    fixed: [
+      "Heatmap and calendar colours could silently fall back to solid black and switching light or dark mode left charts a step behind until a reload. Both are fixed",
+      "Heatmap cells rendered as one flat colour and the day-of-week axis ran upside down. Colours now reflect how active a cell was relative to the rest of the grid and the week reads top to bottom",
+      "Some heatmap cells showed as solid blocks and the empty-cell colour blended into the card in dark mode. Both now read clearly in either theme, with Strava's calendar keeping its orange tint",
+    ],
+    security: [
+      "Patched several framework and image-library vulnerabilities flagged by dependency scanning",
+    ],
+  },
+  {
+    version: "v2.57.0",
+    date: "2026-07-22",
+    added: [
+      "/respub: each publication now has its own page with the full abstract, keywords and a citation section with an APA-style reference and a copyable BibTeX block. The listing page is a lighter teaser that links into it",
+      "/links: EWskills joined the Competitive section alongside LeetCode, Codeforces and AtCoder",
+      "/consumed: every item and every music artist page now has prev/next navigation. Books and podcasts got proper cards with working links to their own pages and the category tabs stay visible when switching category",
+    ],
+    changed: [
+      "/security-policy and /code-of-conduct now show a Last updated date, same as /privacy and /notes",
+    ],
+    fixed: [
+      "/tags and /sitemap.xml now cover notes, publications, resources and music artist genres alongside every other tagged content type, so nothing with its own page goes missing from search engines",
+      "/all-pages now matches the header navigation, with the old flat list split into clearer groups",
+      "/consumed: every item sorts by its real year and month instead of a fixed 2026 and shows the year it actually happened. Tags across the section now link into /tags properly",
+      "Dropped the Ongoing badge from Phaemos and avr-zac on /projects, now that their date range already carries that meaning",
+      "Trimmed the newsletter page's closing explore-the-rest-of-the-site block down to Blog and TIL, since the rest was already one click away",
+    ],
+    security: [
+      "Patched a denial-of-service issue in a shared transitive package that was flagged as three separate alerts",
+    ],
+  },
+  {
+    version: "v2.56.0",
+    date: "2026-07-21",
+    added: [
+      "Notes pages and every consumed item now have a share button too, matching blog posts, TIL entries and projects",
+      "/consumed/resources: six new entries, Tech Interview Handbook, GIPHY Developers, Sprite Sheet Generator, NotebookLM, The Missing Semester and Codedex",
+    ],
+    changed: [
+      "The World Cup 2026 AI Predictor note is rewritten as the Multi-Sport AI Predictor. The tournament happened without it (Spain won), so it now covers what actually happened and the plan to generalise the same model into an open-ended platform for football, basketball, tennis, cricket, motorsport, rugby, athletics and volleyball. The old URL redirects to the new one",
+      "Blog posts and project pages now name their section in the browser tab, matching TIL: Blog | the post title and Project | the project name. Notes and Consumed detail pages picked up the same convention",
+      "The footer's secondary links are reordered to Now, Lab, Notes, Consumed, Research, Tags and Search",
+      "The Spotify now-playing widget updates faster on /now, the homepage and /consumed/music",
+    ],
+    fixed: [
+      "A sweep of every blog post, TIL entry and consumed-page link caught a dozen that had gone dead. Each now points at the correct current source or an equivalent replacement",
+      "The Sky Celebration Day post and TIL are live again, reworded to reflect that a red weather warning moved the day to fully virtual on the day itself",
+      "/lab: the genre chart could show a stray non-genre tag for an artist with little Last.fm data. Junk tags are now filtered more reliably",
+      "The homepage's Today I Learned preview could show older entries ahead of a genuinely new one. It now always shows the 3 most recent",
+    ],
+  },
+  {
+    version: "v2.55.0",
+    date: "2026-07-20",
+    fixed: [
+      "The whole site runs leaner. The check that gates maintenance mode and the sign-in redirect runs at the edge again rather than as a full server function on every request",
+    ],
+  },
+  {
+    version: "v2.52.0",
+    date: "2026-07-17",
+    fixed: [
+      "Fixed a group of chart layout bugs on /lab. Bar charts beside a pie no longer sit off to the left, first category labels are back and the coding language, editor and project bars now carry a colour legend",
+      "/lab: the Spotify genre chart folds together genres that differ only by capitalisation or a trailing s, so afrobeats and afrobeat read as one slice",
+    ],
+  },
+  {
+    version: "v2.50.0",
+    date: "2026-07-12",
+    security: [
+      "Tightened rate limiting and input validation on a few public endpoints and updated the site's content security policy",
+    ],
+  },
+  {
+    version: "v2.48.0",
+    date: "2026-07-10",
+    label: "New identity",
+    added: [
+      "A signature 'ia' mark now heads every page - it signs itself when you arrive, types the name letter by letter on your first visit of a session and re-signs as you move around; the dot on the i blinks as a little status light",
+      "404: a small constellation of the initials draws itself above the terminal",
+      "/lab: the loading screen powers up as a copper circuit-board trace and a braille divider spelling the initials sits under the terminal",
+      "Loading screens across blog, projects, search and the other sections pulse a small 'ia' mark instead of a grey bar",
+      "A brand kit with the logo as SVG plus ready-to-use images",
+      "/contribute: a contributing guide covering software, hardware, images and design, writing and courses and this site, with sections on ways to help, pull requests, patience and getting in touch, each cross-linked to its GitHub repo",
+      "/code-of-conduct: a short personal intro followed by the Contributor Covenant 2.1 in full",
+      "/support: where to get help - discussions, an issue, my support email and my contact page",
+    ],
+    changed: [
+      "New favicon and app icon: an 'ia' tile that follows your device's light or dark mode, with two blue dots gently alternating in the browser tab where supported",
+      "TIL moved into the main navigation after Blog; the duplicate Blog and TIL links left the footer",
+      "Link previews: the share card's logo tile now uses the site's own colours instead of the old purple gradient",
+      "/security-policy: added a cross-link to its GitHub repo and a pointer to my projects",
+    ],
+  },
+  {
+    version: "v2.46.0",
+    date: "2026-07-06",
+    added: [
+      "/links: my Gitea profile joined the code forges list",
+    ],
+  },
+  {
+    version: "v2.45.0",
+    date: "2026-07-05",
+    changed: [
+      "/lab: the Spotify genre split and listening-era charts were rebuilt on the same chart set as the rest of the lab, so they render crisper and match the coding charts",
+    ],
+  },
+  {
+    version: "v2.44.0",
+    date: "2026-07-04",
+    changed: [
+      "Live status on the homepage, /now and /lab: retuned the polling so the shared edge cache does its job. Cards stay live and fast however many people are watching, with track changes still showing within seconds",
+    ],
+    fixed: [
+      "The sitemap no longer lists /privacy, which is deliberately hidden from search engines, so Google stops getting conflicting signals",
+    ],
+  },
+  {
+    version: "v2.43.1",
+    date: "2026-07-02",
+    fixed: [
+      "/links: the GitHub, GitLab, Codeberg, Stack Overflow and Hackster links pointed at misspelt handles - all corrected",
+      "/lab: the projects donut no longer drifts out of line with the languages donut when project names run long",
+    ],
+  },
+  {
+    version: "v2.43.0",
+    date: "2026-06-24",
+    fixed: [
+      "Blog and project link preview images now generate reliably",
+    ],
+  },
+  {
+    version: "v2.40.0",
+    date: "2026-06-24",
+    added: [
+      "A Status link to the public status page in the footer, /all-pages and the command menu, plus a note in the privacy policy about the cookieless visitor analytics the site uses",
+    ],
+  },
+  {
+    version: "v2.37.0",
+    date: "2026-06-23",
+    changed: [
+      "The maintenance page keeps a single light and dark toggle but otherwise renders bare, without the site header or footer. It follows your device theme by default",
+    ],
+  },
+  {
+    version: "v2.36.0",
+    date: "2026-06-23",
+    added: [
+      "A maintenance page at /maintenance that visitors see whenever I switch maintenance mode on",
+    ],
+  },
+  {
+    version: "v2.27.0",
+    date: "2026-06-22",
+    fixed: [
+      "/lab: the In the code stats and top-content widgets showed zeros after a database change and read correctly again",
+      "/now: the Discord card showed me as offline even when I was online and active. It reads the right status again",
+    ],
+  },
+  {
+    version: "v2.21.0",
+    date: "2026-06-22",
+    added: [
+      "/now: the MacBook and Lenovo cards now show a proper battery gauge that fills to the real level and shifts from blue to amber to red as it drains, with a bolt while charging",
+      "/now: the Gaming PC card was rebuilt to match the PS5 one - CPU and GPU now show as small live graphs, the game I am playing shows underneath while I play and the last game I played shows once the PC is off",
+    ],
+    fixed: [
+      "/now, homepage and /lab: the device cards no longer get stuck on an old 'last seen' time while a device is actually online - they stay live now and the clock follows my exact timezone from GPS when I travel",
+    ],
+  },
+  {
+    version: "v2.19.0",
+    date: "2026-06-21",
+    changed: [
+      "/now, homepage and /lab live status: rebuilt to be lighter and steadier - the device, Spotify, GitHub and Discord widgets now refresh through cached endpoints that visitors share, so the cards stay fast and live no matter how many people are viewing at once; Spotify track changes still appear within a few seconds",
+      "/lab: the coding heatmap dropped its small duplicate hourly bar strip - the 'by hour of day' chart beside it already shows that, more clearly",
+    ],
+    fixed: [
+      "Live status: the Spotify and GitHub cards no longer go blank together during a brief cache hiccup - each now falls back to its own live source independently",
+    ],
+  },
+  {
+    version: "v2.15.0",
+    date: "2026-06-21",
+    changed: [
+      "/now: Spotify visualiser rebuilt - it extracts the dominant colours from the current album art and renders a sine wave above a bouncy equaliser, both tinted from the cover; bar peaks darken as they rise like a real meter and the wave swings wider and darkens in step with the bar beneath each point; drawn on a device-pixel-ratio canvas so it stays crisp and identically proportioned on every screen, animated on delta-time and tuned for light and dark mode; it no longer pretends to react to audio (Spotify retired the audio analysis API) so the motion is honest album-colour ambience",
+      "/now: Spotify song changes now appear in near-realtime and the live status stream pauses while the browser tab is hidden so a backgrounded page no longer polls",
+      "/lab: Spotify Top Picks genres are back, sourced from Last.fm (Spotify retired its artist genre data) - the genres tab shows a rank-weighted donut and breakdown with duplicate tags merged and each top artist lists its genre tags again",
+      "/lab: Spotify Top Picks artists tab gains an underground-to-mainstream spectrum of my top artists by audience size and the tracks tab a listening-era chart from my all-time tracks by release decade",
+    ],
+  },
+  {
+    version: "v2.11.0",
+    date: "2026-06-20",
+    changed: [
+      "/now: Spotify widget now detects song changes within 5 seconds - a dedicated fast SSE channel polls only Spotify every 5s, keeping the main status stream at its 60s cadence",
+      "/lab: Spotify visualiser bars are now slightly taller with a stronger gradient (30% opacity at the base rising to fully opaque at the peak); bars can no longer touch the sine wave - a hard cap keeps 3px of clearance at all times; peak cap dots now use the foreground colour so they are visible in both light and dark mode",
+      "/lab: Top Picks - track list and artist list are now shown first with bar charts below (was the other way around); track bars now show real track duration (longest track = 100%) rather than rank position; artist bars now show real follower counts (most followed = 100%); each bar chart has a description label explaining the metric; genre breakdown now fetches genres from a dedicated batch artist call so genres are populated for mainstream artists",
+    ],
+  },
+  {
+    version: "v2.10.0",
+    date: "2026-06-19",
+    added: [
+      "/lab: WakaTime coding stats panel - period selector (24h/7d/30d/90d/1y/all), stat cards, daily trend line chart, 7x24 interactive coding heatmap with hourly sparkline (total activity per UTC hour collapsed across all days) and peak coding hour, language and project progress bars, language and editor pie charts, weekday and hour-of-day bar charts, all with hover tooltips",
+      "/lab: 20+ new terminal commands including stats, streak, today, languages, vscode, os (live WakaTime data), posts (most-read blog and TIL), grade, uptime, now, mottos, hire, cv, decrypt, matrix, make",
+      "/lab: theatrical command animations - hack, coffee, decrypt, matrix, make, sudo and zac now play out line by line with real delays",
+      "/lab: clickable link line type in the terminal - URLs render as primary-coloured anchor tags",
+      "/lab: TypingMotto component - types out bash-style commands character by character, pauses then loops; used under the GitHub stats panel and the coding stats panel",
+      "/lab: Spotify visualiser - 52-column horizontal equaliser with a gradient darkening from light violet at the base to dark indigo at the peak (taller bar = darker colour); album art spins like a vinyl record when playing and its colours bleed through the bar shapes via SVG clipPath; bright indigo sine wave below the bars brightens with track energy; blurred album art as card background",
+      "/lab: PCB viewer full redesign - full-width interactive 3D model (real geometry from the original 3DS file converted to GLB, loaded via react-three-fiber + drei); angle presets (front, back, top, bottom, left, right); wireframe toggle, auto-rotate toggle and grid helper; below the 3D model: copper layer drag-to-orbit panels, real board front/back flip card (photos of the actual built board), assembled board photo and full circuit schematic - the photo and schematic cards open in a fullscreen lightbox on click",
+      "/about: approach code animation now ends with a highlighted primary-blue motto line - nohup hustle && disown impostor_syndrome",
+      "/consumed/music/[slug] - individual artist pages for each featured artist; cards on /consumed/music now link through to the detail page with YouTube embed, genre tag and personal notes",
+      "/notes/codeforces-auto-push - research note on auto-pushing competitive programming solutions to GitHub; maps what already exists (CFPusher for Codeforces, LeetHub 3.0 and LeetSync for LeetCode, AtCommitter for AtCoder, UpCode for bulk upload) and where the gaps are (no tool for TryHackMe, no unified extension); plans a single Manifest V3 extension covering Codeforces, AtCoder and TryHackMe with one GitHub PAT and one organised repo",
+    ],
+  },
+  {
+    version: "v2.9.0",
+    date: "2026-06-18",
+    added: [
+      "/respub - academic profile page: research interests, external links (ORCID, Google Scholar, ResearchGate, Academia.edu) and publications list",
+      "/til - Today I Learned: 63 entries across 21 categories; search, category filter and pagination (10 per page); reading time per entry; RSS feed at /til/feed.xml",
+      "/til/[slug] - individual TIL entry pages with ShareButton, optional ToC sidebar and prev/next navigation",
+      "/tags - tag cloud aggregating blog, TIL, projects, publications and consumed content; client-side search",
+      "/tags/[tag] - content filtered by a single tag across all content types in grouped sections",
+      "/search - unified full-text search across blog, TIL, projects, publications, notes, newsletter and consumed; results ranked by relevance score",
+      "/consumed/[category]/[slug] - 216 individual consumed item pages with embedded players (YouTube for videos, Spotify for podcasts) and breadcrumb navigation",
+      "/newsletter/feed.xml - newsletter RSS feed with styled browser view and ?raw for raw XML",
+      "/blog/feed.xml - blog RSS feed at its canonical URL; old /feed.xml permanently redirects here",
+      "FeaturedTIL section on homepage: 3 most recent TIL entries between Featured Blog Posts and Newsletter; each card links to /til/[slug]",
+      "Root-level error boundary (app/error.tsx): calm card with Try again and Go home buttons; distinct from the terminal-style 404",
+      "Custom 404 page: interactive terminal with boot animation, clickable shortcut links and a live command input",
+      "Giscus comment system on all blog posts: GitHub Discussions-powered; dark/light theme matches site",
+      "Blog reactions: 8 standard emoji plus an extended picker (28 additional via SmilePlus); counts shown inline; stored per-post per-user",
+      "Blog cover images on all 20 published posts; RSS feeds include thumbnails for feed reader preview",
+      "Tags and Search added to CommandMenu (Cmd+K) and footer secondary nav row",
+      "Secondary footer nav row: Now, Notes, Lab, Uses, Colophon, Changelog",
+      "Notes page TIL callout card linking to /til",
+      "Lab terminal new commands: til, respub, rss, blogfeed, tilfeed, newsletterfeed, playing (async), lastgame (async), pushed (async)",
+      "Newsletter While you wait section: TIL and Research and publications cross-links added",
+      "A web app manifest with its own icons, name and start URL, so the site installs as an app",
+      "Links page restructured from 4 to 10 sections (Professional, Writing, Academic, Code, Competitive Programming, Hackathons, Social, Content, Support, Other); 12 new platforms added including HackerRank, CodeChef, Stack Overflow, TryHackMe and ResearchGate; quick social icon row under bio",
+      "Projects pagination: 9 per page with prev/next navigation; AI/ML added as a project category",
+      "dotfiles project added to /projects: full detail page with overview, 8 highlights, tech stack and 2-image gallery; covers 59 topic files, cross-platform aliases, 3-platform git mirroring and Starship integration",
+      "/uses Terminal and shell section: dotfiles entry and Starship entry with shared config explanation",
+      "Skills page Core Tools: Starship added",
+      "Project detail page: inline code rendering via backtick syntax so command names render as styled code elements",
+      "New blog post: How to Contribute to Open Source: A Practical Guide; published 2026-06-13",
+      "Blog renderer: Spotify episode embeds and inline [text](url) link rendering in paragraph and list blocks",
+      "All 34 blog posts enriched with references sections (6-13 items each) and inline links for tools and projects mentioned",
+    ],
+    changed: [
+      "Blog RSS canonical URL moved from /feed.xml to /blog/feed.xml; old URL redirects (301) with query-param forwarding",
+      "Projects: phaemos recategorised to IoT; cad-portfolio and git-unlocked recategorised to Academic; filter bar gains IoT and Academic buttons",
+      "Blog inline links now styled in blue across blog, colophon, consumed, now and uses pages",
+      "ps5:last-game Redis key: only written when a game is actively running so sitting at the home screen no longer overwrites the last played title",
+      "All hover scale and translate CSS transforms scoped to sm: breakpoint to prevent GPU compositing layer exhaustion on iOS Safari",
+      "Social icons on hero and contact page standardised to react-icons/fa6 for GitHub and LinkedIn",
+      "Consumed overview: Year and Month filter labels added; Category label above tabs; all category subpages gain Year filter",
+      "Newsletter issues API now filters out scheduled posts with a future publish date before returning the response",
+      "Removed: BuyMeACoffee from hero and contact social link rows (remains in /links Support section and blog AuthorCard)",
+    ],
+    fixed: [
+      "Mobile Safari and Chrome renderer crash (A problem repeatedly occurred) on / and /projects: a single oversized project thumbnail was decoding to over 500MB in browser memory; hover transforms also scoped to sm: and the header's blur-sm effect scoped to desktop so no GPU layers are created on touch devices",
+      "PS5 last played game now persists correctly when offline",
+      "PS5 status no longer shows a stale last seen time while actively online",
+      "Giscus comment iframe blocked by CSP: giscus.app added to frame-src allowlist",
+      "RSS ?raw query param now serves Content-Type: application/xml for Chrome native XML viewer",
+      "Newsletter page showing scheduled issues before their publish date",
+      "First project card on /projects and first post cover on /blog now load eagerly instead of lazily, fixing a slower Largest Contentful Paint for the above-the-fold image on each page",
+      "/lab under-construction GIF reduced from 1.6MB to 833KB via recompression with no visible quality loss; also now loads eagerly to fix a Largest Contentful Paint warning",
+      "/lab terminal maximise button left a 31px gap below the header instead of sitting flush against it",
+    ],
+  },
+  {
+    version: "v2.8.0",
+    date: "2026-05-30",
+    added: [
+      "Mobile banner: slim dismissible notice below the header on screens narrower than 768px suggesting the site is best viewed on a laptop or desktop; hidden via md:hidden so it never appears on wider screens",
+      "git-unlocked project gallery expanded with 4 new images: 3D GitHub logo badge (card preview), Octocat with GitHub profile on laptop, Octocat and Groot figurines and close-up Octocat; card preview image updated from banner SVG to the 3D logo badge",
+      "/now page intro now links to nownownow.com/p/n4lZ alongside the existing Derek Sivers credit so visitors can find the listed profile",
+      "Colophon expanded: shadcn/ui and next-themes as separate entries; backend section adds Vercel, Resend, Beehiiv, GitHub Actions and Cloudflare Turnstile; design section adds GA4, share feature and responsive design note; new Notable pages and features section covers /lab, /blog renderer, /consumed, /changelog and OG image generation; all live status entries expanded with more detail; Vercel and Cloudflare links added to header meta",
+      "/now page content refreshed: updated Where I am (London for summer), Studying (FPGA/VHDL, competitive programming on Neetcode/Leetcode/Codeforces, hackathons), Building (accurate Phaemos hardware detail, World Cup 2026 AI Predictor added, This site blurb updated), Thinking about (internship search, events, Sky campus mention), Outside of work (running and hiking added)",
+    ],
+    changed: [
+      "PS5 Cloudflare Worker cron reduced from every minute to every 2 minutes to stay within the 1,000 write/day free tier KV limit (720 writes/day vs previous 1,440); Redis TTL for ps5:status extended from 120s to 150s to keep a 30s buffer between key expiry and the next poll",
+    ],
+    fixed: [
+      "Header theme toggle and hamburger menu now pin correctly to the far right on small screens; replaced the three-column grid with flex justify-between on mobile so the controls are never left drifting toward the centre when the desktop navigation is hidden",
+      "Mobile banner text changed from text-muted-foreground to text-foreground so it reads clearly as black on light and white on dark",
+      "/now page header now shows Updated live only - removed Last updated May 2026 which was misleading alongside a live indicator",
+      "/notes and /privacy pages updated from May 2026 to June 2026",
+    ],
+  },
+  {
+    version: "v2.7.0",
+    date: "2026-05-29",
+    added: [
+      "PS5 Busy mode: doNotDisturb PSN status treated as online; busy field added to Worker, API route and card",
+      "Notes page teaser strip: slim animated live status preview on /notes linking to /now; full widget removed from notes",
+      "Now and Lab added to main navigation; navigation centred in header using three-zone grid layout",
+      "Contact page now shows email address below the contact form",
+      "Footer social row reordered and simplified: All Pages, Contact, Newsletter, LinkedIn, GitHub, ORCID",
+      "Footer newsletter signup form removed; newsletter signup remains on /blog and /newsletter",
+      "Spotify card shows Spotify icon and external link to profile in card header",
+      "GPC daemon fetches cover art from IGDB (Twitch API) on first game detection and caches per session",
+      "GPC daemon sends game_image alongside game name; GPC card renders the cover art thumbnail",
+      "GPC daemon 5-tier game detection: hardcoded dict, Steam Web API, Epic Games manifests, EA App manifests and process-name IGDB fuzzy search",
+      "FiveM added to GPC game detection",
+      "GPC daemon cover art for GTA V, FC 26, Apex Legends, Rocket League, Overwatch 2, Fortnite, Minecraft and FiveM",
+      "PS5 Worker fetches game cover art from IGDB on each cron run; falls back to PSN conceptIconUrl when IGDB is not configured",
+      "PS5 card renders IGDB cover art when online; shows text-only last played game name when offline",
+      "PS5 Worker exchanges NPSSO for a refresh token on first run and stores it in KV; subsequent runs use the refresh token automatically",
+    ],
+    changed: [
+      "Spotify icon colour changed from Spotify green to blue to match site colour theme",
+      "GitHub strip moved above Discord card in live status widget",
+      "Home removed from navigation; avatar links to homepage",
+      "/uses and /now references to 'notes page' corrected to 'now page'",
+    ],
+    fixed: [
+      "feed.xml?raw no longer crashes with Cloudflare CPU timeout; returns raw XML directly instead of running regex transforms",
+      "PS5 lastGame and lastGameImage now read from lastKnown instead of the live source so the last played game persists when offline",
+      "PS5 card no longer shows online when console is off; API returns last genuine online timestamp rather than cron polling timestamp",
+      "PS5 Worker updated to current PSN client ID and required headers; old client ID was removed by PSN and caused 400 errors",
+      "PS5 Worker IGDB request includes Content-Type: text/plain header required by the Apicalypse query format",
+      "Discord activity card sorts Playing before Watching to match Discord display order",
+      "Discord activity large icon shows the small icon as a bottom-right overlay",
+      "Discord activity elapsed timestamp shows seconds in H:MM:SS / M:SS format and updates live every second",
+    ],
+    security: [
+      "Force brace-expansion to 5.0.6 via npm overrides to resolve CVE-2026-45149 (GHSA-jxxr-4gwj-5jf2)",
+    ],
+  },
+  {
+    version: "v2.4.0",
+    date: "2026-05-27",
+    added: [
+      "Share button on project detail pages, blog posts, /cv and /links - Web Share API with clipboard fallback and 2-second 'Copied!' confirmation",
+      "Open Graph thumbnails on every public page via /api/og - dynamic per-page title and description",
+    ],
+    changed: [
+      "Em and en dashes removed throughout the site; replaced with hyphens",
+      "Oxford commas removed throughout",
+    ],
+  },
+  {
+    version: "v2.3.0",
+    date: "2026-05-20",
+    added: [
+      "/consumed page: 49 YouTube videos, 12 Spotify podcasts and 10 books logged for 2026; content sorted oldest to newest across January to May; All tab groups by month; click-to-play video facade; music section links to the Notes page Spotify widget",
+      "/now page: snapshot of what I am doing right now covering location, studying, building, reading, thinking about, outside of work and listening; inspired by nownownow.com",
+      "/uses page: all the hardware, software and tools I use day to day",
+      "/colophon page: how the site is built, the full stack and the decisions behind it",
+      "/changelog page: this page, full version history from the first commit",
+      "Dark/light mode crossfade: 150ms ease transition on theme toggle instead of instant swap",
+      "Next and previous post navigation at the bottom of every blog post",
+      "Blog reactions: thumbs up, flame, lightbulb and heart per post stored in Redis; one click, no comments",
+      "Post series grouping: series and seriesPart fields on BlogPost; SeriesBanner component on post pages; series indicator on post cards",
+      "Hall of Fame reframe: personal acknowledgements (God, mum, dad) lead the page before security researchers",
+      "Command menu searches projects and includes all hidden pages in a More group",
+      "Gaming PC daemon, API route and live card: NVIDIA RTX 4060 GPU%, CPU% and active game via pynvml, runs via NSSM",
+      "Lenovo daemon, API route and live card: battery and charging state via NSSM service",
+      "Spotify device name shown in the card label when actively playing",
+      "Spotify podcast and episode support: episode title, show name and episode artwork shown the same as tracks",
+      "Spotify last played: when nothing is active the card shows the previous track or episode in a greyed-out grayscale state",
+      "Real-time Spotify progress bar: ticks forward every second client-side and snaps to the true position on each API poll",
+      "RSS feed 'View raw XML' button: opens a syntax-highlighted dark HTML view of the raw feed with colour-coded tags, attributes, CDATA and processing instructions",
+      "Scrolling marquee on long Spotify track titles: title scrolls continuously when it overflows the card width, looping seamlessly; short titles stay static",
+    ],
+    changed: [
+      "/consumed description updated to 'so far this year' to reflect ongoing additions",
+      "Gaming PC card restructured: offline state shows only last-seen; GPU, CPU and game fields are live-only",
+      "Live status layout: time card moved to the left column and MacBook card to the right in the two-column row",
+      "Spotify polling interval reduced from 30s to 10s so track changes appear faster",
+      "GitHub icon replaced with GitBranch from lucide-react in the last-pushed card",
+    ],
+    fixed: [
+      "YouTube and Spotify embeds blocked by CSP: added www.youtube.com and open.spotify.com to frame-src",
+      "Gaming PC card CPU and GPU combined onto one line to prevent the card expanding taller than others",
+      "Charging state hidden on device cards when last daemon update is more than 5 minutes old",
+      "Separator and icon visibility improved in both light and dark mode",
+      "Sitemap missing 7 pages: /now, /consumed, /uses, /changelog, /colophon, /all-pages and /privacy were live but not indexed by Google",
+      "RSS feed unstyled in Chrome: Chrome 131 dropped XSLT support; the feed now serves a styled dark HTML page to browsers and raw XML to feed readers",
+      "Spotify podcasts not showing in widget: the player API call was missing ?additional_types=track,episode so Spotify silently returned nothing for episodes",
+    ],
+  },
+  {
+    version: "v2.2.0",
+    date: "2026-05-18",
+    added: [
+      "Dynamic OG images per blog post and project page via Next.js ImageResponse",
+      "Article JSON-LD structured data on all published blog posts",
+      "Beehiiv past newsletter issues on the newsletter page, cached in Redis",
+      "Related posts section at the bottom of each blog post (up to 3 shared-tag matches)",
+      "GitHub contribution heatmap, commits, PRs, issues and last pushed on the Lab page",
+      "Blog post search in the command menu",
+      "RSS feed XSL stylesheet so the feed renders as a styled page in browsers",
+    ],
+    changed: [
+      "All ten project long descriptions expanded with design rationale and build process",
+      "Homepage hero completely rewritten with a two-paragraph structure and nav links",
+      "Lab terminal auto-focuses input after boot so you can type immediately",
+      "Sitemap lastModified dates changed from new Date() to real last-changed dates",
+    ],
+    fixed: [
+      "OG/Twitter image generation routes marked noindex so Google ignores them",
+      "Privacy page removed from sitemap to resolve conflicting noindex signals",
+    ],
+  },
+  {
+    version: "v2.1.0",
+    date: "2026-05-15",
+    added: [
+      "Live status widget: Spotify now playing with album art and progress bar, London time, MacBook battery and charging state, GitHub last push",
+      "Mac daemon (scripts/mac-daemon.py): writes battery, charging state, timezone and weather to Redis every 30s via launchd",
+      "Reading progress bar at the top of every blog post",
+      "Copy button on all code blocks",
+      "Sticky table of contents sidebar on blog posts with 3+ headings",
+      "Custom 404 page: terminal-style animated boot sequence with error line",
+      "/notes/world-cup-ai-predictor and /notes/prosthetics-health-tech detail pages",
+      "AstonCV blog post",
+    ],
+    changed: [
+      "Live status cards moved from homepage to /notes and /lab",
+      "Spotify polling interval reduced from 30s to 10s",
+      "Newsletter page fully rewritten with topic cards and past issues link",
+    ],
+    fixed: [
+      "All em dashes and en dashes removed sitewide",
+      "Oxford commas removed from all content",
+    ],
+  },
+  {
+    version: "v2.0.0",
+    date: "2026-05-14",
+    added: [
+      "Full blog system with 11 published posts across 7 content types",
+      "Blog-to-project cross-linking via projectSlug field",
+      "Newsletter system via Beehiiv API with subscription form",
+      "/notes page: public notebook with current builds and plans",
+      "/lab page: interactive terminal with 30+ commands",
+      "/security-policy and /hall-of-fame pages",
+      "Command menu keyboard shortcuts (Mod+H/A/P/E/S/B/N/J/C/L)",
+    ],
+    changed: [
+      "Blog page redesigned with type filter tabs and date-sorted post grid",
+      "Lab page: terminal moved here with upgraded colour scheme",
+      "About page intro expanded with retinoblastoma, father, Adisadel leadership and more",
+    ],
+    fixed: [
+      "Blog post 404s: params now awaited as Promise in Next.js dynamic routes",
+      "Lab terminal crash on boot fixed",
+    ],
+    security: [
+      "/security-policy published with responsible disclosure contact and response timeline",
+    ],
+  },
+  {
+    version: "v1.1.0",
+    date: "2026-05-11",
+    added: [
+      "avr-zac project: ATmega644P bare metal C with nine-mode state machine",
+      "Phaemos smart maintenance platform added to featured projects",
+      "ORCID profile link in footer and /links",
+      "Cybersecurity project category",
+      "Platforms & Operating Systems skills category",
+      "public/.well-known/security.txt",
+      "Per-page canonical tags on all routes",
+    ],
+    fixed: [
+      "GitHub username corrected from zaccesss to zaccesss throughout",
+    ],
+  },
+  {
+    version: "v1.0.1",
+    date: "2026-05-06",
+    fixed: [
+      "ERR_TOO_MANY_REDIRECTS in production caused by conflicting host redirect rules",
+      "Canonical host handling consolidated between app and edge layers",
+      "ThemeProvider typing compatibility restored for next-themes",
+    ],
+  },
+  {
+    version: "v1.0.0",
+    date: "2026-04-28",
+    label: "Initial launch",
+    added: [
+      "Full portfolio site launched on isaacadjei.me",
+      "Pages: Home, About, Projects, Experience, Skills, Blog, Contact, CV, Links",
+      "Project detail pages with image gallery for 7 projects",
+      "CV viewer and downloadable PDF route",
+      "Contact form with honeypot, rate limiting and input sanitisation",
+      "Command palette (Cmd/Ctrl+I) for quick navigation",
+      "Dark/light mode toggle",
+      "Scroll progress indicator and back-to-top button",
+      "Open Graph and Twitter card metadata",
+      "Cloudflare Turnstile on contact form",
+      "Content Security Policy headers",
+      "Upstash Redis rate limiting",
+      "Gitleaks secret scanning in CI",
+      "Dependabot auto-updates with auto-merge",
+    ],
+  },
+]

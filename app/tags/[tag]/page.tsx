@@ -287,7 +287,7 @@ export default async function TagPage({
             {matchedPubs.map((pub) => (
               <li key={pub.id}>
                 <Link
-                  href={`/respub/${pub.id}`}
+                  href={`/publications/${pub.id}`}
                   className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">

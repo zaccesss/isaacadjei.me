@@ -3,7 +3,7 @@ import type { ResearchStatus } from "@/data/respub/research"
 const LABELS: Record<ResearchStatus, string> = {
   simulation: "In simulation",
   hardware: "Hardware phase",
-  live: "Live",
+  live: "In use",
 }
 
 const DOTS: Record<ResearchStatus, string> = {

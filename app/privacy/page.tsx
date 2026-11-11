@@ -84,8 +84,8 @@ export default function PrivacyPage() {
           <h2>Analytics</h2>
           <p>
             This site uses analytics services to understand general usage patterns such as page
-            views, device type and geographic region. All data collected is fully anonymised. No
-            individual visitor is identified, tracked across other websites or profiled in any way.
+            views, device type and geographic region. The data is collected in aggregate. No
+            individual visitor is identified by name, tracked across other websites or profiled in any way.
             The purpose is solely to understand which parts of the site are useful and to improve
             the content accordingly.
           </p>
@@ -331,7 +331,11 @@ export default function PrivacyPage() {
             Google&rsquo;s favicon service (see{" "}
             <Ext href="https://policies.google.com/privacy">Google&apos;s Privacy Policy</Ext>). Your
             browser loads these images directly from those servers, which receive your IP address and
-            browser details in the normal way. The research page reads view and download counts from{" "}
+            browser details in the normal way. The Skills and Uses pages show logos from{" "}
+            <Ext href="https://simpleicons.org/">Simple Icons</Ext>,{" "}
+            <Ext href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net">jsDelivr</Ext> and{" "}
+            <Ext href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia Commons</Ext> in
+            the same way. Each publication page reads view and download counts from{" "}
             <Ext href="https://about.zenodo.org/privacy-policy/">Zenodo</Ext> on my server, so that
             request never involves your browser.
           </p>

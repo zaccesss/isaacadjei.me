@@ -30,6 +30,7 @@ interface Props {
   tils: TILEntry[]
   projects: Project[]
   publications: Publication[]
+  research: { href: string; title: string; body: string }[]
   notes: NoteEntry[]
   consumed: ConsumedEntry[]
 }
@@ -61,7 +62,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
   )
 }
 
-export default function SearchClient({ posts, tils, projects, publications, notes, consumed }: Props) {
+export default function SearchClient({ posts, tils, projects, publications, research, notes, consumed }: Props) {
   const initial = useSearchParams().get("q") ?? ""
   const [query, setQuery] = useState(initial)
   const [debounced, setDebounced] = useState(initial.trim())
@@ -145,6 +146,14 @@ export default function SearchClient({ posts, tils, projects, publications, note
       )
     : []
 
+  const matchedResearch = q
+    ? byRelevance(
+        research.filter((r) => r.title.toLowerCase().includes(q) || r.body.toLowerCase().includes(q)),
+        (r) => r.title,
+        (r) => r.body
+      )
+    : []
+
   const matchedNotes = q
     ? byRelevance(
         notes.filter(
@@ -190,6 +199,7 @@ export default function SearchClient({ posts, tils, projects, publications, note
     matchedTils.length > 0 ||
     matchedProjects.length > 0 ||
     matchedPubs.length > 0 ||
+    matchedResearch.length > 0 ||
     matchedNotes.length > 0 ||
     matchedConsumed.length > 0 ||
     matchedIssues.length > 0
@@ -282,13 +292,21 @@ export default function SearchClient({ posts, tils, projects, publications, note
               {matchedPubs.map((pub) => (
                 <ResultCard
                   key={pub.id}
-                  href="/respub"
+                  href={`/publications/${pub.id}`}
                   badge={pub.type}
                   title={pub.title}
                   body={pub.abstract ?? pub.venue}
                   date={String(pub.year)}
                   query={debounced}
                 />
+              ))}
+            </ResultSection>
+          )}
+
+          {matchedResearch.length > 0 && (
+            <ResultSection heading={`Research (${matchedResearch.length})`}>
+              {matchedResearch.map((line) => (
+                <ResultCard key={line.href} href={line.href} badge="research" title={line.title} body={line.body} query={debounced} />
               ))}
             </ResultSection>
           )}
@@ -377,6 +395,7 @@ export default function SearchClient({ posts, tils, projects, publications, note
         <p className="text-sm text-muted-foreground">
           {posts.length} blog posts, {tils.length} TIL entries, {projects.length} projects,{" "}
           {publications.length} {publications.length === 1 ? "publication" : "publications"},{" "}
+          {research.length} research lines,{" "}
           {consumed.length} consumed items, {notes.length} notes and {newsletterHint}.
         </p>
       )}

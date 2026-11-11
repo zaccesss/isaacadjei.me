@@ -300,21 +300,25 @@ html.apple {
   animation: marquee-scroll 14s linear infinite;
 }
 
-/* skills icon grid - fixed columns, centered */
+/* skills icon grid: rows of fixed-width cards, centred. It wraps like text, so a last row with fewer cards sits in
+   the middle and not against the left edge */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 88px);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
   margin: 0 auto;
 }
-/* desktop: lock to exact column count (N×88px + (N-1)×12px gap) */
+.skills-grid > * {
+  width: 88px;
+}
+/* desktop: the widest a row may be, so each category keeps its own number of cards a row (N x 88px + (N-1) x 12px) */
 @media (min-width: 640px) {
-  .skills-cols-2 { grid-template-columns: repeat(2, 88px); }
-  .skills-cols-3 { grid-template-columns: repeat(3, 88px); }
-  .skills-cols-4 { grid-template-columns: repeat(4, 88px); }
-  .skills-cols-5 { grid-template-columns: repeat(5, 88px); }
-  .skills-cols-6 { grid-template-columns: repeat(6, 88px); }
+  .skills-cols-2 { max-width: 188px; }
+  .skills-cols-3 { max-width: 288px; }
+  .skills-cols-4 { max-width: 388px; }
+  .skills-cols-5 { max-width: 488px; }
+  .skills-cols-6 { max-width: 588px; }
 }
 
 /* staggered entrance for skill categories */

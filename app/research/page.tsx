@@ -1,39 +1,22 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowUpRight, FileText, Mail } from "lucide-react"
-import { FaLinkedin } from "react-icons/fa6"
-import { SiOrcid, SiGooglescholar, SiResearchgate, SiZotero } from "react-icons/si"
-import { publications } from "@/data/respub"
-import { citationStyles } from "@/data/respub/cite"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { keyPapers, researchInterests, researchLines, type ResearchLink } from "@/data/respub/research"
 import ResearchStatusBadge from "@/components/respub/ResearchStatusBadge"
-import CitationPicker from "@/components/respub/CitationPicker"
 
 export const metadata: Metadata = {
-  title: "Research & Publications",
+  title: "Research",
   description:
-    "What Isaac Adjei researches, writes up and formally publishes. Citable papers, technical notes and open-source curricula, with links to every record.",
+    "What Isaac Adjei is researching: the questions, the methods and what each line of work has shown so far, with the papers behind it and the open materials.",
   alternates: {
-    canonical: "https://isaacadjei.me/respub",
+    canonical: "https://isaacadjei.me/research",
   },
   openGraph: {
     images: [
-      "/api/og?title=Research%20%26%20Publications&description=Academic%20publications%20and%20research%20by%20Isaac%20Adjei",
+      "/api/og?title=Research&description=The%20questions%20I%20am%20working%20on%2C%20how%20and%20what%20they%20have%20shown%20so%20far",
     ],
   },
 }
-
-const typeLabel: Record<string, string> = {
-  "technical-note": "Technical Note",
-  conference: "Conference Paper",
-  journal: "Journal Article",
-  preprint: "Preprint",
-}
-
-import PublicationsPager from "./PublicationsPager"
-import { LABEL_CLASS } from "@/components/shared/lists/Tag"
-
-const ITEMS_PER_PAGE = 6
 
 const SECTION_HEADING = "text-xs font-semibold uppercase tracking-widest text-muted-foreground"
 
@@ -55,97 +38,21 @@ function ResearchAnchor({ link, className }: { link: ResearchLink; className?: s
   )
 }
 
-export default function ResearchPublicationsPage() {
-
+export default function ResearchPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Research &amp; Publications</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Research</h1>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          Research and publications from my work across engineering and computing. So far that
-          includes how Git and version control are learned and taught, predictive maintenance on
-          low-cost hardware, GPS-free drone navigation and accessible documents through{" "}
-          <Link href="/projects/zacess" className="text-primary hover:underline">Zacess</Link> and{" "}
-          <Link href="/projects/vitafolio" className="text-primary hover:underline">Vitafolio</Link>.
-          Published work is openly licensed and archived with a DOI, so you can read it, cite it
-          in the style you need and build on it.
+          What I am looking into, how I am going about it and what each line of work has shown so far. Every line
+          below starts from a question I could not find a good answer to. Each one says plainly how far it has got:
+          in simulation, on hardware or in use.
         </p>
-
-        <div className="flex items-center gap-4 flex-wrap">
-          <a
-            href="mailto:academic@isaacadjei.me"
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Mail className="h-5 w-5 shrink-0" />
-            <span className="text-primary hover:underline">academic@isaacadjei.me</span>
-          </a>
-          {([
-            { Icon: SiOrcid,        label: "ORCID",         href: "https://orcid.org/0009-0001-8298-5098" },
-            { Icon: SiGooglescholar,label: "Google Scholar", href: "https://scholar.google.com/citations?user=YZq0XuMAAAAJ" },
-            { Icon: SiResearchgate, label: "ResearchGate",  href: "https://www.researchgate.net/profile/Isaac-Adjei-15" },
-            { Icon: SiZotero,       label: "Zotero",        href: "https://www.zotero.org/zaccesss" },
-            { Icon: FaLinkedin,     label: "LinkedIn",      href: "https://www.linkedin.com/in/isaacadjei" },
-          ] as const).map(({ Icon, label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Icon className="h-5 w-5 shrink-0" />
-              <span className="text-primary hover:underline">{label}</span>
-            </Link>
-          ))}
-        </div>
+        <p className="text-muted-foreground leading-relaxed max-w-2xl">
+          Work that is finished and archived with a DOI is on the{" "}
+          <Link href="/publications" className="text-primary underline underline-offset-4 hover:text-primary/80">Publications page</Link>.
+        </p>
       </div>
-
-      <section aria-labelledby="publications" className="space-y-6">
-        <h2 id="publications" className={SECTION_HEADING}>
-          Publications
-        </h2>
-
-        {publications.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No publications yet.</p>
-        ) : (
-          <>
-            <PublicationsPager perPage={ITEMS_PER_PAGE}>
-              {publications.map((pub) => (
-                <div key={pub.id} className="rounded-xl border bg-card p-6 space-y-4">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className={LABEL_CLASS}>
-                      {typeLabel[pub.type] ?? pub.type}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {pub.venue} · {pub.year}
-                    </span>
-                  </div>
-
-                  <Link href={`/respub/${pub.id}`} className="block group">
-                    <h3 className="text-base font-semibold leading-snug group-hover:text-primary transition-colors">{pub.title}</h3>
-                  </Link>
-                  <p className="text-sm text-muted-foreground">{pub.authors.join(", ")}</p>
-
-                  {pub.abstract && (
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{pub.abstract}</p>
-                  )}
-
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                    <Link
-                      href={`/respub/${pub.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-                    >
-                      <FileText className="h-3.5 w-3.5" aria-hidden="true" />
-                      Read details and citation
-                    </Link>
-                    <CitationPicker styles={citationStyles(pub)} title={pub.title} showText={false} />
-                  </div>
-                </div>
-              ))}
-            </PublicationsPager>
-          </>
-        )}
-      </section>
 
       <section aria-labelledby="current-research" className="space-y-6">
         <h2 id="current-research" className={SECTION_HEADING}>
@@ -153,7 +60,7 @@ export default function ResearchPublicationsPage() {
         </h2>
         <div className="space-y-6">
           {researchLines.map((line) => (
-            <article key={line.id} className="rounded-xl border bg-card p-6 space-y-4">
+            <article key={line.id} id={line.id} className="scroll-mt-24 rounded-xl border bg-card p-6 space-y-4">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <h3 className="text-base font-semibold leading-snug">
                   <Link href={`/projects/${line.projectSlug}`} className="hover:text-primary transition-colors">
@@ -260,6 +167,13 @@ export default function ResearchPublicationsPage() {
           ))}
         </ul>
       </section>
+
+      <p className="text-sm">
+        <Link href="/publications" className="inline-flex min-h-11 items-center gap-1.5 font-medium text-primary underline-offset-4 hover:underline">
+          See what has been published
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
+      </p>
     </div>
   )
 }

@@ -44,6 +44,10 @@ const nextConfig = {
       { source: "/notes/world-cup-ai-predictor", destination: "/notes/multi-sport-ai-predictor", permanent: true },
       // the dotfiles project grew into the wider developer environment write-up
       { source: "/projects/dotfiles", destination: "/projects/dev-environment", permanent: true },
+      // research and publications were one page at /respub. Publications took a name of its own and research moved to
+      // /research, so every link already shared, cited or printed on a CV still lands on the right page
+      { source: "/respub", destination: "/publications", permanent: true },
+      { source: "/respub/:slug", destination: "/publications/:slug", permanent: true },
       // role CVs are no longer public; the public page keeps the general CV
       { source: "/cv/cv-picker", destination: "/cv", permanent: false },
       { source: "/cv/cover-letters", destination: "/cv", permanent: false },

@@ -21,6 +21,8 @@ const typeDescription: Record<Publication["type"], string> = {
   conference: "Conference paper",
   journal: "Journal article",
   preprint: "Preprint",
+  "hardware-design": "Hardware design",
+  software: "Computer software",
 }
 
 const doiUrl = (pub: Publication) => `https://doi.org/${pub.doi}`

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Download, FileText } from "lucide-react"
-import { SiZenodo, SiGooglescholar } from "react-icons/si"
+import { SiGithub, SiZenodo, SiGooglescholar } from "react-icons/si"
 import { publications } from "@/data/respub"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
@@ -19,6 +19,8 @@ const typeLabel: Record<string, string> = {
   conference: "Conference Paper",
   journal: "Journal Article",
   preprint: "Preprint",
+  "hardware-design": "Hardware Design",
+  software: "Software",
 }
 
 export async function generateStaticParams() {
@@ -37,13 +39,13 @@ export async function generateMetadata({
   const description = pub.abstract ?? `${pub.venue}, ${pub.year}`
 
   return sameShareImage({
-    title: `Research | ${pub.title}`,
+    title: `Publications | ${pub.title}`,
     description,
     alternates: {
-      canonical: `https://isaacadjei.me/respub/${slug}`,
+      canonical: `https://isaacadjei.me/publications/${slug}`,
     },
     openGraph: {
-      title: `Research | ${pub.title}`,
+      title: `Publications | ${pub.title}`,
       images: [`/api/og?title=${encodeURIComponent(pub.title)}&description=${encodeURIComponent(description)}`],
     },
     other: {
@@ -71,11 +73,11 @@ export default async function PublicationSlugPage({
   return (
     <div className="container max-w-3xl py-24 space-y-10">
       <Link
-        href="/respub"
+        href="/publications"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Research &amp; Publications
+        Back to Publications
       </Link>
 
       <div className="space-y-4">
@@ -90,7 +92,7 @@ export default async function PublicationSlugPage({
 
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-3xl font-bold tracking-tight leading-tight">{pub.title}</h1>
-          <ShareButton title={`Research | ${pub.title}`} />
+          <ShareButton title={`Publications | ${pub.title}`} />
         </div>
 
         <p className="text-base text-muted-foreground">{pub.authors.join(", ")}</p>
@@ -136,6 +138,18 @@ export default async function PublicationSlugPage({
           <FileText className="h-4 w-4" />
           {pub.doi}
         </Link>
+        {pub.repoUrl && (
+          <Link
+            href={pub.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <SiGithub className="h-4 w-4" aria-hidden="true" />
+            View the repository
+            <span className="sr-only"> (opens in a new tab)</span>
+          </Link>
+        )}
         {pub.zenodoUrl && (
           <Link
             href={pub.zenodoUrl}
