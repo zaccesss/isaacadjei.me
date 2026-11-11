@@ -436,6 +436,19 @@ html.apple {
   html { font-size: 18px; }
 }
 
+/*
+  Public pages raise the two smallest text sizes by a pixel each: 12px to 13px and 14px to 15px. Most text on the
+  card and list pages sat at those two sizes, which is small to read. Only these two steps change, so headings,
+  body text, spacing and column widths stay as they were. It is set on the root, not the shell, so menus and
+  dialogs that open outside the shell follow too. The dashboard is not a public page and keeps its compact sizes.
+*/
+html:has([data-public-shell]) {
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: calc(1.125 / 0.8125);
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: calc(1.375 / 0.9375);
+}
+
 /* the line that says what the Assistant is doing right now: plain text under reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   .assistant-live {
@@ -450,4 +463,32 @@ html.apple {
     from { background-position: 110% 0; }
     to { background-position: -110% 0; }
   }
+}
+
+/*
+  The page-load drawing (components/layout/PageIntro.tsx) shows only in the side margins. The middle band is the
+  widest column any page puts text in, plus a little air, so text never scrolls over a stroke. On a window
+  narrower than the band there are no margins and the drawing is not seen at all.
+*/
+.page-intro-mask {
+  --intro-clear: 33rem;
+  --intro-soft: 3rem;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0,
+    black calc(50% - var(--intro-clear) - var(--intro-soft)),
+    transparent calc(50% - var(--intro-clear)),
+    transparent calc(50% + var(--intro-clear)),
+    black calc(50% + var(--intro-clear) + var(--intro-soft)),
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black 0,
+    black calc(50% - var(--intro-clear) - var(--intro-soft)),
+    transparent calc(50% - var(--intro-clear)),
+    transparent calc(50% + var(--intro-clear)),
+    black calc(50% + var(--intro-clear) + var(--intro-soft)),
+    black 100%
+  );
 }

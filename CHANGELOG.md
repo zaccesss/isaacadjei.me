@@ -2,6 +2,27 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.120.0] - 2026-11-11
+
+_Alumni profile links_
+
+### Added
+
+- The About page links my alumni profile at Stanmore College and my thank-you post, under the college's entry
+
+### Changed
+
+- The About page has a fuller My Story section, a Hobbies section and less repetition
+- The Experience page shows where you are with a line that fills each numbered mark as you scroll
+- The drawing that plays when you first open the site is easier to see and stays in the side margins, clear of the text
+- Small text is a little larger across the site and larger again on the About and Experience pages
+- Thank You, Stanmore has a short update
+
+### Fixed
+
+- The Zacess logo on the Links page follows light and dark themes
+- The site icon now shows in more browsers
+
 ## [2.119.0] - 2026-11-11
 
 _A calmer page-load drawing_

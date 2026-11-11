@@ -51,6 +51,7 @@ import Link from "@/components/shared/IntentLink"
 import { profileLinks, type LinkItem } from "@/data/links"
 import { cn } from "@/lib/utils"
 import ShareButton from "@/components/shared/ShareButton"
+import ZacessMark from "@/components/shared/marks/ZacessMark"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   globe: Globe,
@@ -265,7 +266,9 @@ export default function LinksPage() {
                         link.iconImage ? (link.iconTransparent ? "bg-muted p-1" : "bg-white") : (brand?.bg ?? "bg-primary/10")
                       )}
                     >
-                      {link.iconImage ? (
+                      {link.iconMark === "zacess" ? (
+                        <ZacessMark className="h-full w-full" />
+                      ) : link.iconImage ? (
                         <Image
                           src={link.iconImage}
                           alt={link.title}

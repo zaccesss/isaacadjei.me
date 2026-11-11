@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 
 const DRAW_MS = 3500
-const HOLD_MS = 1500
+const HOLD_MS = 5000
 const FADE_MS = 2000
-const STRENGTH = 0.1
+const STRENGTH = 0.3
 const HOME_REPEAT_MS = 900_000
-const HEADER_PX = 65
+const HEADER_FALLBACK_PX = 65
 
 type Painter = (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void
 function seeded(seed: number) {
@@ -185,7 +185,8 @@ export default function PageIntro() {
       busy = true
       current = anyStyle(current)
       const w = window.innerWidth
-      const h = Math.max(window.innerHeight - HEADER_PX, 0)
+      const header = document.querySelector("header")?.getBoundingClientRect().height ?? HEADER_FALLBACK_PX
+      const h = Math.max(window.innerHeight - header, 0)
       const ratio = Math.min(window.devicePixelRatio || 1, 2)
       el.width = w * ratio
       el.height = h * ratio
@@ -229,5 +230,5 @@ export default function PageIntro() {
     }
   }, [])
 
-  return <canvas ref={canvas} aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-[65px] -z-10 h-[calc(100dvh-65px)] w-screen opacity-0 [mask-image:radial-gradient(circle,transparent_15%,black_75%)] print:hidden" />
+  return <canvas ref={canvas} aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-[calc(4rem+1px)] -z-10 h-[calc(100dvh-4rem-1px)] w-screen opacity-0 page-intro-mask print:hidden" />
 }

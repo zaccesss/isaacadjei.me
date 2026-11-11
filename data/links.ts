@@ -7,6 +7,7 @@ export interface LinkItem {
   icon: string
   iconImage?: string
   iconTransparent?: boolean
+  iconMark?: "zacess"
   category:
     | "professional"
     | "ventures"
@@ -84,6 +85,7 @@ export const profileLinks: LinkItem[] = [
     url: "https://zacess.com",
     icon: "globe",
     iconImage: "/images/ventures/zacess.png",
+    iconMark: "zacess",
     iconTransparent: true,
     category: "ventures",
   },
@@ -93,6 +95,7 @@ export const profileLinks: LinkItem[] = [
     url: "https://app.zacess.com",
     icon: "globe",
     iconImage: "/images/ventures/zacess.png",
+    iconMark: "zacess",
     iconTransparent: true,
     category: "ventures",
   },

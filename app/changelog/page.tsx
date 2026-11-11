@@ -112,7 +112,8 @@ export default function ChangelogPage() {
                   <li key={release.version} className="relative">
                     <span
                       aria-hidden="true"
-                      className={`absolute -left-[31px] sm:-left-[39px] top-1.5 h-3 w-3 rounded-full border-2 ${quiet ? "border-muted-foreground bg-background" : "border-primary bg-primary"}`}
+                      data-timeline-mark
+                      className={`absolute -left-[31px] sm:-left-[39px] top-1.5 h-3 w-3 rounded-full border-2 transition-colors duration-300 data-[reached=true]:border-primary ${quiet ? "border-muted-foreground bg-background" : "border-muted-foreground bg-muted-foreground data-[reached=true]:bg-primary motion-reduce:border-primary motion-reduce:bg-primary"}`}
                     />
 
                     {quiet ? (

@@ -4,7 +4,7 @@ const _thank_you_stanmore: BlogPost = {
     slug: "thank-you-stanmore",
     title: "Thank You, Stanmore",
     date: "2026-10-17",
-    updated: "2026-10-27",
+    updated: "2026-11-11",
     type: "journal",
     cover_image: "/images/blog/covers/thank-you-stanmore-card.webp",
     cover_alt: "Close-up of a handwritten card from my business teacher reading: never let anyone stop your dreams from coming true",
@@ -164,6 +164,10 @@ const _thank_you_stanmore: BlogPost = {
       {
         type: "p",
         text: "If any of you read this: thank you. I am still building on what you started.",
+      },
+      {
+        type: "p",
+        text: "A small update from November 2026: Stanmore College has added my story to its [alumni page](https://stanmore.ac.uk/alumni/#:~:text=Zac%2C%20Engineering). Thank you to Miss Anjli and the marketing team for including me. It means a lot to be on the wall of the place that gave me my start.",
       },
       {
         type: "p",

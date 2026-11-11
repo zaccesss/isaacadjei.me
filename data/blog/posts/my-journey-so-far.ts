@@ -4,7 +4,7 @@ const _my_journey_so_far: BlogPost = {
     slug: "my-journey-so-far",
     title: "My Journey So Far",
     date: "2024-06-01",
-    updated: "2026-10-13",
+    updated: "2026-11-11",
     type: "journal",
     cover_image: "/images/blog/covers/my-journey-so-far.webp",
     cover_credit: "Photo: Kradolferp, CC BY-SA 4.0, cropped, via Wikimedia Commons",
@@ -81,7 +81,7 @@ const _my_journey_so_far: BlogPost = {
       },
       {
         type: "p",
-        text: "I lived in Thomas Jonah House. I served as Dispensary Prefect, House Secretary of Thomas Jonah House and Vice President of APOSA, my church group. I was also active in the Robotics Club, Scripture Union, PENSA and the Debate Society. Those roles taught me leadership in a way that classrooms cannot: real responsibility, real accountability and real consequences when you let people down.",
+        text: "I lived in Thomas Jonah House. I was an aspiring Dispensary Prefect, since I left in my final year before I could take the post up. I served as House Secretary of Thomas Jonah House and Vice President of APOSA, my church group. I was also part of the Robotics Club, Scripture Union, PENSA and the Debate Society. Those roles taught me leadership in a way that classrooms cannot: real responsibility, real accountability and real consequences when you let people down.",
       },
       {
         type: "p",

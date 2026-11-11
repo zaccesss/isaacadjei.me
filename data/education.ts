@@ -9,6 +9,7 @@ export interface Education {
   grade?: string
   modules?: string[]
   url?: string
+  links?: { label: string; href: string }[]
 }
 
 export const education: Education[] = [
@@ -27,10 +28,13 @@ export const education: Education[] = [
       "Embedded Systems and C",
       "Digital Design",
       "Data Structures, Algorithms and Object-Oriented Programming",
+      "Electronics 1 and 2",
       "Analogue and Power Electronics",
       "Communications Systems",
-      "Control Systems and Robotics",
-      "AI and Robotics",
+      "Control Systems",
+      "AI, Data Science and Robotics",
+      "Internet Applications and Databases",
+      "Engineering Mathematics",
       "Electronic Engineering Team Project",
     ],
   },
@@ -44,7 +48,11 @@ export const education: Education[] = [
     endDate: "Jul 2024",
     grade: "D*DD (Distinction*, Distinction, Distinction)",
     description:
-      "Completed BTEC Engineering with strong practical training across design, microcontrollers, electronics and engineering maths. Named Best and Most Hardworking Student.",
+      "Completed BTEC Engineering with strong practical training across design, microcontrollers, electronics and engineering maths.",
+    links: [
+      { label: "My alumni profile at Stanmore College", href: "https://stanmore.ac.uk/alumni/#:~:text=Zac%2C%20Engineering" },
+      { label: "Thank You, Stanmore", href: "/blog/thank-you-stanmore" },
+    ],
     modules: [
       "Microcontroller Systems",
       "Electronic Devices and Circuits",
@@ -62,7 +70,7 @@ export const education: Education[] = [
     startDate: "Sep 2019",
     endDate: "Mar 2022",
     description:
-      "Core subjects: English Language, Mathematics, Social Studies and Integrated Science. Active in Robotics Club, APOSA (Secretary), Scripture Union and Debate Society.",
+      "Core subjects: English Language, Mathematics, Social Studies and Integrated Science. I served as Vice President of APOSA after a few months as its Secretary and took part in the Scripture Union and the Debate Society.",
     modules: [
       "Mathematics",
       "Economics",
