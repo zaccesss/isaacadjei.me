@@ -10,6 +10,16 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.119.0",
+    date: "2026-11-11",
+    label: "A calmer page-load drawing",
+    changed: [
+      "The faint drawing that plays when you first open the site now stays clear of the header and the footer",
+      "The NeoPixel LED Cube publication links its newest record",
+      "Small behind-the-scenes improvements",
+    ],
+  },
+  {
     version: "v2.118.0",
     date: "2026-11-11",
     label: "Research, publications and a clearer changelog",

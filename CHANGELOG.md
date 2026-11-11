@@ -2,6 +2,16 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.119.0] - 2026-11-11
+
+_A calmer page-load drawing_
+
+### Changed
+
+- The faint drawing that plays when you first open the site now stays clear of the header and the footer
+- The NeoPixel LED Cube publication links its newest record
+- Small behind-the-scenes improvements
+
 ## [2.118.0] - 2026-11-11
 
 _Research, publications and a clearer changelog_

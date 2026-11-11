@@ -9,7 +9,7 @@ const _neopixel_led_cube_2026: Publication = {
     month: 11,
     day: 3,
     doi: "10.5281/zenodo.21903764",
-    zenodoUrl: "https://zenodo.org/records/23935618",
+    zenodoUrl: "https://zenodo.org/records/24131703",
     repoUrl: "https://github.com/zaccesss/neopixel-led-cube",
     type: "software",
     abstract:

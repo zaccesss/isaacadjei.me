@@ -70,7 +70,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t">
+    <footer className="border-t bg-background">
       <div className="container pt-12 pb-6">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr_1.2fr] lg:gap-x-20 xl:gap-x-28">
           <div className="flex flex-col items-start gap-8">
