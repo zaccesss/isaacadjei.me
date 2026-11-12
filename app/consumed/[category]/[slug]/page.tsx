@@ -10,7 +10,6 @@ import {
   articles,
   resources,
   others,
-  sortByRecency,
   type BookEntry,
   type VideoEntry,
   type PodcastEntry,
@@ -22,6 +21,7 @@ import {
   siteHost,
   type LedToLink,
 } from "@/data/consumed"
+import { consumedEntryForPage, consumedNeighbours, isConsumedCategory, type ConsumedCategory } from "@/data/consumed/summary"
 import { consumedSlug, normTag } from "@/lib/content/tags"
 import { ConsumedPrevNext } from "@/components/consumed/ConsumedPrevNext"
 import { TAG_LINK_CLASS } from "@/components/shared/lists/Tag"
@@ -40,70 +40,7 @@ const CATEGORY_META = {
   articles:  { label: "Articles",  back: "/consumed/articles"  },
   resources: { label: "Resources", back: "/consumed/resources" },
   others:    { label: "Others",    back: "/consumed/others"    },
-} as const
-
-type ValidCategory = keyof typeof CATEGORY_META
-
-function isValidCategory(cat: string): cat is ValidCategory {
-  return cat in CATEGORY_META
-}
-
-type Found =
-  | { type: "book";     item: BookEntry }
-  | { type: "video";    item: VideoEntry }
-  | { type: "podcast";  item: PodcastEntry }
-  | { type: "link";     item: LinkEntry }
-  | { type: "resource"; item: ResourceEntry }
-
-function findItem(category: string, slug: string): Found | null {
-  if (category === "books") {
-    const item = books.find((b) => consumedSlug(b.title) === slug)
-    return item ? { type: "book", item } : null
-  }
-  if (category === "videos") {
-    const item = videos.find((v) => consumedSlug(v.title) === slug)
-    return item ? { type: "video", item } : null
-  }
-  if (category === "podcasts") {
-    const item = podcasts.find((p) => consumedSlug(p.title) === slug)
-    return item ? { type: "podcast", item } : null
-  }
-  if (category === "articles") {
-    const item = articles.find((a) => consumedSlug(a.title) === slug)
-    return item ? { type: "link", item } : null
-  }
-  if (category === "resources") {
-    const item = resources.find((r) => consumedSlug(r.title) === slug)
-    return item ? { type: "resource", item } : null
-  }
-  if (category === "others") {
-    const item = others.find((o) => consumedSlug(o.title) === slug)
-    return item ? { type: "link", item } : null
-  }
-  return null
-}
-
-function sortedCategoryItems(category: ValidCategory): { title: string }[] {
-  if (category === "books") return sortByRecency(books)
-  if (category === "videos") return sortByRecency(videos)
-  if (category === "podcasts") return sortByRecency(podcasts)
-  if (category === "articles") return sortByRecency(articles)
-  if (category === "resources") return sortByRecency(resources)
-  return sortByRecency(others)
-}
-
-function findPrevNext(category: ValidCategory, currentTitle: string) {
-  const sorted = sortedCategoryItems(category)
-  const idx = sorted.findIndex((i) => i.title === currentTitle)
-  if (idx === -1) return { prev: null, next: null }
-  const base = CATEGORY_META[category].back
-  const prevItem = idx > 0 ? sorted[idx - 1] : null
-  const nextItem = idx < sorted.length - 1 ? sorted[idx + 1] : null
-  return {
-    prev: prevItem ? { title: prevItem.title, href: `${base}/${consumedSlug(prevItem.title)}` } : null,
-    next: nextItem ? { title: nextItem.title, href: `${base}/${consumedSlug(nextItem.title)}` } : null,
-  }
-}
+} as const satisfies Record<ConsumedCategory, { label: string; back: string }>
 
 export const revalidate = 604800
 
@@ -124,7 +61,7 @@ export async function generateMetadata({
   params: Promise<{ category: string; slug: string }>
 }): Promise<Metadata> {
   const { category, slug } = await params
-  const found = findItem(category, slug)
+  const found = consumedEntryForPage(category, slug)
   if (!found) return { title: "Not found" }
   const description =
     found.type === "book"     ? found.item.note :
@@ -146,7 +83,7 @@ export async function generateMetadata({
   })
 }
 
-const PROSE_LINK = "text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+const PROSE_LINK = "body-link"
 
 export default async function ConsumedItemPage({
   params,
@@ -155,13 +92,13 @@ export default async function ConsumedItemPage({
 }) {
   const { category, slug } = await params
 
-  if (!isValidCategory(category)) notFound()
+  if (!isConsumedCategory(category)) notFound()
 
-  const found = findItem(category, slug)
-  if (!found || ("month" in found.item && !isConsumedAvailable(found.item))) notFound()
+  const found = consumedEntryForPage(category, slug)
+  if (!found) notFound()
 
   const meta = CATEGORY_META[category]
-  const { prev, next } = findPrevNext(category, found.item.title)
+  const { prev, next } = consumedNeighbours(category, found.item.title)
 
   return (
     <div className="container max-w-3xl py-24 space-y-10">

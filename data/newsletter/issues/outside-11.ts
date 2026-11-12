@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 11,
-  slug: "outside-11-python-3-15",
+  id: "outside-11-python-3-15",
+  slug: "python-3-15-brings-lazy-imports-and-utf-8-by-default",
   title: "Python 3.15 brings lazy imports and UTF-8 by default",
   subtitle: "The final release is scheduled for today after a third release candidate last week.",
   tags: ["Python", "Developer Tools", "Open Source"],

@@ -3,7 +3,7 @@
 import Giscus from "@giscus/react"
 import { useTheme } from "next-themes"
 
-export default function GiscusComments() {
+export default function GiscusComments({ term }: { term?: string } = {}) {
   const { resolvedTheme } = useTheme()
 
   if (process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "false") return null
@@ -18,7 +18,8 @@ export default function GiscusComments() {
       repoId={repoId}
       category="Announcements"
       categoryId={categoryId}
-      mapping="pathname"
+      mapping={term ? "specific" : "pathname"}
+      term={term}
       strict="1"
       reactionsEnabled="0"
       emitMetadata="0"

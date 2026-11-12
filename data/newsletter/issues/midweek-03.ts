@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 3,
-  slug: "midweek-03-sleep-memory-exams",
+  id: "midweek-03-sleep-memory-exams",
+  slug: "sleep-memory-and-exam-season",
   title: "Sleep, memory and exam season",
   subtitle: "Why the night before an exam matters as much as the hours of revision before it.",
   tags: ["Psychology", "Sleep", "Learning"],

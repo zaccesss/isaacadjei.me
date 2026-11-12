@@ -6,6 +6,7 @@ const _web_midi_light_guided_practice: BlogPost = {
   date: "2026-11-01",
   type: "blog",
   cover_image: "/images/blog/covers/web-midi-light-guided-practice.webp",
+  cover_alt: "MELOPHOS Studio with an on-screen piano keyboard, one key lit amber, playing Ode to Joy with the next note shown as E4",
   description:
     "How the MELOPHOS Studio reads a real keyboard through Web MIDI, lights the next note in amber and scores every note for pitch and timing, all in a browser tab.",
   tags: ["TypeScript", "JavaScript", "Web", "Hardware", "Accessibility", "Open Source"],

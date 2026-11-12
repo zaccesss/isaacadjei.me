@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { asksNotToBeCounted } from "@/lib/content/no-count"
 
 const THRESHOLDS = [25, 50, 75, 100] as const
 type Depth = (typeof THRESHOLDS)[number]
@@ -16,6 +17,7 @@ export default function ScrollDepthTracker({
 
   useEffect(() => {
     if (!slug) return
+    if (asksNotToBeCounted(document.cookie)) return
 
     const sentinels: HTMLElement[] = []
     const observers: IntersectionObserver[] = []
@@ -41,6 +43,10 @@ export default function ScrollDepthTracker({
           for (const entry of entries) {
             if (entry.isIntersecting && !reported.current.has(depth)) {
               reported.current.add(depth)
+              if (asksNotToBeCounted(document.cookie)) {
+                observer.disconnect()
+                return
+              }
               const payload = JSON.stringify({ slug, depth, type: postType })
               if (navigator.sendBeacon) {
                 navigator.sendBeacon(

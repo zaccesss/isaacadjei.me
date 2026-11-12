@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 12,
-  slug: "midweek-12-chelsea-clean-sheet",
+  id: "midweek-12-chelsea-clean-sheet",
+  slug: "chelseas-long-wait-for-a-clean-sheet-is-over",
   title: "Chelsea's long wait for a clean sheet is over",
   subtitle: "Chelsea went 23 top-flight matches without a clean sheet. The run finally ended at Everton on 17 October.",
   tags: ["Football", "Chelsea", "Sport"],

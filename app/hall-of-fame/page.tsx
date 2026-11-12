@@ -159,7 +159,7 @@ export default function HallOfFamePage() {
             No disclosures yet. If you find a vulnerability, please see the{" "}
             <Link
               href="/security-policy"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Security Policy
             </Link>{" "}

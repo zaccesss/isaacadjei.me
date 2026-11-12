@@ -18,7 +18,7 @@ const _bypass_capacitor_placement: TILEntry = {
       },
     ],
     tags: ["hardware", "PCB", "embedded", "power"],
-    relatedPost: "audio-amplifier-design",
+    relatedPost: "two-stage-audio-amplifier",
   }
 
 export default _bypass_capacitor_placement

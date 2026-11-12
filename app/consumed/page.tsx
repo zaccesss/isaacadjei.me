@@ -1,8 +1,7 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
 import ConsumedContent from "./ConsumedContent"
-import { videos, podcasts, books, resources, articles, others } from "@/data/consumed"
-import { consumedItemsForPage, consumedPicks, consumedCollectionCounts, consumedYearSummary } from "@/data/consumed/summary"
+import { consumedHubProps } from "@/data/consumed/summary"
 
 export const revalidate = 604800
 
@@ -20,15 +19,7 @@ export const metadata: Metadata = {
 export default function ConsumedPage() {
   return (
     <Suspense fallback={<div className="h-64 bg-muted animate-pulse rounded-lg mx-4 mt-12" />}>
-      <ConsumedContent
-        videos={consumedItemsForPage(videos)}
-        podcasts={consumedItemsForPage(podcasts)}
-        books={consumedItemsForPage(books)}
-        resources={consumedItemsForPage(resources)}
-        articles={consumedItemsForPage(articles)}
-        others={consumedItemsForPage(others)}
-        overview={{ year: consumedYearSummary(), picks: consumedPicks(), collections: consumedCollectionCounts() }}
-      />
+      <ConsumedContent {...consumedHubProps()} />
     </Suspense>
   )
 }

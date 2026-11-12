@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 9,
-  slug: "outside-09-roman-space-telescope-launch",
+  id: "outside-09-roman-space-telescope-launch",
+  slug: "the-roman-space-telescope-is-on-its-way",
   title: "The Roman Space Telescope is on its way",
   subtitle: "NASA's next flagship observatory launched to survey the sky a thousand times faster than Hubble.",
   tags: ["Space", "Astronomy", "Sensors"],

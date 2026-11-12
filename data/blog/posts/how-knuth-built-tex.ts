@@ -7,6 +7,7 @@ const _how_knuth_built_tex: BlogPost = {
   type: "article",
   cover_image: "/images/blog/covers/how-knuth-built-tex.webp",
   cover_credit: "Photo: Bret Lama, Unsplash Licence, via Unsplash",
+  cover_alt: "Close-up of metal letterpress type blocks, set in mirror image, spelling the words LETTER PRESS",
   description:
     "The story of TeX: a computer scientist unhappy with the proofs of his own book, a sabbatical that turned into a decade, a line-breaking algorithm still admired today and a program whose version number is slowly becoming pi.",
   tags: ["Software Engineering", "Algorithms", "Writing", "Open Source", "Learning"],

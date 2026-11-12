@@ -4,13 +4,15 @@ const _writing_for_engineers: BlogPost = {
     slug: "writing-for-engineers",
     title: "Writing Clearly as an Engineer: Notes on Technical Communication",
     date: "2026-08-03",
-    type: "notes",
+    type: "article",
     cover_image: "/images/blog/covers/writing-for-engineers.webp",
     cover_credit: "Photo: Aaron Burden, Unsplash Licence, via Unsplash",
+    cover_alt: "Close-up of a fountain pen nib touching lined paper, beside a few lines of handwriting in black ink",
     description:
       "Notes on writing clearly: how to structure explanations, when to use diagrams, why passive voice creeps into technical writing and how to remove it. Based on mistakes I made writing reports, documentation and blog posts.",
     tags: ["Writing", "Communication", "Documentation", "Career"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",

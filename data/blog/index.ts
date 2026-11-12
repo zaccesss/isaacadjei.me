@@ -2,7 +2,7 @@ import { computeReadingTime } from "@/lib/utils"
 import { isLive } from "@/lib/time/schedule"
 import type { BlogCard } from "./meta"
 
-export type PostType = "blog" | "journal" | "research" | "notes" | "report" | "article" | "resources"
+export type PostType = "blog" | "journal" | "explainer" | "report" | "article" | "resources"
 
 export type ContentBlock =
   | { type: "p"; text: string }
@@ -45,6 +45,7 @@ export interface BlogPost {
   series?: string
   seriesPart?: number
   featured?: boolean
+  archived?: boolean
 }
 
 export { POST_TYPES, SERIES_LABELS, type BlogCard } from "./meta"
@@ -99,6 +100,7 @@ import _49 from "./posts/how-gps-works-relativity"
 import _50 from "./posts/web-midi-light-guided-practice"
 import _53 from "./posts/website-in-seven-languages"
 import _54 from "./posts/how-knuth-built-tex"
+import _55 from "./posts/therac-25-software-safety"
 import _69 from "./posts/isolation-forest-without-maths"
 import _71 from "./posts/monorepo-read-only-split-repos"
 import _77 from "./posts/sky-animol-screening-invite"
@@ -156,6 +158,7 @@ export const posts: BlogPost[] = [
   _50,
   _53,
   _54,
+  _55,
   _69,
   _71,
   _77,
@@ -177,8 +180,16 @@ export function toCard(p: BlogPost & { readingTime: number }): BlogCard {
   return card
 }
 
+export function getMainListPosts(): (BlogPost & { readingTime: number })[] {
+  return getPublishedPosts().filter((p) => !p.archived)
+}
+
+export function getArchivedPosts(): (BlogPost & { readingTime: number })[] {
+  return getPublishedPosts().filter((p) => p.archived === true)
+}
+
 export function getFeaturedPosts(): BlogPost[] {
-  return getPublishedPosts().filter((p) => p.featured)
+  return getMainListPosts().filter((p) => p.featured)
 }
 
 export function getPostBySlug(slug: string): (BlogPost & { readingTime: number }) | undefined {

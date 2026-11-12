@@ -75,11 +75,12 @@ export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStat
         {TABS.map((t) => (
           <button
             key={t.id}
+            id={t.id}
             type="button"
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => choose(t.id)}
-            className={`text-sm px-3.5 py-1.5 min-h-11 rounded-full border transition-colors ${tab === t.id ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"}`}
+            className={`scroll-mt-24 text-sm px-3.5 py-1.5 min-h-11 rounded-full border transition-colors ${tab === t.id ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"}`}
           >
             {t.label}
           </button>

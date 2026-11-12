@@ -28,8 +28,8 @@ const HUE: Record<string, string> = {
 }
 
 const POST_TYPE_HUE: Record<string, string> = {
-  blog: "blue", article: "violet", research: "emerald", journal: "amber",
-  report: "rose", resources: "cyan", notes: "slate", newsletter: "indigo",
+  blog: "blue", article: "violet", explainer: "emerald", journal: "amber",
+  report: "rose", resources: "cyan", newsletter: "indigo",
 }
 
 const PROJECT_CATEGORY_HUE: Record<string, string> = {

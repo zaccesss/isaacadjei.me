@@ -1,3 +1,5 @@
+import { postTypeLabel } from "@/data/blog/meta"
+
 export type Named = { name: string; value: number }
 export type RawPost = { date: string; tags: string[]; type: string; readingTime: number }
 export type RawTIL = { date: string; category: string }
@@ -47,7 +49,7 @@ export function computeContentStats(
       }
       return [...months.values()].sort((a, b) => a.name.localeCompare(b.name))
     })(),
-    postTypes: count(posts.map((p) => p.type)),
+    postTypes: count(posts.map((p) => postTypeLabel(p.type))),
     tilCategories: count(til.map((t) => t.category)),
     tags,
     reading,

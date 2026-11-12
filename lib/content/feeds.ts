@@ -1,11 +1,12 @@
 import type { BlogPost } from "@/data/blog"
-import { POST_TYPES } from "@/data/blog/meta"
+import { postTypeLabel } from "@/data/blog/meta"
 import type { NotePost } from "@/data/notes"
 import type { TILEntry } from "@/data/til"
 import type { NewsletterIssue } from "@/lib/newsletter/newsletter"
 import { escapeXml, type RssChannel, type RssItem } from "@/lib/content/rss"
 import { kindHue, postTypeHue, tilCategoryHue } from "@/lib/content/feed-view"
 import { mediaEmailSrc } from "@/lib/content/media"
+import { replaceLinks, stripLinks } from "@/lib/content/markdown-links"
 
 export interface FeedInfo {
   id: "blog" | "til" | "notes" | "newsletter" | "all"
@@ -35,8 +36,8 @@ export const blogChannel: RssChannel = {
   title: "Isaac Adjei",
   path: "/blog",
   feedPath: "/blog/feed.xml",
-  description: "Engineering and tech write-ups, project breakdowns, research posts, journal entries, articles and curated resources by Isaac Adjei.",
-  subtitle: "Engineering and tech write-ups, project breakdowns, journal entries and research notes.",
+  description: "Engineering and tech write-ups, project breakdowns, explainers, journal entries, articles and curated resources by Isaac Adjei.",
+  subtitle: "Engineering and tech write-ups, project breakdowns, explainers and journal entries.",
   sectionLabel: "Browse the blog",
   noun: "posts",
   perPage: 7,
@@ -79,12 +80,10 @@ export const allChannel: RssChannel = {
   noun: "posts, TILs, notes and issues",
 }
 
-export function postTypeName(type: string) {
-  return POST_TYPES.find((t) => t.value === type)?.label ?? type
-}
+export const postTypeName = postTypeLabel
 
 function stripMarkdown(text: string) {
-  return text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+  return stripLinks(text)
 }
 
 export function blogItems(posts: BlogPost[], standalone = false): RssItem[] {
@@ -98,12 +97,13 @@ export function blogItems(posts: BlogPost[], standalone = false): RssItem[] {
     sublabel: postTypeName(p.type),
     label: standalone ? { text: postTypeName(p.type), hue: postTypeHue(p.type) } : undefined,
     image: p.cover_image ? (mediaEmailSrc(p.cover_image) ?? p.cover_image) : undefined,
-    discussion: true,
+    imageAlt: p.cover_image ? p.cover_alt : undefined,
+    discussion: "comments",
   }))
 }
 
 function tilContentHtml(body: string) {
-  return `<p>${escapeXml(body).replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')}</p>`
+  return `<p>${replaceLinks(escapeXml(body), (words, href) => `<a href="${href}">${words}</a>`, true)}</p>`
 }
 
 export function tilItems(entries: TILEntry[], standalone = false): RssItem[] {
@@ -118,6 +118,7 @@ export function tilItems(entries: TILEntry[], standalone = false): RssItem[] {
     label: standalone ? { text: e.category, hue: tilCategoryHue(e.category) } : undefined,
     contentHtml: tilContentHtml(e.body),
     source: e.source,
+    discussion: "reply",
   }))
 }
 
@@ -129,6 +130,7 @@ export function noteItems(posts: NotePost[]): RssItem[] {
     description: p.description,
     tags: p.tags,
     section: "Notes",
+    discussion: "comments",
   }))
 }
 
@@ -142,5 +144,6 @@ export function newsletterItems(issues: NewsletterIssue[]): RssItem[] {
     sublabel: i.label,
     label: { text: "Newsletter", hue: kindHue("Newsletter") },
     image: i.thumbnailUrl ?? undefined,
+    discussion: "comments",
   }))
 }

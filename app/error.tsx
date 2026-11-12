@@ -52,7 +52,7 @@ export default function GlobalError({
         If this keeps happening, email me at{" "}
         <a
           href="mailto:contact@isaacadjei.me"
-          className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+          className="body-link"
         >
           contact@isaacadjei.me
         </a>

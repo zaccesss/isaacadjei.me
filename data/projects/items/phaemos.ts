@@ -271,7 +271,7 @@ const _phaemos: Project = {
       },
       {
         title: "ESP32 Series datasheet (Espressif)",
-        url: "https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf",
+        url: "https://documentation.espressif.com/esp32_datasheet_en.pdf",
         note: "The primary node's microcontroller.",
       },
       {

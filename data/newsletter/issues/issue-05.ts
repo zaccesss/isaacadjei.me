@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 5,
-  slug: "issue-05-my-setup-and-dma",
+  id: "issue-05-my-setup-and-dma",
+  slug: "my-setup-and-moving-data-without-the-cpu",
   title: "My setup and moving data without the CPU",
   subtitle: "A full tour of the tools I use every day, DMA explained from the registers up and three lessons on I2C, pipelines and git worktrees.",
   tags: ["DMA", "STM32", "Embedded", "Tools", "Setup", "Dotfiles"],

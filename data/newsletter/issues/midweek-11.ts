@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 11,
-  slug: "midweek-11-galamsey-ghana-rivers",
+  id: "midweek-11-galamsey-ghana-rivers",
+  slug: "galamsey-and-the-rivers-of-ghana",
   title: "Galamsey and the rivers of Ghana",
   subtitle: "Illegal gold mining is turning Ghana's rivers brown. How big the damage is and what the government is doing about it.",
   tags: ["Ghana", "Environment", "Africa"],

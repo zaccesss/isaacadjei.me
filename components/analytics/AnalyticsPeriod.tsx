@@ -78,12 +78,13 @@ export function useAnalyticsPeriod(): AnalyticsPeriodContextValue {
 export function PeriodSelector({ className }: { className?: string }) {
   const { period, setPeriod } = useAnalyticsPeriod()
   return (
-    <div className={`inline-flex items-center gap-0.5 rounded-lg border border-border bg-muted/30 p-0.5 ${className ?? ""}`}>
+    <div role="group" aria-label="Period" className={`inline-flex items-center gap-0.5 rounded-lg border border-border bg-muted/30 p-0.5 ${className ?? ""}`}>
       {ANALYTICS_PERIODS.map((p) => (
         <button
           key={p}
           type="button"
           onClick={() => setPeriod(p)}
+          aria-pressed={p === period}
           className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
             p === period
               ? "bg-background text-foreground shadow-xs"

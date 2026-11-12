@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 2,
-  slug: "issue-02-fpgas-and-bionic-eyes",
+  id: "issue-02-fpgas-and-bionic-eyes",
+  slug: "fpgas-bionic-eyes-and-a-new-til-habit",
   title: "FPGAs, bionic eyes and a new TIL habit",
   subtitle: "A beginner's way into FPGAs, where bionic vision really stands, why I keep a TIL log and six small things I learned.",
   tags: ["FPGA", "VHDL", "Hardware", "Vision", "Research", "Health Tech"],

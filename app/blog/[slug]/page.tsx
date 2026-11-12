@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Clock, Calendar, ExternalLink } from "lucide-react"
-import { getPostBySlug, getPublishedPosts, getAdjacentPosts, getSeriesPosts, SERIES_LABELS, type PostType } from "@/data/blog"
+import { getPostBySlug, getPublishedPosts, getMainListPosts, getAdjacentPosts, getSeriesPosts, SERIES_LABELS, type PostType } from "@/data/blog"
 import { projects } from "@/data/projects"
 import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { highlightBlocks } from "@/lib/content/highlight"
@@ -10,22 +10,23 @@ import ReadingProgress from "@/components/shared/scroll/ReadingProgress"
 import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import { renderBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
-import TableOfContents, { type TocHeading } from "@/components/shared/markdown/TableOfContents"
+import TableOfContents from "@/components/shared/markdown/TableOfContents"
+import { collectTocHeadings, COMMENTS_SECTION, REACTIONS_SECTION } from "@/lib/content/toc"
 import BlogReactions from "@/components/shared/BlogReactions"
 import SeriesBanner from "@/components/shared/SeriesBanner"
 import ShareButton from "@/components/shared/ShareButton"
 import GiscusComments from "@/components/blog/GiscusComments"
-import AuthorCard from "@/components/blog/AuthorCard"
+import CommentOnLinks, { REPLY_ANYWHERE } from "@/components/blog/CommentOnLinks"
 import ThemedCover from "@/components/shared/media/ThemedCover"
 import { sameShareImage } from "@/lib/content/share-image"
+import { cn } from "@/lib/utils"
 
 export const revalidate = 604800
 
 const TYPE_LABELS: Record<PostType, string> = {
   blog: "Blog",
   journal: "Journal",
-  research: "Research",
-  notes: "Notes",
+  explainer: "Explainer",
   report: "Report",
   article: "Article",
   resources: "Resources",
@@ -81,9 +82,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug)
   if (!post) notFound()
   if (!post.published && process.env.NODE_ENV !== "development") notFound()
+  const commentsOn = process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "true"
   const linkedProject = post.projectSlug ? projects.find((p) => p.id === post.projectSlug) : null
 
-  const relatedPosts = getPublishedPosts()
+  const relatedPosts = getMainListPosts()
     .filter((p) => p.slug !== slug)
     .map((p) => ({
       ...p,
@@ -98,12 +100,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const seriesLabel = post.series ? (SERIES_LABELS[post.series] ?? post.series) : null
   const headingIds = buildHeadingIds(post.content)
   const highlighted = await highlightBlocks(post.content, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
-  const tocHeadings: TocHeading[] = post.content
-    .map((block, i) => {
-      if (block.type !== "h2" && block.type !== "h3") return null
-      return { id: headingIds.get(i)!, text: block.text, level: block.type === "h2" ? 2 : 3 } as TocHeading
-    })
-    .filter(Boolean) as TocHeading[]
+  const tocHeadings = collectTocHeadings(post.content, headingIds)
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -135,7 +132,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <ReadingProgress />
       <HashScroll />
       {post.published && <ScrollDepthTracker slug={slug} />}
-    <div className="container max-w-2xl py-24 xl:max-w-5xl">
+    <div className="container max-w-2xl py-24 lg:max-w-5xl">
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
@@ -167,7 +164,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             <Calendar className="h-3 w-3" />
             {formatDate(post.date)}
           </span>
-          {post.updated && <span>Updated {formatDate(post.updated)}</span>}
           <span className="flex items-center gap-1.5">
             <Clock className="h-3 w-3" />
             {post.readingTime} min read
@@ -183,6 +179,19 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
+        )}
+
+        {post.archived && (
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            This is an older post. I keep it in the{" "}
+            <Link
+              href="/blog/archive"
+              className="body-link"
+            >
+              archive
+            </Link>
+            .
+          </p>
         )}
 
         {post.cover_image && (
@@ -250,8 +259,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <hr className="border-border/40" />
       </div>
 
-      <div className="xl:grid xl:grid-cols-[1fr_220px] xl:gap-12 xl:items-start">
-        <div>
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:items-start">
+        <TableOfContents headings={tocHeadings} sections={post.published ? [REACTIONS_SECTION, COMMENTS_SECTION] : []} />
+        <div className="min-w-0 lg:col-start-1 lg:row-start-1">
           {seriesLabel && seriesPosts.length > 1 && (
             <SeriesBanner
               seriesLabel={seriesLabel}
@@ -270,8 +280,30 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
 
+          {post.published && (
+            <div className="mt-16 pt-8 border-t border-border/40 space-y-8">
+              <div id="reactions" className="space-y-4 scroll-mt-24">
+                <div>
+                  <h2 className="text-base font-semibold">Reactions</h2>
+                  <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
+                </div>
+                <BlogReactions slug={slug} />
+              </div>
+              <div id="comments" className="space-y-4 scroll-mt-24">
+                <div>
+                  <h2 className="text-base font-semibold">Comments</h2>
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    {commentsOn ? "Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can." : REPLY_ANYWHERE}
+                  </p>
+                </div>
+                {commentsOn && <GiscusComments />}
+                <CommentOnLinks path={`/blog/${slug}`} alongside={commentsOn} />
+              </div>
+            </div>
+          )}
+
           {relatedPosts.length > 0 && (
-            <div className="mt-16 pt-8 border-t border-border/40 space-y-4">
+            <div className={cn("pt-8 border-t border-border/40 space-y-4", post.published ? "mt-8" : "mt-16")}>
               <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest font-mono">
                 You might also like
               </h2>
@@ -340,31 +372,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               All writing
             </Link>
           </div>
-
-          {post.published && (
-            <div className="mt-8 pt-6 border-t border-border/40 space-y-8">
-              <AuthorCard />
-              <div id="reactions" className="space-y-4 scroll-mt-20">
-                <div>
-                  <h3 className="text-base font-semibold">Reactions</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
-                </div>
-                <BlogReactions slug={slug} />
-              </div>
-              {process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "true" && (
-                <div id="comments" className="space-y-4 scroll-mt-20">
-                  <div>
-                    <h3 className="text-base font-semibold">Comments</h3>
-                    <p className="text-sm text-muted-foreground mt-0.5">Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can.</p>
-                  </div>
-                  <GiscusComments />
-                </div>
-              )}
-            </div>
-          )}
         </div>
-
-        <TableOfContents headings={tocHeadings} />
       </div>
     </div>
     </>

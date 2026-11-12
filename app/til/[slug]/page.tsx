@@ -13,29 +13,33 @@ import Tag, { tilCategoryLabelClass } from "@/components/shared/lists/Tag"
 import { highlightBlocks } from "@/lib/content/highlight"
 import ShareButton from "@/components/shared/ShareButton"
 import BlogReactions from "@/components/shared/BlogReactions"
-import TableOfContents, { type TocHeading } from "@/components/shared/markdown/TableOfContents"
+import TableOfContents from "@/components/shared/markdown/TableOfContents"
+import { hasToc, REACTIONS_SECTION, REPLY_SECTION, type TocHeading } from "@/lib/content/toc"
 import { cn } from "@/lib/utils"
 import { isLive } from "@/lib/time/schedule"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import TILFooter from "@/components/til/TILFooter"
+import { ReplySection } from "@/components/blog/CommentOnLinks"
+import { readLink, splitLinks, stripLinks } from "@/lib/content/markdown-links"
+import { liveRelatedPost } from "@/lib/content/related-post"
 
 export const revalidate = 604800
 
 function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)
+  const parts = splitLinks(text)
   if (parts.length === 1) return text
   return parts.map((part, i) => {
-    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (match) {
-      const isExternal = match[2].startsWith("http")
+    const link = readLink(part)
+    if (link) {
+      const isExternal = link.href.startsWith("http")
       return (
         <a
           key={i}
-          href={match[2]}
+          href={link.href}
           {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
+          className="body-link"
         >
-          {match[1]}
+          {link.text}
         </a>
       )
     }
@@ -87,7 +91,7 @@ export async function generateMetadata({
 }
 
 function plainText(body: string): string {
-  return body.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*_]/g, "").replace(/\s+/g, " ").trim()
+  return stripLinks(body).replace(/[`*_]/g, "").replace(/\s+/g, " ").trim()
 }
 
 function tilOgImage(title: string, body: string): string {
@@ -100,7 +104,7 @@ function renderBlock(block: TILBlock, i: number, highlighted: Record<number, str
   switch (block.type) {
     case "h2":
       return (
-        <h2 key={i} id={block.text.toLowerCase().replace(/\s+/g, "-")} className="text-base font-semibold mt-6 mb-2">
+        <h2 key={i} id={block.text.toLowerCase().replace(/\s+/g, "-")} className="text-base font-semibold mt-6 mb-2 scroll-mt-24">
           {block.text}
         </h2>
       )
@@ -130,7 +134,7 @@ function renderBlock(block: TILBlock, i: number, highlighted: Record<number, str
         <div key={i} className="space-y-1">
           <div className={cn(
             "w-full overflow-hidden",
-            block.variant === "spotify" ? "h-[152px] rounded-xl" : "aspect-video rounded-lg border border-border"
+            block.variant === "spotify" ? "h-38 rounded-xl" : "aspect-video rounded-lg border border-border"
           )}>
             <iframe
               src={block.url}
@@ -192,6 +196,8 @@ export default async function TILSlugPage({
   const prev = idx > 0 ? sorted[idx - 1] : null
   const next = idx < sorted.length - 1 ? sorted[idx + 1] : null
 
+  const relatedPost = liveRelatedPost(entry)
+
   const tocHeadings: TocHeading[] = (entry.detail ?? [])
     .filter((b): b is Extract<TILBlock, { type: "h2" }> => b.type === "h2")
     .map((b) => ({
@@ -199,10 +205,10 @@ export default async function TILSlugPage({
       text: b.text,
       level: 2,
     }))
-  const showToC = tocHeadings.length >= 3
+  const showToC = hasToc(tocHeadings)
 
   return (
-    <div className={cn("container py-24", showToC ? "max-w-2xl xl:max-w-5xl" : "max-w-2xl")}>
+    <div className={cn("container py-24", showToC ? "max-w-2xl lg:max-w-5xl" : "max-w-2xl")}>
       {entry.published && !isFuture && <ScrollDepthTracker slug={entry.id} postType="til" />}
 
       <Link
@@ -213,8 +219,9 @@ export default async function TILSlugPage({
         Back to TIL
       </Link>
 
-      <div className={cn(showToC && "xl:grid xl:grid-cols-[1fr_220px] xl:gap-12 xl:items-start")}>
-        <div className="space-y-8">
+      <div className={cn(showToC && "lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:items-start")}>
+        {showToC && <TableOfContents headings={tocHeadings} sections={[REACTIONS_SECTION, REPLY_SECTION]} />}
+        <div className={cn("space-y-8", showToC && "min-w-0 lg:col-start-1 lg:row-start-1")}>
           <div className="space-y-4">
             <div className="flex items-center gap-2 flex-wrap">
               <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
@@ -227,6 +234,14 @@ export default async function TILSlugPage({
               <h1 className="text-2xl font-bold tracking-tight leading-snug">{entry.title}</h1>
               <ShareButton title={`TIL | ${entry.title}`} />
             </div>
+
+            {entry.tags && entry.tags.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2">
+                {entry.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            )}
           </div>
 
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -239,38 +254,33 @@ export default async function TILSlugPage({
             </div>
           )}
 
-          {((entry.tags && entry.tags.length > 0) || entry.source) && (
-            <div className="flex flex-wrap items-center gap-2 pt-2">
-              {entry.tags?.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-              {entry.source && (
-                <a
-                  href={entry.source.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline ml-auto"
-                >
-                  {entry.source.label}
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              )}
-            </div>
+          {entry.source && (
+            <p className="pt-2 text-sm text-muted-foreground">
+              Source:{" "}
+              <a href={entry.source.url} target="_blank" rel="noopener noreferrer" className="body-link">
+                {entry.source.label}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </p>
           )}
 
-          {entry.relatedPost && (
+          {relatedPost && (
             <Callout kind="note" className="my-0">
               This turned into a full post:{" "}
               <Link
-                href={`/blog/${entry.relatedPost}`}
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                href={`/blog/${relatedPost.slug}`}
+                className="body-link"
               >
                 Read the full post
               </Link>
             </Callout>
           )}
 
-          <BlogReactions slug={`til-${entry.id}`} />
+          <section id="reactions" aria-label="Reactions" className="scroll-mt-24">
+            <BlogReactions slug={`til-${entry.id}`} />
+          </section>
+
+          <ReplySection path={`/til/${entry.id}`} className="space-y-2 scroll-mt-24" />
 
           <TILFooter entry={entry} visibleEntries={sorted} />
 
@@ -305,8 +315,6 @@ export default async function TILSlugPage({
             </>
           )}
         </div>
-
-        {showToC && <TableOfContents headings={tocHeadings} />}
       </div>
     </div>
   )

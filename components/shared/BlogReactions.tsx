@@ -113,7 +113,13 @@ export default function BlogReactions({ slug }: { slug: string }) {
 
   const extraReactions = ALL_REACTIONS.filter((r) => !PINNED.some((p) => p.emoji === r.emoji))
 
-  const usedExtras = extraReactions.filter((r) => (counts[r.emoji] ?? 0) > 0 || reacted.has(r.emoji))
+  const unnamed = Object.keys(counts)
+    .filter((emoji) => (counts[emoji] ?? 0) > 0 && !ALL_REACTIONS.some((r) => r.emoji === emoji))
+    .map((emoji) => ({ emoji, label: `Reaction ${emoji}` }))
+
+  const usedExtras = [...extraReactions.filter((r) => (counts[r.emoji] ?? 0) > 0 || reacted.has(r.emoji)), ...unnamed]
+
+  const pickerReactions = extraReactions.filter((r) => !usedExtras.some((u) => u.emoji === r.emoji))
 
   return (
     <div className={`flex flex-col items-center gap-3 transition-opacity ${loading ? "opacity-0" : "opacity-100"}`}>
@@ -152,6 +158,7 @@ export default function BlogReactions({ slug }: { slug: string }) {
           />
         ))}
 
+        {pickerReactions.length > 0 && (
         <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
           <PopoverTrigger asChild>
             <button
@@ -166,28 +173,22 @@ export default function BlogReactions({ slug }: { slug: string }) {
           <PopoverContent className="w-auto p-2" align="center" side="top" sideOffset={8}>
             <p className="text-[10px] text-muted-foreground mb-2 px-1">Pick your reaction</p>
             <div className="grid grid-cols-5 sm:grid-cols-7 gap-0.5">
-              {ALL_REACTIONS.map(({ emoji, label }) => {
-                const hasReacted = reacted.has(emoji)
-                return (
-                  <button
-                    key={emoji}
-                    type="button"
-                    title={label}
-                    aria-label={hasReacted ? `${label}, reacted. Remove` : label}
-                    aria-pressed={hasReacted}
-                    onClick={() => { handleToggle(emoji); setPickerOpen(false) }}
-                    className={`
-                      flex min-h-11 min-w-11 items-center justify-center rounded p-1.5 text-lg transition-all hover:bg-muted/60 cursor-pointer
-                      ${hasReacted ? "bg-primary/10 ring-1 ring-primary/40" : ""}
-                    `}
-                  >
-                    {emoji}
-                  </button>
-                )
-              })}
+              {pickerReactions.map(({ emoji, label }) => (
+                <button
+                  key={emoji}
+                  type="button"
+                  title={label}
+                  aria-label={label}
+                  onClick={() => { handleToggle(emoji); setPickerOpen(false) }}
+                  className="flex min-h-11 min-w-11 items-center justify-center rounded p-1.5 text-lg transition-all hover:bg-muted/60 cursor-pointer"
+                >
+                  {emoji}
+                </button>
+              ))}
             </div>
           </PopoverContent>
         </Popover>
+        )}
       </div>
     </div>
   )

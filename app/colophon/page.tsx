@@ -20,7 +20,7 @@ function A({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+      className="body-link"
     >
       {children}
     </a>
@@ -76,7 +76,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Giscus",
-        detail: <>The comment system on blog posts, powered by <A href="https://giscus.app">Giscus</A> and backed by <A href="https://docs.github.com/en/discussions">GitHub Discussions</A>. When you leave a comment it is stored as a GitHub Discussion on the public repo - no separate database, no third-party ad-funded platform. Giscus loads the discussion thread for each post by matching the page URL to a discussion. You need a GitHub account to comment. The widget respects the site theme and switches between light and dark automatically.</>,
+        detail: <>The comment system on blog posts, notes and newsletter issues, powered by <A href="https://giscus.app">Giscus</A> and backed by <A href="https://docs.github.com/en/discussions">GitHub Discussions</A>. When you leave a comment it is stored as a GitHub Discussion on the public repo - no separate database, no third-party ad-funded platform. Giscus loads the discussion thread that belongs to each page. You need a GitHub account to comment. The widget respects the site theme and switches between light and dark automatically.</>,
       },
     ],
   },
@@ -122,7 +122,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "GitHub Actions",
-        detail: <><A href="https://github.com/features/actions">GitHub Actions</A> runs automated workflows whenever code changes. They type check, lint and build every change, scan every push for leaked secrets and handle jobs such as publishing the public copy of the site after each deploy. Nothing reaches the live site without passing them first.</>,
+        detail: <><A href="https://github.com/features/actions">GitHub Actions</A> runs automated workflows whenever code changes. They type check, lint and build every change, scan every push for leaked secrets and handle jobs such as publishing each release. Nothing reaches the live site without passing them first.</>,
       },
       {
         name: "Sentry",
@@ -164,7 +164,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Command palette",
-        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/pacocoursey/cmdk">cmdk</A>. You can jump to any page or search the whole site without touching the mouse. Pages sit in the same eight groups as /all-pages and every page has one key: the first two groups use Cmd or Ctrl plus a letter and the rest use Shift plus a letter. The shortcut is I for Isaac rather than K (the more common convention) - a small personal touch.</>,
+        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/dip/cmdk">cmdk</A>. You can jump to any page or search the whole site without touching the mouse. Pages sit in the same eight groups as /all-pages and every page has one key: the first two groups use Cmd or Ctrl plus a letter and the rest use Shift plus a letter. The shortcut is I for Isaac rather than K (the more common convention) - a small personal touch.</>,
       },
       {
         name: "Share feature",
@@ -278,7 +278,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "OG image generation",
-        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/functions/og-image-generation">Vercel&apos;s OG image library</A>, built into Next.js as next/og,. It renders the page title and description as a styled card using the Geist font. This is why shared links look intentional rather than blank.</>,
+        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/og-image-generation">Vercel&apos;s OG image library</A>, built into Next.js as next/og,. It renders the page title and description as a styled card using the Geist font. This is why shared links look intentional rather than blank.</>,
       },
     ],
   },
@@ -336,7 +336,7 @@ export default function ColophonPage() {
               href="https://github.com/zaccesss/isaacadjei.me"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4 inline-flex items-center gap-0.5"
+              className="body-link inline-flex items-center gap-0.5"
             >
               GitHub
               <ArrowUpRight className="h-3 w-3" />
@@ -348,7 +348,7 @@ export default function ColophonPage() {
               href="https://vercel.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4 inline-flex items-center gap-0.5"
+              className="body-link inline-flex items-center gap-0.5"
             >
               Vercel
               <ArrowUpRight className="h-3 w-3" />
@@ -360,7 +360,7 @@ export default function ColophonPage() {
               href="https://cloudflare.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4 inline-flex items-center gap-0.5"
+              className="body-link inline-flex items-center gap-0.5"
             >
               Cloudflare
               <ArrowUpRight className="h-3 w-3" />
@@ -395,7 +395,7 @@ export default function ColophonPage() {
         Something interesting or something broken?{" "}
         <Link
           href="/contact"
-          className="text-foreground hover:text-primary transition-colors underline underline-offset-4"
+          className="body-link"
         >
           Let me know.
         </Link>

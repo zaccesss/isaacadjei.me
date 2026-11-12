@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 1,
-  slug: "outside-01-global-accessibility-awareness-day",
+  id: "outside-01-global-accessibility-awareness-day",
+  slug: "fifteen-years-of-global-accessibility-awareness-day",
   title: "Fifteen years of Global Accessibility Awareness Day",
   subtitle: "A day that started as one developer's blog post turned fifteen this week.",
   tags: ["Accessibility", "Web", "Design"],

@@ -7,6 +7,7 @@ const _sky_animol_screening_invite: BlogPost = {
     type: "journal",
     cover_image: "/images/blog/covers/sky-animol-screening-invite.webp",
     cover_credit: "Image: Sky, used courtesy of Sky",
+    cover_alt: "A young man in a pale sweatshirt seen in profile, with the title ANIMOL in tall yellow letters across the whole image",
     description:
       "Being shortlisted for the Sky Black Heritage Undergraduate of the Year award led to an invitation to a Black History Month screening of the Sky Original film Animol, with a live Q&A and networking.",
     tags: ["Sky", "Career", "Black Heritage", "Networking", "Personal"],

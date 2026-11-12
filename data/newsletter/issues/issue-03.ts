@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 3,
-  slug: "issue-03-uart-from-scratch",
+  id: "issue-03-uart-from-scratch",
+  slug: "uart-from-scratch-and-five-small-lessons",
   title: "UART from scratch and five small lessons",
   subtitle: "Serial communication without a library, printf over UART, RTOS ticks, NumPy broadcasting, CSRF cookies and how grep skips ahead.",
   tags: ["UART", "Embedded", "AVR", "C", "Serial"],

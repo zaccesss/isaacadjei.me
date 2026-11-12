@@ -4,7 +4,7 @@ const _reading_datasheets: BlogPost = {
     slug: "reading-datasheets",
     title: "Reading Datasheets: The Skill Nobody Teaches You",
     date: "2026-08-10",
-    type: "notes",
+    type: "article",
     cover_image: "/images/blog/covers/reading-datasheets.webp",
     cover_credit: "Image: Western Digital Corporation, public domain, via Wikimedia Commons",
     cover_alt: "The first page of a 1979 floppy disk controller datasheet, showing the chip's pin connections and a system block diagram",
@@ -12,6 +12,7 @@ const _reading_datasheets: BlogPost = {
       "Datasheets are dense, inconsistently structured and written for engineers who already know the terminology. Here is how to navigate them, find what you actually need and use them to debug hardware problems.",
     tags: ["Embedded", "Hardware", "Microcontroller", "Learning", "Electronics"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -130,7 +131,7 @@ uint8_t uart_read_blocking(void) {
       {
         type: "ol-links",
         items: [
-          { text: "Microchip ATmega644P datasheet - a real datasheet to practise on; register descriptions start at section 14", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega644P-Datasheet.pdf" },
+          { text: "Microchip ATmega644P datasheet - a real datasheet to practise on; register descriptions start at section 14", url: "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf" },
           { text: "STM32F4 reference manual (RM0090) - a large but well-structured ARM Cortex-M4 reference", url: "https://www.st.com/resource/en/reference_manual/rm0090-stm32f405415-stm32f407417-stm32f427437-and-stm32f429439-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" },
           { text: "I2C bus primer - a concise protocol reference (NXP retired its own UM10204 PDF)", url: "https://www.i2c-bus.org/i2c-primer/" },
           { text: "The Art of Electronics - Horowitz and Hill - chapter 1 covers passive components and their real-world behaviour as described in datasheets", url: "https://www.amazon.co.uk/Art-Electronics-Paul-Horowitz/dp/0521809266" },

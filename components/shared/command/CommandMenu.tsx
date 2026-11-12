@@ -358,6 +358,10 @@ export default function CommandMenu() {
             AI Policy
             <CommandShortcut>{shiftShortcut("J")}</CommandShortcut>
           </CommandItem>
+          <CommandItem value="how i use ai artificial intelligence my use" onSelect={() => go("/ai")}>
+            <ScrollText className="mr-2 h-4 w-4" />
+            How I use AI
+          </CommandItem>
           <CommandItem value="contribute contributing guide bug pull request idea hardware software" onSelect={() => go("/contribute")}>
             <HeartHandshake className="mr-2 h-4 w-4" />
             Contributing

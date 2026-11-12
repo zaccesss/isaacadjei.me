@@ -11,7 +11,7 @@ const _how_gps_works: TILEntry = {
       {
         type: "embed",
         url: "https://www.youtube.com/embed/wCcARVbL_Dk",
-        caption: "Veritasium: How GPS Works Today: trilateration, atomic clocks and relativistic corrections",
+        caption: "BRIGHT SIDE: How GPS Works Today: trilateration, atomic clocks and relativistic corrections",
       },
       {
         type: "p",

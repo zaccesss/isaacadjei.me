@@ -6,7 +6,7 @@ const _aes_gcm_vs_cbc: TILEntry = {
     date: "2026-05-29",
     category: "Security",
     published: true,
-    body: "[AES-GCM](https://csrc.nist.gov/publications/detail/sp/800-38d/final) (Galois/Counter Mode) provides authenticated encryption with associated data (AEAD). It encrypts the plaintext AND produces a 128-bit authentication tag. Any modification to the ciphertext makes the tag verification fail and decryption is rejected. AES-CBC encrypts correctly but produces no integrity check. An attacker who can flip bits in a CBC ciphertext will produce different decrypted plaintext and the receiver accepts it silently. This is the basis of padding oracle attacks. Always use an AEAD mode (GCM, ChaCha20-Poly1305) for any new system.",
+    body: "[AES-GCM](https://csrc.nist.gov/pubs/sp/800/38/d/final) (Galois/Counter Mode) provides authenticated encryption with associated data (AEAD). It encrypts the plaintext AND produces a 128-bit authentication tag. Any modification to the ciphertext makes the tag verification fail and decryption is rejected. AES-CBC encrypts correctly but produces no integrity check. An attacker who can flip bits in a CBC ciphertext will produce different decrypted plaintext and the receiver accepts it silently. This is the basis of padding oracle attacks. Always use an AEAD mode (GCM, ChaCha20-Poly1305) for any new system.",
     detail: [
       {
         type: "embed",
@@ -25,7 +25,7 @@ const _aes_gcm_vs_cbc: TILEntry = {
       },
       {
         type: "link",
-        url: "https://csrc.nist.gov/publications/detail/sp/800-38d/final",
+        url: "https://csrc.nist.gov/pubs/sp/800/38/d/final",
         label: "NIST SP 800-38D: GCM Mode",
         description: "The NIST specification for AES-GCM including nonce requirements, tag length choices and usage restrictions.",
       },

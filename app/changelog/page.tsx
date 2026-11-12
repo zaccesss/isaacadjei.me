@@ -49,6 +49,17 @@ function byMonth(list: ChangeEntry[]): { key: string; title: string; releases: C
   return months
 }
 
+function yearsOf<T extends { key: string }>(months: T[]): { year: string; months: T[] }[] {
+  const years: { year: string; months: T[] }[] = []
+  for (const m of months) {
+    const year = m.key.slice(0, 4)
+    const last = years.at(-1)
+    if (last && last.year === year) last.months.push(m)
+    else years.push({ year, months: [m] })
+  }
+  return years
+}
+
 export default function ChangelogPage() {
   const months = byMonth(releases)
   return (
@@ -60,12 +71,12 @@ export default function ChangelogPage() {
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed">
           What has changed on this site from the first commit to the latest update.
-          The public source is on{" "}
+          The source is on{" "}
           <a
             href="https://github.com/zaccesss/isaacadjei.me"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             GitHub
           </a>
@@ -76,30 +87,47 @@ export default function ChangelogPage() {
         </p>
       </section>
 
-      <nav aria-label="Jump to a month" className="flex flex-wrap gap-2">
-        {months.map((m) => (
-          <a
-            key={m.key}
-            href={`#${m.key}`}
-            className="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm font-medium hover:bg-muted transition-colors"
-          >
-            {m.title}
-            <span className="ml-2 text-muted-foreground">{m.releases.length}</span>
-          </a>
-        ))}
-      </nav>
+      <details id="months" className="group scroll-mt-24 rounded-lg border border-border">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 text-sm font-medium [&::-webkit-details-marker]:hidden">
+          <span>
+            Jump to a month <span className="text-muted-foreground">({months.length})</span>
+          </span>
+          <span aria-hidden="true" className="text-muted-foreground group-open:hidden">Show</span>
+          <span aria-hidden="true" className="hidden text-muted-foreground group-open:inline">Hide</span>
+        </summary>
+        <nav aria-label="Jump to a month" className="space-y-3 border-t border-border px-4 py-3">
+          {yearsOf(months).map((year) => (
+            <div key={year.year} className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <p className="w-12 shrink-0 font-mono text-sm text-muted-foreground">{year.year}</p>
+              {year.months.map((m) => (
+                <a key={m.key} href={`#${m.key}`} className="inline-flex min-h-11 items-center gap-1.5 text-sm body-link">
+                  {m.title.split(" ")[0]}
+                  <span className="text-muted-foreground no-underline">{m.releases.length}</span>
+                </a>
+              ))}
+            </div>
+          ))}
+        </nav>
+      </details>
 
       <Separator />
 
       <div className="space-y-16">
-        {months.map((m) => (
+        {months.map((m, index) => (
           <section key={m.key} id={m.key} aria-labelledby={`${m.key}-title`} className="scroll-mt-24 space-y-8">
-            <h2 id={`${m.key}-title`} className="text-2xl font-bold tracking-tight">
-              {m.title}
-              <span className="ml-3 text-sm font-normal text-muted-foreground">
-                {m.releases.length} {m.releases.length === 1 ? "release" : "releases"}
-              </span>
-            </h2>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h2 id={`${m.key}-title`} className="text-2xl font-bold tracking-tight">
+                {m.title}
+                <span className="ml-3 text-sm font-normal text-muted-foreground">
+                  {m.releases.length} {m.releases.length === 1 ? "release" : "releases"}
+                </span>
+              </h2>
+              {index > 0 && (
+                <a href="#months" className="inline-flex min-h-11 items-center text-sm body-link">
+                  Back to months
+                </a>
+              )}
+            </div>
 
             <ol className="relative space-y-8 border-l-2 border-border pl-6 sm:pl-8">
               <li aria-hidden="true" role="presentation" className="!mt-0 list-none">

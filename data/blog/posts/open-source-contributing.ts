@@ -7,6 +7,7 @@ const _open_source_contributing: BlogPost = {
     type: "article",
     cover_image: "/images/blog/covers/open-source-contributing.webp",
     cover_credit: "Photo: Yancy Min, Unsplash Licence, via Unsplash",
+    cover_alt: "Angled close-up of a git commit graph on a dark screen, with blue, pink and green branch lines beside commit messages",
     description:
       "A practical, honest guide to finding projects worth contributing to, reading a codebase before touching it, making your first pull request and handling review feedback. From someone who has done it and built a 217-topic Git course in the process.",
     tags: ["Open Source", "Git", "GitHub", "Career", "Community"],

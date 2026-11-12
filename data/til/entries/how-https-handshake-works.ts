@@ -19,7 +19,7 @@ const _how_https_handshake_works: TILEntry = {
       },
       {
         type: "link",
-        url: "https://www.rfc-editor.org/rfc/rfc8446",
+        url: "https://www.rfc-editor.org/rfc/rfc8446.html",
         label: "RFC 8446: TLS 1.3",
         description: "The full specification. Section 2 has an excellent summary of the handshake flow with message diagrams.",
       },

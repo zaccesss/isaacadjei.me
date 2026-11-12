@@ -49,14 +49,14 @@ export default function CodeOfConductPage() {
           To report a concern, reach me privately at{" "}
           <a
             href="mailto:contact@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact@isaacadjei.me
           </a>{" "}
           or through my{" "}
           <Link
             href="/contact"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact page
           </Link>
@@ -71,7 +71,7 @@ export default function CodeOfConductPage() {
             href="https://github.com/zaccesss/code-of-conduct"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1.5 body-link"
           >
             <Github className="h-4 w-4" />
             Also on GitHub: zaccesss/code-of-conduct
@@ -174,7 +174,7 @@ export default function CodeOfConductPage() {
           community leaders responsible for enforcement at{" "}
           <a
             href="mailto:contact@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact@isaacadjei.me
           </a>
@@ -273,16 +273,16 @@ export default function CodeOfConductPage() {
             href="https://www.contributor-covenant.org"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             Contributor Covenant
           </a>
           , version 2.1, available at{" "}
           <a
-            href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html"
+            href="https://www.contributor-covenant.org/version/2/1/code_of_conduct/"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contributor-covenant.org/version/2/1
           </a>
@@ -291,10 +291,10 @@ export default function CodeOfConductPage() {
         <p className="text-muted-foreground leading-relaxed">
           Community Impact Guidelines were inspired by{" "}
           <a
-            href="https://github.com/mozilla/diversity"
+            href="https://github.com/mozilla/inclusion"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             Mozilla&apos;s code of conduct enforcement ladder
           </a>
@@ -303,7 +303,7 @@ export default function CodeOfConductPage() {
             href="https://www.contributor-covenant.org/faq"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             FAQ
           </a>
@@ -312,7 +312,7 @@ export default function CodeOfConductPage() {
             href="https://www.contributor-covenant.org/translations"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contributor-covenant.org/translations
           </a>

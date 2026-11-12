@@ -12,10 +12,11 @@ const _ariane_5_flight_501_overflow: BlogPost = {
     "In 1996 the first Ariane 5 broke up about 40 seconds after launch because reused software converted a 64-bit value into a 16-bit integer. A walk through the inquiry report and the lessons I take from it as a student who writes embedded code.",
   tags: ["SoftwareEngineering", "Engineering", "Embedded", "Learning"],
   published: true,
+  archived: true,
   content: [
     {
       type: "p",
-      text: "On 4 June 1996 the first Ariane 5 rocket lifted off from [Kourou in French Guiana](https://www.esa.int/Enabling_Support/Space_Transportation/Europe_s_Spaceport) carrying four [Cluster](https://www.esa.int/Science_Exploration/Space_Science/Cluster) science satellites. Around 40 seconds later it veered off course, broke up under aerodynamic load and was destroyed by its self-destruct system. Nobody was hurt, but years of work and a payload worth hundreds of millions of dollars were lost in front of the cameras. The cause was not an engine, a weld or a fuel leak. It was one line of arithmetic in software that had worked perfectly on the previous rocket. I come back to this story whenever I write code that will run on hardware, because almost every lesson in it applies to student projects too.",
+      text: "On 4 June 1996 the first Ariane 5 rocket lifted off from [Kourou in French Guiana](https://www.esa.int/about-us/directorates/space-transportation/europe-s-spaceport) carrying four [Cluster](https://www.esa.int/about-us/directorates/science/cluster) science satellites. Around 40 seconds later it veered off course, broke up under aerodynamic load and was destroyed by its self-destruct system. Nobody was hurt, but years of work and a payload worth hundreds of millions of dollars were lost in front of the cameras. The cause was not an engine, a weld or a fuel leak. It was one line of arithmetic in software that had worked perfectly on the previous rocket. I come back to this story whenever I write code that will run on hardware, because almost every lesson in it applies to student projects too.",
     },
     {
       type: "h2",
@@ -122,7 +123,7 @@ int16_t to_int16_saturating(double bh) {
     },
     {
       type: "p",
-      text: "[Ariane 5](https://www.esa.int/Enabling_Support/Space_Transportation/Launch_vehicles/Ariane_5) went on to become one of the most reliable launchers ever built, including the 2021 launch of the [James Webb Space Telescope](https://www.esa.int/Science_Exploration/Space_Science/Webb). Flight 501 is a reminder that reliability is not something software has. It is something software has in a particular context.",
+      text: "[Ariane 5](https://www.esa.int/articles/about-us/directorates/space-transportation/launch-vehicles/ariane-5) went on to become one of the most reliable launchers ever built, including the 2021 launch of the [James Webb Space Telescope](https://www.esa.int/missions/about-us/directorates/science/webb). Flight 501 is a reminder that reliability is not something software has. It is something software has in a particular context.",
     },
     {
       type: "h2",
@@ -131,10 +132,10 @@ int16_t to_int16_saturating(double bh) {
     {
       type: "ol-links",
       items: [
-        { text: "ESA: Ariane 501, presentation of the Inquiry Board report", url: "https://www.esa.int/Newsroom/Press_Releases/Ariane_501_-_Presentation_of_Inquiry_Board_report" },
+        { text: "ESA: Ariane 501, presentation of the Inquiry Board report", url: "https://www.esa.int/media-advisories/news-media/media/media-advisories/n-33-1996-ariane-501-presentation-of-inquiry-board-report" },
         { text: "The full Ariane 501 Inquiry Board report (PDF)", url: "https://esamultimedia.esa.int/docs/esa-x-1819eng.pdf" },
-        { text: "ESA: Ariane 5 launch vehicle", url: "https://www.esa.int/Enabling_Support/Space_Transportation/Launch_vehicles/Ariane_5" },
-        { text: "ESA: the Cluster mission that flight 501 carried", url: "https://www.esa.int/Science_Exploration/Space_Science/Cluster" },
+        { text: "ESA: Ariane 5 launch vehicle", url: "https://www.esa.int/articles/about-us/directorates/space-transportation/launch-vehicles/ariane-5" },
+        { text: "ESA: the Cluster mission that flight 501 carried", url: "https://www.esa.int/about-us/directorates/science/cluster" },
         { text: "Ada Information Clearinghouse: the Ada language", url: "https://www.adaic.org" },
       ],
     },

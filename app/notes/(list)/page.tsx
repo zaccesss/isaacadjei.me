@@ -41,7 +41,7 @@ export default function NotesPage() {
         </p>
         <p className="text-sm text-muted-foreground">
           <span aria-hidden="true">💡 </span>Shorter, faster notes live on the{" "}
-          <Link href="/til" className="text-primary underline underline-offset-4 hover:opacity-80">TIL page</Link>: snippets from things I discover day to day.
+          <Link href="/til" className="body-link">TIL page</Link>: snippets from things I discover day to day.
         </p>
       </section>
 
@@ -51,7 +51,7 @@ export default function NotesPage() {
 
       <p className="text-sm text-muted-foreground">
         What I am building now and the projects I want to build next are on the{" "}
-        <Link href="/now" className="text-primary underline underline-offset-4 hover:opacity-80">Now page</Link>.
+        <Link href="/now" className="body-link">Now page</Link>.
       </p>
 
     </div>

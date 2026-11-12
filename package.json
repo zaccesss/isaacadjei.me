@@ -1,8 +1,8 @@
 {
   "name": "isaacadjei.me",
-  "version": "2.120.0",
+  "version": "2.121.0",
   "private": true,
-  "description": "Source of isaacadjei.me: the public pages, components and content of my portfolio site",
+  "description": "Source of isaacadjei.me: the pages, components and content of my portfolio site",
   "homepage": "https://isaacadjei.me",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {

@@ -113,7 +113,9 @@ import _74 from "./entries/op-amp-slew-rate"
 import _75 from "./entries/pdf-ua-iso-14289"
 import _76 from "./entries/html-dir-attribute-rtl"
 import _77 from "./entries/commonmark-heading-permalinks"
+import _78 from "./entries/playwright-networkidle-polling"
 import _100 from "./entries/grub-windows-first-on-fedora"
+import _103 from "./entries/substack-compose-link"
 
 export const tilEntries: TILEntry[] = [
   _0,
@@ -193,5 +195,7 @@ export const tilEntries: TILEntry[] = [
   _75,
   _76,
   _77,
+  _78,
   _100,
+  _103,
 ]

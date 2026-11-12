@@ -1,15 +1,15 @@
 "use client"
 
+import { useEffect } from "react"
 import { relevanceScore } from "@/lib/content/search"
 import Link from "@/components/shared/IntentLink"
-import ThemedCover from "@/components/shared/media/ThemedCover"
-import { Calendar, Clock, Rss } from "lucide-react"
+import { Archive, ArrowLeft, Calendar, Clock, Rss } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
-import { POST_TYPES, type BlogCard } from "@/data/blog/meta"
+import { POST_TYPES, RENAMED_POST_TYPES, type BlogCard } from "@/data/blog/meta"
 import type { PostType } from "@/data/blog"
 import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
-import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
+import { countedOptions, monthOptions, sortItems, useListQuery, withRenamedValues, yearOptions } from "@/components/shared/lists/useListQuery"
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-GB", {
@@ -21,10 +21,27 @@ function formatDate(dateStr: string): string {
 
 const LIST_ID = "blog-post-list"
 
-export default function BlogPage({ posts }: { posts: BlogCard[] }) {
-  const query = useListQuery("newest")
+const ARCHIVE_PATH = "/blog/archive"
+
+export default function BlogPage({
+  posts,
+  view = "main",
+  archiveCount,
+}: {
+  posts: BlogCard[]
+  view?: "main" | "archive"
+  archiveCount: number
+}) {
+  const isArchive = view === "archive"
+  const urlQuery = useListQuery("newest")
   const [perPage, setPerPage] = usePageSize("blog", LIST_PAGE_SIZES)
 
+  const renamedTo = RENAMED_POST_TYPES.get(urlQuery.get("type"))
+  const { update } = urlQuery
+  useEffect(() => {
+    if (renamedTo) update({ type: renamedTo }, { replace: true, keepPage: true })
+  }, [renamedTo, update])
+  const query = withRenamedValues(urlQuery, "type", RENAMED_POST_TYPES)
   const activeType = (query.get("type") || "all") as PostType | "all"
   const activeTags = query.getAll("tag")
   const activeYear = query.get("year")
@@ -64,7 +81,7 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
     <div className="container max-w-4xl py-24 space-y-12">
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">Writing</h1>
+          <h1 className="text-4xl font-bold tracking-tight">{isArchive ? "Archive" : "Writing"}</h1>
           <a
             href="/blog/feed.xml"
             title="RSS feed"
@@ -75,62 +92,52 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
             Feed
           </a>
         </div>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          Engineering and tech write-ups, project breakdowns, journal entries and research notes.
-          Everything I build, learn and think about.
-        </p>
+        {isArchive ? (
+          <>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              Older posts I have moved off the main list. Each one is still at its own address.
+            </p>
+            <Link
+              href="/blog"
+              className="body-link inline-flex min-h-11 items-center gap-1.5 text-base font-medium"
+            >
+              <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Back to current writing
+            </Link>
+          </>
+        ) : (
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            Engineering and tech write-ups, project breakdowns, explainers and journal entries.
+            Everything I build, learn and think about.
+          </p>
+        )}
       </section>
 
       <ListControls
         query={query}
         groups={groups}
-        searchLabel="Search posts"
-        searchPlaceholder="Search posts…"
+        searchLabel={isArchive ? "Search archived posts" : "Search posts"}
+        searchPlaceholder={isArchive ? "Search archived posts…" : "Search posts…"}
         resultCount={filtered.length}
         itemLabel={{ one: "post", many: "posts" }}
+        panelExtra={archiveCount > 0 && (
+          <Link href={isArchive ? "/blog" : ARCHIVE_PATH} className="inline-flex min-h-11 items-center gap-1.5 text-sm body-link">
+            <Archive className="h-4 w-4 shrink-0" aria-hidden="true" />
+            {isArchive ? "Back to current writing" : `Archive (${archiveCount} older ${archiveCount === 1 ? "post" : "posts"})`}
+          </Link>
+        )}
       />
-
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by post type">
-        {POST_TYPES.map((t) => (
-          <button
-            key={t.value}
-            type="button"
-            onClick={() => query.update({ type: t.value === "all" ? null : t.value })}
-            aria-pressed={activeType === t.value}
-            className={`min-h-11 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors sm:min-h-0 ${
-              activeType === t.value
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/40"
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
 
       {filtered.length > 0 ? (
         <div id={LIST_ID} className="space-y-6 scroll-mt-24">
-          {paginated.map((post, i) => {
+          {paginated.map((post) => {
             return (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block rounded-lg border transition-all overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border"
+              className="group block rounded-lg border transition-all overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40"
             >
-              {post.cover_image && (
-                <div className="relative w-full h-32 sm:h-40 overflow-hidden">
-                  <ThemedCover
-                    src={post.cover_image}
-                    darkSrc={post.cover_image_dark}
-                    alt=""
-                    fill
-                    priority={page === 1 && i === 0}
-                    className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
-                    sizes="(max-width: 640px) 100vw, 768px"
-                  />
-                </div>
-              )}
-              <div className={`space-y-3 px-6 py-5`}>
+              <div className="space-y-3 px-6 py-5">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className={postTypeLabelClass(post.type)}>
                   {POST_TYPES.find((t) => t.value === post.type)?.label ?? post.type}
@@ -138,7 +145,7 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
               </div>
 
               <div className="space-y-1">
-                <h2 className="text-lg font-semibold tracking-tight group-hover:text-primary transition-colors leading-snug">
+                <h2 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors leading-snug">
                   {post.title}
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
@@ -191,6 +198,19 @@ export default function BlogPage({ posts }: { posts: BlogCard[] }) {
           <p className="text-sm font-medium">No posts match these filters.</p>
           <p className="text-xs text-muted-foreground">Try another type or tag. Clearing the search also helps.</p>
         </div>
+      )}
+
+      {!isArchive && archiveCount > 0 && (
+        <p className="text-base text-muted-foreground">
+          Older posts are in the{" "}
+          <Link
+            href={ARCHIVE_PATH}
+            className="body-link inline-flex min-h-11 items-center"
+          >
+            archive
+          </Link>
+          .
+        </p>
       )}
 
     </div>

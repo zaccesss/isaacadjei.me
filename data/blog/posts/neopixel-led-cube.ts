@@ -7,6 +7,7 @@ const _neopixel_led_cube: BlogPost = {
     type: "blog",
     projectSlug: "led-cube",
     cover_image: "/images/projects/led-cube/final-setup.webp",
+    cover_alt: "A wire-frame cube of small LEDs beside an open black box of wiring, on a pale desk in dim light",
     description:
       "A walkthrough of building a 4x4x4 NeoPixel LED Cube with four animation modes and automatic brightness adjustment via an LDR sensor, using Arduino and bare C++.",
     tags: ["Arduino", "C++", "LED", "Hardware", "IoT"],
@@ -140,7 +141,7 @@ for (int layer = LAYERS - 1; layer > 0; layer--) {
         items: [
           { text: "WS2812B datasheet - LED and driver integrated light source (WorldSemi)", url: "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" },
           { text: "Adafruit NeoPixel Uberguide - comprehensive guide to wiring, power and programming NeoPixels", url: "https://learn.adafruit.com/adafruit-neopixel-uberguide" },
-          { text: "Arduino Reference - language and library documentation", url: "https://www.arduino.cc/reference/en/" },
+          { text: "Arduino Reference - language and library documentation", url: "https://docs.arduino.cc/language-reference/" },
           { text: "Wikipedia: Volumetric display - LED cubes as a class of volumetric display", url: "https://en.wikipedia.org/wiki/Volumetric_display" },
           { text: "NeoPixel LED Cube - project page on this site", url: "/projects/led-cube" },
           { text: "Adafruit NeoPixel library - GitHub repository and API reference", url: "https://github.com/adafruit/Adafruit_NeoPixel" },

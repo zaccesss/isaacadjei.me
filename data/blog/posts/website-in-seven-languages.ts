@@ -7,6 +7,7 @@ const _website_in_seven_languages: BlogPost = {
   type: "blog",
   cover_image: "/images/blog/covers/website-in-seven-languages-shot.webp",
   cover_image_dark: "/images/blog/covers/website-in-seven-languages-shot-dark.webp",
+  cover_alt: "Vitafolio CV settings for Embedded software roles, on the Look and privacy tab, with name, web address and visibility fields",
   description:
     "How Vitafolio went from English only to seven languages including Arabic and Urdu: picking the language, keeping strings in sync, mirroring layouts with logical CSS and the one-byte bug that broke Arabic PDFs.",
   tags: ["PHP", "Web", "Full-Stack", "Accessibility", "Open Source"],

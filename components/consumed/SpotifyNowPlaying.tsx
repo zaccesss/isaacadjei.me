@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { SPOTIFY_PROFILE_URL } from "@/lib/constants"
 import { usePoll } from "@/hooks/use-live-polling"
 
 type SpotifyState = {
@@ -68,7 +69,7 @@ export function SpotifyNowPlaying() {
           <span className={cn("text-[10px] font-semibold uppercase tracking-widest", data.playing ? "text-green-500" : "text-muted-foreground")}>
             {label}
           </span>
-          <a href="https://open.spotify.com/user/zaccesss" target="_blank" rel="noopener noreferrer" aria-label="Open Spotify profile" className="relative ml-auto text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-1.5 after:content-['']">
+          <a href={SPOTIFY_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Open Spotify profile" className="relative ml-auto text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-1.5 after:content-['']">
             <ExternalLink className="h-3 w-3" />
           </a>
         </div>

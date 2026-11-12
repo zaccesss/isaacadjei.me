@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import LabContent, { type LabData } from "./LabContent"
-import { posts, getPublishedPosts } from "@/data/blog"
+import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 
 export const metadata: Metadata = {

@@ -10,6 +10,33 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.121.0",
+    date: "2026-11-12",
+    label: "Easier reading",
+    added: [
+      "Blog posts, Today I Learned entries, notes and newsletter issues each end with a line of links to reply on Bluesky, Substack, Mastodon or X, with the page already attached",
+      "Notes and every newsletter issue have a comment box, as blog posts do",
+      "A short page on how I use AI",
+    ],
+    changed: [
+      "Links in body text look the same on every page: underlined, in the text colour, blue when you point at one or reach it with the keyboard",
+      "The writing pages are tidier and quicker to scan",
+      "The drawing on page load plays once per visit, on the home page only",
+      "The Privacy page says what is counted when you press one of the reply links",
+    ],
+    fixed: [
+      "A code sample in one Today I Learned entry opens the right page",
+    ],
+  },
+  {
+    version: "v2.120.1",
+    date: "2026-11-12",
+    label: "Behind the scenes",
+    fixed: [
+      "Small reliability fixes behind the scenes",
+    ],
+  },
+  {
     version: "v2.120.0",
     date: "2026-11-11",
     label: "Alumni profile links",

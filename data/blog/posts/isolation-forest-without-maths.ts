@@ -7,6 +7,7 @@ const _isolation_forest_without_maths: BlogPost = {
     type: "article",
     cover_image: "/images/blog/covers/isolation-forest-without-maths.webp",
     cover_credit: "Photo: Dan Otis, Unsplash Licence, via Unsplash",
+    cover_alt: "A dense forest of dark green conifers seen from above, with mist drifting across the treetops",
     description:
       "A plain-language explanation of the Isolation Forest, one of the most practical anomaly detection algorithms: why odd points are easy to separate, how a forest of random cuts turns that into a score and where it goes wrong.",
     tags: ["ML", "Python", "Learning", "Notes"],

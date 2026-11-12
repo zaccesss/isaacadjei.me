@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 6,
-  slug: "issue-06-interrupts-and-websockets",
+  id: "issue-06-interrupts-and-websockets",
+  slug: "interrupts-websockets-and-choosing-what-to-build",
   title: "Interrupts, WebSockets and choosing what to build",
   subtitle: "Non-blocking firmware, real-time data on the web, how I pick my next project and five lessons from git to PostgreSQL.",
   tags: ["Embedded", "Firmware", "WebSockets", "Full-Stack", "JavaScript", "C"],

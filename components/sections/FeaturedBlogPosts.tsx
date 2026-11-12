@@ -7,18 +7,13 @@ import { TAG_CLASS, postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { Button } from "@/components/ui/button"
 import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import type { PostType } from "@/data/blog"
-import type { BlogCard } from "@/data/blog/meta"
-import ThemedCover from "@/components/shared/media/ThemedCover"
+import { PINNED_POSTS, type BlogCard } from "@/data/blog/meta"
 
 const TYPE_LABELS: Record<PostType, string> = {
-  blog: "Blog", journal: "Journal", research: "Research", notes: "Notes",
+  blog: "Blog", journal: "Journal", explainer: "Explainer",
   report: "Report", article: "Article", resources: "Resources",
 }
 
-const PINNED = [
-  "ocular-prosthetics-bionic-vision",
-  "two-stage-audio-amplifier",
-]
 const TOTAL = 6
 
 function formatDate(dateStr: string): string {
@@ -29,20 +24,8 @@ function FeaturedPostCard({ post }: { post: BlogCard }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border hover:shadow-md transition-all duration-200 ease-out overflow-hidden motion-safe:hover:-translate-y-0.5"
+      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40 hover:shadow-md transition-all duration-200 ease-out overflow-hidden motion-safe:hover:-translate-y-0.5"
     >
-      {post.cover_image && (
-        <div className="relative w-full h-40 overflow-hidden">
-          <ThemedCover
-            src={post.cover_image}
-            darkSrc={post.cover_image_dark}
-            alt=""
-            fill
-            className="object-cover sm:group-hover:scale-105 sm:transition-transform sm:duration-300"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        </div>
-      )}
       <div className="px-5 py-4 space-y-3">
         <span className={postTypeLabelClass(post.type)}>
           {TYPE_LABELS[post.type]}
@@ -78,11 +61,11 @@ function FeaturedPostCard({ post }: { post: BlogCard }) {
 }
 
 export default function FeaturedBlogPosts({ posts: all }: { posts: BlogCard[] }) {
-  const pinned = PINNED
+  const pinned = PINNED_POSTS
     .map((slug) => all.find((p) => p.slug === slug))
     .filter((p): p is BlogCard => p !== undefined)
   const latest = [...all]
-    .filter((p) => !PINNED.includes(p.slug))
+    .filter((p) => !PINNED_POSTS.includes(p.slug))
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, TOTAL - pinned.length)
   const featured = [...pinned, ...latest]

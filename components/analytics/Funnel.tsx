@@ -25,7 +25,7 @@ export function Funnel({
   return (
     <div className="flex flex-col gap-2">
       {stages.map((stage, i) => {
-        const widthPct = max > 0 ? Math.max((stage.value / max) * 100, stage.value > 0 ? 4 : 0) : 0
+        const widthPct = max > 0 ? Math.min(100, Math.max((stage.value / max) * 100, stage.value > 0 ? 4 : 0)) : 0
         const prev = i > 0 ? stages[i - 1].value : null
         const dropPct = prev && prev > 0 ? Math.round(((prev - stage.value) / prev) * 1000) / 10 : null
         return (
@@ -41,7 +41,7 @@ export function Funnel({
               />
             </div>
             {dropPct !== null && dropPct > 0 && (
-              <p className="text-[10px] text-muted-foreground">-{dropPct}% from previous stage</p>
+              <p className="text-xs text-muted-foreground">-{dropPct}% from previous stage</p>
             )}
           </div>
         )

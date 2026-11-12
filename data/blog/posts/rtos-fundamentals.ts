@@ -4,7 +4,7 @@ const _rtos_fundamentals: BlogPost = {
     slug: "rtos-fundamentals",
     title: "What an RTOS Actually Does: Tasks, Scheduling and Why It Matters",
     date: "2026-06-15",
-    type: "research",
+    type: "explainer",
     cover_image: "/images/blog/covers/rtos-fundamentals.webp",
     cover_credit: "Photo: Ordercrazy, CC0, via Wikimedia Commons",
     cover_alt: "An STM32 Nucleo-F401RE development board showing the microcontroller, user and reset buttons and labelled header pins",
@@ -12,6 +12,7 @@ const _rtos_fundamentals: BlogPost = {
       "A practical introduction to real-time operating systems: what a task scheduler does, why timing guarantees matter in embedded systems and how FreeRTOS implements preemptive multitasking on a microcontroller.",
     tags: ["RTOS", "FreeRTOS", "Embedded", "C", "Scheduling"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -194,14 +195,14 @@ void sensor_task(void *pvParameters) {
       {
         type: "ol-links",
         items: [
-          { text: "FreeRTOS: Mastering the FreeRTOS Real Time Kernel (free PDF)", url: "https://www.freertos.org/Documentation/RTOS_book.html" },
-          { text: "FreeRTOS official documentation and API reference", url: "https://www.freertos.org/Documentation/RTOS_book.html" },
+          { text: "FreeRTOS: Mastering the FreeRTOS Real Time Kernel (free PDF)", url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book" },
+          { text: "FreeRTOS official documentation and API reference", url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book" },
           { text: "Mars Pathfinder priority inversion bug - Glenn Reeves, JPL (1997)", url: "https://www.rapitasystems.com/blog/what-really-happened-software-mars-pathfinder-spacecraft" },
           { text: "Buttazzo, G.: Hard Real-Time Computing Systems (Springer, 3rd ed.)", url: "https://link.springer.com/book/10.1007/978-1-4614-0676-1" },
           { text: "Joseph Yiu: The Definitive Guide to ARM Cortex-M3 and Cortex-M4 Processors", url: "https://www.sciencedirect.com/book/9780124080829/the-definitive-guide-to-arm-cortex-m3-and-cortex-m4-processors" },
           { text: "Wikipedia: Real-time operating system - background and classification", url: "https://en.wikipedia.org/wiki/Real-time_operating_system" },
           { text: "POSIX.1b real-time extensions (IEEE Std 1003.1b)", url: "https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap02.html" },
-          { text: "FreeRTOS stack overflow detection and checking", url: "https://www.freertos.org/Stacks-and-stack-overflow-checking.html" },
+          { text: "FreeRTOS stack overflow detection and checking", url: "https://www.freertos.org/Documentation/02-Kernel/02-Kernel-features/09-Memory-management/02-Stack-usage-and-stack-overflow-checking" },
           { text: "Making Embedded Systems - Elecia White - chapter on RTOS and task design", url: "https://www.oreilly.com/library/view/making-embedded-systems/9781449308889/" },
         ],
       },

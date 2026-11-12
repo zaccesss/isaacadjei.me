@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 7,
-  slug: "outside-07-hybrid-electric-flight-utah",
+  id: "outside-07-hybrid-electric-flight-utah",
+  slug: "a-hybrid-electric-aircraft-flies-across-utah",
   title: "A hybrid-electric aircraft flies across Utah",
   subtitle: "Ampaire's EEL flew from Salt Lake City to Cedar City as a test of future cargo routes.",
   tags: ["Aviation", "Electric Propulsion", "Engineering"],

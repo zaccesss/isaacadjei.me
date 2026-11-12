@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 1,
-  slug: "issue-01-from-a-sensor-to-a-platform",
+  id: "issue-01-from-a-sensor-to-a-platform",
+  slug: "phaemos-astoncv-and-a-first-look-at-analytics",
   title: "PHAEMOS, AstonCV and a first look at analytics",
   subtitle: "The first issue: a predictive maintenance platform, a CV database with no frameworks, a business analytics course and six small lessons.",
   tags: ["IoT", "ML", "Full-Stack", "Security", "Python", "Data Science"],

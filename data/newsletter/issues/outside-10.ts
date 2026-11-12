@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 10,
-  slug: "outside-10-flex-and-sentinel-3c",
+  id: "outside-10-flex-and-sentinel-3c",
+  slug: "flex-launches-to-watch-plants-glow-from-orbit",
   title: "FLEX launches to watch plants glow from orbit",
   subtitle: "ESA's first satellite built to measure photosynthesis shared a Vega-C ride with Sentinel-3C.",
   tags: ["Space", "Earth Observation", "Sensors"],
@@ -20,7 +21,7 @@ const issue: NewsletterIssueFile = {
     {
       type: "ul",
       items: [
-        "[FLEX and Sentinel-3C launched (ESA)](https://www.esa.int/Applications/Observing_the_Earth/FLEX_and_Sentinel-3C_launched)",
+        "[FLEX and Sentinel-3C launched (ESA)](https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/flex-and-sentinel-3c-launched)",
         "[Launch preview: Avio to launch spacecraft to monitor plant health and ocean conditions (Spaceflight Now)](https://spaceflightnow.com/2026/09/14/live-coverage-avio-to-launch-spacecraft-to-monitor-plant-health-and-ocean-conditions/)",
       ],
     },

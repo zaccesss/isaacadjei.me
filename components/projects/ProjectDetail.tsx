@@ -188,14 +188,14 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
               {releases.map((r) => r.release && (
                 <li key={r.repo}>
                   {r.name}{" "}
-                  <a href={r.release.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+                  <a href={r.release.url} target="_blank" rel="noopener noreferrer" className="body-link">
                     {r.release.tag}, released {releaseDate(r.release.date)}<span className="sr-only"> (release notes open in a new tab)</span>
                   </a>
                 </li>
               ))}
             </ul>
             <p className="text-xs text-muted-foreground">
-              Every way to install them is on the <Link href="/install" className="text-primary underline underline-offset-2">Install</Link> page.
+              Every way to install them is on the <Link href="/install" className="body-link">Install</Link> page.
             </p>
           </div>
         )}
@@ -321,7 +321,7 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                 <li key={r.url} className="flex gap-3 text-sm text-foreground/90">
                   <span className="shrink-0 font-mono text-primary">{String(j + 1).padStart(2, "0")}.</span>
                   <span>
-                    <a href={r.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80">{r.title}</a>
+                    <a href={r.url} target="_blank" rel="noopener noreferrer" className="body-link">{r.title}</a>
                     {r.note && <span className="text-muted-foreground"> {renderInline(r.note)}</span>}
                   </span>
                 </li>
@@ -350,7 +350,7 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                 ...(project.getInvolved.roadmap ? [{ label: "Roadmap board", url: project.getInvolved.roadmap }] : []),
               ].map((l) => (
                 <li key={l.url}>
-                  <a href={l.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:opacity-80">
+                  <a href={l.url} target="_blank" rel="noopener noreferrer" className="body-link">
                     {l.label}
                   </a>
                 </li>

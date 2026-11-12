@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const SECTION_HEADING = "text-xs font-semibold uppercase tracking-widest text-muted-foreground"
 
 function ResearchAnchor({ link, className }: { link: ResearchLink; className?: string }) {
-  const cls = className ?? "inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+  const cls = className ?? "inline-flex items-center gap-1 text-xs font-medium body-link"
   if (link.href.startsWith("/")) {
     return (
       <Link href={link.href} className={cls}>
@@ -50,7 +50,7 @@ export default function ResearchPage() {
         </p>
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
           Work that is finished and archived with a DOI is on the{" "}
-          <Link href="/publications" className="text-primary underline underline-offset-4 hover:text-primary/80">Publications page</Link>.
+          <Link href="/publications" className="body-link">Publications page</Link>.
         </p>
       </div>
 
@@ -112,7 +112,7 @@ export default function ResearchPage() {
                     <p className="text-xs text-muted-foreground">{paper.why}</p>
                     <ResearchAnchor
                       link={{ label: paper.identifier, href: paper.href }}
-                      className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-mono body-link"
                     />
                   </li>
                 ))}

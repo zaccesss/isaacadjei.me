@@ -30,13 +30,14 @@ export default function FeedsPage() {
         <h1 className="text-4xl font-bold tracking-tight">Feeds</h1>
         <p className="text-lg text-muted-foreground leading-relaxed">
           Follow new writing without social media or an inbox. Paste any feed URL below into a feed reader and new
-          posts show up there as they go live.
+          posts show up there as they go live. Every entry also links to its reactions and its comments on this
+          site. On a TIL the second link is a reply.
         </p>
         <p className="text-sm text-muted-foreground">
           New to feeds? They are a free, open way to follow websites in one app. Every feed here is Atom, which any RSS and Atom reader understands.{" "}
           <a
             href="https://aboutfeeds.com/"
-            className="font-medium text-primary underline underline-offset-4 hover:text-primary/70"
+            className="font-medium body-link"
           >
             Read the beginner guide at About Feeds
           </a>

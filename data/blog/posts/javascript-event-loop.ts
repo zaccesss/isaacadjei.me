@@ -7,10 +7,12 @@ const _javascript_event_loop: BlogPost = {
     type: "article",
     cover_image: "/images/blog/covers/javascript-event-loop.webp",
     cover_credit: "Photo: Gabriel Heinzer, Unsplash Licence, via Unsplash",
+    cover_alt: "Angled close-up of colourful JavaScript code on a black screen, including a forEach loop and a parseFloat call",
     description:
       "Most explanations of the JavaScript event loop use hand-wavy analogies. This one explains the actual mechanism: the call stack, the task queue, the microtask queue and why the order matters for real code.",
     tags: ["JavaScript", "TypeScript", "Web", "Async", "Full-Stack"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -149,7 +151,7 @@ console.log("C")                      // runs before "B"
         type: "ol-links",
         items: [
           { text: "HTML Living Standard - event loop processing model (WHATWG)", url: "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops" },
-          { text: "MDN: Concurrency model and the event loop", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop" },
+          { text: "MDN: Concurrency model and the event loop", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model" },
           { text: "Jake Archibald: Tasks, microtasks, queues and schedules (2015)", url: "https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" },
           { text: "MDN: queueMicrotask() reference", url: "https://developer.mozilla.org/en-US/docs/Web/API/Window/queueMicrotask" },
           { text: "Node.js event loop documentation - includes process.nextTick() and libuv phases", url: "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick" },

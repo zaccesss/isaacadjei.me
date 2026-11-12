@@ -137,6 +137,8 @@ html.apple {
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 225 65% 40%;
     --primary-foreground: 210 40% 98%;
+    /* the hover and focus colour of a link in running text (the body-link utility). The same blue as primary here */
+    --link-hover: 225 65% 40%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
@@ -160,6 +162,10 @@ html.apple {
     --popover-foreground: 0 0% 98%;
     --primary: 225 65% 60%;
     --primary-foreground: 0 0% 98%;
+    /* lighter than primary in the dark theme: primary is 4.56 to 1 on the page but under 4.5 on the card and muted
+       surfaces a link can sit on. This one is 5.82 to 1 on the page and 4.70 to 1 on the muted colour, the
+       lightest of them */
+    --link-hover: 225 65% 66%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
@@ -220,6 +226,43 @@ html.apple {
   .recharts-text,
   .recharts-legend-item-text {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
+  the one rule for a link in running text, on every public page. The link keeps the text's own colour and is
+  marked by an underline that is always there, so it never depends on colour alone. Hover and keyboard focus turn
+  the text and the underline blue. Focus also draws a ring, because a colour change by itself is easy to miss.
+  The blue is its own variable, not primary, so it can be light enough in the dark theme to reach 4.5 to 1 on the
+  page, the card and the muted surfaces alike without changing primary for buttons and everything else.
+  The underline uses the full muted colour so it reaches 3 to 1 against the page in both themes. The fade only
+  runs when the device has not asked for less motion. Being a utility, it can sit beside layout classes such as
+  inline-flex or font-medium, which still apply
+*/
+@utility body-link {
+  color: hsl(var(--foreground));
+  text-decoration-line: underline;
+  text-decoration-color: hsl(var(--muted-foreground));
+  text-decoration-thickness: max(1px, 0.0625em);
+  text-underline-offset: 4px;
+  border-radius: 2px;
+
+  @media (hover: hover) {
+    &:hover {
+      color: hsl(var(--link-hover));
+      text-decoration-color: hsl(var(--link-hover));
+    }
+  }
+
+  &:focus-visible {
+    color: hsl(var(--link-hover));
+    text-decoration-color: hsl(var(--link-hover));
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: color 150ms ease, text-decoration-color 150ms ease;
   }
 }
 

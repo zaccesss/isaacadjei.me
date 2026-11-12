@@ -8,7 +8,7 @@ export default function SubscribeBox({ id }: { id?: string }) {
       <p className="text-xs text-muted-foreground">
         Free with no spam: you confirm by email first, can leave in one click and can see how your details are handled
         in the{" "}
-        <Link href="/privacy" className="text-primary underline underline-offset-2 hover:text-primary/80">
+        <Link href="/privacy" className="body-link">
           privacy policy
         </Link>
         .

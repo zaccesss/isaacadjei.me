@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 2,
-  slug: "outside-02-nasa-moon-base-missions",
+  id: "outside-02-nasa-moon-base-missions",
+  slug: "nasa-names-its-first-moon-base-missions",
   title: "NASA names its first three Moon Base missions",
   subtitle: "Commercial landers, a rover and a set of hopping drones make up the first steps towards a lunar base.",
   tags: ["Space", "Robotics", "Engineering"],

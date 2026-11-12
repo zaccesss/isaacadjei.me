@@ -2,10 +2,10 @@
 
 > Public version of this guide: https://isaacadjei.me/contribute
 
-This repository is a published copy of the source of [isaacadjei.me](https://isaacadjei.me), a personal site with a fixed direction.
+This repository holds the source of [isaacadjei.me](https://isaacadjei.me), a personal site with a fixed direction.
 
 > [!IMPORTANT]
-> Changes are made at the source and published here, so a pull request cannot be merged directly. Please open an issue instead.
+> I make every change myself, so a pull request cannot be merged here. Please open an issue instead.
 
 ## Useful things to report
 
@@ -23,10 +23,10 @@ This repository is a published copy of the source of [isaacadjei.me](https://isa
 
 ## What happens to a report
 
-I read each issue and apply accepted fixes at the source. They appear here in the next publish. I will reference the issue when they do.
+I read each issue and make accepted fixes myself. They appear here with the next release. I will reference the issue when they do.
 
 Please follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Using AI
 
-AI tools are welcome within my [AI policy](https://github.com/zaccesss/ai-policy), also [on my site](https://isaacadjei.me/ai-policy). **Every pull request must say how AI was used, even when the answer is None.** Write your own issue and pull request titles and descriptions, understand everything you submit and test it before you open it.
+AI tools are welcome within my [AI policy](https://github.com/zaccesss/ai-policy), also [on my site](https://isaacadjei.me/ai-policy). If AI helped you find or check a problem, say so in the issue. Write the title and the description yourself and understand what you are reporting.

@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 1,
-  slug: "midweek-01-africa-day-oau",
+  id: "midweek-01-africa-day-oau",
+  slug: "africa-day-and-the-birth-of-african-unity",
   title: "Africa Day and the birth of African unity",
   subtitle: "Every 25 May the continent marks the founding of the Organisation of African Unity in 1963.",
   tags: ["Africa", "History", "Politics"],

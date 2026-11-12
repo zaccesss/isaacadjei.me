@@ -40,7 +40,7 @@ function Item({ c }: { c: PublicContribution }) {
           <span>
             ·{" "}
             {c.relation.url ? (
-              <a href={c.relation.url} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+              <a href={c.relation.url} target="_blank" rel="noopener noreferrer" className="body-link">
                 {c.relation.text}
                 <span className="sr-only"> (opens the linked work in a new tab)</span>
               </a>
@@ -50,13 +50,13 @@ function Item({ c }: { c: PublicContribution }) {
           </span>
         )}
         {c.url && (
-          <a href={c.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary underline underline-offset-2">
+          <a href={c.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 body-link">
             View the {mailed && c.commit ? "thread" : what}<span className="sr-only">: {c.title} (opens in a new tab)</span>
             <ExternalLink className="h-3 w-3" aria-hidden />
           </a>
         )}
         {c.commit && (
-          <a href={c.commit.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary underline underline-offset-2">
+          <a href={c.commit.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 body-link">
             View the commit in {c.commit.tree}<span className="sr-only">: {c.title} (opens in a new tab)</span>
             <ExternalLink className="h-3 w-3" aria-hidden />
           </a>
@@ -106,7 +106,7 @@ export default async function OpenSourcePage() {
       </div>
 
       <p className="text-sm text-muted-foreground">
-        The numbers also sit with the rest of my stats on the <Link href="/stats#open-source" className="text-primary underline underline-offset-2">stats page</Link>.
+        The numbers also sit with the rest of my stats on the <Link href="/stats#open-source" className="body-link">stats page</Link>.
       </p>
     </div>
   )

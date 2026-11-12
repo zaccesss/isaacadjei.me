@@ -12,6 +12,7 @@ const _fpga_vhdl_introduction: BlogPost = {
       "A beginner-friendly introduction to FPGAs and VHDL: what an FPGA actually is, how it differs from a microcontroller, why hardware description languages feel so different from programming and the mental model shift you need to make sense of it all.",
     tags: ["FPGA", "VHDL", "Embedded", "Hardware", "Digital Logic", "Beginners"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -43,7 +44,7 @@ const _fpga_vhdl_introduction: BlogPost = {
       },
       {
         type: "p",
-        text: "A modern FPGA contains three main types of resources. Logic elements (called LUTs - look-up tables - in most architectures) are small configurable truth tables that implement any boolean function of their inputs. Flip-flops store state. Block RAMs are fixed hard memories typically 18 Kbit or 36 Kbit in size, used for FIFOs, lookup tables and local storage. Higher-end FPGAs also contain DSP blocks (hardware multiplier-adder units), clock management tiles and, on devices like the [Xilinx](https://www.xilinx.com) Zynq, hardened [ARM](https://developer.arm.com) processor cores alongside the programmable fabric.",
+        text: "A modern FPGA contains three main types of resources. Logic elements (called LUTs - look-up tables - in most architectures) are small configurable truth tables that implement any boolean function of their inputs. Flip-flops store state. Block RAMs are fixed hard memories typically 18 Kbit or 36 Kbit in size, used for FIFOs, lookup tables and local storage. Higher-end FPGAs also contain DSP blocks (hardware multiplier-adder units), clock management tiles and, on devices like the [Xilinx](https://www.amd.com/en/products/adaptive-socs-and-fpgas.html) Zynq, hardened [ARM](https://developer.arm.com) processor cores alongside the programmable fabric.",
       },
       {
         type: "p",
@@ -165,7 +166,7 @@ end architecture rtl;`,
       },
       {
         type: "p",
-        text: "The two major FPGA vendors are AMD (formerly Xilinx) and Intel (formerly Altera). Both provide free development environments: [Vivado](https://www.xilinx.com/products/design-tools/vivado.html) (AMD, download from amd.com) and Quartus Prime Lite (Intel, download from intel.com). Both are large downloads - 50-80 GB - but the free tiers cover a wide range of entry-level devices. For a beginner board, the Basys 3 (Digilent, Xilinx Artix-7) is the most widely used in university courses. The iCEstick (Lattice iCE40) is a cheaper alternative that works with the fully open-source IceStorm toolchain (Yosys synthesiser plus nextpnr place-and-route), which is easier to understand than Vivado or Quartus. The Nand2Tetris course at nand2tetris.org builds a complete computer from logic gates up and gives you the conceptual foundation that makes VHDL make sense before you write a single line of it.",
+        text: "The two major FPGA vendors are AMD (formerly Xilinx) and Intel (formerly Altera). Both provide free development environments: [Vivado](https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado.html) (AMD, download from amd.com) and Quartus Prime Lite (Intel, download from intel.com). Both are large downloads - 50-80 GB - but the free tiers cover a wide range of entry-level devices. For a beginner board, the Basys 3 (Digilent, Xilinx Artix-7) is the most widely used in university courses. The iCEstick (Lattice iCE40) is a cheaper alternative that works with the fully open-source IceStorm toolchain (Yosys synthesiser plus nextpnr place-and-route), which is easier to understand than Vivado or Quartus. The Nand2Tetris course at nand2tetris.org builds a complete computer from logic gates up and gives you the conceptual foundation that makes VHDL make sense before you write a single line of it.",
       },
       {
         type: "quote",

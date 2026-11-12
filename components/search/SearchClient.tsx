@@ -361,7 +361,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                         href={issue.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                       >
                         <div className="space-y-1 min-w-0">
                           <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -437,7 +437,7 @@ function ResultCard({
     <li>
       <Link
         href={href}
-        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
       >
         <div className="space-y-1.5 min-w-0">
           <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">

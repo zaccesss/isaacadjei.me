@@ -8,6 +8,7 @@ const _two_stage_audio_amplifier: BlogPost = {
     type: "report",
     projectSlug: "audio-amplifier",
     cover_image: "/images/projects/audio-amplifier/pcb-angled.webp",
+    cover_alt: "A small purple circuit board with a large black capacitor, a green LED and an audio socket, fed by red and black wires",
     description:
       "Full technical report on the design, simulation, PCB fabrication and testing of a two-stage audio amplifier using a TL071 active band-pass filter and OPA551 unity-gain output buffer, optimised for an iPhone input and 8 ohm speaker load.",
     tags: ["Electronics", "PCB", "Op-Amp", "Audio", "Aston", "Proteus"],

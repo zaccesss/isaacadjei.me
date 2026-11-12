@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 9,
-  slug: "issue-09-types-in-python",
+  id: "issue-09-types-in-python",
+  slug: "types-in-python-and-six-small-lessons",
   title: "Types in Python and six small lessons",
   subtitle: "The Python type annotations I actually use, plus heaps, handshakes, stack overflows, VHDL and two Ghanaian languages.",
   tags: ["Python", "Types", "FastAPI", "Backend"],

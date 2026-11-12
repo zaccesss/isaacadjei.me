@@ -4,7 +4,6 @@ const SITE = "https://isaacadjei.me"
 
 export interface NewsletterIssue {
   id: string
-  number: number
   label: string
   kind: "letter" | "outside" | "midweek"
   title: string
@@ -21,8 +20,7 @@ export interface NewsletterIssue {
 
 export function toListing(issue: Issue): NewsletterIssue {
   return {
-    id: issue.slug,
-    number: issue.number,
+    id: issue.id,
     label: issueLabel(issue),
     kind: issue.kind ?? "letter",
     title: issue.title,
@@ -30,7 +28,7 @@ export function toListing(issue: Issue): NewsletterIssue {
     publishDate: `${issue.date}T12:00:00Z`,
     slug: issue.slug,
     href: `/newsletter/${issue.slug}`,
-    webUrl: `${SITE}/newsletter/${issue.slug}`,
+    webUrl: `${SITE}/newsletter/${issue.id}`,
     thumbnailUrl: null,
     status: "confirmed",
     itemCount: issue.items.length,

@@ -4,9 +4,10 @@ const _calibrating_anomaly_scores: BlogPost = {
   slug: "calibrating-anomaly-scores",
   title: "Calibrating Anomaly Scores: Why One Formula Flagged Every Reading",
   date: "2026-10-13",
-  type: "research",
+  type: "explainer",
   cover_image: "/images/blog/covers/calibrating-anomaly-scores-shot.webp",
   cover_image_dark: "/images/blog/covers/calibrating-anomaly-scores-shot-dark.webp",
+  cover_alt: "Close-up of PHAEMOS charts: a red anomaly score line crossing a dashed threshold, above vibration and temperature graphs",
   description:
     "PHAEMOS flagged 100% of its own training data as anomalous because of a one-line normalisation formula. How I found the bug, calibrated the Isolation Forest against its own decision boundary and gave each sensor node its own model.",
   tags: ["ML", "Python", "IoT", "PHAEMOS", "Maintenance"],

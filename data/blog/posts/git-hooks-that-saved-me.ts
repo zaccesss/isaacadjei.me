@@ -7,6 +7,7 @@ const _git_hooks_that_saved_me: BlogPost = {
   updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/git-hooks-that-saved-me.webp",
+  cover_alt: "A terminal where a git commit is refused with the message: possible AWS access key ID in staged changes",
   description:
     "The three global Git hooks I run on every machine, what each one checks and the real mistakes they have stopped before they reached a remote.",
   tags: ["Git", "GitHub", "Security", "Tools", "Setup"],

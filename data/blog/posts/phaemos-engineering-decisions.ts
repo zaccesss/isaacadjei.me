@@ -104,7 +104,7 @@ const _phaemos_engineering_decisions: BlogPost = {
           { text: "MQTT specification - the protocol used for node-to-backend communication", url: "https://mqtt.org/mqtt-specification/" },
           { text: "Designing Data-Intensive Applications - Kleppmann - informed the backend architecture decisions", url: "https://dataintensive.net/" },
           { text: "Docker documentation - Compose file reference", url: "https://docs.docker.com/compose/" },
-          { text: "TimescaleDB - time-series PostgreSQL extension (considered as alternative data store)", url: "https://docs.timescale.com/" },
+          { text: "TimescaleDB - time-series PostgreSQL extension (considered as alternative data store)", url: "https://www.tigerdata.com/docs" },
         ],
       },
     ],

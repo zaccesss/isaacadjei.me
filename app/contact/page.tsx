@@ -28,7 +28,7 @@ export default function ContactPage() {
         </p>
         <p className="text-muted-foreground">
           Easier to talk it through?{" "}
-          <a href="/book" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+          <a href="/book" className="body-link">
             Book
           </a>{" "}
           a short call at a time that suits you.
@@ -40,7 +40,7 @@ export default function ContactPage() {
           Prefer email?{" "}
           <a
             href="mailto:contact@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact@isaacadjei.me
           </a>

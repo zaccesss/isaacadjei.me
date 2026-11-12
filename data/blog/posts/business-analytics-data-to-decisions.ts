@@ -4,13 +4,15 @@ const _business_analytics_data_to_decisions: BlogPost = {
     slug: "business-analytics-data-to-decisions",
     title: "Learning Business Analytics: From Probability to Machine Learning",
     date: "2026-05-01",
-    type: "notes",
+    type: "article",
     cover_image: "/images/blog/covers/business-analytics-data-to-decisions.webp",
     cover_credit: "Photo: Luke Chesser, Unsplash Licence, via Unsplash",
+    cover_alt: "A laptop screen showing a dark analytics dashboard with blue bar charts and line graphs of load time and bounce rate",
     description:
       "Notes from working through a structured executive education business analytics course, covering probability, statistics, Python, descriptive analytics, predictive ML and prescriptive optimisation.",
     tags: ["Data Science", "Python", "ML", "Analytics", "Learning"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",

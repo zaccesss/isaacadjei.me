@@ -7,6 +7,7 @@ const _resources_engineering_and_technology: BlogPost = {
     type: "resources",
     cover_image: "/images/blog/covers/resources-engineering-and-technology.webp",
     cover_credit: "Photo: Susan Q Yin, Unsplash Licence, via Unsplash",
+    cover_alt: "Curved library shelves packed with colourful books, following a rounded wall beside a walkway with a black railing",
     description:
       "A curated list of books, courses, documentation, tools and videos I have found genuinely useful for learning embedded systems, software engineering, computer science and the craft of building things. Updated as I find new things worth recommending.",
     tags: ["Resources", "Embedded", "Software Engineering", "Learning", "Tools"],
@@ -25,8 +26,8 @@ const _resources_engineering_and_technology: BlogPost = {
         type: "ol-links",
         items: [
           { text: "The Art of Electronics - Horowitz and Hill (3rd ed.) - the definitive electronics reference. Dense but readable. Buy it.", url: "https://www.amazon.co.uk/Art-Electronics-Paul-Horowitz/dp/0521809266" },
-          { text: "Microchip AVR datasheets - reading a real datasheet is the best embedded systems education available. Free.", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega644P-Datasheet.pdf" },
-          { text: "FreeRTOS: Mastering the FreeRTOS Real Time Kernel - the official FreeRTOS book. Free PDF, genuinely good.", url: "https://www.freertos.org/Documentation/RTOS_book.html" },
+          { text: "Microchip AVR datasheets - reading a real datasheet is the best embedded systems education available. Free.", url: "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf" },
+          { text: "FreeRTOS: Mastering the FreeRTOS Real Time Kernel - the official FreeRTOS book. Free PDF, genuinely good.", url: "https://www.freertos.org/Documentation/02-Kernel/07-Books-and-manual/01-RTOS_book" },
           { text: "Making Embedded Systems - Elecia White - practical and well-written. Better than most university courses on the topic.", url: "https://www.oreilly.com/library/view/making-embedded-systems/9781449308889/" },
           { text: "Embedded.fm podcast - long-running show covering embedded engineering professionally. Good while soldering.", url: "https://embedded.fm" },
           { text: "I2C bus primer - a concise protocol reference (NXP retired its own UM10204 PDF)", url: "https://www.i2c-bus.org/i2c-primer/" },
@@ -69,8 +70,8 @@ const _resources_engineering_and_technology: BlogPost = {
       {
         type: "ol-links",
         items: [
-          { text: "OWASP Top 10 - the standard reference for web application security vulnerabilities. Free.", url: "https://owasp.org/www-project-top-ten/" },
-          { text: "OWASP IoT Top 10 - same rigour applied to connected devices. Free.", url: "https://owasp.org/www-project-internet-of-things/" },
+          { text: "OWASP Top 10 - the standard reference for web application security vulnerabilities. Free.", url: "https://owasp.org/projects/top-ten" },
+          { text: "OWASP IoT Top 10 - same rigour applied to connected devices. Free.", url: "https://owasp.org/projects/internet-of-things" },
           { text: "Cryptopals crypto challenges - learn cryptography by breaking intentionally weak implementations. Free and genuinely fun.", url: "https://cryptopals.com/" },
           { text: "LiveOverflow (YouTube) - security concepts explained with real CTF challenges. One of the best security educators on the platform.", url: "https://www.youtube.com/@LiveOverflow" },
         ],

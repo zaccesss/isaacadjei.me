@@ -6,7 +6,7 @@ const _css_animation_fill_mode: TILEntry = {
     date: "2026-06-16",
     category: "CSS",
     published: true,
-    body: "The [`animation-fill-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) property controls what styles apply to an element outside its active animation period. `forwards` retains the final keyframe state after the animation ends. `backwards` applies the first keyframe state during the `animation-delay` period, so the element does not flash its pre-animation style while waiting to start. `both` does both: the most useful value for entrance animations where you set `opacity: 0` in the first keyframe and want the element to be invisible during the delay.",
+    body: "The [`animation-fill-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode) property controls what styles apply to an element outside its active animation period. `forwards` retains the final keyframe state after the animation ends. `backwards` applies the first keyframe state during the `animation-delay` period, so the element does not flash its pre-animation style while waiting to start. `both` does both: the most useful value for entrance animations where you set `opacity: 0` in the first keyframe and want the element to be invisible during the delay.",
     detail: [
       {
         type: "code",
@@ -29,7 +29,7 @@ const _css_animation_fill_mode: TILEntry = {
       },
       {
         type: "link",
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode",
+        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode",
         label: "MDN: animation-fill-mode",
         description: "Interactive examples showing none, forwards, backwards and both side by side.",
       },

@@ -5,6 +5,7 @@ export const MEDIA_BASE = "https://media.isaacadjei.me"
 export const MEDIA_WIDTHS = [96, 192, 384, 640, 1080, 1600, 2400]
 
 const INDEX = index as Record<string, string>
+const HASH_LENGTH = 10
 
 function pathKey(path: string): string {
   let h = 0x811c9dc5
@@ -13,10 +14,14 @@ function pathKey(path: string): string {
 }
 
 type Entry = { h: string; img: boolean }
+
+export function readIndexValue(v: string): Entry {
+  return v.length === HASH_LENGTH + 1 && v.startsWith("f") ? { h: v.slice(1), img: false } : { h: v, img: true }
+}
+
 function lookup(src: string): Entry | null {
   const v = INDEX[pathKey(src)]
-  if (!v) return null
-  return v.startsWith("f") ? { h: v.slice(1), img: false } : { h: v, img: true }
+  return v ? readIndexValue(v) : null
 }
 
 function key(path: string, hash: string, variant: string): string {

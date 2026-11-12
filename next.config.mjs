@@ -1,4 +1,5 @@
 import { contentSecurityPolicy, permissionsPolicy } from "./lib/security/csp.mjs"
+import { newsletterRedirects } from "./data/newsletter/legacy-slugs.mjs"
 
 const isDev = process.env.NODE_ENV === "development"
 
@@ -51,6 +52,8 @@ const nextConfig = {
       // role CVs are no longer public; the public page keeps the general CV
       { source: "/cv/cv-picker", destination: "/cv", permanent: false },
       { source: "/cv/cover-letters", destination: "/cv", permanent: false },
+      // newsletter addresses lost their kind and number, so every address an issue had before still lands on it
+      ...newsletterRedirects(),
     ]
   },
   async headers() {

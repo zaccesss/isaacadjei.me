@@ -12,6 +12,7 @@ const _how_gps_works_relativity: BlogPost = {
     "How GPS turns radio timing into a position, why it needs four satellites and why both of Einstein's theories of relativity are built into every satellite clock.",
   tags: ["Engineering", "Research", "Python", "Learning", "Hardware"],
   published: true,
+  archived: true,
   content: [
     {
       type: "p",

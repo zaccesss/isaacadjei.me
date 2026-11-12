@@ -32,7 +32,7 @@ export default function SecurityPolicyPage() {
           This page covers this website. For my software and hardware{" "}
           <Link
             href="/projects"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             projects
           </Link>
@@ -44,7 +44,7 @@ export default function SecurityPolicyPage() {
             href="https://github.com/zaccesss/security-policy"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1.5 body-link"
           >
             <Github className="h-4 w-4" />
             Also on GitHub: zaccesss/security-policy
@@ -73,15 +73,15 @@ export default function SecurityPolicyPage() {
         </ul>
         <p className="text-muted-foreground leading-relaxed">
           Vitafolio, PHAEMOS and MELOPHOS each have their own policy: 
-          <a href="https://github.com/zaccesss/vitafolio/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/zaccesss/vitafolio/blob/main/SECURITY.md" className="body-link" target="_blank" rel="noopener noreferrer">
             Vitafolio
           </a>
           , 
-          <a href="https://github.com/phaemos/.github/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/phaemos/.github/blob/main/SECURITY.md" className="body-link" target="_blank" rel="noopener noreferrer">
             PHAEMOS
           </a> 
           and 
-          <a href="https://github.com/melophos/.github/blob/main/SECURITY.md" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/melophos/.github/blob/main/SECURITY.md" className="body-link" target="_blank" rel="noopener noreferrer">
             MELOPHOS
           </a>
           . Report issues in those projects there.
@@ -123,7 +123,7 @@ export default function SecurityPolicyPage() {
             href="https://github.com/zaccesss/isaacadjei.me/security/advisories/new"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             private report form for isaacadjei.me
           </a>
@@ -143,7 +143,7 @@ export default function SecurityPolicyPage() {
           You can also send vulnerability reports by email to{" "}
           <a
             href="mailto:security@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             security@isaacadjei.me
           </a>{" "}
@@ -153,7 +153,7 @@ export default function SecurityPolicyPage() {
           If email is not convenient, you can also use the{" "}
           <Link
             href="/contact"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact page
           </Link>{" "}
@@ -201,7 +201,7 @@ export default function SecurityPolicyPage() {
           I will not take legal action against researchers who act in good faith, follow this policy
           and do not access, modify or delete data beyond what is needed to demonstrate the
           vulnerability. Valid reporters will be acknowledged on the{" "}
-          <a href="/hall-of-fame" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+          <a href="/hall-of-fame" className="body-link">
             Hall of Fame
           </a>
           .

@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 4,
-  slug: "issue-04-a-room-full-of-possibility",
+  id: "issue-04-a-room-full-of-possibility",
+  slug: "a-room-full-of-possibility",
   title: "A room full of possibility and a year to look back on",
   subtitle: "Sky's Black Heritage celebration day, a birthday reflection, the event loop, RTOS basics, contributing to open source and a summer plan.",
   tags: ["Personal", "Sky", "RTOS", "JavaScript", "Open Source", "Embedded"],

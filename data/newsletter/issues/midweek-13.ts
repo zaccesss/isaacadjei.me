@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 13,
-  slug: "midweek-13-penalty-shootout-pressure",
+  id: "midweek-13-penalty-shootout-pressure",
+  slug: "why-penalty-shoot-outs-are-a-test-of-nerve",
   title: "Why penalty shoot-outs are a test of nerve",
   subtitle: "Research on penalty shoot-outs shows that pressure, not skill, decides many of them.",
   tags: ["Psychology", "Football", "Sport"],

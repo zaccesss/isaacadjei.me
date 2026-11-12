@@ -6,7 +6,7 @@ const _css_logical_properties_rtl: TILEntry = {
     date: "2026-09-15",
     category: "CSS",
     published: true,
-    body: "Instead of `margin-left` and `padding-right`, [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) use `margin-inline-start` and `padding-inline-end`. These automatically flip in right-to-left layouts (Arabic, Hebrew, Persian) without any extra CSS. `block` maps to the vertical axis and `inline` to the horizontal. For projects that need RTL support, switching to logical properties eliminates an entire class of directional bug.",
+    body: "Instead of `margin-left` and `padding-right`, [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values) use `margin-inline-start` and `padding-inline-end`. These automatically flip in right-to-left layouts (Arabic, Hebrew, Persian) without any extra CSS. `block` maps to the vertical axis and `inline` to the horizontal. For projects that need RTL support, switching to logical properties eliminates an entire class of directional bug.",
     detail: [
       {
         type: "code",
@@ -32,7 +32,7 @@ const _css_logical_properties_rtl: TILEntry = {
       },
       {
         type: "link",
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values",
+        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values",
         label: "MDN: CSS Logical Properties",
         description: "Full reference with all physical-to-logical property mappings and browser compatibility table.",
       },

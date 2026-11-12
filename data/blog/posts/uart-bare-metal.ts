@@ -4,7 +4,7 @@ const _uart_bare_metal: BlogPost = {
     slug: "uart-bare-metal",
     title: "UART From Scratch: Serial Communication Without a Library",
     date: "2026-06-01",
-    type: "research",
+    type: "explainer",
     cover_image: "/images/blog/covers/uart-bare-metal.webp",
     cover_credit: "Photo: Windell Oskay, CC BY 2.0, via Wikimedia Commons",
     cover_alt: "A 40-pin AVR microcontroller soldered to a circuit board, with the PD0/RXD0 and PD1/TXD0 serial pins labelled on the silkscreen",
@@ -12,6 +12,7 @@ const _uart_bare_metal: BlogPost = {
       "How to set up UART on an AVR microcontroller using bare metal C, configure baud rate registers, transmit and receive bytes and debug embedded systems over a serial monitor.",
     tags: ["UART", "Embedded", "AVR", "C", "Serial"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -211,10 +212,10 @@ uint8_t uart_rx_read(void) {
       {
         type: "ol-links",
         items: [
-          { text: "ATmega644P datasheet - Section 19: USART0/1 (Microchip Technology)", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega644P-Datasheet.pdf" },
+          { text: "ATmega644P datasheet - Section 19: USART0/1 (Microchip Technology)", url: "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf" },
           { text: "Wikipedia: Universal asynchronous receiver-transmitter (UART) - protocol overview and history", url: "https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter" },
           { text: "Wikipedia: Baud - definition and relationship to bit rate", url: "https://en.wikipedia.org/wiki/Baud" },
-          { text: "AVR306: Using the AVR UART in C - Microchip application note", url: "https://ww1.microchip.com/downloads/en/AppNotes/doc1451.pdf" },
+          { text: "AVR306: Using the AVR UART in C - Microchip application note (archived)", url: "https://web.archive.org/web/20160412181238/http://www.atmel.com/Images/doc1451.pdf" },
           { text: "AVR-libc reference manual: Standard IO facilities and fdev_setup_stream", url: "https://www.nongnu.org/avr-libc/user-manual/group__avr__stdio.html" },
           { text: "PulseView / sigrok - open-source logic analyser software for decoding UART frames", url: "https://sigrok.org/wiki/PulseView" },
           { text: "avr-zac repository - the project where UART debugging is used in practice", url: "https://github.com/zaccesss/avr-zac" },

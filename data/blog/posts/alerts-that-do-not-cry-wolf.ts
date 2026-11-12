@@ -7,6 +7,7 @@ const _alerts_that_do_not_cry_wolf: BlogPost = {
   type: "blog",
   cover_image: "/images/blog/covers/alerts-that-do-not-cry-wolf-shot.webp",
   cover_image_dark: "/images/blog/covers/alerts-that-do-not-cry-wolf-shot-dark.webp",
+  cover_alt: "PHAEMOS overview page showing fleet health at 50%, two critical anomaly alerts and four machines marked Online",
   description:
     "A model that flags 5% of healthy readings will page someone constantly if every flag is an alert. How PHAEMOS turns noisy anomaly scores into trustworthy alerts with a run of three, a clear rule, a critical level and one ticket per fault.",
   tags: ["IoT", "Python", "PHAEMOS", "Maintenance", "Backend"],

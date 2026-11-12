@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 10,
-  slug: "midweek-10-black-history-month-uk",
+  id: "midweek-10-black-history-month-uk",
+  slug: "black-history-month-in-the-uk",
   title: "Black History Month in the UK starts tomorrow",
   subtitle: "The UK has marked Black History Month in October since 1987, thanks to a Ghanaian organiser in London.",
   tags: ["History", "UK", "Culture"],

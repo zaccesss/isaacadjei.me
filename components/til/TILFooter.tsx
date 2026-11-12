@@ -1,17 +1,7 @@
 import Link from "next/link"
 import type { TILEntry } from "@/data/til"
-import { socialLinks } from "@/data/social"
 
-const linkClass = "text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
-
-function formatDate(iso: string) {
-  return new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  })
-}
+const linkClass = "body-link"
 
 function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -28,10 +18,6 @@ interface Props {
 }
 
 export default function TILFooter({ entry, visibleEntries }: Props) {
-  const github = socialLinks.find((l) => l.name === "GitHub")
-  const linkedin = socialLinks.find((l) => l.name === "LinkedIn")
-  const newsletter = socialLinks.find((l) => l.name === "Newsletter")
-
   const series = entry.series
     ? visibleEntries
         .filter((e) => e.series === entry.series)
@@ -50,13 +36,10 @@ export default function TILFooter({ entry, visibleEntries }: Props) {
   }
   const showProjectSite = project && project.slug && !onThisSite(project.url)
 
+  if (!(project && projectHref) && !(entry.series && series.length > 0)) return null
+
   return (
     <footer className="space-y-4 border-t border-border pt-6 text-sm text-muted-foreground leading-relaxed">
-      <p>
-        Posted <time dateTime={entry.date}>{formatDate(entry.date)}</time> in{" "}
-        <span className="font-medium text-foreground">{entry.category}</span>
-      </p>
-
       {project && projectHref && (
         <p>
           Learned while building{" "}
@@ -101,16 +84,6 @@ export default function TILFooter({ entry, visibleEntries }: Props) {
           )}
         </nav>
       )}
-
-      <p>
-        Follow me on {github && <ExternalLink href={github.url}>GitHub</ExternalLink>}
-        {", "}
-        {linkedin && <ExternalLink href={linkedin.url}>LinkedIn</ExternalLink>} or{" "}
-        <Link href="/newsletter#subscribe" className={linkClass}>
-          subscribe to the newsletter
-        </Link>
-        .
-      </p>
     </footer>
   )
 }

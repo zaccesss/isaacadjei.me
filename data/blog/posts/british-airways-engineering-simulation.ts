@@ -7,6 +7,7 @@ const _british_airways_engineering_simulation: BlogPost = {
     type: "journal",
     cover_image: "/images/blog/covers/british-airways-engineering-simulation.webp",
     cover_credit: "Photo: Ross Parmly, Unsplash Licence, via Unsplash",
+    cover_alt: "An aircraft wing with an upturned tip seen from a cabin window, above towering clouds lit by a low sun",
     description:
       "Reflections on the British Airways Engineering Virtual Experience on Forage, covering A320 maintenance planning, C-check operations and what aviation engineering looks like from the inside.",
     tags: ["British Airways", "Aviation", "Engineering", "Maintenance", "Career"],

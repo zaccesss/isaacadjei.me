@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 12,
-  slug: "outside-12-bell-x-1-sound-barrier",
+  id: "outside-12-bell-x-1-sound-barrier",
+  slug: "the-day-the-bell-x-1-broke-the-sound-barrier",
   title: "The day the Bell X-1 broke the sound barrier",
   subtitle: "This week marks the anniversary of the first flight faster than sound, on 14 October 1947.",
   tags: ["Aviation", "History", "Engineering"],

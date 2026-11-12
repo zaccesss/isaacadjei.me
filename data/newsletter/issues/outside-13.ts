@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 13,
-  slug: "outside-13-silicon-photonics-reliability-standard",
+  id: "outside-13-silicon-photonics-reliability-standard",
+  slug: "silicon-photonics-gets-its-first-reliability-standard",
   title: "Silicon photonics gets its first reliability standard",
   subtitle: "JEDEC published JESD264, a shared rulebook for qualifying chips that move data with light.",
   tags: ["Electronics", "Semiconductors", "Data centres"],

@@ -70,7 +70,7 @@ const post: NotePost = {
         { text: "PMC: Five-year safety and performance results from the Argus II Retinal Prosthesis System clinical trial", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5035591/" },
         { text: "PMC: Can bionic eyes restore vision? Breakthroughs, challenges and future frontiers - a comprehensive review", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12659496/" },
         { text: "PMC: Advancements in ocular neuroprosthetics - bridging neuroscience and ICT for vision restoration", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11852115/" },
-        { text: "National Eye Institute (NIH): Retinitis Pigmentosa - the condition Argus II targets", url: "https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/retinitis-pigmentosa" },
+        { text: "National Eye Institute (NIH): Retinitis Pigmentosa - the condition Argus II targets", url: "https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/retinitis-pigmentosa" },
         { text: "PubMed: Hydroxyapatite orbital implants - research literature", url: "https://pubmed.ncbi.nlm.nih.gov/?term=hydroxyapatite+orbital+implant+surgery&sort=date" },
         { text: "PubMed: Flexible electronics for neural interfaces - review literature", url: "https://pubmed.ncbi.nlm.nih.gov/?term=flexible+electronics+neural+interface+review&filter=pubt.review&sort=date" },
         { text: "IEEE Transactions on Neural Systems and Rehabilitation Engineering", url: "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7333" },

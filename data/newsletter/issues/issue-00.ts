@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 0,
-  slug: "issue-00-hello",
+  id: "issue-00-hello",
+  slug: "who-i-am-and-why-i-am-writing",
   title: "Hello: who I am and why I am writing",
   subtitle: "Who I am, what made me start a newsletter and what each issue will bring.",
   tags: ["Personal", "Engineering", "Writing"],

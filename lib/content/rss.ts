@@ -13,9 +13,14 @@ export interface RssItem {
   sublabel?: string
   label?: { text: string; hue: Hue }
   source?: { label: string; url: string }
-  discussion?: boolean
+  discussion?: Discussion
   image?: string
+  imageAlt?: string
 }
+
+export type Discussion = "comments" | "reply"
+
+export const discussionLabel = (d: Discussion) => (d === "reply" ? "Reply" : "Comments")
 
 export interface RssChannel {
   title: string
@@ -72,11 +77,15 @@ export function buildAtomXml(channel: RssChannel, items: RssItem[], baseUrl: str
         ? `\n    <link rel="enclosure" type="${imageType(image)}" href="${escapeXml(image)}" />`
         : ""
       const content = item.contentHtml ? `\n    <content type="html">${escapeXml(item.contentHtml)}</content>` : ""
+      const discussion = item.discussion
+        ? `\n    <link rel="replies" type="text/html" title="${discussionLabel(item.discussion)}" href="${escapeXml(`${link}#comments`)}" />` +
+          `\n    <link rel="related" type="text/html" title="Reactions" href="${escapeXml(`${link}#reactions`)}" />`
+        : ""
       return `
   <entry>
     <id>${escapeXml(id)}</id>
     <title type="text">${escapeXml(item.title)}</title>
-    <link rel="alternate" type="text/html" href="${escapeXml(link)}" />${enclosure}${item.discussion ? `\n    <link rel="replies" type="text/html" href="${escapeXml(`${link}#comments`)}" />` : ""}
+    <link rel="alternate" type="text/html" href="${escapeXml(link)}" />${enclosure}${discussion}
     <published>${when}</published>
     <updated>${when}</updated>
     ${AUTHOR}
@@ -121,8 +130,8 @@ export function buildRssHtml(channel: RssChannel, items: RssItem[], baseUrl: str
       sublabel: item.sublabel,
       tags: item.tags,
       source: item.source,
-      discussion: item.discussion,
-      image: item.image ? { src: absolute(item.image, baseUrl), alt: `Cover image for ${item.title}` } : null,
+      discussion: item.discussion ? discussionLabel(item.discussion) : undefined,
+      image: item.image ? { src: absolute(item.image, baseUrl), alt: item.imageAlt?.trim() || `Cover image for ${item.title}` } : null,
     })),
   })
 }

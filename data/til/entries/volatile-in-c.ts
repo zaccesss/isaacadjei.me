@@ -6,7 +6,7 @@ const _volatile_in_c: TILEntry = {
     date: "2026-05-18",
     category: "C",
     published: true,
-    body: "The [`volatile`](https://en.cppreference.com/w/c/language/volatile) qualifier tells the C compiler not to optimise reads or writes to a variable: every access must go to memory. Without it, the compiler may cache the value in a register and never re-read memory. This matters for memory-mapped hardware registers (an ISR can change the value between reads), for flags shared between a main loop and an interrupt handler and for busy-wait loops checking an external condition. It is not a synchronisation primitive and does not imply atomicity.",
+    body: "The [`volatile`](https://en.cppreference.com/c/language/volatile) qualifier tells the C compiler not to optimise reads or writes to a variable: every access must go to memory. Without it, the compiler may cache the value in a register and never re-read memory. This matters for memory-mapped hardware registers (an ISR can change the value between reads), for flags shared between a main loop and an interrupt handler and for busy-wait loops checking an external condition. It is not a synchronisation primitive and does not imply atomicity.",
     detail: [
       {
         type: "code",

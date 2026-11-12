@@ -90,7 +90,7 @@ const _goods_lift: Project = {
       { title: "Arduino millis() reference", url: "https://docs.arduino.cc/language-reference/en/functions/time/millis/", note: "The basis of every non-blocking wait" },
       { title: "Arduino attachInterrupt() reference", url: "https://docs.arduino.cc/language-reference/en/functions/external-interrupts/attachInterrupt/", note: "The hardware interrupt behind the E-Stop" },
       { title: "Arduino LiquidCrystal library", url: "https://docs.arduino.cc/libraries/liquidcrystal/", note: "Driving the 16x2 display and defining custom characters" },
-      { title: "HD44780U LCD controller datasheet (Hitachi)", url: "https://www.sparkfun.com/datasheets/LCD/HD44780.pdf", note: "The controller inside the 16x2 display" },
+      { title: "HD44780U LCD controller datasheet (Hitachi)", url: "https://cdn.sparkfun.com/assets/9/5/f/7/b/HD44780.pdf", note: "The controller inside the 16x2 display" },
     ],
   }
 

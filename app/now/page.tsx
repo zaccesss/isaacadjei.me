@@ -51,7 +51,7 @@ export default function NowPage() {
             href="https://nownownow.com/about"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             Derek Sivers
           </a>
@@ -60,7 +60,7 @@ export default function NowPage() {
             href="https://nownownow.com/p/n4lZ"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             nownownow.com
           </a>
@@ -174,11 +174,11 @@ export default function NowPage() {
             </p>
             <p className="leading-relaxed">
               A free, open-source reader that turns slides, PDFs, handouts and web pages into notes in your own reading profile, now part of a family built on one contrast-checked palette: code themes in seven editor stores, terminal scenes, games and a profile tool. The browser version is open to try at{" "}
-              <a href="https://app.zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <a href="https://app.zacess.com" target="_blank" rel="noopener noreferrer" className="body-link">
                 app.zacess.com
               </a>{" "}
               and the project is on{" "}
-              <a href="https://zacess.com" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <a href="https://zacess.com" target="_blank" rel="noopener noreferrer" className="body-link">
                 zacess.com
               </a>
               . Next are the apps, then lecture mode and study tools in the browser.
@@ -200,15 +200,15 @@ export default function NowPage() {
             <p className="font-medium text-foreground">This site</p>
             <p className="leading-relaxed">
               A new{" "}
-              <Link href="/experience" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <Link href="/experience" className="body-link">
                 Experience
               </Link>{" "}
               page in four sections, the newsletter now sent from the site itself and{" "}
-              <Link href="/stats" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <Link href="/stats" className="body-link">
                 /stats
               </Link>{" "}
               counting public work only. The{" "}
-              <Link href="/lab" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <Link href="/lab" className="body-link">
                 lab terminal
               </Link>{" "}
               now runs zsh, bash, PowerShell and cmd, switches between the ten Zacess themes and
@@ -250,7 +250,7 @@ export default function NowPage() {
           personal research interest that has shaped a lot of how I think about accessible and
           bio-integrated technology.
           I keep a running log of books and content on the{" "}
-          <Link href="/consumed" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+          <Link href="/consumed" className="body-link">
             /consumed
           </Link>{" "}
           page.
@@ -314,7 +314,7 @@ export default function NowPage() {
 
       <p className="text-xs text-muted-foreground font-mono">
         Want to reach me?{" "}
-        <Link href="/contact" className="text-primary hover:text-primary/80 transition-colors underline underline-offset-4">
+        <Link href="/contact" className="body-link">
           Contact page
         </Link>{" "}
         or{" "}
@@ -322,7 +322,7 @@ export default function NowPage() {
           href="https://www.linkedin.com/in/isaacadjei"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-0.5 text-primary hover:text-primary/80 transition-colors underline underline-offset-4"
+          className="inline-flex items-center gap-0.5 body-link"
         >
           LinkedIn
           <ArrowUpRight className="h-3 w-3" />

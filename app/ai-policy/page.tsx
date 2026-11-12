@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
 }
 
-const link = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+const link = "body-link"
 const code = "font-mono text-sm bg-muted px-1.5 py-0.5 rounded"
 
 export default function AiPolicyPage() {
@@ -43,14 +43,13 @@ export default function AiPolicyPage() {
         <p className="text-lg text-muted-foreground leading-relaxed">
           This policy covers every contribution to my projects from people outside them: code,
           documentation, commits, issues, pull requests, comments, reviews and discussions. I keep it
-          in one place so every repository can point to it.
+          in one place so every repository can point to it. How I use AI in my own work is on a
+          separate page,{" "}
+          <Link href="/ai" className={link}>
+            How I use AI
+          </Link>
+          .
         </p>
-        <Callout kind="important" className="my-0">
-          <span className="font-semibold text-foreground">
-            Every pull request must say how AI was used, even when the answer is None.
-          </span>{" "}
-          A pull request without it waits until it is added.
-        </Callout>
         <p className="text-sm text-muted-foreground">
           <a
             href="https://github.com/zaccesss/ai-policy"
@@ -88,6 +87,12 @@ export default function AiPolicyPage() {
           <ListChecks className="h-6 w-6 text-primary" />
           <h2 className="text-2xl font-bold">What is required</h2>
         </div>
+        <Callout kind="important" className="my-0">
+          <span className="font-semibold text-foreground">
+            Every pull request must say how AI was used, even when the answer is None.
+          </span>{" "}
+          A pull request without it waits until it is added.
+        </Callout>
         <ul className="space-y-3 text-muted-foreground leading-relaxed">
           <li>
             <span className="font-semibold text-foreground">Declare your AI use.</span> Pull requests
@@ -225,7 +230,7 @@ export default function AiPolicyPage() {
           </li>
           <li>
             <a
-              href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+              href="https://docs.github.com/en/pull-requests/reference/pull-requests"
               target="_blank"
               rel="noreferrer"
               className={link}

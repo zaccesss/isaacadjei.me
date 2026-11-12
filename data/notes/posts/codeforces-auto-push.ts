@@ -79,7 +79,7 @@ const post: NotePost = {
         { text: "LeetSync - Chrome extension for syncing LeetCode submissions to GitHub", url: "https://github.com/LeetSync/LeetSync" },
         { text: "AtCommitter - auto GitHub commit tool for AtCoder", url: "https://github.com/kult0922/AtCommitter" },
         { text: "AtCoderProblems - the main community tool for tracking AtCoder progress", url: "https://github.com/kenkoooo/AtCoderProblems" },
-        { text: "UpCode - Python tool for bulk-uploading accepted solutions from Codeforces, AtCoder and CodeChef to GitHub", url: "https://github.com/CrapTheCoder/UpCode" },
+        { text: "UpCode - Python tool for bulk-uploading accepted solutions from Codeforces, AtCoder and CodeChef to GitHub", url: "https://github.com/Srivaths-P/UpCode" },
         { text: "CodeSync - similar multi-platform solution uploader (Codeforces, AtCoder, CodeChef)", url: "https://github.com/VaiibhavThatai/CodeSync" },
       ],
     },

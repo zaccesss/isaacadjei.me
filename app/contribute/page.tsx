@@ -60,7 +60,7 @@ export default function ContributePage() {
             href="https://github.com/zaccesss/contribute"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1.5 body-link"
           >
             <Github className="h-4 w-4" />
             Also on GitHub: zaccesss/contribute
@@ -114,7 +114,7 @@ export default function ContributePage() {
           You can browse the range on my{" "}
           <Link
             href="/projects"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             projects page
           </Link>{" "}
@@ -123,7 +123,7 @@ export default function ContributePage() {
             href="https://github.com/zaccesss"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             GitHub
           </a>
@@ -210,12 +210,12 @@ export default function ContributePage() {
               has one, otherwise see my{" "}
               <Link
                 href="/security-policy"
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="body-link"
               >
                 security policy
               </Link>{" "}
               or email{" "}
-              <a href="mailto:security@isaacadjei.me" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <a href="mailto:security@isaacadjei.me" className="body-link">
                 security@isaacadjei.me
               </a>
               .
@@ -267,7 +267,7 @@ export default function ContributePage() {
         </div>
         <p className="text-muted-foreground leading-relaxed">
           You are welcome to use AI tools while you work, within my{" "}
-          <Link href="/ai-policy" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+          <Link href="/ai-policy" className="body-link">
             AI policy
           </Link>
           . The short version:
@@ -318,14 +318,14 @@ export default function ContributePage() {
           Not everything fits an issue or a discussion. If something is unclear or more personal, email{" "}
           <a
             href="mailto:contact@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact@isaacadjei.me
           </a>{" "}
           or use{" "}
           <Link
             href="/contact"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             my contact page
           </Link>
@@ -346,14 +346,14 @@ export default function ContributePage() {
             href="https://github.com/zaccesss"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             my repositories
           </a>{" "}
           and most of{" "}
           <Link
             href="/projects"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             my projects
           </Link>
@@ -362,7 +362,7 @@ export default function ContributePage() {
             href="https://github.com/zaccesss/contribute"
             target="_blank"
             rel="noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             zaccesss/contribute
           </a>{" "}

@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 5,
-  slug: "midweek-05-when-the-sahara-was-green",
+  id: "midweek-05-when-the-sahara-was-green",
+  slug: "when-the-sahara-was-green",
   title: "When the Sahara was green",
   subtitle: "Thousands of years ago the world's largest hot desert was covered in grass, trees and lakes.",
   tags: ["Climate", "History", "Africa"],

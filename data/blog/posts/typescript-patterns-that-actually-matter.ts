@@ -7,10 +7,12 @@ const _typescript_patterns_that_actually_matter: BlogPost = {
     type: "blog",
     cover_image: "/images/blog/covers/typescript-patterns-that-actually-matter.webp",
     cover_credit: "Photo: James Harrison, Unsplash Licence, via Unsplash",
+    cover_alt: "An open laptop showing colourful code in a dark editor, on a dark table beside a small succulent in a green glass pot",
     description:
       "The TypeScript features and patterns that have made the biggest practical difference in real codebases: discriminated unions, the satisfies operator, branded types, const assertions and when strict mode actually catches bugs.",
     tags: ["TypeScript", "Software Engineering", "Web", "Best Practices"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -187,7 +189,7 @@ function area(s: Shape): number {
           { text: "Zod - TypeScript-first schema validation library", url: "https://zod.dev" },
           { text: "Matt Pocock: Total TypeScript - advanced TypeScript patterns in depth", url: "https://www.totaltypescript.com/" },
           { text: "TypeScript Deep Dive - Basarat Ali Syed (free online)", url: "https://basarat.gitbook.io/typescript/" },
-          { text: "MDN: TypeScript in Svelte - introductory TypeScript in a framework context", url: "https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_TypeScript" },
+          { text: "Svelte docs: TypeScript in Svelte - introductory TypeScript in a framework context", url: "https://svelte.dev/docs/svelte/typescript" },
         ],
       },
     ],

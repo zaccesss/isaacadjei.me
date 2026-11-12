@@ -7,6 +7,7 @@ const _competitive_programming_start: BlogPost = {
     type: "journal",
     cover_image: "/images/blog/covers/competitive-programming-start.webp",
     cover_credit: "Photo: Kevin Ku, Unsplash Licence, via Unsplash",
+    cover_alt: "A pair of glasses in front of two blurred monitors showing colourful code, with a row of app icons sharp through the lenses",
     description:
       "A journal entry on starting competitive programming: the first few weeks on Codeforces, what Neetcode and LeetCode taught me that I could not get from coursework and the specific mistakes beginners make that I made too.",
     tags: ["Competitive Programming", "Algorithms", "Learning", "Career", "CS"],

@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation"
 
 const DRAW_MS = 3500
 const HOLD_MS = 5000
+const SEEN_KEY = "page-intro-seen"
 const FADE_MS = 2000
 const STRENGTH = 0.3
-const HOME_REPEAT_MS = 900_000
 const HEADER_FALLBACK_PX = 65
 
 type Painter = (ctx: CanvasRenderingContext2D, w: number, h: number, t: number) => void
@@ -179,10 +179,8 @@ export default function PageIntro() {
     if (!el || !ctx || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     let frame = 0
-    let busy = false
     let current = -1
     const play = () => {
-      busy = true
       current = anyStyle(current)
       const w = window.innerWidth
       const header = document.querySelector("header")?.getBoundingClientRect().height ?? HEADER_FALLBACK_PX
@@ -202,7 +200,6 @@ export default function PageIntro() {
         ctx.clearRect(0, 0, w, h)
         if (fade <= 0) {
           el.style.opacity = "0"
-          busy = false
           played = true
           return
         }
@@ -218,15 +215,17 @@ export default function PageIntro() {
       frame = requestAnimationFrame(step)
     }
 
-    if (!played) play()
-
-    const timer = window.setInterval(() => {
-      if (path.current === "/" && !document.hidden && !busy) play()
-    }, HOME_REPEAT_MS)
+    let seen = false
+    try {
+      seen = window.sessionStorage.getItem(SEEN_KEY) === "1"
+      if (!seen && path.current === "/") window.sessionStorage.setItem(SEEN_KEY, "1")
+    } catch {
+      // storage is unavailable in some private windows
+    }
+    if (!played && !seen && path.current === "/") play()
 
     return () => {
       cancelAnimationFrame(frame)
-      window.clearInterval(timer)
     }
   }, [])
 

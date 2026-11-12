@@ -8,6 +8,7 @@ const _git_unlocked_open_source_course: BlogPost = {
     projectSlug: "git-unlocked",
     cover_image: "/images/projects/git-unlocked/octocat-laptop.webp",
     cover_credit: "Photo: Roman Synkevych, Unsplash Licence, via Unsplash",
+    cover_alt: "A black 3D-printed figurine of the GitHub Octocat mascot standing in front of a blurred laptop screen",
     description:
       "The motivation behind git-unlocked, an open-source Git and version control course spanning 12 sections and every major platform and what writing 182 files taught me about technical communication.",
     tags: ["Git", "Open Source", "Teaching", "GitHub"],

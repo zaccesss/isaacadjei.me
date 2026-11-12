@@ -34,7 +34,7 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName) {
       },
     ],
     tags: ["FreeRTOS", "embedded", "RTOS", "stack", "debugging"],
-    source: { label: "FreeRTOS: Stack Overflow Detection", url: "https://www.freertos.org/Stacks-and-stack-overflow-checking.html" },
+    source: { label: "FreeRTOS: Stack Overflow Detection", url: "https://www.freertos.org/Documentation/02-Kernel/02-Kernel-features/09-Memory-management/02-Stack-usage-and-stack-overflow-checking" },
   }
 
 export default _freertos_stack_overflow_detection

@@ -11,10 +11,12 @@ import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
 import BlogReactions from "@/components/shared/BlogReactions"
 import GiscusComments from "@/components/blog/GiscusComments"
+import CommentOnLinks, { REPLY_ANYWHERE } from "@/components/blog/CommentOnLinks"
 import ShareButton from "@/components/shared/ShareButton"
 import { renderBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
 import { allIssues, getIssueBySlug, getPublishedIssues, SIGN_OFF_NAME, SIGNATURE, issueLabel, type GatheredItem, type GatheredKind } from "@/data/newsletter"
 import { sameShareImage } from "@/lib/content/share-image"
+import { stripLinks } from "@/lib/content/markdown-links"
 
 export const revalidate = 604800
 export const dynamicParams = true
@@ -59,7 +61,7 @@ const SECTIONS: { kind: GatheredKind; title: string; icon: typeof BookOpen }[] =
 ]
 
 function excerpt(text: string, max = 200): string {
-  const plain = text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*`]/g, "")
+  const plain = stripLinks(text).replace(/[*`]/g, "")
   return plain.length > max ? `${plain.slice(0, max).replace(/\s+\S*$/, "")}...` : plain
 }
 
@@ -103,7 +105,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
     <>
       <ReadingProgress />
       <HashScroll />
-      <ScrollDepthTracker slug={slug} postType="newsletter" />
+      <ScrollDepthTracker slug={issue.id} postType="newsletter" />
       <div className="container max-w-2xl py-24 space-y-10">
         <Link
           href="/newsletter"
@@ -248,12 +250,12 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                 {SIGNATURE.links.map((l, i) => (
                   <span key={l.href}>
                     {i > 0 && <span className="text-muted-foreground" aria-hidden="true"> | </span>}
-                    <a href={l.href} className="text-primary underline underline-offset-2 hover:text-primary/80">{l.label}</a>
+                    <a href={l.href} className="body-link">{l.label}</a>
                   </span>
                 ))}
               </p>
               <p className="text-sm">
-                <a href={SIGNATURE.booking.href} className="inline-flex items-center gap-1.5 font-semibold text-primary underline underline-offset-2 hover:text-primary/80">
+                <a href={SIGNATURE.booking.href} className="inline-flex items-center gap-1.5 font-semibold body-link">
                   <CalendarDays className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {SIGNATURE.booking.label}
                 </a>
@@ -261,6 +263,26 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
             </div>
           </div>
         </article>
+
+        <div className="pt-6 border-t border-border/40 space-y-8">
+          <div id="reactions" className="space-y-4 scroll-mt-20">
+            <div>
+              <h2 className="text-base font-semibold">Reactions</h2>
+              <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
+            </div>
+            <BlogReactions slug={`newsletter-${issue.id}`} />
+          </div>
+          <div id="comments" className="space-y-4 scroll-mt-20">
+            <div>
+              <h2 className="text-base font-semibold">Comments</h2>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                {commentsOn ? "Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can." : REPLY_ANYWHERE}
+              </p>
+            </div>
+            {commentsOn && <GiscusComments term={`newsletter/${issue.id}`} />}
+            <CommentOnLinks path={`/newsletter/${slug}`} alongside={commentsOn} />
+          </div>
+        </div>
 
         <Separator />
 
@@ -292,25 +314,6 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
             <div />
           )}
         </nav>
-
-        <div className="pt-6 border-t border-border/40 space-y-8">
-          <div id="reactions" className="space-y-4 scroll-mt-20">
-            <div>
-              <h3 className="text-base font-semibold">Reactions</h3>
-              <p className="text-sm text-muted-foreground mt-0.5">No login needed. Tap an emoji to let me know what landed.</p>
-            </div>
-            <BlogReactions slug={`newsletter-${slug}`} />
-          </div>
-          {commentsOn && (
-            <div id="comments" className="space-y-4 scroll-mt-20">
-              <div>
-                <h3 className="text-base font-semibold">Comments</h3>
-                <p className="text-sm text-muted-foreground mt-0.5">Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can.</p>
-              </div>
-              <GiscusComments />
-            </div>
-          )}
-        </div>
       </div>
     </>
   )

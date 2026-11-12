@@ -1,4 +1,5 @@
 import { DISCORD_PROFILE_ID, GITHUB_USER } from "@/lib/site-config"
+import { SPOTIFY_PROFILE_URL } from "@/lib/constants"
 
 export interface LinkItem {
   title: string
@@ -316,7 +317,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Threads",
     description: "Casual posts and quick updates",
-    url: "https://www.threads.net/@zac.cesss",
+    url: "https://www.threads.com/@zac.cesss",
     icon: "threads",
     category: "social",
   },
@@ -372,7 +373,7 @@ export const profileLinks: LinkItem[] = [
   {
     title: "Spotify",
     description: "See what I'm currently listening to",
-    url: "https://open.spotify.com/user/31ft5mriyu5bwmavvevqs2qsrsmm",
+    url: SPOTIFY_PROFILE_URL,
     icon: "spotify",
     category: "content",
   },

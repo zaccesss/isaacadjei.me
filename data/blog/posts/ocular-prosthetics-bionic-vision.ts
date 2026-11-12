@@ -4,9 +4,10 @@ const _ocular_prosthetics_bionic_vision: BlogPost = {
     slug: "ocular-prosthetics-bionic-vision",
     title: "Bionic Vision and Ocular Prosthetics: Where the Science Actually Stands",
     date: "2026-05-20",
-    type: "research",
+    type: "explainer",
     cover_image: "/images/blog/covers/ocular-prosthetics-bionic-vision.webp",
     cover_credit: "Photo: Ion Fet, Unsplash Licence, via Unsplash",
+    cover_alt: "Extreme close-up of a blue human eye, the iris and pupil sharp and the lashes and skin around it blurred",
     description:
       "A technical survey of retinoblastoma, ocular prosthetics and bionic vision systems: what prosthetic eyes can and cannot do, how retinal implants work and where the engineering challenges in restoring functional vision lie.",
     tags: ["Health Tech", "Prosthetics", "Research", "Bioelectronics", "Vision"],
@@ -127,7 +128,7 @@ const _ocular_prosthetics_bionic_vision: BlogPost = {
       {
         type: "ol-links",
         items: [
-          { text: "The Children's Eye Cancer Trust: Retinoblastoma - epidemiology and treatment overview", url: "https://www.chect.org.uk/about-retinoblastoma/" },
+          { text: "The Children's Eye Cancer Trust: Retinoblastoma - epidemiology and treatment overview", url: "https://chect.org.uk/about-retinoblastoma-2/" },
           { text: "Wikipedia: Visual prosthesis (bionic eye) - overview of retinal and cortical implant technology", url: "https://en.wikipedia.org/wiki/Visual_prosthesis" },
           { text: "Wikipedia: Retinal prosthesis - technical background on epiretinal and subretinal devices", url: "https://en.wikipedia.org/wiki/Retinal_prosthesis" },
           { text: "NIH National Eye Institute: Vision restoration research", url: "https://www.nei.nih.gov" },

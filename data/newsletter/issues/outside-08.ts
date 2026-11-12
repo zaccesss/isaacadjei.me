@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 8,
-  slug: "outside-08-hot-chips-risc-v",
+  id: "outside-08-hot-chips-risc-v",
+  slug: "risc-v-takes-a-full-tutorial-day-at-hot-chips",
   title: "RISC-V takes a full tutorial day at Hot Chips",
   subtitle: "The chip design symposium opened with a day on RISC-V profiles, platforms and cars.",
   tags: ["RISC-V", "Semiconductors", "Hardware", "Open Source"],

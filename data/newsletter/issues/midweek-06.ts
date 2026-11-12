@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 6,
-  slug: "midweek-06-afrobeats-goes-global",
+  id: "midweek-06-afrobeats-goes-global",
+  slug: "how-afrobeats-went-global",
   title: "How Afrobeats went global",
   subtitle: "A sound from Lagos, Accra and London that became one of the fastest growing genres in the world.",
   tags: ["Music", "Africa", "Culture"],

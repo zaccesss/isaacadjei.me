@@ -6,10 +6,15 @@ import { notePosts, getNotePostBySlug, getAdjacentNotes, type NotePost } from "@
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
 import BlogReactions from "@/components/shared/BlogReactions"
+import CommentOnLinks, { REPLY_ANYWHERE } from "@/components/blog/CommentOnLinks"
+import GiscusComments from "@/components/blog/GiscusComments"
 import { renderBlock as renderContentBlock, buildHeadingIds } from "@/components/shared/markdown/ContentBlocks"
 import { TAG_CLASS } from "@/components/shared/lists/Tag"
 import CodeBlock from "@/components/shared/markdown/CodeBlock"
 import { highlightBlocks } from "@/lib/content/highlight"
+import TableOfContents from "@/components/shared/markdown/TableOfContents"
+import { collectTocHeadings, hasToc, COMMENTS_SECTION, REACTIONS_SECTION } from "@/lib/content/toc"
+import { cn } from "@/lib/utils"
 import ReadingProgress from "@/components/shared/scroll/ReadingProgress"
 import HashScroll from "@/components/shared/scroll/HashScroll"
 import ScrollDepthTracker from "@/components/blog/ScrollDepthTracker"
@@ -72,15 +77,18 @@ export default async function NoteSlugPage({
 }
 
 async function NotePostView({ post }: { post: NotePost }) {
+  const commentsOn = process.env.NEXT_PUBLIC_GISCUS_ENABLED?.toLowerCase() === "true"
   const { prev, next } = getAdjacentNotes(post.slug)
   const headingIds = buildHeadingIds(post.content)
   const highlighted = await highlightBlocks(post.content, (b) => (b.type === "code" ? { code: b.text, lang: b.lang } : null))
+  const tocHeadings = collectTocHeadings(post.content, headingIds)
+  const showToc = hasToc(tocHeadings)
   return (
     <>
     <ReadingProgress />
     <HashScroll />
     <ScrollDepthTracker slug={post.slug} postType="note" />
-    <div className="container max-w-3xl py-24 space-y-12">
+    <div className={cn("container max-w-3xl py-24 space-y-12", showToc && "lg:max-w-5xl")}>
       <div>
         <Link
           href="/notes"
@@ -106,11 +114,27 @@ async function NotePostView({ post }: { post: NotePost }) {
 
       <Separator />
 
+      <div className={cn(showToc && "lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:items-start")}>
+      {showToc && <TableOfContents headings={tocHeadings} sections={[REACTIONS_SECTION, COMMENTS_SECTION]} />}
+      <div className={cn("space-y-12", showToc && "min-w-0 lg:col-start-1 lg:row-start-1")}>
       <article className="space-y-4">
         {post.content.map((block, i) => renderContentBlock(block, i, headingIds, post.content[i - 1], highlighted))}
       </article>
 
-      <BlogReactions slug={`note-${post.slug}`} />
+      <section id="reactions" aria-label="Reactions" className="scroll-mt-24">
+        <BlogReactions slug={`note-${post.slug}`} />
+      </section>
+
+      <section id="comments" aria-labelledby="comments-heading" className="space-y-4 scroll-mt-24">
+        <div>
+          <h2 id="comments-heading" className="text-base font-semibold">Comments</h2>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            {commentsOn ? "Have a thought, correction or question? Sign in with GitHub - I read every comment and reply where I can." : REPLY_ANYWHERE}
+          </p>
+        </div>
+        {commentsOn && <GiscusComments />}
+        <CommentOnLinks path={`/notes/${post.slug}`} alongside={commentsOn} />
+      </section>
 
       <Separator />
 
@@ -158,6 +182,8 @@ async function NotePostView({ post }: { post: NotePost }) {
         <ArrowLeft className="h-4 w-4" />
         Back to notes
       </Link>
+      </div>
+      </div>
     </div>
     </>
   )

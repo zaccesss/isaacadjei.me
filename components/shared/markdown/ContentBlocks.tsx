@@ -4,22 +4,23 @@ import type { ContentBlock } from "@/data/blog"
 import CodeBlock from "@/components/shared/markdown/CodeBlock"
 import Callout from "@/components/shared/markdown/Callout"
 import { Diagram } from "@/components/analytics/Diagram"
+import { readLink, splitLinks } from "@/lib/content/markdown-links"
 
 export function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)
+  const parts = splitLinks(text)
   if (parts.length === 1) return text
   return parts.map((part, i) => {
-    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (match) {
-      const isExternal = match[2].startsWith("http")
+    const link = readLink(part)
+    if (link) {
+      const isExternal = link.href.startsWith("http")
       return (
         <a
           key={i}
-          href={match[2]}
+          href={link.href}
           {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
+          className="body-link"
         >
-          {match[1]}
+          {link.text}
         </a>
       )
     }
@@ -130,7 +131,7 @@ export function renderBlock(
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary underline underline-offset-4 hover:opacity-80 transition-opacity"
+                    className="body-link"
                   >
                     {item.text}
                   </a>

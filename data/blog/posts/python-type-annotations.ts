@@ -4,13 +4,15 @@ const _python_type_annotations: BlogPost = {
     slug: "python-type-annotations",
     title: "Python Type Annotations: What I Actually Use and Why",
     date: "2026-09-01",
-    type: "notes",
+    type: "article",
     cover_image: "/images/blog/covers/python-type-annotations.webp",
     cover_credit: "Photo: Chris Ried, Unsplash Licence, via Unsplash",
+    cover_alt: "Angled close-up of Python code with coloured syntax highlighting and line numbers on a dark laptop screen",
     description:
       "A practical guide to Python type hints: where they help, where they get in the way and the specific patterns I reach for when annotating FastAPI handlers, dataclasses and utility functions.",
     tags: ["Python", "Types", "Backend", "FastAPI", "Notes"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",

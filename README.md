@@ -4,13 +4,38 @@
 [![Release](https://img.shields.io/github/v/release/zaccesss/isaacadjei.me?label=release)](https://github.com/zaccesss/isaacadjei.me/releases/latest)
 [![Licence: PolyForm NC](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue.svg)](LICENSE)
 
-Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the personal site of Isaac Adjei, an Electronic Engineering and Computer Science student at Aston University. The site has a portfolio, a blog, Today I Learned entries, notes and a page of things read, watched and listened to. It also has public statistics pages with charts, maps and live status cards.
+Source code for [isaacadjei.me](https://isaacadjei.me), the personal site of Isaac Adjei, an Electronic Engineering and Computer Science student. It holds my projects, my writing and research and a set of public statistics pages with charts, maps and live status cards.
 
 > [!NOTE]
-> This repository is a published copy of the site's source. It is meant to be read. Changes are made at the source and published here, so pull requests cannot be merged directly. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to suggest a change.
+> This repository is meant to be read. It is a personal site, so I do not merge pull requests here. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to suggest a change or report a bug.
 
-> [!IMPORTANT]
-> Only content that is live on the site is included. Drafts and entries scheduled for a future date are left out of every publish.
+## What is on the site
+
+| Page | What it holds |
+| --- | --- |
+| [About](https://isaacadjei.me/about) | Who I am and how I got here |
+| [Experience](https://isaacadjei.me/experience) | Roles, education and what I did in each |
+| [Skills](https://isaacadjei.me/skills) | What I work with, grouped by area |
+| [Projects](https://isaacadjei.me/projects) | Electronics and software projects, each with its own write-up |
+| [Blog](https://isaacadjei.me/blog) | Longer posts on engineering, projects and student life |
+| [Today I Learned](https://isaacadjei.me/til) | Short entries, one thing learnt at a time |
+| [Notes](https://isaacadjei.me/notes) | How I work, study and plan |
+| [Newsletter](https://isaacadjei.me/newsletter) | Letters and shorter issues, all readable on the site |
+| [Research](https://isaacadjei.me/research) | Work in progress |
+| [Publications](https://isaacadjei.me/publications) | What has been published, with citations |
+| [Open source](https://isaacadjei.me/open-source) | What I have contributed to other projects |
+| [Consumed](https://isaacadjei.me/consumed) | What I read, watch and listen to |
+| [Lab](https://isaacadjei.me/lab) | An interactive terminal with themes, scenes and games |
+| [Stats](https://isaacadjei.me/stats) | Public statistics on my coding, music, gaming and writing |
+| [Now](https://isaacadjei.me/now) | What I am focused on at the moment |
+| [Uses](https://isaacadjei.me/uses) | The hardware and software I work with |
+| [Links](https://isaacadjei.me/links) | Every profile of mine in one place |
+| [Friends](https://isaacadjei.me/friends) | People I learn from and how to become pen pals |
+| [Guestbook](https://isaacadjei.me/guestbook) | Messages and drawings from visitors |
+| [Install](https://isaacadjei.me/install) | How to set up the tools I publish |
+| [Accessibility](https://isaacadjei.me/accessibility) | The accessibility statement the site is built to |
+| [Changelog](https://isaacadjei.me/changelog) | What changed in each release |
+| [All pages](https://isaacadjei.me/all-pages) | Everything else, in one list |
 
 ## Tech stack
 
@@ -55,7 +80,7 @@ Source code for the public pages of [isaacadjei.me](https://isaacadjei.me), the 
 | `styles/` | Global animation styles |
 | `types/` | Shared type declarations |
 | `tests/` | Unit tests |
-| `CHANGELOG.md` | Release notes for the public site, generated from its changelog page |
+| `CHANGELOG.md` | Release notes for the site |
 
 ## Running it locally
 

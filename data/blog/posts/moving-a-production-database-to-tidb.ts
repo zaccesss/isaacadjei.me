@@ -7,6 +7,7 @@ const _moving_a_production_database_to_tidb: BlogPost = {
   type: "report",
   cover_image: "/images/blog/covers/moving-a-production-database-to-tidb-shot.webp",
   cover_image_dark: "/images/blog/covers/moving-a-production-database-to-tidb-shot-dark.webp",
+  cover_alt: "Vitafolio jobs page headed Jobs for students and graduates, with a search form, tabs by role type and two job listings",
   description:
     "Vitafolio went down one evening because its free MySQL plan powered the database off for inactivity. This is how I diagnosed it, moved every table to TiDB Cloud the same night and checked nothing was lost.",
   tags: ["MySQL", "PHP", "Backend", "Full-Stack", "Maintenance"],

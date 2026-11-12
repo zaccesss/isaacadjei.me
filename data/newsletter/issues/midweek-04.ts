@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 4,
-  slug: "midweek-04-ghana-republic-day",
+  id: "midweek-04-ghana-republic-day",
+  slug: "ghana-becomes-a-republic",
   title: "Ghana becomes a republic",
   subtitle: "Last week Ghana marked Republic Day, the anniversary of the country becoming a republic on 1 July 1960.",
   tags: ["Ghana", "History", "Politics"],

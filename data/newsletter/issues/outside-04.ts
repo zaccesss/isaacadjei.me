@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 4,
-  slug: "outside-04-rubin-begins-lsst",
+  id: "outside-04-rubin-begins-lsst",
+  slug: "rubin-observatory-starts-its-sky-survey",
   title: "Rubin Observatory starts its ten-year sky survey",
   subtitle: "The largest digital camera in the world has begun filming the southern sky every few nights.",
   tags: ["Space", "Astronomy", "Data", "Sensors"],

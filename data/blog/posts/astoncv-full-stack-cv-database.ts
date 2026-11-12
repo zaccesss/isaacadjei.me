@@ -7,6 +7,7 @@ const _astoncv_full_stack_cv_database: BlogPost = {
     type: "blog",
     projectSlug: "astoncv",
     cover_image: "/images/projects/astoncv/main.webp",
+    cover_alt: "AstonCV homepage with the site name over a purple-tinted campus photo and two buttons, Browse CVs and Add Your CV",
     description:
       "How I built a full-stack CV database website from scratch using pure PHP 8.2 and MySQL for a university module, with eleven security measures, PDF export via mPDF and a complete UI redesign across four versions.",
     tags: ["PHP", "MySQL", "Security", "Full-Stack", "Aston", "Web Dev"],

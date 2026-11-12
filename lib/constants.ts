@@ -38,3 +38,5 @@ export const NAV_LINKS = [
 export const BOOKING_URL = "https://cal.com/isaacadjei.me/chat"
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaacadjei.me"
+
+export const SPOTIFY_PROFILE_URL = "https://open.spotify.com/user/31ft5mriyu5bwmavvevqs2qsrsmm"

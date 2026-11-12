@@ -11,7 +11,7 @@ export function LedTo({ links, className, size = "sm" }: { links?: LedToLink[]; 
       <span className="font-medium text-foreground/80">Led to:</span>
       {links.map((l, i) => (
         <span key={l.href}>
-          <Link href={l.href} className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors">
+          <Link href={l.href} className="body-link">
             {l.label}
           </Link>
           {i < links.length - 1 && <span aria-hidden="true">,</span>}

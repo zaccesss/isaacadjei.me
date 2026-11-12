@@ -217,7 +217,7 @@ export const researchInterests: ResearchInterest[] = [
     area: "Open education",
     detail:
       "Open-source learning materials that lower the barrier to version control and collaborative development. git-unlocked, 182 files across 12 sections under CC BY-SA 4.0, is published on Zenodo with a DOI.",
-    links: [{ label: "git-unlocked", href: "/respub/git-unlocked-2026" }],
+    links: [{ label: "git-unlocked", href: "/publications/git-unlocked-2026" }],
   },
 ]
 

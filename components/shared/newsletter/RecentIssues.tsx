@@ -102,9 +102,9 @@ export default function RecentIssues({ issues }: { issues: NewsletterIssue[] }) 
               className="group flex items-start gap-4 rounded-lg border border-border/60 bg-muted/20 px-4 py-4 hover:border-primary/40 hover:bg-muted/30 transition-all"
             >
               <div className="space-y-1 min-w-0 flex-1">
-                <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+                <h2 className="text-pretty text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
                   {issue.title}
-                </p>
+                </h2>
                 {issue.subtitle && (
                   <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
                     {issue.subtitle}

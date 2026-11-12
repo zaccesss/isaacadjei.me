@@ -198,7 +198,8 @@ function buildXsl() {
             padding: 0.0625rem 0.5rem; font-size: 0.75rem; font-weight: 500; line-height: 1.25rem; color: var(--chip-fg);
           }
           .tag::before { content: "#"; margin-right: 0.125rem; color: var(--muted); }
-          .discussion { display: flex; gap: 1rem; font-size: 0.8125rem; margin-top: 0.5rem; }
+          .discussion { display: flex; flex-wrap: wrap; gap: 0 0.75rem; font-size: 0.8125rem; margin-top: 0.125rem; }
+          .discussion a { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; }
           .empty { padding: 2rem 0; color: var(--muted); }
           .showing { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
           footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8125rem; color: var(--muted); }
@@ -340,7 +341,12 @@ function buildXsl() {
         <xsl:if test="atom:link[@rel='replies']">
           <p class="discussion">
             <a href="{$link}#reactions">Reactions</a>
-            <a href="{atom:link[@rel='replies']/@href}">Comments</a>
+            <a href="{atom:link[@rel='replies']/@href}">
+              <xsl:choose>
+                <xsl:when test="string(atom:link[@rel='replies']/@title)"><xsl:value-of select="atom:link[@rel='replies']/@title" /></xsl:when>
+                <xsl:otherwise>Comments</xsl:otherwise>
+              </xsl:choose>
+            </a>
           </p>
         </xsl:if>
       </article>

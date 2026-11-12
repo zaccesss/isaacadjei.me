@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 8,
-  slug: "issue-08-datasheets-and-a-new-country",
+  id: "issue-08-datasheets-and-a-new-country",
+  slug: "datasheets-decision-notes-and-a-new-country",
   title: "Datasheets, decision notes and a new country",
   subtitle: "The skill nobody teaches, what nobody tells international students about UK engineering, why I write down why and six small lessons.",
   tags: ["Embedded", "Hardware", "Electronics", "International", "Personal", "Career"],

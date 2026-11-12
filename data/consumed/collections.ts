@@ -15,7 +15,7 @@ export const CONSUMED_COLLECTIONS: ConsumedCollection[] = [
     titles: [
       "Nand to Tetris", "Nandland", "FPGA4Fun", "SparkFun Learn", "Electronics Tutorials", "Ben Eater's Website",
       "UT Austin: Embedded Systems", "Embedded Artistry", "Learn-C.org", "HDLBits", "EDA Playground",
-      "Interrupt by Memfault", "Falstad Circuit Simulator", "Basic Electrical and Electronics Engineering", "Embedded",
+      "Basic Electrical and Electronics Engineering", "Embedded",
       "The world of embedded systems (Interview)", "The Amp Hour #721. Chip Design for Fun (and Waffles) with Julia Desmazes",
     ],
   },
@@ -38,7 +38,7 @@ export const CONSUMED_COLLECTIONS: ConsumedCollection[] = [
     title: "Computer science foundations",
     description: "Algorithms, data structures, maths and how computers work underneath the languages.",
     tags: ["cs", "algorithms", "data-structures", "maths", "linear-algebra", "numerics", "computer science"],
-    titles: ["CS50x 2026", "MIT OpenCourseWare", "Nand to Tetris", "The Missing Semester", "OSDev Wiki", "Khan Academy"],
+    titles: ["CS50x 2026", "MIT OpenCourseWare", "Nand to Tetris", "The Missing Semester", "OSDev Wiki", "Khan Academy", ],
   },
 ]
 

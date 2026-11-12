@@ -47,8 +47,8 @@ export default async function GuestbookPage() {
         <p className="text-lg text-muted-foreground leading-relaxed">
           Say hello, share what brought you here or leave a note for the next visitor. Messages appear once I have read
           them. Want your site listed or a letter from me once a month? See the{" "}
-          <a href="/friends" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">friends page</a> or{" "}
-          <a href="/friends#become-friends" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">go to the form</a>.
+          <a href="/friends" className="body-link">friends page</a> or{" "}
+          <a href="/friends#become-friends" className="body-link">go to the form</a>.
         </p>
       </section>
 
@@ -71,7 +71,7 @@ export default async function GuestbookPage() {
               )}
               <p className="mt-auto text-sm text-muted-foreground">
                 {entry.website ? (
-                  <a href={entry.website} rel="nofollow ugc noopener" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">
+                  <a href={entry.website} rel="nofollow ugc noopener" className="font-medium body-link">
                     {entry.name}
                   </a>
                 ) : (

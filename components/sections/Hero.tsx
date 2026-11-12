@@ -51,7 +51,7 @@ export default function Hero() {
           </p>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             Not sure where to start?{" "}
-            <Link href="/all-pages" className="text-primary underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors font-medium">See all pages →</Link>
+            <Link href="/all-pages" className="body-link font-medium">See all pages →</Link>
           </p>
           <div className="w-24 h-px bg-border mx-auto" />
         </motion.div>

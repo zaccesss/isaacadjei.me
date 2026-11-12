@@ -23,7 +23,7 @@ interface Props {
 
 export default function ProjectCard({ project, priority = false }: Props) {
   return (
-    <Card className="flex flex-col h-full transition-[box-shadow,transform] duration-200 ease-out hover:shadow-md motion-safe:hover:-translate-y-0.5">
+    <Card className="group flex flex-col h-full transition-[box-shadow,transform,border-color] duration-200 ease-out hover:border-primary/40 hover:shadow-md motion-safe:hover:-translate-y-0.5">
       {(project.cover ?? project.images[0]) && (
         <Link href={`/projects/${project.id}`} className="block overflow-hidden rounded-t-lg">
           <div className="relative h-48 w-full bg-muted">
@@ -56,7 +56,7 @@ export default function ProjectCard({ project, priority = false }: Props) {
         </div>
         <div>
           <CardTitle className="text-xl">
-            <Link href={`/projects/${project.id}`} className="hover:text-primary transition-colors">
+            <Link href={`/projects/${project.id}`} className="transition-colors hover:text-primary group-hover:text-primary">
               {project.title}
             </Link>
           </CardTitle>

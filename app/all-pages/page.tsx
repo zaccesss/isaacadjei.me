@@ -54,6 +54,7 @@ const PAGE_GROUPS = [
       { href: "/lab", label: "Lab", description: "Interactive terminal and hardware experiments" },
       { href: "/stats", label: "Stats", description: "GitHub, coding, music, applications and gaming stats" },
       { href: "/uses", label: "Uses", description: "Hardware, software and tools I use" },
+      { href: "/ai", label: "How I use AI", description: "How I use AI and what I check for myself" },
       { href: "/consumed", label: "Consumed", description: "Books, videos and podcasts I am working through" },
     ],
   },

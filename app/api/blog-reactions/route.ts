@@ -3,12 +3,12 @@ import { redis } from "@/lib/core/redis"
 import { publicApiLimiter, checkRateLimit, getIp } from "@/lib/core/ratelimit"
 import { getPublishedPosts } from "@/data/blog"
 import { RECENT_REACTIONS } from "@/lib/content/reactions"
-import { getPublishedIssues } from "@/data/newsletter"
+import { getIssueById } from "@/data/newsletter"
 import { getPublishedNotes } from "@/data/notes"
 import { getPublishedTILEntries } from "@/data/til"
 
 function knownSlug(slug: string): boolean {
-  if (slug.startsWith("newsletter-")) return getPublishedIssues().some((i) => i.slug === slug.slice(11))
+  if (slug.startsWith("newsletter-")) return Boolean(getIssueById(slug.slice(11)))
   if (slug.startsWith("note-")) return getPublishedNotes().some((n) => n.slug === slug.slice(5))
   if (slug.startsWith("til-")) return getPublishedTILEntries().some((e) => e.id === slug.slice(4))
   return getPublishedPosts().some((p) => p.slug === slug)

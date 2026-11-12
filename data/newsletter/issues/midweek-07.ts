@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 7,
-  slug: "midweek-07-two-hour-marathon",
+  id: "midweek-07-two-hour-marathon",
+  slug: "how-close-is-the-two-hour-marathon",
   title: "How close is the two-hour marathon?",
   subtitle: "Kelvin Kiptum ran 2:00:35 in Chicago in 2023. The story of that record and the barrier beyond it.",
   tags: ["Running", "Sport", "Records"],

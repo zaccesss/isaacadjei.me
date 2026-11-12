@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 11,
-  slug: "issue-11-choosing-hard-things",
+  id: "issue-11-choosing-hard-things",
+  slug: "choosing-hard-things-and-one-command-for-any-machine",
   title: "Choosing hard things and one command for any machine",
   subtitle: "An essay on discomfort, starting competitive programming, bootstrapping macOS, Linux and Windows in one command and four small lessons.",
   tags: ["Personal", "Mindset", "Competitive Programming", "Setup", "Dotfiles", "Linux"],

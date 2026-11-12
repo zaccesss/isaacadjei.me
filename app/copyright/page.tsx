@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 }
 
-const link = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+const link = "body-link"
 
 export default function CopyrightPage() {
   return (
@@ -73,7 +73,7 @@ export default function CopyrightPage() {
             <li>Album art and track details come from Spotify. Game names and artwork come from PlayStation, Steam and IGDB. Each belongs to its owner.</li>
             <li>Code highlighting: Shiki under the MIT Licence, using the colours of Visual Studio Code&rsquo;s Light Modern and Dark Modern themes.</li>
             <li>Some blog covers are photographs from Unsplash, used under the Unsplash Licence. Each photo belongs to its photographer.</li>
-            <li>Photographs in newsletter issues are public domain or freely licensed. Each one is credited in its caption. The Bell X-1 photograph in Outside 12 is by NASA, in the public domain, via Wikimedia Commons.</li>
+            <li>Photographs in newsletter issues are public domain or freely licensed. Each one is credited in its caption. The Bell X-1 photograph in the Outside issue of 23 October 2026 is by NASA, in the public domain, via Wikimedia Commons.</li>
             <li>Book covers come from Open Library, video thumbnails from YouTube and page preview images from the sites they link to. Film posters and other promotional images are courtesy of their studios. All of these belong to their owners and are shown only to identify and discuss the work.</li>
           </ul>
         </div>

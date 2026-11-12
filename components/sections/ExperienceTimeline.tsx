@@ -120,7 +120,7 @@ export default function ExperienceTimeline({ experiences }: Props) {
                       <span className="text-sm text-muted-foreground whitespace-nowrap">{exp.startDate} - {exp.endDate}</span>
                     </div>
                     {exp.link && (
-                      <a href={exp.link.url} target="_blank" rel="noopener noreferrer" className="text-base text-primary underline underline-offset-4 hover:opacity-80">
+                      <a href={exp.link.url} target="_blank" rel="noopener noreferrer" className="text-base body-link">
                         {exp.link.label}
                       </a>
                     )}

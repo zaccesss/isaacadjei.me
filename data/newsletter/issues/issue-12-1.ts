@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 12.1,
-  slug: "issue-12-1-calibrated-alerts-and-a-new-paper",
+  id: "issue-12-1-calibrated-alerts-and-a-new-paper",
+  slug: "calibrated-alerts-a-database-move-and-a-new-paper",
   title: "Calibrated alerts, a database move and a new paper",
   subtitle: "The second of today's two issues: calibrating PHAEMOS alerts, moving a production database the night it went down, Ariane 5 and a fuller git-unlocked paper.",
   tags: ["PHAEMOS", "IoT", "Backend", "Research", "Git"],
@@ -20,7 +21,7 @@ const issue: NewsletterIssueFile = {
     "til:git-colour-off-in-pipes",
   ],
   intro: [
-    { type: "p", text: "This is the second of today's two issues. The first fortnight on email was too much for one message, so [Issue 12](/newsletter/issue-12-welcome-to-the-newsletter) leads with Zacess and this one carries the engineering posts and some research news. From the next letter onwards it is back to one issue a fortnight." },
+    { type: "p", text: "This is the second of today's two issues. The first fortnight on email was too much for one message, so [the first part](/newsletter/welcome-to-the-newsletter) leads with Zacess and this one carries the engineering posts and some research news. From the next letter onwards it is back to one issue a fortnight." },
     { type: "h2", text: "New research: a fuller git-unlocked paper" },
     { type: "p", text: "I rewrote the [technical note behind git-unlocked](/publications/git-unlocked-2026) and published it as a new version on Zenodo. It is now a ten-page paper with a review of what research says about learning Git, the teaching principles behind the course, measured figures (182 files and about 79 hours of guided study) and 37 checked references. Every release of the course is now archived with its own DOI too. The research page lets you cite it in APA, Harvard, IEEE, MLA, Chicago, BibTeX or RIS." },
     { type: "h2", text: "What I wrote" },

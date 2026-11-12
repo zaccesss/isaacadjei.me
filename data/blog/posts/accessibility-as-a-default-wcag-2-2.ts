@@ -7,6 +7,7 @@ const _accessibility_as_a_default_wcag_2_2: BlogPost = {
   type: "blog",
   cover_image: "/images/blog/covers/accessibility-as-a-default-wcag-2-2-shot.webp",
   cover_image_dark: "/images/blog/covers/accessibility-as-a-default-wcag-2-2-shot-dark.webp",
+  cover_alt: "Vitafolio CV page for Alex Morgan, with profile and experience sections beside download and print buttons and a QR code",
   description:
     "What building Vitafolio to WCAG 2.2 AA actually involved: contrast in two themes, alternatives to dragging, sign-in without puzzles and why I now treat an accessibility problem as a bug.",
   tags: ["Accessibility", "Web", "WebDev", "BestPractices", "PHP"],

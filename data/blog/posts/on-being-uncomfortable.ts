@@ -87,8 +87,8 @@ const _on_being_uncomfortable: BlogPost = {
       {
         type: "ol-links",
         items: [
-          { text: "Mindset: The New Psychology of Success - Carol Dweck - the research behind growth vs fixed mindset", url: "https://www.penguin.co.uk/books/291600/mindset-by-carol-s-dweck/9781472116178" },
-          { text: "The Courage to Be Disliked - Kishimi and Koga - Adlerian psychology applied to self-determination", url: "https://www.penguin.co.uk/books/313385/the-courage-to-be-disliked-by-ichiro-kishimi-fumitake-koga/9781760630607" },
+          { text: "Mindset: The New Psychology of Success - Carol Dweck - the research behind growth vs fixed mindset", url: "https://www.littlebrown.co.uk/titles/carol-dweck/mindset/9781472139955/" },
+          { text: "The Courage to Be Disliked - Kishimi and Koga - Adlerian psychology applied to self-determination", url: "https://atlantic-books.co.uk/book/the-courage-to-be-disliked/" },
           { text: "Paul Graham: Keep Your Identity Small (2009)", url: "http://www.paulgraham.com/identity.html" },
           { text: "The Pragmatic Programmer - Hunt and Thomas - chapter on your knowledge portfolio", url: "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/" },
         ],

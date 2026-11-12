@@ -10,6 +10,7 @@ export const ISSUE_LIVE_HOUR = 8
 export interface NewsletterIssueFile {
   kind?: "letter" | "outside" | "midweek"
   number: number
+  id: string
   slug: string
   title: string
   subtitle: string
@@ -194,8 +195,8 @@ export function worthBetween(start: string, end: string): WorthItem[] {
     .slice(0, 5)
 }
 
-export function issueLabel(issue: Pick<NewsletterIssueFile, "kind" | "number">): string {
-  return `${issue.kind === "outside" ? "Outside" : issue.kind === "midweek" ? "Midweek" : "Issue"} ${issue.number}`
+export function issueLabel(issue: Pick<NewsletterIssueFile, "kind">): string {
+  return issue.kind === "outside" ? "Outside" : issue.kind === "midweek" ? "Midweek" : "Letter"
 }
 
 export function allIssues(): Issue[] {
@@ -239,6 +240,10 @@ export function getPublishedIssues(now: Date = new Date()): Issue[] {
 
 export function getIssueBySlug(slug: string): Issue | undefined {
   return getPublishedIssues().find((i) => i.slug === slug)
+}
+
+export function getIssueById(id: string): Issue | undefined {
+  return getPublishedIssues().find((i) => i.id === id)
 }
 
 export function issuesForDate(date: string): Issue[] {

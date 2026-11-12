@@ -44,7 +44,7 @@ export default function FeaturedTIL({ entries }: { entries: TILEntry[] }) {
                 <Link
                   key={entry.id}
                   href={`/til/${entry.id}`}
-                  className="group flex min-w-0 flex-col gap-3 rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all p-4"
+                  className="group flex min-w-0 flex-col gap-3 rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40 transition-all p-4"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>

@@ -18,7 +18,7 @@ function IssueCard({ issue }: { issue: NewsletterIssue }) {
     <a
       href={issue.href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-border transition-all overflow-hidden"
+      className="group block rounded-lg border border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40 transition-all overflow-hidden"
     >
       {issue.thumbnailUrl && (
         <div className="relative w-full h-40 overflow-hidden bg-muted">

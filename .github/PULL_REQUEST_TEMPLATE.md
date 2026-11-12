@@ -1,6 +1,6 @@
-Thank you for taking the time. This repository is a published copy of the site's source, so pull requests cannot be merged directly.
+Thank you for taking the time. I make every change to this site myself, so pull requests cannot be merged here.
 
-Please close this and open an issue instead using the templates. Accepted fixes are applied at the source and appear here in the next publish.
+Please close this and open an issue instead using the templates. Accepted fixes appear here with the next release.
 
 ## AI use
 

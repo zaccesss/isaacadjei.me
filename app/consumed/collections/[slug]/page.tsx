@@ -63,7 +63,7 @@ export default async function ConsumedCollectionPage({ params }: { params: Promi
         <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {others.map((c) => (
             <li key={c.slug}>
-              <Link href={`/consumed/collections/${c.slug}`} className="text-primary underline underline-offset-2 hover:text-primary/80">
+              <Link href={`/consumed/collections/${c.slug}`} className="body-link">
                 {c.title}
               </Link>
             </li>

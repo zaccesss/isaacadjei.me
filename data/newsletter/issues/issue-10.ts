@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 10,
-  slug: "issue-10-learning-to-code",
+  id: "issue-10-learning-to-code",
+  slug: "learning-to-code-and-getting-ready-for-term",
   title: "Learning to code and getting ready for term",
   subtitle: "Eleven things I would tell anyone starting out, how I set up a new term and five lessons from CSS, git, shells, cooking and Ghanaian names.",
   tags: ["Learning", "Programming", "Beginner", "Advice", "Career"],

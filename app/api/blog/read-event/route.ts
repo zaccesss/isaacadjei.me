@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { redis } from "@/lib/core/redis"
 import { supabase } from "@/lib/core/supabase"
+import { asksNotToBeCounted } from "@/lib/content/no-count"
 
 const VALID_DEPTHS = new Set([25, 50, 75, 100])
 const VALID_SLUG = /^[a-z0-9-]{1,120}$/
@@ -14,6 +15,7 @@ function ipKey(ip: string) {
 }
 
 export async function POST(req: NextRequest) {
+  if (asksNotToBeCounted(req.headers.get("cookie"))) return new NextResponse(null, { status: 204 })
   let body: unknown
   try {
     body = await req.json()

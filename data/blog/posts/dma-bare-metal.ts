@@ -4,7 +4,7 @@ const _dma_bare_metal: BlogPost = {
     slug: "dma-bare-metal",
     title: "DMA Explained: Moving Data Without the CPU",
     date: "2026-07-01",
-    type: "research",
+    type: "explainer",
     cover_image: "/images/blog/covers/dma-bare-metal.webp",
     cover_credit: "Photo: Raimond Spekking, CC BY-SA 4.0, cropped, via Wikimedia Commons",
     cover_alt: "Close-up of an STM32F107 ARM Cortex-M3 microcontroller on a circuit board, with the copper traces running to its pins",
@@ -12,6 +12,7 @@ const _dma_bare_metal: BlogPost = {
       "How Direct Memory Access works on microcontrollers, why it matters for high-throughput embedded systems and how to configure a DMA transfer on an STM32 without relying on HAL.",
     tags: ["DMA", "STM32", "Embedded", "C", "Performance"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -138,7 +139,7 @@ if (half_ready == 0) {
         type: "ol-links",
         items: [
           { text: "STM32F4 reference manual (RM0090) - chapters 9 and 10 cover DMA1, DMA2 and their channel/stream mappings", url: "https://www.st.com/resource/en/reference_manual/rm0090-stm32f405415-stm32f407417-stm32f427437-and-stm32f429439-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" },
-          { text: "ARM Application Note 321: ARM Cortex-M Programming Guide to Memory Barrier Instructions", url: "https://developer.arm.com/documentation/dai0321/latest" },
+          { text: "ARM Application Note 321: ARM Cortex-M Programming Guide to Memory Barrier Instructions", url: "https://support.arm.com/documentation/dai0321/latest" },
           { text: "Making Embedded Systems - Elecia White - chapter 6 covers DMA and memory-mapped peripherals", url: "https://www.oreilly.com/library/view/making-embedded-systems/9781449308889/" },
           { text: "Wikipedia: Direct memory access - overview of DMA architecture", url: "https://en.wikipedia.org/wiki/Direct_memory_access" },
           { text: "Compiler Explorer (Godbolt) - useful for seeing how the compiler handles DMA buffer declarations", url: "https://godbolt.org/" },

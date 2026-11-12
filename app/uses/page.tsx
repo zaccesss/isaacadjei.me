@@ -51,7 +51,7 @@ const sections: Array<{
       {
         name: "Lenovo ThinkPad P14s Gen 5 AMD (ZACCESS-LNV)",
         icon: `${SI}/lenovo`,
-        href: "https://www.lenovo.com/gb/en/p/laptops/thinkpad/thinkpadp/lenovo-thinkpad-p14s-gen-5-14-inch-amd-mobile-workstation/len101t0101",
+        href: "https://psref.lenovo.com/Product/ThinkPad/ThinkPad_P14s_Gen_5_AMD",
         detail: "A Ryzen 7 PRO 8840HS mobile workstation with 16 GB of DDR5 and a 512 GB SSD. My secondary machine, dual booting Windows 11 and Fedora KDE Plasma from one boot menu with Windows listed first. Fedora has 150 GB of its own on an encrypted Btrfs partition, with Secure Boot left on. Its desktop is set up like Windows 11: one taskbar centred along the bottom, the window keys I use with Rectangle on my Mac and my own high-contrast light and dark themes that switch by time of day. Kitty is the terminal and my OneDrive mounts through rclone. All of it lives in my config repos, so a new device can be rebuilt from them. On the Windows side WSL2 runs Ubuntu for tooling that expects Linux. The same small Python daemon runs on both systems (NSSM on Windows, systemd on Fedora) and feeds live battery and charging state to the now page, named for whichever system is running.",
       },
       {
@@ -171,7 +171,7 @@ const sections: Array<{
         name: "Zacess themes",
         icon: "/images/ventures/zacess.png",
         href: "https://zacess.com",
-        detail: <>Every terminal and editor I use wears the Zacess themes: ten themes, light and dark, that grew out of the contrast settings in <Link href="/projects/zacess" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">Zacess</Link>, my accessible document reader. Eight are high contrast, with every code colour at 7:1 or more against its background. Warm Dark and Warm Light are a gentler pair at 4.5:1 for anyone who finds high contrast too intense. One command, zt, switches every terminal, editor and app on a machine at once. Zacess Deep Contrast Dark is my default.</>,
+        detail: <>Every terminal and editor I use wears the Zacess themes: ten themes, light and dark, that grew out of the contrast settings in <Link href="/projects/zacess" className="body-link">Zacess</Link>, my accessible document reader. Eight are high contrast, with every code colour at 7:1 or more against its background. Warm Dark and Warm Light are a gentler pair at 4.5:1 for anyone who finds high contrast too intense. One command, zt, switches every terminal, editor and app on a machine at once. Zacess Deep Contrast Dark is my default.</>,
       },
       {
         name: "High contrast terminal palette",
@@ -371,7 +371,6 @@ const sections: Array<{
       },
       {
         name: "Adobe Creative Cloud",
-        icon: `${SI}/adobecreativecloud`,
         href: "https://www.adobe.com/uk/creativecloud.html",
         detail: "Photoshop for photo editing, Illustrator for vector work and Premiere Pro plus After Effects for video production. I do not reach for these daily but they are the right tools when design or video output quality matters.",
       },
@@ -483,7 +482,7 @@ export default function UsesPage() {
             href="https://uses.tech"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             uses.tech
           </a>
@@ -520,7 +519,7 @@ export default function UsesPage() {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+                        className="text-sm font-medium body-link"
                       >
                         {name}
                       </a>

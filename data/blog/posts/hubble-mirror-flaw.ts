@@ -7,10 +7,12 @@ const _hubble_mirror_flaw: BlogPost = {
   type: "article",
   cover_image: "/images/blog/covers/hubble-mirror-flaw.webp",
   cover_credit: "Photo: NASA, public domain, via Unsplash",
+  cover_alt: "The Hubble Space Telescope, a silver cylinder with its aperture door open, in orbit above the blue and white Earth",
   description:
     "How one misplaced lens let the Hubble Space Telescope reach orbit in 1990 with a mirror polished precisely to the wrong shape and what that teaches about trusting a single test.",
   tags: ["Engineering", "Research", "Learning", "Best Practices"],
   published: true,
+  archived: true,
   content: [
     {
       type: "p",

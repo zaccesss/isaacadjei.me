@@ -2,8 +2,7 @@
 
 import { useMemo } from "react"
 import Link from "@/components/shared/IntentLink"
-import { ExternalLink } from "lucide-react"
-import { cn, computeReadingTime } from "@/lib/utils"
+import { computeReadingTime } from "@/lib/utils"
 import type { TILEntry } from "@/data/til"
 import { relevanceScore } from "@/lib/content/search"
 import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
@@ -11,6 +10,7 @@ import ListControls, { type FilterGroup } from "@/components/shared/lists/ListCo
 import { countedOptions, monthOptions, sortItems, useListQuery, yearOptions } from "@/components/shared/lists/useListQuery"
 import Tag, { tilCategoryLabelClass } from "@/components/shared/lists/Tag"
 import { ukShortDate } from "@/lib/time/short-date"
+import { stripLinks } from "@/lib/content/markdown-links"
 
 function tilReadingTime(entry: TILEntry): number {
   const blocks: { type: string; text?: string; code?: string }[] = [
@@ -55,10 +55,6 @@ const formatDate = ukShortDate
 
 interface Props {
   entries: TILEntry[]
-}
-
-function stripLinks(text: string): string {
-  return text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
 }
 
 function countMatches(text: string, q: string): number {
@@ -127,7 +123,6 @@ export default function TILList({ entries }: Props) {
     { key: "year", label: "Year", kind: "single", options: yearOptions(entries.map(e => new Date(e.date).getFullYear())) },
     { key: "month", label: "Month", kind: "single", options: monthOptions(entries.map(e => new Date(e.date).getMonth())) },
   ]
-  const setCategory = (cat: string) => query.update({ category: cat === "all" ? null : cat })
 
   return (
     <div className="space-y-8">
@@ -140,39 +135,7 @@ export default function TILList({ entries }: Props) {
         itemLabel={{ one: "entry", many: "entries" }}
       />
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
-        <button
-          type="button"
-          aria-pressed={category === "all"}
-          onClick={() => setCategory("all")}
-          className={cn(
-            "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-            category === "all"
-              ? "bg-primary text-primary-foreground"
-              : "bg-muted text-muted-foreground hover:text-foreground"
-          )}
-        >
-          All
-        </button>
-        {categories.map(cat => (
-          <button
-            key={cat}
-            type="button"
-            aria-pressed={category === cat}
-            onClick={() => setCategory(cat)}
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-              category === cat
-                ? (CATEGORY_STYLES[cat] ?? "bg-primary/10 text-primary") + " ring-1 ring-current"
-                : "bg-muted text-muted-foreground hover:text-foreground"
-            )}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <div id={LIST_ID} className="space-y-0 divide-y divide-border scroll-mt-24">
+      <div id={LIST_ID} className="space-y-4 scroll-mt-24">
         {paginated.length === 0 ? (
           <p className="py-12 text-center text-sm text-muted-foreground">No entries match.</p>
         ) : (
@@ -180,7 +143,11 @@ export default function TILList({ entries }: Props) {
             const q = search.toLowerCase().trim()
             const plainBody = stripLinks(entry.body)
             return (
-              <div key={entry.id} className="py-5 space-y-2">
+              <Link
+                key={entry.id}
+                href={`/til/${entry.id}`}
+                className="group block space-y-2 rounded-lg border border-border/60 bg-muted/20 px-6 py-5 transition-all hover:border-primary/40 hover:bg-muted/30"
+              >
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
                   <time dateTime={entry.date} className="text-xs text-muted-foreground font-mono">
@@ -189,34 +156,22 @@ export default function TILList({ entries }: Props) {
                   <span className="text-xs text-muted-foreground font-mono">{tilReadingTime(entry)} min read</span>
                 </div>
 
-                <Link
-                  href={`/til/${entry.id}`}
-                  className="block text-sm font-semibold leading-snug hover:text-primary transition-colors"
-                >
+                <h2 className="text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
                   {highlight(entry.title, q)}
-                </Link>
+                </h2>
 
                 <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                   {highlight(plainBody, q)}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                  {entry.tags?.map(tag => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                  {entry.source && (
-                    <a
-                      href={entry.source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-primary hover:underline ml-auto"
-                    >
-                      {entry.source.label}
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  )}
-                </div>
-              </div>
+                {entry.tags && entry.tags.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                    {entry.tags.map(tag => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </div>
+                )}
+              </Link>
             )
           })
         )}

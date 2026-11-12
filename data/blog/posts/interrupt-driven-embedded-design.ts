@@ -12,6 +12,7 @@ const _interrupt_driven_embedded_design: BlogPost = {
       "Why polling loops kill embedded systems and how to replace them with interrupt service routines. Covers ISR setup, volatile variables, debounce, critical sections and the rules that separate good embedded firmware from bad.",
     tags: ["Embedded", "C", "Microcontroller", "Hardware", "Firmware"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -169,9 +170,9 @@ NVIC_EnableIRQ(TIM2_IRQn);`,
       },
       {
         type: "video",
-        youtubeId: "F6Ipn7gCOsY",
-        title: "How do interrupts work? - Ben Eater",
-        description: "Ben Eater's clear, low-level explanation of how interrupts work in hardware, covering the interrupt vector, context switching and how the CPU responds to an interrupt signal.",
+        youtubeId: "DlEa8kd7n3Q",
+        title: "Hardware interrupts - Ben Eater",
+        description: "Ben Eater's clear, low-level explanation of how interrupts work in hardware, covering the interrupt vector, how the CPU saves its place on the stack and how it responds to an interrupt signal.",
       },
       {
         type: "h2",
@@ -180,7 +181,7 @@ NVIC_EnableIRQ(TIM2_IRQn);`,
       {
         type: "ol-links",
         items: [
-          { text: "ARM Cortex-M3 Technical Reference Manual - section 8 covers the NVIC", url: "https://developer.arm.com/documentation/ddi0337/latest" },
+          { text: "ARM Cortex-M3 Technical Reference Manual - section 8 covers the NVIC", url: "https://support.arm.com/documentation/ddi0337/latest" },
           { text: "Wikipedia: Interrupt - hardware and software interrupt overview", url: "https://en.wikipedia.org/wiki/Interrupt" },
           { text: "Microchip AVR Instruction Set Manual - ISRs, RETI and sei/cli behaviour", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/AVR-InstructionSet-Manual-DS40002198.pdf" },
           { text: "Making Embedded Systems - Elecia White - chapter 4: interrupts and their interaction with the main loop", url: "https://www.oreilly.com/library/view/making-embedded-systems/9781449308889/" },

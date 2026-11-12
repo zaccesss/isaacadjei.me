@@ -244,7 +244,7 @@ const _vitafolio: Project = {
       },
     ],
     references: [
-      { title: "Laravel documentation", url: "https://laravel.com/docs", note: "The framework Vitafolio is built on" },
+      { title: "Laravel documentation", url: "https://laravel.com/framework/docs", note: "The framework Vitafolio is built on" },
       { title: "texlyre-busytex", url: "https://github.com/TeXlyre/texlyre-busytex", note: "TeX Live compiled to WebAssembly, used for the in-browser LaTeX engine" },
       { title: "PDF/UA-1 (ISO 14289-1), Library of Congress format description", url: "https://www.loc.gov/preservation/digital/formats/fdd/fdd000350.shtml", note: "The accessible PDF standard the generated CVs follow" },
       { title: "Typst documentation", url: "https://typst.app/docs/", note: "The typesetting engine that writes the tagged PDFs" },

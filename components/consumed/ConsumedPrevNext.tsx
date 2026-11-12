@@ -25,7 +25,7 @@ export function ConsumedPrevNext({
         {prev && (
           <Link
             href={prev.href}
-            className="group flex flex-col gap-1 rounded-xl border border-border/60 bg-card p-3 hover:border-border transition-colors"
+            className="group flex flex-col gap-1 rounded-xl border border-border/60 bg-card p-3 hover:border-primary/40 transition-colors"
           >
             <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground uppercase tracking-widest font-mono">
               <ArrowLeft className="h-3 w-3" />
@@ -41,7 +41,7 @@ export function ConsumedPrevNext({
         {next && (
           <Link
             href={next.href}
-            className="group flex flex-col items-end gap-1 rounded-xl border border-border/60 bg-card p-3 hover:border-border transition-colors text-right"
+            className="group flex flex-col items-end gap-1 rounded-xl border border-border/60 bg-card p-3 hover:border-primary/40 transition-colors text-right"
           >
             <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground uppercase tracking-widest font-mono">
               {nextLabel}

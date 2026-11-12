@@ -38,10 +38,10 @@ export default async function NewsletterPage() {
           </a>
         </div>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          A letter every couple of weeks on what I have been building and learning, with everything I published in
-          between. In the weeks without one, a short issue on an engineering story from outside my own work. Every other
-          Wednesday a Midweek issue looks further out: the world, sport, people and culture. The next letter
-          links the Outside and Midweek issues again in case you missed one. Every issue is here to read, react to and comment on.
+          A letter goes out every second Friday, on what I have been building and learning, with everything I published
+          since the last one. A shorter issue goes out on Wednesdays. One week it is Midweek, which looks further out: the world, sport,
+          people and culture. The next week it is Outside, an engineering story from beyond my own work. Each letter
+          links the Wednesday issues again in case you missed one. Every issue is here to read and react to.
         </p>
       </section>
 

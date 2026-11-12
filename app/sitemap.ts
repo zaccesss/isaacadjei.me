@@ -2,6 +2,7 @@ import { MetadataRoute } from "next"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { getPublishedNotes } from "@/data/notes"
+import { getPublishedIssues } from "@/data/newsletter"
 import { projects } from "@/data/projects"
 import { publications } from "@/data/respub"
 import { books as allBooks, videos as allVideos, podcasts as allPodcasts, articles as allArticles, resources as allResources, others as allOthers, artists, liveConsumed } from "@/data/consumed"
@@ -30,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/experience`,                    lastModified: new Date("2026-04-01"), changeFrequency: "monthly", priority: 0.8  },
     { url: `${SITE_URL}/skills`,                        lastModified: new Date("2026-04-01"), changeFrequency: "monthly", priority: 0.7  },
     { url: `${SITE_URL}/blog`,                          lastModified: new Date("2026-05-14"), changeFrequency: "weekly",  priority: 0.7  },
+    { url: `${SITE_URL}/blog/archive`,                  lastModified: new Date("2026-11-12"), changeFrequency: "monthly", priority: 0.4  },
     { url: `${SITE_URL}/contact`,                       lastModified: new Date("2026-04-01"), changeFrequency: "yearly",  priority: 0.5  },
     { url: `${SITE_URL}/links`,                         lastModified: new Date("2026-04-01"), changeFrequency: "monthly", priority: 0.4  },
     { url: `${SITE_URL}/notes`,                         lastModified: new Date("2026-05-29"), changeFrequency: "monthly", priority: 0.6  },
@@ -57,6 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/consumed/others`,               lastModified: new Date("2026-06-17"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/install`,                       lastModified: new Date("2026-11-06"), changeFrequency: "weekly", priority: 0.6  },
     { url: `${SITE_URL}/uses`,                          lastModified: new Date("2026-05-29"), changeFrequency: "monthly", priority: 0.5  },
+    { url: `${SITE_URL}/ai`,                            lastModified: new Date("2026-11-12"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/changelog`,                     lastModified: new Date("2026-05-29"), changeFrequency: "weekly",  priority: 0.5  },
     { url: `${SITE_URL}/colophon`,                      lastModified: new Date("2026-05-29"), changeFrequency: "yearly",  priority: 0.4  },
     { url: `${SITE_URL}/all-pages`,                     lastModified: new Date("2026-11-10"), changeFrequency: "monthly", priority: 0.4  },
@@ -116,6 +119,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  const issueRoutes: MetadataRoute.Sitemap = getPublishedIssues().map((issue) => ({
+    url: `${SITE_URL}/newsletter/${issue.slug}`,
+    lastModified: new Date(issue.date),
+    changeFrequency: "never" as const,
+    priority: 0.5,
+  }))
+
   const tagSlugs = new Set<string>()
   for (const post of getPublishedPosts()) post.tags.forEach((t) => tagSlugs.add(normTag(t)))
   for (const til of getPublishedTILEntries()) til.tags?.forEach((t) => tagSlugs.add(normTag(t)))
@@ -151,5 +161,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
-  return [...staticRoutes, ...collectionRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...notePostRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
+  return [...staticRoutes, ...collectionRoutes, ...projectRoutes, ...blogRoutes, ...tilRoutes, ...notePostRoutes, ...issueRoutes, ...pubRoutes, ...tagRoutes, ...consumedItemRoutes]
 }

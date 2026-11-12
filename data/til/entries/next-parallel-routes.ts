@@ -6,7 +6,7 @@ const _next_parallel_routes: TILEntry = {
     date: "2026-09-26",
     category: "Next.js",
     published: true,
-    body: "Parallel routes in [Next.js App Router](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) use the `@slot` folder convention. You can render two independent route segments side by side in the same layout: each with its own loading, error and not-found states. Useful any time you want a main panel and a sidebar to navigate independently without wrapping everything in one client component.",
+    body: "Parallel routes in [Next.js App Router](https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes) use the `@slot` folder convention. You can render two independent route segments side by side in the same layout: each with its own loading, error and not-found states. Useful any time you want a main panel and a sidebar to navigate independently without wrapping everything in one client component.",
     detail: [
       {
         type: "p",
@@ -43,13 +43,13 @@ export default function ShopLayout({
       },
       {
         type: "link",
-        url: "https://nextjs.org/docs/app/building-your-application/routing/parallel-routes",
+        url: "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
         label: "Next.js: Parallel Routes",
         description: "Official docs with diagrams showing the @slot folder convention and intercepting routes.",
       },
     ],
     tags: ["Next.js", "routing", "web"],
-    source: { label: "Next.js docs: Parallel Routes", url: "https://nextjs.org/docs/app/building-your-application/routing/parallel-routes" },
+    source: { label: "Next.js docs: Parallel Routes", url: "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes" },
   }
 
 export default _next_parallel_routes

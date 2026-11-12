@@ -6,7 +6,7 @@ const _adc_reference_voltage_quality: TILEntry = {
     date: "2026-08-04",
     category: "Embedded",
     published: true,
-    body: "An ADC converts an analogue voltage to a digital value by comparing it to a reference. If the reference voltage drifts by 1%, every reading drifts by 1%: and the ADC has no way to detect this. On STM32 you can use the internal VREFINT (nominally 1.2 V) measured against the actual supply, but for precision applications a dedicated voltage reference IC (e.g. [LM4040](https://www.ti.com/product/LM4040-N), [REF3312](https://www.ti.com/product/REF3312)) with low temperature drift is worth the extra component. During a sensor project I saw 3-bit errors that disappeared when I switched from MCU VDD to a dedicated 2.5 V reference.",
+    body: "An ADC converts an analogue voltage to a digital value by comparing it to a reference. If the reference voltage drifts by 1%, every reading drifts by 1%: and the ADC has no way to detect this. On STM32 you can use the internal VREFINT (nominally 1.2 V) measured against the actual supply, but for precision applications a dedicated voltage reference IC (e.g. [LM4040](https://www.ti.com/product/LM4040-N), [REF3312](https://www.ti.com/product/REF33)) with low temperature drift is worth the extra component. During a sensor project I saw 3-bit errors that disappeared when I switched from MCU VDD to a dedicated 2.5 V reference.",
     detail: [
       {
         type: "p",

@@ -48,7 +48,7 @@ export default function PublicationsPage() {
         </p>
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
           What is still in progress is on the{" "}
-          <Link href="/research" className="text-primary underline underline-offset-4 hover:text-primary/80">Research page</Link>.
+          <Link href="/research" className="body-link">Research page</Link>.
         </p>
 
         <div className="flex items-center gap-x-4 gap-y-2 flex-wrap">

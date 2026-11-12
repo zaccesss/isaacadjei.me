@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 6,
-  slug: "outside-06-robotic-satellite-servicing",
+  id: "outside-06-robotic-satellite-servicing",
+  slug: "a-robot-mechanic-heads-for-geosynchronous-orbit",
   title: "A robot mechanic heads for geosynchronous orbit",
   subtitle: "A spacecraft with two robotic arms launched to refuel and repair satellites far above Earth.",
   tags: ["Space", "Robotics", "Engineering"],

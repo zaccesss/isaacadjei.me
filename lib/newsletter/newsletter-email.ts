@@ -2,6 +2,7 @@ import type { ContentBlock } from "@/data/blog"
 import { SIGN_OFF_NAME, SIGNATURE, issueLabel, type Issue, type GatheredKind } from "@/data/newsletter"
 import { diagramImagePath } from "@/lib/content/diagram-image"
 import { isSyncedImage, mediaEmailSrc } from "@/lib/content/media"
+import { readLink, replaceLinks, splitLinks, stripLinks } from "@/lib/content/markdown-links"
 
 export const SITE = "https://isaacadjei.me"
 export const ASSETS = "https://raw.githubusercontent.com/zaccesss/isaacadjei.me/main/public"
@@ -13,7 +14,7 @@ function emailImage(src: string): string | null {
   return (EMAIL_IMAGES_FROM_MEDIA && mediaEmailSrc(src)) || `${ASSETS}${src}`
 }
 
-function figure(src: string, alt: string, caption?: string): string {
+export function figure(src: string, alt: string, caption?: string): string {
   return `<p style="margin:0 0 16px;"><img src="${esc(src)}" alt="${esc(alt)}" width="536" style="display:block;width:100%;max-width:536px;height:auto;border-radius:8px;border:1px solid ${C.border};">${
     caption ? `<span style="display:block;margin-top:6px;font-size:13px;color:${C.muted};text-align:center;">${esc(caption)}</span>` : ""
   }</p>`
@@ -38,11 +39,10 @@ function absolute(url: string): string {
 }
 
 function inline(text: string): string {
-  return text
-    .split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g)
+  return splitLinks(text, String.raw`\*\*[^*]+\*\*`)
     .map((part) => {
-      const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-      if (link) return `<a href="${esc(absolute(link[2]))}" style="color:${C.primary};text-decoration:underline;">${esc(link[1])}</a>`
+      const link = readLink(part)
+      if (link) return `<a href="${esc(absolute(link.href))}" style="${A}">${esc(link.text)}</a>`
       const bold = part.match(/^\*\*([^*]+)\*\*$/)
       if (bold) return `<strong style="color:${C.text};">${esc(bold[1])}</strong>`
       return esc(part)
@@ -51,24 +51,28 @@ function inline(text: string): string {
 }
 
 function plainInline(text: string): string {
-  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => `${t} (${absolute(u)})`).replace(/\*\*([^*]+)\*\*/g, "$1")
+  return replaceLinks(text, (words, href) => `${words} (${absolute(href)})`).replace(/\*\*([^*]+)\*\*/g, "$1")
 }
 
 export const P = `margin:0 0 16px;font-size:16px;line-height:1.65;color:${C.text};`
+export const A = `color:${C.primary};text-decoration:underline;`
+export const H2 = `margin:28px 0 12px;font-size:20px;line-height:1.3;color:${C.text};`
+export const LIST = `margin:0 0 16px;padding-left:22px;font-size:16px;line-height:1.65;color:${C.text};`
+export const LI = "margin:0 0 6px;"
 
 function blockHtml(b: ContentBlock): string {
   switch (b.type) {
     case "p":
       return `<p style="${P}">${inline(b.text)}</p>`
     case "h2":
-      return `<h2 style="margin:28px 0 12px;font-size:20px;line-height:1.3;color:${C.text};">${esc(b.text)}</h2>`
+      return `<h2 style="${H2}">${esc(b.text)}</h2>`
     case "h3":
       return `<h3 style="margin:24px 0 10px;font-size:17px;line-height:1.3;color:${C.text};">${esc(b.text)}</h3>`
     case "ul":
     case "ol": {
       const tag = b.type
-      return `<${tag} style="margin:0 0 16px;padding-left:22px;font-size:16px;line-height:1.65;color:${C.text};">${b.items
-        .map((i) => `<li style="margin:0 0 6px;">${inline(i)}</li>`)
+      return `<${tag} style="${LIST}">${b.items
+        .map((i) => `<li style="${LI}">${inline(i)}</li>`)
         .join("")}</${tag}>`
     }
     case "quote":
@@ -117,7 +121,7 @@ const SECTION_TITLES: Record<GatheredKind, string> = { blog: "Blog posts", til: 
 const ORDER: GatheredKind[] = ["blog", "til", "note"]
 
 function excerpt(text: string, max = 180): string {
-  const plain = text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*`]/g, "")
+  const plain = stripLinks(text).replace(/[*`]/g, "")
   return plain.length > max ? `${plain.slice(0, max).replace(/\s+\S*$/, "")}...` : plain
 }
 

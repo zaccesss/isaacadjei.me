@@ -190,7 +190,7 @@ const _isaacadjei_me: Project = {
       { type: "h2", text: "Community pages" },
       {
         type: "p",
-        text: "The guestbook takes messages behind the same spam protection as the contact form and shows each one only after I approve it. The now page follows the nownownow idea of saying what I am focused on at the moment. The newsletter is part of the site rather than a separate platform. Every other week a letter gathers what I published since the last one with a short note from me. In the weeks between, a short Outside issue covers one thing beyond my own work. Each issue is a file in the repository: it goes live at midnight on its date and is emailed through Resend that morning, once, to subscribers who confirmed by email. Issues have their own pages with reactions and comments, plus a feed.",
+        text: "The guestbook takes messages behind the same spam protection as the contact form and shows each one only after I approve it. The now page follows the nownownow idea of saying what I am focused on at the moment. The newsletter is part of the site rather than a separate platform. On Fridays a letter gathers what I published since the last one with a short note from me. On Wednesdays a shorter issue goes out. One week it is a Midweek issue on something beyond engineering and the next it is an Outside issue on one thing beyond my own work. Each issue is a file in the repository: it goes live on the morning of its date, when it is emailed through Resend, once, to subscribers who confirmed by email. Issues have their own pages with reactions and comments, plus a feed.",
       },
       { type: "h2", text: "Accessibility" },
       {

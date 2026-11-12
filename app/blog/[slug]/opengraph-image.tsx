@@ -8,8 +8,7 @@ export const contentType = "image/png"
 const TYPE_COLOUR: Record<string, string> = {
   blog:      "#6366f1",
   journal:   "#22c55e",
-  research:  "#f59e0b",
-  notes:     "#71717a",
+  explainer: "#f59e0b",
   report:    "#a855f7",
   article:   "#0ea5e9",
   resources: "#f97316",

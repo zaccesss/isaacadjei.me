@@ -10,7 +10,8 @@ const zacess: ContentBlock[] = zacessLaunch.map((b): ContentBlock =>
 
 const issue: NewsletterIssueFile = {
   number: 12,
-  slug: "issue-12-welcome-to-the-newsletter",
+  id: "issue-12-welcome-to-the-newsletter",
+  slug: "welcome-to-the-newsletter",
   title: "Welcome to the newsletter",
   subtitle: "The first emailed issue, in two parts. This one: Zacess is open to try with matching code themes, plus accessibility, a terminal palette and an invitation from Sky.",
   tags: ["Accessibility", "Zacess", "Code themes", "Dotfiles", "Sky"],
@@ -29,7 +30,7 @@ const issue: NewsletterIssueFile = {
   skipWorth: true,
   skipMidweek: true,
   intro: [
-    { type: "p", text: "This is the first issue to arrive by email, so welcome. The newsletter lives on [my own site](/newsletter), next to the blog, TILs and notes it collects. Every issue has its own page with reactions and comments. The archive goes back to May if you want to catch up. The format is simple: a short letter from me, then everything I published since the last issue. The first fortnight was too much for one email, so today comes in two parts. This one leads with Zacess. [Issue 12.1](/newsletter/issue-12-1-calibrated-alerts-and-a-new-paper), sent at the same time, carries the engineering posts and a new paper." },
+    { type: "p", text: "This is the first issue to arrive by email, so welcome. The newsletter lives on [my own site](/newsletter), next to the blog, TILs and notes it collects. Every issue has its own page with reactions and comments. The archive goes back to May if you want to catch up. The format is simple: a short letter from me, then everything I published since the last issue. The first fortnight was too much for one email, so today comes in two parts. This one leads with Zacess. [The second part](/newsletter/calibrated-alerts-a-database-move-and-a-new-paper), sent at the same time, carries the engineering posts and a new paper." },
     { type: "h2", text: "Zacess is open to try" },
     { type: "p", text: `This is the same text as [the blog post](/blog/building-zacess-a-reader-that-respects-the-file), where the demo clips play and the read aloud one has sound.` },
     ...zacess,

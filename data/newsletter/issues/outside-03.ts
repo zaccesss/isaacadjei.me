@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 3,
-  slug: "outside-03-linux-7-1",
+  id: "outside-03-linux-7-1",
+  slug: "linux-7-1-arrives-with-a-rewritten-ntfs-driver",
   title: "Linux 7.1 arrives with a rewritten NTFS driver",
   subtitle: "The first major release of the 7.x series landed on 14 June after a busy cycle.",
   tags: ["Linux", "Open Source", "Operating Systems"],

@@ -36,8 +36,7 @@ export type LabData = {
 const TYPE_LABEL: Record<string, string> = {
   blog: "blog",
   journal: "journal",
-  research: "research",
-  notes: "notes",
+  explainer: "explainer",
   report: "report",
   article: "article",
   resources: "resources",
@@ -513,7 +512,7 @@ const COMMANDS: Record<string, (data: LabData) => Line[]> = {
     { type: "cmd-list", text: "  linkedin     -  open LinkedIn profile" },
     { type: "blank", text: "" },
     { type: "info", text: "  writing" },
-    { type: "cmd-list", text: "  posts        -  most read blog and TIL entries" },
+    { type: "cmd-list", text: "  posts        -  most read posts, TILs, notes and issues" },
     { type: "cmd-list", text: "  live         -  published posts" },
     { type: "cmd-list", text: "  topics       -  active tags" },
     { type: "blank", text: "" },
@@ -1159,31 +1158,31 @@ const ASYNC_COMMANDS: Record<string, () => Promise<Line[]>> = {
   posts: async () => {
     const r = await fetch("/api/top-content")
     if (!r.ok) throw new Error("fetch failed")
-    const d = await r.json() as {
-      topBlog: { slug: string; reads: number; title: string }[]
-      topTil: { slug: string; reads: number; title: string }[]
-    }
+    type Ranked = { slug: string; reads: number; title: string }[]
+    const d = await r.json() as { topBlog: Ranked; topTil: Ranked; topNotes?: Ranked; topIssues?: Ranked }
+    const groups: [string, Ranked][] = [
+      ["blog posts", d.topBlog],
+      ["til entries", d.topTil],
+      ["notes", d.topNotes ?? []],
+      ["newsletter issues", d.topIssues ?? []],
+    ]
     const lines: Line[] = [{ type: "info", text: "most read content" }, { type: "blank", text: "" }]
-    if (d.topBlog.length > 0) {
-      lines.push({ type: "info", text: "  blog posts" })
-      for (const p of d.topBlog) {
-        lines.push({ type: "output", text: `  [${p.reads} reads]  ${p.title}` })
+    for (const [name, items] of groups) {
+      if (items.length === 0) continue
+      lines.push({ type: "info", text: `  ${name}` })
+      for (const item of items) {
+        lines.push({ type: "output", text: `  [${item.reads} reads]  ${item.title}` })
       }
       lines.push({ type: "blank", text: "" })
     }
-    if (d.topTil.length > 0) {
-      lines.push({ type: "info", text: "  til entries" })
-      for (const t of d.topTil) {
-        lines.push({ type: "output", text: `  [${t.reads} reads]  ${t.title}` })
-      }
-      lines.push({ type: "blank", text: "" })
-    }
-    if (d.topBlog.length === 0 && d.topTil.length === 0) {
+    if (groups.every(([, items]) => items.length === 0)) {
       lines.push({ type: "output", text: "  no read data yet - check back later" })
       lines.push({ type: "blank", text: "" })
     }
     lines.push({ type: "output", text: "  → isaacadjei.me/blog" })
     lines.push({ type: "output", text: "  → isaacadjei.me/til" })
+    lines.push({ type: "output", text: "  → isaacadjei.me/notes" })
+    lines.push({ type: "output", text: "  → isaacadjei.me/newsletter" })
     return lines
   },
 
@@ -2505,7 +2504,7 @@ export default function LabPage({ data }: { data: LabData }) {
       {!isMaximized && (
         <p className="text-center text-xs text-muted-foreground font-mono">
           GitHub, coding, music and gaming stats moved to{" "}
-          <Link href="/stats" className="text-primary hover:underline">
+          <Link href="/stats" className="body-link">
             /stats
           </Link>
         </p>

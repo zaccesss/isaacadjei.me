@@ -9,7 +9,7 @@ import FeaturedNotes from "@/components/sections/FeaturedNotes"
 import SkillsOverview from "@/components/sections/SkillsOverview"
 import ContactCTA from "@/components/sections/ContactCTA"
 import SectionErrorBoundary from "@/components/shared/SectionErrorBoundary"
-import { getPublishedPosts, toCard } from "@/data/blog"
+import { getMainListPosts, toCard } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { getPublishedNotes } from "@/data/notes"
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  const featuredPosts = getPublishedPosts().map((p) => toCard({ ...p, readingTime: p.readingTime ?? 0 }))
+  const featuredPosts = getMainListPosts().map((p) => toCard({ ...p, readingTime: p.readingTime ?? 0 }))
   const latestTils = getPublishedTILEntries()
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, 3)

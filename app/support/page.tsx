@@ -41,7 +41,7 @@ export default function SupportPage() {
             href="https://github.com/zaccesss/.github/blob/main/SUPPORT.md"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1.5 body-link"
           >
             <Github className="h-4 w-4" />
             Also on GitHub: zaccesss/.github SUPPORT
@@ -69,7 +69,7 @@ export default function SupportPage() {
               the repository with the details: what you did, what you expected and what happened. The{" "}
               <Link
                 href="/contribute"
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="body-link"
               >
                 contributing guide
               </Link>{" "}
@@ -83,7 +83,7 @@ export default function SupportPage() {
               the{" "}
               <Link
                 href="/ai-policy"
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="body-link"
               >
                 AI policy
               </Link>{" "}
@@ -96,7 +96,7 @@ export default function SupportPage() {
               <span className="font-medium text-foreground">More about me and my work.</span> Browse my{" "}
               <Link
                 href="/projects"
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="body-link"
               >
                 projects
               </Link>{" "}
@@ -105,7 +105,7 @@ export default function SupportPage() {
                 href="https://github.com/zaccesss"
                 target="_blank"
                 rel="noreferrer"
-                className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="body-link"
               >
                 GitHub
               </a>
@@ -126,21 +126,21 @@ export default function SupportPage() {
           For help, email me at{" "}
           <a
             href="mailto:support@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             support@isaacadjei.me
           </a>
           . For anything else, use{" "}
           <a
             href="mailto:contact@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact@isaacadjei.me
           </a>{" "}
           or my{" "}
           <Link
             href="/contact"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact page
           </Link>
@@ -159,14 +159,14 @@ export default function SupportPage() {
           For a security issue, follow my{" "}
           <Link
             href="/security-policy"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             security policy
           </Link>{" "}
           or email{" "}
           <a
             href="mailto:security@isaacadjei.me"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             security@isaacadjei.me
           </a>{" "}

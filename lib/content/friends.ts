@@ -65,7 +65,7 @@ export const FRIENDS: Friend[] = [
   },
   {
     name: "Michelle Lawson",
-    url: "https://www.michellelawson.me",
+    url: "https://michellescomputer.com/",
     about: "Computer science student and founder of Computer Science Girlies, teaching AI and CS to the next generation.",
     group: "learn",
   },

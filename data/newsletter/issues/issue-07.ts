@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 7,
-  slug: "issue-07-decisions-behind-phaemos",
+  id: "issue-07-decisions-behind-phaemos",
+  slug: "the-decisions-behind-phaemos-and-writing-clearly",
   title: "The decisions behind PHAEMOS and writing clearly",
   subtitle: "Why each part of PHAEMOS is the way it is, how to write clearly as an engineer and six lessons from CPUs, ADCs, algorithms, faith and GPS.",
   tags: ["PHAEMOS", "IoT", "Embedded", "Writing", "Documentation", "Career"],

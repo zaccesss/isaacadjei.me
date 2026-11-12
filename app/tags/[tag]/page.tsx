@@ -163,7 +163,7 @@ export default async function TagPage({
               <li key={post.slug}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -189,7 +189,7 @@ export default async function TagPage({
               <li key={entry.id}>
                 <Link
                   href={`/til/${entry.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">{entry.category}</p>
@@ -215,7 +215,7 @@ export default async function TagPage({
               <li key={note.slug}>
                 <Link
                   href={`/notes/${note.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -238,7 +238,7 @@ export default async function TagPage({
               <li key={issue.slug}>
                 <Link
                   href={`/newsletter/${issue.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -264,7 +264,7 @@ export default async function TagPage({
               <li key={project.id}>
                 <Link
                   href={`/projects/${project.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">{project.category}</p>
@@ -288,7 +288,7 @@ export default async function TagPage({
               <li key={pub.id}>
                 <Link
                   href={`/publications/${pub.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">{pub.type}</p>
@@ -312,7 +312,7 @@ export default async function TagPage({
               <li key={artist.name}>
                 <Link
                   href={`/consumed/music/${consumedSlug(artist.name)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Artist</p>
@@ -328,7 +328,7 @@ export default async function TagPage({
               <li key={book.title}>
                 <Link
                   href={`/consumed/books/${consumedSlug(book.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Book</p>
@@ -344,7 +344,7 @@ export default async function TagPage({
               <li key={video.id}>
                 <Link
                   href={`/consumed/videos/${consumedSlug(video.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Video</p>
@@ -360,7 +360,7 @@ export default async function TagPage({
               <li key={article.title}>
                 <Link
                   href={`/consumed/articles/${consumedSlug(article.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Article</p>
@@ -376,7 +376,7 @@ export default async function TagPage({
               <li key={other.title}>
                 <Link
                   href={`/consumed/others/${consumedSlug(other.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Other</p>
@@ -392,7 +392,7 @@ export default async function TagPage({
               <li key={resource.title}>
                 <Link
                   href={`/consumed/resources/${consumedSlug(resource.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-border p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Resource</p>

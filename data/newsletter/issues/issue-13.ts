@@ -2,7 +2,8 @@ import type { NewsletterIssueFile } from "../index"
 
 const issue: NewsletterIssueFile = {
   number: 13,
-  slug: "issue-13-transistors-and-telescopes",
+  id: "issue-13-transistors-and-telescopes",
+  slug: "transistors-telescopes-gps-and-git-hooks",
   title: "Transistors, telescopes, GPS and git hooks",
   subtitle: "Three stories from engineering history, the Isolation Forest without maths, git hooks, a monorepo for MELOPHOS and two notes from term.",
   tags: ["Engineering", "Hardware", "Learning", "Git", "Open Source", "ML"],

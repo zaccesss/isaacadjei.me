@@ -9,7 +9,7 @@ export interface FeedViewItem {
   sublabel?: string
   tags?: string[]
   source?: { label: string; url: string }
-  discussion?: boolean
+  discussion?: string
   image?: { src: string; alt: string } | null
 }
 
@@ -48,8 +48,8 @@ export const HUE_COLOURS: Record<Hue, [light: string, dark: string]> = {
 }
 
 export const POST_TYPE_HUE: Record<string, Hue> = {
-  blog: "blue", article: "violet", research: "emerald", journal: "amber",
-  report: "rose", resources: "cyan", notes: "slate",
+  blog: "blue", article: "violet", explainer: "emerald", journal: "amber",
+  report: "rose", resources: "cyan",
 }
 
 export const TIL_CATEGORY_HUE: Record<string, Hue> = {
@@ -115,7 +115,7 @@ function renderItem(item: FeedViewItem) {
             <p class="meta"><time datetime="${esc(item.date)}">${formatDate(item.date)}</time><span class="author">Isaac Adjei</span></p>
             ${tags ? `<ul class="tags" aria-label="Tags">${tags}</ul>` : ""}
             ${source}
-            ${item.discussion ? `<p class="discussion"><a href="${esc(item.url)}#reactions">Reactions</a><a href="${esc(item.url)}#comments">Comments</a></p>` : ""}
+            ${item.discussion ? `<p class="discussion"><a href="${esc(item.url)}#reactions">Reactions</a><a href="${esc(item.url)}#comments">${esc(item.discussion)}</a></p>` : ""}
           </article>
         </li>`
 }
@@ -246,11 +246,12 @@ export function buildFeedHtml(view: FeedView) {
       }
       .tag::before { content: "#"; margin-right: 0.125rem; color: var(--muted); }
       .source { font-size: 0.8125rem; color: var(--muted); margin-top: 0.5rem; }
-      .discussion { display: flex; gap: 1rem; font-size: 0.8125rem; margin-top: 0.5rem; }
+      .discussion { display: flex; flex-wrap: wrap; gap: 0 0.75rem; font-size: 0.8125rem; margin-top: 0.125rem; }
+      .discussion a { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; }
       .empty { padding: 2rem 0; color: var(--muted); }
       .pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.375rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
       .page-btn {
-        display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; height: 2.25rem;
+        display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; height: 2.75rem;
         padding: 0 0.5rem; border: 1px solid var(--card-border); border-radius: 0.375rem;
         background: var(--card); color: var(--fg); font-size: 0.875rem; text-decoration: none;
       }

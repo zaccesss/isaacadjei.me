@@ -157,8 +157,13 @@ function subscribePageSize(onChange: () => void) {
   }
 }
 
-export const LIST_PAGE_SIZES = [20, 40, 60]
+export const LIST_PAGE_SIZES = [15, 30, 45]
 export const GRID_PAGE_SIZES = [15, 30, 45]
+
+export function resolvePageSize(stored: string | null, options: number[], fallback = options[0]): number {
+  const parsed = Number(stored)
+  return stored !== null && options.includes(parsed) ? parsed : fallback
+}
 
 export function usePageSize(storageKey: string, options: number[], fallback = options[0]): [number, (size: number) => void] {
   const key = `page-size:${storageKey}`
@@ -173,8 +178,7 @@ export function usePageSize(storageKey: string, options: number[], fallback = op
     },
     () => null,
   )
-  const parsed = Number(stored)
-  const size = options.includes(parsed) ? parsed : fallback
+  const size = resolvePageSize(stored, options, fallback)
   const setSize = (next: number) => {
     memory.set(key, String(next))
     try {

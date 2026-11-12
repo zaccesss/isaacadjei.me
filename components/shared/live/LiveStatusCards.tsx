@@ -7,6 +7,7 @@ import { FaGithub as Github } from "react-icons/fa6"
 import SpotifyBars from "@/components/shared/live/SpotifyBars"
 import { SiPlaystation, SiDiscord, SiSpotify } from "react-icons/si"
 import { cn } from "@/lib/utils"
+import { SPOTIFY_PROFILE_URL } from "@/lib/constants"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { DISCORD_PROFILE_ID, DISCORD_USER_ID } from "@/lib/site-config"
 import { schedule, useLiveMode } from "@/hooks/use-live-polling"
@@ -501,7 +502,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 {spotifyLabel}
               </p>
               <a
-                href="https://open.spotify.com/user/zaccesss"
+                href={SPOTIFY_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
@@ -581,7 +582,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 Last Played
               </p>
               <a
-                href="https://open.spotify.com/user/zaccesss"
+                href={SPOTIFY_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
@@ -624,7 +625,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   Spotify
                 </p>
                 <a
-                  href="https://open.spotify.com/user/zaccesss"
+                  href={SPOTIFY_PROFILE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Spotify profile"

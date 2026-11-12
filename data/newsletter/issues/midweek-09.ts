@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 9,
-  slug: "midweek-09-akosombo-dam-lake-volta",
+  id: "midweek-09-akosombo-dam-lake-volta",
+  slug: "akosombo-and-the-worlds-largest-artificial-lake",
   title: "Akosombo and the world's largest artificial lake",
   subtitle: "Ghana's Akosombo Dam created Lake Volta, which covers 3.6 per cent of the country.",
   tags: ["Ghana", "Energy", "Engineering"],

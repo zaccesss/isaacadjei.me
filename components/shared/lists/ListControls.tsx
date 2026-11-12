@@ -28,6 +28,7 @@ interface ListControlsProps {
   resultCount: number
   itemLabel: { one: string; many: string }
   className?: string
+  panelExtra?: React.ReactNode
 }
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -43,6 +44,7 @@ export default function ListControls({
   resultCount,
   itemLabel,
   className,
+  panelExtra,
 }: ListControlsProps) {
   const [open, setOpen] = useState(false)
   const [optionSearch, setOptionSearch] = useState<Record<string, string>>({})
@@ -250,6 +252,8 @@ export default function ListControls({
                   </fieldset>
                 )}
               </div>
+
+              {panelExtra && <div className="mt-5 border-t border-border pt-4">{panelExtra}</div>}
 
               <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
                 <button

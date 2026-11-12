@@ -196,7 +196,7 @@ const _melophos: Project = {
       },
       {
         title: "ESP32-S3 Series datasheet (Espressif)",
-        url: "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf",
+        url: "https://documentation.espressif.com/esp32-s3_datasheet_en.pdf",
         note: "The hub's microcontroller, chosen for its USB host, Bluetooth LE and Wi-Fi.",
       },
       {

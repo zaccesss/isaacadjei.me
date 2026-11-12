@@ -1,5 +1,6 @@
 import { ASSETS, C, FONT, P, SITE, esc, signatureHtml, signatureText } from "@/lib/newsletter/newsletter-email"
 import { SIGN_OFF_NAME } from "@/data/newsletter"
+import { letterBodyHtml, letterBodyText } from "@/lib/friends/letter-body"
 
 export type LetterEmail = {
   label: string
@@ -11,12 +12,8 @@ export type LetterEmail = {
   footer: "letter" | "one-off"
 }
 
-const paragraphs = (body: string) => body.replace(/\r\n/g, "\n").split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
-const linkify = (escaped: string) =>
-  escaped.replace(/https:\/\/[^\s<]+[^\s<.,;:!?)]/g, (u) => `<a href="${u}" style="color:${C.primary};">${u}</a>`)
-
 export function letterEmailHtml(l: LetterEmail): string {
-  const body = paragraphs(l.body).map((p) => `<p style="${P}">${linkify(esc(p)).replace(/\n/g, "<br>")}</p>`).join("\n  ")
+  const body = letterBodyHtml(l.body)
   const footer = l.footer === "letter"
     ? `You get these letters because you asked to on <a href="${SITE}/friends" style="color:${C.muted};">isaacadjei.me/friends</a>. Replies come straight to me.</p>
   <p style="margin:0;font-size:13px;line-height:1.6;color:${C.muted};"><a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:${C.muted};">Unsubscribe</a> · <a href="${SITE}/privacy" style="color:${C.muted};">Privacy</a>`
@@ -58,7 +55,7 @@ export function letterEmailText(l: LetterEmail): string {
     `ISAAC ADJEI · ${l.label.toUpperCase()}`,
     l.title,
     l.greeting ?? "",
-    paragraphs(l.body).join("\n\n"),
+    letterBodyText(l.body),
     l.button ? `${l.button.label}: ${l.button.href}` : "",
     `${l.signOff ?? "Speak soon,"}\n${SIGN_OFF_NAME}`,
     signatureText(),

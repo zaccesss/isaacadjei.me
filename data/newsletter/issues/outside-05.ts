@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "outside",
   number: 5,
-  slug: "outside-05-rust-1-97",
+  id: "outside-05-rust-1-97",
+  slug: "rust-1-97-adds-bit-tricks-for-embedded-code",
   title: "Rust 1.97 adds bit tricks for embedded code",
   subtitle: "A release with new integer bit methods, quieter Cargo warnings and a new default for symbol names.",
   tags: ["Rust", "Embedded", "Developer Tools"],

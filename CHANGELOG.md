@@ -2,6 +2,35 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.121.0] - 2026-11-12
+
+_Easier reading_
+
+### Added
+
+- Blog posts, Today I Learned entries, notes and newsletter issues each end with a line of links to reply on Bluesky, Substack, Mastodon or X, with the page already attached
+- Notes and every newsletter issue have a comment box, as blog posts do
+- A short page on how I use AI
+
+### Changed
+
+- Links in body text look the same on every page: underlined, in the text colour, blue when you point at one or reach it with the keyboard
+- The writing pages are tidier and quicker to scan
+- The drawing on page load plays once per visit, on the home page only
+- The Privacy page says what is counted when you press one of the reply links
+
+### Fixed
+
+- A code sample in one Today I Learned entry opens the right page
+
+## [2.120.1] - 2026-11-12
+
+_Behind the scenes_
+
+### Fixed
+
+- Small reliability fixes behind the scenes
+
 ## [2.120.0] - 2026-11-11
 
 _Alumni profile links_

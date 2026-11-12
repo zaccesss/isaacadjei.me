@@ -7,6 +7,7 @@ const _one_palette_eight_terminals: BlogPost = {
   updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/one-palette-eight-terminals.webp",
+  cover_alt: "A black terminal showing git status output in green and red, above a log of six commits with yellow hashes",
   description:
     "How one JSON file and a small Python script generate a high contrast light and dark theme for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME Terminal, Alacritty, Kitty and Hyper, with every colour held to a contrast floor in CI.",
   tags: ["Terminal", "Accessibility", "Tools", "Python", "Dotfiles"],

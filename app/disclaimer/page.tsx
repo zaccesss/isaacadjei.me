@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 }
 
-const link = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+const link = "body-link"
 
 export default function DisclaimerPage() {
   return (

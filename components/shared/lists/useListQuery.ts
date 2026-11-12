@@ -109,6 +109,15 @@ export function useListQuery(defaultSort: SortKey = "newest"): ListQuery {
   }
 }
 
+export function withRenamedValues(query: ListQuery, key: string, renamed: ReadonlyMap<string, string>): ListQuery {
+  const current = (value: string) => renamed.get(value) ?? value
+  return {
+    ...query,
+    get: (k) => (k === key ? current(query.get(k)) : query.get(k)),
+    getAll: (k) => (k === key ? query.getAll(k).map(current) : query.getAll(k)),
+  }
+}
+
 export function sortItems<T>(items: T[], sort: SortKey, time: (item: T) => number, title: (item: T) => string): T[] {
   if (sort === "default") return items
   const copy = [...items]

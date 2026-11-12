@@ -62,7 +62,7 @@ const languages = [
   { name: "French & Spanish", level: "Elementary proficiency" },
 ]
 
-const LINK = "text-foreground underline decoration-muted-foreground/70 underline-offset-4 hover:text-primary hover:decoration-primary transition-colors"
+const LINK = "body-link"
 const TITLE_LINK = "underline decoration-border underline-offset-4 hover:decoration-primary hover:text-primary transition-colors"
 
 export default function AboutPage() {
@@ -269,7 +269,7 @@ export default function AboutPage() {
                   <ol className="relative space-y-3 border-l border-border pl-5">
                     {[...roles].reverse().map((r) => (
                       <li key={r.role} className="relative">
-                        <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background bg-primary" aria-hidden="true" />
+                        <span className="absolute -left-6.25 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-background bg-primary" aria-hidden="true" />
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                           <p className="text-base font-medium text-foreground">{r.role}</p>
                           <span className="text-sm text-muted-foreground whitespace-nowrap">{r.period}</span>

@@ -11,7 +11,7 @@ const _cpu_pipeline_raw_hazard: TILEntry = {
       {
         type: "embed",
         url: "https://www.youtube.com/embed/1U4v_2J0Qwk",
-        caption: "Ben Eater: Introduction to CPU Pipelining: hazards, stalls and forwarding explained from first principles",
+        caption: "Merlin Wellington: Introduction to CPU Pipelining: hazards, stalls and forwarding explained from first principles",
       },
       {
         type: "p",

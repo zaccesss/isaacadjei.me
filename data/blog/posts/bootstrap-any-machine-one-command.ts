@@ -7,6 +7,7 @@ const _bootstrap_any_machine_one_command: BlogPost = {
   updated: "2026-10-29",
   type: "blog",
   cover_image: "/images/blog/covers/bootstrap-any-machine-one-command.webp",
+  cover_alt: "Terminal split into three panes: a git commit log, a README in an editor and a greeting that reads Welcome back, Isaac!",
   description:
     "How I turned three machines and a pile of setup notes into three public bootstrap repositories that set up macOS, Ubuntu (WSL2 included) and Windows 11 in one command, safely and repeatably.",
   tags: ["Tools", "Setup", "Dotfiles", "Linux", "Productivity"],

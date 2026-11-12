@@ -38,7 +38,7 @@ const post: NotePost = {
     { type: "h2", text: "Deep work in the morning, small work after" },
     {
       type: "p",
-      text: "My best focus is earlier in the day, so the hardest task goes there: a derivation I do not understand yet, a circuit that will not behave or a tricky bit of firmware. Email, issue triage and small fixes go later, when my attention is lower anyway. Reading Cal Newport's [Deep Work](https://www.calnewport.com/books/deep-work/) earlier this year gave me the language for this, but the habit came from noticing which hours I actually got things done in.",
+      text: "My best focus is earlier in the day, so the hardest task goes there: a derivation I do not understand yet, a circuit that will not behave or a tricky bit of firmware. Email, issue triage and small fixes go later, when my attention is lower anyway. Reading Cal Newport's [Deep Work](https://calnewport.com/deep-work-rules-for-focused-success-in-a-distracted-world/) earlier this year gave me the language for this, but the habit came from noticing which hours I actually got things done in.",
     },
     { type: "h2", text: "A weekly review that takes twenty minutes" },
     {

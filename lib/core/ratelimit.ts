@@ -27,6 +27,8 @@ export const publicApiLimiter = makeLimiter(30, "60 s", "pub_api_rl")
 
 export const heavyApiLimiter = makeLimiter(10, "60 s", "heavy_api_rl")
 
+export const replyPressLimiter = makeLimiter(10, "60 s", "reply_press_rl")
+
 export async function checkRateLimit(
   limiter: Ratelimit | null,
   ip: string,

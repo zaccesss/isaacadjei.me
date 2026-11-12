@@ -50,7 +50,7 @@ export default function ProjectsPage() {
           href="https://github.com/zaccesss"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline font-medium"
+          className="body-link font-medium"
         >
           GitHub
         </a>{" "}
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
           href="https://github.com/zaccesss?tab=projects"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:underline font-medium"
+          className="body-link font-medium"
         >
           GitHub Projects
         </a>

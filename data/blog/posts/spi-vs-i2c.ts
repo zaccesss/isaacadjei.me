@@ -4,7 +4,7 @@ const _spi_vs_i2c: BlogPost = {
     slug: "spi-vs-i2c",
     title: "SPI vs I2C: When to Use Which",
     date: "2026-01-14",
-    type: "research",
+    type: "explainer",
     cover_image: "/images/blog/covers/spi-vs-i2c.webp",
     cover_credit: "Photo: oomlout, CC BY-SA 2.0, cropped, via Wikimedia Commons",
     cover_alt: "A BMP085 pressure sensor breakout board with its I2C pins labelled SCL and SDA alongside VIN, 3Vo, XCLR, EOC and GND",
@@ -12,6 +12,7 @@ const _spi_vs_i2c: BlogPost = {
       "A detailed technical comparison of SPI and I2C for embedded projects: signalling, timing, addressing, clock modes, pull-ups, edge cases and when the choice actually matters.",
     tags: ["SPI", "I2C", "Embedded", "Notes", "Protocols"],
     published: true,
+    archived: true,
     content: [
       {
         type: "p",
@@ -207,9 +208,9 @@ void i2c_scan(void) {
           { text: "SparkFun: Serial Peripheral Interface (SPI) tutorial", url: "https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi" },
           { text: "SparkFun: I2C tutorial - wiring, pull-ups and addressing", url: "https://learn.sparkfun.com/tutorials/i2c" },
           { text: "AVR151: Setup and Use of the SPI - Microchip application note", url: "https://ww1.microchip.com/downloads/en/AppNotes/Atmel-2585-Setup-and-Use-of-the-SPI_ApplicationNote_AVR151.pdf" },
-          { text: "AVR315: Using the TWI Module as I2C Master - Microchip application note", url: "https://ww1.microchip.com/downloads/en/AppNotes/doc2564.pdf" },
+          { text: "AVR315: Using the TWI Module as I2C Master - Microchip application note (archived)", url: "https://web.archive.org/web/20160327065047/http://www.atmel.com/images/doc2564.pdf" },
           { text: "Analog Devices tutorials and application notes - I2C and SPI reference material", url: "https://www.analog.com/en/resources/technical-articles.html" },
-          { text: "ATmega644P datasheet - USART and SPI sections", url: "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega644P-Datasheet.pdf" },
+          { text: "ATmega644P datasheet - USART and SPI sections", url: "https://ww1.microchip.com/downloads/aemDocuments/documents/MCU08/ProductDocuments/DataSheets/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf" },
         ],
       },
     ],

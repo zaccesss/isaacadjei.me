@@ -234,13 +234,13 @@ export default function NotFound() {
       <div className="mt-6 text-center text-xs text-muted-foreground space-y-1">
         <p>
           Lost?{" "}
-          <Link href="/" className="underline underline-offset-4 hover:text-foreground transition-colors">
+          <Link href="/" className="body-link">
             Go home
           </Link>
         </p>
         <p>
           If this page should exist,{" "}
-          <Link href="/contact" className="underline underline-offset-4 hover:text-foreground transition-colors">
+          <Link href="/contact" className="body-link">
             let me know
           </Link>
           .

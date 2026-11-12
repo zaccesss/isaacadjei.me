@@ -27,7 +27,7 @@ function Ext({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+      className="body-link"
     >
       {children}
     </a>
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           described here. If you have any concerns, please reach out through the{" "}
           <Link
             href="/contact"
-            className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="body-link"
           >
             contact page
           </Link>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
               href="https://www.cloudflare.com/web-analytics/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Cloudflare Web Analytics
             </a>
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
               href="https://www.cloudflare.com/privacypolicy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Cloudflare&apos;s Privacy Policy
             </a>
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Google Analytics
             </a>
@@ -127,7 +127,7 @@ export default function PrivacyPage() {
               href="https://vercel.com/docs/analytics/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Vercel Web Analytics
             </a>
@@ -136,11 +136,22 @@ export default function PrivacyPage() {
             site.
           </p>
           <p className="mt-3">
-            Blog posts also record anonymous scroll-depth events at the 25%, 50%, 75% and 100%
-            read marks. These are stored alongside a one-way hashed representation of the visitor
-            IP address so that duplicate events from the same session are not counted. No raw IP
-            address is retained. This data is used only to understand which posts are read in full
-            and to guide future writing.
+            Blog posts, Today I Learned entries, notes and newsletter issues also record anonymous
+            scroll-depth events at the 25%, 50%, 75% and 100% read marks. These are stored alongside
+            a one-way hashed representation of the visitor IP address so that duplicate events from
+            the same session are not counted. No raw IP address is retained. This data is used only
+            to understand which pieces are read in full and to guide future writing.
+          </p>
+          <p className="mt-3">
+            Under each piece of writing there are links to comment on Bluesky, Substack, Mastodon
+            or X. When you press one, the site adds one to a count for that page and that network.
+            The count holds no name, no account and no time. To stop one visitor being counted
+            twice, a one-way hashed representation of your IP address is kept beside the page and
+            the network for 24 hours and then deleted. To stop presses being sent in bulk, your IP
+            address itself is also held for about two minutes after a press and then deleted. The
+            site only knows that a link was pressed.
+            It does not know whether you posted anything. What you write on that network is
+            covered by that network&apos;s own privacy policy.
           </p>
         </div>
 
@@ -154,7 +165,7 @@ export default function PrivacyPage() {
               href="https://resend.com/legal/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Resend Privacy Policy
             </a>
@@ -166,7 +177,7 @@ export default function PrivacyPage() {
               href="https://www.cloudflare.com/products/turnstile/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Cloudflare Turnstile
             </a>
@@ -177,7 +188,7 @@ export default function PrivacyPage() {
               href="https://www.cloudflare.com/privacypolicy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Cloudflare&apos;s Privacy Policy
             </a>
@@ -195,7 +206,7 @@ export default function PrivacyPage() {
               href="https://resend.com/legal/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Resend&apos;s Privacy Policy
             </a>
@@ -215,7 +226,7 @@ export default function PrivacyPage() {
         <div>
           <h2>Booking a call</h2>
           <p>
-            The <Link href="/book" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">book a call</Link>{" "}
+            The <Link href="/book" className="body-link">book a call</Link>{" "}
             page embeds a calendar from <Ext href="https://cal.com/privacy">Cal.com</Ext>. Loading it contacts Cal.com, which
             may set its own cookies. If you book a call, the name, email address and any notes you enter go to Cal.com, which
             checks my calendar for clashes. Cal.com may ask you to confirm your email address with a code first. Once the
@@ -235,7 +246,7 @@ export default function PrivacyPage() {
             approved. An entry stays until I remove it or you ask me to. To have an entry removed, ask through the{" "}
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               contact page
             </Link>
@@ -255,7 +266,7 @@ export default function PrivacyPage() {
             ask me to. To have a request removed, ask through the{" "}
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               contact page
             </Link>
@@ -264,14 +275,14 @@ export default function PrivacyPage() {
         </div>
 
         <div>
-          <h2>Blog comments</h2>
+          <h2>Comments</h2>
           <p>
-            Blog posts on this site use{" "}
+            Blog posts, notes and newsletter issues on this site use{" "}
             <a
               href="https://giscus.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Giscus
             </a>
@@ -283,7 +294,7 @@ export default function PrivacyPage() {
               href="https://github.com/giscus/giscus/blob/main/PRIVACY-POLICY.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Giscus&apos;s Privacy Policy
             </a>{" "}
@@ -292,7 +303,7 @@ export default function PrivacyPage() {
               href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               GitHub&apos;s Privacy Statement
             </a>
@@ -333,7 +344,7 @@ export default function PrivacyPage() {
             browser loads these images directly from those servers, which receive your IP address and
             browser details in the normal way. The Skills and Uses pages show logos from{" "}
             <Ext href="https://simpleicons.org/">Simple Icons</Ext>,{" "}
-            <Ext href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net">jsDelivr</Ext> and{" "}
+            <Ext href="https://www.jsdelivr.com/terms/privacy-policy">jsDelivr</Ext> and{" "}
             <Ext href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia Commons</Ext> in
             the same way. Each publication page reads view and download counts from{" "}
             <Ext href="https://about.zenodo.org/privacy-policy/">Zenodo</Ext> on my server, so that
@@ -353,6 +364,9 @@ export default function PrivacyPage() {
             choices, such as a map style you picked, a list&apos;s page size and the reactions you
             gave a post, a note or a TIL, in your browser&apos;s local storage rather than a cookie. It stays on your
             device, contains no personal information and is not sent to me or any third party.
+            When I ask for my own visits to be left out of the scroll-depth events and the comment
+            link counts described above, the site sets a cookie named no_count in my browser. It
+            holds only that choice and it is never set in a visitor&apos;s browser.
             Google Analytics sets its own analytics cookies as
             described above. Cloudflare, which sits in front of this site and its images, may set a
             short-lived security cookie (__cf_bm) to tell people from automated traffic; it holds no
@@ -362,7 +376,7 @@ export default function PrivacyPage() {
               href="https://giscus.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               Giscus
             </a>{" "}
@@ -371,7 +385,7 @@ export default function PrivacyPage() {
               href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               GitHub&apos;s Privacy Statement
             </a>
@@ -404,7 +418,7 @@ export default function PrivacyPage() {
             concern, you can raise it through the{" "}
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               contact page
             </Link>{" "}
@@ -429,14 +443,14 @@ export default function PrivacyPage() {
             If you have any questions about this policy, please reach out at{" "}
             <a
               href="mailto:contact@isaacadjei.me"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               contact@isaacadjei.me
             </a>{" "}
             or use the{" "}
             <Link
               href="/contact"
-              className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="body-link"
             >
               contact page
             </Link>

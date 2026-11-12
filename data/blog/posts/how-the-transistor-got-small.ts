@@ -7,10 +7,12 @@ const _how_the_transistor_got_small: BlogPost = {
   type: "article",
   cover_image: "/images/blog/covers/how-the-transistor-got-small.webp",
   cover_credit: "Photo: Laura Ockel, Unsplash Licence, via Unsplash",
+  cover_alt: "Close-up of a silicon wafer patterned with a grid of hundreds of identical rectangular chips, tinted gold at its curved edge",
   description:
     "A short history of the device inside every electronic product: the 1947 point-contact transistor, the integrated circuit, the MOSFET, Moore's law and why shrinking stopped being simple. Written for students who use microcontrollers without thinking about what is inside.",
   tags: ["Electronics", "Hardware", "Engineering", "Learning"],
   published: true,
+  archived: true,
   content: [
     {
       type: "p",

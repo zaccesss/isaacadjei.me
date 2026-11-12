@@ -40,7 +40,7 @@ const REPOS_WITH_STATEMENTS = [
   { name: "dotfiles/apps/rectangle", url: "https://github.com/zaccesss/dotfiles/tree/main/apps/rectangle" },
 ]
 
-const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+const linkClass = "body-link"
 
 export default function AccessibilityPage() {
   return (
@@ -64,7 +64,7 @@ export default function AccessibilityPage() {
             href="https://github.com/zaccesss/accessibility"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1.5 body-link"
           >
             <Github className="h-4 w-4" />
             Also on GitHub: zaccesss/accessibility

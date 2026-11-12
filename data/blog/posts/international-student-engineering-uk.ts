@@ -7,6 +7,7 @@ const _international_student_engineering_uk: BlogPost = {
     type: "journal",
     cover_image: "/images/blog/covers/international-student-engineering-uk.webp",
     cover_credit: "Photo: Sabrina Mazzeo, Unsplash Licence, via Unsplash",
+    cover_alt: "A white taxi and a red double-decker bus on a street of pale stone buildings, under strings of Union Jack flags",
     description:
       "The practical and personal side of studying Electronic Engineering and Computer Science in the UK as an international student: the paperwork, the culture shock, the academic differences and what actually helped.",
     tags: ["Personal", "Career", "University", "International", "Engineering"],

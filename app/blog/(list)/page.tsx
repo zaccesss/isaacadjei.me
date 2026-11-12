@@ -2,13 +2,13 @@ import type { Metadata } from "next"
 import { feedAlternates } from "@/lib/content/feeds"
 import { Suspense } from "react"
 import BlogContent from "./BlogContent"
-import { getPublishedPosts, toCard } from "@/data/blog"
+import { getArchivedPosts, getMainListPosts, toCard } from "@/data/blog"
 
 export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Writing on embedded systems, software engineering, electronics, computer science and life. Tutorials, journals, research notes and personal essays.",
+  description: "Writing on embedded systems, software engineering, electronics, computer science and life. Tutorials, journals, explainers and personal essays.",
   alternates: { canonical: "https://isaacadjei.me/blog", types: feedAlternates("blog", "all") },
   openGraph: {
     images: ["/api/og?title=Blog%20%7C%20Isaac%20Adjei&description=Writing%20on%20embedded%20systems%2C%20software%20engineering%2C%20electronics%20and%20life."],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <Suspense>
-      <BlogContent posts={getPublishedPosts().map(toCard)} />
+      <BlogContent posts={getMainListPosts().map(toCard)} archiveCount={getArchivedPosts().length} />
     </Suspense>
   )
 }

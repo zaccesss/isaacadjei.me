@@ -3,7 +3,8 @@ import type { NewsletterIssueFile } from "../index"
 const issue: NewsletterIssueFile = {
   kind: "midweek",
   number: 8,
-  slug: "midweek-08-why-we-procrastinate",
+  id: "midweek-08-why-we-procrastinate",
+  slug: "why-we-procrastinate",
   title: "Why we procrastinate",
   subtitle: "Research suggests putting things off is less about time and more about managing how a task makes us feel.",
   tags: ["Psychology", "Habits", "Students"],
