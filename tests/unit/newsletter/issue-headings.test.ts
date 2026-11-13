@@ -10,10 +10,20 @@ vi.mock("next/navigation", () => ({
 import NewsletterPage from "@/app/newsletter/(list)/page"
 import { fetchNewsletterIssues } from "@/lib/newsletter/newsletter"
 
+function withoutTags(html: string): string {
+  let text = html
+  let before: string
+  do {
+    before = text
+    text = text.replace(/<[^>]+>/g, "")
+  } while (text !== before)
+  return text
+}
+
 function headings(html: string): { level: number; text: string }[] {
   return [...html.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/g)].map((m) => ({
     level: Number(m[1]),
-    text: m[2].replace(/<[^>]+>/g, "").trim(),
+    text: withoutTags(m[2]).trim(),
   }))
 }
 

@@ -120,7 +120,7 @@ describe("letterBodyHtml", () => {
 
   it("escapes everything, so no markup of the writer's passes through", () => {
     const html = letterBodyHtml('<script>alert("x")</script>\n## <b>bold</b>\n- <i>item</i> & more')
-    expect(html).not.toMatch(/<script|<b>|<i>/)
+    expect(html).not.toMatch(/<script|<b>|<i>/i)
     expect(html).toContain("&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt;")
     expect(html).toContain("&lt;b&gt;bold&lt;/b&gt;")
     expect(html).toContain("&lt;i&gt;item&lt;/i&gt; &amp; more")
