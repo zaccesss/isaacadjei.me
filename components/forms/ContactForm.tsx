@@ -108,7 +108,7 @@ export default function ContactForm() {
           id="subject"
           type="text"
           required
-          placeholder="What's this about?"
+          placeholder="What is this about?"
           value={form.subject}
           onChange={(e) => setForm({ ...form, subject: e.target.value })}
           className={field}
@@ -122,7 +122,7 @@ export default function ContactForm() {
           id="message"
           required
           rows={5}
-          placeholder="What's on your mind?"
+          placeholder="What would you like to say?"
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           className={field}

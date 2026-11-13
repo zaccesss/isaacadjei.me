@@ -10,6 +10,7 @@ import type { Project } from "@/data/projects"
 import type { Publication } from "@/data/respub"
 import type { NewsletterIssue } from "@/app/api/newsletter-issues/route"
 import { relevanceScore, fieldScore } from "@/lib/content/search"
+import { matchesQuery, type ContributionHit } from "@/lib/opensource/open-source-list"
 
 interface NoteEntry {
   href: string
@@ -43,6 +44,10 @@ function fmtDate(dateStr: string) {
   })
 }
 
+function fmtMonth(month: string) {
+  return new Date(`${month}-01`).toLocaleDateString("en-GB", { month: "short", year: "numeric" })
+}
+
 function Highlight({ text, query }: { text: string; query: string }) {
   if (!query) return <>{text}</>
   const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
@@ -68,6 +73,8 @@ export default function SearchClient({ posts, tils, projects, publications, rese
   const [debounced, setDebounced] = useState(initial.trim())
   const [issues, setIssues] = useState<NewsletterIssue[]>([])
   const [issuesLoading, setIssuesLoading] = useState(true)
+  const [contributions, setContributions] = useState<ContributionHit[] | null>(null)
+  const contributionsAsked = useRef(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -84,6 +91,17 @@ export default function SearchClient({ posts, tils, projects, publications, rese
       })
       .catch(() => setIssuesLoading(false))
   }, [])
+
+  const hasQuery = debounced.length > 0
+  useEffect(() => {
+    if (!hasQuery || contributionsAsked.current) return
+    contributionsAsked.current = true
+    fetch("/open-source/search-index")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data) => setContributions(Array.isArray(data) ? data : []))
+      .catch(() => setContributions([]))
+  }, [hasQuery])
+  const contributionsLoading = hasQuery && contributions === null
 
   const q = debounced.toLowerCase()
 
@@ -194,7 +212,16 @@ export default function SearchClient({ posts, tils, projects, publications, rese
         )
     : []
 
+  const matchedContributions = q
+    ? byRelevance(
+        (contributions ?? []).filter((c) => matchesQuery(c.words, q)),
+        (c) => c.project,
+        (c) => c.title
+      )
+    : []
+
   const hasResults =
+    matchedContributions.length > 0 ||
     matchedPosts.length > 0 ||
     matchedTils.length > 0 ||
     matchedProjects.length > 0 ||
@@ -203,7 +230,6 @@ export default function SearchClient({ posts, tils, projects, publications, rese
     matchedNotes.length > 0 ||
     matchedConsumed.length > 0 ||
     matchedIssues.length > 0
-  const hasQuery = debounced.length > 0
 
   const newsletterHint = issuesLoading
     ? "loading newsletter issues..."
@@ -233,7 +259,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
 
       {hasQuery && (
         <div className="space-y-10">
-          {!hasResults && !issuesLoading && (
+          {!hasResults && !issuesLoading && !contributionsLoading && (
             <p className="text-sm text-muted-foreground">
               No results for{" "}
               <span className="text-foreground font-medium">&ldquo;{debounced}&rdquo;</span>.
@@ -307,6 +333,22 @@ export default function SearchClient({ posts, tils, projects, publications, rese
             <ResultSection heading={`Research (${matchedResearch.length})`}>
               {matchedResearch.map((line) => (
                 <ResultCard key={line.href} href={line.href} badge="research" title={line.title} body={line.body} query={debounced} />
+              ))}
+            </ResultSection>
+          )}
+
+          {matchedContributions.length > 0 && (
+            <ResultSection heading={`Open Source (${matchedContributions.length})`}>
+              {matchedContributions.map((c) => (
+                <ResultCard
+                  key={c.href}
+                  href={c.href}
+                  badge={c.project}
+                  title={c.title}
+                  body={c.summary}
+                  date={fmtMonth(c.month)}
+                  query={debounced}
+                />
               ))}
             </ResultSection>
           )}

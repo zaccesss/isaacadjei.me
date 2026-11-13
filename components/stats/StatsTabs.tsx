@@ -71,7 +71,7 @@ export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStat
   }
   return (
     <div className="space-y-6">
-      <div className="flex gap-1.5 flex-wrap border-b border-border pb-3" role="tablist" aria-label="Stats areas">
+      <div className="flex flex-wrap gap-1 rounded-lg border border-border bg-muted/30 p-1" role="tablist" aria-label="Stats areas">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -80,7 +80,7 @@ export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStat
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => choose(t.id)}
-            className={`scroll-mt-24 text-sm px-3.5 py-1.5 min-h-11 rounded-full border transition-colors ${tab === t.id ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"}`}
+            className={`scroll-mt-24 rounded-md border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${tab === t.id ? "border-primary bg-background font-semibold text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
           >
             {t.label}
           </button>

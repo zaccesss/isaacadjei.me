@@ -10,6 +10,24 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.122.0",
+    date: "2026-11-13",
+    label: "Open source, easier to find",
+    added: [
+      "Search and filters on the Open Source page, by project, state and kind",
+      "Open source contributions show up in the site search",
+      "The Contact page lists the other ways to reach me in one place, with an address for security reports",
+    ],
+    changed: [
+      "The Open Source page opens with the work. Its numbers and charts are on the Stats page",
+      "My Linux kernel patch links to its commit in the mainline tree",
+      "The CV says the Linux kernel fix is in the mainline kernel and points to more of my contributions",
+      "The sections of the Stats page are a small group of tabs that all stay in view",
+      "The Projects list keeps its categories in the Filters panel only",
+      "The All pages list keeps the two AI pages together",
+    ],
+  },
+  {
     version: "v2.121.0",
     date: "2026-11-12",
     label: "Easier reading",

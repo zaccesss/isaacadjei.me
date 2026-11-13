@@ -1,6 +1,8 @@
 import { unstable_cache } from "next/cache"
 import { supabase } from "@/lib/core/supabase"
 import { UNCATEGORISED, compareCategories } from "@/lib/opensource/open-source-categories"
+import { isMailedPatch } from "@/lib/opensource/open-source-list"
+import { MAINLINE, currentCommit, type AppliedCommit } from "@/lib/opensource/mainline"
 
 export type PublicKind = "Pull request" | "Issue" | "Listing"
 
@@ -62,14 +64,12 @@ type Row = {
   submitted_at: string
 }
 
-export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
-
 const PINNED = ["20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me"]
 
-const APPLIED_AS: Record<string, { url: string; tree: string }> = {
+const APPLIED_AS: Record<string, AppliedCommit> = {
   "20261105-gpio-mpfs-irq-type-v1-1-cbb2b0b2a807@isaacadjei.me": {
-    url: "https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git/commit/?id=cfbd01eddaf5bfdd4f53560013fe830571a186e9",
-    tree: "the GPIO tree",
+    url: "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=cfbd01eddaf5bfdd4f53560013fe830571a186e9",
+    tree: MAINLINE,
   },
 }
 const commitOf = (url: string | null) => Object.entries(APPLIED_AS).find(([id]) => url?.includes(id))?.[1] ?? null
@@ -143,4 +143,12 @@ async function compute(): Promise<OpenSourceStats> {
   }
 }
 
-export const getOpenSourceStats = unstable_cache(compute, ["open-source-v3"], { revalidate: 3600, tags: ["open-source"] })
+const cachedStats = unstable_cache(compute, ["open-source-v4"], { revalidate: 3600, tags: ["open-source"] })
+
+export async function getOpenSourceStats(): Promise<OpenSourceStats> {
+  const stats = await cachedStats()
+  const contributions = await Promise.all(
+    stats.contributions.map(async (c) => (c.commit ? { ...c, commit: await currentCommit(c.commit) } : c)),
+  )
+  return { ...stats, contributions }
+}

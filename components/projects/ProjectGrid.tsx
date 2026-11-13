@@ -3,7 +3,6 @@
 import { type Project, CATEGORY_LABELS } from "@/data/projects"
 import ProjectCard from "./ProjectCard"
 import { relevanceScore } from "@/lib/content/search"
-import ProjectFilter from "./ProjectFilter"
 import { Pagination, usePageSize } from "@/components/shared/lists/Pagination"
 
 const PROJECT_PAGE_SIZES = [18, 36, 54]
@@ -68,7 +67,6 @@ export default function ProjectGrid({ projects }: Props) {
         resultCount={filtered.length}
         itemLabel={{ one: "project", many: "projects" }}
       />
-      <ProjectFilter active={category} onChange={(next) => query.update({ category: next === "all" ? null : next })} />
 
       <div id={LIST_ID} className="scroll-mt-24">
         {filtered.length === 0 ? (
