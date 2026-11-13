@@ -10,6 +10,15 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.122.1",
+    date: "2026-11-13",
+    label: "Behind the scenes",
+    fixed: [
+      "Small wording fixes on the CV",
+      "Small reliability fixes behind the scenes",
+    ],
+  },
+  {
     version: "v2.122.0",
     date: "2026-11-13",
     label: "Open source, easier to find",

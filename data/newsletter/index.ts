@@ -98,6 +98,7 @@ import _11 from "./issues/issue-11"
 import _12 from "./issues/issue-12"
 import _12_1 from "./issues/issue-12-1"
 import _13 from "./issues/issue-13"
+import _14 from "./issues/issue-14"
 import _o1 from "./issues/outside-01"
 import _o2 from "./issues/outside-02"
 import _o3 from "./issues/outside-03"
@@ -125,7 +126,7 @@ import _m11 from "./issues/midweek-11"
 import _m12 from "./issues/midweek-12"
 import _m13 from "./issues/midweek-13"
 
-const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _12_1, _13, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, _o12, _o13, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, _m11, _m12, _m13, ]
+const files: NewsletterIssueFile[] = [_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _12_1, _13, _14, _o1, _o2, _o3, _o4, _o5, _o6, _o7, _o8, _o9, _o10, _o11, _o12, _o13, _m1, _m2, _m3, _m4, _m5, _m6, _m7, _m8, _m9, _m10, _m11, _m12, _m13, ]
 
 function dayAfter(date: string): string {
   const [y, m, d] = date.split("-").map(Number)
