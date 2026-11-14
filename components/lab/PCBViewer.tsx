@@ -45,7 +45,7 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
 }
 
 function PCBModel({ wireframe }: { wireframe: boolean }) {
-  const { scene } = useGLTF("/models/pcb.glb")
+  const { scene } = useGLTF("/models/pcb-board.glb")
 
   useEffect(() => {
     scene.traverse((child) => {
