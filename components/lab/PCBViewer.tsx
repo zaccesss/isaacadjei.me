@@ -313,7 +313,7 @@ export default function PCBViewer() {
         <PCBCard
           title="copper layers"
           front="/images/lab/pcb-top.webp"
-          back="/images/lab/pcb-bottom.webp"
+          back="/images/lab/pcb-bottom-layer.webp"
           frontLabel="top layer"
           backLabel="bottom layer"
           defaultRx={0} defaultRy={0}

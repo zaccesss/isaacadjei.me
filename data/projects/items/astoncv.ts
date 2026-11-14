@@ -26,7 +26,7 @@ const _astoncv: Project = {
       "/images/projects/astoncv/register.webp",
       "/images/projects/astoncv/login.webp",
       "/images/projects/astoncv/contact.webp",
-      "/images/projects/astoncv/footer.webp",
+      "/images/projects/astoncv/footer-site.webp",
     ],
     github: "https://github.com/zaccesss/astoncv",
     getInvolved: {},
