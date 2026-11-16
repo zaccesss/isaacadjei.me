@@ -1759,6 +1759,23 @@ export default function LabPage({ data }: { data: LabData }) {
   }, [])
 
   useEffect(() => {
+    if (window.location.hash !== "#board" || typeof ResizeObserver === "undefined") return
+    const board = document.getElementById("board")
+    if (!board) return
+    const observer = new ResizeObserver(() => board.scrollIntoView({ block: "start", behavior: "instant" }))
+    const stop = () => observer.disconnect()
+    const events = ["wheel", "touchmove", "keydown", "pointerdown"] as const
+    events.forEach((type) => window.addEventListener(type, stop, { passive: true, once: true }))
+    observer.observe(document.body)
+    const timer = window.setTimeout(stop, 4000)
+    return () => {
+      stop()
+      window.clearTimeout(timer)
+      events.forEach((type) => window.removeEventListener(type, stop))
+    }
+  }, [])
+
+  useEffect(() => {
     if (phase !== "intro") return
     const steps = introSteps(name, shell)
     const timers: ReturnType<typeof setTimeout>[] = []
@@ -2499,7 +2516,11 @@ export default function LabPage({ data }: { data: LabData }) {
         </div>
       )}
 
-      {!isMaximized && <PCBViewer />}
+      {!isMaximized && (
+        <div id="board" className="scroll-mt-24">
+          <PCBViewer />
+        </div>
+      )}
 
       {!isMaximized && (
         <p className="text-center text-xs text-muted-foreground font-mono">

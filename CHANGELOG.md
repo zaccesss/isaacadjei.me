@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.125.1] - 2026-11-16
+
+### Added
+
+- A direct link to the 3D circuit board on the Lab page
+
 ## [2.125.0] - 2026-11-14
 
 _Behind the scenes_

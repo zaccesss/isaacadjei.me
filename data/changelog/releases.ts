@@ -10,6 +10,13 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.125.1",
+    date: "2026-11-16",
+    added: [
+      "A direct link to the 3D circuit board on the Lab page",
+    ],
+  },
+  {
     version: "v2.125.0",
     date: "2026-11-14",
     label: "Behind the scenes",

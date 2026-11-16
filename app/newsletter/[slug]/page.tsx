@@ -237,7 +237,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
           </p>
           <div className="space-y-2.5 pt-2">
             <div className="flex items-center gap-4">
-              <Image src={SIGNATURE.logo} alt="" width={64} height={64} className="h-16 w-16 shrink-0" />
+              <Image src={SIGNATURE.logo} alt="" aria-hidden width={64} height={64} className="h-16 w-16 shrink-0" />
               <div className="border-l-[3px] border-primary pl-4 space-y-0.5 min-w-0">
                 <p className="font-semibold text-primary">{SIGNATURE.name} <span className="text-xs font-normal">({SIGNATURE.pronouns})</span></p>
                 {SIGNATURE.lines.map((line) => (
