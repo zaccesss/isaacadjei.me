@@ -17,6 +17,7 @@ export const CONSUMED_COLLECTIONS: ConsumedCollection[] = [
       "UT Austin: Embedded Systems", "Embedded Artistry", "Learn-C.org", "HDLBits", "EDA Playground",
       "Basic Electrical and Electronics Engineering", "Embedded",
       "The world of embedded systems (Interview)", "The Amp Hour #721. Chip Design for Fun (and Waffles) with Julia Desmazes",
+      "Beej's Guide to C Programming", 
     ],
   },
   {
