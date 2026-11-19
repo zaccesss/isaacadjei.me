@@ -10,6 +10,13 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.128.0",
+    date: "2026-11-19",
+    fixed: [
+      "Calendar files keep every line within the iCalendar limit, which counts bytes rather than characters, so text with a pound sign or an accented letter stays valid",
+    ],
+  },
+  {
     version: "v2.127.0",
     date: "2026-11-19",
     label: "Behind the scenes",

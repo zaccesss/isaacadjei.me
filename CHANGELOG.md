@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.128.0] - 2026-11-19
+
+### Fixed
+
+- Calendar files keep every line within the iCalendar limit, which counts bytes rather than characters, so text with a pound sign or an accented letter stays valid
+
 ## [2.127.0] - 2026-11-19
 
 _Behind the scenes_
