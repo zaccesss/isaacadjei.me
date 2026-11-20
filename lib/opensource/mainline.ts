@@ -16,6 +16,10 @@ export function isInMaster(comparison: Comparison | null | undefined): boolean {
   return (comparison.status === "ahead" || comparison.status === "identical") && comparison.behind_by === 0
 }
 
+export function githubMirrorUrl(commit: AppliedCommit): string | null {
+  const sha = commitSha(commit.url)
+  return sha && commit.tree === MAINLINE ? `https://github.com/torvalds/linux/commit/${sha}` : null
+}
 export const needsMainlineCheck = (recorded: AppliedCommit) => recorded.tree !== MAINLINE && commitSha(recorded.url) !== null
 
 export function shownCommit(recorded: AppliedCommit, comparison: Comparison | null | undefined): AppliedCommit {

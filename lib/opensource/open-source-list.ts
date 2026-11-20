@@ -1,5 +1,6 @@
 import type { PublicContribution } from "@/lib/opensource/open-source"
 import { compareCategories } from "@/lib/opensource/open-source-categories"
+import { githubMirrorUrl } from "@/lib/opensource/mainline"
 
 export const isMailedPatch = (url: string | null) => !!url && url.startsWith("https://lore.kernel.org/")
 
@@ -20,6 +21,7 @@ export type ListedContribution = {
   linkWord: string
   relation: { text: string; url: string | null } | null
   commit: { url: string; tree: string } | null
+  mirror: string | null
   pinned: boolean
 }
 
@@ -59,6 +61,7 @@ export function toListed(contributions: PublicContribution[]): ListedContributio
       linkWord: kind === "patch" && c.commit ? "thread" : kind,
       relation: c.relation,
       commit: c.commit,
+      mirror: c.commit ? githubMirrorUrl(c.commit) : null,
       pinned: c.pinned,
     }
   })

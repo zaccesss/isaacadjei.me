@@ -10,6 +10,16 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.129.0",
+    date: "2026-11-20",
+    added: [
+      "A kernel patch on the open source page links to its commit on GitHub too, once it is in mainline",
+    ],
+    changed: [
+      "Pages are served from the edge cache for longer and refreshed the moment a new release or post goes live, so the site does less work on each visit",
+    ],
+  },
+  {
     version: "v2.128.0",
     date: "2026-11-19",
     fixed: [

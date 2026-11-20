@@ -50,6 +50,13 @@ function Item({ c, showProject = false }: { c: ListedContribution; showProject?:
               <ExternalLink className="h-3 w-3" aria-hidden />
             </a>
           )}
+          {c.mirror && (
+            <a href={c.mirror} target="_blank" rel="noopener noreferrer" className={LINK}>
+              View the commit on GitHub
+              <span className="sr-only">: {c.title} (opens in a new tab)</span>
+              <ExternalLink className="h-3 w-3" aria-hidden />
+            </a>
+          )}
         </p>
       )}
     </li>

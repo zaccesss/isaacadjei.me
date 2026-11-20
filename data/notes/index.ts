@@ -12,6 +12,7 @@ export interface NotePost {
 }
 
 import _p0 from "./posts/how-i-organise-a-week"
+import _p1 from "./posts/the-tools-i-plan-with"
 import _p2 from "./posts/taking-lecture-notes-with-low-vision-in-mind"
 import _p4 from "./posts/what-i-look-for-in-a-placement"
 import _p5 from "./posts/how-i-track-placement-applications"
@@ -28,7 +29,7 @@ import _p18 from "./posts/multi-sport-ai-predictor"
 import _p19 from "./posts/one-eye-vision-research"
 import _p21 from "./posts/fedora-beside-windows-on-my-thinkpad"
 
-export const notePosts: NotePost[] = [_p0, _p2, _p4, _p5, _p6, _p10, _p11, _p12, _p13, _p14, _p15, _p16, _p17, _p18, _p19, _p21]
+export const notePosts: NotePost[] = [_p0, _p1, _p2, _p4, _p5, _p6, _p10, _p11, _p12, _p13, _p14, _p15, _p16, _p17, _p18, _p19, _p21]
 
 export function getPublishedNotes(): NotePost[] {
   const pool =

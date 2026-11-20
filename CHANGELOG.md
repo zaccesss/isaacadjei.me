@@ -2,6 +2,16 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.129.0] - 2026-11-20
+
+### Added
+
+- A kernel patch on the open source page links to its commit on GitHub too, once it is in mainline
+
+### Changed
+
+- Pages are served from the edge cache for longer and refreshed the moment a new release or post goes live, so the site does less work on each visit
+
 ## [2.128.0] - 2026-11-19
 
 ### Fixed

@@ -96,7 +96,7 @@ const titles = (list: { title: string }[]) => list.map((c) => c.title)
 describe("the rows handed to the browser", () => {
   it("carries only what the page prints, with the month in place of the full date", () => {
     expect(Object.keys(rows[0]).sort()).toEqual(
-      ["category", "commit", "id", "kind", "language", "linkWord", "month", "number", "pinned", "project", "relation", "state", "summary", "title", "url"].sort(),
+      ["category", "commit", "id", "kind", "language", "linkWord", "mirror", "month", "number", "pinned", "project", "relation", "state", "summary", "title", "url"].sort(),
     )
     expect(rows[0].month).toBe("2026-11")
     expect(JSON.stringify(rows)).not.toContain("2026-11-13")

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { MAINLINE, commitSha, isInMaster, mainlineCommitUrl, needsMainlineCheck, shownCommit } from "@/lib/opensource/mainline"
+import { MAINLINE, commitSha, githubMirrorUrl, isInMaster, mainlineCommitUrl, needsMainlineCheck, shownCommit } from "@/lib/opensource/mainline"
 
 const SHA = "cfbd01eddaf5bfdd4f53560013fe830571a186e9"
 const inMaintainerTree = {
@@ -70,5 +70,16 @@ describe("the commit the page shows", () => {
 
   it("asks for a check only for a hashed commit recorded outside mainline", () => {
     expect(needsMainlineCheck(inMaintainerTree)).toBe(true)
+  })
+})
+
+describe("the GitHub mirror link", () => {
+  it("points at torvalds/linux once the commit is in mainline", () => {
+    expect(githubMirrorUrl(inMainline)).toBe(`https://github.com/torvalds/linux/commit/${SHA}`)
+  })
+
+  it("is left out while the commit is only in a maintainer's tree or has no full hash", () => {
+    expect(githubMirrorUrl(inMaintainerTree)).toBeNull()
+    expect(githubMirrorUrl({ url: "https://git.kernel.org/x/linux.git/commit/?id=abc", tree: MAINLINE })).toBeNull()
   })
 })

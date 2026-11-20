@@ -79,6 +79,9 @@ const nextConfig = {
       // files skip middleware, so the CV files that go with the unlisted CV page get their noindex here. It is a header
       // rather than a robots.txt line, which would name the folder to anyone reading that file
       { source: "/resume/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
+      // API routes skip middleware too, since running it there was billed as Fluid Active CPU on every call (#1595), so
+      // their noindex comes from here. Sign-in and the dashboard manifest still pass through middleware as well
+      { source: "/api/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       // noindex OG and Twitter image generation routes - they are internal
       // image endpoints, not content pages and should not appear in search results.
       { source: "/opengraph-image",          headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
