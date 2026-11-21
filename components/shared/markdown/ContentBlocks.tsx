@@ -156,7 +156,7 @@ export function renderBlock(
           />
           {block.caption && (
             <figcaption className="text-xs text-center text-muted-foreground italic">
-              {block.caption}
+              {renderInline(block.caption)}
             </figcaption>
           )}
         </figure>

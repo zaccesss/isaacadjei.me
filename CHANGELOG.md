@@ -2,6 +2,13 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.130.0] - 2026-11-21
+
+### Added
+
+- Thank You, Stanmore has photos of the Stanmore College building I studied in and its new building, used with the college's permission
+- Image captions in posts can link to where a photo came from
+
 ## [2.129.1] - 2026-11-20
 
 _Behind the scenes_

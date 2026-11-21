@@ -116,6 +116,7 @@ import _77 from "./entries/commonmark-heading-permalinks"
 import _78 from "./entries/playwright-networkidle-polling"
 import _79 from "./entries/oauth-state-login-csrf"
 import _80 from "./entries/graph-mail-can-be-null"
+import _81 from "./entries/wsl2-real-linux-kernel"
 import _82 from "./entries/docker-builder-prune"
 import _100 from "./entries/grub-windows-first-on-fedora"
 import _103 from "./entries/substack-compose-link"
@@ -201,6 +202,7 @@ export const tilEntries: TILEntry[] = [
   _78,
   _79,
   _80,
+  _81,
   _82,
   _100,
   _103,

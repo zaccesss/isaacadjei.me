@@ -4,7 +4,7 @@ const _thank_you_stanmore: BlogPost = {
     slug: "thank-you-stanmore",
     title: "Thank You, Stanmore",
     date: "2026-10-17",
-    updated: "2026-11-11",
+    updated: "2026-11-21",
     type: "journal",
     cover_image: "/images/blog/covers/thank-you-stanmore-card.webp",
     cover_alt: "Close-up of a handwritten card from my business teacher reading: never let anyone stop your dreams from coming true",
@@ -20,6 +20,12 @@ const _thank_you_stanmore: BlogPost = {
       {
         type: "p",
         text: "People sometimes hear that and assume it was all me. It was not. I worked hard, but I worked hard inside a building full of people who decided I was worth the effort. This post is my thank-you to them, by name, because they deserve more than a line in a CV.",
+      },
+      {
+        type: "image",
+        src: "/images/blog/thank-you-stanmore/stanmore-college-building.webp",
+        alt: "Looking up at a Stanmore College building on a sunny day: a dark brick tower with stanmore college in large white letters beside a block clad in pale timber with rows of grey-framed windows and a few green panels",
+        caption: "Stanmore College, where I studied from 2022 to 2024. Photo: [Stanmore College](https://www.stanmore.ac.uk), used with permission.",
       },
       {
         type: "h2",
@@ -167,7 +173,13 @@ const _thank_you_stanmore: BlogPost = {
       },
       {
         type: "p",
-        text: "A small update from November 2026: Stanmore College has added my story to its [alumni page](https://stanmore.ac.uk/alumni/#:~:text=Zac%2C%20Engineering). Thank you to Miss Anjli and the marketing team for including me. It means a lot to be on the wall of the place that gave me my start.",
+        text: "A small update from November 2026: Stanmore College has added my story to its [alumni page](https://stanmore.ac.uk/alumni/#:~:text=Zac%2C%20Engineering). Thank you to Miss Anjli and the marketing team for including me. It means a lot to be on the wall of the place that gave me my start. The campus has changed since I left: the college now has a new building.",
+      },
+      {
+        type: "image",
+        src: "/images/blog/thank-you-stanmore/stanmore-college-new-building.webp",
+        alt: "Looking up at the new Stanmore College building on a sunny day: pale grey panels, a tall orange strip of windows at the corner and rows of black perforated sunshades over the windows",
+        caption: "The college's new building, photographed in 2026. Photo: [Stanmore College](https://www.stanmore.ac.uk), used with permission.",
       },
       {
         type: "p",

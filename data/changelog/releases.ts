@@ -10,6 +10,14 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.130.0",
+    date: "2026-11-21",
+    added: [
+      "Thank You, Stanmore has photos of the Stanmore College building I studied in and its new building, used with the college's permission",
+      "Image captions in posts can link to where a photo came from",
+    ],
+  },
+  {
     version: "v2.129.1",
     date: "2026-11-20",
     label: "Behind the scenes",
