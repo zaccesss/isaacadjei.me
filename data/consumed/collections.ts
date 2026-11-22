@@ -15,7 +15,7 @@ export const CONSUMED_COLLECTIONS: ConsumedCollection[] = [
     titles: [
       "Nand to Tetris", "Nandland", "FPGA4Fun", "SparkFun Learn", "Electronics Tutorials", "Ben Eater's Website",
       "UT Austin: Embedded Systems", "Embedded Artistry", "Learn-C.org", "HDLBits", "EDA Playground",
-      "Basic Electrical and Electronics Engineering", "Embedded",
+      "Interrupt by Memfault", "Basic Electrical and Electronics Engineering", "Embedded",
       "The world of embedded systems (Interview)", "The Amp Hour #721. Chip Design for Fun (and Waffles) with Julia Desmazes",
       "Beej's Guide to C Programming", 
     ],
