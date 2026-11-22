@@ -4,6 +4,7 @@ import { Download, ArrowRight } from "lucide-react"
 import { experiences, isExperienceVisible, type Experience } from "@/data/experience"
 import ExperienceTimeline from "@/components/sections/ExperienceTimeline"
 import { Button } from "@/components/ui/button"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 86400
 
@@ -42,11 +43,7 @@ export default function ExperiencePage() {
 
   return (
     <div className="container max-w-3xl py-24 space-y-10">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Experience</h1>
-        <p className="text-lg text-muted-foreground">
-          Work, leadership roles, the ventures I founded and volunteering.
-        </p>
+      <PageHeader title="Experience" description="Work, leadership roles, the ventures I founded and volunteering.">
         <div className="flex flex-col sm:flex-row gap-3">
           <Button
             asChild
@@ -71,7 +68,7 @@ export default function ExperiencePage() {
             </Link>
           </Button>
         </div>
-      </div>
+      </PageHeader>
       {sections
         .filter((section) => section.items.length > 0)
         .map((section) => (

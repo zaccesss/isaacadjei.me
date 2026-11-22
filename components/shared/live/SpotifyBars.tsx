@@ -39,12 +39,20 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
   const intensityRef = useRef(0)
   const driftRef = useRef(0)
   const reduceRef = useRef(false)
+  const onScreenRef = useRef(true)
+  const wakeRef = useRef<() => void>(() => {})
 
-  useEffect(() => { playingRef.current = playing }, [playing])
+  useEffect(() => {
+    playingRef.current = playing
+    wakeRef.current()
+  }, [playing])
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const read = () => { reduceRef.current = mq.matches }
+    const read = () => {
+      reduceRef.current = mq.matches
+      wakeRef.current()
+    }
     read()
     mq.addEventListener("change", read)
     return () => mq.removeEventListener("change", read)
@@ -54,6 +62,7 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
     rgbRef.current = colours
       ? { primary: hexToRgb(colours.primary), secondary: hexToRgb(colours.secondary), accent: hexToRgb(colours.accent) }
       : null
+    wakeRef.current()
   }, [colours])
 
   useEffect(() => {
@@ -63,6 +72,7 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
         const l = parseFloat(bg.split(/\s+/)[2] ?? "100")
         isDarkRef.current = !Number.isNaN(l) && l < 50
       } catch { isDarkRef.current = false }
+      wakeRef.current()
     }
     readIsDark()
     const mo = new MutationObserver(readIsDark)
@@ -97,8 +107,17 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     resize()
-    const ro = new ResizeObserver(resize)
+    const ro = new ResizeObserver(() => {
+      resize()
+      wake()
+    })
     ro.observe(canvas)
+
+    const moving = () =>
+      !reduceRef.current &&
+      onScreenRef.current &&
+      !document.hidden &&
+      (playingRef.current || intensityRef.current > 0.01)
 
     const draw = (t: number) => {
       const still = reduceRef.current
@@ -106,6 +125,7 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
       tPrevRef.current = t
       const target = playingRef.current ? 1 : 0
       intensityRef.current = still ? target : intensityRef.current + (target - intensityRef.current) * Math.min(1, dt * 3)
+      if (!playingRef.current && intensityRef.current <= 0.01) intensityRef.current = 0
       const intensity = intensityRef.current
       driftRef.current += dt
       const isDark = isDarkRef.current
@@ -194,11 +214,35 @@ export default function SpotifyBars({ playing, albumArt }: Props) {
         ctx.stroke()
       }
 
-      rafRef.current = requestAnimationFrame(draw)
+      if (moving()) {
+        rafRef.current = requestAnimationFrame(draw)
+      } else {
+        rafRef.current = 0
+        tPrevRef.current = 0
+      }
     }
 
-    rafRef.current = requestAnimationFrame(draw)
-    return () => { cancelAnimationFrame(rafRef.current); ro.disconnect() }
+    function wake() {
+      if (!rafRef.current) rafRef.current = requestAnimationFrame(draw)
+    }
+    wakeRef.current = wake
+
+    const io = new IntersectionObserver(([entry]) => {
+      onScreenRef.current = entry?.isIntersecting ?? true
+      wake()
+    })
+    io.observe(canvas)
+    document.addEventListener("visibilitychange", wake)
+
+    wake()
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = 0
+      wakeRef.current = () => {}
+      ro.disconnect()
+      io.disconnect()
+      document.removeEventListener("visibilitychange", wake)
+    }
   }, [])
 
   return <canvas ref={canvasRef} className="w-full block h-[110px]" aria-hidden="true" />

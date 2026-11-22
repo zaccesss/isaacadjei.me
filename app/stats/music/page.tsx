@@ -25,13 +25,12 @@ export default async function StatsMusicPage() {
   return (
     <AnalyticsPeriodProvider defaultPeriod="30d">
       <div className="container max-w-3xl py-24 space-y-8">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <StatsPageHeader
-            title="Music"
-            description="What I listen to, from my top tracks and artists down to when in the day I actually play them."
-          />
+        <StatsPageHeader
+          title="Music"
+          description="What I listen to, from my top tracks and artists down to when in the day I actually play them."
+        >
           <PeriodSelector />
-        </div>
+        </StatsPageHeader>
         <RecordsRow s={stats} show={["playsDay"]} />
         <MusicMore s={stats} />
         <MusicHistory />

@@ -1,6 +1,7 @@
 "use client"
 
-import { DEFAULT_CHART_COLOURS } from "./charts"
+import EmptyState from "@/components/shared/EmptyState"
+import { chartVar } from "@/lib/ui/chart-palette"
 
 export interface FunnelStage {
   name: string
@@ -9,7 +10,7 @@ export interface FunnelStage {
 
 export function Funnel({
   stages,
-  colours = DEFAULT_CHART_COLOURS,
+  colours,
   valueFormatter,
 }: {
   stages: FunnelStage[]
@@ -17,35 +18,31 @@ export function Funnel({
   valueFormatter?: (value: number) => string
 }) {
   if (!stages.length || stages[0].value === 0) {
-    return <p className="text-xs text-muted-foreground">No data for this period.</p>
+    return <EmptyState title="No data for this period" description="The funnel fills in once the first stage has entries." className="py-8" />
   }
   const max = stages[0].value
-  const format = valueFormatter ?? ((v: number) => String(v))
+  const format = valueFormatter ?? ((v: number) => v.toLocaleString("en-GB"))
+  const colour = colours?.[0] ?? chartVar("chart-1")
 
   return (
-    <div className="flex flex-col gap-2">
+    <ol className="flex flex-col gap-2">
       {stages.map((stage, i) => {
         const widthPct = max > 0 ? Math.min(100, Math.max((stage.value / max) * 100, stage.value > 0 ? 4 : 0)) : 0
         const prev = i > 0 ? stages[i - 1].value : null
         const dropPct = prev && prev > 0 ? Math.round(((prev - stage.value) / prev) * 1000) / 10 : null
         return (
-          <div key={stage.name} className="flex flex-col gap-1">
-            <div className="flex items-center justify-between text-xs">
+          <li key={stage.name} className="flex flex-col gap-1">
+            <div className="flex items-center justify-between gap-3 text-sm">
               <span className="font-medium">{stage.name}</span>
-              <span className="text-muted-foreground tabular-nums">{format(stage.value)}</span>
+              <span className="tabular-nums text-muted-foreground">{format(stage.value)}</span>
             </div>
-            <div className="h-5 rounded-sm bg-muted/40" title={`${stage.name}: ${format(stage.value)}${dropPct !== null && dropPct > 0 ? ` (-${dropPct}% from ${stages[i - 1].name})` : ""}`}>
-              <div
-                className="h-full rounded-sm transition-[width]"
-                style={{ width: `${widthPct}%`, backgroundColor: colours[i % colours.length] }}
-              />
+            <div className="h-5 rounded-sm bg-muted" aria-hidden>
+              <div className="h-full rounded-sm" style={{ width: `${widthPct}%`, backgroundColor: colour }} />
             </div>
-            {dropPct !== null && dropPct > 0 && (
-              <p className="text-xs text-muted-foreground">-{dropPct}% from previous stage</p>
-            )}
-          </div>
+            {dropPct !== null && dropPct > 0 && <p className="text-xs text-muted-foreground">-{dropPct}% from previous stage</p>}
+          </li>
         )
       })}
-    </div>
+    </ol>
   )
 }

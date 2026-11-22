@@ -31,21 +31,25 @@ const typeLabel: Record<string, string> = {
 
 import PublicationsPager from "./PublicationsPager"
 import { LABEL_CLASS } from "@/components/shared/lists/Tag"
+import PageHeader from "@/components/layout/PageHeader"
 
 const ITEMS_PER_PAGE = 6
 
-const SECTION_HEADING = "text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+const SECTION_HEADING = "text-lg font-semibold tracking-tight"
 
 export default function PublicationsPage() {
 
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Publications</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          Work I have finished and put on the record. Each piece is archived on Zenodo with a DOI and an open
-          licence, so it can be read, cited in the style you need and built on.
-        </p>
+      <PageHeader
+        title="Publications"
+        description={
+          <>
+            Work I have finished and put on the record. Each piece is archived on Zenodo with a DOI and an open
+            licence, so it can be read, cited in the style you need and built on.
+          </>
+        }
+      >
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
           What is still in progress is on the{" "}
           <Link href="/research" className="body-link">Research page</Link>.
@@ -77,7 +81,7 @@ export default function PublicationsPage() {
             </Link>
           ))}
         </div>
-      </div>
+      </PageHeader>
 
       <section aria-labelledby="publications" className="space-y-6">
         <h2 id="publications" className={SECTION_HEADING}>

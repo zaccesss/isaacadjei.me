@@ -144,7 +144,7 @@ function BookView({ book }: { book: BookEntry }) {
           </span>
         </div>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight leading-tight">{book.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{book.title}</h1>
           <ShareButton title={`Consumed | ${book.title}`} />
         </div>
         <p className="text-xl text-muted-foreground">{book.author}</p>
@@ -153,13 +153,13 @@ function BookView({ book }: { book: BookEntry }) {
 
       {book.takeaway && (
         <section className="space-y-4">
-          <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Takeaway</h2>
+          <h2 className="text-base font-semibold">Takeaway</h2>
           <p className="text-base leading-relaxed">{book.takeaway}</p>
         </section>
       )}
 
       <section className="space-y-4">
-        <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
+        <h2 className="text-base font-semibold">Notes</h2>
         <p className="text-base leading-relaxed">{book.note}</p>
         {book.link && (
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -193,7 +193,7 @@ function VideoView({ video }: { video: VideoEntry }) {
           ))}
         </div>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight leading-tight">{video.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{video.title}</h1>
           <ShareButton title={`Consumed | ${video.title}`} />
         </div>
         <p className="text-xl text-muted-foreground">{video.channel}</p>
@@ -216,7 +216,7 @@ function VideoView({ video }: { video: VideoEntry }) {
 
       {video.description && (
         <section className="space-y-4">
-          <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
+          <h2 className="text-base font-semibold">Notes</h2>
           <p className="text-base leading-relaxed">{video.description}</p>
           <p className="text-sm text-muted-foreground">
             {video.isPlaylist ? "Full playlist " : "Watch it "}
@@ -239,7 +239,7 @@ function PodcastView({ podcast }: { podcast: PodcastEntry }) {
           {podcast.month} {podcast.year}
         </span>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight leading-tight">{podcast.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{podcast.title}</h1>
           <ShareButton title={`Consumed | ${podcast.title}`} />
         </div>
         <p className="text-xl text-muted-foreground">{podcast.show}</p>
@@ -257,7 +257,7 @@ function PodcastView({ podcast }: { podcast: PodcastEntry }) {
 
       {podcast.description && (
         <section className="space-y-4">
-          <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
+          <h2 className="text-base font-semibold">Notes</h2>
           <p className="text-base leading-relaxed">{podcast.description}</p>
           <p className="text-sm text-muted-foreground">
             Listen on <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>Spotify</a>.
@@ -285,7 +285,7 @@ function LinkView({ item, category }: { item: LinkEntry; category: string }) {
           ))}
         </div>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight leading-tight">{item.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{item.title}</h1>
           <ShareButton title={`Consumed | ${item.title}`} />
         </div>
         <p className="flex items-center gap-2 text-xl text-muted-foreground"><SiteIcon url={item.url} size={20} />{item.source}</p>
@@ -296,7 +296,7 @@ function LinkView({ item, category }: { item: LinkEntry; category: string }) {
       </a>
 
       <section className="space-y-4">
-        <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
+        <h2 className="text-base font-semibold">Notes</h2>
         <p className="text-base leading-relaxed">{item.description}</p>
         <p className="text-sm text-muted-foreground">
           Read the original {label} at{" "}
@@ -323,7 +323,7 @@ function ResourceView({ resource }: { resource: ResourceEntry }) {
           </span>
         </div>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight leading-tight">{resource.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{resource.title}</h1>
           <ShareButton title={`Consumed | ${resource.title}`} />
         </div>
         <p className="flex items-center gap-2 text-sm font-mono text-muted-foreground"><SiteIcon url={resource.url} size={16} />{domain}</p>
@@ -334,7 +334,7 @@ function ResourceView({ resource }: { resource: ResourceEntry }) {
       </a>
 
       <section className="space-y-4">
-        <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Notes</h2>
+        <h2 className="text-base font-semibold">Notes</h2>
         <p className="text-base leading-relaxed">{resource.description}</p>
         <p className="text-sm text-muted-foreground">
           Visit at <a href={resource.url} target="_blank" rel="noopener noreferrer" className={PROSE_LINK}>{domain}</a>.

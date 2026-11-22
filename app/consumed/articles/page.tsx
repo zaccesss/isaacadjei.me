@@ -8,7 +8,7 @@ export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Articles",
-  description: "Essays and long-form writing worth reading. Things that made me think or changed my perspective.",
+  description: "Articles I found worth keeping, on software, hardware, career, culture, faith and general ideas.",
   alternates: { canonical: "https://isaacadjei.me/consumed/articles" },
   openGraph: {
     images: ["/api/og?title=Articles%20%7C%20Consumed&description=Essays%20and%20long-form%20writing%20worth%20reading."],

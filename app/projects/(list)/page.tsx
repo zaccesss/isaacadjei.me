@@ -1,23 +1,7 @@
 import type { Metadata } from "next"
 import { projects } from "@/data/projects"
 import ProjectGrid from "@/components/projects/ProjectGrid"
-
-const CATEGORY_NAMES: Record<string, string> = {
-  embedded: "embedded systems",
-  hardware: "hardware",
-  iot: "IoT",
-  web: "web",
-  software: "software",
-  cybersecurity: "cybersecurity",
-  academic: "academic",
-  other: "other",
-}
-
-function categoryList(): string {
-  const present = new Set(projects.map((p) => p.category))
-  const names = Object.keys(CATEGORY_NAMES).filter((c) => present.has(c as (typeof projects)[number]["category"])).map((c) => CATEGORY_NAMES[c])
-  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : (names[0] ?? "")
-}
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -34,14 +18,14 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="container py-24 space-y-10">
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h1 className="text-4xl font-bold tracking-tight">Projects</h1>
-        </div>
-        <p className="text-lg text-muted-foreground max-w-2xl">
-          Things I&apos;ve built across {categoryList()} projects.
-        </p>
-      </div>
+      <PageHeader
+        title="Projects"
+        description={
+          <>
+            Hardware, firmware and software I have built, with photos, code and write-ups.
+          </>
+        }
+      />
       <ProjectGrid projects={projects} />
 
       <p className="text-sm text-muted-foreground text-center pt-4">

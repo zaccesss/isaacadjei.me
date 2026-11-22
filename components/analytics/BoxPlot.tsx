@@ -2,6 +2,11 @@
 
 import { useState } from "react"
 import { quantile, bin as d3bin, min as d3min, max as d3max } from "d3-array"
+import EmptyState from "@/components/shared/EmptyState"
+import { chartVar } from "@/lib/ui/chart-palette"
+
+const ACCENT = chartVar("chart-1")
+const NO_DATA = <EmptyState title="No data for this period" description="Pick a longer period or check back once there is more to show." className="py-8" />
 
 export interface BoxPlotGroup {
   name: string
@@ -32,7 +37,7 @@ function HoverLabel({ text }: { text: string | null }) {
 export function BoxPlot({
   groups,
   height = 220,
-  colour = "hsl(var(--primary))",
+  colour = ACCENT,
   valueFormatter,
   unit = "day",
 }: {
@@ -44,9 +49,7 @@ export function BoxPlot({
 }) {
   const [active, setActive] = useState<number | null>(null)
   const withData = groups.filter((g) => g.values.length > 0)
-  if (!withData.length) {
-    return <p className="text-xs text-muted-foreground">No data for this period.</p>
-  }
+  if (!withData.length) return NO_DATA
   const format = valueFormatter ?? ((v: number) => v.toFixed(1))
   const globalMin = d3min(withData.flatMap((g) => g.values)) ?? 0
   const globalMax = d3max(withData.flatMap((g) => g.values)) ?? 1
@@ -104,9 +107,9 @@ export function BoxPlot({
           )
         })}
       </svg>
-      <ul className="flex justify-around text-[10px] text-muted-foreground">
+      <ul className="flex text-xs text-muted-foreground" aria-hidden>
         {withData.map((g) => (
-          <li key={g.name} className="truncate px-0.5">{g.name}</li>
+          <li key={g.name} className="min-w-0 flex-1 break-words px-0.5 text-center">{g.name}</li>
         ))}
       </ul>
       <HoverLabel text={active === null ? null : describe(summaries[active])} />
@@ -117,26 +120,26 @@ export function BoxPlot({
 export function Histogram({
   values,
   height = 160,
-  colour = "hsl(var(--primary))",
+  colour = ACCENT,
   thresholds = 10,
   valueFormatter,
+  unit = "day",
 }: {
   values: number[]
   height?: number
   colour?: string
   thresholds?: number
   valueFormatter?: (value: number) => string
+  unit?: string
 }) {
   const [active, setActive] = useState<number | null>(null)
-  if (values.length === 0) {
-    return <p className="text-xs text-muted-foreground">No data for this period.</p>
-  }
+  if (values.length === 0) return NO_DATA
   const format = valueFormatter ?? ((v: number) => v.toFixed(0))
   const bins = d3bin().thresholds(thresholds)(values)
   const maxCount = Math.max(...bins.map((b) => b.length), 1)
   const describe = (i: number) => {
     const b = bins[i]
-    return `${format(b.x0 ?? 0)} to ${format(b.x1 ?? 0)}: ${b.length} day${b.length === 1 ? "" : "s"}`
+    return `${format(b.x0 ?? 0)} to ${format(b.x1 ?? 0)}: ${b.length} ${unit}${b.length === 1 ? "" : "s"}`
   }
 
   return (
@@ -163,7 +166,7 @@ export function Histogram({
           )
         })}
       </div>
-      <div className="flex justify-between text-[10px] text-muted-foreground">
+      <div className="flex justify-between text-xs tabular-nums text-muted-foreground" aria-hidden>
         <span>{format(bins[0]?.x0 ?? 0)}</span>
         <span>{format(bins[bins.length - 1]?.x1 ?? 0)}</span>
       </div>

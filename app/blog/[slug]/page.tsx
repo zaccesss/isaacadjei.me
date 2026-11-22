@@ -135,7 +135,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <div className="container max-w-2xl py-24 lg:max-w-5xl">
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
+        className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         All writing
@@ -149,17 +149,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             {TYPE_LABELS[post.type]}
           </span>
           {!post.published && (
-            <span className="inline-flex items-center font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              draft
+            <span className="inline-flex items-center text-xs font-semibold text-muted-foreground">
+              Draft
             </span>
           )}
         </div>
 
-        <h1 className="text-3xl font-bold tracking-tight leading-snug">{post.title}</h1>
+        <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{post.title}</h1>
 
-        <p className="text-base text-muted-foreground leading-relaxed">{post.description}</p>
+        <p className="max-w-[68ch] text-lg text-muted-foreground leading-relaxed">{post.description}</p>
 
-        <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
+        <div className="flex items-center gap-4 text-sm text-muted-foreground tabular-nums">
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3 w-3" />
             {formatDate(post.date)}
@@ -217,7 +217,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-center gap-4 flex-wrap">
             {post.headerLinks.map((l, j) => {
               const cls = j === 0
-                ? "inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                ? "inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary transition-colors font-medium"
                 : "inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               return l.url.startsWith("/") ? (
                 <Link key={l.url} href={l.url} className={cls}>
@@ -238,7 +238,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-center gap-4 flex-wrap">
             <Link
               href={`/projects/${post.projectSlug}`}
-              className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+              className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary transition-colors font-medium"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               View project page
@@ -270,7 +270,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             />
           )}
           {(post.published || process.env.NODE_ENV === "development") && post.content.length > 0 ? (
-            <div className="space-y-5">
+            <div className="max-w-[68ch] space-y-6">
               {post.content.map((block, i) => renderBlock(block, i, headingIds, post.content[i - 1], highlighted))}
             </div>
           ) : (
@@ -304,7 +304,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           {relatedPosts.length > 0 && (
             <div className={cn("pt-8 border-t border-border/40 space-y-4", post.published ? "mt-8" : "mt-16")}>
-              <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest font-mono">
+              <h2 className="text-base font-semibold">
                 You might also like
               </h2>
               <div className="space-y-3">
@@ -312,7 +312,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   <Link
                     key={related.slug}
                     href={`/blog/${related.slug}`}
-                    className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                    className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-colors"
                   >
                     <div className="space-y-0.5 min-w-0">
                       <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-1">
@@ -334,9 +334,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               {prev ? (
                 <Link
                   href={`/blog/${prev.slug}`}
-                  className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                  className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-colors"
                 >
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground font-mono">
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
                     <ArrowLeft className="h-3 w-3" aria-hidden="true" />
                     Previous
                   </span>
@@ -350,9 +350,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               {next ? (
                 <Link
                   href={`/blog/${next.slug}`}
-                  className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all text-right ml-auto w-full"
+                  className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-colors text-right ml-auto w-full"
                 >
-                  <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground font-mono">
+                  <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
                     Next
                     <ArrowRight className="h-3 w-3" aria-hidden="true" />
                   </span>
@@ -366,7 +366,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </div>
             <Link
               href="/blog"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               All writing

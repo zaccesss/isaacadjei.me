@@ -7,6 +7,8 @@ import * as THREE from "three"
 import { useTheme } from "next-themes"
 import { relativeLevel } from "./echarts-theme"
 import type { CalendarHeatmapDatum } from "./CalendarHeatmap"
+import { ukShortDate } from "@/lib/time/short-date"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 
 interface IsometricContributionCalendarProps {
   data: CalendarHeatmapDatum[]
@@ -145,10 +147,10 @@ function Block({
       />
       {hovered && (
         <Html position={[0, blockHeight / 2 + 0.35, 0]} center distanceFactor={12} style={{ pointerEvents: "none" }}>
-          <div className="rounded-md border border-border bg-card px-2 py-1 text-[11px] whitespace-nowrap shadow-md">
-            <div className="text-foreground font-medium">{cell.date}</div>
+          <div className="whitespace-nowrap rounded-md border border-border bg-card px-2 py-1 text-xs shadow-md">
+            <div className="font-medium text-foreground">{ukShortDate(cell.date)}</div>
             <div className="text-muted-foreground">
-              {valueFormatter ? valueFormatter(cell.value) : cell.value.toLocaleString()}
+              {valueFormatter ? valueFormatter(cell.value) : cell.value.toLocaleString("en-GB")}
               {valueLabel ? ` ${valueLabel}` : ""}
             </div>
           </div>
@@ -173,6 +175,7 @@ function Scene({
   controlsReady,
 }: Omit<IsometricContributionCalendarProps, "height"> & { camView: CamView; controlsReady: boolean }) {
   const palette = useIsometricPalette()
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
   const resolvedRange = range ?? defaultRange(data)
   const { cells, weeks } = useMemo(() => buildCells(data, resolvedRange), [data, resolvedRange])
   const [, setActiveCell] = useState<Cell | null>(null)
@@ -189,7 +192,7 @@ function Scene({
       <directionalLight position={[8, 12, 6]} intensity={1.3} />
       <directionalLight position={[-6, 4, -6]} intensity={0.4} />
       <OrbitControls makeDefault enabled={controlsReady} enablePan={false} minZoom={8} maxZoom={200} />
-      <Bounds fit clip margin={1.03} maxDuration={0.6}>
+      <Bounds fit clip margin={1.03} maxDuration={reduce ? 0.01 : 0.6}>
         <CameraView pos={camView.pos} up={camView.up} trigger={camView.trigger} />
         <RefitOnInteractionEnd />
         <group position={[-center[0], 0, -center[2]]}>
@@ -276,7 +279,7 @@ function hasWebGL(): boolean {
 
 function Legend({ palette }: { palette: IsometricPalette }) {
   return (
-    <div className="mt-1.5 flex items-center justify-end gap-1 text-[10px] text-muted-foreground">
+    <div className="mt-1.5 flex items-center justify-end gap-1 text-xs text-muted-foreground" aria-hidden>
       <span>Less</span>
       {([0, 1, 2, 3, 4] as const).map((level) => (
         <span key={level} className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: palette.blocks[level] }} />
@@ -332,7 +335,7 @@ export default function IsometricContributionCalendar({
         </Canvas>
       </div>
       <div className="mt-1.5 flex items-center justify-between gap-2">
-        <span className="text-[10px] font-mono text-muted-foreground/40 shrink-0">drag · scroll to zoom</span>
+        <span className="shrink-0 text-xs text-muted-foreground">drag · scroll to zoom</span>
         <div className="flex gap-1 flex-wrap justify-end">
           {VIEW_PRESETS.map(({ label, pos, up }) => {
             const active = camView.pos === pos
@@ -342,10 +345,11 @@ export default function IsometricContributionCalendar({
                 type="button"
                 disabled={!controlsReady}
                 onClick={() => goTo(pos, up)}
-                className={`text-[10px] font-mono px-2 py-0.5 rounded border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                aria-pressed={active}
+                className={`min-h-11 min-w-11 rounded border px-2.5 text-xs transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                   active
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-border/50 text-muted-foreground/70 hover:text-foreground hover:border-primary/50"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border text-muted-foreground hover:border-primary/50 hover:text-foreground"
                 }`}
               >
                 {label}

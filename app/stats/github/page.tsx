@@ -27,13 +27,12 @@ export default async function StatsGitHubPage() {
   return (
     <AnalyticsPeriodProvider defaultPeriod="30d">
       <div className="container max-w-3xl py-24 space-y-8">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <StatsPageHeader
-            title="GitHub"
-            description="A full year of contribution history, top languages and top repos, straight from my GitHub profile."
-          />
+        <StatsPageHeader
+          title="GitHub"
+          description="A full year of contribution history, top languages and top repos, straight from my GitHub profile."
+        >
           <PeriodSelector />
-        </div>
+        </StatsPageHeader>
         <RecordsRow s={stats} show={["githubWeek"]} />
         <GitHubMonths s={stats} milestones={getMilestones()} />
         <GitHubPatterns s={stats} />

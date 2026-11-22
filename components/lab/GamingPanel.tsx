@@ -44,8 +44,8 @@ export default function GamingPanel() {
   return (
     <div ref={rootRef} className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 space-y-4">
       <div className="flex items-center gap-1.5">
-        <Gamepad2 className="h-3 w-3 text-muted-foreground shrink-0" />
-        <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">gaming</p>
+        <Gamepad2 className="h-4 w-4 text-muted-foreground shrink-0" aria-hidden="true" />
+        <p className="text-sm font-semibold text-muted-foreground">Gaming</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
@@ -53,13 +53,12 @@ export default function GamingPanel() {
           {ps5Art && (
             <div className="relative h-16 w-full overflow-hidden">
               <img src={ps5Art} alt="" className="w-full h-full object-cover opacity-70" />
-              <div className="absolute inset-0 bg-linear-to-t from-card/90 to-transparent" />
             </div>
           )}
           <div className="p-3 space-y-1.5">
             <div className="flex items-center justify-between gap-2">
-              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wide">PS5</span>
-              <span className={`inline-flex items-center gap-1 text-[10px] font-mono ${ps5?.online ? "text-primary" : "text-muted-foreground"}`}>
+              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wide">PS5</span>
+              <span className={`inline-flex items-center gap-1 text-xs font-mono ${ps5?.online ? "text-primary" : "text-muted-foreground"}`}>
                 <span className={`h-1.5 w-1.5 rounded-full ${ps5?.online ? "bg-green-500" : "bg-zinc-400"}`} aria-hidden="true" />
                 {ps5?.online ? "online" : ps5 ? `${timeSince(ps5.lastSeen)}` : "-"}
               </span>
@@ -67,10 +66,10 @@ export default function GamingPanel() {
             {ps5Game ? (
               <p className="text-xs font-mono font-medium leading-tight line-clamp-2">{ps5Game}</p>
             ) : (
-              <p className="text-[10px] font-mono text-muted-foreground/50">not gaming</p>
+              <p className="text-xs font-mono text-muted-foreground">not gaming</p>
             )}
             {!ps5?.online && ps5?.lastSeen && (
-              <p className="text-[9px] font-mono text-muted-foreground/40">last seen {timeSince(ps5.lastSeen)}</p>
+              <p className="text-xs font-mono text-muted-foreground">last seen {timeSince(ps5.lastSeen)}</p>
             )}
           </div>
         </div>
@@ -79,13 +78,12 @@ export default function GamingPanel() {
           {gpcArt && (
             <div className="relative h-16 w-full overflow-hidden">
               <img src={gpcArt} alt="" className="w-full h-full object-cover opacity-70" />
-              <div className="absolute inset-0 bg-linear-to-t from-card/90 to-transparent" />
             </div>
           )}
           <div className="p-3 space-y-1.5">
             <div className="flex items-center justify-between gap-2">
-              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wide">PC</span>
-              <span className={`inline-flex items-center gap-1 text-[10px] font-mono ${gpc?.online ? "text-primary" : "text-muted-foreground"}`}>
+              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wide">PC</span>
+              <span className={`inline-flex items-center gap-1 text-xs font-mono ${gpc?.online ? "text-primary" : "text-muted-foreground"}`}>
                 <span className={`h-1.5 w-1.5 rounded-full ${gpc?.online ? "bg-green-500" : "bg-zinc-400"}`} aria-hidden="true" />
                 {gpc?.online ? "online" : gpc ? `offline` : "-"}
               </span>
@@ -93,36 +91,36 @@ export default function GamingPanel() {
             {gpcGame ? (
               <p className="text-xs font-mono font-medium leading-tight line-clamp-2">{gpcGame}</p>
             ) : (
-              <p className="text-[10px] font-mono text-muted-foreground/50">{gpc?.online ? "idle" : "offline"}</p>
+              <p className="text-xs font-mono text-muted-foreground">{gpc?.online ? "idle" : "offline"}</p>
             )}
             {gpc?.online && (gpc.cpu != null || gpc.gpu != null) && (
               <div className="flex gap-3 pt-0.5">
                 {gpc.cpu != null && (
                   <div className="space-y-0.5">
-                    <p className="text-[8px] font-mono text-muted-foreground/50">CPU</p>
+                    <p className="text-xs font-mono text-muted-foreground">CPU</p>
                     <div className="flex items-center gap-1">
                       <div className="w-10 h-1 bg-muted rounded-full overflow-hidden">
                         <div className="h-full bg-primary/60 rounded-full" style={{ width: `${gpc.cpu}%` }} />
                       </div>
-                      <span className="text-[8px] font-mono text-muted-foreground">{gpc.cpu}%</span>
+                      <span className="text-xs font-mono text-muted-foreground">{gpc.cpu}%</span>
                     </div>
                   </div>
                 )}
                 {gpc.gpu != null && (
                   <div className="space-y-0.5">
-                    <p className="text-[8px] font-mono text-muted-foreground/50">GPU</p>
+                    <p className="text-xs font-mono text-muted-foreground">GPU</p>
                     <div className="flex items-center gap-1">
                       <div className="w-10 h-1 bg-muted rounded-full overflow-hidden">
                         <div className="h-full bg-green-500/60 rounded-full" style={{ width: `${gpc.gpu}%` }} />
                       </div>
-                      <span className="text-[8px] font-mono text-muted-foreground">{gpc.gpu}%</span>
+                      <span className="text-xs font-mono text-muted-foreground">{gpc.gpu}%</span>
                     </div>
                   </div>
                 )}
               </div>
             )}
             {!gpc?.online && gpc?.lastSeen && (
-              <p className="text-[9px] font-mono text-muted-foreground/40">last seen {timeSince(gpc.lastSeen)}</p>
+              <p className="text-xs font-mono text-muted-foreground">last seen {timeSince(gpc.lastSeen)}</p>
             )}
           </div>
         </div>

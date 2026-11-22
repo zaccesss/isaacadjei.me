@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -37,9 +38,8 @@ function Ext({ href, children }: { href: string; children: React.ReactNode }) {
 export default function PrivacyPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
+      <PageHeader title="Privacy Policy">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This page covers how Isaac Adjei handles your data, who owns the content on this site
           and the terms under which you access it. By using this site you agree to the terms
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
           </Link>
           .
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 
@@ -344,8 +344,11 @@ export default function PrivacyPage() {
             browser loads these images directly from those servers, which receive your IP address and
             browser details in the normal way. The Skills and Uses pages show logos from{" "}
             <Ext href="https://simpleicons.org/">Simple Icons</Ext>,{" "}
-            <Ext href="https://www.jsdelivr.com/terms/privacy-policy">jsDelivr</Ext> and{" "}
-            <Ext href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia Commons</Ext> in
+            <Ext href="https://www.jsdelivr.com/terms/privacy-policy">jsDelivr</Ext>,{" "}
+            <Ext href="https://skillicons.dev">skillicons.dev</Ext>,{" "}
+            <Ext href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikimedia Commons</Ext>,{" "}
+            <Ext href="https://www.jetbrains.com">JetBrains</Ext> and{" "}
+            <Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub</Ext> in
             the same way. Each publication page reads view and download counts from{" "}
             <Ext href="https://about.zenodo.org/privacy-policy/">Zenodo</Ext> on my server, so that
             request never involves your browser.
@@ -362,8 +365,10 @@ export default function PrivacyPage() {
           <p>
             This site remembers your theme preference (light, dark or system) and a few small
             choices, such as a map style you picked, a list&apos;s page size and the reactions you
-            gave a post, a note or a TIL, in your browser&apos;s local storage rather than a cookie. It stays on your
+            gave a post, a note, a TIL or a newsletter issue, in your browser&apos;s local storage rather than a cookie. It stays on your
             device, contains no personal information and is not sent to me or any third party.
+            One flag in the tab&apos;s session storage, which your browser clears when the tab closes, notes that the
+            faint drawing behind the homepage has already played, so it does not play twice in a visit.
             When I ask for my own visits to be left out of the scroll-depth events and the comment
             link counts described above, the site sets a cookie named no_count in my browser. It
             holds only that choice and it is never set in a visitor&apos;s browser.

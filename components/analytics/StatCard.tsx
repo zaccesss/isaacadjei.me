@@ -28,6 +28,8 @@ function StatCardSparkline({ data }: { data: number[] }) {
   )
 }
 
+const SCOPE_LABEL = { "all-time": "All time", current: "Current" } as const
+
 export function StatCard({
   label,
   value,
@@ -48,14 +50,14 @@ export function StatCard({
       <div className="flex items-center gap-1.5">
         <p className="text-xs text-muted-foreground">{label}</p>
         {scope && (
-          <span className="text-[9px] uppercase tracking-wide text-muted-foreground/70 border border-border/50 rounded px-1 leading-tight">
-            {scope}
+          <span className="rounded border border-border px-1 text-xs leading-tight text-muted-foreground">
+            {SCOPE_LABEL[scope]}
           </span>
         )}
       </div>
       <div className="flex items-end justify-between gap-2 mt-1">
         <div className="flex items-baseline gap-2">
-          <p className="text-2xl font-bold">{value}</p>
+          <p className="text-2xl font-bold tabular-nums">{value}</p>
           {trend && <TrendIndicator delta={trend.delta} label={trend.label} />}
         </div>
         {sparkline && sparkline.length >= 2 && <StatCardSparkline data={sparkline} />}

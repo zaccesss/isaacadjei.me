@@ -16,14 +16,14 @@ export function PodcastCard({ podcast, compact = false }: { podcast: PodcastEntr
           >
             {podcast.title}
           </Link>
-          <p className="text-[10px] text-muted-foreground">{podcast.show}</p>
+          <p className="text-xs text-muted-foreground">{podcast.show}</p>
           {!compact && podcast.description && (
-            <p className="text-[10px] text-muted-foreground leading-relaxed pt-0.5">{podcast.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed pt-0.5">{podcast.description}</p>
           )}
           <LedTo links={podcast.ledTo} className="pt-0.5" />
           <Link
             href={subpageHref}
-            className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2 pt-0.5"
+            className="inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2 pt-0.5"
           >
             <FileText className="h-3 w-3" />
             Notes

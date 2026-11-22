@@ -20,6 +20,7 @@ import { LinkCard } from "@/components/consumed/LinkCard"
 import { BookCard } from "@/components/consumed/BookCard"
 import { PodcastCard } from "@/components/consumed/PodcastCard"
 import { HubOverview, type HubOverviewProps } from "@/components/consumed/HubOverview"
+import PageHeader from "@/components/layout/PageHeader"
 
 function matchesSearch(item: Record<string, unknown>, query: string): boolean {
   if (!query) return true
@@ -92,12 +93,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
   return (
     <div className="container py-24 space-y-10">
-      <div className="space-y-4 max-w-2xl">
-        <h1 className="text-4xl font-bold tracking-tight">Consumed</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Everything I have watched, listened to and read, newest first. Videos, podcasts, books, music, resources and more. More content gets added as time goes on.
-        </p>
-      </div>
+      <PageHeader title="Consumed" description="Everything I have watched, listened to and read, newest first. Videos, podcasts, books, music, resources and more." className="max-w-2xl" />
 
       <HubOverview {...overview} />
 
@@ -144,18 +140,18 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
                   <section key={`${year}-${month}`} className="space-y-8">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Month</span>
-                        <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
+                        <span className="text-xs text-muted-foreground font-semibold">Month</span>
+                        <span className="text-xs font-semibold tabular-nums text-muted-foreground">
                           {month} {year}
                         </span>
-                        <span className="text-xs text-muted-foreground font-mono">{total} {total === 1 ? "item" : "items"}</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">{total} {total === 1 ? "item" : "items"}</span>
                         <div className="flex-1 h-px bg-border/60" />
                       </div>
                     </div>
 
                     {mv.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <Tv2 className="h-3.5 w-3.5" />
                           Videos ({mv.length})
                         </p>
@@ -175,7 +171,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
                     {mp.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <Headphones className="h-3.5 w-3.5" />
                           Audio ({mp.length})
                         </p>
@@ -187,7 +183,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
                     {mb.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <BookOpen className="h-3.5 w-3.5" />
                           Books ({mb.length})
                         </p>
@@ -199,7 +195,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
                     {mr.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <BookMarked className="h-3.5 w-3.5" />
                           Resources ({mr.length})
                         </p>
@@ -211,7 +207,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
                     {ma.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <Newspaper className="h-3.5 w-3.5" />
                           Articles ({ma.length})
                         </p>
@@ -223,7 +219,7 @@ export default function ConsumedContent({ videos, podcasts, books, resources, ar
 
                     {mo.length > 0 && (
                       <div className="space-y-3">
-                        <p className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                        <p className="flex items-center gap-2 text-xs text-muted-foreground font-semibold">
                           <Globe className="h-3.5 w-3.5" />
                           Others ({mo.length})
                         </p>

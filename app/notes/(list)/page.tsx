@@ -2,14 +2,15 @@ import type { Metadata } from "next"
 import { feedAlternates } from "@/lib/content/feeds"
 import Link from "@/components/shared/IntentLink"
 import { Separator } from "@/components/ui/separator"
-import { Rss } from "lucide-react"
 import NotePostsList from "@/components/notes/NotePostsList"
+import PageHeader from "@/components/layout/PageHeader"
+import FeedLink from "@/components/shared/FeedLink"
 
 export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "Notes",
-  description: "A public notebook. What I am building, thinking about and planning.",
+  description: "A public notebook of rough notes on what I am building and planning, updated as things change.",
   alternates: {
     canonical: "https://isaacadjei.me/notes",
     types: feedAlternates("notes", "all"),
@@ -22,28 +23,21 @@ export const metadata: Metadata = {
 export default function NotesPage() {
   return (
     <div className="container max-w-4xl py-24 space-y-12">
-      <section className="space-y-4">
-        <div className="flex items-center justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">Notes</h1>
-          <a
-            href="/notes/feed.xml"
-            title="RSS feed"
-            aria-label="Notes RSS feed"
-            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
-          >
-            <Rss className="h-5 w-5 shrink-0" />
-            Feed
-          </a>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          A public notebook. Not polished posts, just honest notes on what I am building, thinking
-          about and planning. Updated as things change.
-        </p>
+      <PageHeader
+        title="Notes"
+        actions={<FeedLink href="/notes/feed.xml" label="Notes RSS feed" />}
+        description={
+          <>
+            A public notebook of rough notes on what I am building and planning, updated as things
+            change. Finished write-ups go on the blog.
+          </>
+        }
+      >
         <p className="text-sm text-muted-foreground">
           <span aria-hidden="true">💡 </span>Shorter, faster notes live on the{" "}
           <Link href="/til" className="body-link">TIL page</Link>: snippets from things I discover day to day.
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

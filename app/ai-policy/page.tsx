@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
 import {
-  Bot,
   Sparkles,
   ListChecks,
   MessageSquareText,
@@ -15,6 +14,7 @@ import {
   FolderGit2,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "AI Policy",
@@ -34,12 +34,8 @@ const code = "font-mono text-sm bg-muted px-1.5 py-0.5 rounded"
 export default function AiPolicyPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Bot className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">AI Policy</h1>
-        </div>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
+      <PageHeader title="AI Policy">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This policy covers every contribution to my projects from people outside them: code,
           documentation, commits, issues, pull requests, comments, reviews and discussions. I keep it
@@ -61,7 +57,7 @@ export default function AiPolicyPage() {
             Also on GitHub: zaccesss/ai-policy
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

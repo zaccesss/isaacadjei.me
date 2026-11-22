@@ -23,7 +23,7 @@ export function ResourceCard({ resource }: { resource: ResourceEntry }) {
           >
             {resource.title}
           </Link>
-          <p className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><SiteIcon url={resource.url} size={14} /><span className="truncate">{resource.url.replace(/^https?:\/\//, "")}</span></p>
+          <p className="flex items-center gap-1.5 text-xs text-muted-foreground"><SiteIcon url={resource.url} size={14} /><span className="truncate">{resource.url.replace(/^https?:\/\//, "")}</span></p>
         </div>
         <a
           href={resource.url}
@@ -49,7 +49,7 @@ export function ResourceCard({ resource }: { resource: ResourceEntry }) {
         </span>
         <Link
           href={subpageHref}
-          className="ml-auto inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2"
+          className="ml-auto inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2"
         >
           <FileText className="h-3 w-3" />
           Notes

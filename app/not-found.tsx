@@ -46,16 +46,18 @@ export default function NotFound() {
   const [booted, setBooted] = useState(0)
   const [input, setInput] = useState("")
   const [history, setHistory] = useState<HistoryLine[]>([])
+  const reduceRef = useRef(false)
 
   useEffect(() => {
-    const timers = BOOT_LINES.map((line, i) =>
-      setTimeout(() => setBooted(i + 1), line.delay)
-    )
+    reduceRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const timers = reduceRef.current
+      ? [setTimeout(() => setBooted(BOOT_LINES.length), 0)]
+      : BOOT_LINES.map((line, i) => setTimeout(() => setBooted(i + 1), line.delay))
     return () => timers.forEach(clearTimeout)
   }, [])
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+    bottomRef.current?.scrollIntoView({ behavior: reduceRef.current ? "auto" : "smooth", block: "nearest" })
   }, [history, booted])
 
   const runCommand = (raw: string) => {
@@ -73,7 +75,7 @@ export default function NotFound() {
     )
 
     if (page) {
-      setHistory((h) => [...h, echo, { text: `→ navigating to ${page.href}...`, muted: true }])
+      setHistory((h) => [...h, echo, { text: `navigating to ${page.href}...`, muted: true }])
       setTimeout(() => router.push(page.href), 350)
       return
     }
@@ -143,6 +145,7 @@ export default function NotFound() {
 
   return (
     <div className="container max-w-2xl py-32">
+      <title>Page not found | Isaac Adjei</title>
       <div className="flex justify-center mb-8">
         <ConstellationMark size={64} className="text-zinc-300" />
       </div>
@@ -174,7 +177,7 @@ export default function NotFound() {
           {ready && (
             <div className="pt-3 pb-1 space-y-0.5">
               {PAGES.slice(0, 8).map((page) => (
-                <div key={page.href} className="flex items-center gap-2 group">
+                <div key={page.href} className="flex items-center gap-2">
                   <span className="text-primary select-none">$</span>
                   <button
                     type="button"
@@ -183,10 +186,7 @@ export default function NotFound() {
                   >
                     go {page.label}
                   </button>
-                  <span className="text-zinc-600 text-xs">→ {page.href}</span>
-                  <span className="text-zinc-700 text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-1">
-                    ← click
-                  </span>
+                  <span className="text-zinc-400 text-xs">{page.href}</span>
                 </div>
               ))}
             </div>

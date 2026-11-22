@@ -2,19 +2,20 @@
 
 import { useRouter } from "next/navigation"
 import { LayoutList, Tv2, Headphones, Music2, BookOpen, Newspaper, BookMarked, Globe } from "lucide-react"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils"
 
 export type ConsumedCategoryKey = "all" | "videos" | "audio" | "music" | "books" | "articles" | "resources" | "others"
 
-const ROUTES: Record<Exclude<ConsumedCategoryKey, "all">, string> = {
-  videos: "/consumed/videos",
-  audio: "/consumed/podcasts",
-  music: "/consumed/music",
-  books: "/consumed/books",
-  articles: "/consumed/articles",
-  resources: "/consumed/resources",
-  others: "/consumed/others",
-}
+const ITEMS: { key: ConsumedCategoryKey; label: string; path: string; Icon: typeof LayoutList }[] = [
+  { key: "all", label: "All", path: "/consumed", Icon: LayoutList },
+  { key: "videos", label: "Videos", path: "/consumed/videos", Icon: Tv2 },
+  { key: "audio", label: "Audio", path: "/consumed/podcasts", Icon: Headphones },
+  { key: "music", label: "Music", path: "/consumed/music", Icon: Music2 },
+  { key: "books", label: "Books", path: "/consumed/books", Icon: BookOpen },
+  { key: "articles", label: "Articles", path: "/consumed/articles", Icon: Newspaper },
+  { key: "resources", label: "Resources", path: "/consumed/resources", Icon: BookMarked },
+  { key: "others", label: "Others", path: "/consumed/others", Icon: Globe },
+]
 
 interface ConsumedCategoryTabsProps {
   active: ConsumedCategoryKey
@@ -31,66 +32,33 @@ export function ConsumedCategoryTabs({ active, counts }: ConsumedCategoryTabsPro
     const qs = keep.toString()
     router.push(qs ? `${path}?${qs}` : path)
   }
-  const c = {
-    all: counts?.all,
-    videos: counts?.videos,
-    audio: counts?.audio,
-    books: counts?.books,
-    articles: counts?.articles,
-    resources: counts?.resources,
-    others: counts?.others,
-  }
 
   return (
-    <div className="space-y-3">
-      <Tabs value={active}>
-        <div className="flex flex-col items-center text-center gap-3">
-          <span className="text-xs text-muted-foreground tracking-widest uppercase font-mono">Category</span>
-          <TabsList className="flex-wrap h-auto gap-1 justify-center">
-            <TabsTrigger value="all" onClick={() => go("/consumed")} className="gap-1.5">
-              <LayoutList className="h-3.5 w-3.5" />
-              All
-              {c.all !== undefined && (
-                <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.all}</span>
-              )}
-            </TabsTrigger>
-            <TabsTrigger value="videos" onClick={() => go(ROUTES.videos)} className="gap-1.5">
-              <Tv2 className="h-3.5 w-3.5" />
-              Videos
-              {c.videos !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.videos}</span>}
-            </TabsTrigger>
-            <TabsTrigger value="audio" onClick={() => go(ROUTES.audio)} className="gap-1.5">
-              <Headphones className="h-3.5 w-3.5" />
-              Audio
-              {c.audio !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.audio}</span>}
-            </TabsTrigger>
-            <TabsTrigger value="music" onClick={() => go(ROUTES.music)} className="gap-1.5">
-              <Music2 className="h-3.5 w-3.5" />
-              Music
-            </TabsTrigger>
-            <TabsTrigger value="books" onClick={() => go(ROUTES.books)} className="gap-1.5">
-              <BookOpen className="h-3.5 w-3.5" />
-              Books
-              {c.books !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.books}</span>}
-            </TabsTrigger>
-            <TabsTrigger value="articles" onClick={() => go(ROUTES.articles)} className="gap-1.5">
-              <Newspaper className="h-3.5 w-3.5" />
-              Articles
-              {c.articles !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.articles}</span>}
-            </TabsTrigger>
-            <TabsTrigger value="resources" onClick={() => go(ROUTES.resources)} className="gap-1.5">
-              <BookMarked className="h-3.5 w-3.5" />
-              Resources
-              {c.resources !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.resources}</span>}
-            </TabsTrigger>
-            <TabsTrigger value="others" onClick={() => go(ROUTES.others)} className="gap-1.5">
-              <Globe className="h-3.5 w-3.5" />
-              Others
-              {c.others !== undefined && <span className="ml-1 text-[10px] font-mono text-muted-foreground">{c.others}</span>}
-            </TabsTrigger>
-          </TabsList>
-        </div>
-      </Tabs>
-    </div>
+    <nav aria-label="Consumed categories" className="flex flex-col items-center gap-3 text-center">
+      <span className="text-xs font-semibold text-muted-foreground">Category</span>
+      <ul className="flex flex-wrap justify-center gap-1 rounded-md bg-muted p-1 text-muted-foreground">
+        {ITEMS.map(({ key, label, path, Icon }) => {
+          const current = key === active
+          const count = key === "music" ? undefined : counts?.[key]
+          return (
+            <li key={key}>
+              <button
+                type="button"
+                onClick={() => go(path)}
+                aria-current={current ? "page" : undefined}
+                className={cn(
+                  "inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm px-3 text-sm font-medium motion-safe:transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                  current ? "bg-background text-foreground" : "hover:text-foreground",
+                )}
+              >
+                <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                {label}
+                {count !== undefined && <span className="ml-1 text-xs tabular-nums text-muted-foreground">{count}</span>}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
   )
 }

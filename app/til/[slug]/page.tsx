@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar, ExternalLink } from "lucide-react"
 import {
   getTILBySlug,
   getPublishedTILEntries,
@@ -104,13 +104,13 @@ function renderBlock(block: TILBlock, i: number, highlighted: Record<number, str
   switch (block.type) {
     case "h2":
       return (
-        <h2 key={i} id={block.text.toLowerCase().replace(/\s+/g, "-")} className="text-base font-semibold mt-6 mb-2 scroll-mt-24">
+        <h2 key={i} id={block.text.toLowerCase().replace(/\s+/g, "-")} className="text-[1.625rem] leading-tight font-semibold tracking-tight mt-12 mb-3 scroll-mt-24">
           {block.text}
         </h2>
       )
     case "p":
       return (
-        <p key={i} className="text-sm text-muted-foreground leading-relaxed">
+        <p key={i} className="text-lg leading-[1.7] text-foreground/90">
           {renderInline(block.text)}
         </p>
       )
@@ -119,7 +119,7 @@ function renderBlock(block: TILBlock, i: number, highlighted: Record<number, str
         <div key={i} className="space-y-1">
           <CodeBlock lang={block.lang} text={block.code} html={highlighted[i]} />
           {block.caption && (
-            <p className="text-xs text-muted-foreground text-center font-mono">{block.caption}</p>
+            <p className="text-xs text-muted-foreground text-center">{block.caption}</p>
           )}
         </div>
       )
@@ -164,7 +164,7 @@ function renderBlock(block: TILBlock, i: number, highlighted: Record<number, str
             {block.description && (
               <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{block.description}</p>
             )}
-            <p className="text-xs text-muted-foreground/60 mt-1 font-mono truncate">{block.url}</p>
+            <p className="text-xs text-muted-foreground mt-1 font-mono truncate">{block.url}</p>
           </div>
           <ExternalLink className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
         </a>
@@ -213,7 +213,7 @@ export default async function TILSlugPage({
 
       <Link
         href="/til"
-        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mb-8"
+        className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Back to TIL
@@ -223,16 +223,18 @@ export default async function TILSlugPage({
         {showToC && <TableOfContents headings={tocHeadings} sections={[REACTIONS_SECTION, REPLY_SECTION]} />}
         <div className={cn("space-y-8", showToC && "min-w-0 lg:col-start-1 lg:row-start-1")}>
           <div className="space-y-4">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
-              <time dateTime={entry.date} className="text-xs text-muted-foreground font-mono">
-                {formatDate(entry.date)}
-              </time>
-            </div>
+            <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
 
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="text-2xl font-bold tracking-tight leading-snug">{entry.title}</h1>
-              <ShareButton title={`TIL | ${entry.title}`} />
+            <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{entry.title}</h1>
+
+            <div className="flex items-center gap-4 text-sm text-muted-foreground tabular-nums">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="h-3 w-3" aria-hidden="true" />
+                <time dateTime={entry.date}>{formatDate(entry.date)}</time>
+              </span>
+              <div className="ml-auto">
+                <ShareButton title={`TIL | ${entry.title}`} />
+              </div>
             </div>
 
             {entry.tags && entry.tags.length > 0 && (
@@ -244,15 +246,12 @@ export default async function TILSlugPage({
             )}
           </div>
 
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {renderInline(entry.body)}
-          </p>
-
-          {entry.detail && entry.detail.length > 0 && (
-            <div className="space-y-4">
-              {entry.detail.map((block, i) => renderBlock(block, i, highlighted))}
-            </div>
-          )}
+          <div className="max-w-[68ch] space-y-6">
+            <p className="text-lg leading-[1.7] text-foreground/90">
+              {renderInline(entry.body)}
+            </p>
+            {entry.detail?.map((block, i) => renderBlock(block, i, highlighted))}
+          </div>
 
           {entry.source && (
             <p className="pt-2 text-sm text-muted-foreground">

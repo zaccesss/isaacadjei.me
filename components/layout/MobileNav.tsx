@@ -31,6 +31,7 @@ export default function MobileNav() {
         ref={toggleRef}
         variant="ghost"
         size="icon"
+        className="relative after:absolute after:-inset-0.5 after:content-['']"
         onClick={() => setOpen(!open)}
         aria-label="Toggle menu"
         aria-expanded={open}

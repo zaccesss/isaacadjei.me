@@ -6,6 +6,7 @@ import { writingExtra } from "@/components/stats/chart-data"
 import { StatsTabs } from "@/components/stats/StatsTabs"
 import { getOpenSourceStats } from "@/lib/opensource/open-source"
 import { getMilestones } from "@/lib/stats/stats-milestones"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 3600
 
@@ -25,14 +26,10 @@ export default async function StatsPage() {
   const raw = getRawContentItems()
   return (
     <div className="container max-w-3xl py-24 space-y-10">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-tight">Stats</h1>
-        <p className="text-lg text-muted-foreground">
-          Live and historical numbers from the services I use every day - what I code, what I
-          listen to, where my applications have gone, what I am playing right now, what I have
-          published and how this site has been released.
-        </p>
-      </div>
+      <PageHeader
+        title="Stats"
+        description="Live and historical numbers from the services I use every day - what I code, what I listen to, where my applications have gone, what I am playing right now, what I have published and how this site has been released."
+      />
 
       <StatsTabs s={stats} c={content} os={os} rs={research} milestones={getMilestones()} wx={writingExtra(raw.posts, raw.til, raw.notes, raw.issues)} />
     </div>

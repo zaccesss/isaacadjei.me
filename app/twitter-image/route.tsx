@@ -22,9 +22,8 @@ export function GET() {
         </div>
       </div>
 
-      <div tw="flex justify-between items-center text-[30px] text-slate-300">
-        <span>Full-stack software, embedded systems, AI/ML and data science</span>
-        <span tw="font-bold text-slate-200">EECS</span>
+      <div tw="flex items-center text-[30px] text-slate-300">
+        <span>Circuit boards, firmware, software and AI/ML</span>
       </div>
     </div>,
     {

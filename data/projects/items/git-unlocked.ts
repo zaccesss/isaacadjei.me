@@ -4,7 +4,7 @@ const _git_unlocked: Project = {
     id: "git-unlocked",
     title: "git-unlocked",
     description:
-      "A free, open source course that takes anyone from absolute zero to professional-level Git across every major platform, with Windows, Mac and Linux covered side by side.",
+      "A free, open source Git course in 182 files across 12 sections, with Windows, Mac and Linux side by side.",
     longDescription:
       "git-unlocked is a free, community-built course that takes someone who has never heard of version control all the way to using Git, GitHub, GitLab and the other major platforms confidently in a real team. It is 182 files across 12 sections covering Git itself, GitHub, GitLab, Bitbucket, Azure DevOps, Gitea, Forgejo and Codeberg. Every file is tagged beginner, intermediate or advanced and shows commands for Windows, Mac and Linux side by side, so every reader knows where they stand.\n\nI built it after watching people at university struggle not with the ideas behind version control but with how scattered the documentation is. Every platform has its own docs, every tutorial starts somewhere different and almost none of them cover what to do when things go wrong. git-unlocked is the single resource I wished had existed: opinionated, progressive, honest about the hard parts and free with no paywall or account.\n\nThe course is released under CC BY-SA 4.0 so educators and self-taught learners can reuse, fork and extend it. Markdown lint and link checks run in CI on every push, a first-contribution sandbox lets anyone make their first open source pull request in under ten minutes and the project is archived on Zenodo with a permanent DOI.",
     technologies: [

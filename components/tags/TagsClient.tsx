@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "@/components/shared/IntentLink"
 import { Search, Tag } from "lucide-react"
 import { fieldScore } from "@/lib/content/search"
+import PageHeader from "@/components/layout/PageHeader"
 
 interface TagItem {
   slug: string
@@ -25,13 +26,15 @@ export default function TagsClient({ tags }: { tags: TagItem[] }) {
 
   return (
     <div className="container max-w-2xl py-24 space-y-10">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-tight">Tags</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          All topics across blog posts, TIL entries, projects and publications.{" "}
-          {tags.length} tags total.
-        </p>
-      </div>
+      <PageHeader
+        title="Tags"
+        description={
+          <>
+            All topics across blog posts, TIL entries, projects and publications.{" "}
+            {tags.length} tags total.
+          </>
+        }
+      />
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />

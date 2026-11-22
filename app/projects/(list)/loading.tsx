@@ -4,7 +4,7 @@ export default function ProjectsLoading() {
   return (
     <div className="container py-24 space-y-10">
       <div className="space-y-3">
-        <IAMark size={40} className="text-muted-foreground/50 animate-pulse" />
+        <IAMark size={40} className="text-muted-foreground animate-pulse" />
         <div className="h-5 w-72 bg-muted rounded animate-pulse" />
       </div>
       <div className="flex gap-2">

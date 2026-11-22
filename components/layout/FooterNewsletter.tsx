@@ -9,8 +9,8 @@ export default function FooterNewsletter() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-3">
-      <h2 className="text-sm font-semibold text-foreground">Newsletter</h2>
-      <p className="text-[13px] text-muted-foreground">Notes on tech, engineering and projects, straight to your inbox.</p>
+      <h2 className="flex min-h-11 items-center text-sm font-semibold text-foreground">Newsletter</h2>
+      <p className="text-[13px] text-muted-foreground">Letters on tech, engineering and projects, straight to your inbox.</p>
       <NewsletterForm variant="compact" />
     </div>
   )

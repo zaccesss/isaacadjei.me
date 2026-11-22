@@ -2,47 +2,23 @@
 
 import { useState, useLayoutEffect } from "react"
 
-export function useScrollPosition() {
-  const [scrollY, setScrollY] = useState(0)
+export function useScrolledPast(threshold = 10) {
+  const [past, setPast] = useState(false)
 
   useLayoutEffect(() => {
     let rafId = 0
+    const check = () => setPast(window.scrollY > threshold)
     const handleScroll = () => {
       cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => setScrollY(window.scrollY))
+      rafId = requestAnimationFrame(check)
     }
-    handleScroll()
+    check()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => {
       window.removeEventListener("scroll", handleScroll)
       cancelAnimationFrame(rafId)
     }
-  }, [])
+  }, [threshold])
 
-  return scrollY
-}
-
-export function useScrollProgress() {
-  const [progress, setProgress] = useState(0)
-
-  useLayoutEffect(() => {
-    let rafId = 0
-    const calc = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
-      const current = window.scrollY
-      setProgress(totalHeight > 0 ? (current / totalHeight) * 100 : 0)
-    }
-    const handleScroll = () => {
-      cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(calc)
-    }
-    calc()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
-
-  return progress
+  return past
 }

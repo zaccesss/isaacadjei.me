@@ -9,8 +9,6 @@ const DOT = "#5778DB"
 
 export default function FaviconAnimator() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-
     const ua = navigator.userAgent
     const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(ua)
     if (isSafari) return
@@ -24,7 +22,6 @@ export default function FaviconAnimator() {
     const link = document.createElement("link")
     link.rel = "icon"
     link.type = "image/png"
-    document.head.appendChild(link)
 
     function roundRect(c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
       c.beginPath()
@@ -89,17 +86,46 @@ export default function FaviconAnimator() {
 
     function loop(now: number) {
       if (!start) start = now
+      if (now - start > PLAY_MS) {
+        done = true
+        stop()
+        return
+      }
       if (now - last > 120) {
         last = now
         draw((now - start) / 1000)
       }
       raf = window.requestAnimationFrame(loop)
     }
-    raf = window.requestAnimationFrame(loop)
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const PLAY_MS = 6000
+    let done = false
+
+    function stop() {
+      window.cancelAnimationFrame(raf)
+      raf = 0
+      link.remove()
+    }
+
+    function sync() {
+      const run = !done && !reduce.matches && !document.hidden
+      if (run && !raf) {
+        document.head.appendChild(link)
+        raf = window.requestAnimationFrame(loop)
+      } else if (!run && raf) {
+        stop()
+      }
+    }
+
+    sync()
+    reduce.addEventListener("change", sync)
+    document.addEventListener("visibilitychange", sync)
 
     return () => {
-      window.cancelAnimationFrame(raf)
-      link.remove()
+      reduce.removeEventListener("change", sync)
+      document.removeEventListener("visibilitychange", sync)
+      stop()
     }
   }, [])
 

@@ -35,14 +35,14 @@ export default function InspirationWidget() {
 
       <div className="rounded-lg border border-border/60 bg-muted/30 px-6 py-5 space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-mono text-primary uppercase tracking-widest">motivation</p>
+          <p className="text-xs text-primary font-semibold">Motivation</p>
           <button
             type="button"
             onClick={() => {
               setQuote(null)
               void loadQuote(true)
             }}
-            className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
+            className="relative text-xs font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >
             refresh ↻
           </button>
@@ -59,14 +59,14 @@ export default function InspirationWidget() {
 
       <div className="rounded-lg border border-border/60 bg-muted/30 px-6 py-5 space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-mono text-primary uppercase tracking-widest">scripture</p>
+          <p className="text-xs text-primary font-semibold">Scripture</p>
           <button
             type="button"
             onClick={() => {
               setBible(null)
               void loadVerse(true)
             }}
-            className="relative text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
+            className="relative text-xs font-mono text-muted-foreground hover:text-primary transition-colors after:absolute after:-inset-x-1 after:-inset-y-1.5 after:content-['']"
           >
             refresh ↻
           </button>

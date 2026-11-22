@@ -2,7 +2,8 @@
 
 import { useCallback, useMemo, useState } from "react"
 import { Wordcloud } from "@visx/wordcloud"
-import { DEFAULT_CHART_COLOURS } from "./charts"
+import EmptyState from "@/components/shared/EmptyState"
+import { CHART_COLOURS } from "@/lib/ui/chart-palette"
 
 interface WordDatum {
   text: string
@@ -14,7 +15,7 @@ const fontScale = (words: WordDatum[]) => {
   const min = Math.min(...words.map((w) => w.value), 0)
   return (datum: WordDatum) => {
     const t = max === min ? 1 : (datum.value - min) / (max - min)
-    return 12 + t * 34
+    return 14 + t * 32
   }
 }
 
@@ -40,43 +41,34 @@ export function WordCloud({
     return () => ro.disconnect()
   }, [])
 
-  if (!words.length) {
-    return <p className="text-xs text-muted-foreground">No data for this period.</p>
-  }
+  if (!words.length) return <EmptyState title="Nothing to show yet" description="Words appear here once there is data for this period." className="py-8" />
 
+  const sorted = [...words].sort((a, b) => b.value - a.value)
   return (
-    <div
-      ref={measure}
-      className="w-full min-w-0 overflow-hidden flex items-center justify-center"
-      style={{ height }}
-    >
-      <Wordcloud
-        words={words}
-        width={width}
-        height={height}
-        fontSize={fontSize}
-        font={family}
-        padding={2}
-        spiral="archimedean"
-        rotate={0}
-        random={() => 0.5}
-      >
-        {(cloudWords) =>
-          cloudWords.map((w, i) => (
-            <text
-              key={w.text}
-              textAnchor="middle"
-              transform={`translate(${w.x}, ${w.y})`}
-              fontSize={w.size}
-              fontFamily={w.font}
-              fill={DEFAULT_CHART_COLOURS[i % DEFAULT_CHART_COLOURS.length]}
-            >
-              <title>{`${w.text}: ${valueByText.get(w.text ?? "") ?? 0} ${valueLabel}`}</title>
-              {w.text}
-            </text>
-          ))
-        }
-      </Wordcloud>
+    <div className="relative">
+      <div ref={measure} aria-hidden="true" className="flex w-full min-w-0 items-center justify-center overflow-hidden" style={{ height }}>
+        <Wordcloud words={words} width={width} height={height} fontSize={fontSize} font={family} padding={3} spiral="archimedean" rotate={0} random={() => 0.5}>
+          {(cloudWords) =>
+            cloudWords.map((w, i) => (
+              <text
+                key={w.text}
+                textAnchor="middle"
+                transform={`translate(${w.x}, ${w.y})`}
+                fontSize={w.size}
+                fontFamily={w.font}
+                fontWeight={i < 3 ? 600 : 500}
+                style={{ fill: CHART_COLOURS[i % CHART_COLOURS.length] }}
+              >
+                <title>{`${w.text}: ${(valueByText.get(w.text ?? "") ?? 0).toLocaleString("en-GB")} ${valueLabel}`}</title>
+                {w.text}
+              </text>
+            ))
+          }
+        </Wordcloud>
+      </div>
+      <ol className="sr-only">
+        {sorted.map((w) => <li key={w.text}>{`${w.text}: ${w.value.toLocaleString("en-GB")} ${valueLabel}`}</li>)}
+      </ol>
     </div>
   )
 }

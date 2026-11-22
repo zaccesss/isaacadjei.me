@@ -5,6 +5,7 @@ import { unstable_cache } from "next/cache"
 import { Separator } from "@/components/ui/separator"
 import GuestbookForm from "@/components/guestbook/GuestbookForm"
 import { supabase } from "@/lib/core/supabase"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Guestbook",
@@ -42,15 +43,17 @@ export default async function GuestbookPage() {
 
   return (
     <div className="container max-w-4xl py-24 space-y-10">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Guestbook</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Say hello, share what brought you here or leave a note for the next visitor. Messages appear once I have read
-          them. Want your site listed or a letter from me once a month? See the{" "}
-          <a href="/friends" className="body-link">friends page</a> or{" "}
-          <a href="/friends#become-friends" className="body-link">go to the form</a>.
-        </p>
-      </section>
+      <PageHeader
+        title="Guestbook"
+        description={
+          <>
+            Say hello, share what brought you here or leave a note for the next visitor. Messages appear once I have read
+            them. Want your site listed or a letter from me once a month? See the{" "}
+            <a href="/friends" className="body-link">friends page</a> or{" "}
+            <a href="/friends#become-friends" className="body-link">go to the form</a>.
+          </>
+        }
+      />
 
       <GuestbookForm />
 

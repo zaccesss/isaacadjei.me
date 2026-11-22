@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "How I use AI",
@@ -18,10 +19,9 @@ const paragraph = "text-base text-muted-foreground leading-relaxed"
 export default function AiPage() {
   return (
     <div className="container max-w-2xl py-24 space-y-6">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">How I use AI</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
-      </div>
+      <PageHeader title="How I use AI">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: November 2026</p>
+      </PageHeader>
 
       <p className={paragraph}>
         Most people use AI in some way now and I am one of them. I do not think there is any shame in that or

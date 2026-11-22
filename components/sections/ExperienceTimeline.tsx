@@ -1,8 +1,4 @@
-"use client"
-
-import { motion } from "framer-motion"
 import { type Experience } from "@/data/experience"
-import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import TimelineMarker from "@/components/changelog/TimelineMarker"
@@ -55,18 +51,12 @@ function Details({ exp }: { exp: Experience }) {
 
 export default function ExperienceTimeline({ experiences }: Props) {
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
-      data-timeline
-      className="relative space-y-8"
-    >
+    <div data-timeline className="relative space-y-8">
       <div className="absolute left-3.5 top-2 bottom-2 w-px bg-border" aria-hidden="true" />
       <TimelineMarker fillClass="left-[13px] top-0" dotClass="left-[6px] -top-2" />
 
       {toItems(experiences).map((item, i) => (
-        <motion.div key={item.kind === "group" ? item.entries[0].id : item.exp.id} variants={fadeUp} className="relative flex gap-4 pl-10">
+        <div key={item.kind === "group" ? item.entries[0].id : item.exp.id} className="relative flex gap-4 pl-10">
           <div
             data-timeline-mark
             className="absolute left-0 z-10 mt-1.5 h-7 w-7 rounded-full border-2 border-background bg-muted text-muted-foreground flex items-center justify-center text-xs font-bold shrink-0 transition-colors duration-300 data-[reached=true]:border-primary data-[reached=true]:bg-primary data-[reached=true]:text-primary-foreground"
@@ -130,8 +120,8 @@ export default function ExperienceTimeline({ experiences }: Props) {
               </ol>
             </div>
           )}
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   )
 }

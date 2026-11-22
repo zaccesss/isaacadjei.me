@@ -20,7 +20,7 @@ import type { getContentStats } from "@/lib/content/content-stats"
 type Content = ReturnType<typeof getContentStats>
 
 function PanelLoading() {
-  return <div className="h-40 rounded-2xl border border-border/60 bg-muted/30 animate-pulse motion-reduce:animate-none" />
+  return <div className="h-40 rounded-2xl border border-border/60 bg-muted/30 motion-safe:animate-pulse" />
 }
 const WakatimeStats = dynamic(() => import("@/components/lab/WakatimeStats"), { ssr: false, loading: PanelLoading })
 const SpotifyAnalytics = dynamic(() => import("@/components/lab/SpotifyAnalytics"), { ssr: false, loading: PanelLoading })
@@ -53,7 +53,7 @@ const serverHash = () => ""
 const asTab = (hash: string): Tab => (TABS.some((t) => t.id === hash) ? hash : "overview") as Tab
 
 function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{children}</h2>
+  return <h2 className="text-lg font-semibold">{children}</h2>
 }
 
 export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStats; c: Content; os: OSStats; rs?: ResearchStatsData; milestones?: Milestone[]; wx?: WritingExtra }) {
@@ -80,7 +80,7 @@ export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStat
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => choose(t.id)}
-            className={`scroll-mt-24 rounded-md border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${tab === t.id ? "border-primary bg-background font-semibold text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+            className={`min-h-11 scroll-mt-24 rounded-md border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${tab === t.id ? "border-primary bg-background font-semibold text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
           >
             {t.label}
           </button>
@@ -90,7 +90,7 @@ export function StatsTabs({ s, c, os, rs, milestones = [], wx }: { s: PublicStat
       {active.page && (
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <p className="text-sm text-muted-foreground max-w-xl">{active.blurb}</p>
-          <Link href={active.page} className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-2">
+          <Link href={active.page} className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-2">
             Open the {active.label.toLowerCase()} page <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </Link>
         </div>

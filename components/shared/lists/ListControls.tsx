@@ -192,7 +192,7 @@ export default function ListControls({
                   const name = `${baseId}-${g.key}`
                   return (
                     <fieldset key={g.key} className="space-y-2">
-                      <legend className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">{g.label}</legend>
+                      <legend className="mb-2 text-xs text-muted-foreground font-semibold">{g.label}</legend>
                       {searchable && (
                         <input
                           type="search"
@@ -236,7 +236,7 @@ export default function ListControls({
 
                 {sortOptions.length > 1 && (
                   <fieldset className="space-y-2">
-                    <legend className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">Sort</legend>
+                    <legend className="mb-2 text-xs text-muted-foreground font-semibold">Sort</legend>
                     <div className="space-y-0.5">
                       {sortOptions.map((s) => (
                         <OptionRow

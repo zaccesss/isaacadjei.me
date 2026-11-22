@@ -1,15 +1,16 @@
 import type { Metadata } from "next"
 import { feedAlternates } from "@/lib/content/feeds"
-import { Rss } from "lucide-react"
 import { getPublishedTILEntries } from "@/data/til"
 import TILList from "@/components/til/TILList"
+import PageHeader from "@/components/layout/PageHeader"
+import FeedLink from "@/components/shared/FeedLink"
 
 export const revalidate = 604800
 
 export const metadata: Metadata = {
   title: "TIL | Today I Learned",
   description:
-    "Short notes from across everything I work on as an Electronic Engineering and Computer Science student: embedded firmware and real-time systems, algorithms and data structures, full-stack web, AI and machine learning, cybersecurity and CTFs, computer architecture, hardware design, git and Linux and whatever else catches my attention that week. From piano practice to Ghanaian cooking, faith and fitness. If it surprised me or would have saved me time, it ends up here.",
+    "Things I learned today, kept short: firmware, algorithms, the web, AI, Linux and more. If it surprised me or would have saved me time, it ends up here.",
   alternates: {
     canonical: "https://isaacadjei.me/til",
     types: feedAlternates("til", "all"),
@@ -27,28 +28,13 @@ export default function TILPage() {
   )
 
   return (
-    <div className="container max-w-2xl py-24 space-y-12">
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-bold tracking-tight">TIL</h1>
-            <p className="text-sm text-muted-foreground font-mono mt-1">Today I Learned</p>
-          </div>
-          <a
-            href="/til/feed.xml"
-            title="RSS feed"
-            aria-label="TIL RSS feed"
-            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
-          >
-            <Rss className="h-5 w-5 shrink-0" />
-            Feed
-          </a>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+    <div className="container max-w-4xl py-24 space-y-12">
+      <PageHeader title="TIL" description="Today I Learned" actions={<FeedLink href="/til/feed.xml" label="TIL RSS feed" />}>
+        <p className="max-w-[68ch] text-lg text-muted-foreground leading-relaxed">
           Things that surprised me, things I had to look up twice, things I wish I had known sooner.
           One discovery at a time.
         </p>
-      </div>
+      </PageHeader>
 
       <TILList entries={entries} />
     </div>

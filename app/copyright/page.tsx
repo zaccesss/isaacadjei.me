@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Copyright",
@@ -20,14 +21,13 @@ const link = "body-link"
 export default function CopyrightPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Copyright</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
+      <PageHeader title="Copyright">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           Who owns what on this site and how you can use it. For anything not covered here, ask me through the{" "}
           <Link href="/contact" className={link}>contact page</Link>.
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 
@@ -66,10 +66,10 @@ export default function CopyrightPage() {
         <div>
           <h2>Third-party material</h2>
           <ul>
-            <li>Fonts: Geist and Geist Mono by Vercel, under the SIL Open Font License 1.1.</li>
+            <li>Fonts: Geist and Geist Mono by Vercel and IBM Plex Sans by IBM, all under the SIL Open Font License 1.1.</li>
             <li>Icons: Lucide under the ISC Licence, react-icons under the MIT Licence, Simple Icons under CC0 1.0 and Devicon under the MIT Licence.</li>
             <li>Maps: MapLibre GL JS under the BSD 3-Clause Licence, with tiles from OpenFreeMap and MapTiler. Map data &copy; OpenStreetMap contributors, available under the Open Database License.</li>
-            <li>Charts and diagrams: Recharts under the MIT Licence, Apache ECharts under the Apache License 2.0 and Mermaid under the MIT Licence.</li>
+            <li>Charts and diagrams: Recharts and visx under the MIT Licence, Apache ECharts under the Apache License 2.0 and Mermaid under the MIT Licence.</li>
             <li>Album art and track details come from Spotify. Game names and artwork come from PlayStation, Steam and IGDB. Each belongs to its owner.</li>
             <li>Code highlighting: Shiki under the MIT Licence, using the colours of Visual Studio Code&rsquo;s Light Modern and Dark Modern themes.</li>
             <li>Some blog covers are photographs from Unsplash, used under the Unsplash Licence. Each photo belongs to its photographer.</li>

@@ -14,7 +14,7 @@ export default async function ConfirmPage({ searchParams }: { searchParams: Prom
         <div className="p-2 rounded-lg bg-primary/10">
           <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
         </div>
-        <p className="text-xs font-mono text-primary uppercase tracking-widest">newsletter</p>
+        <p className="text-xs text-primary font-semibold">Newsletter</p>
       </div>
       <h1 className="text-3xl font-bold tracking-tight">Confirm your subscription</h1>
       {e ? (

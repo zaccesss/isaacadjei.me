@@ -6,6 +6,7 @@ import { CONSUMED_COLLECTIONS, findCollection } from "@/data/consumed/collection
 import { consumedCollectionItems } from "@/data/consumed/summary"
 import { SummaryCard } from "@/components/consumed/SummaryCard"
 import { sameShareImage } from "@/lib/content/share-image"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 604800
 
@@ -44,11 +45,9 @@ export default async function ConsumedCollectionPage({ params }: { params: Promi
         <Link href="/consumed#collections" className="hover:text-foreground transition-colors">Collections</Link>
       </nav>
 
-      <header className="space-y-3 max-w-2xl">
-        <h1 className="text-4xl font-bold tracking-tight">{collection.title}</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">{collection.description}</p>
+      <PageHeader title={collection.title} description={collection.description} className="max-w-2xl">
         <p className="text-xs font-mono text-muted-foreground">{items.length} {items.length === 1 ? "item" : "items"}, newest first</p>
-      </header>
+      </PageHeader>
 
       {items.length === 0 ? (
         <p className="text-sm text-muted-foreground py-8 text-center">Nothing in this collection yet.</p>
@@ -59,7 +58,7 @@ export default async function ConsumedCollectionPage({ params }: { params: Promi
       )}
 
       <section aria-labelledby="more-collections" className="space-y-3 border-t border-border/60 pt-8">
-        <h2 id="more-collections" className="text-xs font-mono text-muted-foreground uppercase tracking-widest">More collections</h2>
+        <h2 id="more-collections" className="text-xs text-muted-foreground font-semibold">More collections</h2>
         <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {others.map((c) => (
             <li key={c.slug}>

@@ -32,7 +32,7 @@ export default async function ConfirmedPage({ searchParams }: { searchParams: Pr
       <Icon className={`h-8 w-8 ${key === "ok" ? "text-green-700 dark:text-green-400" : "text-amber-700 dark:text-amber-400"}`} aria-hidden="true" />
       <h1 className="text-3xl font-bold tracking-tight">{m.title}</h1>
       <p className="text-muted-foreground leading-relaxed">{m.body}</p>
-      <Link href="/newsletter" className="inline-flex text-sm font-medium text-primary hover:text-primary/80">
+      <Link href="/newsletter" className="inline-flex text-sm font-medium text-primary hover:text-primary">
         Go to the newsletter
       </Link>
     </div>

@@ -11,7 +11,7 @@ export type HubOverviewProps = {
   collections: ConsumedCollectionCard[]
 }
 
-const SECTION_LABEL = "text-xs font-mono text-muted-foreground uppercase tracking-widest"
+const SECTION_LABEL = "text-sm font-semibold text-muted-foreground"
 
 export function HubOverview({ year, picks, collections }: HubOverviewProps) {
   return (

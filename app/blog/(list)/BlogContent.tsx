@@ -3,12 +3,14 @@
 import { useEffect } from "react"
 import { relevanceScore } from "@/lib/content/search"
 import Link from "@/components/shared/IntentLink"
-import { Archive, ArrowLeft, Calendar, Clock, Rss } from "lucide-react"
+import { Archive, ArrowLeft, Calendar, Clock } from "lucide-react"
 import Tag, { postTypeLabelClass } from "@/components/shared/lists/Tag"
 import { POST_TYPES, RENAMED_POST_TYPES, type BlogCard } from "@/data/blog/meta"
 import type { PostType } from "@/data/blog"
 import { Pagination, usePageSize, LIST_PAGE_SIZES } from "@/components/shared/lists/Pagination"
 import ListControls, { type FilterGroup } from "@/components/shared/lists/ListControls"
+import PageHeader from "@/components/layout/PageHeader"
+import FeedLink from "@/components/shared/FeedLink"
 import { countedOptions, monthOptions, sortItems, useListQuery, withRenamedValues, yearOptions } from "@/components/shared/lists/useListQuery"
 
 function formatDate(dateStr: string): string {
@@ -79,39 +81,25 @@ export default function BlogPage({
 
   return (
     <div className="container max-w-4xl py-24 space-y-12">
-      <section className="space-y-4">
-        <div className="flex items-center justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">{isArchive ? "Archive" : "Writing"}</h1>
-          <a
-            href="/blog/feed.xml"
-            title="RSS feed"
-            aria-label="Blog RSS feed"
-            className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:text-primary/70 transition-colors shrink-0"
+      <PageHeader
+        title={isArchive ? "Archive" : "Blog"}
+        description={
+          isArchive
+            ? "Older posts I have moved off the main list. Each one is still at its own address."
+            : "Engineering and tech write-ups, project breakdowns, explainers and journal entries."
+        }
+        actions={<FeedLink href="/blog/feed.xml" label="Blog RSS feed" />}
+      >
+        {isArchive && (
+          <Link
+            href="/blog"
+            className="body-link inline-flex min-h-11 items-center gap-1.5 text-base font-medium"
           >
-            <Rss className="h-5 w-5 shrink-0" />
-            Feed
-          </a>
-        </div>
-        {isArchive ? (
-          <>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              Older posts I have moved off the main list. Each one is still at its own address.
-            </p>
-            <Link
-              href="/blog"
-              className="body-link inline-flex min-h-11 items-center gap-1.5 text-base font-medium"
-            >
-              <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden="true" />
-              Back to current writing
-            </Link>
-          </>
-        ) : (
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-            Engineering and tech write-ups, project breakdowns, explainers and journal entries.
-            Everything I build, learn and think about.
-          </p>
+            <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Back to current writing
+          </Link>
         )}
-      </section>
+      </PageHeader>
 
       <ListControls
         query={query}
@@ -135,7 +123,7 @@ export default function BlogPage({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block rounded-lg border transition-all overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40"
+              className="group block rounded-lg border transition-colors overflow-hidden border-border/60 bg-muted/40 hover:bg-muted/60 hover:border-primary/40"
             >
               <div className="space-y-3 px-6 py-5">
               <div className="flex items-center gap-2 flex-wrap">
@@ -153,7 +141,7 @@ export default function BlogPage({
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
+              <div className="flex items-center gap-4 text-xs text-muted-foreground tabular-nums">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="h-3 w-3" />
                   {formatDate(post.date)}

@@ -17,26 +17,19 @@ export function Bullet({
   const valuePct = Math.min((value / ceiling) * 100, 100)
   const targetPct = Math.min((target / ceiling) * 100, 100)
   const onTarget = value >= target
-  const format = valueFormatter ?? ((v: number) => String(v))
+  const format = valueFormatter ?? ((v: number) => v.toLocaleString("en-GB"))
 
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex items-center justify-between text-xs">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 text-sm">
         <span className="font-medium">{label}</span>
-        <span className="text-muted-foreground tabular-nums">
-          {format(value)} <span className="text-muted-foreground/60">/ {format(target)} target</span>
+        <span className="tabular-nums text-muted-foreground">
+          {format(value)} of {format(target)} target, <span className="font-medium text-foreground">{onTarget ? "on target" : "behind"}</span>
         </span>
       </div>
-      <div className="relative h-4 rounded-sm bg-muted/40" title={`${label}: ${format(value)}, ${onTarget ? "on target" : "behind target"} (target ${format(target)})`}>
-        <div
-          className="h-full rounded-sm"
-          style={{ width: `${valuePct}%`, backgroundColor: onTarget ? "#22c55e" : "#f59e0b" }}
-        />
-        <div
-          className="absolute top-[-2px] h-[calc(100%+4px)] w-[2px] bg-foreground"
-          style={{ left: `${targetPct}%` }}
-          title={`Target: ${format(target)}`}
-        />
+      <div className="relative h-4 rounded-sm bg-muted" aria-hidden>
+        <div className={`h-full rounded-sm ${onTarget ? "bg-emerald-700 dark:bg-emerald-400" : "bg-amber-600 dark:bg-amber-400"}`} style={{ width: `${valuePct}%` }} />
+        <div className="absolute top-[-2px] h-[calc(100%+4px)] w-[2px] bg-foreground" style={{ left: `${targetPct}%` }} />
       </div>
     </div>
   )

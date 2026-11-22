@@ -47,6 +47,7 @@ import {
 } from "react-icons/si"
 import { Globe, Mail, ExternalLink, Newspaper } from "lucide-react"
 import Image from "@/components/shared/media/MediaImage"
+import NextImage from "next/image"
 import Link from "@/components/shared/IntentLink"
 import { profileLinks, type LinkItem } from "@/data/links"
 import { cn } from "@/lib/utils"
@@ -152,7 +153,7 @@ const categoryLabel: Record<LinkItem["category"], string> = {
   writing: "Writing",
   academic: "Academic",
   code: "Code",
-  competitive: "Competitive Programming & Challenges",
+  competitive: "Competitive programming and challenges",
   hackathons: "Hackathons",
   social: "Social",
   content: "Content",
@@ -177,29 +178,24 @@ const categories: LinkItem["category"][] = [
 export default function LinksPage() {
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-16">
-      <div className="text-center mb-12 space-y-3 animate-fade-up">
-        <div className="w-20 h-20 rounded-full border-2 border-primary/30 overflow-hidden mx-auto">
+      <div className="text-center mb-12 w-full max-w-md">
+        <div className="w-24 h-24 rounded-full border-2 border-primary/30 overflow-hidden mx-auto">
           <Image
             src="/images/avatar.webp"
-            alt="Isaac Adjei"
-            width={80}
-            height={80}
+            alt=""
+            width={96}
+            height={96}
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="space-y-1">
-          <div className="flex items-center justify-center gap-2">
-            <h1 className="text-2xl font-bold">Isaac Adjei</h1>
-            <ShareButton title="Isaac Adjei - Links" />
-          </div>
-          <p className="text-sm text-primary font-mono">@zaccess</p>
-        </div>
-        <p className="text-sm text-muted-foreground max-w-xs mx-auto leading-relaxed">
-          Electronic Engineering & Computer Science student at Aston University, building at the
-          intersection of hardware and software. Open to internships, placements & professional tech
-          roles. Follow, connect, subscribe, like, comment and share on all socials!
+        <h1 className="mt-5 text-3xl font-bold">Isaac Adjei</h1>
+        <p className="mt-1 text-muted-foreground">@zaccesss</p>
+        <p className="mt-5 leading-relaxed text-foreground/90 text-pretty">
+          Electronic Engineering and Computer Science student at Aston University, building at the
+          intersection of hardware, software and AI/ML. Open to internships, placements and professional
+          opportunities. Follow, connect, subscribe, like, comment and share on all socials!
         </p>
-        <div className="flex items-center justify-center gap-4 pt-1">
+        <div className="mt-6 flex items-center justify-center gap-4">
           {([
             { Icon: Mail,            label: "Email",          href: "mailto:contact@isaacadjei.me" },
             { Icon: FaLinkedin,      label: "LinkedIn",       href: "https://www.linkedin.com/in/isaacadjei" },
@@ -216,30 +212,30 @@ export default function LinksPage() {
               rel="noopener noreferrer"
               aria-label={label}
               title={label}
-              className="relative text-muted-foreground hover:text-foreground sm:hover:scale-125 sm:active:scale-90 transition-[color] sm:transition-all duration-150 after:absolute after:-inset-2 after:content-['']"
+              className="relative text-muted-foreground hover:text-foreground motion-safe:sm:hover:scale-125 motion-safe:sm:active:scale-90 transition-[color,transform] duration-150 after:absolute after:-inset-3 after:content-['']"
             >
               <Icon className="h-5 w-5" aria-hidden="true" />
             </Link>
           ))}
         </div>
+        <div className="mt-6">
+          <ShareButton title="Isaac Adjei - Links" label="Share" />
+        </div>
       </div>
 
       <div className="w-full max-w-md space-y-8">
-        {categories.map((category, catIndex) => {
+        {categories.map((category) => {
           const links = profileLinks.filter((l) => l.category === category)
           const label = categoryLabel[category]
           if (links.length === 0) return null
           return (
             <div
               key={category}
-              className={cn("space-y-3 animate-fade-up", `stagger-${catIndex}`)}
+              className="space-y-3"
             >
               <div className="flex items-center gap-3 px-1">
                 <div className="flex-1 h-px bg-border" />
-                <p className="min-w-0 text-center font-mono text-primary tracking-widest sm:whitespace-nowrap">
-                  <span className="text-base font-black">{label[0]}</span>
-                  <span className="text-sm font-bold">{label.slice(1)}</span>
-                </p>
+                <h2 className="min-w-0 text-center text-base font-semibold sm:whitespace-nowrap">{label}</h2>
                 <div className="flex-1 h-px bg-border" />
               </div>
 
@@ -256,17 +252,18 @@ export default function LinksPage() {
                     rel="noopener noreferrer"
                     className={cn(
                       "flex items-center gap-4 w-full rounded-xl border bg-card px-4 py-3.5",
-                      "hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 sm:hover:scale-[1.02] sm:active:scale-[0.98]",
-                      "transition-[border-color,box-shadow] sm:transition-all duration-200 group"
+                      "hover:border-primary/30 transition-colors duration-150 group"
                     )}
                   >
                     <div
                       className={cn(
-                        "shrink-0 w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden sm:transition-transform sm:duration-200 sm:group-hover:scale-110",
-                        link.iconImage ? (link.iconTransparent ? "bg-muted p-1" : "bg-white") : (brand?.bg ?? "bg-primary/10")
+                        "shrink-0 w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden motion-safe:sm:transition-transform motion-safe:sm:duration-200 motion-safe:sm:group-hover:scale-110",
+                        link.iconMark === "ia" ? "" : link.iconImage ? (link.iconTransparent ? "bg-muted p-1" : "bg-white") : (brand?.bg ?? "bg-primary/10")
                       )}
                     >
-                      {link.iconMark === "zacess" ? (
+                      {link.iconMark === "ia" ? (
+                        <NextImage src="/icon.svg" alt="" width={36} height={36} unoptimized className="h-full w-full" />
+                      ) : link.iconMark === "zacess" ? (
                         <ZacessMark className="h-full w-full" />
                       ) : link.iconImage ? (
                         <Image
@@ -281,10 +278,10 @@ export default function LinksPage() {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold leading-none mb-1">{link.title}</p>
-                      <p className="text-xs text-muted-foreground truncate">{link.description}</p>
+                      <p className="font-semibold leading-tight mb-1">{link.title}</p>
+                      <p className="text-sm text-muted-foreground truncate">{link.description}</p>
                     </div>
-                    <ExternalLink className="h-3.5 w-3.5 text-muted-foreground shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {!isEmail && <ExternalLink className="h-4 w-4 text-muted-foreground shrink-0" aria-hidden="true" />}
                   </Link>
                 )
               })}

@@ -5,7 +5,7 @@ import { SiOrcid, SiBuymeacoffee } from "react-icons/si"
 import { socialLinks } from "@/data/social"
 import { cn } from "@/lib/utils"
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; "aria-hidden"?: boolean | "true" }>> = {
   github: FaGithub,
   linkedin: FaLinkedin,
   link: Link2,
@@ -30,7 +30,7 @@ export default function SocialLinks({
 }: SocialLinksProps) {
   const links = footerOnly ? socialLinks.filter((s) => s.footer !== false) : socialLinks
   return (
-    <div className={cn("flex items-center gap-4 flex-wrap", className)}>
+    <div className={cn("flex items-center gap-6 flex-wrap", className)}>
       {links.map((social) => {
         const Icon = iconMap[social.icon] ?? Link2
         return (
@@ -39,10 +39,10 @@ export default function SocialLinks({
             href={social.url}
             target={social.url.startsWith("http") ? "_blank" : undefined}
             rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="relative flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-2 after:content-['']"
+            className="relative flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-3 after:content-['']"
             aria-label={social.name}
           >
-            <Icon className={iconSize} />
+            <Icon className={iconSize} aria-hidden="true" />
             {showLabel && <span className="text-sm">{social.name}</span>}
           </Link>
         )

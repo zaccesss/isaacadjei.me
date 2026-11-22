@@ -1,13 +1,14 @@
 "use client"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, BookMarked } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { type ResourceEntry, type ConsumedTotals } from "@/data/consumed/types"
 import ListControls from "@/components/shared/lists/ListControls"
 import { Pagination } from "@/components/shared/lists/Pagination"
 import { CONSUMED_PAGE_SIZES, useConsumedList } from "@/components/consumed/useConsumedList"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { ResourceCard } from "@/components/consumed/ResourceCard"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function ResourcesContent({ resources, totals }: { resources: ResourceEntry[]; totals: ConsumedTotals }) {
   const searchParams = useSearchParams()
@@ -21,21 +22,22 @@ export default function ResourcesContent({ resources, totals }: { resources: Res
 
   return (
     <div className="container py-24 space-y-10">
-      <div className="space-y-4 max-w-2xl">
-        <Link href="/consumed" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+      <div className="max-w-2xl space-y-6">
+        <Link
+          href="/consumed"
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        >
           <ArrowLeft className="h-3.5 w-3.5" />
           Back to Consumed
         </Link>
-        <div className="flex items-center gap-3">
-          <BookMarked className="h-5 w-5 text-muted-foreground" />
-          <h1 className="text-4xl font-bold tracking-tight">Resources</h1>
-          <span className="text-xs font-mono text-muted-foreground">
-            {filtered.length}
-          </span>
-        </div>
-        <p className="text-base text-muted-foreground leading-relaxed">
-          Websites, tools, documentation and learning platforms worth returning to. The places I keep coming back to when studying, building or debugging.
-        </p>
+        <PageHeader
+          title="Resources"
+          description="Websites, tools, documentation and learning platforms worth returning to. The places I keep coming back to when studying, building or debugging."
+        >
+          <p className="text-sm text-muted-foreground tabular-nums">
+            {filtered.length} {filtered.length === 1 ? "item" : "items"}
+          </p>
+        </PageHeader>
       </div>
 
       <ListControls

@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
 import {
-  HeartHandshake,
   Bug,
   Cpu,
   BookOpen,
@@ -22,6 +21,7 @@ import {
   Languages,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Contributing",
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
 export default function ContributePage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <HeartHandshake className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Contributing</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Thank you for taking the time to look at this. Whether you are reporting a bug, suggesting
-          an idea or just passing through, I appreciate it.
-        </p>
+      <PageHeader
+        title="Contributing"
+        description={
+          <>
+            Thank you for taking the time to look at this. Whether you are reporting a bug, suggesting
+            an idea or just passing through, I appreciate it.
+          </>
+        }
+      >
         <p className="text-muted-foreground leading-relaxed">
           This is my shared contributing guide, kept in one place so I am not repeating myself across
           repositories. My work spans software, hardware, a mix of the two, writing, courses and this
@@ -66,7 +66,7 @@ export default function ContributePage() {
             Also on GitHub: zaccesss/contribute
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

@@ -69,12 +69,12 @@ function ItemRow({ item }: { item: GatheredItem }) {
   return (
     <Link
       href={item.href}
-      className="group flex items-start gap-4 rounded-lg border border-border/60 bg-muted/20 p-4 hover:border-primary/40 hover:bg-muted/30 transition-all"
+      className="group flex items-start gap-4 rounded-lg border border-border/60 bg-muted/20 p-4 hover:border-primary/40 hover:bg-muted/30 transition-colors"
     >
       <div className="min-w-0 flex-1 space-y-1">
         <p className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">{item.title}</p>
         <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{excerpt(item.description)}</p>
-        <p className="text-[11px] font-mono text-muted-foreground">{formatDate(item.date)}</p>
+        <p className="text-xs tabular-nums text-muted-foreground">{formatDate(item.date)}</p>
       </div>
       <ArrowRight className="h-3.5 w-3.5 mt-0.5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
     </Link>
@@ -109,7 +109,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
       <div className="container max-w-2xl py-24 space-y-10">
         <Link
           href="/newsletter"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           All issues
@@ -117,9 +117,9 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
 
         <header className="space-y-4">
           <span className={postTypeLabelClass("newsletter")}>Newsletter · {issueLabel(issue)}</span>
-          <h1 className="text-3xl font-bold tracking-tight leading-snug">{issue.title}</h1>
-          <p className="text-base text-muted-foreground leading-relaxed">{issue.subtitle}</p>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{issue.title}</h1>
+          <p className="max-w-[68ch] text-lg text-muted-foreground leading-relaxed">{issue.subtitle}</p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground tabular-nums">
             <span className="flex items-center gap-1.5">
               <Calendar className="h-3 w-3" aria-hidden="true" />
               <time dateTime={issue.date}>{formatDate(issue.date)}</time>
@@ -143,8 +143,8 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
 
         <Separator />
 
-        <article className="space-y-5">
-          <p className="text-[0.95rem] leading-relaxed">{issue.greeting}</p>
+        <article className="max-w-[68ch] space-y-6">
+          <p className="text-lg leading-[1.7] text-foreground/90">{issue.greeting}</p>
           {issue.intro.map((block, i) => renderBlock(block, i, introIds, issue.intro[i - 1]))}
         </article>
 
@@ -159,7 +159,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                   <h3 className="flex items-center gap-2 text-base font-semibold">
                     <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
                     {title}
-                    <span className="text-xs font-mono font-normal text-muted-foreground">({items.length})</span>
+                    <span className="text-xs font-normal tabular-nums text-muted-foreground">({items.length})</span>
                   </h3>
                   <div className="space-y-3">
                     {items.map((item) => (
@@ -173,7 +173,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
         )}
 
         {issue.outside && issue.outside.blocks.length > 0 && (
-          <section className="space-y-5" aria-labelledby="outside">
+          <section className="max-w-[68ch] space-y-6" aria-labelledby="outside">
             <h2 id="outside" className="text-2xl font-bold">{issue.outside.title}</h2>
             {issue.outside.blocks.map((block, i) => renderBlock(block, i, outsideIds, issue.outside?.blocks[i - 1]))}
           </section>
@@ -190,9 +190,9 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                     href={w.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                    className="group flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3 hover:border-primary/40 hover:bg-muted/30 transition-colors"
                   >
-                    <span className="w-16 shrink-0 text-[11px] font-mono uppercase tracking-wider text-muted-foreground pt-0.5">{w.kind}</span>
+                    <span className="w-16 shrink-0 text-xs text-muted-foreground pt-0.5">{w.kind}</span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-medium leading-snug group-hover:text-primary transition-colors">{w.title}</span>
                       <span className="block text-xs text-muted-foreground">{w.by}</span>
@@ -214,9 +214,9 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
                 <li key={m.slug}>
                   <Link
                     href={`/newsletter/${m.slug}`}
-                    className="group flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                    className="group flex items-start gap-3 rounded-lg border border-border/60 bg-muted/20 p-3 hover:border-primary/40 hover:bg-muted/30 transition-colors"
                   >
-                    <span className="w-20 shrink-0 text-[11px] font-mono uppercase tracking-wider text-muted-foreground pt-0.5">{m.label}</span>
+                    <span className="w-20 shrink-0 text-xs text-muted-foreground pt-0.5">{m.label}</span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-medium leading-snug group-hover:text-primary transition-colors">{m.title}</span>
                       <span className="block text-xs text-muted-foreground">{m.subtitle}</span>
@@ -228,9 +228,9 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
           </section>
         )}
 
-        <article className="space-y-5">
+        <article className="max-w-[68ch] space-y-6">
           {(issue.outro ?? []).map((block, i) => renderBlock(block, i, outroIds, issue.outro?.[i - 1]))}
-          <p className="text-[0.95rem] leading-relaxed">
+          <p className="text-lg leading-[1.7] text-foreground/90">
             {issue.signOff}
             <br />
             {SIGN_OFF_NAME}
@@ -289,7 +289,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
         <nav className="grid grid-cols-2 gap-4" aria-label="Other issues">
           {older ? (
             <Link href={`/newsletter/${older.slug}`} className="group flex flex-col gap-1">
-              <span className="flex items-center gap-1 text-xs text-muted-foreground font-mono">
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
                 <ArrowLeft className="h-3 w-3" aria-hidden="true" />
                 Previous issue
               </span>
@@ -302,7 +302,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
           )}
           {newer ? (
             <Link href={`/newsletter/${newer.slug}`} className="group flex flex-col gap-1 text-right">
-              <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground font-mono">
+              <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
                 Next issue
                 <ArrowRight className="h-3 w-3" aria-hidden="true" />
               </span>

@@ -6,5 +6,6 @@ import { useMediaQuery } from "@/hooks/useMediaQuery"
 
 export default function EChart({ option, ...rest }: ComponentProps<typeof ReactECharts>) {
   const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
-  return <ReactECharts option={reduce ? { ...option, animation: false } : option} {...rest} />
+  const motion = reduce ? { animation: false } : { animationDuration: 0, animationDurationUpdate: 250, animationEasingUpdate: "cubicOut" }
+  return <ReactECharts option={{ ...option, ...motion }} {...rest} />
 }

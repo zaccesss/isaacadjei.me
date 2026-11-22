@@ -1,3 +1,4 @@
+import { ViewTransition } from "react"
 import Link from "@/components/shared/IntentLink"
 import Image from "@/components/shared/media/MediaImage"
 import { ExternalLink, Globe } from "lucide-react"
@@ -23,20 +24,22 @@ interface Props {
 
 export default function ProjectCard({ project, priority = false }: Props) {
   return (
-    <Card className="group flex flex-col h-full transition-[box-shadow,transform,border-color] duration-200 ease-out hover:border-primary/40 hover:shadow-md motion-safe:hover:-translate-y-0.5">
+    <Card className="group flex flex-col h-full motion-safe:transition-colors motion-safe:duration-150 hover:border-foreground/30">
       {(project.cover ?? project.images[0]) && (
         <Link href={`/projects/${project.id}`} className="block overflow-hidden rounded-t-lg">
-          <div className="relative h-48 w-full bg-muted">
-            <ThemedCover
-              src={project.cover ?? project.images[0]}
-              darkSrc={project.coverDark}
-              alt={project.title}
-              fill
-              priority={priority}
-              sizes="(max-width: 640px) 250px, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover sm:motion-safe:transition-transform sm:motion-safe:duration-300 sm:motion-safe:hover:scale-105"
-            />
-          </div>
+          <ViewTransition name={`project-cover-${project.id}`} share="project-cover" default="none">
+            <div className="relative h-48 w-full bg-muted">
+              <ThemedCover
+                src={project.cover ?? project.images[0]}
+                darkSrc={project.coverDark}
+                alt={project.title}
+                fill
+                priority={priority}
+                sizes="(max-width: 640px) 250px, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:scale-[1.03]"
+              />
+            </div>
+          </ViewTransition>
         </Link>
       )}
       <CardHeader className="space-y-3">

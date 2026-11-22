@@ -2,15 +2,16 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { Code2, Server, Palette, Cpu, Layers, ArrowUpRight, FileCode2, Accessibility } from "lucide-react"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Colophon",
-  description: "How isaacadjei.me is built - the stack, the decisions and the details.",
+  description: "How isaacadjei.me is built: the stack, the decisions and the details.",
   alternates: {
     canonical: "https://isaacadjei.me/colophon",
   },
   openGraph: {
-    images: ["/api/og?title=Colophon&description=How%20isaacadjei%2Eme%20is%20built%20-%20the%20stack%2C%20the%20decisions%20and%20the%20details%2E"],
+    images: ["/api/og?title=Colophon&description=How%20isaacadjei%2Eme%20is%20built%3A%20the%20stack%2C%20the%20decisions%20and%20the%20details%2E"],
   },
 }
 
@@ -36,31 +37,27 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Next.js 16 and React 19 (App Router)",
-        detail: <>The entire site is a <A href="https://nextjs.org">Next.js</A> application - a framework that handles both the user-facing pages and the server-side logic in one codebase. I use the App Router, which lets me choose on a per-page basis whether content is built on the server (faster initial load, better for SEO) or in the browser (needed for anything interactive like the live status widget). Most pages are server-rendered and sent to you pre-built. Underneath it is <A href="https://react.dev">React</A> 19.</>,
+        detail: <>The entire site is a <A href="https://nextjs.org">Next.js</A> application: a framework that handles both the user-facing pages and the server-side logic in one codebase. I use the App Router, which lets me choose on a per-page basis whether content is built on the server (faster initial load, better for SEO) or in the browser (needed for anything interactive like the live status widget). Most pages are server-rendered and sent to you pre-built. Underneath it is <A href="https://react.dev">React</A> 19.</>,
       },
       {
         name: "TypeScript 6",
-        detail: <><A href="https://www.typescriptlang.org">TypeScript</A> is JavaScript with a strict type system layered on top. Every piece of data in this site has a defined shape - blog posts, project entries, API responses, all of it. This means the editor can catch mistakes before the code even runs, which matters when a lot of things are interconnected. Strict mode throughout with no exceptions.</>,
+        detail: <><A href="https://www.typescriptlang.org">TypeScript</A> is JavaScript with a strict type system layered on top. Every piece of data in this site has a defined shape: blog posts, project entries, API responses, all of it. This means the editor can catch mistakes before the code even runs, which matters when a lot of things are interconnected. Strict mode throughout with no exceptions.</>,
       },
       {
         name: "Tailwind CSS 4",
-        detail: <><A href="https://tailwindcss.com">Tailwind CSS</A> is a utility-first CSS framework - instead of writing separate stylesheet files, styles are applied directly as class names in the HTML. It keeps styling co-located with the component it applies to, which makes maintenance straightforward. I combine it with <A href="https://ui.shadcn.com">shadcn/ui</A> (see below) for more complex interactive components.</>,
+        detail: <><A href="https://tailwindcss.com">Tailwind CSS</A> is a utility-first CSS framework. Instead of writing separate stylesheet files, styles are applied directly as class names in the HTML. It keeps styling co-located with the component it applies to, which makes maintenance straightforward. I combine it with <A href="https://ui.shadcn.com">shadcn/ui</A> (see below) for more complex interactive components.</>,
       },
       {
         name: "shadcn/ui",
-        detail: <><A href="https://ui.shadcn.com">shadcn/ui</A> is a collection of pre-built, accessible UI components that I own the code for - dialogs, dropdowns, tooltips, badges, the command palette. Unlike a traditional component library where you import a package you cannot change, shadcn/ui components live directly in the codebase and can be modified freely. Built on <A href="https://www.radix-ui.com">Radix UI</A> primitives, which handles the tricky accessibility behaviour (keyboard navigation, focus trapping, ARIA attributes).</>,
-      },
-      {
-        name: "Framer Motion",
-        detail: <><A href="https://motion.dev">Framer Motion</A> is used sparingly for the entrance animations on the homepage: the hero and each section fade up once as they first come into view. I deliberately keep motion minimal on the rest of the site - animation should enhance content, not compete with it.</>,
+        detail: <><A href="https://ui.shadcn.com">shadcn/ui</A> is a collection of pre-built, accessible UI components that I own the code for: dialogs, dropdowns, tooltips, badges, the command palette. Unlike a traditional component library where you import a package you cannot change, shadcn/ui components live directly in the codebase and can be modified freely. Built on <A href="https://www.radix-ui.com">Radix UI</A> primitives, which handle the tricky accessibility behaviour (keyboard navigation, focus trapping, ARIA attributes).</>,
       },
       {
         name: "Lucide React and React Icons",
-        detail: <>All icons across the site. <A href="https://lucide.dev">Lucide React</A> for UI icons (arrows, checks, chevrons, status indicators and so on). <A href="https://react-icons.github.io/react-icons/">React Icons</A> for brand logos where Lucide does not have an official one - GitHub, LinkedIn, Spotify, Discord and similar. The logos on /skills and /uses come from <A href="https://simpleicons.org">Simple Icons</A>, with the animated ones from <A href="https://github.com/qkrdmstlr3/techstack-generator">techstack-generator</A> served at a fixed commit so they cannot change under the page.</>,
+        detail: <>All icons across the site. <A href="https://lucide.dev">Lucide React</A> for UI icons (arrows, checks, chevrons, status indicators and so on). <A href="https://react-icons.github.io/react-icons/">React Icons</A> for brand logos where Lucide does not have an official one, such as GitHub, LinkedIn, Spotify and Discord. The logos on /skills and /uses come mostly from <A href="https://github.com/devicons/devicon">Devicon</A> and <A href="https://simpleicons.org">Simple Icons</A>, with the animated ones from <A href="https://github.com/qkrdmstlr3/techstack-generator">techstack-generator</A> served at a fixed commit so they cannot change under the page.</>,
       },
       {
-        name: "Geist",
-        detail: <>On an Apple device the site uses the system typeface, the look it was designed around and one Apple only licenses for its own platforms. Everywhere else it uses <A href="https://vercel.com/font">Geist</A>, the typeface designed by Vercel as the closest match: Geist Sans for body text, headings and UI labels, served as hinted static weights so it stays crisp on Windows and Linux, which rely on hinting where macOS does not. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. Both are bundled with the site in lib/fonts in only the weights it uses. Next.js font optimisation serves them from the site itself, so they are never fetched from an external CDN and the text does not jump when they arrive. The theme also takes over what the operating system would otherwise draw: thin scrollbars in the theme colours, the accent colour on checkboxes and sliders and a themed text selection.</>,
+        name: "IBM Plex Sans, Geist and Geist Mono",
+        detail: <>Headings use <A href="https://github.com/IBM/plex">IBM Plex Sans</A> on every device, in the two weights they need (semibold for section headings and bold for page titles), as hinted files under the SIL Open Font License. For body text an Apple device keeps its system typeface, the look the site was designed around and one Apple only licenses for its own platforms. Everywhere else it uses <A href="https://vercel.com/font">Geist</A>, the typeface designed by Vercel as the closest match: Geist Sans for body text and UI labels, served as hinted static weights so it stays crisp on Windows and Linux, which rely on hinting where macOS does not. Geist Mono for timestamps, file paths, code snippets and technical labels where fixed-width spacing matters. All three are bundled with the site in lib/fonts in only the weights it uses. Next.js font optimisation serves them from the site itself, so they are never fetched from an external CDN and the text does not jump when they arrive. The theme also takes over what the operating system would otherwise draw: thin scrollbars in the theme colours, the accent colour on checkboxes and sliders and a themed text selection.</>,
       },
       {
         name: "next-themes",
@@ -68,15 +65,15 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "The colour system",
-        detail: "Every colour on the site is a CSS custom property: background, foreground, card, muted, border, the blue primary and the focus ring. The light set lives on :root and the dark set on a .dark class that next-themes adds to the page, so a component never hard-codes a colour and switching theme is just a different set of values. Both themes keep body text at high contrast against its background and the muted grey is chosen so secondary text still reads comfortably.",
+        detail: "Every colour on the site is a CSS custom property: background, foreground, card, muted, border, the blue primary and the focus ring. The light set lives on :root and the dark set on a .dark class that next-themes adds to the page, so a component never hard-codes a colour and switching theme is just a different set of values. In both themes body text and the grey used for secondary text stay above 7 to 1 against the page.",
       },
       {
-        name: "Recharts, Apache ECharts, MapLibre and react-three-fiber",
-        detail: <>Most charts on /lab and the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The heatmaps, the radial listening clock and the shaded country chart use <A href="https://echarts.apache.org">Apache ECharts</A>. The map on the applications stats page is drawn by <A href="https://maplibre.org">MapLibre GL</A> with styles from <A href="https://openfreemap.org">OpenFreeMap</A>, so it needs no API key. The 3D board on /lab uses <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
+        name: "Recharts, Apache ECharts, visx, MapLibre and react-three-fiber",
+        detail: <>Most charts on the stats pages are drawn with <A href="https://recharts.org">Recharts</A>. The heatmaps, the radial listening clock and the shaded country chart use <A href="https://echarts.apache.org">Apache ECharts</A> and the word clouds use <A href="https://github.com/airbnb/visx">visx</A>. Every chart takes its colours from one palette of eight colours and a neutral grey, each at 3 to 1 or better against the page in its theme. Most charts sit in a frame with a title and their unit. Every chart is drawn in place rather than growing in on load. The map on the applications stats page is drawn by <A href="https://maplibre.org">MapLibre GL</A> with styles from <A href="https://openfreemap.org">OpenFreeMap</A>, so it needs no API key. The 3D board on /lab and the 3D contribution calendar on the GitHub stats use <A href="https://r3f.docs.pmnd.rs">react-three-fiber</A> with helpers from <A href="https://github.com/pmndrs/drei">drei</A>, both loaded only on the page that needs them.</>,
       },
       {
         name: "Giscus",
-        detail: <>The comment system on blog posts, notes and newsletter issues, powered by <A href="https://giscus.app">Giscus</A> and backed by <A href="https://docs.github.com/en/discussions">GitHub Discussions</A>. When you leave a comment it is stored as a GitHub Discussion on the public repo - no separate database, no third-party ad-funded platform. Giscus loads the discussion thread that belongs to each page. You need a GitHub account to comment. The widget respects the site theme and switches between light and dark automatically.</>,
+        detail: <>The comment system on blog posts, notes and newsletter issues, powered by <A href="https://giscus.app">Giscus</A> and backed by <A href="https://docs.github.com/en/discussions">GitHub Discussions</A>. When you leave a comment it is stored as a GitHub Discussion on the public repo. There is no separate database and no third-party ad-funded platform. Giscus loads the discussion thread that belongs to each page. You need a GitHub account to comment. The widget respects the site theme and switches between light and dark automatically.</>,
       },
     ],
   },
@@ -86,7 +83,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Vercel",
-        detail: <><A href="https://vercel.com">Vercel</A> is where the site is hosted and deployed. Every time a change is merged to the main branch on GitHub, Vercel automatically builds and deploys the new version within about a minute. Preview deployments are also created for every pull request so changes can be reviewed at a live URL before they go public. The domain and SSL certificate are managed here too.</>,
+        detail: <><A href="https://vercel.com">Vercel</A> is where the site is hosted and deployed. Every time a change that touches the site is merged to the main branch on GitHub, Vercel automatically builds and deploys the new version within about a minute. Other branches are not built, because every kept build counts against the free plan&apos;s deployment storage. When I want to check a visual change on another device before it merges, I name that one branch for a preview build. The domain and SSL certificate are managed here too.</>,
       },
       {
         name: "Cloudflare R2",
@@ -94,11 +91,11 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Upstash Redis",
-        detail: <>Redis is a data store that keeps everything in memory rather than on disk, which makes reads and writes extremely fast. I use <A href="https://upstash.com">Upstash</A>&apos;s serverless version for anything that changes frequently and needs to be retrieved quickly: live device status from the daemons, the last Spotify track I played (a fallback shown when nothing is on), blog post reaction counts and rate limiting on the contact form. Redis is not a traditional database - it is a short-term, high-speed cache.</>,
+        detail: <>Redis is a data store that keeps everything in memory rather than on disk, which makes reads and writes extremely fast. I use <A href="https://upstash.com">Upstash</A>&apos;s serverless version for anything that changes frequently and needs to be retrieved quickly: live device status from the daemons, the last Spotify track I played (a fallback shown when nothing is on), blog post reaction counts and rate limiting on the contact form. Redis is not a traditional database: it is a short-term, high-speed cache.</>,
       },
       {
         name: "Next.js API routes",
-        detail: <>All the server-side logic lives in route handlers inside the <A href="https://nextjs.org">Next.js</A> app. When the live status widget asks &apos;is the PS5 online?&apos;, it is calling one of these routes, which in turn reads from Redis. The Spotify now-playing card, the GitHub activity strip, the contact form submission, blog reactions - each is a separate server-side function that runs on demand. None of this logic runs in your browser.</>,
+        detail: <>All the server-side logic lives in route handlers inside the <A href="https://nextjs.org">Next.js</A> app. When the live status widget asks &apos;is the PS5 online?&apos;, it is calling one of these routes, which in turn reads from Redis. The Spotify now-playing card, the GitHub activity strip, the contact form submission and blog reactions are each a separate server-side function that runs on demand. None of this logic runs in your browser.</>,
       },
       {
         name: "Content data",
@@ -114,7 +111,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Resend",
-        detail: <>Email delivery for the contact form, handled by <A href="https://resend.com">Resend</A>. When you submit a message, the name, email and content are sent to a server-side route which calls the Resend API to forward it to my inbox. Nothing is stored in a database - the email is sent and that is it. Submissions are also rate-limited via Redis to prevent the form being used for spam.</>,
+        detail: <>Email delivery for the contact form, handled by <A href="https://resend.com">Resend</A>. When you submit a message, the name, email and content are sent to a server-side route which calls the Resend API to forward it to my inbox. Nothing is stored in a database: the email is sent and that is it. Submissions are also rate-limited via Redis to prevent the form being used for spam.</>,
       },
       {
         name: "Newsletter",
@@ -130,7 +127,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Cloudflare Turnstile",
-        detail: <><A href="https://www.cloudflare.com/products/turnstile/">Cloudflare Turnstile</A> is the bot protection on the contact form. Unlike traditional CAPTCHAs that make you identify traffic lights or buses, Turnstile works silently in the background and only challenges when it suspects bot activity. Server-side verification happens before any email is sent - if the Turnstile check fails, the request is rejected. Free tier, no tracking pixels, no fingerprinting.</>,
+        detail: <><A href="https://www.cloudflare.com/products/turnstile/">Cloudflare Turnstile</A> is the bot protection on the contact form. Unlike traditional CAPTCHAs that make you identify traffic lights or buses, Turnstile works silently in the background and only challenges when it suspects bot activity. Server-side verification happens before any email is sent. If the Turnstile check fails, the request is rejected. Free tier, no tracking pixels, no fingerprinting.</>,
       },
     ],
   },
@@ -144,11 +141,11 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Very little motion",
-        detail: "Motion is kept to a minimum because it adds visual noise, can cause nausea for people sensitive to motion and makes a page feel slower even when it is not. The homepage sections fade up once as they first come into view, the headline numbers on /stats count up once and project and blog cards lift slightly on hover. Everything else just loads. Every animation on the site follows your device's reduce motion setting and stops entirely when it is on.",
+        detail: "Motion is kept to a minimum because it adds visual noise, can cause nausea for people sensitive to motion and makes a page feel slower even when it is not. No content fades in or waits for a scroll to appear and the numbers on /stats show their final value straight away. The ia signature in the header signs itself each time a page loads, not again as you move between pages. In Chrome and Firefox the favicon breathes for about six seconds, then holds still. When a visit starts on the homepage, a faint drawing plays behind the page and fades away after about ten seconds. Opening a project grows its card image into the project page's cover and project images zoom slightly on hover. While a song is playing, the album art on /now turns and the visualiser moves with it. Everything else just loads. Every animation the site draws follows your device's reduce motion setting and stops when it is on.",
       },
       {
         name: "No city, ever",
-        detail: "The live status widget shows my current country and timezone but never the city. The Mac daemon has access to GPS-level location via CoreLocationCLI but deliberately only passes the country code to Redis. This is a hard privacy line - knowing I am in the UK is useful context for the clock; knowing I am in a specific neighbourhood is not.",
+        detail: "The live status widget shows my current country and timezone but never the city. The Mac daemon has access to GPS-level location via CoreLocationCLI but deliberately only passes the country code to Redis. This is a hard privacy line: knowing I am in the UK is useful context for the clock; knowing I am in a specific neighbourhood is not.",
       },
       {
         name: "Structured data, not markdown",
@@ -156,7 +153,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Tags, chips and labels",
-        detail: "There is one tag style across the public site and no pill-shaped capsules. A tag is a small square-cornered chip with a soft fill, no outline and a muted # in front, so it reads as quiet metadata rather than a button. Plain items such as skills use the same chip without the #. Categories and post types (Blog, Embedded, IoT) are not chips at all: they are small uppercase words, different from tags by shape and case as well as colour. Each type keeps its own hue so a list reads at a glance, but the word always carries the meaning, so colour is never the only signal. Every label clears 4.5:1 in both themes.",
+        detail: "There is one tag style across the public site and no pill-shaped capsules. A tag is a small square-cornered chip with a soft fill, no outline and a muted # in front, so it reads as quiet metadata rather than a button. Plain items such as skills use the same chip without the #. Categories and post types (Blog, Embedded, IoT) are not chips at all: they are a short word in the secondary text colour, told apart from tags by shape. None of them has a colour of its own, so the word alone carries the meaning and the one accent colour stays free for actions and status. Every tag and label clears 4.5:1 in both themes.",
       },
       {
         name: "Filters and pages that live in the URL",
@@ -164,19 +161,19 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Command palette",
-        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/dip/cmdk">cmdk</A>. You can jump to any page or search the whole site without touching the mouse. Pages sit in the same eight groups as /all-pages and every page has one key: the first two groups use Cmd or Ctrl plus a letter and the rest use Shift plus a letter. The shortcut is I for Isaac rather than K (the more common convention) - a small personal touch.</>,
+        detail: <>Cmd+I (or Ctrl+I on Windows) opens a site-wide command palette powered by <A href="https://github.com/dip/cmdk">cmdk</A>. You can jump to any page or search the whole site without touching the mouse. Pages sit in the same eight groups as /all-pages and every page has one key: the first two groups use Cmd or Ctrl plus a letter and the rest use Shift plus a letter. The shortcut is I for Isaac rather than K (the more common convention): a small personal touch.</>,
       },
       {
         name: "Share feature",
-        detail: "Projects and blog posts have a share button. On desktop it copies the page URL to the clipboard and shows a brief confirmation. On mobile it opens the native share sheet so you can send the link through any app. The button is deliberately only present on shareable content pages, not on utility pages like Skills or About.",
+        detail: "Blog posts, TILs, notes, newsletter issues, project pages and other content pages have a share button. Where the browser has a native share sheet, as most phones do, it opens that so you can send the link through any app. Otherwise it copies the page URL to the clipboard and shows a brief confirmation. The button is deliberately only present on shareable content pages, not on utility pages like Skills or About.",
       },
       {
         name: "Responsive but desktop-first content",
-        detail: "The site is fully responsive and works on any screen size, but the richer content - live status cards, the lab terminal, project galleries - is designed with a larger screen in mind.",
+        detail: "The site is fully responsive and works on any screen size, but the richer content (the live status cards, the lab terminal and the project galleries) is designed with a larger screen in mind.",
       },
       {
         name: "Google Analytics (GA4)",
-        detail: <>Privacy-conscious page-view analytics via <A href="https://marketingplatform.google.com/about/analytics/">Google Analytics</A>. Fully anonymised - no individual visitor is identified or tracked across other websites. I can see which pages are read most and which content is landing well, which helps me decide what to write next. Nothing personal is collected.</>,
+        detail: <>Privacy-conscious page-view analytics via <A href="https://marketingplatform.google.com/about/analytics/">Google Analytics</A>. Fully anonymised: no individual visitor is identified or tracked across other websites. I can see which pages are read most and which content is landing well, which helps me decide what to write next. Nothing personal is collected.</>,
       },
       {
         name: "Vercel and Cloudflare Web Analytics",
@@ -216,7 +213,15 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "Reduced motion",
-        detail: "If your device asks for reduced motion, the things that move stop moving. The lab terminal prints its output at once instead of line by line. The typing motto, header, favicon and page entrance animations stand still. The scrolling track title, the floating shapes, the live status lights, the music visualiser and the spinning album art hold their place. Charts draw without animating, the numbers on /stats show their final value straight away, cards do not lift on hover, the 3D board does not turn by itself, the dot on the changelog timeline is not drawn, the short drawing that plays when the site first opens is not drawn and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
+        detail: "If your device asks for reduced motion, the things that move stop moving. The lab terminal prints its output at once instead of line by line. The header signature shows already signed and the favicon keeps its still icon. The music visualiser and the spinning album art hold their place. Charts draw without animating, project images do not zoom on hover, the 3D board does not turn by itself, the dot on the changelog timeline is not drawn and the faint drawing behind the homepage is not drawn either. The theme changes in one step, a project's card image does not grow into its page cover and the pager jumps to the top of a list rather than scrolling smoothly. Clips never autoplay in the first place.",
+      },
+      {
+        name: "Text size and targets",
+        detail: "Nothing on the site is smaller than 13px. Long-form writing is set at 18px in a column of about 68 characters, so a line stays easy to follow. Buttons, links and filter controls are at least 44 by 44 pixels to press, with padding or an invisible hit area where the visible control is smaller.",
+      },
+      {
+        name: "Charts in words",
+        detail: "Most charts carry the same figures in a table that screen readers can read. A donut lists its parts beside the ring with each figure and share, a gauge writes its figure and a band word such as On track and the 24 hour clocks write the busiest hour under the face. The main reading never depends on hovering or on telling colours apart.",
       },
       {
         name: "Focus rings",
@@ -228,7 +233,7 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
       },
       {
         name: "Contrast and colour",
-        detail: <>Body text, labels, tags, callouts and code colours are all checked against <A href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">WCAG AA</A> in both themes. Colour is never the only signal: tags have a # marker, categories are words, statuses pair a dot with a word and callouts pair an icon with a label. I have monocular vision, so contrast and predictable layouts are practical needs for me rather than polish.</>,
+        detail: <>Body text, labels, tags, callouts and code colours are all checked against <A href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html">WCAG AA</A> in both themes. Colour is never the only signal: links in running text are always underlined, tags have a # marker, categories are words, statuses pair a dot with a word and callouts pair an icon with a label. I have monocular vision, so contrast and predictable layouts are practical needs for me rather than polish.</>,
       },
     ],
   },
@@ -237,11 +242,15 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     heading: "Notable pages and features",
     items: [
       {
-        name: "/lab - interactive terminal, GitHub stats, live coding stats, top picks, PCB viewer, gaming panel",
-        detail: "An in-browser terminal with 30+ commands spanning navigation, content, live stats and personality. Its colours are the same high-contrast palette I use in my real terminal: a white background in light mode and a vivid near-black set in dark mode, normal ANSI colours with bold for emphasis and never the bright variants. Several commands animate theatrically line by line; under reduced motion they print all at once. The coding stats panel has a period selector, stat cards, daily trend line, 7x24 interactive heatmap with the peak coding hour below it, charts and an hour-of-day bar chart. The PCB viewer loads the actual 3D mesh of the audio amplifier board (real GLB model via react-three-fiber and drei) with angle presets, wireframe mode, auto-rotate and a grid; below it are drag-to-orbit copper layer renders, a front/back photo flip card of the built board, an assembled board photo and the full circuit schematic - the latter two open fullscreen in a lightbox on click. The gaming panel shows PS5 and Gaming PC status side by side - game cover art as a banner, online or last-seen badge and CPU plus GPU utilisation bars when the PC is active. The top picks panel has three tabs: Tracks shows a ranked list with duration bars and a listening-era chart grouped by release decade; Artists shows a ranked list with genre tags, a mainstream-vs-underground scatter (your rank against each artist's follower count) and follower bars; Genres shows a rank-weighted genre donut with a breakdown. Genres come from Last.fm (Spotify retired its artist genre data in 2025).",
+        name: "/lab: interactive terminal and PCB viewer",
+        detail: "An in-browser terminal with 30+ commands spanning navigation, content, live stats and personality. Its colours are the same high-contrast palette I use in my real terminal: a white background in light mode and a vivid near-black set in dark mode, normal ANSI colours with bold for emphasis and never the bright variants. Several commands animate theatrically line by line; under reduced motion they print all at once. Below it, the PCB viewer loads the actual 3D mesh of the audio amplifier board (real GLB model via react-three-fiber and drei) with angle presets, wireframe mode, auto-rotate and a grid. The model alone is 2.4 MB, so the viewer only loads once you scroll near it. Under the board are drag-to-orbit copper layer renders, a front and back photo flip card of the built board, an assembled board photo and the full circuit schematic. The last two open fullscreen in a lightbox on click.",
       },
       {
-        name: "/blog - block-based post renderer",
+        name: "/stats: coding, GitHub, music, gaming and more",
+        detail: "The live panels that used to sit on /lab are on /stats now. The hub opens on an Overview tab, with a tab each for coding, GitHub, music, gaming, job applications, writing and projects, research, the site's own releases and open source. Each area also has a page of its own, such as /stats/coding. The open tab is kept in the address so it can be linked. A live panel loads only when its tab opens. Coding has the WakaTime panel with its daily trend and weekday by hour heatmap. Music has my top tracks, artists and genres, with genres from Last.fm (Spotify retired its artist genre data in 2025). Gaming has the PS5 and Gaming PC panel, which reads the same cached snapshot as the cards on /now.",
+      },
+      {
+        name: "/blog: block-based post renderer",
         detail: "Blog posts are authored as typed TypeScript objects rather than markdown files. A shared block renderer handles every block type: headings, paragraphs, code with syntax highlighting, numbered and bulleted lists, pull quotes, images with captions and reference links (numbered superscript links that compile into a references section at the bottom). Each post also has an emoji reaction bar backed by Redis. The listing page uses the shared search, filter panel and pager, with post types (Blog, Journal, Research, Notes, Report, Article, Resources) as one of the filters.",
       },
       {
@@ -249,11 +258,11 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: "The same block renderer draws diagrams, real tables, labelled callouts and short screen recordings. Each of these has its own entry under Content rendering above.",
       },
       {
-        name: "/projects - full write-ups",
-        detail: "Every project has a cover, a gallery, short clips and a full write-up built from the same blocks as the blog, plus the team on group projects and a references list. Projects are ordered by hand and paginated twelve to a page.",
+        name: "/projects: full write-ups",
+        detail: "Every project has a cover, a gallery, short clips and a full write-up built from the same blocks as the blog, plus the team on group projects and a references list. Projects are ordered by hand and paginated twelve to a page. Opening a project from its card grows the card's image into the cover of the project page with a view transition, so you can see where the page came from. Nothing else on the card moves and under reduced motion the page simply opens.",
       },
       {
-        name: "/til - Today I Learned",
+        name: "/til: Today I Learned",
         detail: <>Short, structured notes on things I discover while working. Each entry has a category, date, a lead paragraph and optional detail blocks using the same typed block system as blog posts, so a TIL entry can contain syntax-highlighted code examples, section headings, note callouts, embeds and source links. The listing page uses the shared search, filter panel and pager, with categories derived from the entries actually present (no empty categories ever appear). Each entry has its own permalink at /til/[slug] where the full detail, tags and prev/next navigation are shown. There is a subscribe-in-your-reader RSS feed at <A href="/til/feed.xml">/til/feed.xml</A>. Entries span a wide range: embedded systems and firmware, algorithms and data structures, TypeScript and Next.js, Linux internals, Git internals, security concepts, hardware design, music and piano practice, fitness, Ghanaian cooking and culture and faith.</>,
       },
       {
@@ -261,24 +270,24 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
         detail: <>Two pages that were one. /publications lists finished work: papers, technical notes, hardware designs and software, each archived on <A href="https://zenodo.org">Zenodo</A> with a DOI so it can be found, cited or built on. A dropdown gives the citation in seven styles (APA 7, Harvard, IEEE, MLA 9, Chicago, BibTeX and RIS) and copying one is confirmed through a polite live region, so a screen reader hears it without losing focus. One row links my academic profiles (<A href="https://orcid.org">ORCID</A>, <A href="https://scholar.google.com">Google Scholar</A>, <A href="https://www.researchgate.net">ResearchGate</A> and <A href="https://www.zotero.org">Zotero</A>), each with its name beside the icon. Detail pages carry the <A href="https://scholar.google.com/intl/en/scholar/inclusion.html">Google Scholar citation meta tags</A> so indexers can pick a record up correctly, plus live view and download counts from the <A href="https://developers.zenodo.org">Zenodo API</A>, fetched on the server and cached for a day. If Zenodo is slow or down the counts simply do not show. /research holds the work in progress: each line&apos;s question, method and findings so far, the papers behind it and the open materials. A line shows its stage as a dot and a word (In simulation, Hardware phase, In use), so the word carries the meaning. The old /respub address redirects. Data lives in data/respub/ alongside the other content files. No external academic CMS.</>,
       },
       {
-        name: "/links - social hub",
-        detail: <>A single page linking out to every platform I am active on: <A href="https://github.com/zaccesss">GitHub</A>, <A href="https://linkedin.com">LinkedIn</A>, <A href="https://open.spotify.com">Spotify</A>, <A href="https://youtube.com">YouTube</A>, <A href="https://orcid.org">ORCID</A>, <A href="https://www.goodreads.com">Goodreads</A>, <A href="https://www.chess.com">Chess.com</A> and more. Each platform has its icon and a short description of what you will find there. The page also embeds a live Spotify now-playing card so you can see what is on while you browse. All link data lives in data/links.ts alongside the other content files.</>,
+        name: "/links: social hub",
+        detail: <>A single page linking out to every platform I am active on, grouped by category: <A href="https://github.com/zaccesss">GitHub</A>, <A href="https://linkedin.com">LinkedIn</A>, <A href="https://open.spotify.com">Spotify</A>, <A href="https://youtube.com">YouTube</A>, <A href="https://orcid.org">ORCID</A>, <A href="https://bsky.app">Bluesky</A> and more. Each platform has its icon and a short description of what you will find there. All link data lives in data/links.ts alongside the other content files.</>,
       },
       {
-        name: "/consumed - media tracking",
-        detail: <>A public log of everything watched, listened to and read across the year, split into dedicated subpages: Videos, Podcasts, Books, Music, Articles, Resources and Others, plus themed collections. The hub opens with the year in numbers, a Start here set of the strongest picks and the collections. An entry can link to the projects and posts it led to. Each subpage uses the shared search, filter panel and pager. Every card has a picture: book covers come from the <A href="https://openlibrary.org/dev/docs/api/covers">Open Library Covers API</A> by ISBN, videos use their YouTube thumbnail and articles and resources show the page&apos;s own preview image. A missing or broken image swaps to a quiet tile with the site&apos;s icon and name, never a broken image icon. All data lives in per-category TypeScript files under data/consumed/ - same versioned-in-Git approach as the rest of the site. The main /consumed page shows all categories at once in a tabbed view; each tab navigates to its dedicated subpage. Video entries support both single videos and playlists via inline YouTube embeds. Audio entries embed Spotify via the Spotify oEmbed API.</>,
+        name: "/consumed: media tracking",
+        detail: <>A public log of everything watched, listened to and read across the year, split into dedicated subpages: Videos, Podcasts, Books, Music, Articles, Resources and Others, plus themed collections. The hub opens with the year in numbers, a Start here set of the strongest picks and the collections. An entry can link to the projects and posts it led to. Each subpage uses the shared search, filter panel and pager. Every card has a picture: book covers come from the <A href="https://openlibrary.org/dev/docs/api/covers">Open Library Covers API</A> by ISBN, videos use their YouTube thumbnail and articles and resources show the page&apos;s own preview image. A missing or broken image swaps to a quiet tile with the site&apos;s icon and name, never a broken image icon. All data lives in per-category TypeScript files under data/consumed/, the same versioned-in-Git approach as the rest of the site. The main /consumed page shows all categories at once in a tabbed view; each tab navigates to its dedicated subpage. Video entries support both single videos and playlists via inline YouTube embeds. Audio entries embed Spotify via the Spotify oEmbed API.</>,
       },
       {
-        name: "/contact - contact form",
-        detail: <>The contact form at <A href="/contact">/contact</A> uses <A href="https://resend.com">Resend</A> for email delivery and <A href="https://www.cloudflare.com/products/turnstile/">Cloudflare Turnstile</A> for silent bot protection. Submissions are rate-limited via Redis. Nothing is stored - the message goes straight to my inbox and that is it. You can also reach me directly at <A href="mailto:contact@isaacadjei.me">contact@isaacadjei.me</A>.</>,
+        name: "/contact: contact form",
+        detail: <>The contact form at <A href="/contact">/contact</A> uses <A href="https://resend.com">Resend</A> for email delivery and <A href="https://www.cloudflare.com/products/turnstile/">Cloudflare Turnstile</A> for silent bot protection. Submissions are rate-limited via Redis. Nothing is stored: the message goes straight to my inbox and that is it. You can also reach me directly at <A href="mailto:contact@isaacadjei.me">contact@isaacadjei.me</A>.</>,
       },
       {
-        name: "/changelog - public release history",
+        name: "/changelog: public release history",
         detail: "Every meaningful change to the site is logged here as a versioned entry. Updated manually in CHANGELOG.md and rendered as a timeline grouped by month, with a dot that follows your place as you scroll and a link to jump to any month. A release with nothing a visitor would notice is one quiet line. It is a habit I picked up from open-source projects and I find it useful for tracking how the site has evolved over time.",
       },
       {
         name: "OG image generation",
-        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/og-image-generation">Vercel&apos;s OG image library</A>, built into Next.js as next/og,. It renders the page title and description as a styled card using the Geist font. This is why shared links look intentional rather than blank.</>,
+        detail: <>Every page has a dynamically generated Open Graph image at /api/og. When you share a link on Twitter, LinkedIn, iMessage or any platform that shows a preview card, the image is generated on the fly using <A href="https://vercel.com/docs/og-image-generation">Vercel&apos;s OG image library</A>, built into Next.js as next/og. It renders the page title and description as a styled card. This is why shared links look intentional rather than blank.</>,
       },
     ],
   },
@@ -288,27 +297,27 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
     items: [
       {
         name: "How it works",
-        detail: <>The live status widget on /now, the homepage and /lab shows real data from my devices in near real-time. Background services (daemons) run on each machine and push data to <A href="https://upstash.com">Upstash Redis</A> every 60 to 120 seconds. The site reads them back through short-lived cached endpoints when you load the page, so however many people are viewing, the data is fetched once and shared rather than re-read per visitor. If a device goes offline, Redis keys expire after a short window and the card shows the last known state with a timestamp.</>,
+        detail: <>The live status cards on /now show real data from my devices in near real-time and the gaming panel on /stats reads the same snapshot. Background services (daemons) run on each machine and push data to <A href="https://upstash.com">Upstash Redis</A> every 60 to 120 seconds. The site reads them back through short-lived cached endpoints when you load the page, so however many people are viewing, the data is fetched once and shared rather than re-read per visitor. If a device goes offline, Redis keys expire after a short window and the card shows the last known state with a timestamp.</>,
       },
       {
         name: "MacBook daemon",
-        detail: <>A Python script managed by launchd on macOS. It runs in the background at all times and writes to Redis every 120 seconds: battery percentage, charging state, local timezone and current weather. Weather comes from <A href="https://open-meteo.com">Open-Meteo</A>, a free European meteorological API with no API key required that uses the ECMWF model - more accurate for UK weather than most commercial alternatives. Location is determined via <A href="https://github.com/fulldecent/corelocationcli">CoreLocationCLI</A> (GPS-level accuracy) and the timezone is derived straight from those coordinates with <A href="https://pypi.org/project/timezonefinder/">timezonefinder</A> so the clock follows the exact zone even in countries that span several; <A href="https://ipinfo.io">ipinfo.io</A> is the fallback for both. Only the country code and timezone are stored - the city is deliberately excluded for privacy.</>,
+        detail: <>A Python script managed by launchd on macOS. It runs in the background at all times and writes to Redis every 120 seconds: battery percentage, charging state, local timezone and current weather. Weather comes from <A href="https://open-meteo.com">Open-Meteo</A>, a free European meteorological API with no API key required that uses the ECMWF model, which is more accurate for UK weather than most commercial alternatives. Location is determined via <A href="https://github.com/fulldecent/corelocationcli">CoreLocationCLI</A> (GPS-level accuracy) and the timezone is derived straight from those coordinates with <A href="https://pypi.org/project/timezonefinder/">timezonefinder</A> so the clock follows the exact zone even in countries that span several; <A href="https://ipinfo.io">ipinfo.io</A> is the fallback for both. Only the country code and timezone are stored. The city is deliberately excluded for privacy.</>,
       },
       {
         name: "Lenovo and Gaming PC daemons",
-        detail: <>Python scripts managed by <A href="https://nssm.cc">NSSM (Non-Sucking Service Manager)</A> as proper Windows services - they start on boot, restart on crash and run without a visible terminal. The Gaming PC daemon also reads GPU utilisation via <A href="https://pypi.org/project/pynvml/">pynvml</A> (NVIDIA&apos;s Python library) and detects the currently running game through five escalating tiers: a hardcoded map of known games, the <A href="https://developer.valvesoftware.com/wiki/Steam_Web_API">Steam Web API</A>, Epic Games local manifest files, EA App manifest files and finally process-name fuzzy matching against <A href="https://www.igdb.com">IGDB</A>&apos;s game database. Cover art is fetched from IGDB on first detection and cached for the session. The card it feeds mirrors the PS5 one: CPU and GPU as small live graphs built from the polls, the current game while I play and the last game I played once the PC goes offline.</>,
+        detail: <>Python scripts managed by <A href="https://nssm.cc">NSSM (Non-Sucking Service Manager)</A> as proper Windows services: they start on boot, restart on crash and run without a visible terminal. On the ThinkPad&apos;s Fedora side the same daemon runs under systemd. The Gaming PC daemon also reads GPU utilisation via <A href="https://pypi.org/project/pynvml/">pynvml</A> (NVIDIA&apos;s Python library) and detects the currently running game through five escalating tiers: a hardcoded map of known games, the <A href="https://developer.valvesoftware.com/wiki/Steam_Web_API">Steam Web API</A>, Epic Games local manifest files, EA App manifest files and finally process-name fuzzy matching against <A href="https://www.igdb.com">IGDB</A>&apos;s game database. Cover art is fetched from IGDB on first detection and cached for the session. The card it feeds mirrors the PS5 one: CPU and GPU as small live graphs built from the polls, the current game while I play and the last game I played once the PC goes offline.</>,
       },
       {
         name: "Spotify",
-        detail: <>A Next.js API route fetches the currently playing track from the <A href="https://developer.spotify.com/documentation/web-api">Spotify Web API</A> on demand. The OAuth access token (which expires every hour) is refreshed server-side and held in memory and the now-playing response is cached at the CDN edge for a few seconds so that however many tabs are open, Spotify is polled at most once every few seconds per region rather than once per tab - and Redis is not touched on this path at all. Spotify retired its audio-features and audio-analysis APIs in November 2024, so the visualiser no longer tries to react to the sound - instead it extracts the dominant colours from the album art and renders a sine wave above a bouncy equaliser, both tinted from the cover, on a device-pixel-ratio canvas animated on delta-time and tuned for light and dark mode. Bar peaks darken as they rise like a real meter and the wave swings wider and darkens in step with the bar beneath each point. Genre tags come from <A href="https://www.last.fm/api">Last.fm</A> (Spotify retired artist genres in 2025). The progress bar ticks every second client-side. The widgets poll two small edge-cached endpoints - a fast Spotify one (refreshed every few seconds, so song changes appear in near-realtime) and a combined snapshot for the devices, GitHub and Discord - and pause while the browser tab is hidden, so many open tabs share one cached response instead of each holding a connection open. When nothing is playing, the last played track is shown in a greyed-out state from a separate Redis key.</>,
+        detail: <>A Next.js API route fetches the currently playing track from the <A href="https://developer.spotify.com/documentation/web-api">Spotify Web API</A> on demand. The OAuth access token (which expires every hour) is refreshed server-side and held in memory. The now-playing response is cached at the CDN edge for 15 seconds, so however many tabs are open, Spotify is polled at most once every 15 seconds per region rather than once per tab. Redis is not touched on this path at all. Spotify retired its audio-features and audio-analysis APIs in November 2024, so the visualiser no longer tries to react to the sound. Instead it extracts the dominant colours from the album art and renders a sine wave above a bouncy equaliser, both tinted from the cover, on a device-pixel-ratio canvas animated on delta-time and tuned for light and dark mode. Bar peaks darken as they rise like a real meter and the wave swings wider and darkens in step with the bar beneath each point. Genre tags come from <A href="https://www.last.fm/api">Last.fm</A> (Spotify retired artist genres in 2025). The progress bar moves forward in the browser between polls. The cards poll two small edge-cached endpoints only while they are on screen in a visible tab: the Spotify one every 15 seconds and a combined snapshot for the devices, GitHub and Discord every minute. Both slow down once you have been idle for a few minutes, so many open tabs share one cached response instead of each holding a connection open. Track changes also arrive through Lanyard&apos;s socket, so a new song shows almost at once and the Spotify poll drops to once a minute while the socket is connected. When nothing is playing, the last played track is shown in a greyed-out state from a separate Redis key.</>,
       },
       {
         name: "PS5",
-        detail: <>A <A href="https://workers.cloudflare.com">Cloudflare Worker</A> runs every 2 minutes and polls the <A href="https://www.playstation.com">PlayStation Network</A> presence API using a custom OAuth v2 flow written from scratch - no third-party libraries. Sony&apos;s session cookie (NPSSO) is exchanged for a short-lived access token and a long-lived refresh token on first run. The refresh token is stored in <A href="https://developers.cloudflare.com/kv/">Cloudflare Workers KV</A> and rotated on each use, so the session stays valid for around 60 days before needing a new NPSSO. Game cover art is fetched from <A href="https://www.igdb.com">IGDB</A> on each run. The result (online status, game name, cover art, last seen timestamp) is written to Upstash Redis.</>,
+        detail: <>A <A href="https://workers.cloudflare.com">Cloudflare Worker</A> runs every 2 minutes and polls the <A href="https://www.playstation.com">PlayStation Network</A> presence API using a custom OAuth v2 flow written from scratch, with no third-party libraries. Sony&apos;s session cookie (NPSSO) is exchanged for a short-lived access token and a long-lived refresh token on first run. The refresh token is stored in <A href="https://developers.cloudflare.com/kv/">Cloudflare Workers KV</A> and rotated on each use, so the session stays valid for around 60 days before needing a new NPSSO. Game cover art is fetched from <A href="https://www.igdb.com">IGDB</A> on each run. The result (online status, game name, cover art, last seen timestamp) is written to Upstash Redis.</>,
       },
       {
         name: "Discord",
-        detail: <>The Discord presence card uses <A href="https://github.com/Phineas/lanyard">Lanyard</A>, a free open-source API that exposes Discord rich presence data for opted-in users. It shows online status (online, idle, do not disturb, offline), current activity (game being played, VS Code workspace, Spotify playback via Discord) and elapsed time. On /now the card always shows, even offline. On /notes it only appears when I am online. Multiple simultaneous activities stack with type labels.</>,
+        detail: <>The Discord presence card uses <A href="https://github.com/Phineas/lanyard">Lanyard</A>, a free open-source API that exposes Discord rich presence data for opted-in users. It shows online status (online, idle, do not disturb, offline), current activity (game being played, VS Code workspace, Spotify playback via Discord) and elapsed time. On /now the card always shows, even offline. Multiple simultaneous activities stack with type labels.</>,
       },
       {
         name: "GitHub activity",
@@ -321,14 +330,15 @@ const sections: { icon: React.ComponentType<{ className?: string }>; heading: st
 export default function ColophonPage() {
   return (
     <div className="container max-w-2xl py-24 space-y-14">
-      <section className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h1 className="text-4xl font-bold tracking-tight">Colophon</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          How this site is built. I like sites that are open about their stack and decisions,
-          so here is mine.
-        </p>
+      <PageHeader
+        title="Colophon"
+        description={
+          <>
+            How this site is built. I like sites that are open about their stack and decisions,
+            so here is mine.
+          </>
+        }
+      >
         <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground flex-wrap">
           <span>
             Source:{" "}
@@ -367,7 +377,7 @@ export default function ColophonPage() {
             </a>
           </span>
         </div>
-      </section>
+      </PageHeader>
 
       {sections.map(({ icon: Icon, heading, items }, si) => (
         <div key={heading}>

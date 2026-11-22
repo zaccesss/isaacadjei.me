@@ -19,7 +19,7 @@ export default function Navigation() {
               href={link.href}
               aria-label={link.label === "More" ? "More: every page on the site" : undefined}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-foreground pb-1",
+                "relative text-sm font-medium transition-colors hover:text-foreground pb-1 after:absolute after:-inset-x-2.5 after:-inset-y-2.5 after:content-['']",
                 isActive ? "text-primary" : "text-muted-foreground"
               )}
             >

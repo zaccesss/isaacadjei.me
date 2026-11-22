@@ -1,11 +1,12 @@
 "use client"
 
+import { ViewTransition } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
 import ImageGallery from "./ImageGallery"
 import { mediaSrc } from "@/lib/content/media"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -13,13 +14,19 @@ import {
 } from "recharts"
 import { CATEGORY_LABELS, type Project } from "@/data/projects"
 import { releaseDate, type LatestRelease } from "@/lib/integrations/github-releases"
-import { staggerContainer, fadeUp } from "@/lib/ui/animations"
 import ShareButton from "@/components/shared/ShareButton"
 import { renderBlock, buildHeadingIds, renderInline } from "@/components/shared/markdown/ContentBlocks"
 import StatusBadge from "./StatusBadge"
 import ProductCard from "./ProductCard"
-import ZacessStudio from "./zacess/Studio"
-import { CHIP_CLASS, projectCategoryLabelClass } from "@/components/shared/lists/Tag"
+import { CHIP_CLASS } from "@/components/shared/lists/Tag"
+import ThemedCover from "@/components/shared/media/ThemedCover"
+import TableOfContents from "@/components/shared/markdown/TableOfContents"
+import { collectTocHeadings, hasToc, type TocHeading } from "@/lib/content/toc"
+import { CHART_COLOURS } from "@/lib/ui/chart-palette"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { cn } from "@/lib/utils"
+
+const ZacessStudio = dynamic(() => import("./zacess/Studio"))
 
 export type LabMeasurementPoint = {
   measurement_set: string
@@ -35,7 +42,7 @@ interface Props {
   releases?: { name: string; repo: string; release: LatestRelease | null }[]
 }
 
-const BODE_COLOURS = ["#8b5cf6", "#22c55e", "#f59e0b", "#ef4444", "#06b6d4", "#ec4899"]
+const TICK = { fontSize: 13 }
 
 function renderWithCode(text: string) {
   const parts = text.split(/(`[^`]+`)/)
@@ -72,15 +79,63 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
   })
   const hasPhaseData = phaseData.some((row) => Object.keys(row).length > 1)
 
+  const sectionIds = project.sections ? buildHeadingIds(project.sections) : new Map<number, string>()
+  const taken = new Set(sectionIds.values())
+  const fixedId = (base: string) => (taken.has(base) ? `${base}-section` : base)
+  const ids = {
+    overview: fixedId("overview"),
+    highlights: fixedId("highlights"),
+    releases: fixedId("releases"),
+    technologies: fixedId("technologies"),
+    frequency: fixedId("frequency-response"),
+    team: fixedId("team"),
+    gallery: fixedId("gallery"),
+    references: fixedId("references"),
+    involved: fixedId("get-involved"),
+  }
+  const hasReleases = !!releases?.some((r) => r.release)
+  const hasTeam = !!project.team?.length
+  const hasReferences = !!project.references?.length
+  const hasInvolved = !!(project.getInvolved && project.github)
+  const tocHeadings: TocHeading[] = [
+    { id: ids.overview, text: "Overview", level: 2 },
+    ...(project.sections ? collectTocHeadings(project.sections, sectionIds) : []),
+    { id: ids.highlights, text: "Key highlights", level: 2 },
+    ...(hasReleases ? [{ id: ids.releases, text: "Latest releases", level: 2 as const }] : []),
+    { id: ids.technologies, text: "Technologies", level: 2 },
+    ...(frequencies.length > 0 ? [{ id: ids.frequency, text: "Frequency response", level: 2 as const }] : []),
+    ...(hasTeam ? [{ id: ids.team, text: "Team", level: 2 as const }] : []),
+    ...(project.images.length > 0 ? [{ id: ids.gallery, text: "Gallery", level: 2 as const }] : []),
+    ...(hasReferences ? [{ id: ids.references, text: "References and further reading", level: 2 as const }] : []),
+    ...(hasInvolved ? [{ id: ids.involved, text: "Get involved", level: 2 as const }] : []),
+  ]
+  const showToc = hasToc(tocHeadings)
+  const cover = project.cover ?? project.images[0]
+
+  const specs: { term: string; value: React.ReactNode }[] = [
+    { term: "Type", value: CATEGORY_LABELS[project.category] ?? project.category },
+    ...(project.status
+      ? [{ term: "Status", value: <StatusBadge status={project.status} className="text-sm text-foreground" /> }]
+      : project.ongoing
+        ? [{ term: "Status", value: "Ongoing" }]
+        : []),
+    { term: "Date", value: project.date },
+    ...(hasTeam ? [{ term: "Team", value: `${project.team!.length} ${project.team!.length === 1 ? "person" : "people"}` }] : []),
+    ...(project.technologies.length > 0
+      ? [{ term: "Built with", value: project.technologies.slice(0, 3).join(", ") + (project.technologies.length > 3 ? ` and ${project.technologies.length - 3} more` : "") }]
+      : []),
+  ]
+
+  const heading = (id: string, text: string) => (
+    <h2 id={id} className="text-[1.625rem] leading-tight font-semibold tracking-tight scroll-mt-24">
+      {text}
+    </h2>
+  )
+
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
-      className="container max-w-3xl py-24 space-y-10"
-    >
-      <motion.div variants={fadeUp}>
-        <Button asChild variant="ghost" size="sm" className="pl-0 mb-6">
+    <div className={cn("container max-w-3xl py-24 space-y-10", showToc && "lg:max-w-5xl")}>
+      <div>
+        <Button asChild variant="ghost" size="sm" className="pl-0 mb-6 min-h-11">
           <Link href="/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to projects
@@ -88,22 +143,17 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
         </Button>
 
         <div className="space-y-4">
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className={projectCategoryLabelClass(project.category)}>
-              {CATEGORY_LABELS[project.category] ?? project.category}
-            </span>
-            {project.status ? (
-              <StatusBadge status={project.status} />
-            ) : project.ongoing && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500" aria-hidden="true" />
-                Ongoing
-              </span>
-            )}
-            <span className="text-sm text-muted-foreground">{project.date}</span>
-          </div>
-          <h1 className="text-4xl font-bold tracking-tight">{project.title}</h1>
-          <p className="text-lg text-muted-foreground">{project.description}</p>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{project.title}</h1>
+          <p className="max-w-[68ch] text-lg text-muted-foreground leading-relaxed">{project.description}</p>
+
+          <dl className="flex flex-wrap gap-x-8 gap-y-3 pt-1 text-sm tabular-nums">
+            {specs.map((s) => (
+              <div key={s.term} className="space-y-0.5">
+                <dt className="text-muted-foreground">{s.term}</dt>
+                <dd className="font-medium">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
 
           <div className="flex items-center gap-3 pt-2 flex-wrap">
             {project.github && (
@@ -141,39 +191,55 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
             <ShareButton title={project.title} />
           </div>
         </div>
-      </motion.div>
+      </div>
+
+      {cover && (
+        <ViewTransition name={`project-cover-${project.id}`} share="project-cover" default="none">
+          <div className="relative w-full aspect-4/3 sm:aspect-video overflow-hidden rounded-xl bg-muted">
+            <ThemedCover
+              src={cover}
+              darkSrc={project.cover ? project.coverDark : undefined}
+              alt={project.title}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 960px"
+              className="object-cover"
+            />
+          </div>
+        </ViewTransition>
+      )}
 
       <Separator />
 
-      <motion.div variants={fadeUp} className="space-y-6">
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">Overview</h2>
+      <div className={cn(showToc && "lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:items-start")}>
+      {showToc && <TableOfContents headings={tocHeadings} />}
+      <div className={cn("space-y-10", showToc && "min-w-0 lg:col-start-1 lg:row-start-1")}>
+      <div className="space-y-6">
+        <div className="max-w-[68ch] space-y-6">
+          {heading(ids.overview, "Overview")}
           {project.longDescription.split("\n\n").map((para, i) => (
-            <p key={i} className="text-muted-foreground leading-relaxed">
+            <p key={i} className="text-lg leading-[1.7] text-foreground/90">
               {renderWithCode(para)}
             </p>
           ))}
         </div>
 
         {project.sections && project.sections.length > 0 && (
-          <div className="space-y-4">
-            {(() => {
-              const ids = buildHeadingIds(project.sections)
-              return project.sections.map((block, i) => {
-                if (block.type === "product") return <ProductCard key={i} block={block} />
-                if (block.type === "studio") return <ZacessStudio key={i} />
-                const prev = project.sections![i - 1]
-                return renderBlock(block, i, ids, prev?.type === "product" || prev?.type === "studio" ? undefined : prev, highlighted)
-              })
-            })()}
+          <div className="space-y-6 [&>h2]:max-w-[68ch] [&>h3]:max-w-[68ch] [&>ol]:max-w-[68ch] [&>p]:max-w-[68ch] [&>ul]:max-w-[68ch]">
+            {project.sections.map((block, i) => {
+              if (block.type === "product") return <ProductCard key={i} block={block} />
+              if (block.type === "studio") return <ZacessStudio key={i} />
+              const prev = project.sections![i - 1]
+              return renderBlock(block, i, sectionIds, prev?.type === "product" || prev?.type === "studio" ? undefined : prev, highlighted)
+            })}
           </div>
         )}
 
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">Key highlights</h2>
+        <div className="max-w-[68ch] space-y-3">
+          {heading(ids.highlights, "Key highlights")}
           <ul className="space-y-2">
             {project.highlights.map((h) => (
-              <li key={h} className="flex gap-3 text-muted-foreground">
+              <li key={h} className="flex gap-3 text-foreground/90">
                 <span className="text-primary mt-0.5 shrink-0">·</span>
                 {h}
               </li>
@@ -181,11 +247,11 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
           </ul>
         </div>
 
-        {releases && releases.some((r) => r.release) && (
+        {hasReleases && (
           <div className="space-y-3">
-            <h2 className="text-xl font-semibold">Latest releases</h2>
+            {heading(ids.releases, "Latest releases")}
             <ul className="space-y-1 text-sm text-muted-foreground">
-              {releases.map((r) => r.release && (
+              {releases!.map((r) => r.release && (
                 <li key={r.repo}>
                   {r.name}{" "}
                   <a href={r.release.url} target="_blank" rel="noopener noreferrer" className="body-link">
@@ -201,7 +267,7 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
         )}
 
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">Technologies</h2>
+          {heading(ids.technologies, "Technologies")}
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
               <span key={tech} className={CHIP_CLASS}>
@@ -210,61 +276,61 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {frequencies.length > 0 && (
         <>
           <Separator />
-          <motion.div variants={fadeUp} className="space-y-4">
-            <h2 className="text-xl font-semibold">Frequency response</h2>
+          <div className="space-y-4">
+            {heading(ids.frequency, "Frequency response")}
             <p className="text-muted-foreground leading-relaxed">
               Real hand-logged readings across breadboard and PCB builds, plus a theoretical curve
               calculated from the reported component values - the standard Bode plot shape for
               this kind of analogue design.
             </p>
-            <div className="border border-border rounded-lg p-4 bg-card">
-              <p className="text-sm font-semibold mb-3">Magnitude (dB) vs frequency</p>
+            <figure className="border border-border rounded-lg p-4 bg-card">
+              <figcaption className="text-sm font-semibold mb-3">Magnitude (dB) vs frequency</figcaption>
               <ResponsiveContainer width="100%" height={260}>
                 <RLineChart data={magnitudeData} margin={{ top: 6, right: 8, bottom: 0, left: 8 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-                  <XAxis dataKey="frequency_hz" scale="log" domain={["auto", "auto"]} type="number" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                  <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                  <Tooltip contentStyle={{ fontSize: 12, borderRadius: 6 }} labelFormatter={(v) => `${v} Hz`} />
-                  <Legend wrapperStyle={{ fontSize: "11px" }} />
+                  <XAxis dataKey="frequency_hz" scale="log" domain={["auto", "auto"]} type="number" tick={TICK} tickLine={false} axisLine={false} />
+                  <YAxis tick={TICK} tickLine={false} axisLine={false} />
+                  <Tooltip contentStyle={{ fontSize: 13, borderRadius: 6 }} labelFormatter={(v) => `${v} Hz`} />
+                  <Legend wrapperStyle={{ fontSize: "13px" }} />
                   {sets.map((s, i) => (
-                    <Line key={s} type="monotone" dataKey={s} stroke={BODE_COLOURS[i % BODE_COLOURS.length]} strokeWidth={2} dot={{ r: 2 }} connectNulls />
+                    <Line key={s} type="monotone" dataKey={s} stroke={CHART_COLOURS[i % CHART_COLOURS.length]} strokeWidth={2} dot={{ r: 2 }} connectNulls isAnimationActive={false} />
                   ))}
                 </RLineChart>
               </ResponsiveContainer>
-            </div>
+            </figure>
             {hasPhaseData && (
-              <div className="border border-border rounded-lg p-4 bg-card">
-                <p className="text-sm font-semibold mb-3">Phase (deg) vs frequency</p>
+              <figure className="border border-border rounded-lg p-4 bg-card">
+                <figcaption className="text-sm font-semibold mb-3">Phase (deg) vs frequency</figcaption>
                 <ResponsiveContainer width="100%" height={260}>
                   <RLineChart data={phaseData} margin={{ top: 6, right: 8, bottom: 0, left: 8 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-                    <XAxis dataKey="frequency_hz" scale="log" domain={["auto", "auto"]} type="number" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                    <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                    <Tooltip contentStyle={{ fontSize: 12, borderRadius: 6 }} labelFormatter={(v) => `${v} Hz`} />
-                    <Legend wrapperStyle={{ fontSize: "11px" }} />
+                    <XAxis dataKey="frequency_hz" scale="log" domain={["auto", "auto"]} type="number" tick={TICK} tickLine={false} axisLine={false} />
+                    <YAxis tick={TICK} tickLine={false} axisLine={false} />
+                    <Tooltip contentStyle={{ fontSize: 13, borderRadius: 6 }} labelFormatter={(v) => `${v} Hz`} />
+                    <Legend wrapperStyle={{ fontSize: "13px" }} />
                     {sets.map((s, i) => (
-                      <Line key={s} type="monotone" dataKey={s} stroke={BODE_COLOURS[i % BODE_COLOURS.length]} strokeWidth={2} dot={{ r: 2 }} connectNulls />
+                      <Line key={s} type="monotone" dataKey={s} stroke={CHART_COLOURS[i % CHART_COLOURS.length]} strokeWidth={2} dot={{ r: 2 }} connectNulls isAnimationActive={false} />
                     ))}
                   </RLineChart>
                 </ResponsiveContainer>
-              </div>
+              </figure>
             )}
-          </motion.div>
+          </div>
         </>
       )}
 
-      {project.team && project.team.length > 0 && (
+      {hasTeam && (
         <>
           <Separator />
-          <motion.div variants={fadeUp} className="space-y-3">
-            <h2 className="text-xl font-semibold">Team</h2>
+          <div className="space-y-3">
+            {heading(ids.team, "Team")}
             <ul className="grid gap-3 sm:grid-cols-2">
-              {project.team.map((m) => (
+              {project.team!.map((m) => (
                 <li key={m.github} className="rounded-lg border border-border/60 p-3">
                   <a href={`https://github.com/${m.github}`} target="_blank" rel="noopener noreferrer" className="font-medium text-primary underline-offset-4 hover:underline">
                     {m.name} <span className="font-mono text-xs text-muted-foreground">@{m.github}</span>
@@ -273,19 +339,19 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </>
       )}
 
       {project.images.length > 0 && (
         <>
           <Separator />
-          <motion.div variants={fadeUp} className="space-y-4">
-            <h2 className="text-xl font-semibold">Gallery</h2>
+          <div className="space-y-4">
+            {heading(ids.gallery, "Gallery")}
             <ImageGallery images={project.images} title={project.title} />
             {project.video && (
-              <div className="space-y-3 pt-2">
-                <h3 className="text-base font-semibold text-muted-foreground uppercase tracking-wide text-center">
+              <figure className="space-y-3 pt-2">
+                <h3 className="text-base font-semibold text-center">
                   Project demo
                 </h3>
                 <div className="flex justify-center">
@@ -303,23 +369,23 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                   </video>
                 </div>
                 {project.videoCaption && (
-                  <p className="text-sm text-center text-foreground/80">{project.videoCaption}</p>
+                  <figcaption className="text-sm text-center text-foreground/80">{project.videoCaption}</figcaption>
                 )}
-              </div>
+              </figure>
             )}
-          </motion.div>
+          </div>
         </>
       )}
 
-      {project.references && project.references.length > 0 && (
+      {hasReferences && (
         <>
           <Separator />
-          <motion.div variants={fadeUp} className="space-y-3">
-            <h2 className="text-xl font-semibold">References and further reading</h2>
+          <div className="space-y-3">
+            {heading(ids.references, "References and further reading")}
             <ol className="space-y-2 list-none pl-0">
-              {project.references.map((r, j) => (
+              {project.references!.map((r, j) => (
                 <li key={r.url} className="flex gap-3 text-sm text-foreground/90">
-                  <span className="shrink-0 font-mono text-primary">{String(j + 1).padStart(2, "0")}.</span>
+                  <span className="shrink-0 tabular-nums text-primary">{j + 1}.</span>
                   <span>
                     <a href={r.url} target="_blank" rel="noopener noreferrer" className="body-link">{r.title}</a>
                     {r.note && <span className="text-muted-foreground"> {renderInline(r.note)}</span>}
@@ -327,15 +393,15 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                 </li>
               ))}
             </ol>
-          </motion.div>
+          </div>
         </>
       )}
 
-      {project.getInvolved && project.github && (
+      {hasInvolved && (
         <>
           <Separator />
-          <motion.div variants={fadeUp} className="space-y-3">
-            <h2 className="text-xl font-semibold">Get involved</h2>
+          <div className="space-y-3">
+            {heading(ids.involved, "Get involved")}
             <p className="text-sm text-muted-foreground">
               Questions, ideas and contributions are welcome. Read the contributing guide first, then
               pick whichever route fits.
@@ -343,11 +409,11 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
             <ul className="grid gap-2 sm:grid-cols-2 text-sm">
               {[
                 { label: "Contributing guide", url: `${project.github}/blob/main/CONTRIBUTING.md` },
-                ...(project.getInvolved.discussions
+                ...(project.getInvolved!.discussions
                   ? [{ label: "Ask a question in Discussions", url: `${project.github}/discussions` }]
                   : []),
                 { label: "Report a bug or suggest a feature", url: `${project.github}/issues/new/choose` },
-                ...(project.getInvolved.roadmap ? [{ label: "Roadmap board", url: project.getInvolved.roadmap }] : []),
+                ...(project.getInvolved!.roadmap ? [{ label: "Roadmap board", url: project.getInvolved!.roadmap }] : []),
               ].map((l) => (
                 <li key={l.url}>
                   <a href={l.url} target="_blank" rel="noopener noreferrer" className="body-link">
@@ -356,10 +422,11 @@ export default function ProjectDetail({ project, measurements, highlighted, rele
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </>
       )}
-
-    </motion.div>
+      </div>
+      </div>
+    </div>
   )
 }

@@ -78,7 +78,7 @@ export default async function MusicArtistPage({
           {artist.genre}
         </Link>
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">{artist.name}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{artist.name}</h1>
           <ShareButton title={`Consumed | ${artist.name}`} />
         </div>
         <p className="text-base text-muted-foreground leading-relaxed">{artist.note}</p>
@@ -88,7 +88,7 @@ export default async function MusicArtistPage({
         <>
           <Separator />
           <section className="space-y-4">
-            <h2 className="text-xs font-mono text-primary uppercase tracking-widest">Featured</h2>
+            <h2 className="text-base font-semibold">Featured</h2>
             <div className="relative aspect-video rounded-xl overflow-hidden border border-border/60">
               <iframe
                 src={`https://www.youtube.com/embed/${artist.youtubeId}?rel=0`}

@@ -207,7 +207,7 @@ export async function getResearchStats(): Promise<ResearchStats> {
       interests: researchInterests.length,
       papers: keyPapers.reduce((n, group) => n + group.papers.length, 0),
       materials: researchLines.reduce((n, line) => n + line.materials.length, 0),
-      stages: tally(researchLines.map((line) => STAGE_NAME[line.status])),
+      stages: Object.values(STAGE_NAME).map((name) => ({ name, value: researchLines.filter((line) => STAGE_NAME[line.status] === name).length })).filter((s) => s.value > 0),
       depth: researchLines.map((line) => ({ name: line.name, references: line.links.length, materials: line.materials.length })),
       papersByGroup: keyPapers.map((group) => ({ name: group.line, value: group.papers.length })),
     },

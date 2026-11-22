@@ -6,7 +6,7 @@ export default function BrailleDivider({ className }: { className?: string }) {
   const raised: [number, number][] = [[0, 1], [1, 0], [2, 0]]
   const isRaised = (c: number, r: number) => raised.some(([rc, rr]) => rc === c && rr === r)
   return (
-    <div className={cn("flex items-center gap-3 text-muted-foreground/50", className)} aria-hidden="true">
+    <div className={cn("flex items-center gap-3 text-muted-foreground", className)} aria-hidden="true">
       <span className="h-px flex-1 bg-current opacity-40" />
       <svg width="34" height="16" viewBox="0 0 64 44" fill="none" className="ia-braille shrink-0">
         {cols.map((cx, c) =>

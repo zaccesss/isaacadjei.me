@@ -1,60 +1,27 @@
-"use client"
-
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { fadeUp, staggerContainer } from "@/lib/ui/animations"
+import ArrowLink from "@/components/shared/ArrowLink"
+import { Section, SectionHeading } from "@/components/layout/Section"
 
 export default function AboutPreview() {
   return (
-    <section className="py-24 border-t">
-      <div className="mx-auto w-full max-w-4xl px-8">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 gap-12 items-center"
-        >
-          <motion.div variants={fadeUp} className="space-y-4">
-            <p className="text-sm font-mono text-primary uppercase tracking-widest">About</p>
-            <h2 className="text-3xl font-bold tracking-tight">
-              Engineering problems worth solving
-            </h2>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
-              I am Zac, an Electronic Engineering and Computer Science student at Aston University.
-              I grew up in Ghana, relocated to the UK in 2022 and earned a triple Distinction in
-              engineering, being recognised as Best and Most Hardworking Student at Stanmore College,
-              before starting Electronic Engineering and Computer Science at Aston. I work at the intersection of hardware and software,
-              spanning embedded systems, machine learning and production web development.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              My late father was a mechanical engineer. His words, &ldquo;Always strive to make
-              things better&rdquo;, still guide everything I build. I focus on accessible technology
-              and systems that serve real users, the kind of engineering that matters beyond the
-              screen.
-            </p>
-            <div className="flex flex-wrap gap-x-6">
-              <Button asChild variant="ghost" className="pl-0">
-                <Link href="/about">
-                  Read more
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="ghost" className="pl-0">
-                <Link href="/blog/my-journey-so-far">
-                  Read my full story
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-        </motion.div>
+    <Section labelledBy="about">
+      <SectionHeading id="about" title="About" />
+      <div className="max-w-[68ch] space-y-4 text-lg leading-[1.7] text-foreground/90">
+        <p>
+          I am Zac. I grew up in Ghana, moved to the UK in 2022 and finished my engineering diploma at Stanmore College with
+          a triple Distinction and the Best and Most Hardworking Student award. At Aston I work on embedded systems,
+          machine learning and the web.
+        </p>
+        <p>
+          My late father was a mechanical engineer. His words, &ldquo;Always strive to make things better&rdquo;, still guide
+          what I build. Much of it is about accessibility, such as Zacess, a free reader that turns documents and web pages
+          into notes in your own reading profile.
+        </p>
       </div>
-    </section>
+      <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+        <ArrowLink href="/about">More about me</ArrowLink>
+        <ArrowLink href="/experience">Experience</ArrowLink>
+        <ArrowLink href="/skills">Skills and tools</ArrowLink>
+      </div>
+    </Section>
   )
 }

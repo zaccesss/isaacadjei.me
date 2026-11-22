@@ -28,7 +28,7 @@ export default function GlobalError({
             This page ran into an unexpected error. Try again or head back home.
           </p>
           {error.digest && (
-            <p className="text-xs font-mono text-muted-foreground/60 pt-1">
+            <p className="text-xs font-mono text-muted-foreground pt-1">
               ref: {error.digest}
             </p>
           )}

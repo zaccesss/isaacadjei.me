@@ -1,7 +1,3 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-
 const LINES = [
   "// my approach",
   "bool struggling = true;",
@@ -15,8 +11,6 @@ const LINES = [
   'printf("Mission accomplished.\\n");  // celebrate victory',
   "// $ nohup hustle && disown impostor_syndrome",
 ]
-
-type Phase = "typing" | "holding" | "clearing" | "pausing"
 
 function tokenise(line: string): { text: string; cls: string }[] {
   if (line.startsWith("// $")) {
@@ -98,104 +92,22 @@ function tokenisePart(text: string): { text: string; cls: string }[] {
 }
 
 export default function ApproachAnimation() {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([])
-  const [phase, setPhase] = useState<Phase>("pausing")
-  const [reduced, setReduced] = useState(false)
-
-  const lineIdxRef = useRef(0)
-  const charIdxRef = useRef(0)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  useEffect(() => {
-    function clearTimers() {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-      if (timerRef.current) clearTimeout(timerRef.current)
-    }
-
-    function startTyping() {
-      clearTimers()
-      lineIdxRef.current = 0
-      charIdxRef.current = 0
-      setDisplayedLines([])
-      setPhase("typing")
-
-      intervalRef.current = setInterval(() => {
-        const li = lineIdxRef.current
-        const ci = charIdxRef.current
-
-        if (li >= LINES.length) {
-          clearInterval(intervalRef.current!)
-          setPhase("holding")
-          timerRef.current = setTimeout(() => {
-            setPhase("clearing")
-            setDisplayedLines([])
-            timerRef.current = setTimeout(startTyping, 500)
-          }, 2500)
-          return
-        }
-
-        const text = LINES[li].slice(0, ci + 1)
-        setDisplayedLines((prev) => {
-          const next = [...prev]
-          next[li] = text
-          return next
-        })
-
-        if (ci + 1 >= LINES[li].length) {
-          lineIdxRef.current = li + 1
-          charIdxRef.current = 0
-        } else {
-          charIdxRef.current = ci + 1
-        }
-      }, 60)
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      timerRef.current = setTimeout(() => {
-        setReduced(true)
-        setDisplayedLines(LINES)
-        setPhase("holding")
-      }, 0)
-      return clearTimers
-    }
-
-    timerRef.current = setTimeout(startTyping, 500)
-    return clearTimers
-  }, [])
-
-  const isCursorVisible = !reduced && (phase === "typing" || phase === "holding")
-
   return (
     <figure className="code-frame code-tokens overflow-hidden rounded-xl border border-border" aria-label="My approach - a code philosophy, written in C">
       <figcaption className="code-frame-header border-b border-border px-4 py-1.5 font-mono text-xs font-semibold tracking-wide">
         C
       </figcaption>
-      <pre className="sr-only">{LINES.join("\n")}</pre>
-      <div className="p-5 overflow-x-auto h-[200px] sm:h-[260px] overflow-y-hidden" aria-hidden="true">
-      <div className="font-mono text-xs leading-relaxed">
-        {displayedLines.map((line, i) => {
-          const isLast = i === displayedLines.length - 1
-          const tokens = tokenise(line)
-          return (
-            <div key={i}>
-              {tokens.map((t, j) => (
+      <pre className="p-5 overflow-x-auto font-mono text-xs leading-relaxed">
+        <code>
+          {LINES.map((line, i) => (
+            <span key={i} className="block">
+              {tokenise(line).map((t, j) => (
                 <span key={j} className={t.cls}>{t.text}</span>
               ))}
-              {isLast && isCursorVisible && (
-                <span
-                  className="inline-block w-[0.55em] h-[1em] bg-current ml-px align-middle animate-[blink_0.7s_step-end_infinite]"
-                  aria-hidden="true"
-                />
-              )}
-            </div>
-          )
-        })}
-        {displayedLines.length === 0 && (
-          <span className="text-transparent select-none">{" "}</span>
-        )}
-      </div>
-      </div>
+            </span>
+          ))}
+        </code>
+      </pre>
     </figure>
   )
 }

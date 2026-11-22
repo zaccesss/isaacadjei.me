@@ -77,11 +77,11 @@ export default function NotePostsBrowser({ notes }: { notes: NotePostCard[] }) {
             <li key={note.slug}>
               <Link
                 href={`/notes/${note.slug}`}
-                className="group block rounded-lg border border-border/60 bg-muted/20 px-6 py-5 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                className="group block rounded-lg border border-border/60 bg-muted/20 px-6 py-5 hover:border-primary/40 hover:bg-muted/30 transition-colors"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-2 flex-1">
-                    <time dateTime={note.date} className="block text-xs text-muted-foreground font-mono">
+                    <time dateTime={note.date} className="block text-xs text-muted-foreground tabular-nums">
                       {formatNoteDate(note.date)}
                     </time>
                     <h3 className="font-semibold group-hover:text-primary transition-colors">{note.title}</h3>

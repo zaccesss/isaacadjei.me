@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { geistSans as GeistSans, geistMono as GeistMono } from "@/lib/fonts"
+import { geistSans as GeistSans, geistMono as GeistMono, plexSans as PlexSans } from "@/lib/fonts"
 import "./globals.css"
 import "@/styles/animations.css"
 import PublicShell from "@/components/layout/PublicShell"
@@ -32,11 +32,11 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 }
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Isaac Adjei | EECS",
+    default: "Isaac Adjei",
     template: "%s | Isaac Adjei",
   },
   description:
-    "Electronic Engineering and Computer Science student at Aston University, Birmingham. Building full-stack software, embedded systems, AI/ML and data science solutions from concept to deployment.",
+    "Electronic Engineering and Computer Science student at Aston University building circuit boards, firmware, software and AI/ML. Open to internships and placements.",
   keywords: [
     "Isaac Adjei",
     "Zac",
@@ -60,15 +60,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
-    title: "Isaac Adjei | EECS",
+    title: "Isaac Adjei",
     description:
-      "Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science solutions.",
-    siteName: "Isaac Adjei Portfolio",
+      "Electronic Engineering and Computer Science student building circuit boards, firmware, software and AI/ML.",
+    siteName: "Isaac Adjei",
     images: [{
-      url: "/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20full-stack%20software%2C%20embedded%20systems%2C%20AI%2FML%20and%20data%20science%2E",
+      url: "/api/og?title=Isaac%20Adjei&description=Electronic%20Engineering%20and%20Computer%20Science%20student%20building%20circuit%20boards%2C%20firmware%2C%20software%20and%20AI%2FML%2E",
       width: 1200,
       height: 630,
-      alt: "Isaac Adjei, Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science",
+      alt: "Isaac Adjei, Electronic Engineering and Computer Science student building circuit boards, firmware, software and AI/ML",
     }],
   },
   twitter: {
@@ -107,7 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body
         suppressHydrationWarning
-        className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${PlexSans.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

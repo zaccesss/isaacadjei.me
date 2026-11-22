@@ -18,10 +18,9 @@ export default function StatsWritingPage() {
   return (
     <AnalyticsPeriodProvider defaultPeriod="1y">
       <div className="container max-w-3xl py-24 space-y-8">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <StatsPageHeader title="Writing and projects" description="What I publish, what I write about, what I build and what I read and watch, counted from my own content." />
+        <StatsPageHeader title="Writing and projects" description="What I publish, what I write about, what I build and what I read and watch, counted from my own content.">
           <PeriodSelector />
-        </div>
+        </StatsPageHeader>
         <WritingHistory posts={posts} til={til} projects={projects} notes={notes} issues={issues} consumed={consumed} milestones={getMilestones()} />
       </div>
     </AnalyticsPeriodProvider>

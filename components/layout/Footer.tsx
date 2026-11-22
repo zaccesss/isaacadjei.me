@@ -64,7 +64,7 @@ const LEGAL: FooterLink[] = [
   { href: "/copyright", label: "Copyright" },
 ]
 
-const linkClass = "text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+const linkClass = "inline-flex min-h-11 items-center text-[13px] text-muted-foreground hover:text-foreground transition-colors"
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -82,13 +82,13 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:flex lg:justify-between">
             {COLUMNS.map((column) => (
-              <div key={column[0].title} className="space-y-3">
-                {column.map((group, at) => (
+              <div key={column[0].title}>
+                {column.map((group) => (
                   <nav key={group.title} aria-labelledby={`footer-${group.title.toLowerCase()}`}>
-                    <h2 id={`footer-${group.title.toLowerCase()}`} className={`${at === 0 ? "mb-3" : "mb-2"} text-sm font-semibold text-foreground`}>
+                    <h2 id={`footer-${group.title.toLowerCase()}`} className="flex min-h-11 items-center text-sm font-semibold text-foreground">
                       {group.title}
                     </h2>
-                    <ul className="space-y-2">
+                    <ul>
                       {group.links.map((item) => (
                         <li key={item.href}>
                           {item.external ? (
@@ -111,18 +111,18 @@ export default function Footer() {
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-sm font-semibold text-foreground">Get in touch</h2>
+            <h2 className="flex min-h-11 items-center text-sm font-semibold text-foreground">Get in touch</h2>
             <p className="text-[13px] text-muted-foreground">Have a question, a project or an opportunity?</p>
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-[13px] font-medium hover:bg-accent transition-colors"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md border px-4 text-[13px] font-medium hover:bg-accent motion-safe:transition-colors"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
               Send a message
             </Link>
             <Link
               href="/book"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-[13px] font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-[13px] font-medium text-primary-foreground hover:bg-primary/90 motion-safe:transition-colors"
             >
               <CalendarDays className="h-4 w-4" aria-hidden="true" />
               Book a call
@@ -138,10 +138,10 @@ export default function Footer() {
             <span>. All rights reserved.</span>
           </p>
           <nav aria-label="Legal and privacy">
-            <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+            <ul className="flex flex-wrap justify-center gap-x-4">
               {LEGAL.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-foreground transition-colors">
+                  <Link href={item.href} className="inline-flex min-h-11 items-center hover:text-foreground transition-colors">
                     {item.label}
                   </Link>
                 </li>
@@ -150,7 +150,7 @@ export default function Footer() {
           </nav>
           <a
             href="#top"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4 lg:justify-self-end focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-full"
+            className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4 lg:justify-self-end focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-full"
           >
             Back to top
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">

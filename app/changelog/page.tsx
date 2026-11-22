@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { Separator } from "@/components/ui/separator"
 import TimelineMarker from "@/components/changelog/TimelineMarker"
 import { releases, type ChangeEntry } from "@/data/changelog/releases"
-import { ScrollText, Plus, Wrench, Zap, Shield } from "lucide-react"
+import { Plus, Wrench, Zap, Shield } from "lucide-react"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Changelog",
@@ -64,28 +65,28 @@ export default function ChangelogPage() {
   const months = byMonth(releases)
   return (
     <div className="container max-w-3xl py-24 space-y-12">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <ScrollText className="h-7 w-7 text-primary" aria-hidden="true" />
-          <h1 className="text-4xl font-bold tracking-tight">Changelog</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          What has changed on this site from the first commit to the latest update.
-          The source is on{" "}
-          <a
-            href="https://github.com/zaccesss/isaacadjei.me"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="body-link"
-          >
-            GitHub
-          </a>
-          .
-        </p>
+      <PageHeader
+        title="Changelog"
+        description={
+          <>
+            What has changed on this site from the first commit to the latest update.
+            The source is on{" "}
+            <a
+              href="https://github.com/zaccesss/isaacadjei.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="body-link"
+            >
+              GitHub
+            </a>
+            .
+          </>
+        }
+      >
         <p className="text-sm text-muted-foreground">
           {releases.length} releases over {months.length} months.
         </p>
-      </section>
+      </PageHeader>
 
       <details id="months" className="group scroll-mt-24 rounded-lg border border-border">
         <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 text-sm font-medium [&::-webkit-details-marker]:hidden">
@@ -98,7 +99,7 @@ export default function ChangelogPage() {
         <nav aria-label="Jump to a month" className="space-y-3 border-t border-border px-4 py-3">
           {yearsOf(months).map((year) => (
             <div key={year.year} className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              <p className="w-12 shrink-0 font-mono text-sm text-muted-foreground">{year.year}</p>
+              <p className="w-12 shrink-0 text-sm font-semibold tabular-nums text-muted-foreground">{year.year}</p>
               {year.months.map((m) => (
                 <a key={m.key} href={`#${m.key}`} className="inline-flex min-h-11 items-center gap-1.5 text-sm body-link">
                   {m.title.split(" ")[0]}

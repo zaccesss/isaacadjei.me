@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { keyPapers, researchInterests, researchLines, type ResearchLink } from "@/data/respub/research"
 import ResearchStatusBadge from "@/components/respub/ResearchStatusBadge"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Research",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   },
 }
 
-const SECTION_HEADING = "text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+const SECTION_HEADING = "text-lg font-semibold tracking-tight"
 
 function ResearchAnchor({ link, className }: { link: ResearchLink; className?: string }) {
   const cls = className ?? "inline-flex items-center gap-1 text-xs font-medium body-link"
@@ -41,18 +42,21 @@ function ResearchAnchor({ link, className }: { link: ResearchLink; className?: s
 export default function ResearchPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Research</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-          What I am looking into, how I am going about it and what each line of work has shown so far. Every line
-          below starts from a question I could not find a good answer to. Each one says plainly how far it has got:
-          in simulation, on hardware or in use.
-        </p>
+      <PageHeader
+        title="Research"
+        description={
+          <>
+            What I am looking into, how I am going about it and what each line of work has shown so far. Every line
+            below starts from a question I could not find a good answer to. Each one says plainly how far it has got:
+            in simulation, on hardware or in use.
+          </>
+        }
+      >
         <p className="text-muted-foreground leading-relaxed max-w-2xl">
           Work that is finished and archived with a DOI is on the{" "}
           <Link href="/publications" className="body-link">Publications page</Link>.
         </p>
-      </div>
+      </PageHeader>
 
       <section aria-labelledby="current-research" className="space-y-6">
         <h2 id="current-research" className={SECTION_HEADING}>

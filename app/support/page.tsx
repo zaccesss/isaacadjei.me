@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
 import {
-  LifeBuoy,
   MessagesSquare,
   Bug,
   Mail,
@@ -12,6 +11,7 @@ import {
   Bot,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Support",
@@ -27,15 +27,16 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <LifeBuoy className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Support</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Need help or have a question? Whether it is one of my software or hardware projects, a
-          course or something on this website, here is how to reach me.
-        </p>
+      <PageHeader
+        title="Support"
+        description={
+          <>
+            Need help or have a question? Whether it is one of my software or hardware projects, a
+            course or something on this website, start with a discussion or an issue on GitHub. Email
+            works too.
+          </>
+        }
+      >
         <p className="text-sm text-muted-foreground">
           <a
             href="https://github.com/zaccesss/.github/blob/main/SUPPORT.md"
@@ -47,7 +48,7 @@ export default function SupportPage() {
             Also on GitHub: zaccesss/.github SUPPORT
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

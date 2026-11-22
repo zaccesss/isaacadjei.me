@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import ContactForm from "@/components/forms/ContactForm"
-import { Mail } from "lucide-react"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Isaac Adjei.",
+  description: "Send a message or book a 30 minute call with Isaac Adjei.",
   alternates: {
     canonical: "https://isaacadjei.me/contact",
   },
@@ -22,18 +22,17 @@ const value = "text-muted-foreground"
 export default function ContactPage() {
   return (
     <div className="container max-w-2xl py-24 space-y-10">
-      <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Mail className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Get in touch</h1>
-        </div>
-        <p className="text-lg text-muted-foreground">
-          I like hearing from people about anything: a question, a suggestion, a correction, an idea,
-          a project, a collaboration or an opportunity such as a placement or an internship. Send me a
-          message here.
-          There are more ways to reach me below the form.
-        </p>
-      </div>
+      <PageHeader
+        title="Get in touch"
+        description={
+          <>
+            I like hearing from people about anything: a question, a suggestion, a correction, an idea,
+            a project, a collaboration or an opportunity such as a placement or an internship. Send me a
+            message here.
+            There are more ways to reach me below the form.
+          </>
+        }
+      />
       <ContactForm />
       <section aria-labelledby="other-ways" className="space-y-4 pt-2">
         <h2 id="other-ways" className="text-2xl font-bold">

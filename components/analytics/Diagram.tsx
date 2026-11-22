@@ -14,7 +14,7 @@ export function Diagram({ code, className }: { code: string; className?: string 
     ;(async () => {
       try {
         const mermaid = (await import("mermaid")).default
-        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: resolvedTheme === "dark" ? "dark" : "neutral", fontFamily: "inherit" })
+        mermaid.initialize({ startOnLoad: false, securityLevel: "strict", theme: resolvedTheme === "dark" ? "dark" : "neutral", fontFamily: "inherit", ...(resolvedTheme === "dark" ? { themeVariables: { edgeLabelBackground: "hsl(0 0% 15%)", tertiaryTextColor: "hsl(0 0% 95%)", textColor: "hsl(0 0% 95%)" } } : {}) })
         const out = await mermaid.render(id, code)
         if (!cancelled) { setSvg(out.svg); setError("") }
       } catch (e) {
@@ -25,6 +25,6 @@ export function Diagram({ code, className }: { code: string; className?: string 
   }, [code, id, resolvedTheme])
 
   if (error) return <p className="text-xs text-destructive whitespace-pre-wrap">{error}</p>
-  if (!svg) return <div className="h-32 animate-pulse rounded-md bg-muted/40" />
+  if (!svg) return <div className="h-32 rounded-md bg-muted/40 motion-safe:animate-pulse" />
   return <div className={`overflow-x-auto [&_svg]:mx-auto [&_svg]:max-w-full ${className ?? ""}`} dangerouslySetInnerHTML={{ __html: svg }} />
 }

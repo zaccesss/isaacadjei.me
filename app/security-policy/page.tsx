@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
-import { ShieldCheck, Mail, Clock, Eye, XCircle } from "lucide-react"
+import { Mail, Clock, Eye, XCircle } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Security Policy",
@@ -18,12 +19,8 @@ export const metadata: Metadata = {
 export default function SecurityPolicyPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <ShieldCheck className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Security Policy</h1>
-        </div>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: November 2026</p>
+      <PageHeader title="Security Policy">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: November 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           I take the security of this site seriously. If you have discovered a vulnerability, I
           appreciate you letting me know responsibly.
@@ -50,7 +47,7 @@ export default function SecurityPolicyPage() {
             Also on GitHub: zaccesss/security-policy
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

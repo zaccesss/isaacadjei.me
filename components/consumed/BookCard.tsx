@@ -22,7 +22,7 @@ export function BookCard({ book }: { book: BookEntry }) {
           >
             {book.title}
           </Link>
-          <p className="text-[10px] text-muted-foreground">{book.author}</p>
+          <p className="text-xs text-muted-foreground">{book.author}</p>
         </div>
         <span className="inline-flex items-center text-xs font-medium text-muted-foreground">
           {book.month.slice(0, 3)}
@@ -42,7 +42,7 @@ export function BookCard({ book }: { book: BookEntry }) {
             href={book.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[10px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ExternalLink className="h-3 w-3" />
             {book.link.includes("amazon") ? "Amazon" : "Free resource"}
@@ -50,7 +50,7 @@ export function BookCard({ book }: { book: BookEntry }) {
         )}
         <Link
           href={subpageHref}
-          className="ml-auto inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2"
+          className="ml-auto inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2"
         >
           <FileText className="h-3 w-3" />
           Notes

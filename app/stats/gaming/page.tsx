@@ -25,13 +25,12 @@ export default async function StatsGamingPage() {
   return (
     <AnalyticsPeriodProvider defaultPeriod="30d">
       <div className="container max-w-3xl py-24 space-y-8">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <StatsPageHeader
-            title="Gaming"
-            description="Live status for my PS5 and gaming PC, plus how I have been playing lately."
-          />
+        <StatsPageHeader
+          title="Gaming"
+          description="Live status for my PS5 and gaming PC, plus how I have been playing lately."
+        >
           <PeriodSelector />
-        </div>
+        </StatsPageHeader>
         <RecordsRow s={stats} show={["gamingSession"]} />
         <GamingPanel />
         <GamingHistory />

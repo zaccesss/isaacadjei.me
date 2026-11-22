@@ -11,6 +11,10 @@ import type { Publication } from "@/data/respub"
 import type { NewsletterIssue } from "@/app/api/newsletter-issues/route"
 import { relevanceScore, fieldScore } from "@/lib/content/search"
 import { matchesQuery, type ContributionHit } from "@/lib/opensource/open-source-list"
+import PageHeader from "@/components/layout/PageHeader"
+import { formatLabel } from "@/lib/ui/labels"
+
+const BADGE_WORDS: Record<string, string> = { iot: "IoT" }
 
 interface NoteEntry {
   href: string
@@ -237,12 +241,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
 
   return (
     <div className="container max-w-2xl py-24 space-y-10">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-tight">Search</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Search across everything on the site.
-        </p>
-      </div>
+      <PageHeader title="Search" description="Search across everything on the site." />
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -272,7 +271,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                 <ResultCard
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  badge={post.type}
+                  badge={formatLabel(post.type)}
                   title={post.title}
                   body={post.description}
                   date={fmtDate(post.date)}
@@ -304,7 +303,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                 <ResultCard
                   key={project.id}
                   href={`/projects/${project.id}`}
-                  badge={project.category}
+                  badge={formatLabel(project.category, BADGE_WORDS)}
                   title={project.title}
                   body={project.description}
                   query={debounced}
@@ -319,7 +318,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                 <ResultCard
                   key={pub.id}
                   href={`/publications/${pub.id}`}
-                  badge={pub.type}
+                  badge={formatLabel(pub.type)}
                   title={pub.title}
                   body={pub.abstract ?? pub.venue}
                   date={String(pub.year)}
@@ -332,7 +331,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
           {matchedResearch.length > 0 && (
             <ResultSection heading={`Research (${matchedResearch.length})`}>
               {matchedResearch.map((line) => (
-                <ResultCard key={line.href} href={line.href} badge="research" title={line.title} body={line.body} query={debounced} />
+                <ResultCard key={line.href} href={line.href} badge="Research" title={line.title} body={line.body} query={debounced} />
               ))}
             </ResultSection>
           )}
@@ -359,7 +358,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                 <ResultCard
                   key={note.href}
                   href={note.href}
-                  badge="note"
+                  badge="Note"
                   title={note.title}
                   body={note.description}
                   query={debounced}
@@ -385,7 +384,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
 
           {(matchedIssues.length > 0 || issuesLoading) && (
             <section className="space-y-4">
-              <h2 className="text-sm font-mono text-primary uppercase tracking-widest">
+              <h2 className="text-base font-semibold">
                 {issuesLoading
                   ? "Newsletter Issues (loading...)"
                   : `Newsletter Issues (${matchedIssues.length})`}
@@ -403,7 +402,7 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                         href={issue.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                       >
                         <div className="space-y-1 min-w-0">
                           <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -416,10 +415,10 @@ export default function SearchClient({ posts, tils, projects, publications, rese
                           )}
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <p className="text-[11px] font-mono text-muted-foreground/70">
+                          <p className="text-xs tabular-nums text-muted-foreground">
                             {fmtDate(issue.publishDate)}
                           </p>
-                          <ExternalLink className="h-3 w-3 text-muted-foreground/50" />
+                          <ExternalLink className="h-3 w-3 text-muted-foreground" />
                         </div>
                       </a>
                     </li>
@@ -454,7 +453,7 @@ function ResultSection({
 }) {
   return (
     <section className="space-y-4">
-      <h2 className="text-sm font-mono text-primary uppercase tracking-widest">{heading}</h2>
+      <h2 className="text-base font-semibold">{heading}</h2>
       <ul className="space-y-3">{children}</ul>
     </section>
   )
@@ -479,10 +478,10 @@ function ResultCard({
     <li>
       <Link
         href={href}
-        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+        className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
       >
         <div className="space-y-1.5 min-w-0">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">
+          <span className="text-xs font-medium text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">
             {badge}
           </span>
           <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -493,7 +492,7 @@ function ResultCard({
           </p>
         </div>
         {date && (
-          <p className="text-[11px] font-mono text-muted-foreground/70 shrink-0">{date}</p>
+          <p className="text-xs tabular-nums text-muted-foreground shrink-0">{date}</p>
         )}
       </Link>
     </li>

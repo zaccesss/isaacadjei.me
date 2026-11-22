@@ -146,14 +146,14 @@ export default function TILList({ entries }: Props) {
               <Link
                 key={entry.id}
                 href={`/til/${entry.id}`}
-                className="group block space-y-2 rounded-lg border border-border/60 bg-muted/20 px-6 py-5 transition-all hover:border-primary/40 hover:bg-muted/30"
+                className="group block space-y-2 rounded-lg border border-border/60 bg-muted/20 px-6 py-5 transition-colors hover:border-primary/40 hover:bg-muted/30"
               >
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className={tilCategoryLabelClass(entry.category)}>{entry.category}</span>
-                  <time dateTime={entry.date} className="text-xs text-muted-foreground font-mono">
+                  <time dateTime={entry.date} className="text-xs text-muted-foreground tabular-nums">
                     {formatDate(entry.date)}
                   </time>
-                  <span className="text-xs text-muted-foreground font-mono">{tilReadingTime(entry)} min read</span>
+                  <span className="text-xs text-muted-foreground tabular-nums">{tilReadingTime(entry)} min read</span>
                 </div>
 
                 <h2 className="text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">

@@ -2,6 +2,33 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.131.0] - 2026-11-22
+
+### Added
+
+- Headings use IBM Plex Sans on every device
+- Links that lead on to another page end in an arrow
+
+### Changed
+
+- The homepage is shorter: an introduction, About, Projects, one dated list of my latest writing and one place to get in touch
+- Every page loads complete, with no sections fading in as you scroll
+- Text is larger and darker. Nothing is smaller than 13 pixels and every link and button is at least 44 pixels to tap
+- The stats pages keep every kind of chart in bright colours that read in both themes, with each area in its own colour and each figure written beside the chart or listed for screen readers
+- The Links page has a cleaner header with a Share button
+- Numbers on the stats pages show their value straight away instead of counting up
+- Page titles end in my name and share cards no longer say EECS
+- New wording across About, Contact, Skills, Links, Notes, TIL, Projects and Consumed
+- The Colophon and Accessibility pages describe the site as it is now
+
+### Fixed
+
+- Pages no longer scroll sideways on a phone
+- The blog and its posts show the right title in the browser tab
+- The Links page shows my handle correctly
+- The weekly coding and gaming chart no longer dips below zero
+- Small fixes behind the scenes
+
 ## [2.130.0] - 2026-11-21
 
 ### Added

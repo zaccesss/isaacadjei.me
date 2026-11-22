@@ -20,7 +20,7 @@ export default function CommandLine({ label, command, prompt = true }: { label: 
       <span className="hidden sm:flex w-28 shrink-0 items-center border-r border-border px-3 text-xs font-medium text-muted-foreground">
         {label}
       </span>
-      <code className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto whitespace-nowrap px-3 py-2.5 font-mono text-sm">
+      <code tabIndex={0} className="flex min-w-0 flex-1 items-center gap-2 overflow-x-auto whitespace-nowrap px-3 py-2.5 font-mono text-sm focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring">
         <span className="sm:hidden text-xs font-sans font-medium text-muted-foreground">{label}</span>
         {prompt && <span aria-hidden className="select-none text-muted-foreground">$</span>}
         <span className="text-foreground">{command}</span>

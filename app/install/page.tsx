@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa6"
 import CommandLine from "@/components/install/CommandLine"
 import { installTools, type InstallTool } from "@/data/install"
 import { latestRelease, releaseDate, type LatestRelease } from "@/lib/integrations/github-releases"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 86400
 
@@ -85,12 +86,15 @@ export default async function InstallPage() {
   const releases = await Promise.all(installTools.map((t) => latestRelease(t.repo)))
   return (
     <div className="container max-w-3xl py-24 space-y-10">
-      <header className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Install</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Everything here is free and open source. Pick a tool, then the way you usually install software. The version
-          beside each tool is its latest release.
-        </p>
+      <PageHeader
+        title="Install"
+        description={
+          <>
+            Everything here is free and open source. Pick a tool, then the way you usually install software. The version
+            beside each tool is its latest release.
+          </>
+        }
+      >
         <nav aria-label="Tools on this page">
           <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
             {installTools.map((t) => (
@@ -100,7 +104,7 @@ export default async function InstallPage() {
             ))}
           </ul>
         </nav>
-      </header>
+      </PageHeader>
       <div className="space-y-6">
         {installTools.map((t, i) => <Tool key={t.id} tool={t} release={releases[i]} />)}
       </div>

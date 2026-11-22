@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { Monitor, Code2, Terminal, Wrench, Globe, Gamepad2, BookOpen } from "lucide-react"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Uses",
@@ -218,7 +219,7 @@ const sections: Array<{
       {
         name: "Bash / zsh",
         icon: `${DEV}/bash/bash-original.svg`,
-        detail: "Shell of choice on the MacBook and every Linux environment: Fedora on the ThinkPad and WSL2 Ubuntu on both PCs. zsh on macOS, bash on Linux - both load the same dotfiles topic structure so the experience is identical.",
+        detail: "Shell of choice on the MacBook and every Linux environment: Fedora on the ThinkPad and WSL2 Ubuntu on both PCs. zsh on macOS and bash on Linux. Both load the same dotfiles topic structure so the experience is identical.",
       },
       {
         name: "NSSM",
@@ -272,7 +273,7 @@ const sections: Array<{
         name: "Vercel",
         icon: `${SKI}=vercel`,
         href: "https://vercel.com",
-        detail: "Deployment platform for this site. Every pull request gets an automatic preview deployment. Production deploys on merge to main. Zero config for Next.js. It just works.",
+        detail: "Deployment platform for this site. Production deploys on merge to main. Other branches are not built unless I ask for a preview of one, which keeps the free plan's deployment storage for the live site. Zero config for Next.js. It just works.",
       },
       {
         name: "Upstash Redis",
@@ -296,7 +297,7 @@ const sections: Array<{
         name: "GitHub API (GraphQL)",
         icon: `${SKI}=github`,
         href: "https://docs.github.com/en/graphql",
-        detail: "Used to pull contribution heatmap data, commit counts, pull request counts, top languages and last push timestamp for the GitHub stats card on the lab page. GraphQL means I fetch exactly what I need in one request.",
+        detail: "A daily sync pulls my public contribution history through GraphQL and stores it, so the contribution graphs on the stats pages draw from stored history instead of calling GitHub on every view. GraphQL means I fetch exactly what I need in one request.",
       },
       {
         name: "Cloudflare Workers",
@@ -471,24 +472,24 @@ const sections: Array<{
 export default function UsesPage() {
   return (
     <div className="container max-w-2xl py-24 space-y-14">
-      <section className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h1 className="text-4xl font-bold tracking-tight">Uses</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          The hardware, software and tools I use day to day. Updated when my setup changes.
-          Inspired by{" "}
-          <a
-            href="https://uses.tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="body-link"
-          >
-            uses.tech
-          </a>
-          .
-        </p>
-      </section>
+      <PageHeader
+        title="Uses"
+        description={
+          <>
+            The hardware, software and tools I use day to day. Updated when my setup changes.
+            Inspired by{" "}
+            <a
+              href="https://uses.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="body-link"
+            >
+              uses.tech
+            </a>
+            .
+          </>
+        }
+      />
 
       {sections.map(({ icon: Icon, heading, items }, si) => (
         <div key={heading}>

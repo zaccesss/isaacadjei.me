@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import Link from "@/components/shared/IntentLink"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Tag } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { getPublishedPosts } from "@/data/blog"
 import { getPublishedTILEntries } from "@/data/til"
 import { getPublishedNotes } from "@/data/notes"
-import { projects } from "@/data/projects"
+import { projects, CATEGORY_LABELS } from "@/data/projects"
 import { getPublishedIssues } from "@/data/newsletter"
 import { publications } from "@/data/respub"
 import {
@@ -14,6 +14,8 @@ import {
 } from "@/data/consumed"
 import { normTag, consumedSlug } from "@/lib/content/tags"
 import { sameShareImage } from "@/lib/content/share-image"
+import { formatLabel } from "@/lib/ui/labels"
+import PageHeader from "@/components/layout/PageHeader"
 
 function fmtDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-GB", {
@@ -62,7 +64,7 @@ export async function generateMetadata({
   const { tag } = await params
   const description = `Everything tagged with ${tag}: blog posts, TIL entries, notes, newsletter issues, projects, publications and consumed items.`
   return sameShareImage({
-    title: `#${tag} - Tags`,
+    title: `Tagged #${tag}`,
     description,
     alternates: { canonical: `https://isaacadjei.me/tags/${tag}` },
     openGraph: {
@@ -137,33 +139,34 @@ export default async function TagPage({
 
   return (
     <div className="container max-w-2xl py-24 space-y-12">
-      <div className="space-y-4">
+      <div className="space-y-6">
         <Link
           href="/tags"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           All tags
         </Link>
-        <div className="flex items-center gap-2">
-          <Tag className="h-5 w-5 text-primary" />
-          <h1 className="text-3xl font-bold tracking-tight">{displayTag}</h1>
-        </div>
-        <p className="text-muted-foreground">
-          {total} {total === 1 ? "entry" : "entries"} tagged with{" "}
-          <span className="text-foreground font-medium">{displayTag}</span>
-        </p>
+        <PageHeader
+          title={displayTag}
+          description={
+            <>
+              {total} {total === 1 ? "entry" : "entries"} tagged with{" "}
+              <span className="text-foreground font-medium">{displayTag}</span>
+            </>
+          }
+        />
       </div>
 
       {posts.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Blog Posts</h2>
+          <h2 className="text-lg font-semibold">Blog posts</h2>
           <ul className="space-y-3">
             {posts.map((post) => (
               <li key={post.slug}>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -171,7 +174,7 @@ export default async function TagPage({
                     </p>
                     <p className="text-xs text-muted-foreground line-clamp-1">{post.description}</p>
                   </div>
-                  <p className="text-[11px] font-mono text-muted-foreground/70 shrink-0">
+                  <p className="text-xs tabular-nums text-muted-foreground shrink-0">
                     {fmtDate(post.date)}
                   </p>
                 </Link>
@@ -183,13 +186,13 @@ export default async function TagPage({
 
       {tils.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">TIL Entries</h2>
+          <h2 className="text-lg font-semibold">TIL entries</h2>
           <ul className="space-y-3">
             {tils.map((entry) => (
               <li key={entry.id}>
                 <Link
                   href={`/til/${entry.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">{entry.category}</p>
@@ -197,7 +200,7 @@ export default async function TagPage({
                       {entry.title}
                     </p>
                   </div>
-                  <p className="text-[11px] font-mono text-muted-foreground/70 shrink-0">
+                  <p className="text-xs tabular-nums text-muted-foreground shrink-0">
                     {fmtDate(entry.date)}
                   </p>
                 </Link>
@@ -209,13 +212,13 @@ export default async function TagPage({
 
       {matchedNotes.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Notes</h2>
+          <h2 className="text-lg font-semibold">Notes</h2>
           <ul className="space-y-3">
             {matchedNotes.map((note) => (
               <li key={note.slug}>
                 <Link
                   href={`/notes/${note.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -232,13 +235,13 @@ export default async function TagPage({
 
       {matchedIssues.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Newsletter</h2>
+          <h2 className="text-lg font-semibold">Newsletter</h2>
           <ul className="space-y-3">
             {matchedIssues.map((issue) => (
               <li key={issue.slug}>
                 <Link
                   href={`/newsletter/${issue.slug}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
@@ -246,7 +249,7 @@ export default async function TagPage({
                     </p>
                     <p className="text-xs text-muted-foreground line-clamp-1">{issue.subtitle}</p>
                   </div>
-                  <p className="text-[11px] font-mono text-muted-foreground/70 shrink-0">
+                  <p className="text-xs tabular-nums text-muted-foreground shrink-0">
                     {fmtDate(issue.date)}
                   </p>
                 </Link>
@@ -258,16 +261,16 @@ export default async function TagPage({
 
       {matchedProjects.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Projects</h2>
+          <h2 className="text-lg font-semibold">Projects</h2>
           <ul className="space-y-3">
             {matchedProjects.map((project) => (
               <li key={project.id}>
                 <Link
                   href={`/projects/${project.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
-                    <p className="text-xs font-medium text-primary">{project.category}</p>
+                    <p className="text-xs font-medium text-primary">{formatLabel(project.category, CATEGORY_LABELS)}</p>
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {project.title}
                     </p>
@@ -282,20 +285,20 @@ export default async function TagPage({
 
       {matchedPubs.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Publications</h2>
+          <h2 className="text-lg font-semibold">Publications</h2>
           <ul className="space-y-3">
             {matchedPubs.map((pub) => (
               <li key={pub.id}>
                 <Link
                   href={`/publications/${pub.id}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
-                    <p className="text-xs font-medium text-primary">{pub.type}</p>
+                    <p className="text-xs font-medium text-primary">{formatLabel(pub.type)}</p>
                     <p className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {pub.title}
                     </p>
-                    <p className="text-xs text-muted-foreground">{pub.venue} · {pub.year}</p>
+                    <p className="text-xs text-muted-foreground">{pub.venue}, {pub.year}</p>
                   </div>
                 </Link>
               </li>
@@ -306,13 +309,13 @@ export default async function TagPage({
 
       {(matchedVideos.length > 0 || matchedArticles.length > 0 || matchedOthers.length > 0 || matchedBooks.length > 0 || matchedResources.length > 0 || matchedArtists.length > 0) && (
         <section className="space-y-4">
-          <h2 className="text-sm font-mono text-primary uppercase tracking-widest">Consumed</h2>
+          <h2 className="text-lg font-semibold">Consumed</h2>
           <ul className="space-y-3">
             {matchedArtists.map((artist) => (
               <li key={artist.name}>
                 <Link
                   href={`/consumed/music/${consumedSlug(artist.name)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Artist</p>
@@ -328,7 +331,7 @@ export default async function TagPage({
               <li key={book.title}>
                 <Link
                   href={`/consumed/books/${consumedSlug(book.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Book</p>
@@ -344,7 +347,7 @@ export default async function TagPage({
               <li key={video.id}>
                 <Link
                   href={`/consumed/videos/${consumedSlug(video.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Video</p>
@@ -360,7 +363,7 @@ export default async function TagPage({
               <li key={article.title}>
                 <Link
                   href={`/consumed/articles/${consumedSlug(article.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Article</p>
@@ -376,7 +379,7 @@ export default async function TagPage({
               <li key={other.title}>
                 <Link
                   href={`/consumed/others/${consumedSlug(other.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Other</p>
@@ -392,7 +395,7 @@ export default async function TagPage({
               <li key={resource.title}>
                 <Link
                   href={`/consumed/resources/${consumedSlug(resource.title)}`}
-                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-all"
+                  className="group flex items-start justify-between gap-4 rounded-lg border border-border/60 bg-muted/30 hover:bg-muted/60 hover:border-primary/40 p-4 transition-colors"
                 >
                   <div className="space-y-1 min-w-0">
                     <p className="text-xs font-medium text-primary">Resource</p>

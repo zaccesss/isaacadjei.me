@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
 
-export const alt = "Isaac Adjei | EECS"
+export const alt = "Isaac Adjei"
 export const size = {
   width: 1200,
   height: 630,
@@ -24,9 +24,8 @@ export default function OpenGraphImage() {
         </div>
       </div>
 
-      <div tw="flex justify-between items-center text-[30px] text-slate-300">
-        <span>Full-stack software, embedded systems, AI/ML and data science</span>
-        <span tw="font-bold text-slate-200">EECS</span>
+      <div tw="flex items-center text-[30px] text-slate-300">
+        <span>Circuit boards, firmware, software and AI/ML</span>
       </div>
     </div>,
     {

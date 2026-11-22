@@ -12,14 +12,11 @@ export function ProgressBar({
   const pct = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0
   return (
     <div className="flex items-center gap-2">
-      {label && <span className="text-xs text-muted-foreground w-20 shrink-0">{label}</span>}
-      <div className="flex-1 bg-muted rounded-full h-1.5">
-        <div
-          className={`${colorClassName} h-1.5 rounded-full transition-all duration-500`}
-          style={{ width: `${pct}%` }}
-        />
+      {label && <span className="w-20 shrink-0 text-xs text-muted-foreground">{label}</span>}
+      <div className="h-1.5 flex-1 rounded-full bg-muted" aria-hidden>
+        <div className={`${colorClassName} h-1.5 rounded-full`} style={{ width: `${pct}%` }} />
       </div>
-      <span className="text-xs font-semibold w-10 text-right tabular-nums">{pct}%</span>
+      <span className="w-10 text-right text-xs font-semibold tabular-nums">{pct}%</span>
     </div>
   )
 }

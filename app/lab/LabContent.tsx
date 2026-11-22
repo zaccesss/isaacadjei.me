@@ -22,6 +22,30 @@ import { GAMES, GAME_RECORDINGS, GamesView, findGame, gamesListLines } from "./_
 
 const PCBViewer = dynamic(() => import("@/components/lab/PCBViewer"), { ssr: false })
 
+function BoardWhenNear() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [near, setNear] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || near) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return
+        setNear(true)
+        io.disconnect()
+      },
+      { rootMargin: "600px 0px" },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [near])
+  return (
+    <div ref={ref}>
+      {near ? <PCBViewer /> : <div className="aspect-video w-full rounded-xl border border-border/50 bg-card/30" aria-hidden="true" />}
+    </div>
+  )
+}
+
 type WindowState = "normal" | "minimized" | "maximized" | "closed"
 
 const PROMPT_DIR = "isaacadjei.me/lab"
@@ -2301,14 +2325,14 @@ export default function LabPage({ data }: { data: LabData }) {
       {!isMaximized && !isClosed && (
         <>
           <div className="text-center space-y-1">
-            <p className="font-mono text-sm font-semibold tracking-widest uppercase text-yellow-500">
+            <p className="font-mono text-sm font-semibold text-amber-700 dark:text-yellow-500">
               ⚠️ lab // work in progress ⚠️
             </p>
             <p className="font-mono text-xs text-muted-foreground">
               terminal, PCB viewer and hardware · more experiments incoming
             </p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center motion-reduce:hidden">
             <div className="rounded-lg border border-border/60 overflow-hidden">
               <Image
                 src="/Media/giphy.gif"
@@ -2518,7 +2542,7 @@ export default function LabPage({ data }: { data: LabData }) {
 
       {!isMaximized && (
         <div id="board" className="scroll-mt-24">
-          <PCBViewer />
+          <BoardWhenNear />
         </div>
       )}
 
@@ -2536,11 +2560,11 @@ export default function LabPage({ data }: { data: LabData }) {
       {!isMaximized && (
         <p className="text-center text-xs text-muted-foreground font-mono">
           use{" "}
-          <kbd suppressHydrationWarning className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px]">
+          <kbd suppressHydrationWarning className="rounded border border-border bg-muted px-1.5 py-0.5 text-xs">
             {modLabel}
           </kbd>{" "}
           +{" "}
-          <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-[10px]">I</kbd>{" "}
+          <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-xs">I</kbd>{" "}
           to navigate the site
         </p>
       )}

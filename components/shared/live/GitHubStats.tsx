@@ -107,7 +107,7 @@ export default function GitHubStats() {
                 <span className="text-foreground font-medium">pushed</span>{" "}
                 <span className="font-mono">{lastPush.repo}</span>
                 {lastPush.relativeTime && (
-                  <span className="text-muted-foreground/70"> · {lastPush.relativeTime}</span>
+                  <span className="text-muted-foreground"> · {lastPush.relativeTime}</span>
                 )}
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function GitHubStats() {
               <div key={label} className="rounded-xl border border-border/60 bg-muted/30 p-3 text-center space-y-1">
                 <div className="flex justify-center"><Icon className="h-4 w-4 text-primary" /></div>
                 <p className="text-lg font-bold text-foreground">{value}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wide font-mono">{label}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide font-mono">{label}</p>
               </div>
             ))}
           </div>
@@ -130,11 +130,11 @@ export default function GitHubStats() {
           {stats.contributions && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
-                  contributions
+                <p className="text-xs text-muted-foreground font-semibold">
+                  Contributions
                 </p>
                 <span className="text-xs font-semibold text-foreground">
-                  {stats.contributions.allTimeTotal.toLocaleString()} total
+                  {stats.contributions.allTimeTotal.toLocaleString("en-GB")} total
                 </span>
               </div>
 
@@ -146,8 +146,8 @@ export default function GitHubStats() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="rounded-lg border border-border/60 bg-muted/20 px-3 py-2 text-center space-y-0.5">
                     <div className="flex justify-center"><Icon className="h-3.5 w-3.5 text-primary" /></div>
-                    <p className="text-sm font-bold text-foreground">{value.toLocaleString()}</p>
-                    <p className="text-[10px] text-muted-foreground font-mono leading-tight">{label}</p>
+                    <p className="text-sm font-bold text-foreground">{value.toLocaleString("en-GB")}</p>
+                    <p className="text-xs text-muted-foreground font-mono leading-tight">{label}</p>
                   </div>
                 ))}
               </div>
@@ -159,8 +159,8 @@ export default function GitHubStats() {
                 cellSize={10}
               />
 
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
-                isometric view
+              <p className="text-xs text-muted-foreground font-semibold">
+                Isometric view
               </p>
               <LazyIsometricCalendar
                 data={stats.contributions.days.map((d) => ({ date: d.date, value: d.count }))}
@@ -170,7 +170,7 @@ export default function GitHubStats() {
 
           {stats.topLanguages.length > 0 && (
             <div className="space-y-1.5">
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">top languages</p>
+              <p className="text-xs text-muted-foreground font-semibold">Top languages</p>
               <div className="flex flex-wrap gap-1.5">
                 {stats.topLanguages.map((lang) => (
                   <span key={lang} className="rounded-md bg-muted px-2 py-0.5 text-xs font-medium leading-5 text-foreground/80">
@@ -183,7 +183,7 @@ export default function GitHubStats() {
 
           {stats.topRepos.length > 0 && (
             <div className="space-y-2">
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">top repos</p>
+              <p className="text-xs text-muted-foreground font-semibold">Top repos</p>
               <div className="space-y-2">
                 {stats.topRepos.map((repo) => (
                   <a
@@ -191,16 +191,16 @@ export default function GitHubStats() {
                     href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start justify-between gap-3 rounded-lg border border-border/60 bg-muted/20 px-3 py-2.5 hover:border-primary/40 hover:bg-muted/30 transition-all"
+                    className="group flex items-start justify-between gap-3 rounded-lg border border-border/60 bg-muted/20 px-3 py-2.5 hover:border-primary/40 hover:bg-muted/30 transition-colors"
                   >
                     <div className="min-w-0 space-y-0.5">
                       <p className="text-xs font-medium text-foreground group-hover:text-primary transition-colors truncate">{repo.name}</p>
-                      <p className="text-[11px] text-muted-foreground line-clamp-1">{repo.description}</p>
+                      <p className="text-xs text-muted-foreground line-clamp-1">{repo.description}</p>
                     </div>
                     {repo.stars > 0 && (
                       <div className="flex items-center gap-1 shrink-0 text-muted-foreground">
                         <Star className="h-3 w-3" />
-                        <span className="text-[11px] font-mono">{repo.stars}</span>
+                        <span className="text-xs font-mono">{repo.stars}</span>
                       </div>
                     )}
                   </a>
@@ -210,7 +210,7 @@ export default function GitHubStats() {
           )}
         </>
       )}
-      <TypingMotto text="git push origin career --force" delay={600} />
+      <TypingMotto text="git push origin career --force" />
     </div>
   )
 }

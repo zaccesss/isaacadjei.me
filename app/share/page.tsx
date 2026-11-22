@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Code, Cpu, Brain } from "lucide-react"
 
-const TITLE = "Isaac Adjei | EE & CS"
+const TITLE = "Isaac Adjei"
 const DESCRIPTION =
-  "Electronic Engineering and Computer Science student at Aston University. Building full-stack software, embedded systems and AI/ML solutions. Open to internships and placements."
+  "Electronic Engineering and Computer Science student at Aston University building circuit boards, firmware, software and AI/ML. Open to internships and placements."
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -37,13 +37,13 @@ export default function SharePage() {
         </div>
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight">Isaac Adjei</h1>
-          <p className="text-sm font-mono text-primary uppercase tracking-widest">
+          <p className="text-sm text-primary font-semibold">
             Electronic Engineering &amp; Computer Science
           </p>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          EE &amp; CS student at Aston University building across full-stack software,
-          embedded systems and AI/ML. Open to internships and placements.
+          Student at Aston University building circuit boards, firmware, software and AI/ML. Open to
+          internships, placements and professional opportunities.
         </p>
         <Link
           href="/"

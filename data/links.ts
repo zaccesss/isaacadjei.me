@@ -8,7 +8,7 @@ export interface LinkItem {
   icon: string
   iconImage?: string
   iconTransparent?: boolean
-  iconMark?: "zacess"
+  iconMark?: "zacess" | "ia"
   category:
     | "professional"
     | "ventures"
@@ -29,7 +29,7 @@ export const profileLinks: LinkItem[] = [
     description: "Projects, blog, CV and everything me",
     url: "https://isaacadjei.me",
     icon: "globe",
-    iconImage: "/images/avatar.webp",
+    iconMark: "ia",
     category: "professional",
   },
   {

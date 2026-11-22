@@ -104,6 +104,8 @@
 @theme inline {
   --font-sans: var(--font-sans-platform, var(--font-geist-sans)), sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* headings on every platform, Apple included: one face for every title on the site and the dashboard */
+  --font-heading: var(--font-plex-sans), var(--font-sans-platform, var(--font-geist-sans)), sans-serif;
 }
 html.apple {
   --font-sans-platform: system-ui;
@@ -142,15 +144,28 @@ html.apple {
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* secondary text, used on every page. Slate 600 is 7.58 to 1 on the page and 7.1 to 1 on the muted surface; the
+       slate 500 it replaced was 4.76 to 1, readable on paper but faint for low vision */
+    --muted-foreground: 215.3 19.3% 34.5%;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
+    /* red 700: 6.5 to 1 as text on white and on its own tint. White text on it as a button reads the same */
+    --destructive: 0 72% 42%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 225 65% 40%;
     --radius: 0.5rem;
+    /* chart colours, kept in step with lib/ui/chart-palette.ts: each clears 3 to 1 on this theme's page */
+    --chart-1: #3b82f6;
+    --chart-2: #16a34a;
+    --chart-3: #d97706;
+    --chart-4: #f43f5e;
+    --chart-5: #8b5cf6;
+    --chart-6: #0891b2;
+    --chart-7: #ea580c;
+    --chart-8: #475569;
+    --chart-neutral: #64748b;
   }
 
   .dark {
@@ -160,23 +175,35 @@ html.apple {
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
-    --primary: 225 65% 60%;
-    --primary-foreground: 0 0% 98%;
-    /* lighter than primary in the dark theme: primary is 4.56 to 1 on the page but under 4.5 on the card and muted
-       surfaces a link can sit on. This one is 5.82 to 1 on the page and 4.70 to 1 on the muted colour, the
-       lightest of them */
+    /* the link blue (5.82 to 1 on the page, about 5.4 on a card) so primary text clears 4.5 to 1 on every dark surface.
+       Text on a primary button is near black: white on the old 60% blue was 3.93 to 1 */
+    --primary: 225 65% 66%;
+    --primary-foreground: 0 0% 5%;
+    /* the same blue as primary in the dark theme: 5.82 to 1 on the page and 4.70 to 1 on the muted colour, the
+       lightest surface a link can sit on */
     --link-hover: 225 65% 66%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    /* 8.9 to 1 on the page, 8.3 to 1 on a card and 7.2 to 1 on the muted surface (60% grey was 6.58 to 1 at best) */
+    --muted-foreground: 0 0% 70%;
     --accent: 0 0% 15%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    /* a light red that reads as text on the dark page (6.6 to 1); as a button fill it takes near-black text, as primary does */
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 0 0% 5%;
     --border: 0 0% 18%;
     --input: 0 0% 18%;
     --ring: 225 65% 60%;
+    --chart-1: #60a5fa;
+    --chart-2: #34d399;
+    --chart-3: #fbbf24;
+    --chart-4: #fb7185;
+    --chart-5: #a78bfa;
+    --chart-6: #22d3ee;
+    --chart-7: #fb923c;
+    --chart-8: #cbd5e1;
+    --chart-neutral: #94a3b8;
   }
 }
 
@@ -192,6 +219,15 @@ html.apple {
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+  }
+  /* every heading takes the heading face; body text, labels and figures stay in the body face. The value is written
+     out rather than read from --font-heading, which lives on :root where the next/font variable on <body> does not
+     exist (the same trap as --font-sans above) */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-plex-sans), var(--font-sans-platform, var(--font-geist-sans)), sans-serif;
   }
 }
 
@@ -280,17 +316,18 @@ html.apple {
     transform: none;
   }
   /*
-    the public pages promise that every animation follows this setting, so the utility keyframes (pulse, ping, spin,
-    bounce, the typing cursors and the enter and exit fades on menus and dialogs) all stop here as one net. Only the
-    public shell renders #main-content, so other layouts keep their own behaviour. Portalled menus sit outside the
-    shell, which is why the match runs from body rather than from the shell itself
+    every page, the dashboard included, promises that motion follows this setting, so the utility keyframes (pulse,
+    spin, the enter and exit fades on menus and dialogs) and every transition stop here as one net. A global rule
+    like this cannot reach motion driven by script, so canvas, chart and requestAnimationFrame loops check the
+    setting themselves. Portalled menus sit outside any shell, which is why it matches from body
   */
-  body:has(#main-content) *,
-  body:has(#main-content) *::before,
-  body:has(#main-content) *::after {
+  body *,
+  body *::before,
+  body *::after {
     animation: none !important;
+    transition-duration: 0s !important;
   }
-  html:has(#main-content) {
+  html {
     scroll-behavior: auto;
   }
 }
@@ -303,6 +340,27 @@ html.apple {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/*
+  a project card's image grows into the project page's cover (<ViewTransition name="project-cover-<id>">), the one
+  page transition on the site: it shows where the page came from. Unnamed content does not block clicks while it
+  runs. Under reduced motion every transition finishes at once
+*/
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(.project-cover) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }
 
 @keyframes blink {
@@ -471,21 +529,23 @@ html.apple {
 }
 
 /* large monitors: scale the whole site up a little instead of stretching it, so text, cards and spacing grow
-   together and reading columns keep a comfortable line length. Laptops and phones are unaffected */
+   together and reading columns keep a comfortable line length. Laptops and phones are unaffected. Percentages of the
+   browser's own size rather than pixels, so a reader who has set a larger default keeps it (106.25% and 112.5% are
+   17px and 18px at the usual 16px) */
 @media (min-width: 1920px) {
-  html { font-size: 17px; }
+  html { font-size: 106.25%; }
 }
 @media (min-width: 2400px) {
-  html { font-size: 18px; }
+  html { font-size: 112.5%; }
 }
 
 /*
-  Public pages raise the two smallest text sizes by a pixel each: 12px to 13px and 14px to 15px. Most text on the
-  card and list pages sat at those two sizes, which is small to read. Only these two steps change, so headings,
-  body text, spacing and column widths stay as they were. It is set on the root, not the shell, so menus and
-  dialogs that open outside the shell follow too. The dashboard is not a public page and keeps its compact sizes.
+  Every page raises the two smallest text sizes by a pixel each: 12px to 13px and 14px to 15px, so nothing on the
+  site or the dashboard is under 13px. Most list and card text sat at those two sizes, which is small to read. Only
+  these two steps change, so headings, body text, spacing and column widths stay as they were. It is set on the
+  root, so menus and dialogs that open outside any shell follow too.
 */
-html:has([data-public-shell]) {
+html {
   --text-xs: 0.8125rem;
   --text-xs--line-height: calc(1.125 / 0.8125);
   --text-sm: 0.9375rem;

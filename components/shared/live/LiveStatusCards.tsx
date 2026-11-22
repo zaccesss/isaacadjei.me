@@ -8,7 +8,6 @@ import SpotifyBars from "@/components/shared/live/SpotifyBars"
 import { SiPlaystation, SiDiscord, SiSpotify } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { SPOTIFY_PROFILE_URL } from "@/lib/constants"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { DISCORD_PROFILE_ID, DISCORD_USER_ID } from "@/lib/site-config"
 import { schedule, useLiveMode } from "@/hooks/use-live-polling"
 
@@ -160,34 +159,6 @@ function elapsedSince(startMs: number): string {
   const h = Math.floor(mins / 60)
   const m = mins % 60
   return m > 0 ? `${h}h ${m}m` : `${h}h`
-}
-
-function MarqueeText({ text, active, className }: { text: string; active: boolean; className?: string }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const measureRef = useRef<HTMLSpanElement>(null)
-  const [overflows, setOverflows] = useState(false)
-  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
-
-  useEffect(() => {
-    if (!containerRef.current || !measureRef.current) return
-    setOverflows(measureRef.current.scrollWidth > containerRef.current.clientWidth)
-  }, [text])
-
-  return (
-    <div ref={containerRef} className={cn("overflow-hidden min-w-0", className)}>
-      <span ref={measureRef} className="absolute invisible whitespace-nowrap pointer-events-none" aria-hidden>
-        {text}
-      </span>
-      {overflows && active && !reduce ? (
-        <div className="flex whitespace-nowrap animate-marquee gap-10">
-          <span>{text}</span>
-          <span aria-hidden>{text}</span>
-        </div>
-      ) : (
-        <span className="block truncate">{text}</span>
-      )}
-    </div>
-  )
 }
 
 function formatMs(ms: number): string {
@@ -464,7 +435,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
   const hasTrack = spotify.playing || spotify.paused
   const progress = hasTrack && spotify.durationMs ? liveProgressMs / spotify.durationMs : 0
   const spotifyLabel = spotify.playing
-    ? spotify.device ? `Currently Listening on ${spotify.device}` : "Currently Listening..."
+    ? spotify.device ? `Currently listening on ${spotify.device}` : "Currently listening..."
     : "Paused"
 
   return (
@@ -472,7 +443,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
 
       <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+          <p className="text-xs font-medium text-muted-foreground">
             Currently in {countryName(mac.countryCode)}
           </p>
           <p className="text-2xl font-semibold font-mono tabular-nums leading-tight mt-1.5">
@@ -498,7 +469,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           <div className="p-4 space-y-3">
             <div className="flex items-center gap-2">
               <SiSpotify className="h-3.5 w-3.5 text-primary shrink-0" />
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-primary flex-1 truncate">
+              <p className="text-xs font-medium text-primary flex-1 truncate">
                 {spotifyLabel}
               </p>
               <a
@@ -506,7 +477,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
-                className="relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative text-muted-foreground hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -517,7 +488,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 {spotify.albumArt ? (
                   <img src={spotify.albumArt} alt="" className="w-full h-full rounded-full object-cover" />
                 ) : (
-                  <div className="w-full h-full rounded-full bg-muted flex items-center justify-center text-muted-foreground/40 text-lg">♫</div>
+                  <div className="w-full h-full rounded-full bg-muted flex items-center justify-center text-muted-foreground text-lg">♫</div>
                 )}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-2.5 h-2.5 rounded-full bg-card/80 border border-border/60" />
@@ -525,11 +496,19 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
               </div>
               <div className="flex-1 min-w-0 relative">
                 {spotify.url ? (
-                  <a href={spotify.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-sm leading-tight hover:underline block truncate">
+                  <a
+                    href={spotify.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={spotify.track ?? undefined}
+                    className="font-semibold text-sm leading-tight hover:underline block truncate"
+                  >
                     {spotify.track}
                   </a>
                 ) : (
-                  <MarqueeText text={spotify.track ?? ""} active={spotify.playing} className="font-semibold text-sm leading-tight" />
+                  <p title={spotify.track ?? undefined} className="font-semibold text-sm leading-tight truncate">
+                    {spotify.track}
+                  </p>
                 )}
                 <p className="text-xs text-muted-foreground truncate mt-0.5">{spotify.artist}</p>
               </div>
@@ -543,13 +522,13 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
               <div className="h-1 w-full rounded-full bg-muted overflow-hidden">
                 <div
                   className={cn(
-                    "h-full rounded-full transition-all",
+                    "h-full w-full origin-left rounded-full transition-transform",
                     spotify.playing ? "bg-primary" : "bg-muted-foreground/40"
                   )}
-                  style={{ width: `${progress * 100}%` }}
+                  style={{ transform: `scaleX(${Math.min(1, Math.max(0, progress))})` }}
                 />
               </div>
-              <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+              <div className="flex justify-between text-xs text-muted-foreground tabular-nums">
                 <span>{formatMs(liveProgressMs)}</span>
                 <span>{formatMs(spotify.durationMs ?? 0)}</span>
               </div>
@@ -575,18 +554,18 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
             </div>
           </div>
         ) : spotify.lastPlayed ? (
-          <div className="p-4 space-y-3 opacity-50">
+          <div className="p-4 space-y-3">
             <div className="flex items-center gap-2">
               <SiSpotify className="h-3.5 w-3.5 text-primary shrink-0" />
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground flex-1">
-                Last Played
+              <p className="text-xs font-medium text-muted-foreground flex-1">
+                Last played
               </p>
               <a
                 href={SPOTIFY_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Spotify profile"
-                className="relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative text-muted-foreground hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -621,7 +600,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
                 <SiSpotify className="h-3 w-3 text-primary shrink-0" />
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                <p className="text-xs font-medium text-muted-foreground">
                   Spotify
                 </p>
                 <a
@@ -629,7 +608,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Spotify profile"
-                  className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
+                  className="ml-auto relative text-muted-foreground hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
                 >
                   <ExternalLink className="h-3 w-3" />
                 </a>
@@ -644,17 +623,17 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
 
         <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-3">
           <div className="flex items-center gap-2">
-            <Laptop className={cn("h-4 w-4 shrink-0", online ? "text-foreground" : "text-muted-foreground/40")} />
-            <p className={cn("text-xs font-semibold truncate", online ? "" : "text-foreground/50")}>{mac.device ?? "MacBook Air"}</p>
+            <Laptop className={cn("h-4 w-4 shrink-0", online ? "text-foreground" : "text-muted-foreground")} />
+            <p className={cn("text-xs font-semibold truncate", online ? "" : "text-muted-foreground")}>{mac.device ?? "MacBook Air"}</p>
           </div>
           <div className="space-y-1.5">
             <div className="flex items-center gap-1.5">
               {online ? (
                 <Wifi className="h-3 w-3 text-primary shrink-0" />
               ) : (
-                <WifiOff className="h-3 w-3 text-muted-foreground/40 shrink-0" />
+                <WifiOff className="h-3 w-3 text-muted-foreground shrink-0" />
               )}
-              <span className={cn("text-xs", online ? "text-blue-500" : "text-muted-foreground/60")}>
+              <span className={cn("text-xs", online ? "text-blue-500" : "text-muted-foreground")}>
                 {seenText}
               </span>
             </div>
@@ -667,7 +646,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 </span>
               </div>
             ) : (
-              <p className="text-xs text-muted-foreground/40">no data</p>
+              <p className="text-xs text-muted-foreground">no data</p>
             )}
           </div>
         </div>
@@ -677,17 +656,17 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           return (
             <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-3">
               <div className="flex items-center gap-2">
-                <Laptop className={cn("h-4 w-4 shrink-0", lOnline ? "text-foreground" : "text-muted-foreground/40")} />
-                <p className={cn("text-xs font-semibold truncate", lOnline ? "" : "text-foreground/50")}>{laptopName(lenovo.device, lOnline)}</p>
+                <Laptop className={cn("h-4 w-4 shrink-0", lOnline ? "text-foreground" : "text-muted-foreground")} />
+                <p className={cn("text-xs font-semibold truncate", lOnline ? "" : "text-muted-foreground")}>{laptopName(lenovo.device, lOnline)}</p>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-1.5">
                   {lOnline ? (
                     <Wifi className="h-3 w-3 text-primary shrink-0" />
                   ) : (
-                    <WifiOff className="h-3 w-3 text-muted-foreground/40 shrink-0" />
+                    <WifiOff className="h-3 w-3 text-muted-foreground shrink-0" />
                   )}
-                  <span className={cn("text-xs", lOnline ? "text-blue-500" : "text-muted-foreground/60")}>
+                  <span className={cn("text-xs", lOnline ? "text-blue-500" : "text-muted-foreground")}>
                     {lSeenText}
                   </span>
                 </div>
@@ -700,7 +679,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                     </span>
                   </div>
                 ) : (
-                  <p className="text-xs text-muted-foreground/40">no data</p>
+                  <p className="text-xs text-muted-foreground">no data</p>
                 )}
               </div>
             </div>
@@ -712,37 +691,37 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           return (
             <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-3">
               <div className="flex items-center gap-2">
-                <Monitor className={cn("h-4 w-4 shrink-0", gOnline ? "text-foreground" : "text-muted-foreground/40")} />
-                <p className={cn("text-xs font-semibold truncate", gOnline ? "" : "text-foreground/50")}>{gamingPC.device ?? "Gaming PC"}</p>
+                <Monitor className={cn("h-4 w-4 shrink-0", gOnline ? "text-foreground" : "text-muted-foreground")} />
+                <p className={cn("text-xs font-semibold truncate", gOnline ? "" : "text-muted-foreground")}>{gamingPC.device ?? "Gaming PC"}</p>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-1.5">
                   {gOnline ? (
                     <Wifi className="h-3 w-3 text-primary shrink-0" />
                   ) : (
-                    <WifiOff className="h-3 w-3 text-muted-foreground/30 shrink-0" />
+                    <WifiOff className="h-3 w-3 text-muted-foreground shrink-0" />
                   )}
-                  <span className={cn("text-xs", gOnline ? "text-blue-500" : "text-muted-foreground/40")}>
+                  <span className={cn("text-xs", gOnline ? "text-blue-500" : "text-muted-foreground")}>
                     {gamingPC.lastSeen ? gSeenText : "offline"}
                   </span>
                 </div>
                 {gOnline && (
                   <div className="space-y-1 pt-0.5">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground/60 w-7 shrink-0">CPU</span>
+                      <span className="text-xs font-semibold text-muted-foreground w-9 shrink-0">CPU</span>
                       <span className="text-primary flex-1 min-w-0">
                         <Sparkline data={gpcHistory.map((s) => s.cpu)} />
                       </span>
-                      <span className="text-[10px] font-mono tabular-nums text-muted-foreground w-9 text-right shrink-0">
+                      <span className="text-xs tabular-nums text-muted-foreground w-10 text-right shrink-0">
                         {gamingPC.cpu !== null ? `${gamingPC.cpu}%` : "n/a"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground/60 w-7 shrink-0">GPU</span>
+                      <span className="text-xs font-semibold text-muted-foreground w-9 shrink-0">GPU</span>
                       <span className="text-emerald-500 flex-1 min-w-0">
                         <Sparkline data={gpcHistory.map((s) => s.gpu)} />
                       </span>
-                      <span className="text-[10px] font-mono tabular-nums text-muted-foreground w-9 text-right shrink-0">
+                      <span className="text-xs tabular-nums text-muted-foreground w-10 text-right shrink-0">
                         {gamingPC.gpu !== null ? `${gamingPC.gpu}%` : "n/a"}
                       </span>
                     </div>
@@ -760,7 +739,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   </div>
                 )}
                 {!gOnline && gamingPC.lastGame && (
-                  <div className="flex items-start justify-between gap-2 pt-0.5 opacity-40">
+                  <div className="flex items-start justify-between gap-2 pt-0.5">
                     <div className="min-w-0">
                       <p className="text-xs text-muted-foreground">Last played</p>
                       <p className="text-xs text-muted-foreground truncate">{gamingPC.lastGame}</p>
@@ -771,7 +750,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   </div>
                 )}
                 {!gOnline && !gamingPC.lastSeen && (
-                  <p className="text-xs text-muted-foreground/30">daemon not set up</p>
+                  <p className="text-xs text-muted-foreground">daemon not set up</p>
                 )}
               </div>
             </div>
@@ -783,22 +762,22 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           return (
             <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-3">
               <div className="flex items-center gap-2">
-                <SiPlaystation className={cn("h-4 w-4 shrink-0", pOnline ? "text-foreground" : "text-muted-foreground/40")} />
-                <p className={cn("text-xs font-semibold truncate", pOnline ? "" : "text-foreground/50")}>ZACCESS-PS5</p>
+                <SiPlaystation className={cn("h-4 w-4 shrink-0", pOnline ? "text-foreground" : "text-muted-foreground")} />
+                <p className={cn("text-xs font-semibold truncate", pOnline ? "" : "text-muted-foreground")}>ZACCESS-PS5</p>
               </div>
               <div className="space-y-1.5">
                 <div className="flex items-center gap-1.5">
                   {pOnline ? (
                     <Wifi className="h-3 w-3 text-primary shrink-0" />
                   ) : (
-                    <WifiOff className="h-3 w-3 text-muted-foreground/30 shrink-0" />
+                    <WifiOff className="h-3 w-3 text-muted-foreground shrink-0" />
                   )}
-                  <span className={cn("text-xs", pOnline ? "text-blue-500" : "text-muted-foreground/40")}>
+                  <span className={cn("text-xs", pOnline ? "text-blue-500" : "text-muted-foreground")}>
                     {ps5Data.lastSeen ? pSeenText : "offline"}
                   </span>
                   {ps5Data.busy && (
                     <>
-                      <span className="text-xs text-muted-foreground/30">·</span>
+                      <span className="text-xs text-muted-foreground">·</span>
                       <span className="text-xs text-amber-500/80 font-medium">Busy</span>
                     </>
                   )}
@@ -821,7 +800,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                   <p className="text-xs text-muted-foreground">{ps5Data.status}</p>
                 ) : null}
                 {!ps5Data.online && ps5Data.lastGame && (
-                  <div className="flex items-start justify-between gap-2 pt-0.5 opacity-40">
+                  <div className="flex items-start justify-between gap-2 pt-0.5">
                     <div className="min-w-0">
                       <p className="text-xs text-muted-foreground">Last played</p>
                       <p className="text-xs text-muted-foreground truncate">{ps5Data.lastGame}</p>
@@ -843,22 +822,22 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
       </div>
 
       <div className="rounded-2xl border border-border/60 bg-card shadow-xs py-3 px-4 flex items-center gap-2 text-sm">
-        <Github className="h-4 w-4 text-foreground/60 dark:text-foreground/50 shrink-0" />
+        <Github className="h-4 w-4 text-muted-foreground dark:text-muted-foreground shrink-0" />
         <span className="text-foreground/30 dark:text-foreground/25 select-none">|</span>
-        <GitBranch className="h-3.5 w-3.5 text-foreground/50 dark:text-foreground/40 shrink-0" />
+        <GitBranch className="h-3.5 w-3.5 text-muted-foreground dark:text-foreground/40 shrink-0" />
         {github.repo ? (
           <>
             <span className="text-xs text-muted-foreground">pushed</span>
             <span className="text-xs font-medium text-foreground/80 truncate">{github.repo}</span>
             <div className="flex items-center gap-1.5 shrink-0 ml-auto">
-              <span className="text-xs text-muted-foreground/50">{github.relativeTime}</span>
+              <span className="text-xs text-muted-foreground">{github.relativeTime}</span>
               <span className="text-foreground/20 dark:text-foreground/15 select-none">|</span>
               <a
                 href="https://github.com/zaccesss"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
-                className="text-foreground/60 hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -866,13 +845,13 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           </>
         ) : (
           <>
-            <span className="text-xs text-muted-foreground/40">no recent activity</span>
+            <span className="text-xs text-muted-foreground">no recent activity</span>
             <a
               href="https://github.com/zaccesss"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile"
-              className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
+              className="ml-auto relative text-muted-foreground hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
             >
               <ExternalLink className="h-3 w-3" />
             </a>
@@ -891,7 +870,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
           : lanyard!.discord_status === "dnd" ? "do not disturb" : lanyard!.discord_status
 
         return (
-          <div className={cn("rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-2.5", offline && "opacity-50")}>
+          <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-4 space-y-2.5">
             <div className="flex items-center gap-2">
               <SiDiscord className="h-3.5 w-3.5 text-[#5865f2] shrink-0" />
               <span className="text-xs font-semibold">zac</span>
@@ -902,7 +881,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord profile"
-                className="ml-auto relative text-foreground/60 hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
+                className="ml-auto relative text-muted-foreground hover:text-foreground transition-colors shrink-0 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <ExternalLink className="h-3 w-3" />
               </a>
@@ -934,11 +913,11 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                       )}
                       <div className="space-y-0.5 min-w-0 flex-1">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground/40 shrink-0">
+                          <span className="text-xs font-semibold text-muted-foreground shrink-0">
                             {activity.type === 2 ? "Listening" : activity.type === 3 ? "Watching" : "Playing"}
                           </span>
                           {timestamp && (
-                            <span className="text-[10px] text-muted-foreground/40 ml-auto shrink-0 font-mono">
+                            <span className="text-xs text-muted-foreground ml-auto shrink-0 tabular-nums">
                               {timestamp}
                             </span>
                           )}
@@ -948,7 +927,7 @@ export default function LiveStatusCards({ alwaysShowDiscord = false }: { alwaysS
                           <p className="text-xs text-muted-foreground truncate">{activity.details}</p>
                         )}
                         {activity.state && (
-                          <p className="text-xs text-muted-foreground/60 truncate">{activity.state}</p>
+                          <p className="text-xs text-muted-foreground truncate">{activity.state}</p>
                         )}
                       </div>
                     </div>

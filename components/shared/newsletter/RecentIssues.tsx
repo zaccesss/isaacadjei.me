@@ -99,7 +99,7 @@ export default function RecentIssues({ issues }: { issues: NewsletterIssue[] }) 
             <a
               key={issue.id}
               href={issue.href}
-              className="group flex items-start gap-4 rounded-lg border border-border/60 bg-muted/20 px-4 py-4 hover:border-primary/40 hover:bg-muted/30 transition-all"
+              className="group flex items-start gap-4 rounded-lg border border-border/60 bg-muted/20 px-4 py-4 hover:border-primary/40 hover:bg-muted/30 transition-colors"
             >
               <div className="space-y-1 min-w-0 flex-1">
                 <h2 className="text-pretty text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
@@ -111,10 +111,10 @@ export default function RecentIssues({ issues }: { issues: NewsletterIssue[] }) 
                   </p>
                 )}
                 <div className="flex items-center gap-2">
-                  <p className="text-[11px] font-mono text-muted-foreground">
+                  <p className="text-xs tabular-nums text-muted-foreground">
                     {formatDate(issue.publishDate)}
                   </p>
-                  <span className="text-[11px] font-mono text-muted-foreground">
+                  <span className="text-xs font-mono text-muted-foreground">
                     {issue.label}
                     {issue.itemCount > 0 && ` · ${issue.itemCount} ${issue.itemCount === 1 ? "item" : "items"}`}
                   </span>

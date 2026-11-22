@@ -3,6 +3,7 @@ import Link from "next/link"
 import OpenSourceList from "@/components/opensource/OpenSourceList"
 import { getOpenSourceStats } from "@/lib/opensource/open-source"
 import { toListed } from "@/lib/opensource/open-source-list"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 3600
 
@@ -18,16 +19,12 @@ export default async function OpenSourcePage() {
 
   return (
     <div className="container max-w-3xl py-24 space-y-10">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Open source</h1>
-        <p className="text-muted-foreground">
-          Work I have contributed to other people&apos;s projects and to the tools I publish for everyone to use, all in the open. Each entry says what it changed and links to the work itself.
-        </p>
+      <PageHeader title="Open source" description="Work I have contributed to other people's projects and to the tools I publish for everyone to use, all in the open. Each entry says what it changed and links to the work itself.">
         <p className="text-muted-foreground">
           I keep the numbers and charts for this work on the{" "}
           <Link href="/stats#open-source" className="body-link inline-flex min-h-11 items-center">stats page</Link>.
         </p>
-      </div>
+      </PageHeader>
 
       {contributions.length > 0 ? (
         <OpenSourceList rows={toListed(contributions)} />

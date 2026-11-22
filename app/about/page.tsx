@@ -4,14 +4,15 @@ import { education } from "@/data/education"
 import { societies, isSocietyRoleVisible } from "@/data/societies"
 import { Separator } from "@/components/ui/separator"
 import ApproachAnimation from "@/components/shared/motion/ApproachAnimation"
-import { BookOpen, GraduationCap, Users, HandHeart, Trophy, Quote, Languages, Heart, Sparkles, Palette, HeartHandshake } from "lucide-react"
+import { BookOpen, GraduationCap, Users, HandHeart, Trophy, Quote, Languages, Heart, Sparkles, HeartHandshake } from "lucide-react"
 import { CHIP_CLASS } from "@/components/shared/lists/Tag"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Isaac Adjei: my story, education and involvement.",
+  description: "Isaac Adjei grew up in Ghana, studied engineering at Stanmore College and now studies Electronic Engineering and Computer Science at Aston.",
   alternates: {
     canonical: "https://isaacadjei.me/about",
   },
@@ -68,14 +69,12 @@ const TITLE_LINK = "underline decoration-border underline-offset-4 hover:decorat
 export default function AboutPage() {
   return (
     <div className="container max-w-4xl py-24 space-y-12">
-      <section className="space-y-6">
-        <h1 className="text-4xl font-bold tracking-tight">About Me</h1>
+      <PageHeader title="About">
         <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
           <p>
             I am Isaac Adjei. Most people know me as Zac. I am an Electronic Engineering and
             Computer Science student at Aston University, Birmingham, working towards a First Class
-            degree. My goal is to build at the intersection of intelligent software and efficient
-            hardware, creating systems that solve real problems for real people.
+            degree.
           </p>
           <p>
             At Aston I lead weekly Peer Assisted Learning sessions in Python and electronics, serve
@@ -119,11 +118,11 @@ export default function AboutPage() {
             <Link href="/projects/lidarsat" className={LINK}>LidarSAT</Link>{" "}
             (team research on GPS-denied drone navigation), a two-stage audio amplifier PCB built from
             scratch, a 4x4x4 NeoPixel LED Cube, avr-zac (bare-metal C on an ATmega644P), this site
-            itself and an open-source Git course with over 200 structured topic files.
+            itself and an open-source Git course with 182 structured topic files.
           </p>
         </div>
         <ApproachAnimation />
-      </section>
+      </PageHeader>
 
       <Separator />
 
@@ -136,15 +135,12 @@ export default function AboutPage() {
           <p>
             I grew up in Ghana and went to Adisadel College in Cape Coast, a school guided by the
             motto &ldquo;Vel Primus, Vel Cum Primis&rdquo; (Either the first or with the first).
-            It instilled in me resilience, discipline and a standard of excellence that still shape
-            everything I do. I was an active member of the Scripture Union, PENSA and the Debate
+            I was an active member of the Scripture Union, PENSA and the Debate
             Society.
           </p>
           <p>
             I lost sight in my right eye at age two due to retinoblastoma and have lived with
-            monocular vision my entire life. Rather than limiting me, it sharpened my focus and
-            shaped a deep commitment to accessible technology, building systems that genuinely
-            serve all users. Reading lecture slides and textbook pages was often hard, so I built a
+            monocular vision my entire life. It is why I care about accessible technology. Reading lecture slides and textbook pages was often hard, so I built a
             tool that turned them into large, high-contrast notes I could listen to. Another
             visually impaired student told me it saved him hours every week. That tool grew into
             Zacess.
@@ -464,25 +460,15 @@ export default function AboutPage() {
       <section id="outside" className="scroll-mt-24 space-y-6">
         <div className="flex items-center gap-3">
           <Sparkles className="h-6 w-6 text-primary" aria-hidden="true" />
-          <h2 className="text-2xl font-bold">Outside Engineering</h2>
+          <h2 className="text-2xl font-bold">Outside engineering</h2>
         </div>
         <p className="text-muted-foreground">
           Outside engineering I play piano, game on PS5 and PC, stay active at the gym, cycle, cook
-          Ghanaian food, journal and travel whenever I get the chance. I am a big believer in
-          continuous learning. I regularly work through online courses on platforms like Coursera,
-          build personal projects and read widely across tech, business and history. For me growth
-          is not occasional. It is an active lifestyle.
+          Ghanaian food, journal and travel whenever I get the chance. I regularly work through online
+          courses on platforms like Coursera, build personal projects and read widely across tech,
+          business and history.
         </p>
-      </section>
-
-      <Separator />
-
-      <section id="hobbies" className="scroll-mt-24 space-y-6">
-        <div className="flex items-center gap-3">
-          <Palette className="h-6 w-6 text-primary" aria-hidden="true" />
-          <h2 className="text-2xl font-bold">Hobbies</h2>
-        </div>
-        <ul className="flex flex-wrap gap-2">
+        <ul id="hobbies" aria-label="Hobbies" className="flex scroll-mt-24 flex-wrap gap-2">
           {hobbies.map((hobby) => (
             <li key={hobby} className={CHIP_CLASS}>
               {hobby}

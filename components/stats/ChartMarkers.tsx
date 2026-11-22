@@ -3,10 +3,11 @@
 import type { ReactNode } from "react"
 import type { PlacedMarker } from "@/lib/stats/stats-milestone-place"
 import { dayName } from "@/lib/stats/stats-helpers"
+import { PLOT_INSET } from "@/components/analytics/charts"
 
 function Badge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-foreground px-1 text-[10px] font-semibold leading-none text-background tabular-nums">
+    <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-foreground px-1 text-xs font-semibold leading-none text-background tabular-nums">
       {children}
     </span>
   )
@@ -16,7 +17,7 @@ export function ChartMarkers({
   markers,
   count,
   axis,
-  top = 6,
+  top = 8,
   bottom = 30,
   children,
 }: {
@@ -29,7 +30,7 @@ export function ChartMarkers({
 }) {
   if (markers.length === 0 || count === 0) return <>{children}</>
   const at = (i: number) => (axis === "band" ? (i + 0.5) / count : count === 1 ? 0.5 : i / (count - 1))
-  const left = (i: number) => `calc(8px + ${at(i).toFixed(4)} * (100% - 16px))`
+  const left = (i: number) => `calc(${PLOT_INSET.left}px + ${at(i).toFixed(4)} * (100% - ${PLOT_INSET.left + PLOT_INSET.right}px))`
   return (
     <div>
       <div className="relative">
@@ -40,7 +41,7 @@ export function ChartMarkers({
           ))}
         </div>
       </div>
-      <div aria-hidden className="relative h-5 mt-1">
+      <div aria-hidden className="relative mt-1 h-6">
         {markers.map((m) => (
           <span key={m.index} className="absolute top-0 -translate-x-1/2" style={{ left: left(m.index) }}>
             <Badge>{m.items.map((x) => x.n).join(",")}</Badge>

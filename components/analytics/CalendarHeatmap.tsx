@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react"
 import ReactECharts from "./EChart"
 import { useEChartsColours, intensityScale, relativeLevel } from "./echarts-theme"
+import { ukShortDate } from "@/lib/time/short-date"
 
 export interface CalendarHeatmapDatum {
   date: string
@@ -55,12 +56,12 @@ export function CalendarHeatmap({
     tooltip: {
       formatter: (p: { data: { value: [string, number]; raw: number } }) => {
         const [date] = p.data.value
-        const formatted = valueFormatter ? valueFormatter(p.data.raw) : p.data.raw.toLocaleString()
-        return `${date}<br/>${formatted}${valueLabel ? ` ${valueLabel}` : ""}`
+        const formatted = valueFormatter ? valueFormatter(p.data.raw) : p.data.raw.toLocaleString("en-GB")
+        return `${ukShortDate(date)}<br/>${formatted}${valueLabel ? ` ${valueLabel}` : ""}`
       },
       backgroundColor: colours.card,
       borderColor: colours.border,
-      textStyle: { color: colours.foreground, fontSize: 11 },
+      textStyle: { color: colours.foreground, fontSize: 13 },
     },
     visualMap: {
       show: false,
@@ -75,8 +76,8 @@ export function CalendarHeatmap({
       splitLine: { show: false },
       itemStyle: { borderWidth: 2, borderColor: colours.card, color: colours.border },
       yearLabel: { show: false },
-      monthLabel: { color: colours.mutedForeground, fontSize: 10 },
-      dayLabel: { color: colours.mutedForeground, fontSize: 10, firstDay: 1, nameMap: "en" },
+      monthLabel: { color: colours.mutedForeground, fontSize: 13 },
+      dayLabel: { color: colours.mutedForeground, fontSize: 13, firstDay: 1, nameMap: ["", "Mon", "", "Wed", "", "Fri", ""] },
     },
     series: [
       {
@@ -89,7 +90,7 @@ export function CalendarHeatmap({
 
   return (
     <div>
-      <div ref={scrollRef} className="overflow-x-auto">
+      <div ref={scrollRef} tabIndex={0} role="region" aria-label="Calendar heatmap, scrolls sideways" className="overflow-x-auto rounded-sm focus-visible:outline-2 focus-visible:outline-ring">
         <ReactECharts
           option={option}
           style={{ height, width: chartWidth }}
@@ -97,7 +98,7 @@ export function CalendarHeatmap({
           notMerge
         />
       </div>
-      <div className="mt-1.5 flex items-center justify-end gap-1 text-[10px] text-muted-foreground">
+      <div className="mt-1.5 flex items-center justify-end gap-1 text-xs text-muted-foreground" aria-hidden>
         <span>Less</span>
         {scale.map((c, i) => (
           <span key={i} className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: c }} />

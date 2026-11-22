@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Composed, useAnalyticsPeriod, filterByPeriod } from "@/components/analytics"
+import { ChartFrame, Composed, seriesTable, useAnalyticsPeriod, filterByPeriod } from "@/components/analytics"
+import EmptyState from "@/components/shared/EmptyState"
+import { ukShortDate } from "@/lib/time/short-date"
 import type { GitHubStats } from "@/app/api/github-stats/route"
-import { Activity } from "lucide-react"
 
 export default function GitHubActivityChart() {
   const { period } = useAnalyticsPeriod()
@@ -17,32 +18,20 @@ export default function GitHubActivityChart() {
   }, [])
 
   if (days === null) {
-    return <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 h-56 animate-pulse" />
+    return <div className="h-56 rounded-2xl border border-border/60 bg-card p-5" aria-busy="true" />
   }
 
   const filtered = filterByPeriod(days, period, (d) => d.date)
   const data = filtered.reduce<{ name: string; contributions: number; cumulative: number }[]>((acc, d) => {
     const prevCumulative = acc.length ? acc[acc.length - 1].cumulative : 0
-    acc.push({ name: d.date, contributions: d.count, cumulative: prevCumulative + d.count })
+    acc.push({ name: ukShortDate(d.date), contributions: d.count, cumulative: prevCumulative + d.count })
     return acc
   }, [])
 
-  if (!data.length) return null
-
+  const series = [{ key: "contributions", name: "Contributions" }, { key: "cumulative", name: "Cumulative" }]
   return (
-    <div className="rounded-2xl border border-border/60 bg-card shadow-xs p-5 space-y-3">
-      <div className="flex items-center gap-2">
-        <Activity className="h-4 w-4 text-muted-foreground" />
-        <span className="text-sm font-medium">Daily activity</span>
-      </div>
-      <Composed
-        data={data}
-        barKey="contributions"
-        lineKey="cumulative"
-        barName="Contributions"
-        lineName="Cumulative"
-        height={220}
-      />
-    </div>
+    <ChartFrame className="rounded-2xl border border-border/60 bg-card p-5" title="Daily activity" unit="contributions per day and running total" table={data.length ? seriesTable(data, "Day", series) : undefined} empty={!data.length} emptyTitle="No contributions in this period" emptyDescription="Pick a longer period to see more days.">
+      <Composed data={data} barKey="contributions" lineKey="cumulative" barName="Contributions" lineName="Cumulative" height={220} />
+    </ChartFrame>
   )
 }

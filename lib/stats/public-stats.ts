@@ -244,7 +244,7 @@ async function compute(): Promise<PublicStats> {
     deviceLengths.set(dev, [...(deviceLengths.get(dev) ?? []), Math.round(min)])
     gameDays.add(s.started_at.slice(0, 10))
     const w = weekIndex.get(weekKey(new Date(s.started_at)))
-    if (w != null) weeks[w].gaming += (new Date(s.ended_at ?? s.last_seen).getTime() - new Date(s.started_at).getTime()) / 3600000 + 2 / 60
+    if (w != null) weeks[w].gaming += min / 60
   }
 
   const gh = (ghDays.data ?? []) as { date: string; count: number }[]

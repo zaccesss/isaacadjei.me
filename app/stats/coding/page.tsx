@@ -25,13 +25,12 @@ export default async function StatsCodingPage() {
   return (
     <AnalyticsPeriodProvider defaultPeriod="30d">
       <div className="container max-w-3xl py-24 space-y-8">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <StatsPageHeader
-            title="Coding"
-            description="Live WakaTime data - how much I code, in what, in which editor and when."
-          />
+        <StatsPageHeader
+          title="Coding"
+          description="Live WakaTime data - how much I code, in what, in which editor and when."
+        >
           <PeriodSelector />
-        </div>
+        </StatsPageHeader>
         <CodingMore s={stats} milestones={getMilestones()} afterTiles={<><WakatimeStats /><RecordsRow s={stats} show={["streak", "codingDay"]} /></>} />
         <div className="grid gap-4 sm:grid-cols-2"><SoundtrackCard s={stats} /></div>
       </div>

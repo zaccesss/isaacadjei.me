@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calendar } from "lucide-react"
 import { notePosts, getNotePostBySlug, getAdjacentNotes, type NotePost } from "@/data/notes"
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/shared/ShareButton"
@@ -92,23 +92,30 @@ async function NotePostView({ post }: { post: NotePost }) {
       <div>
         <Link
           href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to notes
         </Link>
-        <time dateTime={post.date} className="block text-sm text-muted-foreground font-mono mb-4">
-          {formatNoteDate(post.date)}
-        </time>
-        <div className="flex items-start justify-between gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
-          <ShareButton title={`Notes | ${post.title}`} />
-        </div>
-        <p className="mt-4 text-muted-foreground text-lg leading-relaxed">{post.description}</p>
-        <div className="flex flex-wrap gap-2 mt-4">
-          {post.tags.map((tag) => (
-            <span key={tag} className={TAG_CLASS}>{tag}</span>
-          ))}
+        <div className="space-y-4">
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{post.title}</h1>
+          <p className="max-w-[68ch] text-lg text-muted-foreground leading-relaxed">{post.description}</p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground tabular-nums">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="h-3 w-3" aria-hidden="true" />
+              <time dateTime={post.date}>{formatNoteDate(post.date)}</time>
+            </span>
+            <div className="ml-auto">
+              <ShareButton title={`Notes | ${post.title}`} />
+            </div>
+          </div>
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span key={tag} className={TAG_CLASS}>{tag}</span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -117,7 +124,7 @@ async function NotePostView({ post }: { post: NotePost }) {
       <div className={cn(showToc && "lg:grid lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-12 lg:items-start")}>
       {showToc && <TableOfContents headings={tocHeadings} sections={[REACTIONS_SECTION, COMMENTS_SECTION]} />}
       <div className={cn("space-y-12", showToc && "min-w-0 lg:col-start-1 lg:row-start-1")}>
-      <article className="space-y-4">
+      <article className="max-w-[68ch] space-y-6">
         {post.content.map((block, i) => renderContentBlock(block, i, headingIds, post.content[i - 1], highlighted))}
       </article>
 
@@ -143,9 +150,9 @@ async function NotePostView({ post }: { post: NotePost }) {
           {prev ? (
             <Link
               href={`/notes/${prev.slug}`}
-              className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all"
+              className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-colors"
             >
-              <span className="flex items-center gap-1 text-xs text-muted-foreground font-mono">
+              <span className="flex items-center gap-1 text-xs text-muted-foreground">
                 <ArrowLeft className="h-3 w-3" aria-hidden="true" />
                 Previous
               </span>
@@ -159,9 +166,9 @@ async function NotePostView({ post }: { post: NotePost }) {
           {next ? (
             <Link
               href={`/notes/${next.slug}`}
-              className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-all text-right ml-auto w-full"
+              className="group flex flex-col gap-1 rounded-lg border border-border/60 bg-muted/20 px-4 py-3 hover:border-primary/40 hover:bg-muted/30 transition-colors text-right ml-auto w-full"
             >
-              <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground font-mono">
+              <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
                 Next
                 <ArrowRight className="h-3 w-3" aria-hidden="true" />
               </span>
@@ -177,7 +184,7 @@ async function NotePostView({ post }: { post: NotePost }) {
 
       <Link
         href="/notes"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to notes

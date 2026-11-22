@@ -1,6 +1,6 @@
 {
   "name": "isaacadjei.me",
-  "version": "2.130.0",
+  "version": "2.131.0",
   "private": true,
   "description": "Source of isaacadjei.me: the pages, components and content of my portfolio site",
   "homepage": "https://isaacadjei.me",
@@ -22,7 +22,6 @@
     "@radix-ui/react-popover": "^1.3.1",
     "@radix-ui/react-separator": "^1.2.0",
     "@radix-ui/react-slot": "^1.5.0",
-    "@radix-ui/react-tabs": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.4.1",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",

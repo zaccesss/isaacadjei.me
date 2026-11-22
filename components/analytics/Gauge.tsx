@@ -1,62 +1,59 @@
-"use client"
+import { cn } from "@/lib/utils"
 
-import ReactECharts from "./EChart"
-import { useEChartsColours } from "./echarts-theme"
+const BANDS = [
+  { from: 80, word: "On track", stroke: "stroke-emerald-700 dark:stroke-emerald-400" },
+  { from: 50, word: "Getting there", stroke: "stroke-amber-600 dark:stroke-amber-400" },
+  { from: 0, word: "Needs attention", stroke: "stroke-red-700 dark:stroke-red-400" },
+]
+
+const ARC = "M 16 100 A 84 84 0 0 1 184 100"
 
 export function Gauge({
   value,
   label,
-  height = 180,
   valueFormatter,
+  bands = true,
+  className,
 }: {
   value: number
   label?: string
   height?: number
   valueFormatter?: (value: number) => string
+  bands?: boolean
+  className?: string
 }) {
-  const colours = useEChartsColours()
-  const clamped = Math.max(0, Math.min(100, value))
-  const colour = clamped >= 80 ? "#22c55e" : clamped >= 50 ? "#f59e0b" : "#ef4444"
-
-  const band = clamped >= 80 ? "on track (80%+)" : clamped >= 50 ? "getting there (50-79%)" : "needs attention (below 50%)"
-
-  const option = {
-    tooltip: {
-      show: true,
-      trigger: "item",
-      backgroundColor: colours.card,
-      borderColor: colours.border,
-      textStyle: { color: colours.foreground, fontSize: 11 },
-      formatter: () => `${label ? `${label}: ` : ""}${valueFormatter ? valueFormatter(clamped) : `${Math.round(clamped)}%`} - ${band}`,
-    },
-    series: [
-      {
-        type: "gauge",
-        startAngle: 200,
-        endAngle: -20,
-        min: 0,
-        max: 100,
-        radius: "90%",
-        progress: { show: true, width: 12, itemStyle: { color: colour } },
-        axisLine: { lineStyle: { width: 12, color: [[1, colours.muted]] } },
-        axisTick: { show: false },
-        splitLine: { show: false },
-        axisLabel: { show: false },
-        pointer: { show: false },
-        anchor: { show: false },
-        detail: {
-          valueAnimation: true,
-          formatter: (v: number) => (valueFormatter ? valueFormatter(v) : `${Math.round(v)}%`),
-          color: colours.foreground,
-          fontSize: 22,
-          fontWeight: 700,
-          offsetCenter: [0, "0%"],
-        },
-        title: { show: !!label, offsetCenter: [0, "70%"], color: colours.mutedForeground, fontSize: 11 },
-        data: [{ value: clamped, name: label ?? "" }],
-      },
-    ],
-  }
-
-  return <ReactECharts option={option} style={{ height, width: "100%" }} opts={{ renderer: "svg" }} notMerge />
+  const clamped = Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0))
+  const band = BANDS.find((b) => clamped >= b.from) ?? BANDS[BANDS.length - 1]
+  const figure = valueFormatter ? valueFormatter(clamped) : `${Math.round(clamped)}%`
+  return (
+    <div
+      role="meter"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(clamped)}
+      aria-valuetext={`${figure}${bands ? `, ${band.word.toLowerCase()}` : ""}`}
+      aria-label={label ?? "Progress"}
+      className={cn("mx-auto flex w-full max-w-[240px] flex-col items-center", className)}
+    >
+      <div className="relative w-full">
+        <svg viewBox="0 0 200 108" className="block w-full" aria-hidden="true">
+          <path d={ARC} fill="none" stroke="hsl(var(--border))" strokeWidth={16} strokeLinecap="round" />
+          {clamped > 0 && (
+            <path
+              d={ARC}
+              fill="none"
+              pathLength={100}
+              strokeDasharray={`${clamped} 100`}
+              strokeWidth={16}
+              strokeLinecap="round"
+              className={bands ? band.stroke : "stroke-primary"}
+            />
+          )}
+        </svg>
+        <span className="absolute inset-x-0 bottom-1 text-center text-3xl font-semibold tabular-nums">{figure}</span>
+      </div>
+      {label && <span className="mt-2 text-center text-sm text-muted-foreground">{label}</span>}
+      {bands && <span className="mt-0.5 text-center text-sm font-medium">{band.word}</span>}
+    </div>
+  )
 }

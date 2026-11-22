@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Music2, ExternalLink } from "lucide-react"
+import { ArrowLeft, ExternalLink } from "lucide-react"
 import { artists, genres } from "@/data/consumed/music"
 import { consumedTotals } from "@/data/consumed"
 import { consumedSlug, normTag } from "@/lib/content/tags"
@@ -7,25 +7,23 @@ import { SpotifyNowPlaying } from "@/components/consumed/SpotifyNowPlaying"
 import { ConsumedCategoryTabs } from "@/components/consumed/ConsumedCategoryTabs"
 import { Separator } from "@/components/ui/separator"
 import { TAG_CLASS } from "@/components/shared/lists/Tag"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function MusicContent() {
   return (
     <div className="container py-24 space-y-10">
-      <div className="space-y-4 max-w-2xl">
+      <div className="max-w-2xl space-y-6">
         <Link
           href="/consumed"
-          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex min-h-11 items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           Back to Consumed
         </Link>
-        <div className="flex items-center gap-3">
-          <Music2 className="h-5 w-5 text-muted-foreground" />
-          <h1 className="text-4xl font-bold tracking-tight">Music</h1>
-        </div>
-        <p className="text-base text-muted-foreground leading-relaxed">
-          Artists and genres on heavy rotation this year. The music tab captures what shapes the mood of work sessions, commutes and quiet mornings.
-        </p>
+        <PageHeader
+          title="Music"
+          description="Artists and genres on heavy rotation this year."
+        />
       </div>
 
       <ConsumedCategoryTabs active="music" counts={consumedTotals()} />
@@ -37,7 +35,7 @@ export default function MusicContent() {
       <Separator />
 
       <div className="space-y-4">
-        <h2 className="text-sm font-mono text-muted-foreground uppercase tracking-widest">Artists</h2>
+        <h2 className="text-sm text-muted-foreground font-semibold">Artists</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {artists.map((a) => (
             <div key={a.name} className="group rounded-xl border border-border/60 bg-card p-4 space-y-1.5 hover:border-primary/40 transition-colors">
@@ -57,7 +55,7 @@ export default function MusicContent() {
                   </Link>
                 </div>
                 {a.youtubeId && (
-                  <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground/40 group-hover:text-primary/60 transition-colors" />
+                  <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
                 )}
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{a.note}</p>
@@ -67,7 +65,7 @@ export default function MusicContent() {
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-sm font-mono text-muted-foreground uppercase tracking-widest">Genres</h2>
+        <h2 className="text-sm text-muted-foreground font-semibold">Genres</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {genres.map((g) => (
             <div key={g.label} className="rounded-xl border border-border/60 bg-card p-4 space-y-1.5">

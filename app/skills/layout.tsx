@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Skills",
+  title: { default: "Skills", template: "%s | Isaac Adjei" },
   description: "Technical skills, tools and technologies I work with.",
   alternates: {
     canonical: "https://isaacadjei.me/skills",

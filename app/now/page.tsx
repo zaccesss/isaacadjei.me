@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import LiveStatusCards from "@/components/shared/live/LiveStatusCards"
 import InspirationWidget from "@/components/shared/live/InspirationWidget"
+import PageHeader from "@/components/layout/PageHeader"
 import { getPublishedNotes } from "@/data/notes"
 import {
   BookOpen,
@@ -34,38 +35,38 @@ export default function NowPage() {
   const buildingNext = BUILDING_NEXT.map((slug) => live.find((n) => n.slug === slug)).filter((n) => n !== undefined)
   return (
     <div className="container max-w-2xl py-24 space-y-14">
-      <section className="space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="motion-safe:animate-ping motion-reduce:hidden absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" />
-          </span>
-          Updated live
-        </div>
-        <div className="flex items-center gap-2">
-          <h1 className="text-4xl font-bold tracking-tight">Now</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          A snapshot of what I am doing in my life at this moment. Inspired by{" "}
-          <a
-            href="https://nownownow.com/about"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="body-link"
-          >
-            Derek Sivers
-          </a>
-          . Also listed on{" "}
-          <a
-            href="https://nownownow.com/p/n4lZ"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="body-link"
-          >
-            nownownow.com
-          </a>
-          .
-        </p>
+      <section className="space-y-6">
+        <PageHeader
+          title="Now"
+          description={
+            <>
+              A snapshot of what I am doing in my life at this moment. Inspired by{" "}
+              <a
+                href="https://nownownow.com/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="body-link"
+              >
+                Derek Sivers
+              </a>
+              . Also listed on{" "}
+              <a
+                href="https://nownownow.com/p/n4lZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="body-link"
+              >
+                nownownow.com
+              </a>
+              .
+            </>
+          }
+        >
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="inline-flex h-2 w-2 rounded-full bg-blue-500" aria-hidden="true" />
+            Updated live
+          </p>
+        </PageHeader>
         <LiveStatusCards alwaysShowDiscord />
       </section>
 

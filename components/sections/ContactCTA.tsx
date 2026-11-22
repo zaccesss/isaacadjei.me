@@ -1,54 +1,31 @@
-"use client"
-
-import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Mail, Download } from "lucide-react"
+import { ArrowRight, Download, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { fadeUp } from "@/lib/ui/animations"
 
 export default function ContactCTA() {
   return (
-    <section className="py-24 border-t">
-      <div className="container max-w-2xl text-center">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="space-y-6"
-        >
-          <Mail className="mx-auto h-10 w-10 text-primary" />
-          <h2 className="text-3xl font-bold tracking-tight">Let&apos;s work together</h2>
-          <p className="text-muted-foreground text-lg">
-            I am actively looking for internship and placement opportunities in engineering and
-            technology. Whether you have a role, a project, a collaboration idea or just want to
-            connect, I am always open to a conversation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
-            >
-              <a href="/api/cv-pdf">
-                <Download className="mr-2 h-4 w-4" />
-                Download CV
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/projects">
-                View My Work
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg">
-              <Link href="/contact">
-                Get in touch
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </motion.div>
+    <section aria-labelledby="contact" className="border-t py-16 sm:py-20">
+      <div className="mx-auto w-full max-w-2xl space-y-6 px-6 text-center">
+        <Mail className="mx-auto h-10 w-10 text-primary" aria-hidden="true" />
+        <h2 id="contact" className="text-3xl font-bold tracking-tight">Let&apos;s work together</h2>
+        <p className="text-lg leading-relaxed text-foreground/90">
+          I am actively looking for internship and placement opportunities in engineering and technology. Whether you have
+          a role, a project, a collaboration idea or just want to connect, I am always open to a conversation.
+        </p>
+        <div className="flex flex-col justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="gap-2">
+            <a href="/api/cv-pdf">
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download my CV
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="gap-2">
+            <Link href="/projects">
+              View my work
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </section>
   )

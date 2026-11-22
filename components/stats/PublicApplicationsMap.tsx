@@ -8,6 +8,10 @@ import { MAPLIBRE_VERSION } from "@/lib/ui/maplibre-version"
 import "maplibre-gl/dist/maplibre-gl.css"
 import { openFreeMapStyles, skyForView } from "@/lib/ui/map-styles"
 import { Globe2, Map as MapIcon, Box, Square } from "lucide-react"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+
+const TOOL = "relative inline-flex h-8 min-w-11 items-center justify-center gap-1 rounded border px-2.5 text-xs transition-colors after:absolute after:inset-x-0 after:-inset-y-1.5"
+const toolState = (on: boolean) => (on ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:text-foreground")
 
 setWorkerUrl(`/maplibre/${MAPLIBRE_VERSION}/maplibre-gl-worker.mjs`)
 
@@ -45,6 +49,7 @@ export function PublicApplicationsMap() {
   const [globe, setGlobe] = useState(false)
   const [is3D, setIs3D] = useState(false)
   const mapRef = useRef<MapRef>(null)
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)")
 
   const STYLES = useMemo(() => openFreeMapStyles(), [])
   const [userStyle, setUserStyle] = useState<string | null>(() => {
@@ -64,13 +69,13 @@ export function PublicApplicationsMap() {
   function toggle3D() {
     const next = !is3D
     setIs3D(next)
-    mapRef.current?.easeTo({ pitch: next ? 45 : 0, duration: 400 })
+    mapRef.current?.easeTo({ pitch: next ? 45 : 0, duration: reduce ? 0 : 400 })
   }
 
   function setGlobeAndFit(next: boolean) {
     setGlobe(next)
     mapRef.current?.setSky(skyForView(next))
-    mapRef.current?.easeTo({ zoom: zoom + (next ? 1.2 : -1.2), duration: 400 })
+    mapRef.current?.easeTo({ zoom: zoom + (next ? 1.2 : -1.2), duration: reduce ? 0 : 400 })
   }
 
   useEffect(() => {
@@ -133,9 +138,9 @@ export function PublicApplicationsMap() {
   const totalHeadline = (
     <p className="text-sm text-muted-foreground">
       {total === null ? (
-        <span className="inline-block h-4 w-24 bg-muted/60 rounded animate-pulse align-middle" />
+        <span className="inline-block h-4 w-24 rounded bg-muted/60 align-middle" />
       ) : (
-        <><span className="font-semibold text-foreground">{total.toLocaleString()}</span> job opportunities tracked, all time</>
+        <><span className="font-semibold text-foreground">{total.toLocaleString("en-GB")}</span> job opportunities tracked, all time</>
       )}
     </p>
   )
@@ -144,7 +149,7 @@ export function PublicApplicationsMap() {
     return (
       <div className="space-y-3">
         {totalHeadline}
-        <div className="h-[480px] w-full rounded-lg border border-border bg-muted/30 animate-pulse" />
+        <div className="h-[480px] w-full rounded-lg border border-border bg-muted/30" />
       </div>
     )
   }
@@ -153,7 +158,7 @@ export function PublicApplicationsMap() {
     return (
       <div className="space-y-3">
         {totalHeadline}
-        <p className="text-xs text-muted-foreground py-12 text-center">No location data yet.</p>
+        <p className="py-12 text-center text-sm text-muted-foreground">No location data yet.</p>
       </div>
     )
   }
@@ -172,7 +177,8 @@ export function PublicApplicationsMap() {
               key={key}
               type="button"
               onClick={() => setStyleAndPersist(key)}
-              className={`text-[10px] px-2 py-1 rounded border transition-colors ${style === key ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+              aria-pressed={style === key}
+              className={`${TOOL} ${toolState(style === key)}`}
             >
               {s.label}
             </button>
@@ -183,25 +189,25 @@ export function PublicApplicationsMap() {
             type="button"
             onClick={() => setGlobeAndFit(!globe)}
             title="Globe projection has a known MapLibre limitation where country/place labels can fail to render (github.com/maplibre/maplibre-gl-js#5025) - Flat is the reliable choice for readable labels"
-            className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded border transition-colors ${globe ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+            className={`${TOOL} ${toolState(globe)}`}
           >
-            {globe ? <Globe2 className="h-3 w-3" /> : <MapIcon className="h-3 w-3" />}
+            {globe ? <Globe2 aria-hidden className="h-3.5 w-3.5" /> : <MapIcon aria-hidden className="h-3.5 w-3.5" />}
             {globe ? "Globe" : "Flat"}
           </button>
           <button
             type="button"
             onClick={toggle3D}
             title="Toggle 2D/3D tilt"
-            className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded border transition-colors ${is3D ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
+            className={`${TOOL} ${toolState(is3D)}`}
           >
-            {is3D ? <Box className="h-3 w-3" /> : <Square className="h-3 w-3" />}
+            {is3D ? <Box aria-hidden className="h-3.5 w-3.5" /> : <Square aria-hidden className="h-3.5 w-3.5" />}
             {is3D ? "3D" : "2D"}
           </button>
           <button
             type="button"
             onClick={() => setClustering((c) => !c)}
             title={clustering ? "Show every city's own pin, unclustered" : "Group nearby cities into clusters"}
-            className={`text-[10px] px-2 py-1 rounded border transition-colors ${clustering ? "border-border text-muted-foreground hover:text-foreground" : "bg-primary text-primary-foreground border-primary"}`}
+            className={`${TOOL} ${toolState(!clustering)}`}
           >
             {clustering ? "Clustered" : "All pins"}
           </button>
@@ -236,19 +242,20 @@ export function PublicApplicationsMap() {
                 <button
                   type="button"
                   title={cluster.items.length > 1 ? `${cluster.items.length} cities - click to zoom in` : undefined}
+                  aria-label={cluster.items.length > 1 ? `${cluster.items.length} cities, zoom in` : `${cluster.items[0].location}, ${clusterCount} tracked`}
                   onClick={(e) => {
                     e.stopPropagation()
                     if (cluster.items.length > 1) {
-                      mapRef.current?.easeTo({ center: [cluster.lng, cluster.lat], zoom: zoom + 2.5, duration: 500 })
+                      mapRef.current?.easeTo({ center: [cluster.lng, cluster.lat], zoom: zoom + 2.5, duration: reduce ? 0 : 500 })
                     }
                   }}
-                  className="rounded-full bg-primary/70 border border-primary-foreground/40 cursor-pointer transition-transform hover:scale-110 flex items-center justify-center"
+                  className="relative flex cursor-pointer items-center justify-center rounded-full border border-primary-foreground/40 bg-primary/70 transition-colors after:absolute after:-inset-2 hover:bg-primary"
                   style={{ width: radius(clusterCount) * 2, height: radius(clusterCount) * 2 }}
                   onMouseEnter={() => setHovered(cluster.items[0].location)}
                   onMouseLeave={() => setHovered((h) => (cluster.items.some((i) => i.location === h) ? null : h))}
                 >
                   {cluster.items.length > 1 && (
-                    <span className="text-[9px] font-semibold text-primary-foreground">{cluster.items.length}</span>
+                    <span className="text-xs font-semibold text-primary-foreground">{cluster.items.length}</span>
                   )}
                 </button>
               </Marker>
@@ -286,7 +293,7 @@ export function PublicApplicationsMap() {
           )}
         </MapGL>
       </div>
-      <p className="text-[10px] text-muted-foreground">
+      <p className="text-xs text-muted-foreground">
         {clustering ? "Numbered circle = a cluster of nearby cities, click to zoom in. " : ""}
         Hover a pin for a count. Toggle &quot;All pins&quot; above to turn off clustering entirely.
       </p>

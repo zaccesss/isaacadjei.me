@@ -5,13 +5,14 @@ const SIGN_D =
 const SWASH_D = "M24 73 C38 76.5 56 75.5 76 70.5"
 
 interface ScriptMarkProps {
-  signKey?: number
+  sign?: boolean
+  onSigned?: () => void
   size?: number
   className?: string
   title?: string
 }
 
-export default function ScriptMark({ signKey = 0, size = 30, className, title = "Isaac Adjei" }: ScriptMarkProps) {
+export default function ScriptMark({ sign = false, onSigned, size = 30, className, title = "Isaac Adjei" }: ScriptMarkProps) {
   return (
     <svg
       width={size * 1.7}
@@ -22,8 +23,15 @@ export default function ScriptMark({ signKey = 0, size = 30, className, title = 
       aria-label={title}
       className={cn("text-foreground", className)}
     >
-      <g key={signKey} className="script-mark">
-        <path className="script-swash" d={SWASH_D} pathLength={100} />
+      <g className={sign ? "script-mark" : undefined}>
+        <path
+          className="script-swash"
+          d={SWASH_D}
+          pathLength={100}
+          onAnimationEnd={(e) => {
+            if (e.animationName === "script-draw") onSigned?.()
+          }}
+        />
         <path className="script-sign" d={SIGN_D} pathLength={100} />
         <circle className="script-tittle" cx="31" cy="37.5" r="2.7" />
       </g>

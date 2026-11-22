@@ -2,7 +2,9 @@
 
 import Link from "next/link"
 import { BarChart, Composed, LineChart, PieChart, Radar, StatCard, WordCloud } from "@/components/analytics"
+import { seriesTable, tableOf } from "@/components/analytics/chart-table"
 import { Card } from "@/components/stats/StatsCharts"
+import { listSummary, rangeSummary, topSummary, totalSummary, weekdaySummary } from "@/components/stats/chart-data"
 import type { ResearchStats as Stats } from "@/lib/stats/research-stats"
 
 const fmt = new Intl.NumberFormat("en-GB")
@@ -14,21 +16,26 @@ const longDate = (iso: string) => {
 const short = (title: string) => title.split(/[:(]/)[0].trim()
 
 function Heading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{children}</h2>
+  return <h2 className="text-lg font-semibold">{children}</h2>
 }
-const Grid = ({ children }: { children: React.ReactNode }) => <div className="grid gap-4 sm:grid-cols-2">{children}</div>
+const SECTION_LINK = "inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4"
+const Grid = ({ children }: { children: React.ReactNode }) => <div className="grid gap-4 md:grid-cols-2">{children}</div>
 const Tiles = ({ children }: { children: React.ReactNode }) => <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">{children}</div>
 
 export function ResearchStats({ s }: { s: Stats }) {
   const { publications: pubs, research } = s
   const counted = pubs.rows.filter((r) => r.views !== null)
+  const views = counted.map((r) => ({ name: short(r.name), value: r.views ?? 0 }))
+  const downloads = counted.map((r) => ({ name: short(r.name), value: r.downloads ?? 0 }))
+  const sideBySide = research.depth.map((d) => ({ name: d.name, value: d.materials + d.references + (research.papersByGroup.find((g) => g.name === d.name)?.value ?? 0) }))
+  const depthSeries = [{ key: "materials", name: "Open materials" }, { key: "references", name: "Links" }]
 
   return (
     <div className="space-y-10">
       <section className="space-y-4" aria-labelledby="stats-publications">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <Heading><span id="stats-publications">Publications</span></Heading>
-          <Link href="/publications" className="text-xs font-medium text-primary hover:underline underline-offset-4">Open the publications</Link>
+          <Link href="/publications" className={SECTION_LINK}>Open the publications</Link>
         </div>
         <Tiles>
           <StatCard label="Publications" value={pubs.count} scope="all-time" />
@@ -38,18 +45,22 @@ export function ResearchStats({ s }: { s: Stats }) {
         </Tiles>
         <Grid>
           {counted.length > 0 && (
-            <Card title="Views by record" note="from Zenodo, refreshed daily">
-              <BarChart data={counted.map((r) => ({ name: short(r.name), value: r.views ?? 0 }))} dataKey="value" xKey="name" height={220} name="Views" />
+            <Card title="Views by record" note="views, from Zenodo, refreshed daily" alt={topSummary(views, "views")} table={tableOf(views, ["Record", "Views"])}>
+              <BarChart data={views} dataKey="value" xKey="name" height={220} name="Views" />
             </Card>
           )}
           {counted.length > 0 && (
-            <Card title="Downloads by record" note="from Zenodo, refreshed daily">
-              <BarChart data={counted.map((r) => ({ name: short(r.name), value: r.downloads ?? 0 }))} dataKey="value" xKey="name" height={220} name="Downloads" colour="#6366f1" />
+            <Card title="Downloads by record" note="downloads, from Zenodo, refreshed daily" alt={topSummary(downloads, "downloads")} table={tableOf(downloads, ["Record", "Downloads"])}>
+              <BarChart data={downloads} dataKey="value" xKey="name" height={220} name="Downloads" />
             </Card>
           )}
-          <Card title="Kinds of record"><PieChart data={pubs.kinds} height={200} /></Card>
-          <Card title="What they are about" note="keywords"><WordCloud words={pubs.keywords.map((k) => ({ text: k.name, value: k.value }))} valueLabel="records" /></Card>
-          <Card title="Every record" wide>
+          <Card title="Kinds of record" note="records" alt={listSummary(pubs.kinds, "records")}>
+            <PieChart data={pubs.kinds} centreLabel="Records" />
+          </Card>
+          <Card title="What they are about" note="records per keyword, bigger means more" alt={topSummary(pubs.keywords, "records")}>
+            <WordCloud words={pubs.keywords.map((k) => ({ text: k.name, value: k.value }))} height={240} valueLabel="records" />
+          </Card>
+          <Card title="Every record" wide alt={`${pubs.rows.length} records, each with its kind, year, views and downloads in the table.`}>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -83,7 +94,7 @@ export function ResearchStats({ s }: { s: Stats }) {
       <section className="space-y-4" aria-labelledby="stats-research">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <Heading><span id="stats-research">Research</span></Heading>
-          <Link href="/research" className="text-xs font-medium text-primary hover:underline underline-offset-4">Open the research</Link>
+          <Link href="/research" className={SECTION_LINK}>Open the research</Link>
         </div>
         <Tiles>
           <StatCard label="Lines of research" value={research.lines} scope="current" />
@@ -92,18 +103,18 @@ export function ResearchStats({ s }: { s: Stats }) {
           <StatCard label="Interests" value={research.interests} scope="current" />
         </Tiles>
         <Grid>
-          <Card title="How far each line has got" note="stage"><PieChart data={research.stages} height={200} /></Card>
-          <Card title="Papers behind each line"><BarChart data={research.papersByGroup} dataKey="value" xKey="name" height={200} name="Papers" /></Card>
-          <Card title="What each line has in the open" note="materials as bars, links as the line" alt={research.depth.map((d) => `${d.name}: ${d.materials} open materials and ${d.references} links`).join(". ")}>
+          <Card title="How far each line has got" note="lines of research by stage" alt={listSummary(research.stages, "lines")}>
+            <PieChart data={research.stages} centreLabel="Lines" sort={false} />
+          </Card>
+          <Card title="Papers behind each line" note="papers" alt={listSummary(research.papersByGroup, "papers")} table={tableOf(research.papersByGroup, ["Line", "Papers"])}>
+            <BarChart data={research.papersByGroup} dataKey="value" xKey="name" height={200} name="Papers" />
+          </Card>
+          <Card title="What each line has in the open" note="materials and links, one panel each" alt={research.depth.map((d) => `${d.name}: ${d.materials} open materials and ${d.references} links`).join(". ")} table={seriesTable(research.depth, "Line", depthSeries)}>
             <Composed data={research.depth} xKey="name" barKey="materials" lineKey="references" barName="Open materials" lineName="Links" height={200} />
           </Card>
           {research.depth.length > 2 && (
-            <Card title="Lines side by side" note="papers, materials and links">
-              <Radar
-                data={research.depth.map((d) => ({ name: d.name, value: d.materials + d.references + (research.papersByGroup.find((g) => g.name === d.name)?.value ?? 0) }))}
-                dataKey="value"
-                height={200}
-              />
+            <Card title="Lines side by side" note="papers, materials and links added together" alt={listSummary(sideBySide, "items")} table={tableOf(sideBySide, ["Line", "Items"])}>
+              <Radar data={sideBySide} dataKey="value" nameKey="name" height={240} />
             </Card>
           )}
         </Grid>
@@ -119,7 +130,7 @@ export function ReleaseStats({ releases }: { releases: Stats["releases"] }) {
       <section className="space-y-4" aria-labelledby="stats-releases">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <Heading><span id="stats-releases">Releases of this site</span></Heading>
-          <Link href="/changelog" className="text-xs font-medium text-primary hover:underline underline-offset-4">Open the changelog</Link>
+          <Link href="/changelog" className={SECTION_LINK}>Open the changelog</Link>
         </div>
         <Tiles>
           <StatCard label="Releases" value={releases.total} scope="all-time" />
@@ -133,12 +144,24 @@ export function ReleaseStats({ releases }: { releases: Stats["releases"] }) {
           </p>
         )}
         <Grid>
-          <Card title="Releases by month" wide><BarChart data={releases.byMonth} dataKey="total" xKey="name" height={220} name="Releases" /></Card>
-          <Card title="Releases adding up"><LineChart data={releases.growth} dataKey="value" xKey="name" height={200} dots /></Card>
-          <Card title="Changes listed by month"><BarChart data={releases.linesByMonth} dataKey="value" xKey="name" height={200} name="Changes" colour="#6366f1" /></Card>
-          <Card title="Kinds of change" note="lines in the changelog"><PieChart data={releases.kinds} height={200} /></Card>
-          <Card title="Size of release" note="from the version number"><PieChart data={releases.sizes} height={200} /></Card>
-          <Card title="Which days I release" wide><BarChart data={releases.weekdays} dataKey="value" xKey="name" height={200} name="Releases" /></Card>
+          <Card title="Releases by month" note="releases" wide alt={rangeSummary(releases.byMonth.map((m) => ({ name: m.name, value: m.total })), "releases")} table={tableOf(releases.byMonth, ["Month", "Releases"], { key: "total" })}>
+            <BarChart data={releases.byMonth} dataKey="total" xKey="name" height={220} name="Releases" />
+          </Card>
+          <Card title="Releases adding up" note="running total" alt={releases.growth.length ? totalSummary(releases.growth, "releases", releases.growth[0].name) : undefined} table={tableOf(releases.growth, ["Month", "Releases so far"])}>
+            <LineChart data={releases.growth} dataKey="value" xKey="name" height={200} dots name="Releases so far" />
+          </Card>
+          <Card title="Kinds of change" note="lines in the changelog" alt={listSummary(releases.kinds, "lines")} table={releases.kinds.length > 6 ? tableOf(releases.kinds, ["Kind", "Lines"]) : undefined}>
+            <PieChart data={releases.kinds} centreLabel="Lines" />
+          </Card>
+          <Card title="Size of release" note="releases, from the version number" alt={listSummary(releases.sizes, "releases")}>
+            <PieChart data={releases.sizes} centreLabel="Releases" sort={false} />
+          </Card>
+          <Card title="Changes listed by month" note="changelog lines" alt={rangeSummary(releases.linesByMonth, "changes")} table={tableOf(releases.linesByMonth, ["Month", "Changes"])}>
+            <BarChart data={releases.linesByMonth} dataKey="value" xKey="name" height={200} name="Changes" />
+          </Card>
+          <Card title="Which days I release" note="releases by weekday" wide alt={weekdaySummary(releases.weekdays, "releases")} table={tableOf(releases.weekdays, ["Weekday", "Releases"])}>
+            <BarChart data={releases.weekdays} dataKey="value" xKey="name" height={200} name="Releases" />
+          </Card>
         </Grid>
       </section>
     </div>

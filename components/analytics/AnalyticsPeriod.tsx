@@ -85,7 +85,7 @@ export function PeriodSelector({ className }: { className?: string }) {
           type="button"
           onClick={() => setPeriod(p)}
           aria-pressed={p === period}
-          className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+          className={`relative inline-flex h-8 min-w-11 items-center justify-center rounded-md px-2.5 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-inset-y-1.5 ${
             p === period
               ? "bg-background text-foreground shadow-xs"
               : "text-muted-foreground hover:text-foreground"

@@ -8,9 +8,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 interface ShareButtonProps {
   title: string
   url?: string
+  label?: string
 }
 
-export default function ShareButton({ title, url }: ShareButtonProps) {
+export default function ShareButton({ title, url, label }: ShareButtonProps) {
   const [copied, setCopied] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -32,6 +33,15 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
       setFailed(true)
       window.setTimeout(() => setFailed(false), 2000)
     }
+  }
+
+  if (label) {
+    return (
+      <Button variant="outline" className="min-h-11 gap-2" onClick={handleShare}>
+        <Share2 className="h-4 w-4" aria-hidden="true" />
+        <span aria-live="polite">{copied ? "Link copied" : failed ? "Copy failed" : label}</span>
+      </Button>
+    )
   }
 
   return (

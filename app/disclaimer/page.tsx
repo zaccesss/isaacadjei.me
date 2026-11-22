@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Disclaimer",
@@ -20,13 +21,12 @@ const link = "body-link"
 export default function DisclaimerPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Disclaimer</h1>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
+      <PageHeader title="Disclaimer">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: October 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This is my personal site. It is here to share my work and what I am learning, in good faith.
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

@@ -80,10 +80,10 @@ export default function GuestbookForm() {
       </label>
       <div className="space-y-3">
         <div className="flex flex-wrap gap-2">
-          <Button type="button" variant="outline" className="min-h-11" aria-pressed={showSignature} aria-controls="guestbook-signature" onClick={() => setShowSignature((v) => !v)}>
+          <Button type="button" variant="outline" className="min-h-11" aria-pressed={showSignature} aria-controls={showSignature ? "guestbook-signature" : undefined} onClick={() => setShowSignature((v) => !v)}>
             {showSignature ? "Remove my signature" : "Add my signature"}
           </Button>
-          <Button type="button" variant="outline" className="min-h-11" aria-pressed={showDrawing} aria-controls="guestbook-drawing" onClick={() => setShowDrawing((v) => !v)}>
+          <Button type="button" variant="outline" className="min-h-11" aria-pressed={showDrawing} aria-controls={showDrawing ? "guestbook-drawing" : undefined} onClick={() => setShowDrawing((v) => !v)}>
             {showDrawing ? "Remove the drawing" : "Add a drawing"}
           </Button>
         </div>

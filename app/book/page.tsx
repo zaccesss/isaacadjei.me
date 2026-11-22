@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import { BOOKING_URL } from "@/lib/constants"
 import { BookingFrame } from "@/components/BookingFrame"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Book a call",
@@ -22,13 +23,15 @@ const link = "body-link"
 export default function BookPage() {
   return (
     <div className="container max-w-4xl py-24 space-y-10">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Book a call</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Pick a time for a 30 minute video call about projects, ideas, opportunities or anything else. Times show in
-          your own time zone. You will get a calendar invite with a Google Meet link straight away.
-        </p>
-      </section>
+      <PageHeader
+        title="Book a call"
+        description={
+          <>
+            Pick a time for a 30 minute video call about projects, ideas, opportunities or anything else. Times show in
+            your own time zone. You will get a calendar invite with a Google Meet link straight away.
+          </>
+        }
+      />
 
       <Separator />
 

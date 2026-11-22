@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
 import {
-  Accessibility,
   BookOpen,
   Bug,
   Contrast,
@@ -15,6 +14,7 @@ import {
   Type,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Accessibility",
@@ -45,15 +45,15 @@ const linkClass = "body-link"
 export default function AccessibilityPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Accessibility className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Accessibility</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          This is my accessibility statement, kept in one place so this website and every repository
-          can point to it.
-        </p>
+      <PageHeader
+        title="Accessibility"
+        description={
+          <>
+            This is my accessibility statement, kept in one place so this website and every repository
+            can point to it.
+          </>
+        }
+      >
         <p className="text-muted-foreground leading-relaxed">
           It covers what I do so that my work can be read and used by as many people as possible,
           where the gaps are and how to tell me when something gets in the way. A repository with its
@@ -70,7 +70,7 @@ export default function AccessibilityPage() {
             Also on GitHub: zaccesss/accessibility
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 
@@ -127,14 +127,48 @@ export default function AccessibilityPage() {
           <Globe className="h-6 w-6 text-primary" />
           <h2 className="text-2xl font-bold">This website</h2>
         </div>
-        <p className="text-muted-foreground leading-relaxed">What is in place on isaacadjei.me:</p>
+        <p className="text-muted-foreground leading-relaxed">
+          What is in place on isaacadjei.me. This is a list of what I have built, not a claim that the
+          site conforms to WCAG at any level.
+        </p>
         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
           <li>The page language is declared and every page has one heading outline.</li>
           <li>A &quot;Skip to content&quot; link is the first thing the keyboard reaches on every page.</li>
           <li>The theme follows your system setting, with a toggle in the header.</li>
           <li>
-            Animation in the header, the favicon and the typing motto stops when your system asks for
-            reduced motion.
+            Content never fades in or waits for a scroll to appear. The header signature draws itself
+            once when a page loads and the favicon breathes for a few seconds. Both then hold still.
+          </li>
+          <li>
+            When your system asks for reduced motion, the signature, the favicon, the music visualiser
+            and the 3D board hold still and the lab terminal prints its output at once. The theme
+            changes in one step and opening a project does not animate. The{" "}
+            <Link href="/colophon" className={linkClass}>
+              colophon
+            </Link>{" "}
+            lists every case.
+          </li>
+          <li>
+            Nothing is smaller than 13px. Long-form writing is set at 18px in a column of about 68
+            characters.
+          </li>
+          <li>
+            Body text and the grey used for secondary text stay above 7 to 1 against the page in both
+            themes. Links in running text are always underlined, so they never rely on colour alone.
+          </li>
+          <li>
+            Buttons, links and filter controls are at least 44 by 44 pixels to press, with padding or an
+            invisible hit area where the visible control is smaller.
+          </li>
+          <li>
+            Buttons, links and filter controls show a clear focus ring when you reach them from the
+            keyboard.
+          </li>
+          <li>
+            Most charts sit in a frame with a title and their unit, with the same figures in a table for
+            screen readers. A donut lists its parts with each figure and share, a gauge writes its
+            figure and a band word such as On track and the 24 hour clocks write the busiest hour, so
+            the main reading never depends on hovering or on telling colours apart.
           </li>
           <li>Icon-only buttons carry a label for screen readers.</li>
           <li>
@@ -147,9 +181,9 @@ export default function AccessibilityPage() {
           <li>Images carry alt text. Code, commands and output are shown as text, never as screenshots.</li>
         </ul>
         <Callout kind="warning" className="my-0">
-          Known limitations: the charts, maps and 3D views on the lab and stats pages are visual by
-          nature. Where a chart has a text summary the figures are in it, but not every chart has one
-          yet. The signature and drawing boards on the guestbook need a mouse, a finger or a pen.
+          Known limitations: the maps and 3D views on the lab and stats pages are visual by nature.
+          Most charts carry their figures in a table, but not every chart has one yet. The signature and
+          drawing boards on the guestbook need a mouse, a finger or a pen.
           Both are optional, so the guestbook can still be signed from the keyboard alone. Where a
           page embeds content from another service, that content follows the service&apos;s own
           accessibility.

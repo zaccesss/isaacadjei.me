@@ -1,6 +1,11 @@
 "use client"
 
 import { ResponsiveContainer, BarChart as RBarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine, LabelList } from "recharts"
+import EmptyState from "@/components/shared/EmptyState"
+import { chartVar } from "@/lib/ui/chart-palette"
+import { formatLabel } from "@/lib/ui/labels"
+import { ukShortDate } from "@/lib/time/short-date"
+import { CHART_ANIMATION, wrapLabel } from "./charts"
 
 export interface GanttTask {
   id: string
@@ -21,34 +26,37 @@ export interface GanttProps {
   emptyText?: string
 }
 
+const DONE = chartVar("chart-2")
+const ACTIVE = chartVar("chart-1")
 const STATUS_COLOURS: Record<string, string> = {
-  done: "#22c55e",
-  complete: "#22c55e",
-  completed: "#22c55e",
-  "in progress": "#3b82f6",
-  in_progress: "#3b82f6",
-  active: "#3b82f6",
-  blocked: "#ef4444",
-  planned: "#94a3b8",
-  planning: "#94a3b8",
+  done: DONE,
+  complete: DONE,
+  completed: DONE,
+  "in progress": ACTIVE,
+  in_progress: ACTIVE,
+  active: ACTIVE,
+  blocked: chartVar("chart-4"),
+  planned: chartVar("chart-neutral"),
+  planning: chartVar("chart-neutral"),
 }
 
 function statusColour(status: string, overrides?: Record<string, string>): string {
-  return overrides?.[status] ?? overrides?.[status.toLowerCase()] ?? STATUS_COLOURS[status.toLowerCase()] ?? "#8b5cf6"
+  return overrides?.[status] ?? overrides?.[status.toLowerCase()] ?? STATUS_COLOURS[status.toLowerCase()] ?? chartVar("chart-5")
 }
 
 const dayMs = 24 * 60 * 60 * 1000
 
 const LABEL_WIDTH = 180
-const LABEL_CHARS = 28
+const LABEL_CHARS = 23
+const LINE_PX = 16
+const TICK = { fontSize: 13, fill: "hsl(var(--muted-foreground))" }
 
-function TaskLabel({ x, y, payload }: { x?: number; y?: number; payload?: { value: string } }) {
-  const name = payload?.value ?? ""
-  const shown = name.length > LABEL_CHARS ? `${name.slice(0, LABEL_CHARS - 1).trimEnd()}…` : name
+function TaskLabel({ x = 0, y = 0, payload }: { x?: number | string; y?: number | string; payload?: { value?: unknown } }) {
+  const lines = wrapLabel(String(payload?.value ?? ""), LABEL_CHARS)
+  const nx = Number(x)
   return (
-    <text x={x} y={y} dy={4} textAnchor="end" fontSize={11} fill="currentColor" className="text-muted-foreground">
-      <title>{name}</title>
-      {shown}
+    <text x={nx} y={Number(y)} textAnchor="end" fontSize={13} fill="hsl(var(--muted-foreground))">
+      {lines.map((l, i) => <tspan key={i} x={nx} dy={i === 0 ? 4 - ((lines.length - 1) * LINE_PX) / 2 : LINE_PX}>{l}</tspan>)}
     </text>
   )
 }
@@ -89,16 +97,14 @@ function dateAxis(firstDay: number, lastDay: number): { start: number; end: numb
   return { start, end, ticks }
 }
 
-const prettyStatus = (s: string) => s.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())
-
 export function Gantt({ tasks, height, axis = "days", today, colours, statusLabels, legend, emptyText }: GanttProps) {
   if (!tasks.length) {
-    return <p className="text-xs text-muted-foreground">{emptyText ?? "No tasks yet - add a task with a start and end date to plot a timeline."}</p>
+    return <EmptyState title="No tasks yet" description={emptyText ?? "Add a task with a start and end date to plot a timeline."} className="py-8" />
   }
 
   const sorted = [...tasks].sort((a, b) => a.start_date.localeCompare(b.start_date))
   const dates = axis === "dates"
-  const labelOf = (s: string) => statusLabels?.[s] ?? prettyStatus(s)
+  const labelOf = (s: string) => statusLabels?.[s] ?? formatLabel(s)
 
   let domainStart = 0
   let domainEnd: number | null = null
@@ -129,17 +135,19 @@ export function Gantt({ tasks, height, axis = "days", today, colours, statusLabe
   const showToday = todayOffset !== null && todayOffset >= 0 && (domainEnd === null || todayOffset <= domainEnd)
   const tickLabel = new Map(ticks?.map((t) => [t.offset, t.label]))
 
+  const maxLines = Math.max(1, ...rows.map((r) => wrapLabel(r.name, LABEL_CHARS).length))
+  const rowHeight = Math.max(34, maxLines * LINE_PX + 12)
   const chart = (
-      <ResponsiveContainer width="100%" height={height ?? Math.max(160, rows.length * 34 + (showToday ? 16 : 0))}>
-        <RBarChart data={rows} layout="vertical" margin={{ top: showToday ? 20 : 6, right: statusLabels ? 76 : 12, bottom: 0, left: 8 }} barCategoryGap={10}>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />
+      <ResponsiveContainer width="100%" height={height ?? Math.max(160, rows.length * rowHeight + 36 + (showToday ? 16 : 0))}>
+        <RBarChart data={rows} layout="vertical" margin={{ top: showToday ? 20 : 6, right: statusLabels ? 100 : 12, bottom: 0, left: 8 }} barCategoryGap={10}>
+          <CartesianGrid stroke="hsl(var(--border))" horizontal={false} />
           {dates && ticks ? (
             <XAxis
               type="number"
               domain={[0, domainEnd ?? "auto"]}
               ticks={ticks.map((t) => t.offset)}
               allowDataOverflow
-              tick={{ fontSize: 10 }}
+              tick={TICK}
               tickLine={false}
               axisLine={false}
               interval="preserveStartEnd"
@@ -149,10 +157,11 @@ export function Gantt({ tasks, height, axis = "days", today, colours, statusLabe
           ) : (
             <XAxis
               type="number"
-              tick={{ fontSize: 10 }}
+              tick={TICK}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(v: number) => `day ${v}`}
+              tickCount={5}
+              tickFormatter={(v: number) => `Day ${v}`}
             />
           )}
           <YAxis
@@ -171,19 +180,19 @@ export function Gantt({ tasks, height, axis = "days", today, colours, statusLabe
               return (
                 <div className="rounded-md border border-border bg-background px-3 py-2 shadow-md text-xs">
                   <p className="font-medium text-foreground">{row.name}</p>
-                  <p className="text-muted-foreground">{row.start_date} to {row.end_date}</p>
-                  <p className="text-muted-foreground capitalize">{statusLabels ? row.statusLabel : row.status}</p>
+                  <p className="text-muted-foreground">{ukShortDate(row.start_date)} to {ukShortDate(row.end_date)}</p>
+                  <p className="text-muted-foreground">{row.statusLabel}</p>
                 </div>
               )
             }}
             cursor={{ fill: "hsl(var(--muted))", radius: 3 }}
           />
-          <Bar dataKey="offsetDays" stackId="g" fill="transparent" isAnimationActive={false} />
-          <Bar dataKey="durationDays" stackId="g" radius={[3, 3, 3, 3]} isAnimationActive={false}>
+          <Bar dataKey="offsetDays" stackId="g" fill="transparent" isAnimationActive={CHART_ANIMATION} />
+          <Bar dataKey="durationDays" stackId="g" radius={[3, 3, 3, 3]} isAnimationActive={CHART_ANIMATION}>
             {rows.map((row) => (
               <Cell key={row.id} fill={statusColour(row.status, colours)} />
             ))}
-            {statusLabels && <LabelList dataKey="statusLabel" position="right" fontSize={10} fill="currentColor" className="text-muted-foreground" />}
+            {statusLabels && <LabelList dataKey="statusLabel" position="right" fontSize={13} fill="hsl(var(--muted-foreground))" />}
           </Bar>
           {showToday && (
             <ReferenceLine
@@ -192,7 +201,7 @@ export function Gantt({ tasks, height, axis = "days", today, colours, statusLabe
               strokeDasharray="4 3"
               strokeWidth={1.5}
               ifOverflow="hidden"
-              label={{ value: "Today", position: "top", fontSize: 10, fill: "hsl(var(--foreground))" }}
+              label={{ value: "Today", position: "top", fontSize: 13, fill: "hsl(var(--foreground))" }}
             />
           )}
         </RBarChart>
@@ -222,7 +231,7 @@ export function Gantt({ tasks, height, axis = "days", today, colours, statusLabe
       )}
       {dates && (
         <ul className="sr-only">
-          {rows.map((r) => <li key={r.id}>{r.name}: {r.start_date} to {r.end_date}, {r.statusLabel}</li>)}
+          {rows.map((r) => <li key={r.id}>{r.name}: {ukShortDate(r.start_date)} to {ukShortDate(r.end_date)}, {r.statusLabel}</li>)}
         </ul>
       )}
     </div>

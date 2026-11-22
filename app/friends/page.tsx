@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator"
 import { FRIENDS, type Friend } from "@/lib/content/friends"
 import { supabase } from "@/lib/core/supabase"
 import FriendRequestForm from "@/components/friends/FriendRequestForm"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Friends",
@@ -28,7 +29,7 @@ function FriendCards({ list }: { list: Friend[] }) {
             <span className="flex items-center justify-between gap-2 font-semibold text-foreground">
               {friend.name}
               <ArrowUpRight
-                className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                className="h-4 w-4 text-muted-foreground transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5 motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </span>
@@ -77,18 +78,21 @@ export default async function FriendsPage({ searchParams }: { searchParams: Prom
       )}
       {LETTER_STATUS[letters] && <p role="status" className="rounded-xl border p-4 text-sm">{LETTER_STATUS[letters]}</p>}
 
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Friends</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Personal websites of people I know online. Small, independent sites are what make the web worth exploring.
-          This page is part of <a href="https://slashfriends.org" className={link}>/friends</a>, a project by{" "}
-          <a href="https://nickgray.net" className={link}>Nick Gray</a> that helps
-          people find each other through pages like this one.
-        </p>
+      <PageHeader
+        title="Friends"
+        description={
+          <>
+            Personal websites of people I know online. Small, independent sites are what make the web worth exploring.
+            This page is part of <a href="https://slashfriends.org" className={link}>/friends</a>, a project by{" "}
+            <a href="https://nickgray.net" className={link}>Nick Gray</a> that helps
+            people find each other through pages like this one.
+          </>
+        }
+      >
         <p className="text-muted-foreground leading-relaxed">
           Want to be listed or become pen pals? <a href="#become-friends" className={link}>Go to the form</a>.
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 

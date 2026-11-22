@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "@/components/shared/IntentLink"
 import { ArrowRight } from "lucide-react"
 import { CommandShortcut } from "@/components/shared/command/CommandShortcut"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "All Pages",
@@ -100,21 +101,23 @@ const PAGE_GROUPS = [
 export default function AllPagesPage() {
   return (
     <div className="container max-w-2xl py-24 space-y-14">
-      <section className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-tight">All Pages</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Every public page on this site. Use{" "}
-          <CommandShortcut />{" "}
-          to search them instantly from anywhere or type{" "}
-          <Link href="/lab" className="rounded bg-primary/10 px-1.5 py-0.5 text-xs font-mono text-primary hover:bg-primary/20 transition-colors">pages</Link>{" "}
-          in the lab terminal.
-        </p>
-      </section>
+      <PageHeader
+        title="All Pages"
+        description={
+          <>
+            Every public page on this site. Use{" "}
+            <CommandShortcut />{" "}
+            to search them instantly from anywhere or type{" "}
+            <Link href="/lab" className="rounded bg-primary/10 px-1.5 py-0.5 text-xs font-mono text-primary hover:bg-primary/20 transition-colors">pages</Link>{" "}
+            in the lab terminal.
+          </>
+        }
+      />
 
       <div className="space-y-12">
         {PAGE_GROUPS.map(({ heading, pages }) => (
           <section key={heading} className="space-y-4">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            <h2 className="text-lg font-semibold tracking-tight">
               {heading}
             </h2>
             <ul className="space-y-1">

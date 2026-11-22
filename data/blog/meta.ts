@@ -10,7 +10,7 @@ export const POST_TYPES: { label: string; value: PostType | "all" }[] = [
   { label: "Resources", value: "resources" },
 ]
 
-export const PINNED_POSTS = ["ocular-prosthetics-bionic-vision", "two-stage-audio-amplifier", "thank-you-stanmore"]
+export const PINNED_POSTS = ["ocular-prosthetics-bionic-vision"]
 
 export const RENAMED_POST_TYPES: ReadonlyMap<string, PostType> = new Map([["research", "explainer"], ["notes", "article"]])
 

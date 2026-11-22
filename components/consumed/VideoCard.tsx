@@ -37,7 +37,7 @@ export function VideoCard({
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0 space-y-0.5">
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-medium uppercase tracking-wider text-zinc-400">Playlist</span>
+                <span className="text-xs font-medium uppercase tracking-wider text-zinc-400">Playlist</span>
               </div>
               <Link
                 href={subpageHref}
@@ -58,7 +58,7 @@ export function VideoCard({
           </div>
           <p className="text-xs text-muted-foreground">{video.channel}</p>
           {!compact && video.description && (
-            <p className="text-[10px] text-muted-foreground leading-relaxed">{video.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{video.description}</p>
           )}
           <LedTo links={video.ledTo} />
           <LedTo links={video.ledTo} />
@@ -77,7 +77,7 @@ export function VideoCard({
             ))}
             <Link
               href={subpageHref}
-              className="ml-auto inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2"
+              className="ml-auto inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2"
             >
               <FileText className="h-3 w-3" />
               Notes
@@ -141,7 +141,7 @@ export function VideoCard({
         </div>
         <p className="text-xs text-muted-foreground">{video.channel}</p>
         {!compact && video.description && (
-          <p className="text-[10px] text-muted-foreground leading-relaxed">{video.description}</p>
+          <p className="text-xs text-muted-foreground leading-relaxed">{video.description}</p>
         )}
         <LedTo links={video.ledTo} />
         <div className="flex flex-wrap gap-1 items-center">
@@ -159,7 +159,7 @@ export function VideoCard({
           ))}
           <Link
             href={subpageHref}
-            className="ml-auto inline-flex items-center gap-1 text-[10px] text-primary hover:underline underline-offset-2"
+            className="ml-auto inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2"
           >
             <FileText className="h-3 w-3" />
             Notes

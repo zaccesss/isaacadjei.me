@@ -91,7 +91,7 @@ export default async function PublicationSlugPage({
         </div>
 
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-3xl font-bold tracking-tight leading-tight">{pub.title}</h1>
+          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-tight leading-tight">{pub.title}</h1>
           <ShareButton title={`Publications | ${pub.title}`} />
         </div>
 
@@ -103,7 +103,7 @@ export default async function PublicationSlugPage({
         <>
           <Separator />
           <section className="space-y-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Abstract</h2>
+            <h2 className="text-lg font-semibold tracking-tight">Abstract</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">{pub.abstract}</p>
           </section>
         </>
@@ -122,7 +122,7 @@ export default async function PublicationSlugPage({
       <Separator />
 
       <section className="space-y-4">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Cite this work</h2>
+        <h2 className="text-lg font-semibold tracking-tight">Cite this work</h2>
         <CitationPicker styles={styles} title={pub.title} />
       </section>
 

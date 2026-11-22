@@ -58,7 +58,7 @@ export function SpotifyNowPlaying() {
     : data.lastPlayed
     ? { track: data.lastPlayed.track, artist: data.lastPlayed.artist, albumArt: data.lastPlayed.albumArt }
     : null
-  const label = data.playing ? "Live on Spotify" : data.paused ? "Paused" : "Last Played"
+  const label = data.playing ? "Live on Spotify" : data.paused ? "Paused" : "Last played"
 
   if (!displayTrack) return <div ref={rootRef} />
 
@@ -66,7 +66,7 @@ export function SpotifyNowPlaying() {
     <div ref={rootRef} className="w-full max-w-sm">
       <div className={cn("rounded-xl border border-border/60 bg-card p-4 space-y-3", data.paused && "opacity-70")}>
         <div className="flex items-center gap-2">
-          <span className={cn("text-[10px] font-semibold uppercase tracking-widest", data.playing ? "text-green-500" : "text-muted-foreground")}>
+          <span className={cn("text-xs font-semibold", data.playing ? "text-green-700 dark:text-green-500" : "text-muted-foreground")}>
             {label}
           </span>
           <a href={SPOTIFY_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Open Spotify profile" className="relative ml-auto text-muted-foreground hover:text-foreground transition-colors after:absolute after:-inset-1.5 after:content-['']">
@@ -92,11 +92,11 @@ export function SpotifyNowPlaying() {
           <div className="space-y-1">
             <div className="h-1 w-full rounded-full bg-muted overflow-hidden">
               <div
-                className={cn("h-full rounded-full transition-all", data.playing ? "bg-green-500" : "bg-muted-foreground/40")}
-                style={{ width: `${progress * 100}%` }}
+                className={cn("h-full w-full origin-left rounded-full transition-transform", data.playing ? "bg-green-500" : "bg-muted-foreground/40")}
+                style={{ transform: `scaleX(${Math.min(1, Math.max(0, progress))})` }}
               />
             </div>
-            <div className="flex justify-between text-[10px] text-muted-foreground font-mono">
+            <div className="flex justify-between text-xs text-muted-foreground tabular-nums">
               <span>{formatMs(progressMs)}</span>
               <span>{formatMs(data.durationMs)}</span>
             </div>

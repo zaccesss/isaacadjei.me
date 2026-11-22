@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
-import { Trophy, Heart, Shield, Users } from "lucide-react"
+import { Heart, Shield, Users } from "lucide-react"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Hall of Fame",
@@ -21,16 +22,15 @@ const researchers: { name: string; contribution: string; date: string; link?: st
 export default function HallOfFamePage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Trophy className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Hall of Fame</h1>
-        </div>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          The people without whom none of this would exist and those who have helped keep
-          this site safe.
-        </p>
-      </section>
+      <PageHeader
+        title="Hall of Fame"
+        description={
+          <>
+            The people without whom none of this would exist and those who have helped keep
+            this site safe.
+          </>
+        }
+      />
 
       <Separator />
 
@@ -187,7 +187,7 @@ export default function HallOfFamePage() {
                   )}
                   <p className="text-xs text-muted-foreground">{contribution}</p>
                 </div>
-                <span className="text-xs font-mono text-muted-foreground shrink-0">{date}</span>
+                <span className="text-xs tabular-nums text-muted-foreground shrink-0">{date}</span>
               </div>
             ))}
           </div>

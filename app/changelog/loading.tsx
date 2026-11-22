@@ -4,7 +4,7 @@ export default function ChangelogLoading() {
   return (
     <div className="container max-w-2xl py-24 space-y-14">
       <div className="space-y-3">
-        <IAMark size={40} className="text-muted-foreground/50 animate-pulse" />
+        <IAMark size={40} className="text-muted-foreground animate-pulse" />
         <div className="h-5 w-72 bg-muted rounded animate-pulse" />
       </div>
       <div className="space-y-8">

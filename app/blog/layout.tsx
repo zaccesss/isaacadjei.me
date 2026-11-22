@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { feedAlternates } from "@/lib/content/feeds"
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: { default: "Blog", template: "%s | Isaac Adjei" },
   description: "Writing on tech, engineering and ideas.",
   alternates: {
     canonical: "https://isaacadjei.me/blog",

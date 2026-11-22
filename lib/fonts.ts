@@ -23,3 +23,12 @@ export const geistMono = localFont({
     { path: "./fonts/GeistMono-Bold.woff2", weight: "700", style: "normal" },
   ],
 })
+
+export const plexSans = localFont({
+  variable: "--font-plex-sans",
+  display: "swap",
+  src: [
+    { path: "./fonts/IBMPlexSans-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/IBMPlexSans-Bold.woff2", weight: "700", style: "normal" },
+  ],
+})

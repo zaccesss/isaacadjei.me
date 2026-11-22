@@ -143,7 +143,7 @@ export default function TableOfContents({ headings, sections = NO_SECTIONS }: Ta
               className={cn(
                 large
                   ? cn("text-base py-1.5 leading-snug flex min-h-11 items-center border-l-[3px]", h.level === 3 ? "pl-7" : "pl-3")
-                  : "text-[0.875rem] py-1.5 leading-tight block",
+                  : "text-[0.875rem] py-1 leading-tight flex min-h-11 items-center",
                 "pr-2 hover:underline underline-offset-4 motion-safe:transition-colors",
                 "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary",
                 current
@@ -205,7 +205,7 @@ export default function TableOfContents({ headings, sections = NO_SECTIONS }: Ta
         aria-label={LABEL}
         className="hidden lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1 lg:block lg:max-h-[calc(100dvh-7.5rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain"
       >
-        <p data-toc-title className="sticky top-0 z-10 bg-background pb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">Contents</p>
+        <p data-toc-title className="sticky top-0 z-10 bg-background pb-3 text-sm font-semibold text-foreground">Contents</p>
         {entries(false)}
       </nav>
     </>

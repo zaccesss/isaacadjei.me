@@ -81,13 +81,13 @@ describe("blog archive", () => {
   })
 })
 
-describe("the pinned row on the home page", () => {
-  it("names three posts, each once", () => {
-    expect(PINNED_POSTS).toHaveLength(3)
-    expect(new Set(PINNED_POSTS).size).toBe(3)
+describe("the pinned posts on the home page", () => {
+  it("names at least one post, each once", () => {
+    expect(PINNED_POSTS.length).toBeGreaterThan(0)
+    expect(new Set(PINNED_POSTS).size).toBe(PINNED_POSTS.length)
   })
 
-  it("names only posts that exist, are published and are not archived, so the row is never short", () => {
+  it("names only posts that exist, are published and are not archived, so a pin never goes missing", () => {
     for (const slug of PINNED_POSTS) {
       const post = posts.find((p) => p.slug === slug)
       expect(post, slug).toBeDefined()

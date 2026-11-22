@@ -1,89 +1,34 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
 import Image from "@/components/shared/media/MediaImage"
-import Link from "next/link"
 import SocialLinks from "@/components/shared/SocialLinks"
-import { fadeUp, staggerContainer } from "@/lib/ui/animations"
-import { useModKey } from "@/hooks/useModKey"
+import ArrowLink from "@/components/shared/ArrowLink"
 
 export default function Hero() {
-  const { modLabel } = useModKey()
-
   return (
-    <section className="relative min-h-[calc(100dvh-4rem)] flex items-center justify-center px-6 py-24">
-      <motion.div
-        className="max-w-4xl mx-auto text-center space-y-8"
-        variants={staggerContainer}
-        initial="visible"
-        animate="visible"
-      >
-        <motion.div variants={fadeUp} className="space-y-4">
-          <div className="w-24 h-24 rounded-full border-2 border-primary/30 overflow-hidden mx-auto">
-            <Image
-              src="/images/zac_profile.webp"
-              alt="Isaac Adjei"
-              width={96}
-              height={96}
-              sizes="96px"
-              className="object-cover w-full h-full"
-              priority
-            />
-          </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">Isaac Adjei</h1>
-          <p className="text-sm font-mono text-primary uppercase tracking-widest">
-            Electronic Engineering &amp; Computer Science
-          </p>
-          <p className="text-xl md:text-2xl text-muted-foreground">
-            Building at the intersection of hardware, software and AI/ML.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          className="max-w-2xl mx-auto space-y-4"
-        >
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            EE &amp; CS student at Aston University, Birmingham, building across the full stack of
-            engineering and technology. Open to internships, placements and professional
-            opportunities.
-          </p>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            Not sure where to start?{" "}
-            <Link href="/all-pages" className="body-link font-medium">See all pages →</Link>
-          </p>
-          <div className="w-24 h-px bg-border mx-auto" />
-        </motion.div>
-
-        <motion.div variants={fadeUp} className="flex justify-center">
-          <SocialLinks iconSize="h-5 w-5" />
-        </motion.div>
-
-        <motion.div variants={fadeUp} className="flex justify-center">
-          <button
-            type="button"
-            onClick={() =>
-              document.dispatchEvent(
-                new KeyboardEvent("keydown", { key: "i", ctrlKey: true, bubbles: true })
-              )
-            }
-            className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-muted/50 px-4 py-1.5 text-xs text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors cursor-pointer group"
-          >
-            <span>Quick navigate</span>
-            <span className="flex items-center gap-1 pointer-coarse:hidden">
-              <kbd className="rounded border border-border bg-background px-2 py-0.5 font-mono text-xs font-medium shadow-xs">
-                {modLabel}
-              </kbd>
-              <span>+</span>
-              <kbd className="rounded border border-border bg-background px-2 py-0.5 font-mono text-xs font-medium shadow-xs">
-                I
-              </kbd>
-            </span>
-            <ArrowRight className="h-3 w-3 sm:transition-transform sm:group-hover:translate-x-0.5" />
-          </button>
-        </motion.div>
-      </motion.div>
+    <section className="mx-auto w-full max-w-5xl px-6 pb-12 pt-14 sm:px-8 sm:pb-14 sm:pt-20">
+      <div className="flex items-center gap-4">
+        <Image
+          src="/images/zac_profile.webp"
+          alt="Isaac Adjei"
+          width={64}
+          height={64}
+          sizes="64px"
+          className="h-14 w-14 rounded-full object-cover sm:h-16 sm:w-16"
+          priority
+        />
+        <h1 className="text-[2.5rem] font-bold leading-none tracking-tight sm:text-6xl">Isaac Adjei</h1>
+      </div>
+      <p className="mt-8 max-w-[60ch] text-xl font-medium leading-snug sm:text-2xl">
+        Building at the intersection of hardware, software and AI/ML.
+      </p>
+      <p className="mt-4 max-w-[60ch] text-lg leading-relaxed text-foreground/90">
+        I study Electronic Engineering and Computer Science at Aston University in Birmingham, working across the full
+        stack of engineering and technology: circuit boards, firmware and the software around them. I am open to
+        internships, placements and professional opportunities.
+      </p>
+      <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <SocialLinks iconSize="h-5 w-5" />
+        <ArrowLink href="/now">What I am working on now</ArrowLink>
+      </div>
     </section>
   )
 }

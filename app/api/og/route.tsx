@@ -10,7 +10,7 @@ function sanitiseOgParam(str: string, maxLen: number): string {
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const rawTitle = searchParams.get("title") ?? "Isaac Adjei"
-  const rawDescription = searchParams.get("description") ?? "Electronic Engineering and Computer Science student building full-stack software, embedded systems, AI/ML and data science."
+  const rawDescription = searchParams.get("description") ?? "Electronic Engineering and Computer Science student building circuit boards, firmware, software and AI/ML."
   const title = sanitiseOgParam(rawTitle, 100)
   const description = sanitiseOgParam(rawDescription, 200)
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import type { LucideIcon } from "lucide-react"
 import { Lightbulb, Newspaper, NotebookPen, PenLine, Rss } from "lucide-react"
 import { FEEDS, feedAlternates, type FeedInfo } from "@/lib/content/feeds"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Feeds",
@@ -26,13 +27,16 @@ const ICONS: Record<FeedInfo["id"], LucideIcon> = {
 export default function FeedsPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">Feeds</h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Follow new writing without social media or an inbox. Paste any feed URL below into a feed reader and new
-          posts show up there as they go live. Every entry also links to its reactions and its comments on this
-          site. On a TIL the second link is a reply.
-        </p>
+      <PageHeader
+        title="Feeds"
+        description={
+          <>
+            Follow new writing without social media or an inbox. Paste any feed URL below into a feed reader and new
+            posts show up there as they go live. Every entry also links to its reactions and its comments on this
+            site. On a TIL the second link is a reply.
+          </>
+        }
+      >
         <p className="text-sm text-muted-foreground">
           New to feeds? They are a free, open way to follow websites in one app. Every feed here is Atom, which any RSS and Atom reader understands.{" "}
           <a
@@ -43,7 +47,7 @@ export default function FeedsPage() {
           </a>
           .
         </p>
-      </section>
+      </PageHeader>
 
       <ul className="grid gap-4 sm:grid-cols-2">
         {FEEDS.map((feed) => {

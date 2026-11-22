@@ -1,4 +1,5 @@
 import type { RawPost, RawTIL, RawDated } from "@/lib/content/content-stats-compute"
+import { ukShortDate } from "@/lib/time/short-date"
 
 type Named = { name: string; value: number }
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -90,4 +91,65 @@ export function totalSummary(rows: Named[], unit: string, from: string): string 
   const last = rows.at(-1)
   if (!last) return "Nothing to show yet."
   return `The running total climbs from ${from} to ${num(last.value)} ${unit} by ${last.name}.`
+}
+
+export function rangeSummary(rows: Named[], unit: string): string {
+  if (!rows.some((r) => r.value !== 0)) return "Nothing to show yet."
+  const top = rows.reduce((a, b) => (b.value > a.value ? b : a))
+  const low = rows.reduce((a, b) => (b.value < a.value ? b : a))
+  return `Highest in ${top.name} with ${count(top.value, unit)}, lowest in ${low.name} with ${count(low.value, unit)}.`
+}
+
+export function topSummary(rows: Named[], unit: string, n = 3): string {
+  const top = rows.filter((r) => r.value > 0).sort((a, b) => b.value - a.value).slice(0, n).map((r) => `${r.name} with ${count(r.value, unit)}`)
+  if (top.length === 0) return "Nothing to show yet."
+  if (top.length === 1) return `Most is ${top[0]}.`
+  return `Most is ${top[0]}, then ${top.length === 2 ? top[1] : `${top.slice(1, -1).join(", ")} and ${top.at(-1)}`}.`
+}
+
+export function boxSummary(groups: { name: string; values: number[] }[], unit: string): string {
+  const parts = groups.filter((g) => g.values.length > 0).map((g) => {
+    const sorted = [...g.values].sort((a, b) => a - b)
+    return `${g.name} ${num(round(sorted[Math.floor(sorted.length / 2)]))} ${unit}`
+  })
+  return parts.length ? `The middle value for each: ${parts.join(", ")}.` : "Nothing to show yet."
+}
+
+export function gridSummary(grid: { day: number; hour: number; value: number }[], unit: string): string {
+  const top = grid.reduce<(typeof grid)[number] | null>((a, b) => (!a || b.value > a.value ? b : a), null)
+  if (!top || top.value <= 0) return "Nothing to show yet."
+  return `Busiest on ${DAY_WORDS[DAYS[top.day]] ?? DAYS[top.day]} at ${String(top.hour).padStart(2, "0")}:00 with ${count(round(top.value), unit)}.`
+}
+
+export function calendarSummary(days: { date: string; value: number }[], unit: string): string {
+  const active = days.filter((d) => d.value > 0)
+  if (active.length === 0) return "Nothing to show yet."
+  const top = active.reduce((a, b) => (b.value > a.value ? b : a))
+  return `${count(active.length, "active days")}. The busiest was ${ukShortDate(top.date)} with ${count(round(top.value), unit)}.`
+}
+
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+
+export function monthName(key: string): string {
+  const [y, m] = key.split("-").map(Number)
+  return y && m >= 1 && m <= 12 ? `${MONTH_NAMES[m - 1]} ${y}` : key
+}
+
+export function weekName(key: string): string {
+  const [m, d] = key.split("-").map(Number)
+  return m >= 1 && m <= 12 && d ? `${d} ${MONTH_NAMES[m - 1]}` : key
+}
+
+export function relabel<T extends { name: string }>(rows: T[], label: (name: string) => string): T[] {
+  return rows.map((r) => ({ ...r, name: label(r.name) }))
+}
+
+export function totalsSummary(rows: Record<string, unknown>[], series: { key: string; name: string }[], unit: string): string {
+  const totals = series.map((s) => ({ name: s.name, value: round(rows.reduce((sum, r) => sum + (Number(r[s.key]) || 0), 0)) }))
+  if (!totals.some((t) => t.value > 0)) return "Nothing to show yet."
+  return `In total: ${totals.map((t) => `${t.name} ${count(t.value, unit)}`.trim()).join(", ")}.`
+}
+
+export function treeTotals(tree: { name: string; value?: number; children?: { value?: number }[] }[]): Named[] {
+  return tree.map((t) => ({ name: t.name, value: round(t.children?.length ? t.children.reduce((s, c) => s + (c.value ?? 0), 0) : (t.value ?? 0)) }))
 }

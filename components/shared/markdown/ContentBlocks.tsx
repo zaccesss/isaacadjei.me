@@ -60,7 +60,7 @@ export function renderBlock(
   switch (block.type) {
     case "p":
       return (
-        <p key={i} className={`text-base leading-relaxed ${afterAcknowledgements ? "text-primary/90" : "text-foreground/90"}`}>
+        <p key={i} className={`text-lg leading-[1.7] ${afterAcknowledgements ? "text-primary/90" : "text-foreground/90"}`}>
           {renderInline(block.text)}
         </p>
       )
@@ -69,7 +69,7 @@ export function renderBlock(
         <h2
           key={i}
           id={headingIds?.get(i)}
-          className={`text-xl font-semibold tracking-tight mt-8 mb-2 scroll-mt-24 ${
+          className={`text-[1.625rem] leading-tight font-semibold tracking-tight mt-12 mb-3 scroll-mt-24 ${
             block.text === "Acknowledgements" ? "text-primary" : ""
           }`}
         >
@@ -78,16 +78,16 @@ export function renderBlock(
       )
     case "h3":
       return (
-        <h3 key={i} id={headingIds?.get(i)} className="text-base font-semibold tracking-tight mt-6 mb-1 scroll-mt-24">
+        <h3 key={i} id={headingIds?.get(i)} className="text-xl font-semibold tracking-tight mt-8 mb-2 scroll-mt-24">
           {block.text}
         </h3>
       )
     case "ul":
       return (
-        <ul key={i} className="space-y-1.5 list-none pl-0">
+        <ul key={i} className="space-y-2 list-none pl-0">
           {block.items.map((item, j) => (
-            <li key={j} className="flex gap-2 text-base text-foreground/90">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+            <li key={j} className="flex gap-3 text-lg leading-[1.7] text-foreground/90">
+              <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground" aria-hidden="true" />
               <span>{renderInline(item)}</span>
             </li>
           ))}
@@ -95,11 +95,11 @@ export function renderBlock(
       )
     case "ol":
       return (
-        <ol key={i} className="space-y-1.5 list-none pl-0 counter-reset-[item]">
+        <ol key={i} className="space-y-2 list-none pl-0">
           {block.items.map((item, j) => (
-            <li key={j} className="flex gap-3 text-base text-foreground/90">
-              <span className="shrink-0 font-mono text-sm text-primary">
-                {String(j + 1).padStart(2, "0")}.
+            <li key={j} className="flex gap-3 text-lg leading-[1.7] text-foreground/90">
+              <span className="w-6 shrink-0 text-right tabular-nums text-muted-foreground">
+                {j + 1}.
               </span>
               <span>{renderInline(item)}</span>
             </li>

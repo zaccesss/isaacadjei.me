@@ -1,4 +1,5 @@
 import type { Project } from "@/data/projects"
+import { cn } from "@/lib/utils"
 
 const LABELS: Record<NonNullable<Project["status"]>, string> = {
   live: "Live",
@@ -18,7 +19,7 @@ const DOTS: Record<NonNullable<Project["status"]>, string> = {
 
 export default function StatusBadge({ status, className = "" }: { status: NonNullable<Project["status"]>; className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground ${className}`}>
+    <span className={cn("inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground", className)}>
       <span className={`h-1.5 w-1.5 rounded-full ${DOTS[status]}`} aria-hidden="true" />
       {LABELS[status]}
     </span>

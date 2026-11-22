@@ -37,26 +37,26 @@ export function GridHeatmap({
     tooltip: {
       formatter: (p: { data: { value: [number, number, number]; raw: number } }) => {
         const [hour, yPos] = p.data.value
-        const formatted = valueFormatter ? valueFormatter(p.data.raw) : p.data.raw.toLocaleString()
+        const formatted = valueFormatter ? valueFormatter(p.data.raw) : p.data.raw.toLocaleString("en-GB")
         return `${DAY_LABELS[6 - yPos]} ${HOUR_LABELS[hour]}<br/>${formatted}${valueLabel ? ` ${valueLabel}` : ""}`
       },
       backgroundColor: colours.card,
       borderColor: colours.border,
-      textStyle: { color: colours.foreground, fontSize: 11 },
+      textStyle: { color: colours.foreground, fontSize: 13 },
     },
-    grid: { height: "70%", top: "5%", left: "8%", right: "2%" },
+    grid: { height: "70%", top: "5%", left: 44, right: 8 },
     xAxis: {
       type: "category",
       data: HOUR_LABELS,
       splitArea: { show: true, areaStyle: { color: [colours.card, colours.muted] } },
-      axisLabel: { color: colours.mutedForeground, fontSize: 9, interval: 2 },
+      axisLabel: { color: colours.mutedForeground, fontSize: 13, interval: 3 },
       axisLine: { lineStyle: { color: colours.border } },
     },
     yAxis: {
       type: "category",
       data: Y_AXIS_DAY_LABELS,
       splitArea: { show: true, areaStyle: { color: [colours.card, colours.muted] } },
-      axisLabel: { color: colours.mutedForeground, fontSize: 10 },
+      axisLabel: { color: colours.mutedForeground, fontSize: 13 },
       axisLine: { lineStyle: { color: colours.border } },
     },
     visualMap: {
@@ -78,7 +78,7 @@ export function GridHeatmap({
   return (
     <div>
       <ReactECharts option={option} style={{ height, width: "100%" }} opts={{ renderer: "svg" }} notMerge />
-      <div className="mt-1.5 flex items-center justify-end gap-1 text-[10px] text-muted-foreground">
+      <div className="mt-1.5 flex items-center justify-end gap-1 text-xs text-muted-foreground" aria-hidden>
         <span>Less</span>
         {scale.map((c, i) => (
           <span key={i} className="h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: c }} />

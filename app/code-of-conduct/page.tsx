@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
 import Callout from "@/components/shared/markdown/Callout"
 import {
-  Users,
   Heart,
   ScrollText,
   Gavel,
@@ -13,6 +12,7 @@ import {
   BookMarked,
 } from "lucide-react"
 import { FaGithub as Github } from "react-icons/fa6"
+import PageHeader from "@/components/layout/PageHeader"
 
 export const metadata: Metadata = {
   title: "Code of Conduct",
@@ -29,12 +29,8 @@ export const metadata: Metadata = {
 export default function CodeOfConductPage() {
   return (
     <div className="container max-w-3xl py-24 space-y-16">
-      <section className="space-y-4">
-        <div className="flex items-center gap-3">
-          <Users className="h-8 w-8 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight">Code of Conduct</h1>
-        </div>
-        <p className="text-sm text-muted-foreground font-mono">Last updated: October 2026</p>
+      <PageHeader title="Code of Conduct">
+        <p className="text-sm text-muted-foreground tabular-nums">Last updated: October 2026</p>
         <p className="text-lg text-muted-foreground leading-relaxed">
           This is the code of conduct for all my projects, software or hardware, public or private
           and for this website. I keep the full version here in one place so every repository can point
@@ -77,7 +73,7 @@ export default function CodeOfConductPage() {
             Also on GitHub: zaccesss/code-of-conduct
           </a>
         </p>
-      </section>
+      </PageHeader>
 
       <Separator />
 
