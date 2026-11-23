@@ -132,10 +132,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col-reverse items-center gap-3 border-t pt-6 text-xs text-muted-foreground lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
           <p className="lg:justify-self-start">
-            <Link href="/copyright" className="font-medium text-primary underline-offset-4 hover:underline">
-              &copy; {year} Isaac Adjei
-            </Link>
-            <span>. All rights reserved.</span>
+            &copy; {year} Isaac Adjei. All rights reserved.
           </p>
           <nav aria-label="Legal and privacy">
             <ul className="flex flex-wrap justify-center gap-x-4">

@@ -10,6 +10,17 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.132.0",
+    date: "2026-11-23",
+    changed: [
+      "The homepage introduction has a new paragraph and lines up with the sections below it",
+      "Links in the text show their blue underline all the time",
+      "The menu keeps a section highlighted on its inner pages, so a blog post highlights Blog",
+      "The Experience page is calmer: one button, plain dots on the timeline, each role's type in colour beside its dates and the organisation in italics",
+      "The copyright line in the footer is plain text",
+    ],
+  },
+  {
     version: "v2.131.1",
     date: "2026-11-22",
     fixed: [

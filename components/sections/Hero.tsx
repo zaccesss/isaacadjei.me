@@ -17,13 +17,13 @@ export default function Hero() {
         />
         <h1 className="text-[2.5rem] font-bold leading-none tracking-tight sm:text-6xl">Isaac Adjei</h1>
       </div>
-      <p className="mt-8 max-w-[60ch] text-xl font-medium leading-snug sm:text-2xl">
+      <p className="mt-8 max-w-[68ch] text-xl font-medium leading-snug sm:text-2xl">
         Building at the intersection of hardware, software and AI/ML.
       </p>
-      <p className="mt-4 max-w-[60ch] text-lg leading-relaxed text-foreground/90">
-        I study Electronic Engineering and Computer Science at Aston University in Birmingham, working across the full
-        stack of engineering and technology: circuit boards, firmware and the software around them. I am open to
-        internships, placements and professional opportunities.
+      <p className="mt-4 max-w-[68ch] text-lg leading-relaxed text-foreground/90">
+        I study Electronic Engineering and Computer Science at Aston University in Birmingham. I design circuit boards
+        and write the firmware and software that run on them. I am open to internships, placements and professional
+        opportunities.
       </p>
       <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
         <SocialLinks iconSize="h-5 w-5" />

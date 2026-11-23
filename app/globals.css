@@ -271,14 +271,14 @@ html.apple {
   the text and the underline blue. Focus also draws a ring, because a colour change by itself is easy to miss.
   The blue is its own variable, not primary, so it can be light enough in the dark theme to reach 4.5 to 1 on the
   page, the card and the muted surfaces alike without changing primary for buttons and everything else.
-  The underline uses the full muted colour so it reaches 3 to 1 against the page in both themes. The fade only
+  The underline is the link blue at rest (the site's one accent) and reaches 3 to 1 against the page in both themes. The fade only
   runs when the device has not asked for less motion. Being a utility, it can sit beside layout classes such as
   inline-flex or font-medium, which still apply
 */
 @utility body-link {
   color: hsl(var(--foreground));
   text-decoration-line: underline;
-  text-decoration-color: hsl(var(--muted-foreground));
+  text-decoration-color: hsl(var(--link-hover));
   text-decoration-thickness: max(1px, 0.0625em);
   text-underline-offset: 4px;
   border-radius: 2px;

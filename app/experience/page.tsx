@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Download, ArrowRight } from "lucide-react"
+import { Download } from "lucide-react"
 import { experiences, isExperienceVisible, type Experience } from "@/data/experience"
 import ExperienceTimeline from "@/components/sections/ExperienceTimeline"
 import { Button } from "@/components/ui/button"
@@ -35,8 +35,8 @@ export default function ExperiencePage() {
   const volunteering = inOrder(volunteeringIds, visible)
 
   const sections = [
-    { title: "Work Experience", items: work },
-    { title: "Leadership and Representation", items: leadership },
+    { title: "Work experience", items: work },
+    { title: "Leadership and representation", items: leadership },
     { title: "Ventures", items: ventures },
     { title: "Volunteering", items: volunteering },
   ]
@@ -44,29 +44,16 @@ export default function ExperiencePage() {
   return (
     <div className="container max-w-3xl py-24 space-y-10">
       <PageHeader title="Experience" description="Work, leadership roles, the ventures I founded and volunteering.">
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button
-            asChild
-            size="lg"
-            className="bg-gray-900 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
-          >
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Button asChild size="lg">
             <a href="/api/cv-pdf">
-              <Download className="mr-2 h-4 w-4" />
+              <Download aria-hidden="true" className="mr-2 h-4 w-4" />
               Download CV
             </a>
           </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="/projects">
-              View My Work
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button asChild size="lg">
-            <Link href="/contact">
-              Get in touch
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          <Link href="/contact" className="body-link relative text-base font-medium after:absolute after:-inset-3 after:content-['']">
+            Get in touch
+          </Link>
         </div>
       </PageHeader>
       {sections

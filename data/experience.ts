@@ -26,7 +26,7 @@ export function isExperienceVisible(exp: Experience): boolean {
 export const experiences: Experience[] = [
   {
     id: "pal-leader",
-    role: "Peer Assisted Learning (PAL) Leader - Electronics and Programming",
+    role: "Peer Assisted Learning (PAL) Leader, Electronics and Programming",
     company: "Aston University, Learning Services",
     location: "Birmingham, UK",
     type: "work",

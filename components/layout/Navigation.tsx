@@ -12,11 +12,12 @@ export default function Navigation() {
   return (
     <nav className="hidden lg:flex items-center gap-5">
       {links.map((link) => {
-        const isActive = pathname === link.href
+        const isActive = pathname === link.href || pathname.startsWith(link.href + "/")
         return (
           <div key={link.href} className="relative flex flex-col items-center">
             <Link
               href={link.href}
+              aria-current={isActive ? "page" : undefined}
               aria-label={link.label === "More" ? "More: every page on the site" : undefined}
               className={cn(
                 "relative text-sm font-medium transition-colors hover:text-foreground pb-1 after:absolute after:-inset-x-2.5 after:-inset-y-2.5 after:content-['']",
@@ -25,7 +26,7 @@ export default function Navigation() {
             >
               {link.label}
             </Link>
-            {isActive && <span className="absolute bottom-0 h-0.5 w-4/5 rounded-full bg-primary" />}
+            {isActive && <span aria-hidden="true" className="absolute bottom-0 h-0.5 w-4/5 rounded-full bg-primary" />}
           </div>
         )
       })}

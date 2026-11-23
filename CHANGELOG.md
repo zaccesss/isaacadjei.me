@@ -2,6 +2,16 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.132.0] - 2026-11-23
+
+### Changed
+
+- The homepage introduction has a new paragraph and lines up with the sections below it
+- Links in the text show their blue underline all the time
+- The menu keeps a section highlighted on its inner pages, so a blog post highlights Blog
+- The Experience page is calmer: one button, plain dots on the timeline, each role's type in colour beside its dates and the organisation in italics
+- The copyright line in the footer is plain text
+
 ## [2.131.1] - 2026-11-22
 
 ### Fixed
