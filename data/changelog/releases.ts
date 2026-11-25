@@ -10,6 +10,13 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.132.1",
+    date: "2026-11-25",
+    changed: [
+      "The downloadable CV has a new introduction and up to date project details",
+    ],
+  },
+  {
     version: "v2.132.0",
     date: "2026-11-23",
     changed: [

@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.132.1] - 2026-11-25
+
+### Changed
+
+- The downloadable CV has a new introduction and up to date project details
+
 ## [2.132.0] - 2026-11-23
 
 ### Changed
