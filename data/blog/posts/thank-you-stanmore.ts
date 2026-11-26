@@ -4,7 +4,7 @@ const _thank_you_stanmore: BlogPost = {
     slug: "thank-you-stanmore",
     title: "Thank You, Stanmore",
     date: "2026-10-17",
-    updated: "2026-11-21",
+    updated: "2026-11-25",
     type: "journal",
     cover_image: "/images/blog/covers/thank-you-stanmore-card.webp",
     cover_alt: "Close-up of a handwritten card from my business teacher reading: never let anyone stop your dreams from coming true",
@@ -23,9 +23,9 @@ const _thank_you_stanmore: BlogPost = {
       },
       {
         type: "image",
-        src: "/images/blog/thank-you-stanmore/stanmore-college-building.webp",
-        alt: "Looking up at a Stanmore College building on a sunny day: a dark brick tower with stanmore college in large white letters beside a block clad in pale timber with rows of grey-framed windows and a few green panels",
-        caption: "Stanmore College, where I studied from 2022 to 2024. Photo: [Stanmore College](https://www.stanmore.ac.uk), used with permission.",
+        src: "/images/blog/thank-you-stanmore/stanmore-college-campus-aerial.webp",
+        alt: "An aerial drawing of the Stanmore College campus: low buildings with green roofs lined with solar panels, a block clad in rust-brown panels at the front and a courtyard with tables between the buildings, all surrounded by trees",
+        caption: "Stanmore College, where I studied from 2022 to 2024, in an aerial drawing of the campus. Image: [Stanmore College](https://stanmore.ac.uk/our-college/our-location-and-getting-here/), used with permission.",
       },
       {
         type: "h2",

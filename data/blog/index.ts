@@ -106,6 +106,7 @@ import _57 from "./posts/recording-product-demos-as-code"
 import _58 from "./posts/dual-booting-windows-ubuntu-wsl2"
 import _59 from "./posts/mars-climate-orbiter-unit-mismatch"
 import _60 from "./posts/actionable-error-alerts"
+import _61 from "./posts/how-usb-c-power-delivery-negotiates"
 import _69 from "./posts/isolation-forest-without-maths"
 import _71 from "./posts/monorepo-read-only-split-repos"
 import _77 from "./posts/sky-animol-screening-invite"
@@ -169,6 +170,7 @@ export const posts: BlogPost[] = [
   _58,
   _59,
   _60,
+  _61,
   _69,
   _71,
   _77,

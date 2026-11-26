@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.132.2] - 2026-11-25
+
+### Changed
+
+- The Thank You, Stanmore post opens with a new image of the college campus
+
 ## [2.132.1] - 2026-11-25
 
 ### Changed
