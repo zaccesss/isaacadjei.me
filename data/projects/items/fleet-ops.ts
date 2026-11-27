@@ -9,7 +9,7 @@ const _fleetOps: Project = {
     description:
       "Four systems that run a fleet of GitHub repositories on their own: a scheduler that keeps jobs on UK time, governance for branches and Dependabot, a GitLab mirror and a backup of issues and pull requests.",
     longDescription:
-      "fleet-ops runs a fleet of GitHub repositories without anyone tidying them by hand. A scheduler starts every job at its real UK time, across clock changes and missed ticks. Governance deletes merged branches, merges Dependabot updates its policy allows, syncs labels, prunes stale branches and reports settings drift. A mirror copies every repository to GitLab and a backup saves issues, pull requests, comments and releases as JSON.\n\nI look after more than 130 repositories across my own account and three organisations, so doing this by hand stopped being possible a long time ago. The hard part is doing it safely on free tiers. Every job mints its own short-lived GitHub App token with only the permissions it needs, every request is verified before it is read and the nightly sweep stays inside the 50 subrequests a free Cloudflare Worker may make.\n\nIt is two Cloudflare Workers in TypeScript and two Python services, with 157 tests that never touch a real API. Version 1.0.0 came out on 27 November 2026, built in seven pull requests that each added one part. Version 1.1.0 followed the same day with full documentation and a CI pipeline that also publishes the runner image to GitHub Container Registry.",
+      "fleet-ops runs a fleet of GitHub repositories without anyone tidying them by hand. A scheduler starts every job at its real UK time, across clock changes and missed ticks. Governance deletes merged branches, merges Dependabot updates its policy allows, syncs labels, prunes stale branches and reports settings drift. A mirror copies every repository to GitLab and a backup saves issues, pull requests, comments and releases as JSON.\n\nI look after more than 130 repositories across my own account and three organisations, so doing this by hand stopped being possible a long time ago. The hard part is doing it safely on free tiers. Every job mints its own short-lived GitHub App token with only the permissions it needs, every request is verified before it is read and the nightly sweep stays inside the 50 subrequests a free Cloudflare Worker may make.\n\nIt is two Cloudflare Workers in TypeScript and two Python services, with 184 tests that never touch a real API. Version 1.0.0 came out on 27 November 2026, built in seven pull requests that each added one part. Version 2.0.0 followed the same day with full documentation, property-based tests, 13 required checks on every pull request and signed releases that anyone can verify.",
     technologies: [
       "TypeScript",
       "Cloudflare Workers",
@@ -37,8 +37,9 @@ const _fleetOps: Project = {
       "Every job mints its own one-hour GitHub App token, limited to the permissions it needs and, for a webhook, to one repository",
       "A nightly sweep that reads 25 repositories per GraphQL request and spends at most 40 writes, inside the free plan's 50 subrequests",
       "Tokens passed to git through environment variables, so they never appear in a URL, a process list or a log",
-      "157 tests with coverage gates on two Node and two Python versions, plus Biome, strict mypy, CodeQL, dependency review and a real git run on every pull request",
-      "A release workflow that checks every version against the tag and publishes the runner image to GitHub Container Registry with provenance and an SBOM",
+      "184 tests with coverage gates on two Node and two Python versions, including property-based tests that check the timetable against every day of 2026",
+      "13 required checks on every pull request: Biome, strict mypy, CodeQL, dependency review, a link check, a container build and a real git run",
+      "Signed releases: a source archive with a Sigstore-signed build provenance and an attested runner image, both checked with gh attestation verify",
     ],
     releaseRepos: [{ name: "fleet-ops", repo: "zaccesss/fleet-ops" }],
     links: [
@@ -106,7 +107,7 @@ const _fleetOps: Project = {
       { type: "h2", text: "Testing without touching a real API" },
       {
         type: "p",
-        text: "Every network call goes through a fake that records what was sent and fails loudly on anything unexpected. That covers 108 TypeScript tests and 49 Python tests. CI fails if coverage drops below its thresholds. The one place a fake was not enough is git itself, so a test runs the real git binary against local bare repositories and proves that GitHub's pull request refs never reach the mirror and that a deleted branch is pruned. CodeQL found one real issue after 1.0.0, a webhook that echoed an error message to its caller. Version 1.0.1 fixed it the same day.",
+        text: "Every network call goes through a fake that records what was sent and fails loudly on anything unexpected. That covers 125 TypeScript tests and 59 Python tests. CI fails if coverage drops below its thresholds. Property-based tests go further: fast-check and Hypothesis generate inputs to hunt for a case that breaks a rule. One walks every 15 minute slot of every day in 2026 and proves a daily job starts exactly once per local day, both clock changes included. The one place a fake was not enough is git itself, so a test runs the real git binary against local bare repositories and proves that GitHub's pull request refs never reach the mirror and that a deleted branch is pruned. CodeQL found one real issue after 1.0.0, a webhook that echoed an error message to its caller. Version 1.0.1 fixed it the same day.",
       },
     ],
 }
