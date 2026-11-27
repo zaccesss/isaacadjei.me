@@ -10,6 +10,11 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.134.1",
+    date: "2026-11-27",
+    changed: ["The fleet-ops project page covers its 1.1.0 release: full documentation, 157 tests and the release pipeline"],
+  },
+  {
     version: "v2.134.0",
     date: "2026-11-27",
     added: [

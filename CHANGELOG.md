@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.134.1] - 2026-11-27
+
+### Changed
+
+- The fleet-ops project page covers its 1.1.0 release: full documentation, 157 tests and the release pipeline
+
 ## [2.134.0] - 2026-11-27
 
 ### Added
