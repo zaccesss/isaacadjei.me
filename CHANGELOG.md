@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.134.3] - 2026-11-27
+
+### Fixed
+
+- Activity notices wait and try again when the chat service asks them to slow down, instead of failing
+
 ## [2.134.2] - 2026-11-27
 
 ### Changed

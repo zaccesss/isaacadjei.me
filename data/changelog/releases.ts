@@ -10,6 +10,11 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.134.3",
+    date: "2026-11-27",
+    fixed: ["Activity notices wait and try again when the chat service asks them to slow down, instead of failing"],
+  },
+  {
     version: "v2.134.2",
     date: "2026-11-27",
     changed: ["The fleet-ops project page covers its 2.0.0 release: property-based tests, 184 tests in all and signed releases"],
