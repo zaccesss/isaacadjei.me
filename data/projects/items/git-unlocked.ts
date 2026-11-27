@@ -20,7 +20,7 @@ const _git_unlocked: Project = {
     category: "academic",
     featured: false,
     cover: "/images/projects/git-unlocked/cover.webp",
-    order: 14,
+    order: 15,
     status: "live",
     images: [
       "/images/projects/git-unlocked/github-logo-3d.webp",

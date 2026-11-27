@@ -10,6 +10,13 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.134.0",
+    date: "2026-11-27",
+    added: [
+      "A project page for fleet-ops, four systems that run a fleet of GitHub repositories: a scheduler on UK time, repository governance, a GitLab mirror and a backup of issues and pull requests",
+    ],
+  },
+  {
     version: "v2.133.0",
     date: "2026-11-27",
     fixed: [

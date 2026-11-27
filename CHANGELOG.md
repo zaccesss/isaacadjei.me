@@ -2,6 +2,12 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.134.0] - 2026-11-27
+
+### Added
+
+- A project page for fleet-ops, four systems that run a fleet of GitHub repositories: a scheduler on UK time, repository governance, a GitLab mirror and a backup of issues and pull requests
+
 ## [2.133.0] - 2026-11-27
 
 ### Changed

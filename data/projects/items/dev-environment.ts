@@ -84,7 +84,7 @@ const _dev_environment: Project = {
       "Used daily on a MacBook with OrbStack, a ThinkPad dual booting Windows 11 and Fedora KDE with BitLocker kept on and a Windows gaming PC, with WSL2 on both PCs",
     ],
     cover: "/images/projects/dev-environment/cover.webp",
-    order: 12,
+    order: 13,
     status: "live",
     links: [
       { label: "setup/mac-bootstrap", url: "https://github.com/zaccesss/dotfiles/tree/main/setup/mac-bootstrap" },
