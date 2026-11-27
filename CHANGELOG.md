@@ -2,6 +2,19 @@
 
 Release notes for the public site, generated from its changelog page. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.133.0] - 2026-11-27
+
+### Changed
+
+- Share images for the site, every post and every project are drawn once when the site is built
+- The Friends page is served as a ready-made page, with the letter confirmation read in the browser
+- Pages are kept at the edge for two hours and maintenance mode now switches at the edge
+
+### Fixed
+
+- Feed readers get the Atom feed again: a cached copy of the browser page was being sent to some of them
+- Link preview images, feeds and the WebFinger answer are now cached as intended instead of being drawn on every request
+
 ## [2.132.2] - 2026-11-25
 
 ### Changed

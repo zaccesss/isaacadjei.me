@@ -1,7 +1,11 @@
 import { ImageResponse } from "next/og"
-import { getPostBySlug } from "@/data/blog"
+import { getPostBySlug, getPublishedPosts } from "@/data/blog"
 
 export const runtime = "nodejs"
+
+export async function generateStaticParams() {
+  return getPublishedPosts().map((p) => ({ slug: p.slug }))
+}
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 

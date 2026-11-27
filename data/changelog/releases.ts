@@ -10,6 +10,19 @@ export type ChangeEntry = {
 
 export const releases: ChangeEntry[] = [
   {
+    version: "v2.133.0",
+    date: "2026-11-27",
+    fixed: [
+      "Feed readers get the Atom feed again: a cached copy of the browser page was being sent to some of them",
+      "Link preview images, feeds and the WebFinger answer are now cached as intended instead of being drawn on every request",
+    ],
+    changed: [
+      "Share images for the site, every post and every project are drawn once when the site is built",
+      "The Friends page is served as a ready-made page, with the letter confirmation read in the browser",
+      "Pages are kept at the edge for two hours and maintenance mode now switches at the edge",
+    ],
+  },
+  {
     version: "v2.132.2",
     date: "2026-11-25",
     changed: [

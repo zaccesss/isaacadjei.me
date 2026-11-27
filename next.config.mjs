@@ -61,7 +61,7 @@ const nextConfig = {
       // public files and metadata routes go out with max-age=0, so Cloudflare revalidates each one with Vercel and every
       // view still counts as a Vercel CDN request. Cloudflare-CDN-Cache-Control is read only by Cloudflare and never reaches
       // the browser (https://developers.cloudflare.com/cache/concepts/cdn-cache-control/), so Cloudflare holds files for a
-      // day and the feeds for an hour while the browser behaviour stays as it was. /resume is left out on purpose: the CV
+      // day and robots and the sitemap for an hour while the browser behaviour stays as it was. /resume is left out on purpose: the CV
       // must update the moment a new one is built.
       ...[
         "/images/:path*", "/Media/:path*", "/brand/:path*", "/frames/:path*", "/maps/:path*", "/models/:path*",
@@ -72,10 +72,28 @@ const nextConfig = {
         source,
         headers: [{ key: "Cloudflare-CDN-Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
       })),
-      ...["/robots.txt", "/sitemap.xml", "/feed.xml", "/newsletter/feed.xml"].map((source) => ({
+      // the feeds are not here: each URL answers with HTML or XML by Accept and Cloudflare ignores Vary, so they are
+      // cached on Vercel's CDN instead (feedEdgeCache in lib/content/rss.ts)
+      ...["/robots.txt", "/sitemap.xml"].map((source) => ({
         source,
         headers: [{ key: "Cloudflare-CDN-Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
       })),
+      // public pages on isaacadjei.me no longer pass through middleware (it is billed as Fluid Active CPU on every run), so
+      // the two headers it used to add come from here. Cloudflare may hold a public page for two hours: deploys, the
+      // midnight refresh and maintenance switches purge the zone, so only a dashboard change to a public page (a guestbook
+      // approval, say) waits. The pattern leaves out the private and one-off pages, the API, Next's assets and any file
+      ...[
+        {
+          source: "/((?!dashboard(?:/|$)|api/|_next/|maintenance(?:/|$)|cv(?:/|$)|newsletter/confirm)(?!.*\\.).*)",
+          has: [{ type: "host", value: "isaacadjei.me" }],
+          headers: [{ key: "Cloudflare-CDN-Cache-Control", value: "public, max-age=7200, stale-while-revalidate=600" }],
+        },
+        ...["/maintenance", "/cv", "/cv/:path*", "/newsletter/confirm", "/newsletter/confirmed"].map((source) => ({
+          source,
+          has: [{ type: "host", value: "isaacadjei.me" }],
+          headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+        })),
+      ],
       // files skip middleware, so the CV files that go with the unlisted CV page get their noindex here. It is a header
       // rather than a robots.txt line, which would name the folder to anyone reading that file
       { source: "/resume/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },

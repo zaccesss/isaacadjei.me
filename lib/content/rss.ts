@@ -148,16 +148,24 @@ export function rssResponse(request: Request, channel: RssChannel, items: RssIte
 
   if (url.searchParams.has("raw")) {
     return new Response(buildAtomXml(channel, items, baseUrl), {
-      headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": xmlCache, ...vary },
+      headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": xmlCache, ...vary, ...feedEdgeCache(xmlCache) },
     })
   }
   if (accept.includes("text/html")) {
     const page = parseInt(url.searchParams.get("page") ?? "1", 10)
     return new Response(buildRssHtml(channel, items, baseUrl, page), {
-      headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": htmlCache, ...vary },
+      headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": htmlCache, ...vary, ...feedEdgeCache(htmlCache) },
     })
   }
   return new Response(buildAtomXml(channel, items, baseUrl), {
-    headers: { "Content-Type": "application/atom+xml; charset=utf-8", "Cache-Control": xmlCache, ...vary },
+    headers: { "Content-Type": "application/atom+xml; charset=utf-8", "Cache-Control": xmlCache, ...vary, ...feedEdgeCache(xmlCache) },
   })
+}
+
+export function feedEdgeCache(cacheControl: string): Record<string, string> {
+  const ttl = /s-maxage=(\d+)/.exec(cacheControl)?.[1] ?? /max-age=(\d+)/.exec(cacheControl)?.[1]
+  return {
+    ...(ttl && Number(ttl) > 0 ? { "Vercel-CDN-Cache-Control": `public, s-maxage=${ttl}` } : {}),
+    "Cloudflare-CDN-Cache-Control": "no-store",
+  }
 }

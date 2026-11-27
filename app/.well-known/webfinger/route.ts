@@ -32,7 +32,8 @@ export function GET(req: Request) {
       headers: {
         "Content-Type": "application/jrd+json",
         "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "public, max-age=3600, s-maxage=86400",
+        "Cache-Control": "public, max-age=3600",
+        "Vercel-CDN-Cache-Control": "public, s-maxage=86400",
       },
     },
   )
